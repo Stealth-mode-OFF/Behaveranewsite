@@ -1,7 +1,8 @@
 import React from "react";
-import dashboardPreview from 'figma:asset/1c0865d7f205b99cb7db33b13aca36d11f4a3876.png';
 import { Eye, Zap, ShieldAlert } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
+
+const dashboardPreview = "/assets/dashboard-preview.svg";
 
 export function DashboardPreview() {
   const { t } = useLanguage();

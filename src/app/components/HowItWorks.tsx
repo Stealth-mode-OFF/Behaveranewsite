@@ -1,9 +1,9 @@
 import React from "react";
 import { MessageSquare, BarChart3, Rocket, Lock } from "lucide-react";
-import negativeInsights from 'figma:asset/95ef6229ea479f28b4f0d02e0936f15e4d01057c.png';
-import actionInsight from 'figma:asset/fe697dc442098ea924378dc75a4d3fbb5a5b108c.png';
-import mobileDashboard from 'figma:asset/f61b0b0b60a800b8b932b5d7e2864d06b2c15c07.png';
 import { useLanguage } from "../LanguageContext";
+
+const negativeInsights = "/assets/negative-insights.svg";
+const mobileDashboard = "/assets/mobile-dashboard.svg";
 
 export function HowItWorks() {
   const { t } = useLanguage();

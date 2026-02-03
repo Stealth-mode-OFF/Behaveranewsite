@@ -3,7 +3,8 @@ import { useLanguage } from "../LanguageContext";
 import { Button } from "./ui/button";
 import { Play, ChevronRight, CheckCircle2 } from "lucide-react";
 import { useModal } from "../ModalContext";
-import dashboardPreview from 'figma:asset/1c0865d7f205b99cb7db33b13aca36d11f4a3876.png';
+
+const dashboardPreview = "/assets/dashboard-preview.svg";
 
 export function Hero() {
   const { openBooking } = useModal();
