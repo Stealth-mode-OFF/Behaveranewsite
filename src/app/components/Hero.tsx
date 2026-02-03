@@ -1,5 +1,4 @@
 import React from "react";
-import dashboardPreview from 'figma:asset/57784f33eede4d7388f560072042dfccbed29cab.png';
 import { Button } from "./ui/button";
 import { Play, ChevronRight, CheckCircle2 } from "lucide-react";
 import { useModal } from "../ModalContext";
@@ -116,7 +115,7 @@ export function Hero() {
         >
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-white/20 to-transparent pointer-events-none z-10" />
           <img 
-            src={dashboardPreview} 
+            src="/assets/dashboard-preview.svg" 
             alt="Echo Pulse Dashboard" 
             className="w-full h-auto"
           />

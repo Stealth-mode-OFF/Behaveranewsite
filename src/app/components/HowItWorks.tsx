@@ -1,7 +1,5 @@
 import React from "react";
 import { MessageSquare, BarChart3, Rocket, Lock } from "lucide-react";
-import negativeInsights from 'figma:asset/95ef6229ea479f28b4f0d02e0936f15e4d01057c.png';
-import mobileDashboard from 'figma:asset/f61b0b0b60a800b8b932b5d7e2864d06b2c15c07.png';
 import { useLanguage } from "../LanguageContext";
 
 export function HowItWorks() {
@@ -47,7 +45,7 @@ export function HowItWorks() {
                 </div>
                 <div className="mt-auto border-t border-brand-border bg-white h-full relative overflow-hidden">
                     <img 
-                        src={negativeInsights} 
+                        src="/assets/negative-insights.svg" 
                         alt="AI Detected Issues Interface" 
                         className="w-[85%] mx-auto h-auto object-cover object-top shadow-2xl shadow-brand-primary/10 rounded-t-lg mt-8 opacity-100 group-hover:scale-[1.02] transition-transform duration-500"
                     />
@@ -80,7 +78,7 @@ export function HowItWorks() {
                     {/* Image Column - Strictly Contained */}
                     <div className="md:w-1/2 bg-brand-background-secondary relative overflow-hidden flex items-center justify-center p-8">
                          <img 
-                            src={mobileDashboard} 
+                            src="/assets/mobile-dashboard.svg" 
                             alt="Mobile Dashboard Interface" 
                             className="w-full max-w-[200px] shadow-2xl shadow-brand-primary/10 rounded transform translate-y-4 group-hover:translate-y-2 transition-transform duration-500" 
                         />

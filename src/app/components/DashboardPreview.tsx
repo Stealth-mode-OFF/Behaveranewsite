@@ -1,5 +1,4 @@
 import React from "react";
-import dashboardPreview from 'figma:asset/57784f33eede4d7388f560072042dfccbed29cab.png';
 import { Eye, Zap, ShieldAlert } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 import { motion } from "framer-motion";
@@ -59,7 +58,7 @@ export function DashboardPreview() {
              className="relative rounded-xl overflow-hidden shadow-2xl shadow-brand-primary/10 border border-brand-border bg-brand-background-secondary mb-20 max-w-6xl mx-auto ring-1 ring-brand-primary/5 group"
         >
              <img 
-                src={dashboardPreview} 
+                src="/assets/dashboard-preview.svg" 
                 alt="Echo Pulse Main Dashboard" 
                 className="w-full h-auto block transform group-hover:scale-[1.01] transition-transform duration-700"
             />
