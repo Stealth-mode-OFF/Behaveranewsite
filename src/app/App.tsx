@@ -1,58 +1,66 @@
 import React from "react";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
-import { LogoMarquee } from "./components/LogoMarquee";
-import { RoleSelection } from "./components/RoleSelection";
-import { ProblemSection } from "./components/ProblemSection";
-import { MethodologySection } from "./components/MethodologySection";
-import { SignalRadar } from "./components/SignalRadar";
-import { CzechRealitySection } from "./components/CzechRealitySection";
-import { DecisionLock } from "./components/DecisionLock";
-import { HowItWorks } from "./components/HowItWorks";
-import { DashboardPreview } from "./components/DashboardPreview";
-import { ValueByRole } from "./components/ValueByRole";
-import { BlogSection } from "./components/BlogSection";
-import { CtaSection } from "./components/CtaSection";
-import { FAQ } from "./components/FAQ";
-import { Footer } from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "./LanguageContext";
 import { ModalProvider } from "./ModalContext";
-import { BookingModal } from "./components/BookingModal";
-import { DemoVideoModal } from "./components/DemoVideoModal";
-import { LeadPopup } from "./components/LeadPopup";
+import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "sonner";
+import { LandingPage } from "./components/LandingPage";
+import { TermsPage } from "./components/TermsPage";
+
+// Public Pages
+import { BlogPage } from "./pages/blog/BlogPage";
+import { BlogPostPage } from "./pages/blog/BlogPostPage";
+import { CaseStudiesPage } from "./pages/case-studies/CaseStudiesPage";
+import { CaseStudyPage } from "./pages/case-studies/CaseStudyPage";
+
+// Admin Pages
+import { AdminLayout } from "./pages/admin/AdminLayout";
+import { AdminLogin } from "./pages/admin/AdminLogin";
+import { Dashboard } from "./pages/admin/Dashboard";
+import { PostList } from "./pages/admin/PostList";
+import { PostEditor } from "./pages/admin/PostEditor";
+import { CaseStudyList } from "./pages/admin/CaseStudyList";
+import { CaseStudyEditor } from "./pages/admin/CaseStudyEditor";
 
 function App() {
   return (
-    <LanguageProvider>
-      <ModalProvider>
-        <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary">
-          <Header />
-          <main>
-            <Hero />
-            <LogoMarquee />
-            <RoleSelection />
-            <ProblemSection />
-            <MethodologySection />
-            <SignalRadar />
-            <DecisionLock />
-            <CzechRealitySection />
-            <HowItWorks />
-            <DashboardPreview />
-            <ValueByRole />
-            <BlogSection />
-            <CtaSection />
-            <FAQ />
-          </main>
-          <Footer />
+    <BrowserRouter>
+      <LanguageProvider>
+        <ModalProvider>
+          <AuthProvider>
+            <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary">
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+                
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                
+                <Route path="/case-studies" element={<CaseStudiesPage />} />
+                <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
 
-          <BookingModal />
-          <DemoVideoModal />
-          <LeadPopup />
-          <Toaster position="top-center" richColors />
-        </div>
-      </ModalProvider>
-    </LanguageProvider>
+                {/* Admin Routes */}
+                <Route path="/admin/login" element={<AdminLogin />} />
+                
+                <Route path="/admin" element={<AdminLayout />}>
+                  <Route index element={<Dashboard />} />
+                  
+                  <Route path="posts" element={<PostList />} />
+                  <Route path="posts/new" element={<PostEditor />} />
+                  <Route path="posts/edit/:id" element={<PostEditor />} />
+                  
+                  <Route path="case-studies" element={<CaseStudyList />} />
+                  <Route path="case-studies/new" element={<CaseStudyEditor />} />
+                  <Route path="case-studies/edit/:id" element={<CaseStudyEditor />} />
+                </Route>
+              </Routes>
+              <Toaster position="top-center" richColors />
+            </div>
+          </AuthProvider>
+        </ModalProvider>
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }
 

@@ -1,31 +1,37 @@
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  /* Brand Colors */
-  --brand-primary: #4F46E5;      /* Primary 500 */
-  --brand-primary-hover: #4338CA; /* Primary 600 */
-  --brand-primary-active: #3730A3; /* Primary 700 */
+  /* BRAND COLOR SYSTEM (Logic: Deep Premium Purple) */
+  
+  /* Primary: The core "Black replacement" and main action color (#2E1065) */
+  --brand-primary: #2E1065;       /* Deep Purple - Main Brand Color */
+  --brand-primary-hover: #1A0B3B; /* Darker shade for interactions */
+  --brand-primary-active: #0F0529; 
 
+  /* Accent: Used for highlights, icons on dark backgrounds, and gradients */
+  --brand-accent: #A78BFA;        /* Violet 400 - Vibrant highlight */
+  --brand-accent-hover: #8B5CF6;  /* Violet 500 */
+
+  /* Backgrounds */
   --brand-background-primary: #FFFFFF;
-  --brand-background-secondary: #F8FAFC;
-  --brand-background-muted: #F1F5F9;
+  --brand-background-secondary: #FAF5FF; /* Purple 50 */
+  --brand-background-muted: #F3E8FF;     /* Purple 100 */
+  --brand-background-dark: #2E1065;      /* The Deep Purple Background */
 
-  --brand-text-primary: #0F172A;
-  --brand-text-secondary: #334155;
-  --brand-text-muted: #64748B;
-  --brand-text-inverse: #FFFFFF;
+  /* Text Colors */
+  --brand-text-primary: #2E1065;   /* Same as primary - replaces black text */
+  --brand-text-secondary: #581C87; /* Purple 900 - Dark readable secondary */
+  --brand-text-muted: #7E22CE;     /* Purple 700 - Captions */
+  --brand-text-inverse: #FFFFFF;   /* White text on dark backgrounds */
+  --brand-text-inverse-secondary: #DDD6FE; /* Purple 200 - Muted text on dark bg */
 
-  --brand-border: #E2E8F0;
-  --brand-border-strong: #CBD5E1;
+  /* Borders */
+  --brand-border: #E9D5FF;         /* Purple 200 */
+  --brand-border-strong: #D8B4FE;  /* Purple 300 */
+  --brand-border-dark: #4C1D95;    /* Violet 900 - Border on dark backgrounds */
 
-  --brand-success: #16A34A;
-  --brand-warning: #F59E0B;
-  --brand-error: #DC2626;
-
-  /* Legacy Mappings */
-  --brand-text: var(--brand-text-primary);
-  --brand-text-body: var(--brand-text-secondary);
-  --brand-secondary: var(--brand-background-secondary);
+  /* Functional */
+  --brand-success: #059669;        /* Emerald 600 */
+  --brand-warning: #D97706;        /* Amber 600 */
+  --brand-error: #DC2626;          /* Red 600 */
 
   /* STRICT TYPOGRAPHY SCALE */
   --text-h1: 48px;
@@ -60,27 +66,29 @@
   --radius-xl: 24px;
 
   /* SHADOW SYSTEM */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-sm: 0 1px 2px rgba(46, 16, 101, 0.05);
+  --shadow-md: 0 4px 12px rgba(46, 16, 101, 0.08);
+  --shadow-lg: 0 10px 25px rgba(46, 16, 101, 0.12);
+  --shadow-glow: 0 0 20px rgba(167, 139, 250, 0.5); /* Glow for accents */
 
   /* MOTION SYSTEM */
   --motion-fast: 150ms ease-out;
   --motion-normal: 250ms ease-out;
 
   /* COMPONENT TOKENS */
-  --radius-card: var(--radius-lg);    /* 16px */
-  --padding-card: var(--space-3);     /* 24px */
+  --radius-card: var(--radius-lg);    
+  --padding-card: var(--space-3);     
   
   /* Button Tokens */
   --button-height: 48px;
-  --button-radius: var(--radius-md);  /* 12px */
-  --button-padding-x: var(--space-3); /* 24px */
+  --button-radius: var(--radius-md);  
+  --button-padding-x: var(--space-3); 
   --button-font-weight: 600;
 
   /* Input Tokens */
   --input-height: 48px;
-  --input-radius: var(--radius-md);   /* 12px */
-  --input-padding-x: var(--space-2);  /* 16px */
+  --input-radius: var(--radius-md);   
+  --input-padding-x: var(--space-2);  
   --input-border-width: 1px;
 
   /* Legacy */
@@ -115,13 +123,16 @@
   --input: var(--brand-border);
   --ring: var(--brand-primary);
   
-  --radius: var(--radius-sm); /* Default 8px */
+  --radius: var(--radius-sm);
 }
 
 @theme inline {
   --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-hover: var(--brand-primary-hover);
   --color-brand-secondary: var(--brand-background-secondary);
   --color-brand-text: var(--brand-text-primary);
+  --color-brand-dark: var(--brand-background-dark);
+  --color-brand-accent: var(--brand-accent);
   
   /* Register Semantic Colors for Utilities */
   --color-background: var(--background);
@@ -152,7 +163,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Tomato Grotesk', 'Inter', sans-serif;
 
   /* Register Custom Utilities */
   --radius-sm: var(--radius-sm);
@@ -162,6 +173,7 @@
   
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
   
   /* Component Props */
   --radius-button: var(--button-radius);
@@ -169,12 +181,13 @@
 
 @layer base {
   html {
+    color-scheme: light;
     scroll-behavior: smooth;
   }
   
   ::selection {
-    background-color: var(--brand-primary);
-    color: white;
+    background-color: var(--brand-accent);
+    color: var(--brand-text-primary);
   }
 
   /* Custom Scrollbar */
@@ -239,16 +252,16 @@
 
   /* LAYOUT UTILITIES */
   .section-spacing {
-    padding-top: var(--space-5); /* 48px */
+    padding-top: var(--space-5);
     padding-bottom: var(--space-5);
     
     @media (min-width: 768px) {
-      padding-top: var(--space-6); /* 64px */
+      padding-top: var(--space-6);
       padding-bottom: var(--space-6);
     }
     
     @media (min-width: 1200px) {
-      padding-top: var(--space-7); /* 96px */
+      padding-top: var(--space-7);
       padding-bottom: var(--space-7);
     }
   }
@@ -256,7 +269,7 @@
   .container-default {
     max-width: 1200px;
     margin: 0 auto;
-    padding-left: var(--space-3); /* 24px */
+    padding-left: var(--space-3);
     padding-right: var(--space-3);
   }
 

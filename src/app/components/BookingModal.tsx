@@ -35,72 +35,64 @@ export function BookingModal() {
 
   return (
     <Dialog open={isBookingOpen} onOpenChange={closeBooking}>
-      <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden bg-white border border-slate-200">
-        <div className="absolute top-0 left-0 w-full h-1 bg-indigo-600" />
+      <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden bg-white border border-brand-border">
+        <div className="absolute top-0 left-0 w-full h-1 bg-brand-primary" />
         
         {isSuccess ? (
           <div className="p-12 flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mb-6">
               <CheckCircle2 className="w-8 h-8" />
             </div>
-            <DialogTitle className="text-2xl font-bold text-slate-900 mb-2">{t.leadPopup.successTitle}</DialogTitle>
-            <DialogDescription className="text-slate-500">{t.leadPopup.successMessage}</DialogDescription>
+            <DialogTitle className="text-2xl font-bold text-brand-text-primary mb-2">{t.leadPopup.successTitle}</DialogTitle>
+            <DialogDescription className="text-brand-text-secondary">{t.leadPopup.successMessage}</DialogDescription>
           </div>
         ) : (
           <div className="p-8">
             <DialogHeader className="mb-6 text-left">
-              <DialogTitle className="text-2xl font-bold text-slate-900">{t.header.bookDemo}</DialogTitle>
-              <DialogDescription className="text-slate-500">
+              <DialogTitle className="text-2xl font-bold text-brand-text-primary">{t.header.bookDemo}</DialogTitle>
+              <DialogDescription className="text-brand-text-secondary">
                 {t.hero.subtitle}
               </DialogDescription>
             </DialogHeader>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-sm font-semibold text-slate-700">{t.forms.firstName}</Label>
-                  <Input 
-                    id="firstName" 
-                    {...register("firstName", { required: true })}
-                    className="h-10 border-slate-200 focus:ring-indigo-600"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-sm font-semibold text-slate-700">{t.forms.lastName}</Label>
-                  <Input 
-                    id="lastName" 
-                    {...register("lastName", { required: true })} 
-                    className="h-10 border-slate-200 focus:ring-indigo-600"
-                  />
-                </div>
-              </div>
-
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-semibold text-slate-700">{t.forms.workEmail}</Label>
+                <Label htmlFor="email" className="text-sm font-semibold text-brand-text-secondary">{t.forms.workEmail}</Label>
                 <Input 
                   id="email" 
                   type="email" 
                   {...register("email", { required: true })}
-                  className="h-10 border-slate-200 focus:ring-indigo-600"
+                  className="h-10 border-brand-border focus:ring-brand-primary"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="companySize" className="text-sm font-semibold text-slate-700">{t.calculator.sliders.companySize}</Label>
+                <Label htmlFor="phone" className="text-sm font-semibold text-brand-text-secondary">{t.forms.phone}</Label>
+                <Input 
+                  id="phone" 
+                  type="tel"
+                  {...register("phone", { required: true })}
+                  className="h-10 border-brand-border focus:ring-brand-primary"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="companySize" className="text-sm font-semibold text-brand-text-secondary">{t.calculator.sliders.companySize}</Label>
                 <select 
                     {...register("companySize")}
-                    className="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-600 outline-none"
+                    className="flex h-10 w-full rounded-md border border-brand-border bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-brand-primary outline-none"
                  >
-                    <option value="1-50">1-50</option>
-                    <option value="51-200">51-200</option>
-                    <option value="201-1000">201-1000</option>
-                    <option value="1000+">1000+</option>
+                    <option value="1-15">1-15</option>
+                    <option value="16-50">16-50</option>
+                    <option value="51-100">51-100</option>
+                    <option value="101-200">101-200</option>
+                    <option value="200+">200+</option>
                  </select>
               </div>
 
               <Button 
                 type="submit" 
-                className="w-full bg-slate-900 hover:bg-black text-white font-bold h-12 mt-2" 
+                className="w-full bg-brand-primary hover:bg-brand-primary-hover text-white font-bold h-12 mt-2" 
                 disabled={isSubmitting}
               >
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : t.forms.submit}

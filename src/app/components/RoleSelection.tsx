@@ -1,5 +1,5 @@
 import React from "react";
-import { Briefcase, Users, ChevronRight, BarChart, ShieldCheck } from "lucide-react";
+import { Briefcase, Users, ChevronRight, BarChart, ShieldCheck, TrendingUp, Target } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 
 export function RoleSelection() {
@@ -13,94 +13,168 @@ export function RoleSelection() {
   };
 
   return (
-    <section className="py-12 md:py-24 bg-[#0a0a0a] border-b border-white/5 relative">
-      <div className="container-default">
+    <section className="py-12 md:py-24 bg-brand-primary border-b border-white/5 relative">
+      <div className="container-default max-w-[1400px]">
         
         {/* Header - Calm & Direct */}
         <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">
                 {t.roleSelection.title}
             </h2>
-            <p className="text-slate-400 text-lg leading-relaxed">
+            <p className="text-brand-accent text-lg leading-relaxed opacity-80">
                 {t.roleSelection.subtitle}
             </p>
         </div>
 
-        {/* The Choice Grid - Symmetrical & Balanced */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {/* The Choice Grid - 4 Columns Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
             
+            {/* Investor Card */}
+            <button 
+                onClick={scrollToProblem}
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
+            >
+                {/* Subtle Top Highlight */}
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
+                
+                <div className="flex flex-col items-center mb-8 gap-4 w-full">
+                    <div className="p-4 bg-white/10 rounded-2xl border border-white/10 group-hover:border-white/30 group-hover:bg-brand-accent/20 transition-all shadow-inner">
+                        <TrendingUp className="w-8 h-8 text-brand-accent group-hover:text-white transition-colors" />
+                    </div>
+                    <span className="text-lg font-bold uppercase tracking-widest text-brand-accent group-hover:text-white transition-colors text-center">
+                        {t.roleSelection.investor.role}
+                    </span>
+                </div>
+
+                <h3 className="text-2xl font-bold text-white mb-6 text-center group-hover:text-white transition-colors tracking-tight leading-tight">
+                    {t.roleSelection.investor.title}
+                </h3>
+                
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
+                    <li className="flex gap-3 items-start">
+                        <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
+                        <span>{t.roleSelection.investor.list[0]}</span>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                        <ShieldCheck className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
+                        <span>{t.roleSelection.investor.list[1]}</span>
+                    </li>
+                </ul>
+
+                <div className="mt-auto flex items-center text-white font-semibold text-sm group-hover:translate-x-1 duration-300 border-t border-white/10 pt-4 w-full">
+                    {t.roleSelection.investor.cta}
+                    <ChevronRight className="w-4 h-4 ml-auto text-brand-accent group-hover:text-white transition-colors" />
+                </div>
+            </button>
+
             {/* CEO Card */}
             <button 
                 onClick={scrollToProblem}
-                className="group relative bg-[#15171e] border border-white/5 p-8 rounded-lg text-left hover:border-brand-primary/40 hover:bg-[#1a1c23] transition-all duration-300 flex flex-col h-full"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
-                {/* Subtle Top Highlight */}
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-700 to-transparent group-hover:via-brand-primary opacity-30 group-hover:opacity-100 transition-all" />
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
                 
-                <div className="flex items-center justify-between mb-8">
-                    <div className="p-3 bg-slate-800/50 rounded border border-white/5 group-hover:border-brand-primary/20 transition-colors">
-                        <Briefcase className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                <div className="flex flex-col items-center mb-8 gap-4 w-full">
+                    <div className="p-4 bg-white/10 rounded-2xl border border-white/10 group-hover:border-white/30 group-hover:bg-brand-accent/20 transition-all shadow-inner">
+                        <Briefcase className="w-8 h-8 text-brand-accent group-hover:text-white transition-colors" />
                     </div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 group-hover:text-brand-primary/80 transition-colors">
+                    <span className="text-lg font-bold uppercase tracking-widest text-brand-accent group-hover:text-white transition-colors text-center">
                         {t.roleSelection.ceo.role}
                     </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-brand-primary transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center group-hover:text-white transition-colors tracking-tight leading-tight">
                     {t.roleSelection.ceo.title}
                 </h3>
                 
-                <ul className="space-y-3 mb-8 text-slate-400 text-sm leading-relaxed flex-1">
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
-                        <BarChart className="w-4 h-4 text-slate-600 shrink-0 mt-0.5 group-hover:text-slate-500 transition-colors" />
+                        <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.ceo.list[0]}</span>
                     </li>
                     <li className="flex gap-3 items-start">
-                        <ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5 group-hover:text-slate-500 transition-colors" />
+                        <ShieldCheck className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.ceo.list[1]}</span>
                     </li>
                 </ul>
 
-                <div className="mt-auto flex items-center text-slate-300 font-medium text-sm group-hover:text-white transition-colors group-hover:translate-x-1 duration-300">
+                <div className="mt-auto flex items-center text-white font-semibold text-sm group-hover:translate-x-1 duration-300 border-t border-white/10 pt-4 w-full">
                     {t.roleSelection.ceo.cta}
-                    <ChevronRight className="w-4 h-4 ml-2 text-brand-primary opacity-70 group-hover:opacity-100" />
+                    <ChevronRight className="w-4 h-4 ml-auto text-brand-accent group-hover:text-white transition-colors" />
                 </div>
             </button>
 
             {/* HR Card */}
             <button 
                 onClick={scrollToProblem}
-                className="group relative bg-[#15171e] border border-white/5 p-8 rounded-lg text-left hover:border-violet-500/40 hover:bg-[#1a1c23] transition-all duration-300 flex flex-col h-full"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-700 to-transparent group-hover:via-violet-500 opacity-30 group-hover:opacity-100 transition-all" />
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
                 
-                <div className="flex items-center justify-between mb-8">
-                    <div className="p-3 bg-slate-800/50 rounded border border-white/5 group-hover:border-violet-500/20 transition-colors">
-                        <Users className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                <div className="flex flex-col items-center mb-8 gap-4 w-full">
+                    <div className="p-4 bg-white/10 rounded-2xl border border-white/10 group-hover:border-white/30 group-hover:bg-brand-accent/20 transition-all shadow-inner">
+                        <Users className="w-8 h-8 text-brand-accent group-hover:text-white transition-colors" />
                     </div>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 group-hover:text-violet-500/80 transition-colors">
+                    <span className="text-lg font-bold uppercase tracking-widest text-brand-accent group-hover:text-white transition-colors text-center">
                         {t.roleSelection.hr.role}
                     </span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-violet-400 transition-colors">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center group-hover:text-white transition-colors tracking-tight leading-tight">
                     {t.roleSelection.hr.title}
                 </h3>
                 
-                <ul className="space-y-3 mb-8 text-slate-400 text-sm leading-relaxed flex-1">
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
-                        <BarChart className="w-4 h-4 text-slate-600 shrink-0 mt-0.5 group-hover:text-slate-500 transition-colors" />
+                        <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.hr.list[0]}</span>
                     </li>
                     <li className="flex gap-3 items-start">
-                        <ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5 group-hover:text-slate-500 transition-colors" />
+                        <ShieldCheck className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.hr.list[1]}</span>
                     </li>
                 </ul>
 
-                <div className="mt-auto flex items-center text-slate-300 font-medium text-sm group-hover:text-white transition-colors group-hover:translate-x-1 duration-300">
+                <div className="mt-auto flex items-center text-white font-semibold text-sm group-hover:translate-x-1 duration-300 border-t border-white/10 pt-4 w-full">
                     {t.roleSelection.hr.cta}
-                    <ChevronRight className="w-4 h-4 ml-2 text-violet-500 opacity-70 group-hover:opacity-100" />
+                    <ChevronRight className="w-4 h-4 ml-auto text-brand-accent group-hover:text-white transition-colors" />
+                </div>
+            </button>
+
+            {/* Team Leader Card */}
+            <button 
+                onClick={scrollToProblem}
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
+            >
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
+                
+                <div className="flex flex-col items-center mb-8 gap-4 w-full">
+                    <div className="p-4 bg-white/10 rounded-2xl border border-white/10 group-hover:border-white/30 group-hover:bg-brand-accent/20 transition-all shadow-inner">
+                        <Target className="w-8 h-8 text-brand-accent group-hover:text-white transition-colors" />
+                    </div>
+                    <span className="text-lg font-bold uppercase tracking-widest text-brand-accent group-hover:text-white transition-colors text-center">
+                        {t.roleSelection.teamLeader.role}
+                    </span>
+                </div>
+
+                <h3 className="text-2xl font-bold text-white mb-6 text-center group-hover:text-white transition-colors tracking-tight leading-tight">
+                    {t.roleSelection.teamLeader.title}
+                </h3>
+                
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
+                    <li className="flex gap-3 items-start">
+                        <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
+                        <span>{t.roleSelection.teamLeader.list[0]}</span>
+                    </li>
+                    <li className="flex gap-3 items-start">
+                        <ShieldCheck className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
+                        <span>{t.roleSelection.teamLeader.list[1]}</span>
+                    </li>
+                </ul>
+
+                <div className="mt-auto flex items-center text-white font-semibold text-sm group-hover:translate-x-1 duration-300 border-t border-white/10 pt-4 w-full">
+                    {t.roleSelection.teamLeader.cta}
+                    <ChevronRight className="w-4 h-4 ml-auto text-brand-accent group-hover:text-white transition-colors" />
                 </div>
             </button>
 

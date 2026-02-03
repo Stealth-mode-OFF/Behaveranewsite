@@ -8,13 +8,13 @@ export function WhyBehavera() {
   const icons = [MessageCircle, Zap, Target];
 
   return (
-    <section className="section-spacing bg-slate-900 text-white" id="about">
+    <section className="section-spacing bg-white text-slate-900" id="about">
       <div className="container-default">
         <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-slate-900">
             {t.whyBehavera.title}
           </h2>
-          <p className="text-body text-slate-400">
+          <p className="text-body text-slate-600">
             {t.whyBehavera.desc}
           </p>
         </div>
@@ -24,11 +24,11 @@ export function WhyBehavera() {
             const Icon = icons[index];
             return (
               <div key={index} className="relative">
-                <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center mb-6 text-indigo-400">
+                <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-6 text-indigo-600">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-h3 text-white mb-3">{point.title}</h3>
-                <p className="text-body text-slate-400">
+                <h3 className="text-h3 text-slate-900 mb-3">{point.title}</h3>
+                <p className="text-body text-slate-600">
                   {point.desc}
                 </p>
               </div>
