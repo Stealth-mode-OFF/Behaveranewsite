@@ -1,0 +1,294 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Brand Colors */
+  --brand-primary: #4F46E5;      /* Primary 500 */
+  --brand-primary-hover: #4338CA; /* Primary 600 */
+  --brand-primary-active: #3730A3; /* Primary 700 */
+
+  --brand-background-primary: #FFFFFF;
+  --brand-background-secondary: #F8FAFC;
+  --brand-background-muted: #F1F5F9;
+
+  --brand-text-primary: #0F172A;
+  --brand-text-secondary: #334155;
+  --brand-text-muted: #64748B;
+  --brand-text-inverse: #FFFFFF;
+
+  --brand-border: #E2E8F0;
+  --brand-border-strong: #CBD5E1;
+
+  --brand-success: #16A34A;
+  --brand-warning: #F59E0B;
+  --brand-error: #DC2626;
+
+  /* Legacy Mappings */
+  --brand-text: var(--brand-text-primary);
+  --brand-text-body: var(--brand-text-secondary);
+  --brand-secondary: var(--brand-background-secondary);
+
+  /* STRICT TYPOGRAPHY SCALE */
+  --text-h1: 48px;
+  --leading-h1: 56px;
+  
+  --text-h2: 32px;
+  --leading-h2: 40px;
+  
+  --text-h3: 24px;
+  --leading-h3: 32px;
+  
+  --text-body: 16px;
+  --leading-body: 24px;
+  
+  --text-caption: 13px;
+  --leading-caption: 18px;
+
+  /* SPACING SYSTEM (0-7 Scale) */
+  --space-0: 0px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 96px;
+
+  /* RADIUS SYSTEM */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* SHADOW SYSTEM */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+
+  /* MOTION SYSTEM */
+  --motion-fast: 150ms ease-out;
+  --motion-normal: 250ms ease-out;
+
+  /* COMPONENT TOKENS */
+  --radius-card: var(--radius-lg);    /* 16px */
+  --padding-card: var(--space-3);     /* 24px */
+  
+  /* Button Tokens */
+  --button-height: 48px;
+  --button-radius: var(--radius-md);  /* 12px */
+  --button-padding-x: var(--space-3); /* 24px */
+  --button-font-weight: 600;
+
+  /* Input Tokens */
+  --input-height: 48px;
+  --input-radius: var(--radius-md);   /* 12px */
+  --input-padding-x: var(--space-2);  /* 16px */
+  --input-border-width: 1px;
+
+  /* Legacy */
+  --radius-button: var(--button-radius);
+  
+  /* Tailwind Theme Mappings - Base Variables */
+  --background: var(--brand-background-primary);
+  --foreground: var(--brand-text-primary);
+  
+  --card: var(--brand-background-primary);
+  --card-foreground: var(--brand-text-primary);
+  
+  --popover: var(--brand-background-primary);
+  --popover-foreground: var(--brand-text-primary);
+  
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--brand-text-inverse);
+  
+  --secondary: var(--brand-background-secondary);
+  --secondary-foreground: var(--brand-primary);
+  
+  --muted: var(--brand-background-muted);
+  --muted-foreground: var(--brand-text-muted);
+  
+  --accent: var(--brand-background-secondary);
+  --accent-foreground: var(--brand-text-primary);
+  
+  --destructive: var(--brand-error);
+  --destructive-foreground: var(--brand-text-inverse);
+  
+  --border: var(--brand-border);
+  --input: var(--brand-border);
+  --ring: var(--brand-primary);
+  
+  --radius: var(--radius-sm); /* Default 8px */
+}
+
+@theme inline {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-background-secondary);
+  --color-brand-text: var(--brand-text-primary);
+  
+  /* Register Semantic Colors for Utilities */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Register Custom Utilities */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  
+  /* Component Props */
+  --radius-button: var(--button-radius);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  ::selection {
+    background-color: var(--brand-primary);
+    color: white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--brand-background-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--brand-border-strong);
+    border-radius: 5px;
+    border: 2px solid var(--brand-background-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--brand-text-muted);
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+  }
+}
+
+@layer components {
+  /* STRICT TYPOGRAPHY UTILITIES */
+  .text-h1 {
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .text-h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .text-h3 {
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .text-body {
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    font-weight: 400;
+    color: var(--brand-text-secondary);
+  }
+  .text-caption {
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+    font-weight: 500;
+    color: var(--brand-text-muted);
+  }
+
+  /* LAYOUT UTILITIES */
+  .section-spacing {
+    padding-top: var(--space-5); /* 48px */
+    padding-bottom: var(--space-5);
+    
+    @media (min-width: 768px) {
+      padding-top: var(--space-6); /* 64px */
+      padding-bottom: var(--space-6);
+    }
+    
+    @media (min-width: 1200px) {
+      padding-top: var(--space-7); /* 96px */
+      padding-bottom: var(--space-7);
+    }
+  }
+
+  .container-default {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--space-3); /* 24px */
+    padding-right: var(--space-3);
+  }
+
+  /* COMPONENT UTILITIES */
+  .card-base {
+    background-color: var(--brand-background-primary);
+    border: 1px solid var(--brand-border);
+    border-radius: var(--radius-card);
+    padding: var(--padding-card);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--motion-normal);
+  }
+
+  .card-hover {
+    @apply hover:border-brand-primary/50;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+}
+
+/* Custom Animations */
+@keyframes scan {
+  0% { top: -20%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 120%; opacity: 0; }
+}
+
+.animate-scan {
+  animation: scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
