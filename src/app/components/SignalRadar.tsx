@@ -1,95 +1,91 @@
 import React from "react";
-import { Radar, Activity, Zap, Shield, Briefcase, Award, TrendingUp, Heart, Battery } from "lucide-react";
+import { Activity, Zap, Briefcase, TrendingUp, Heart, Battery, Shield, Award, Scale, Cpu } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
+
+const signals = [
+    { key: "mood", icon: Activity },
+    { key: "stress", icon: Zap },
+    { key: "workload", icon: Briefcase },
+    { key: "tools", icon: Cpu },
+    { key: "recognition", icon: Award },
+    { key: "growth", icon: TrendingUp },
+    { key: "rewards", icon: Scale },
+    { key: "benefits", icon: Heart },
+    { key: "evp", icon: Shield },
+];
 
 export function SignalRadar() {
   const { t } = useLanguage();
 
-  const signals = [
-    { icon: Activity, key: 'mood' },
-    { icon: Battery, key: 'stress' },
-    { icon: Zap, key: 'workload' },
-    { icon: Briefcase, key: 'tools' },
-    { icon: Award, key: 'recognition' },
-    { icon: TrendingUp, key: 'growth' },
-    { icon: Shield, key: 'rewards' },
-    { icon: Heart, key: 'benefits' },
-    { icon: Radar, key: 'evp' }
-  ];
-
   return (
-    <section className="py-12 bg-white text-slate-900 border-b border-slate-200 overflow-hidden" id="radar">
+    <section className="py-24 bg-brand-background-secondary/30 border-b border-white/5 relative overflow-hidden" id="radar">
       <div className="container-default relative z-10">
         
-        {/* Header - Compact */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
-            <div className="max-w-2xl">
-                <div className="flex items-center gap-2 mb-2">
-                    <div className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-pulse" />
-                    <span className="font-mono text-[10px] font-bold text-brand-primary tracking-widest uppercase">
-                        {t.radar.badge}
-                    </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-[1.1] mb-2">
-                    {t.radar.title} <span className="text-slate-500">{t.radar.titleHighlight}</span>
-                </h2>
-                <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
-                    {t.radar.subtitle}
-                </p>
+        {/* Header - Expert & Authoritative */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-primary/5 rounded-full border border-brand-primary/10 mb-8">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-primary"></span>
+                </span>
+                <span className="font-mono text-xs font-bold text-brand-primary tracking-widest uppercase">
+                    {t.radar.badge}
+                </span>
             </div>
             
-            {/* Legend / Status */}
-            <div className="hidden md:flex gap-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest border-t border-slate-200 pt-2">
-                <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>Stable</span>
-                </div>
-                 <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-primary"></span>
-                    <span>Active</span>
-                </div>
-                 <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-                    <span>Friction</span>
-                </div>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-brand-primary mb-6 leading-[1.1]">
+                {t.radar.title} <span className="text-brand-accent">{t.radar.titleHighlight}</span>
+            </h2>
+            <p className="text-xl text-brand-text-secondary leading-relaxed font-medium">
+                {t.radar.subtitle}
+            </p>
         </div>
 
-        {/* The Grid of Signals - Compact Islands */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        {/* The Grid - High Clarity Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {signals.map((signal, index) => {
                 const Icon = signal.icon;
-                const data = t.radar.signals[signal.key];
+                const data = t.radar.signals[signal.key as keyof typeof t.radar.signals];
                 
+                // Guard clause to prevent crash if translation is missing
+                if (!data) return null;
+
                 return (
-                    <div key={index} className="bg-slate-50 p-4 rounded-xl border border-slate-200 group hover:bg-white hover:border-brand-primary/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 relative flex flex-col h-full">
-                        
-                        <div className="flex justify-between items-start mb-2">
-                            <div className="p-1.5 bg-white rounded-lg text-slate-500 group-hover:text-brand-primary group-hover:bg-brand-primary/5 transition-colors border border-slate-200 shadow-sm">
-                                <Icon className="w-3.5 h-3.5" />
-                            </div>
-                            <span className="text-[9px] font-mono text-slate-400 group-hover:text-brand-primary/70 transition-colors uppercase tracking-widest bg-white px-1.5 py-0.5 rounded border border-slate-100 h-fit">
-                                0{index + 1}
-                            </span>
-                        </div>
-
-                        <h3 className="text-sm font-bold text-slate-900 mb-1.5 tracking-tight">
-                            {data.title}
-                        </h3>
-                        
-                        <div className="space-y-1 mb-3 flex-1">
-                            {data.metrics.map((metric: string, i: number) => (
-                                <div key={i} className="flex items-center gap-1.5 text-[11px] text-slate-600 group-hover:text-slate-900 transition-colors">
-                                    <span className="w-1 h-1 rounded-full bg-slate-300 group-hover:bg-brand-primary" />
-                                    <span>{metric}</span>
+                    <div key={index} className="flex flex-col h-full group">
+                        <div className="bg-white rounded-2xl p-8 shadow-[0_2px_20px_rgba(46,16,101,0.05)] hover:shadow-[0_20px_40px_rgba(46,16,101,0.1)] border border-brand-primary/5 hover:border-brand-primary/20 transition-all duration-300 relative h-full flex flex-col hover:-translate-y-1">
+                            
+                            {/* Card Header */}
+                            <div className="flex items-center gap-4 mb-8">
+                                <div className="p-3.5 bg-brand-background-secondary rounded-xl text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300 ring-1 ring-brand-primary/10 group-hover:ring-brand-primary/20">
+                                    <Icon className="w-6 h-6" />
                                 </div>
-                            ))}
-                        </div>
+                                <h3 className="text-xl font-bold text-brand-primary tracking-tight">
+                                    {data.title}
+                                </h3>
+                            </div>
+                            
+                            {/* Metrics List - What We Extract */}
+                            <div className="space-y-4 mb-8 flex-1">
+                                {data.metrics.map((metric: string, i: number) => (
+                                    <div key={i} className="flex items-start gap-3 text-sm font-semibold text-brand-text-secondary/80 group-hover:text-brand-text-primary transition-colors">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-accent mt-2 shrink-0 shadow-[0_0_8px_rgba(167,139,250,0.5)]" />
+                                        <span className="leading-relaxed">{metric}</span>
+                                    </div>
+                                ))}
+                            </div>
 
-                        <div className="pt-3 mt-auto">
-                            <p className="text-[11px] font-mono text-brand-primary font-semibold leading-relaxed bg-brand-primary/5 border border-brand-primary/10 p-2.5 rounded-lg">
-                                "{data.question}"
-                            </p>
+                            {/* Insight Box - Core Value */}
+                            <div className="mt-auto">
+                                <div className="relative bg-brand-background-secondary/50 border border-brand-primary/10 rounded-xl p-5 group-hover:bg-brand-primary group-hover:border-brand-primary transition-all duration-300 group-hover:shadow-lg">
+                                    <p className="text-[10px] font-mono font-bold text-brand-text-muted uppercase tracking-widest mb-2 group-hover:text-brand-accent/80 transition-colors">
+                                        Core Insight
+                                    </p>
+                                    <p className="text-brand-primary font-bold text-base leading-relaxed group-hover:text-white transition-colors italic">
+                                        "{data.question}"
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 );
@@ -97,8 +93,8 @@ export function SignalRadar() {
         </div>
 
         {/* Scientific Footnote */}
-        <div className="mt-8 flex items-start gap-3 opacity-60 max-w-2xl mx-auto text-center justify-center">
-             <p className="text-[10px] text-slate-500 leading-relaxed">
+        <div className="mt-16 text-center">
+             <p className="text-sm font-medium text-brand-text-muted max-w-2xl mx-auto opacity-70">
                 {t.radar.methodology}
             </p>
         </div>

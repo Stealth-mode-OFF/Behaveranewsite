@@ -52,37 +52,37 @@ export function ROICalculator() {
   };
 
   return (
-    <section className="section-spacing bg-white border-b border-slate-200" id="roi">
+    <section className="section-spacing bg-white border-b border-brand-border" id="roi">
       <div className="container-default">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           
           <div className="lg:col-span-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-caption font-bold uppercase tracking-widest mb-6 border border-slate-200">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-background-secondary text-brand-text-secondary rounded-full text-caption font-bold uppercase tracking-widest mb-6 border border-brand-border">
               <PieChart className="w-3.5 h-3.5" />
               Hard Data
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-6">
-              Calculate Your <span className="text-indigo-600">ROI</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-primary mb-6">
+              Calculate Your <span className="text-brand-accent">ROI</span>
             </h2>
             
-            <p className="text-body text-slate-500 mb-8">
+            <p className="text-body text-brand-text-muted mb-8">
               See the financial impact of turnover on your organization.
             </p>
 
-            <div className="card-base p-6 bg-slate-50">
+            <div className="card-base p-6 bg-brand-background-secondary">
                 <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0">
-                        <Download className="w-5 h-5 text-slate-900" />
+                    <div className="w-10 h-10 rounded-full bg-white border border-brand-border flex items-center justify-center shrink-0">
+                        <Download className="w-5 h-5 text-brand-primary" />
                     </div>
                     <div>
-                        <h4 className="font-bold text-slate-900 text-body">{t.calculator.boardReport.title}</h4>
-                        <p className="text-caption text-slate-500">{t.calculator.boardReport.subtitle}</p>
+                        <h4 className="font-bold text-brand-primary text-body">{t.calculator.boardReport.title}</h4>
+                        <p className="text-caption text-brand-text-muted">{t.calculator.boardReport.subtitle}</p>
                     </div>
                 </div>
                 <Button 
                     variant="outline" 
-                    className="w-full bg-white border-slate-200 text-slate-700 hover:bg-slate-50 font-semibold text-body"
+                    className="w-full bg-white border-brand-border text-brand-text-muted hover:bg-brand-background-secondary font-semibold text-body"
                     onClick={handleGenerateReport}
                     disabled={isGenerating}
                 >
@@ -92,16 +92,16 @@ export function ROICalculator() {
           </div>
 
           <div className="lg:col-span-8">
-            <div className="card-base p-0 overflow-hidden shadow-xl shadow-slate-200/50">
+            <div className="card-base p-0 overflow-hidden shadow-xl shadow-brand-primary/10">
               {/* Header / Results Area */}
-              <div className="bg-slate-900 p-8 text-white">
+              <div className="bg-brand-primary p-8 text-white">
                 <div className="flex justify-end mb-8">
-                    <div className="flex bg-slate-800 rounded-lg p-1 border border-slate-700">
+                    <div className="flex bg-white/10 rounded-lg p-1 border border-white/10">
                         <button 
                             onClick={() => toggleCurrency('EUR')}
                             className={cn(
                                 "px-3 py-1 rounded text-caption font-bold transition-all",
-                                currency === 'EUR' ? "bg-white text-slate-900" : "text-slate-400 hover:text-white"
+                                currency === 'EUR' ? "bg-white text-brand-primary" : "text-white/60 hover:text-white"
                             )}
                         >
                             EUR
@@ -110,7 +110,7 @@ export function ROICalculator() {
                             onClick={() => toggleCurrency('CZK')}
                             className={cn(
                                 "px-3 py-1 rounded text-caption font-bold transition-all",
-                                currency === 'CZK' ? "bg-white text-slate-900" : "text-slate-400 hover:text-white"
+                                currency === 'CZK' ? "bg-white text-brand-primary" : "text-white/60 hover:text-white"
                             )}
                         >
                             CZK
@@ -119,8 +119,8 @@ export function ROICalculator() {
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-12">
-                    <div className="border-l-2 border-slate-700 pl-6">
-                         <div className="text-caption text-slate-400 font-bold uppercase tracking-widest mb-2">
+                    <div className="border-l-2 border-white/20 pl-6">
+                         <div className="text-caption text-brand-accent font-bold uppercase tracking-widest mb-2">
                             {t.calculator.metrics.annualLoss}
                          </div>
                          <div className="text-h1 font-bold text-red-400 font-mono tracking-tight">
@@ -134,7 +134,7 @@ export function ROICalculator() {
                         </div>
                         <div className="text-h1 font-bold text-white font-mono tracking-tight">
                             <AnimatedNumber value={potentialSavings} />
-                        </div>
+                         </div>
                     </div>
                 </div>
               </div>
@@ -144,8 +144,8 @@ export function ROICalculator() {
                  <div className="space-y-8">
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <label className="text-body font-bold text-slate-900">Employees</label>
-                            <span className="font-mono text-h3 font-bold text-slate-900">{employees}</span>
+                            <label className="text-body font-bold text-brand-primary">Employees</label>
+                            <span className="font-mono text-h3 font-bold text-brand-primary">{employees}</span>
                         </div>
                         <input 
                             type="range" 
@@ -153,14 +153,14 @@ export function ROICalculator() {
                             max="350" 
                             value={employees} 
                             onChange={(e) => setEmployees(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-brand-background-secondary rounded-lg appearance-none cursor-pointer accent-brand-primary"
                         />
                     </div>
                     
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <label className="text-body font-bold text-slate-900">Avg. Annual Cost</label>
-                            <span className="font-mono text-h3 font-bold text-slate-900">
+                            <label className="text-body font-bold text-brand-primary">Avg. Annual Cost</label>
+                            <span className="font-mono text-h3 font-bold text-brand-primary">
                                 {currency === 'EUR' ? '€' : ''}{salary.toLocaleString()}{currency === 'CZK' ? ' Kč' : ''}
                             </span>
                         </div>
@@ -170,14 +170,14 @@ export function ROICalculator() {
                             max={currency === 'EUR' ? 120000 : 3000000} 
                             value={salary} 
                             onChange={(e) => setSalary(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-brand-background-secondary rounded-lg appearance-none cursor-pointer accent-brand-primary"
                         />
                     </div>
 
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <label className="text-body font-bold text-slate-900">Annual Turnover</label>
-                            <span className="font-mono text-h3 font-bold text-slate-900">{turnover}%</span>
+                            <label className="text-body font-bold text-brand-primary">Annual Turnover</label>
+                            <span className="font-mono text-h3 font-bold text-brand-primary">{turnover}%</span>
                         </div>
                         <input 
                             type="range" 
@@ -185,15 +185,15 @@ export function ROICalculator() {
                             max="50" 
                             value={turnover} 
                             onChange={(e) => setTurnover(Number(e.target.value))}
-                            className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            className="w-full h-2 bg-brand-background-secondary rounded-lg appearance-none cursor-pointer accent-brand-primary"
                         />
                     </div>
                  </div>
 
-                 <div className="mt-10 pt-8 border-t border-slate-100 flex justify-end">
+                 <div className="mt-10 pt-8 border-t border-brand-border flex justify-end">
                     <Button 
                         onClick={openBooking}
-                        className="h-12 px-8 bg-slate-900 hover:bg-black text-white rounded-xl font-bold shadow-lg text-body"
+                        className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl font-bold shadow-lg text-body"
                     >
                         {t.calculator.cta.button} <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>

@@ -4,8 +4,8 @@ export const translations = {
   en: {
     radar: {
       badge: "Full Spectrum Analysis",
-      title: "Active Signal",
-      titleHighlight: "Radar",
+      title: "9 Dimensions",
+      titleHighlight: "of Work Reality",
       subtitle: "Echo Pulse continuously monitors 9 critical dimensions of work reality. No noise. Just clear signals where friction is building.",
       methodology: "Methodology grounded in Job Demands–Resources (JD-R), Self-Determination Theory, and Equity Theory.",
       signals: {
@@ -150,6 +150,15 @@ export const translations = {
     roleSelection: {
       title: "You see the company from a different position.",
       subtitle: "We account for that. Choose your perspective.",
+      investor: {
+        role: "Investor",
+        title: "Asset Protection",
+        list: [
+          "Risk Prediction",
+          "Portfolio Health Visibility"
+        ],
+        cta: "Check portfolio health"
+      },
       ceo: {
         role: "CEO / Owner",
         title: "Strategic Control",
@@ -167,6 +176,15 @@ export const translations = {
           "Less firefighting, more prevention"
         ],
         cta: "Get data for leadership"
+      },
+      teamLeader: {
+        role: "Team Leader",
+        title: "Team Performance",
+        list: [
+          "Instant Feedback Loop",
+          "Early Burnout Detection"
+        ],
+        cta: "Improve team health"
       }
     },
     valueByRole: {
@@ -245,14 +263,19 @@ export const translations = {
       ]
     },
     leadPopup: {
-        title: "Exclusive Market Data",
-        subtitle: "Join 1,000+ leaders who receive our quarterly analysis and benchmarks. No fluff.",
-        emailPlaceholder: "Work email",
-        cta: "Subscribe for Free",
-        successTitle: "Welcome aboard!",
-        successMessage: "Your first insight is on its way.",
-        close: "Close",
-        badge: "Free"
+      badge: "New Study 2026",
+      title: "People leave even good companies. Why?",
+      subtitle: "Exclusive data from 50+ companies. Uncover the real reasons for performance drops that annual surveys miss.",
+      emailPlaceholder: "name@company.com",
+      inputLabel: "Where should we send the E-book?",
+      cta: "Download Study for Free",
+      socialProofPre: "Already downloaded by",
+      socialProofCount: "1,200+",
+      socialProofPost: "leaders",
+      quote: "Data that changes how we view people management.",
+      successTitle: "E-book is on the way!",
+      successMessage: "Check your inbox. We've just sent you the study.",
+      close: "Close"
     },
     data: {
       trustedBy: "Trusted by HR Leaders"
@@ -260,6 +283,7 @@ export const translations = {
     forms: {
       firstName: "First Name",
       lastName: "Last Name",
+      phone: "Phone Number",
       workEmail: "Work Email",
       submit: "Submit"
     },
@@ -272,8 +296,8 @@ export const translations = {
   cz: {
     radar: {
       badge: "Full Spectrum Analysis",
-      title: "Radar",
-      titleHighlight: "Aktivních Signálů",
+      title: "9 dimenzí",
+      titleHighlight: "pracovní reality",
       subtitle: "Echo Pulse kontinuálně monitoruje 9 kritických dimenzí pracovní reality. Žádný šum. Jen jasné signály tam, kde vzniká tření.",
       methodology: "Metodika podložena modely Job Demands–Resources (JD-R), Self-Determination Theory a Equity Theory.",
       signals: {
@@ -303,16 +327,16 @@ export const translations = {
     },
     hero: {
       badge: "Systém Kontinuálního Vhledu • V2.0",
-      title: "Kultura není pocit.",
-      titleHighlight: "Je to řídicí systém.",
+      title: "Odhalte včas",
+      titleHighlight: "problémy ve svých týmech",
       subtitle: "Bez průběžných signálů vedete firmu naslepo — a platíte to v odchodech, výkonu a chaotických prioritách.",
-      primaryCta: "Ukázat, co byste viděli u vás (20 min)",
-      secondaryCta: "Podívat se, jak vypadá výstup",
+      primaryCta: "Domluvit online schůzku (30 minut)",
+      secondaryCta: "Získat přístup do demo aplikace",
       riskReversal: "Bez závazku. Odejdete s jasným obrazem, co se ve firmě děje a kde se láme udržitelnost.",
       trust: {
         security: "Bezpečnost dat (GDPR)",
         support: "Podpora v češtině",
-        implementation: "Implementace 48h"
+        implementation: "Implementace 1 hodina"
       },
     },
     problems: {
@@ -337,7 +361,7 @@ export const translations = {
         },
       ],
       ctaBox: {
-        title: "Tohle nelze 'odmanagovat' citem.",
+        title: "Tohle nelze 'uřídit' citem.",
         desc: "Potřebujete tvrdá data. Bez nich jen hádáte, proč lidé odcházejí."
       }
     },
@@ -418,6 +442,15 @@ export const translations = {
     roleSelection: {
       title: "Díváte se na firmu z jiné pozice.",
       subtitle: "My s tím počítáme. Vyberte si perspektivu.",
+      investor: {
+        role: "Investor",
+        title: "Ochrana investice",
+        list: [
+          "Predikce rizik",
+          "Viditelnost zdraví portfolia"
+        ],
+        cta: "Zkontrolovat zdraví portfolia"
+      },
       ceo: {
         role: "CEO / Majitel",
         title: "Strategická kontrola",
@@ -435,6 +468,15 @@ export const translations = {
           "Méně hašení požárů, více prevence"
         ],
         cta: "Chci mít data pro vedení"
+      },
+      teamLeader: {
+        role: "Team Leader",
+        title: "Výkon týmu",
+        list: [
+          "Okamžitá zpětná vazba",
+          "Včasná detekce vyhoření"
+        ],
+        cta: "Zlepšit zdraví týmu"
       }
     },
     valueByRole: {
@@ -513,14 +555,19 @@ export const translations = {
       ]
     },
     leadPopup: {
-      title: "Exkluzivní data z trhu",
-      subtitle: "Přidejte se k 1 000+ lídrům, kteří odebírají naše kvartální analýzy a benchmarky.",
-      emailPlaceholder: "Pracovní email",
-      cta: "Odebírat zdarma",
-      successTitle: "Vítejte na palubě!",
-      successMessage: "Váš první insight je na cestě.",
-      close: "Zavřít",
-      badge: "Zdarma"
+      badge: "Nová studie 2026",
+      title: "Lidé odcházejí i z dobrých firem. Proč?",
+      subtitle: "Exkluzivní data z 50+ českých firem. Odhalte skutečné důvody poklesu výkonu, které v ročních průzkumech nenajdete.",
+      emailPlaceholder: "name@company.com",
+      inputLabel: "Kam máme E-book poslat?",
+      cta: "Stáhnout studii zdarma",
+      socialProofPre: "Již stáhlo",
+      socialProofCount: "1 200+",
+      socialProofPost: "lídrů",
+      quote: "Data, která mění pohled na řízení lidí v Česku.",
+      successTitle: "E-book je na cestě!",
+      successMessage: "Zkontrolujte svou e-mailovou schránku. Právě jsme vám studii odeslali.",
+      close: "Zavřít"
     },
     data: {
       trustedBy: "VYUŽÍVÁNO HR LÍDRY"
@@ -528,6 +575,7 @@ export const translations = {
     forms: {
       firstName: "Jméno",
       lastName: "Příjmení",
+      phone: "Telefonní číslo",
       workEmail: "Pracovní email",
       submit: "Odeslat"
     },
@@ -540,8 +588,8 @@ export const translations = {
   de: {
     radar: {
       badge: "Vollspektrumanalyse",
-      title: "Aktives Signal",
-      titleHighlight: "Radar",
+      title: "9 Dimensionen",
+      titleHighlight: "der Arbeitsrealität",
       subtitle: "Echo Pulse überwacht kontinuierlich 9 kritische Dimensionen der Arbeitsrealität. Kein Rauschen. Nur klare Signale, wo Reibung entsteht.",
       methodology: "Methodik basierend auf Job Demands–Resources (JD-R), Self-Determination Theory und Equity Theory.",
       signals: {
@@ -686,6 +734,15 @@ export const translations = {
     roleSelection: {
       title: "Sie sehen das Unternehmen aus einer anderen Position.",
       subtitle: "Wir berücksichtigen das. Wählen Sie Ihre Perspektive.",
+      investor: {
+        role: "Investor",
+        title: "Investitionsschutz",
+        list: [
+          "Risikoprognose",
+          "Portfolio-Gesundheit sichtbar machen"
+        ],
+        cta: "Portfolio-Gesundheit prüfen"
+      },
       ceo: {
         role: "CEO / Eigentümer",
         title: "Strategische Kontrolle",
@@ -703,6 +760,15 @@ export const translations = {
           "Weniger Feuerlöschen, mehr Prävention"
         ],
         cta: "Daten für die Führung erhalten"
+      },
+      teamLeader: {
+        role: "Teamleiter",
+        title: "Teamleistung",
+        list: [
+          "Sofortiges Feedback",
+          "Früherkennung von Burnout"
+        ],
+        cta: "Teamgesundheit verbessern"
       }
     },
     valueByRole: {
@@ -781,14 +847,19 @@ export const translations = {
       ]
     },
     leadPopup: {
-      title: "Exklusive Marktdaten",
-      subtitle: "Schließen Sie sich 1.000+ Führungskräften an, die unsere vierteljährlichen Analysen und Benchmarks erhalten.",
-      emailPlaceholder: "Arbeits-E-Mail",
-      cta: "Kostenlos abonnieren",
-      successTitle: "Willkommen an Bord!",
-      successMessage: "Ihr erster Insight ist unterwegs.",
-      close: "Schließen",
-      badge: "Kostenlos"
+      badge: "Neue Studie 2026",
+      title: "Menschen verlassen auch gute Firmen. Warum?",
+      subtitle: "Exklusive Daten von 50+ Unternehmen. Entdecken Sie die wahren Gründe für Leistungsabfall, die Jahresumfragen übersehen.",
+      emailPlaceholder: "name@company.com",
+      inputLabel: "Wohin sollen wir das E-Book senden?",
+      cta: "Studie kostenlos herunterladen",
+      socialProofPre: "Bereits von",
+      socialProofCount: "1.200+",
+      socialProofPost: "Führungskräften genutzt",
+      quote: "Daten, die den Blick auf Personalmanagement verändern.",
+      successTitle: "E-Book ist unterwegs!",
+      successMessage: "Prüfen Sie Ihren Posteingang. Wir haben Ihnen die Studie gerade gesendet.",
+      close: "Schließen"
     },
     data: {
       trustedBy: "VON HR-LEADERN GENUTZT"
@@ -796,6 +867,7 @@ export const translations = {
     forms: {
       firstName: "Vorname",
       lastName: "Nachname",
+      phone: "Telefonnummer",
       workEmail: "Arbeits-E-Mail",
       submit: "Absenden"
     },
