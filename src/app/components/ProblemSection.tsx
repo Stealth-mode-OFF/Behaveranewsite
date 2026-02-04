@@ -1,107 +1,89 @@
 import React from "react";
+import { AlertTriangle, TrendingDown, EyeOff, ZapOff } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
-import { motion } from "framer-motion";
-
-// Cost data - enterprise-grade presentation
-const costData = {
-  en: {
-    sectionLabel: "THE HIDDEN COST",
-    title: "What you can't see is already affecting results",
-    cells: [
-      { label: "Disengaged employees", value: "67%", unit: "of workforce", desc: "Quiet quitting costs $450B+ annually in the US alone", source: "Gallup 2023" },
-      { label: "Average replacement cost", value: "1.5–2×", unit: "annual salary", desc: "For specialized and leadership roles", source: "SHRM" },
-      { label: "Warning window", value: "6–9", unit: "months", desc: "Signals visible before departure—if monitored", source: "Research synthesis" },
-      { label: "Manager attribution", value: "70%", unit: "variance", desc: "Team engagement variance explained by direct manager", source: "Gallup Q12" },
-    ],
-  },
-  cz: {
-    sectionLabel: "SKRYTÉ NÁKLADY",
-    title: "Co nevidíte, už ovlivňuje výsledky",
-    cells: [
-      { label: "Neangažovaných zaměstnanců", value: "67%", unit: "pracovní síly", desc: "Quiet quitting stojí $450B+ ročně jen v USA", source: "Gallup 2023" },
-      { label: "Náklady na náhradu", value: "1,5–2×", unit: "roční mzdy", desc: "U specializovaných a vedoucích pozic", source: "SHRM" },
-      { label: "Varovné okno", value: "6–9", unit: "měsíců", desc: "Signály viditelné před odchodem—pokud se monitorují", source: "Syntéza výzkumu" },
-      { label: "Vliv manažera", value: "70%", unit: "variace", desc: "Variace engagement vysvětlená přímým nadřízeným", source: "Gallup Q12" },
-    ],
-  },
-  de: {
-    sectionLabel: "VERSTECKTE KOSTEN",
-    title: "Was Sie nicht sehen, beeinflusst bereits die Ergebnisse",
-    cells: [
-      { label: "Unengagierte Mitarbeiter", value: "67%", unit: "der Belegschaft", desc: "Quiet Quitting kostet $450B+ jährlich allein in den USA", source: "Gallup 2023" },
-      { label: "Ersatzkosten", value: "1,5–2×", unit: "Jahresgehalt", desc: "Für spezialisierte und Führungsrollen", source: "SHRM" },
-      { label: "Warnfenster", value: "6–9", unit: "Monate", desc: "Signale sichtbar vor Abgang—wenn überwacht", source: "Forschungssynthese" },
-      { label: "Manager-Zuschreibung", value: "70%", unit: "Varianz", desc: "Team-Engagement-Varianz erklärt durch direkten Vorgesetzten", source: "Gallup Q12" },
-    ],
-  },
-};
 
 export function ProblemSection() {
-  const { language } = useLanguage();
-  const data = costData[language] || costData.en;
+  const { t } = useLanguage();
 
   return (
-    <section className="py-24 md:py-32 bg-white" id="problem">
-      <div className="container-default">
+    <section className="py-28 bg-white text-brand-text-primary border-b border-brand-border" id="problem">
+      
+      <div className="container-default max-w-[1120px] mx-auto px-4">
         
-        {/* Section Header - Minimal */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#EF4444] shadow-[0_0_8px_#EF4444]" />
-            <span className="font-mono text-xs font-medium tracking-[0.15em] text-[#71717A] uppercase">
-              {data.sectionLabel}
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#0A0A0F] tracking-[-0.02em] max-w-3xl">
-            {data.title}
-          </h2>
-        </motion.div>
-
-        {/* Data Grid - Enterprise Style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-[#E5E5E5] border border-[#E5E5E5]">
-          {data.cells.map((cell, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 md:p-10 flex flex-col"
-            >
-              {/* Label */}
-              <span className="text-[11px] font-medium uppercase tracking-wider text-[#A1A1AA] mb-8">
-                {cell.label}
-              </span>
-              
-              {/* Value + Unit */}
-              <div className="mt-auto">
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="font-mono text-4xl md:text-5xl font-semibold text-[#0A0A0F] tracking-tight tabular-nums">
-                    {cell.value}
-                  </span>
-                  <span className="text-sm text-[#71717A]">{cell.unit}</span>
+        {/* Section Header - Strict Alignment */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 pb-10 border-b border-brand-border">
+            <div className="max-w-2xl">
+                <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-2 bg-brand-error rounded-full animate-pulse" />
+                    <span className="font-mono text-[11px] font-bold text-brand-error tracking-[0.15em] uppercase">
+                        {t.problems.badge}
+                    </span>
                 </div>
-                
-                {/* Description */}
-                <p className="text-sm text-[#52525B] leading-relaxed mb-4">
-                  {cell.desc}
+                <h2 className="text-4xl md:text-5xl font-bold tracking-[-0.015em] text-brand-text-primary leading-[1.15]">
+                    {t.problems.title}
+                </h2>
+            </div>
+            <div className="max-w-md text-left md:text-right mt-8 md:mt-0">
+                <p className="text-lg font-medium text-brand-text-secondary leading-[1.7]">
+                    {t.problems.subtitle}
                 </p>
-                
-                {/* Source */}
-                <span className="font-mono text-[10px] text-[#A1A1AA] uppercase tracking-wider">
-                  {cell.source}
-                </span>
-              </div>
-            </motion.div>
-          ))}
+            </div>
         </div>
 
+        {/* The Grid of Truth - Clean & Bordered */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white border border-brand-border shadow-md rounded-2xl overflow-hidden divide-y md:divide-y-0 md:divide-x divide-brand-border">
+            {(() => {
+              const items = Array.isArray(t.problems.items) ? t.problems.items : [];
+              const cell = (index: number, icon: React.ReactNode, valueClass?: string) => {
+                const item = items[index] || { title: "", value: "", desc: "" };
+                return (
+                  <div className="p-10 flex flex-col h-full hover:bg-brand-background-secondary/50 transition-colors group">
+                    <div className="flex justify-between items-start mb-12">
+                      <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted group-hover:text-brand-text-secondary transition-colors">{item.title}</h3>
+                      {icon}
+                    </div>
+                    <div className="mt-auto">
+                      <div className={`text-5xl md:text-6xl font-bold mb-4 tracking-[-0.02em] ${valueClass || "text-brand-text-primary"}`}>{item.value}</div>
+                      <p className="text-[15px] text-brand-text-secondary leading-[1.7] pr-2">{item.desc}</p>
+                    </div>
+                  </div>
+                );
+              };
+
+              return (
+                <>
+                  {/* Cell 1 */}
+                  {cell(0, <EyeOff className="w-5 h-5 text-brand-text-muted/50 group-hover:text-brand-text-muted transition-colors" />)}
+
+                  {/* Cell 2 */}
+                  {cell(1, <ZapOff className="w-5 h-5 text-brand-text-muted/50 group-hover:text-brand-error transition-colors" />, "text-brand-error")}
+
+                  {/* Cell 3 */}
+                  {cell(2, <TrendingDown className="w-5 h-5 text-brand-text-muted/50 group-hover:text-brand-text-muted transition-colors" />)}
+
+                  {/* Cell 4 - The Call to Action / Insight */}
+                  <div className="p-8 flex flex-col h-full bg-brand-primary text-white relative overflow-hidden group">
+                    {/* Subtle pattern */}
+                    <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:16px_16px]" />
+
+                    <div className="relative z-10 flex flex-col h-full justify-between">
+                      <div className="w-10 h-10 bg-white/10 rounded flex items-center justify-center mb-6 border border-white/20 group-hover:border-white/40 transition-colors">
+                        <AlertTriangle className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold leading-tight mb-3 tracking-tight">
+                          {t.problems.ctaBox?.title || ""}
+                        </h3>
+                        <p className="text-sm text-white/80 leading-relaxed">
+                          {t.problems.ctaBox?.desc || ""}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })()}
+        </div>
       </div>
     </section>
   );

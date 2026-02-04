@@ -6,11 +6,13 @@ import { sanitizeHtml } from '@/lib/sanitize';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { ArrowLeft } from 'lucide-react';
+import { useLanguage } from '@/app/LanguageContext';
 
 export const CaseStudyPage = () => {
   const { slug } = useParams();
   const [study, setStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (slug) {
@@ -21,8 +23,8 @@ export const CaseStudyPage = () => {
     }
   }, [slug]);
 
-  if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">Loading...</div>;
-  if (!study) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">Case Study not found</div>;
+  if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.caseStudies.loading}</div>;
+  if (!study) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.caseStudies.notFound}</div>;
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-background-primary">
@@ -38,7 +40,7 @@ export const CaseStudyPage = () => {
                 <div className="container mx-auto px-4 max-w-6xl relative z-20">
                      <Link to="/case-studies" className="inline-flex items-center text-sm font-medium text-white/80 hover:text-white mb-8 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-2" />
-                        Back to Success Stories
+                        {t.caseStudies.backToList}
                     </Link>
                     <div className="max-w-4xl">
                         <div className="text-brand-accent font-bold uppercase tracking-widest mb-4">
@@ -57,7 +59,7 @@ export const CaseStudyPage = () => {
                         {/* Metrics Sidebar */}
                         <div className="md:col-span-1 space-y-8 border-b md:border-b-0 md:border-r border-brand-border pb-8 md:pb-0 md:pr-8">
                              <div>
-                                <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-4">Results</h3>
+                                <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-4">{t.caseStudies.resultsLabel}</h3>
                                 <div className="space-y-6">
                                     {study.results.map((res, i) => (
                                         <div key={i}>
@@ -68,7 +70,7 @@ export const CaseStudyPage = () => {
                                 </div>
                              </div>
                              <div>
-                                <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-2">Industry</h3>
+                                <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-2">{t.caseStudies.industryLabel}</h3>
                                 <div className="text-lg font-medium text-brand-text-primary">{study.industry}</div>
                              </div>
                         </div>
@@ -76,14 +78,14 @@ export const CaseStudyPage = () => {
                         {/* Content */}
                         <div className="md:col-span-2 space-y-12">
                             <div>
-                                <h2 className="text-2xl font-bold text-brand-text-primary mb-4">The Challenge</h2>
+                                <h2 className="text-2xl font-bold text-brand-text-primary mb-4">{t.caseStudies.challengeTitle}</h2>
                                 <p className="text-lg text-brand-text-secondary leading-relaxed">
                                     {study.challenge}
                                 </p>
                             </div>
                             
                             <div>
-                                <h2 className="text-2xl font-bold text-brand-text-primary mb-4">The Solution</h2>
+                                <h2 className="text-2xl font-bold text-brand-text-primary mb-4">{t.caseStudies.solutionTitle}</h2>
                                 <p className="text-lg text-brand-text-secondary leading-relaxed">
                                     {study.solution}
                                 </p>

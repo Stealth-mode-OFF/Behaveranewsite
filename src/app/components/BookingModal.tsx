@@ -144,9 +144,10 @@ export function BookingModal() {
               {/* CTA */}
               <Button
                 onClick={() => setView('calendar')}
-                className="w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-lg rounded-xl group"
+                size="lg"
+                className="w-full"
               >
-                <Calendar className="w-5 h-5 mr-2" />
+                <Calendar className="w-4 h-4 mr-2" />
                 {copy.cta}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>

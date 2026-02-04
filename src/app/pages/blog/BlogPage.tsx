@@ -5,16 +5,19 @@ import { BlogPost } from '@/lib/types';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { format } from 'date-fns';
-import { ArrowRight } from 'lucide-react';
+import { cs, de, enUS } from 'date-fns/locale';
 import { useSEO } from '@/app/hooks/useSEO';
+import { useLanguage } from '@/app/LanguageContext';
 
 export const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const { t, language } = useLanguage();
+  const locale = language === 'cz' ? cs : language === 'de' ? de : enUS;
 
   useSEO({
-    title: 'Blog & Insights',
-    description: 'Praktické články o engagementu, retenci a organizační psychologii. Vědecky podložené, srozumitelně vysvětlené.',
-    keywords: 'employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies',
+    title: t.blog.seoTitle,
+    description: t.blog.seoDescription,
+    keywords: t.blog.seoKeywords,
     ogType: 'website',
   });
 
@@ -31,10 +34,10 @@ export const BlogPage = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-16 space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-brand-text-primary">
-              Insights & Analysis
+              {t.blog.pageTitle}
             </h1>
             <p className="text-xl text-brand-text-secondary max-w-2xl mx-auto">
-              Deep dives into organizational psychology, leadership data, and the future of work.
+              {t.blog.pageSubtitle}
             </p>
           </div>
 
@@ -56,7 +59,7 @@ export const BlogPage = () => {
                 </div>
                 <div className="flex-1 p-6 flex flex-col">
                   <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-brand-primary uppercase tracking-wider">
-                    {post.tags[0] || 'Insight'}
+                    {post.tags[0] || t.blog.defaultTag}
                   </div>
                   <h2 className="text-xl font-bold text-brand-text-primary mb-3 group-hover:text-brand-primary transition-colors line-clamp-2">
                     {post.title}
@@ -70,7 +73,7 @@ export const BlogPage = () => {
                         <img src={post.author.avatar} alt={post.author.name} className="w-6 h-6 rounded-full" />
                       )}
                       <span className="text-xs text-brand-text-muted font-medium">
-                        {post.author.name} • {format(new Date(post.publishedAt), 'MMM d')}
+                        {post.author.name} • {format(new Date(post.publishedAt), 'MMM d', { locale })}
                       </span>
                     </div>
                   </div>

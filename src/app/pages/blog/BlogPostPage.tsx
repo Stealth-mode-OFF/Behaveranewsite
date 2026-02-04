@@ -6,13 +6,17 @@ import { sanitizeHtml } from '@/lib/sanitize';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { format } from 'date-fns';
-import { ArrowLeft, Share2 } from 'lucide-react';
+import { cs, de, enUS } from 'date-fns/locale';
+import { ArrowLeft } from 'lucide-react';
 import { useSEO } from '@/app/hooks/useSEO';
+import { useLanguage } from '@/app/LanguageContext';
 
 export const BlogPostPage = () => {
   const { slug } = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t, language } = useLanguage();
+  const locale = language === 'cz' ? cs : language === 'de' ? de : enUS;
 
   useEffect(() => {
     if (slug) {
@@ -25,14 +29,14 @@ export const BlogPostPage = () => {
 
   // Dynamic SEO based on post
   useSEO({
-    title: post?.title || 'Blog',
-    description: post?.excerpt || 'Insights o engagementu, retenci a organizační psychologii.',
-    keywords: post?.tags?.join(', ') || 'employee engagement, HR analytics, burnout prevention',
+    title: post?.title || t.blog.title,
+    description: post?.excerpt || t.blog.seoDescription,
+    keywords: post?.tags?.join(', ') || t.blog.seoKeywords,
     ogType: 'article',
   });
 
-  if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">Loading...</div>;
-  if (!post) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">Post not found</div>;
+  if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.loading}</div>;
+  if (!post) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.notFound}</div>;
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-background-primary">
@@ -41,7 +45,7 @@ export const BlogPostPage = () => {
         <article className="max-w-4xl mx-auto px-4">
           <Link to="/blog" className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-primary mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Insights
+            {t.blog.backToList}
           </Link>
 
           <header className="mb-12 text-center">
@@ -71,7 +75,7 @@ export const BlogPostPage = () => {
                 </div>
                 <div className="h-8 w-px bg-brand-border mx-2" />
                 <div className="text-sm text-brand-text-muted">
-                    {format(new Date(post.publishedAt), 'MMMM d, yyyy')}
+                    {format(new Date(post.publishedAt), 'MMMM d, yyyy', { locale })}
                 </div>
             </div>
           </header>

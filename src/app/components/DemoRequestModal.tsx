@@ -20,7 +20,7 @@ type DemoRequestFormData = {
 const czechPhonePattern = /^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 
 export function DemoRequestModal() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const { demoRequestOpen, closeDemoRequest } = useModal();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
@@ -38,6 +38,14 @@ export function DemoRequestModal() {
       role: "",
     },
   });
+
+  const copy = t.demoRequest || {};
+  const companySizes = copy.sizes ? Object.values(copy.sizes) : [];
+  const roles = copy.roles ? Object.values(copy.roles) : [];
+  const errorInvalidEmail = copy.errorInvalidEmail || "Please enter a valid email.";
+  const errorInvalidPhone = copy.errorInvalidPhone || "Please enter a valid Czech phone number.";
+  const errorRequired = copy.errorRequired || "This field is required.";
+  const errorGeneric = copy.errorGeneric || "Submission failed. Please try again.";
 
   const onSubmit = async (data: DemoRequestFormData) => {
     setIsSubmitting(true);
@@ -62,16 +70,6 @@ export function DemoRequestModal() {
     reset();
   };
 
-  const copy = t.demoRequest || {};
-  const isCz = language === "cz";
-  const pick = (en?: string, cz?: string) => (isCz ? cz || en || "" : en || cz || "");
-  const companySizes = copy.sizes ? Object.values(copy.sizes) : [];
-  const roles = copy.roles ? Object.values(copy.roles) : [];
-  const errorInvalidEmail = pick(copy.errorInvalidEmail, copy.errorInvalidEmailCz) || "Please enter a valid email.";
-  const errorInvalidPhone = pick(copy.errorInvalidPhone, copy.errorInvalidPhoneCz) || "Please enter a valid Czech phone number.";
-  const errorRequired = pick(copy.errorRequired, copy.errorRequiredCz) || "This field is required.";
-  const errorGeneric = pick(copy.errorGeneric, copy.errorGenericCz) || "Submission failed. Please try again.";
-
   return (
     <Dialog open={demoRequestOpen} onOpenChange={(open) => (!open ? closeDemoRequest() : undefined)}>
       <DialogContent className="sm:max-w-[520px] p-0 overflow-hidden bg-white border border-brand-border">
@@ -83,27 +81,27 @@ export function DemoRequestModal() {
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <DialogTitle className="text-2xl font-bold text-brand-text-primary mb-2">
-              {pick(copy.successTitle, copy.successTitleCz)}
+              {copy.successTitle}
             </DialogTitle>
             <DialogDescription className="text-brand-text-secondary">
-              {pick(copy.successMessage, copy.successMessageCz)}
+              {copy.successMessage}
             </DialogDescription>
           </div>
         ) : (
           <div className="p-8">
             <DialogHeader className="mb-6 text-left">
               <DialogTitle className="text-2xl font-bold text-brand-text-primary">
-                {pick(copy.title, copy.titleCz)}
+                {copy.title}
               </DialogTitle>
               <DialogDescription className="text-brand-text-secondary">
-                {pick(copy.subtitle, copy.subtitleCz)}
+                {copy.subtitle}
               </DialogDescription>
             </DialogHeader>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="demo-email" className="text-sm font-semibold text-brand-text-secondary">
-                  {pick(copy.emailLabel, copy.emailLabelCz)}
+                  {copy.emailLabel}
                 </Label>
                 <Input
                   id="demo-email"
@@ -119,7 +117,7 @@ export function DemoRequestModal() {
 
               <div className="space-y-2">
                 <Label htmlFor="demo-phone" className="text-sm font-semibold text-brand-text-secondary">
-                  {pick(copy.phoneLabel, copy.phoneLabelCz)}
+                  {copy.phoneLabel}
                 </Label>
                 <Input
                   id="demo-phone"
@@ -135,7 +133,7 @@ export function DemoRequestModal() {
 
               <div className="space-y-2">
                 <Label className="text-sm font-semibold text-brand-text-secondary">
-                  {pick(copy.sizeLabel, copy.sizeLabelCz)}
+                  {copy.sizeLabel}
                 </Label>
                 <Controller
                   control={control}
@@ -163,7 +161,7 @@ export function DemoRequestModal() {
 
               <div className="space-y-2">
                 <Label className="text-sm font-semibold text-brand-text-secondary">
-                  {pick(copy.roleLabel, copy.roleLabelCz)}
+                  {copy.roleLabel}
                 </Label>
                 <Controller
                   control={control}
@@ -198,10 +196,10 @@ export function DemoRequestModal() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
+                className="w-full"
               >
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                {pick(copy.submit, copy.submitCz)}
+                {copy.submit}
               </Button>
             </form>
           </div>

@@ -9,10 +9,8 @@ import { useLanguage } from "../../LanguageContext";
 
 export function TryPage() {
   const { openDemoRequest } = useModal();
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const copy = t.tryPage || {};
-  const isCz = language === "cz";
-  const pick = (en?: string, cz?: string) => (isCz ? cz || en || "" : en || cz || "");
 
   return (
     <>
@@ -22,14 +20,14 @@ export function TryPage() {
           <div className="container-default text-center">
             {copy.badge && (
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-muted text-brand-text-secondary text-xs font-bold uppercase tracking-widest mb-6 border border-brand-border">
-                {pick(copy.badge, copy.badgeCz)}
+                {copy.badge}
               </div>
             )}
             <h1 className="text-4xl md:text-5xl font-bold text-brand-text-primary mb-6">
-              {pick(copy.title, copy.titleCz)}
+              {copy.title}
             </h1>
             <p className="text-lg text-brand-text-secondary max-w-2xl mx-auto">
-              {pick(copy.subtitle, copy.subtitleCz)}
+              {copy.subtitle}
             </p>
           </div>
         </section>
@@ -40,13 +38,13 @@ export function TryPage() {
 
             <div className="mt-10 flex flex-col items-center gap-4 text-center">
               <p className="text-brand-text-secondary">
-                {pick(copy.ctaTitle, copy.ctaTitleCz)}
+                {copy.ctaTitle}
               </p>
               <Button
                 onClick={openDemoRequest}
                 className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
               >
-                {pick(copy.ctaButton, copy.ctaButtonCz)}
+                {copy.ctaButton}
               </Button>
             </div>
           </div>

@@ -18,16 +18,14 @@ export function ValueByRole() {
       title: t.valueByRole.ceo.title,
       desc: t.valueByRole.ceo.desc,
       list: t.valueByRole.ceo.list,
-      cta: "See CEO Dashboard",
-      ctaCz: "Zobrazit pohled CEO",
+      cta: t.valueByRole?.cta?.ceo,
     },
     hr: {
       icon: Users,
       title: t.valueByRole.hr.title,
       desc: t.valueByRole.hr.desc,
       list: t.valueByRole.hr.list,
-      cta: "See HR Dashboard",
-      ctaCz: "Zobrazit pohled HR",
+      cta: t.valueByRole?.cta?.hr,
     },
   };
 
@@ -35,64 +33,69 @@ export function ValueByRole() {
   const Icon = current.icon;
 
   return (
-    <section className="py-24 bg-brand-background-secondary" id="value-by-role">
-      <div className="container-default">
+    <section className="py-32 bg-brand-background-secondary" id="value-by-role">
+      <div className="container-default max-w-[1120px] mx-auto px-4">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 tracking-tight">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white backdrop-blur-sm rounded-full border border-brand-primary/20 mb-10 shadow-sm">
+            <span className="font-mono text-[11px] font-bold text-brand-primary tracking-[0.15em] uppercase">
+              {t.valueByRole.badge}
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-brand-text-primary mb-8 tracking-[-0.015em] leading-[1.1]">
             {t.valueByRole.title}
           </h2>
-          <p className="text-brand-text-secondary text-lg leading-relaxed">
+          <p className="text-brand-text-secondary text-xl leading-[1.7] font-medium">
             {t.valueByRole.subtitle}
           </p>
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex bg-white p-1.5 rounded-xl shadow-sm border border-brand-border">
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex bg-white p-2 rounded-xl shadow-md border border-brand-border">
             <button
               onClick={() => setActiveRole("ceo")}
               className={cn(
-                "flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-bold transition-all",
+                "flex items-center gap-3 px-8 py-4 rounded-lg text-base font-bold transition-all",
                 activeRole === "ceo"
                   ? "bg-brand-primary text-white shadow-md"
                   : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-background-secondary"
               )}
             >
-              <Target className="w-4 h-4" />
-              CEO / Vedení
+              <Target className="w-5 h-5" />
+              {t.valueByRole?.tabs?.ceo}
             </button>
             <button
               onClick={() => setActiveRole("hr")}
               className={cn(
-                "flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-bold transition-all",
+                "flex items-center gap-3 px-8 py-4 rounded-lg text-base font-bold transition-all",
                 activeRole === "hr"
                   ? "bg-brand-primary text-white shadow-md"
                   : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-background-secondary"
               )}
             >
-              <Users className="w-4 h-4" />
-              HR / People Ops
+              <Users className="w-5 h-5" />
+              {t.valueByRole?.tabs?.hr}
             </button>
           </div>
         </div>
 
         {/* Tab Content */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="bg-white rounded-2xl shadow-lg border border-brand-border overflow-hidden">
             
             {/* Content Header */}
-            <div className="p-8 md:p-10 border-b border-brand-border bg-gradient-to-r from-brand-background-secondary/50 to-transparent">
-              <div className="flex items-start gap-5">
-                <div className="p-4 bg-brand-primary/10 rounded-xl text-brand-primary">
-                  <Icon className="w-8 h-8" />
+            <div className="p-12 border-b border-brand-border bg-gradient-to-r from-brand-background-secondary/50 to-transparent">
+              <div className="flex items-start gap-6">
+                <div className="p-5 bg-brand-primary/10 rounded-xl text-brand-primary ring-1 ring-brand-primary/20">
+                  <Icon className="w-10 h-10" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-brand-text-primary mb-3">
+                  <h3 className="text-3xl font-bold text-brand-text-primary mb-4 tracking-[-0.01em]">
                     {current.title}
                   </h3>
-                  <p className="text-brand-text-secondary text-lg leading-relaxed max-w-2xl">
+                  <p className="text-brand-text-secondary text-xl leading-[1.7] max-w-2xl font-medium">
                     {current.desc}
                   </p>
                 </div>
@@ -100,8 +103,8 @@ export function ValueByRole() {
             </div>
 
             {/* Benefits List */}
-            <div className="p-8 md:p-10">
-              <ul className="grid md:grid-cols-1 gap-6">
+            <div className="p-12">
+              <ul className="grid md:grid-cols-1 gap-8">
                 {current.list
                   .filter(Boolean)
                   .map((item: any, index: number) => {
@@ -109,16 +112,16 @@ export function ValueByRole() {
                     const desc = typeof item === "string" ? "" : item?.desc;
                     if (!title) return null;
                     return (
-                      <li key={index} className="flex items-start gap-4">
-                        <div className="mt-1 p-1.5 rounded-full bg-brand-primary text-white shrink-0">
-                          <Check className="w-4 h-4" />
+                      <li key={index} className="flex items-start gap-5">
+                        <div className="mt-1.5 p-2 rounded-full bg-brand-primary text-white shrink-0">
+                          <Check className="w-5 h-5" />
                         </div>
                         <div>
-                          <strong className="block text-brand-text-primary text-base font-bold mb-1">
+                          <strong className="block text-brand-text-primary text-lg font-bold mb-2 tracking-[-0.005em]">
                             {title}
                           </strong>
                           {desc && (
-                            <p className="text-sm text-brand-text-secondary leading-relaxed">
+                            <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
                               {desc}
                             </p>
                           )}
@@ -129,16 +132,16 @@ export function ValueByRole() {
               </ul>
 
               {/* CTA */}
-              <div className="mt-10 pt-8 border-t border-brand-border flex flex-col sm:flex-row items-center gap-4">
+              <div className="mt-12 pt-10 border-t border-brand-border flex flex-col sm:flex-row items-center gap-5">
                 <Button
                   onClick={openBooking}
-                  className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
+                  size="lg"
                 >
-                  {activeRole === "ceo" ? "Schedule CEO Demo" : "Schedule HR Demo"}
+                  {activeRole === "ceo" ? t.valueByRole?.cta?.ceo : t.valueByRole?.cta?.hr}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 <span className="text-sm text-brand-text-muted">
-                  20 min • Personalized for your role
+                  {t.valueByRole?.ctaNote}
                 </span>
               </div>
             </div>
