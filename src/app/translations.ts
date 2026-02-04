@@ -227,6 +227,18 @@ export const translations = {
         { title: "Intervention Prioritization", desc: "Don't know what to solve first? Echo ranks problems by business impact and turnover risk." }
       ]
     },
+    purchase: {
+      title: "Pricing based on company size",
+      subtitle: "Estimate is driven by employee count. Final scope and price are confirmed after a short consultation.",
+      features: [
+        "Continuous pulses and signal analysis",
+        "Executive and HR dashboards",
+        "Actionable recommendations for managers",
+        "Secure data handling (GDPR)"
+      ],
+      button: "Request a tailored quote",
+      guaranteeShort: "Final scope and price are confirmed after the intro call."
+    },
     cta: {
       title: "Don't wait for the next resignation.",
       subtitle: "Blindness costs companies millions annually in lost productivity and hiring. Regain control in 48 hours.",
@@ -540,6 +552,18 @@ export const translations = {
         { title: "Prioritizace zásahů", desc: "Nevíte, co řešit dřív? Echo seřadí problémy podle dopadu na byznys a rizika odchodů." }
       ]
     },
+    purchase: {
+      title: "Ceník podle velikosti firmy",
+      subtitle: "Orientační odhad se odvíjí od počtu zaměstnanců. Finální rozsah a cena se potvrdí po krátké konzultaci.",
+      features: [
+        "Průběžné pulsy a analýza signálů",
+        "Dashboard pro vedení a HR",
+        "Akční doporučení pro manažery",
+        "Bezpečné zpracování dat (GDPR)"
+      ],
+      button: "Chci nabídku na míru",
+      guaranteeShort: "Finální rozsah a cena se potvrdí po úvodní konzultaci."
+    },
     cta: {
       title: "Nečekejte na další výpověď.",
       subtitle: "Slepota stojí české firmy miliony ročně na ztracené produktivitě a náboru. Získejte kontrolu zpět během 48 hodin.",
@@ -852,6 +876,18 @@ export const translations = {
         { title: "Erkennung toxischer Herde", desc: "System warnt vor Anomalien, die auf Mobbing, Burnout oder Führungsversagen hinweisen." },
         { title: "Interventions-Priorisierung", desc: "Wissen nicht, was zuerst lösen? Echo ordnet Probleme nach Geschäftsauswirkung und Fluktuationsrisiko." }
       ]
+    },
+    purchase: {
+      title: "Preis nach Unternehmensgröße",
+      subtitle: "Die Schätzung richtet sich nach der Mitarbeiterzahl. Endgültiger Umfang und Preis nach einem kurzen Gespräch.",
+      features: [
+        "Laufende Puls-Erhebungen und Signalanalyse",
+        "Dashboard für Führung und HR",
+        "Konkrete Handlungsempfehlungen",
+        "Sichere Datenverarbeitung (DSGVO)"
+      ],
+      button: "Individuelles Angebot anfordern",
+      guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch."
     },
     cta: {
       title: "Warten Sie nicht auf die nächste Kündigung.",
