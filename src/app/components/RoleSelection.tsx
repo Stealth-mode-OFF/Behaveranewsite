@@ -5,8 +5,8 @@ import { useLanguage } from "../LanguageContext";
 export function RoleSelection() {
   const { t } = useLanguage();
 
-  const scrollToProblem = () => {
-    const element = document.getElementById('problem');
+  const scrollToLead = () => {
+    const element = document.getElementById('lead-capture');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -24,6 +24,16 @@ export function RoleSelection() {
             <p className="text-brand-accent text-lg leading-relaxed opacity-80">
                 {t.roleSelection.subtitle}
             </p>
+            {t.roleSelection.benefits && (
+              <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center text-sm text-white/80 font-medium">
+                {t.roleSelection.benefits.map((benefit: string, index: number) => (
+                  <span key={index} className="inline-flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white" />
+                    {benefit}
+                  </span>
+                ))}
+              </div>
+            )}
         </div>
 
         {/* The Choice Grid - 4 Columns Side by Side */}
@@ -31,7 +41,7 @@ export function RoleSelection() {
             
             {/* Investor Card */}
             <button 
-                onClick={scrollToProblem}
+                onClick={scrollToLead}
                 className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 {/* Subtle Top Highlight */}
@@ -69,7 +79,7 @@ export function RoleSelection() {
 
             {/* CEO Card */}
             <button 
-                onClick={scrollToProblem}
+                onClick={scrollToLead}
                 className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
@@ -106,7 +116,7 @@ export function RoleSelection() {
 
             {/* HR Card */}
             <button 
-                onClick={scrollToProblem}
+                onClick={scrollToLead}
                 className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
@@ -143,7 +153,7 @@ export function RoleSelection() {
 
             {/* Team Leader Card */}
             <button 
-                onClick={scrollToProblem}
+                onClick={scrollToLead}
                 className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />

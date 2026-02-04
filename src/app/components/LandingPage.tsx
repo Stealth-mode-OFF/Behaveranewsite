@@ -3,17 +3,23 @@ import { Header } from "./Header";
 import { Hero } from "./Hero";
 import { LogoMarquee } from "./LogoMarquee";
 import { RoleSelection } from "./RoleSelection";
+import { AboutSection } from "./AboutSection";
 import { ProblemSection } from "./ProblemSection";
+import { LeadCaptureSection } from "./LeadCaptureSection";
 import { MethodologySection } from "./MethodologySection";
 import { SignalRadar } from "./SignalRadar";
 import { CzechRealitySection } from "./CzechRealitySection";
 import { DecisionLock } from "./DecisionLock";
 import { HowItWorks } from "./HowItWorks";
 import { DashboardPreview } from "./DashboardPreview";
-import { YearlyImpactSection } from "./YearlyImpactSection";
 import { ValueByRole } from "./ValueByRole";
+import { CaseStudiesSection } from "./CaseStudiesSection";
+import { SolutionsSection } from "./SolutionsSection";
+import { AIReadinessBanner } from "./AIReadinessBanner";
+import { PurchaseSection } from "./PurchaseSection";
 import { BlogSection } from "./BlogSection";
-import { DataSafetySection } from "./DataSafetySection";
+import { ContentLibrary } from "./ContentLibrary";
+import { TrustCenter } from "./TrustCenter";
 import { CtaSection } from "./CtaSection";
 import { FAQ } from "./FAQ";
 import { Footer } from "./Footer";
@@ -27,19 +33,25 @@ export function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <LogoMarquee />
         <RoleSelection />
+        <LogoMarquee />
+        <AboutSection />
         <ProblemSection />
+        <LeadCaptureSection />
         <MethodologySection />
         <SignalRadar />
         <DecisionLock />
         <CzechRealitySection />
         <HowItWorks />
         <DashboardPreview />
-        <YearlyImpactSection />
         <ValueByRole />
+        <CaseStudiesSection />
+        <SolutionsSection />
+        <AIReadinessBanner />
+        <PurchaseSection />
         <BlogSection />
-        <DataSafetySection />
+        <ContentLibrary />
+        <TrustCenter />
         <CtaSection />
         <FAQ />
       </main>

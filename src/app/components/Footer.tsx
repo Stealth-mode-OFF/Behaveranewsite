@@ -5,6 +5,8 @@ import { Github } from "lucide-react";
 
 export function Footer() {
   const { t } = useLanguage();
+  const linkTargets = ["#solutions", "#pricing", "#about", "#lead-capture"];
+  const legalTargets = ["#legal", "#legal"];
   
   return (
     <footer className="bg-brand-background-secondary border-t border-brand-border py-12 md:py-24 text-sm text-brand-text-secondary">
@@ -17,7 +19,7 @@ export function Footer() {
             
             <div className="flex gap-8">
                 {t.footer.links.map((link, i) => (
-                    <a key={i} href="#" className="hover:text-brand-primary transition-colors font-medium">{link}</a>
+                <a key={i} href={linkTargets[i] || "#"} className="hover:text-brand-primary transition-colors font-medium">{link}</a>
                 ))}
             </div>
 
@@ -27,12 +29,26 @@ export function Footer() {
                     {t.footer.legal.map((item, i) => {
                         const isTerms = item === "Terms" || item === "Podmínky" || item === "AGB";
                         if (isTerms) {
-                             return <Link key={i} to="/terms" className="hover:text-brand-primary transition-colors">{item}</Link>;
+                          return (
+                            <Link key={i} to="/terms" className="hover:text-brand-primary transition-colors">
+                              {item}
+                            </Link>
+                          );
                         }
-                        return <a key={i} href="#" className="hover:text-brand-primary transition-colors">{item}</a>;
+                        return (
+                          <a key={i} href={legalTargets[i] || "#legal"} className="hover:text-brand-primary transition-colors">
+                            {item}
+                          </a>
+                        );
                     })}
-                    <a href="https://github.com/behavera/echo-pulse" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors" aria-label="GitHub">
-                        <Github className="w-4 h-4" />
+                    <a
+                      href="https://github.com/behavera/echo-pulse"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-brand-primary transition-colors"
+                      aria-label="GitHub"
+                    >
+                      <Github className="w-4 h-4" />
                     </a>
                 </div>
             </div>

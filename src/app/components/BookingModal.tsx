@@ -8,26 +8,42 @@ import { toast } from 'sonner';
 import { useModal } from '../ModalContext';
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
+import { submitLead } from '../utils/lead';
 
 export function BookingModal() {
   const { isBookingOpen, closeBooking } = useModal();
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    setError(null);
+    const result = await submitLead({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      companySize: data.companySize,
+      source: "booking-modal"
+    });
     setIsSubmitting(false);
+
+    if (!result.ok) {
+      setError(result.error || "Odeslání se nepodařilo.");
+      return;
+    }
+
     setIsSuccess(true);
-    toast.success("Request sent!");
+    toast.success("Odesláno!");
     
     setTimeout(() => {
       closeBooking();
       setTimeout(() => {
         setIsSuccess(false);
+        setError(null);
         reset();
       }, 300);
     }, 2000);
@@ -97,6 +113,11 @@ export function BookingModal() {
               >
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : t.forms.submit}
               </Button>
+              {error && (
+                <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                  {error}
+                </div>
+              )}
             </form>
           </div>
         )}

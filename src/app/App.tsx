@@ -33,23 +33,23 @@ function App() {
                 {/* Public Routes */}
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/terms" element={<TermsPage />} />
-                
+
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:slug" element={<BlogPostPage />} />
-                
+
                 <Route path="/case-studies" element={<CaseStudiesPage />} />
                 <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
-                
+
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<Dashboard />} />
-                  
+
                   <Route path="posts" element={<PostList />} />
                   <Route path="posts/new" element={<PostEditor />} />
                   <Route path="posts/edit/:id" element={<PostEditor />} />
-                  
+
                   <Route path="case-studies" element={<CaseStudyList />} />
                   <Route path="case-studies/new" element={<CaseStudyEditor />} />
                   <Route path="case-studies/edit/:id" element={<CaseStudyEditor />} />

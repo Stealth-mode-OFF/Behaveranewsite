@@ -5,36 +5,63 @@ import { useLanguage } from '../LanguageContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useForm } from 'react-hook-form';
+import { submitLead } from '../utils/lead';
 
 export function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
   const { t } = useLanguage();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Show popup after 8 seconds
+    const hasSeen = sessionStorage.getItem('leadPopupSeen');
+    if (hasSeen) return;
+
     const timer = setTimeout(() => {
-      // Check if already closed in this session if using local storage
-      const hasSeen = sessionStorage.getItem('leadPopupSeen');
-      if (!hasSeen) {
+      if (!hasOpened) {
         setIsOpen(true);
+        setHasOpened(true);
       }
     }, 8000);
-    return () => clearTimeout(timer);
-  }, []);
+
+    const handleScroll = () => {
+      const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent > 40 && !hasOpened) {
+        setIsOpen(true);
+        setHasOpened(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [hasOpened]);
 
   const closePopup = () => {
     setIsOpen(false);
+    setHasOpened(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
   };
 
-  const onSubmit = (data: any) => {
-    console.log("Form submitted:", data);
+  const onSubmit = async (data: any) => {
+    setError(null);
+    const result = await submitLead({
+      email: data.email,
+      source: "lead-popup"
+    });
+
+    if (!result.ok) {
+      setError(result.error || "Odeslání se nepodařilo.");
+      return;
+    }
+
     setIsSuccess(true);
-    // Simulate API call
     setTimeout(() => {
-      // closePopup(); // Optional: close after success
+      closePopup();
     }, 3000);
   };
 
@@ -128,7 +155,11 @@ export function LeadPopup() {
                                     className={`h-12 bg-brand-background-secondary border-brand-border/50 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/10 transition-all text-sm placeholder:text-brand-text-muted/50 text-brand-text-primary shadow-sm rounded-lg ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
                                 />
                             </div>
-                            
+                            {error && (
+                              <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                                {error}
+                              </div>
+                            )}
                             <Button className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-bold text-sm shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all rounded-lg group">
                                 {t.leadPopup.cta} 
                                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
