@@ -6,6 +6,7 @@ import { Input } from '@/app/components/ui/input';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/app/components/ui/card';
 import { Lock, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
+import { adminEnabled } from '@/lib/config';
 
 export const AdminLogin = () => {
   const [password, setPassword] = useState('');
@@ -15,6 +16,10 @@ export const AdminLogin = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!adminEnabled) {
+      toast.error('Admin is disabled in this environment');
+      return;
+    }
     setIsLoading(true);
     
     try {
@@ -58,17 +63,17 @@ export const AdminLogin = () => {
                 placeholder="Enter access key..."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading}
+                disabled={isLoading || !adminEnabled}
                 className="h-12 border-brand-border focus:ring-brand-primary/20 transition-all bg-white"
               />
               <p className="text-xs text-center text-brand-text-muted/60">
-                Authorized personnel only
+                {adminEnabled ? "Authorized personnel only" : "Admin is disabled in this environment"}
               </p>
             </div>
             <Button 
                 type="submit" 
                 className="w-full h-12 text-base font-semibold bg-brand-primary hover:bg-brand-primary-hover transition-all shadow-md hover:shadow-lg" 
-                disabled={isLoading}
+                disabled={isLoading || !adminEnabled}
             >
               {isLoading ? 'Verifying...' : 'Access Dashboard'}
               {!isLoading && <ArrowRight className="w-4 h-4 ml-2" />}

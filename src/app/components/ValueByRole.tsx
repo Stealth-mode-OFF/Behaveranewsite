@@ -58,19 +58,28 @@ export function ValueByRole() {
                 </div>
 
                 <div className="border-t border-brand-border pt-10 relative z-10">
-                    <ul className="space-y-6">
-                        {t.valueByRole.ceo.list.map((item, index) => (
-                            <li key={index} className="flex items-start gap-4 group/item">
-                                <div className="mt-1.5 p-1 rounded-full bg-brand-primary/10 text-brand-primary shrink-0 group-hover/item:bg-brand-primary group-hover/item:text-white transition-colors">
-                                    <Check className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                    <strong className="block text-brand-text-primary text-base font-bold uppercase tracking-wide mb-1 group-hover/item:text-brand-primary transition-colors">{item.title}</strong>
-                                    <p className="text-sm text-brand-text-muted leading-relaxed">{item.desc}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                                        <ul className="space-y-6">
+                                                {t.valueByRole.ceo.list
+                                                    .filter(Boolean)
+                                                    .map((item: any, index: number) => {
+                                                        const title = typeof item === "string" ? item : item?.title;
+                                                        const desc = typeof item === "string" ? "" : item?.desc;
+                                                        if (!title) return null;
+                                                        return (
+                                                            <li key={index} className="flex items-start gap-4 group/item">
+                                                                <div className="mt-1.5 p-1 rounded-full bg-brand-primary/10 text-brand-primary shrink-0 group-hover/item:bg-brand-primary group-hover/item:text-white transition-colors">
+                                                                    <Check className="w-3.5 h-3.5" />
+                                                                </div>
+                                                                <div>
+                                                                    <strong className="block text-brand-text-primary text-base font-bold uppercase tracking-wide mb-1 group-hover/item:text-brand-primary transition-colors">{title}</strong>
+                                                                    {desc && (
+                                                                        <p className="text-sm text-brand-text-muted leading-relaxed">{desc}</p>
+                                                                    )}
+                                                                </div>
+                                                            </li>
+                                                        );
+                                                    })}
+                                        </ul>
                 </div>
             </motion.div>
 
@@ -103,19 +112,28 @@ export function ValueByRole() {
                 </div>
 
                 <div className="border-t border-brand-border pt-10 relative z-10">
-                    <ul className="space-y-6">
-                        {t.valueByRole.hr.list.map((item, index) => (
-                            <li key={index} className="flex items-start gap-4 group/item">
-                                <div className="mt-1.5 p-1 rounded-full bg-brand-background-muted text-brand-text-muted shrink-0 group-hover/item:bg-brand-text-muted group-hover/item:text-white transition-colors">
-                                    <Check className="w-3.5 h-3.5" />
-                                </div>
-                                <div>
-                                    <strong className="block text-brand-text-primary text-base font-bold uppercase tracking-wide mb-1 group-hover/item:text-brand-text-muted transition-colors">{item.title}</strong>
-                                    <p className="text-sm text-brand-text-muted leading-relaxed">{item.desc}</p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                                        <ul className="space-y-6">
+                                                {t.valueByRole.hr.list
+                                                    .filter(Boolean)
+                                                    .map((item: any, index: number) => {
+                                                        const title = typeof item === "string" ? item : item?.title;
+                                                        const desc = typeof item === "string" ? "" : item?.desc;
+                                                        if (!title) return null;
+                                                        return (
+                                                            <li key={index} className="flex items-start gap-4 group/item">
+                                                                <div className="mt-1.5 p-1 rounded-full bg-brand-background-muted text-brand-text-muted shrink-0 group-hover/item:bg-brand-text-muted group-hover/item:text-white transition-colors">
+                                                                    <Check className="w-3.5 h-3.5" />
+                                                                </div>
+                                                                <div>
+                                                                    <strong className="block text-brand-text-primary text-base font-bold uppercase tracking-wide mb-1 group-hover/item:text-brand-text-muted transition-colors">{title}</strong>
+                                                                    {desc && (
+                                                                        <p className="text-sm text-brand-text-muted leading-relaxed">{desc}</p>
+                                                                    )}
+                                                                </div>
+                                                            </li>
+                                                        );
+                                                    })}
+                                        </ul>
                 </div>
             </motion.div>
 

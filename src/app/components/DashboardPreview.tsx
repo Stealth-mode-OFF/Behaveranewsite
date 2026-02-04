@@ -69,31 +69,34 @@ export function DashboardPreview() {
         </motion.div>
 
         {/* Key Capabilities Grid - Calm & Technical */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto border-t border-brand-border pt-12">
-            {t.dashboard.features.map((feature, index) => {
-                const Icon = icons[index];
-                return (
-                    <motion.div 
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="flex gap-5 items-start group"
-                    >
-                        <div className="w-12 h-12 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center shrink-0 text-brand-primary shadow-sm mt-1 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300">
-                            <Icon className="w-5 h-5" />
-                        </div>
-                        <div>
-                            <h3 className="font-bold text-brand-text-primary mb-2 text-base group-hover:text-brand-primary transition-colors">{feature.title}</h3>
-                            <p className="text-sm text-brand-text-secondary leading-relaxed">
-                                {feature.desc}
-                            </p>
-                        </div>
-                    </motion.div>
-                );
-            })}
-        </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto border-t border-brand-border pt-12">
+                        {t.dashboard.features
+                            .filter(Boolean)
+                            .map((feature: any, index: number) => {
+                                if (!feature?.title) return null;
+                                const Icon = icons[index] || Eye;
+                                return (
+                                    <motion.div 
+                                        key={index}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        className="flex gap-5 items-start group"
+                                    >
+                                        <div className="w-12 h-12 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center shrink-0 text-brand-primary shadow-sm mt-1 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300">
+                                            <Icon className="w-5 h-5" />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-brand-text-primary mb-2 text-base group-hover:text-brand-primary transition-colors">{feature.title}</h3>
+                                            <p className="text-sm text-brand-text-secondary leading-relaxed">
+                                                {feature.desc || ''}
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                );
+                            })}
+                </div>
 
       </div>
     </section>

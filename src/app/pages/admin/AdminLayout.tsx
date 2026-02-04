@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react';
-import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
-import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Settings } from 'lucide-react';
+import { LayoutDashboard, FileText, Briefcase, LogOut, Menu } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 import { cn } from '@/app/components/ui/utils';
+import { adminEnabled } from '@/lib/config';
 
 export const AdminLayout = () => {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-
   useEffect(() => {
     if (!isAuthenticated) {
       navigate('/admin/login');
     }
   }, [isAuthenticated, navigate]);
 
+  if (!adminEnabled) return <Navigate to="/" replace />;
   if (!isAuthenticated) return null;
 
   const NavItems = () => (

@@ -5,7 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import slugify from 'slugify';
 import { CmsService } from '@/lib/cms-service';
-import { CaseStudy } from '@/lib/types';
+import { CaseStudyFormData } from '@/lib/types';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -21,7 +21,7 @@ export const CaseStudyEditor = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!id;
 
-  const { register, control, handleSubmit, setValue, watch, formState: { errors } } = useForm<CaseStudy>({
+  const { register, control, handleSubmit, setValue, watch } = useForm<CaseStudyFormData>({
     defaultValues: {
       status: 'draft',
       content: '',
@@ -47,16 +47,22 @@ export const CaseStudyEditor = () => {
       CmsService.getCaseStudies().then(studies => {
         const study = studies.find(s => s.id === id);
         if (study) {
-            Object.keys(study).forEach(key => {
-                // @ts-ignore
-                setValue(key, study[key]);
-            });
+            setValue('clientName', study.clientName);
+            setValue('industry', study.industry);
+            setValue('title', study.title);
+            setValue('slug', study.slug);
+            setValue('challenge', study.challenge);
+            setValue('solution', study.solution);
+            setValue('content', study.content);
+            setValue('coverImage', study.coverImage || '');
+            setValue('results', study.results && study.results.length > 0 ? study.results : [{ label: '', value: '' }]);
+            setValue('status', study.status);
         }
       });
     }
   }, [id, isEditing, setValue]);
 
-  const onSubmit = async (data: CaseStudy) => {
+  const onSubmit = async (data: CaseStudyFormData) => {
     setIsLoading(true);
     try {
       if (isEditing) {

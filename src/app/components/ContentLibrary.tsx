@@ -39,7 +39,7 @@ export function ContentLibrary() {
     return items;
   }, [activeCategory]);
 
-  const visibleItems = filteredItems.slice(0, visibleCount);
+  const visibleItems = filteredItems.filter(Boolean).filter((item) => item?.title).slice(0, visibleCount);
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);

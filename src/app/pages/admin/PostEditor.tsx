@@ -5,7 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import slugify from 'slugify';
 import { CmsService } from '@/lib/cms-service';
-import { BlogPost } from '@/lib/types';
+import { BlogPostFormData } from '@/lib/types';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -21,7 +21,7 @@ export const PostEditor = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isEditing = !!id;
 
-  const { register, control, handleSubmit, setValue, watch, formState: { errors } } = useForm<BlogPost>({
+  const { register, control, handleSubmit, setValue, watch, formState: { errors } } = useForm<BlogPostFormData>({
     defaultValues: {
       status: 'draft',
       content: '',
@@ -42,16 +42,19 @@ export const PostEditor = () => {
       CmsService.getPosts().then(posts => {
         const post = posts.find(p => p.id === id);
         if (post) {
-            Object.keys(post).forEach(key => {
-                // @ts-ignore
-                setValue(key, post[key]);
-            });
+            setValue('title', post.title);
+            setValue('slug', post.slug);
+            setValue('excerpt', post.excerpt);
+            setValue('content', post.content);
+            setValue('coverImage', post.coverImage || '');
+            setValue('tags', post.tags || []);
+            setValue('status', post.status);
         }
       });
     }
   }, [id, isEditing, setValue]);
 
-  const onSubmit = async (data: BlogPost) => {
+  const onSubmit = async (data: BlogPostFormData) => {
     setIsLoading(true);
     try {
       if (isEditing && id) {

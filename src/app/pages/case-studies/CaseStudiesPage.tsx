@@ -11,7 +11,7 @@ export const CaseStudiesPage = () => {
 
   useEffect(() => {
     CmsService.getCaseStudies().then(data => {
-      setStudies(data.filter(s => s.status === 'published'));
+      setStudies(data.filter(Boolean).filter(s => s.status === 'published'));
     });
   }, []);
 

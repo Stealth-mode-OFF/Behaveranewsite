@@ -8,6 +8,8 @@ export function CaseStudiesSection() {
 
   const caseStudies = useMemo(() => {
     return behaveraContent
+      .filter(Boolean)
+      .filter((item) => item?.title)
       .filter((item) => item.category === "Případové studie")
       .slice(0, 3);
   }, []);
