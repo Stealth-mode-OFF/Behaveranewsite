@@ -119,7 +119,7 @@ export const articles: Article[] = [
 
           <div className="mt-12 p-8 bg-[#2E1065] rounded-xl text-center">
               <h3 className="text-white font-bold text-xl mb-4">Přestaňte být reportéři. Staňte se architekty systémů.</h3>
-              <p className="text-indigo-200 mb-0">
+              <p className="text-brand-text-inverse-secondary mb-0">
                   Dobrý HR nepotřebuje víc dat. Potřebuje správná data ve správný čas. Prevence je levnější než reakce. A systém je silnější než kampaň.
               </p>
           </div>

@@ -60,7 +60,7 @@ export function RoleSelection() {
                     {t.roleSelection.investor.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.investor.list[0]}</span>
@@ -97,7 +97,7 @@ export function RoleSelection() {
                     {t.roleSelection.ceo.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.ceo.list[0]}</span>
@@ -134,7 +134,7 @@ export function RoleSelection() {
                     {t.roleSelection.hr.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.hr.list[0]}</span>
@@ -171,7 +171,7 @@ export function RoleSelection() {
                     {t.roleSelection.teamLeader.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.teamLeader.list[0]}</span>

@@ -14,7 +14,7 @@ export function MethodologySection() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             {t.methodology.title}
           </h2>
-          <p className="text-lg text-indigo-200 leading-relaxed">
+          <p className="text-lg text-brand-text-inverse-secondary leading-relaxed">
             {t.methodology.subtitle}
           </p>
         </div>
@@ -42,7 +42,7 @@ export function MethodologySection() {
                 </div>
                 
                 <h3 className="text-xl font-bold mb-4 group-hover:text-white transition-colors">{card.title}</h3>
-                <p className="text-indigo-200 leading-relaxed text-sm md:text-base">
+                <p className="text-brand-text-inverse-secondary leading-relaxed text-sm md:text-base">
                   {card.desc || ''}
                 </p>
                 </div>

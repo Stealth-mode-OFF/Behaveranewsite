@@ -72,7 +72,7 @@ export function LeadCaptureSection() {
                   <Input
                     id="lead-name"
                     {...register("name")}
-                    className="h-11 border-brand-border focus:ring-indigo-600"
+                    className="h-11 border-brand-border focus:ring-brand-primary"
                     placeholder={t.leadCapture.namePlaceholder}
                   />
                 </div>
@@ -85,7 +85,7 @@ export function LeadCaptureSection() {
                     id="lead-email"
                     type="email"
                     {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                    className={`h-11 border-brand-border focus:ring-indigo-600 ${errors.email ? "border-red-500" : ""}`}
+                    className={`h-11 border-brand-border focus:ring-brand-primary ${errors.email ? "border-red-500" : ""}`}
                     placeholder={t.leadCapture.emailPlaceholder}
                   />
                   {errors.email && (

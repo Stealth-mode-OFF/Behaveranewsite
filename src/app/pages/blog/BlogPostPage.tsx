@@ -60,7 +60,7 @@ export const BlogPostPage = () => {
                         <div className="text-xs text-brand-text-muted">{post.author.role}</div>
                     </div>
                 </div>
-                <div className="h-8 w-px bg-gray-200 mx-2" />
+                <div className="h-8 w-px bg-brand-border mx-2" />
                 <div className="text-sm text-brand-text-muted">
                     {format(new Date(post.publishedAt), 'MMMM d, yyyy')}
                 </div>
@@ -74,7 +74,7 @@ export const BlogPostPage = () => {
           </div>
 
           <div 
-            className="prose prose-lg prose-indigo mx-auto max-w-none text-brand-text-secondary"
+            className="prose prose-lg prose-violet mx-auto max-w-none text-brand-text-secondary"
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
           />
           

@@ -37,7 +37,7 @@ export const BlogPage = () => {
                 to={`/blog/${post.slug}`}
                 className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg transition-all"
               >
-                <div className="aspect-[16/9] overflow-hidden bg-gray-100">
+                <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary">
                   {post.coverImage && (
                     <img 
                       src={post.coverImage} 
@@ -56,7 +56,7 @@ export const BlogPage = () => {
                   <p className="text-brand-text-secondary text-sm leading-relaxed mb-6 line-clamp-3 flex-1">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-brand-border">
                     <div className="flex items-center gap-2">
                       {post.author.avatar && (
                         <img src={post.author.avatar} alt={post.author.name} className="w-6 h-6 rounded-full" />

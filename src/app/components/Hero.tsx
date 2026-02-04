@@ -8,7 +8,7 @@ import dashboardPreview from "../../assets/57784f33eede4d7388f560072042dfccbed29
 
 export function Hero() {
   const { t } = useLanguage();
-  const { openDemoVideo, openBooking } = useModal();
+  const { openVideo, openBooking } = useModal();
 
   return (
     <section className="pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden relative bg-gradient-to-b from-brand-background-secondary/50 to-white">
@@ -65,7 +65,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
             <Button 
-              onClick={openDemoVideo}
+              onClick={openVideo}
               className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg w-full sm:w-auto"
             >
               {t.hero.primaryCta}
