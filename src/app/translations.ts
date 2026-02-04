@@ -221,6 +221,7 @@ export const translations = {
       title: "See what only colleagues",
       titleHighlight: "at the coffee machine saw before.",
       subtitle: "Echo Pulse aggregates fragmented signals into one understandable dashboard.",
+      watchDemo: "Watch demo",
       features: [
         { title: "Mood X-Ray", desc: "Instant overview of how different teams feel. Breakdown by department, location, or seniority." },
         { title: "Toxic Spot Detection", desc: "System alerts on anomalies indicating bullying, burnout, or management failure." },
@@ -295,6 +296,27 @@ export const translations = {
       successMessage: "Check your inbox. We've just sent you the study.",
       close: "Close"
     },
+    demoRequest: {
+      title: "Request Demo Access",
+      subtitle: "We’ll send you a gated demo link and a short walkthrough.",
+      emailLabel: "Work Email",
+      emailPlaceholder: "name@company.com",
+      phoneLabel: "Phone",
+      phonePlaceholder: "+420 777 123 456",
+      companySizeLabel: "Company Size",
+      roleLabel: "Role",
+      companySizePlaceholder: "Select size",
+      rolePlaceholder: "Select role",
+      companySizes: ["10-30", "31-50", "51-100", "101-200", "201-350", "350+"],
+      roles: ["CEO / Founder", "HR / People Ops", "Team Leader", "Other"],
+      submit: "Send demo link",
+      successTitle: "Demo link sent to your email",
+      successMessage: "Check your inbox. If you don’t see it, look in spam.",
+      errorInvalidEmail: "Please enter a valid email.",
+      errorInvalidPhone: "Please enter a valid Czech phone number.",
+      errorRequired: "This field is required.",
+      errorGeneric: "Submission failed. Please try again."
+    },
     leadCapture: {
       badge: "Free E-book",
       title: "Get a practical guide to managing teams by signals.",
@@ -309,6 +331,24 @@ export const translations = {
       consent: "By submitting, you agree to data processing for ebook delivery.",
       errorInvalid: "Please enter a valid email.",
       errorGeneric: "Something went wrong. Please try again."
+    },
+    demoModal: {
+      choiceTitle: "How would you like to see Echo Pulse?",
+      choiceSubtitle: "Choose what works best for you",
+      selfServe: {
+        title: "Watch demo video",
+        subtitle: "3 minutes – quick overview",
+        features: ["Instant access", "No registration", "Core features"],
+        cta: "Play now"
+      },
+      liveDemo: {
+        title: "Live demo with expert",
+        subtitle: "30 minutes – personalized",
+        features: ["Get your questions answered", "Specific use-cases", "No commitment"],
+        cta: "Book a time"
+      },
+      videoTitle: "Echo Pulse – Demo",
+      recommended: "Recommended"
     },
     data: {
       trustedBy: "Trusted by leading companies"
@@ -546,6 +586,7 @@ export const translations = {
       title: "Vidíte to, co dřív viděli jen",
       titleHighlight: "kolegové u kávovaru.",
       subtitle: "Echo Pulse agreguje fragmentované signály do jednoho srozumitelného dashboardu.",
+      watchDemo: "Přehrát demo",
       features: [
         { title: "Rentgen nálady", desc: "Okamžitý přehled o tom, jak se cítí různé týmy. Rozklíčování dle oddělení, lokality nebo seniority." },
         { title: "Detekce toxických ohnisek", desc: "Systém upozorní na anomálie, které naznačují šikanu, vyhoření nebo selhání manažera." },
@@ -620,6 +661,27 @@ export const translations = {
       successMessage: "Zkontrolujte svou e-mailovou schránku. Právě jsme vám studii odeslali.",
       close: "Zavřít"
     },
+    demoRequest: {
+      title: "Získat přístup do demoverze",
+      subtitle: "Pošleme vám demo link a krátké vysvětlení.",
+      emailLabel: "Pracovní e-mail",
+      emailPlaceholder: "jmeno@firma.cz",
+      phoneLabel: "Telefon",
+      phonePlaceholder: "+420 777 123 456",
+      companySizeLabel: "Velikost firmy",
+      roleLabel: "Role",
+      companySizePlaceholder: "Vyberte velikost",
+      rolePlaceholder: "Vyberte roli",
+      companySizes: ["10-30", "31-50", "51-100", "101-200", "201-350", "350+"],
+      roles: ["CEO / Founder", "HR / People Ops", "Team Leader", "Jiné"],
+      submit: "Poslat demo link",
+      successTitle: "Demo link jsme poslali do e-mailu",
+      successMessage: "Pokud ho nevidíte, zkontrolujte spam.",
+      errorInvalidEmail: "Zadejte platný e-mail.",
+      errorInvalidPhone: "Zadejte platné české telefonní číslo.",
+      errorRequired: "Pole je povinné.",
+      errorGeneric: "Odeslání se nepodařilo. Zkuste to prosím znovu."
+    },
     leadCapture: {
       badge: "E-book zdarma",
       title: "Získejte praktický přehled, jak řídit tým podle signálů.",
@@ -634,6 +696,24 @@ export const translations = {
       consent: "Odesláním souhlasíte se zpracováním kontaktních údajů pro doručení e-booku.",
       errorInvalid: "Zadejte prosím platný e-mail.",
       errorGeneric: "Odeslání se nepodařilo."
+    },
+    demoModal: {
+      choiceTitle: "Jak chcete vidět Echo Pulse?",
+      choiceSubtitle: "Vyberte si, co vám vyhovuje",
+      selfServe: {
+        title: "Pustit demo video",
+        subtitle: "3 minuty – základní přehled",
+        features: ["Okamžitě", "Bez registrace", "Přehled funkcí"],
+        cta: "Přehrát teď"
+      },
+      liveDemo: {
+        title: "Živé demo s expertem",
+        subtitle: "30 minut – personalizované",
+        features: ["Odpovědi na dotazy", "Konkrétní use-cases", "Žádné závazky"],
+        cta: "Rezervovat termín"
+      },
+      videoTitle: "Echo Pulse – Demo",
+      recommended: "Doporučeno"
     },
     data: {
       trustedBy: "DŮVĚŘUJÍ NÁM VELKÉ FIRMY"
@@ -871,6 +951,7 @@ export const translations = {
       title: "Sehen Sie, was früher nur",
       titleHighlight: "Kollegen an der Kaffeemaschine sahen.",
       subtitle: "Echo Pulse aggregiert fragmentierte Signale in einem verständlichen Dashboard.",
+      watchDemo: "Demo ansehen",
       features: [
         { title: "Stimmungs-Röntgen", desc: "Sofortiger Überblick, wie sich verschiedene Teams fühlen. Aufschlüsselung nach Abteilung, Standort oder Seniorität." },
         { title: "Erkennung toxischer Herde", desc: "System warnt vor Anomalien, die auf Mobbing, Burnout oder Führungsversagen hinweisen." },
@@ -945,6 +1026,27 @@ export const translations = {
       successMessage: "Prüfen Sie Ihren Posteingang. Wir haben Ihnen die Studie gerade gesendet.",
       close: "Schließen"
     },
+    demoRequest: {
+      title: "Demo-Zugang anfordern",
+      subtitle: "Wir senden Ihnen einen Demo-Link und eine kurze Einführung.",
+      emailLabel: "E-Mail (geschäftlich)",
+      emailPlaceholder: "name@unternehmen.de",
+      phoneLabel: "Telefon",
+      phonePlaceholder: "+420 777 123 456",
+      companySizeLabel: "Unternehmensgröße",
+      roleLabel: "Rolle",
+      companySizePlaceholder: "Größe wählen",
+      rolePlaceholder: "Rolle wählen",
+      companySizes: ["10-30", "31-50", "51-100", "101-200", "201-350", "350+"],
+      roles: ["CEO / Founder", "HR / People Ops", "Team Leader", "Andere"],
+      submit: "Demo-Link senden",
+      successTitle: "Demo-Link per E-Mail gesendet",
+      successMessage: "Wenn Sie ihn nicht sehen, prüfen Sie bitte den Spam-Ordner.",
+      errorInvalidEmail: "Bitte geben Sie eine gültige E-Mail ein.",
+      errorInvalidPhone: "Bitte geben Sie eine gültige tschechische Telefonnummer ein.",
+      errorRequired: "Dieses Feld ist erforderlich.",
+      errorGeneric: "Senden fehlgeschlagen. Bitte erneut versuchen."
+    },
     leadCapture: {
       badge: "Kostenloses E-Book",
       title: "Praktischer Leitfaden: Teams nach Signalen steuern.",
@@ -959,6 +1061,24 @@ export const translations = {
       consent: "Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Kontaktdaten für die E-Book-Zustellung zu.",
       errorInvalid: "Bitte geben Sie eine gültige E-Mail ein.",
       errorGeneric: "Senden fehlgeschlagen."
+    },
+    demoModal: {
+      choiceTitle: "Wie möchten Sie Echo Pulse sehen?",
+      choiceSubtitle: "Wählen Sie, was am besten passt",
+      selfServe: {
+        title: "Demo-Video ansehen",
+        subtitle: "3 Minuten – Kurzüberblick",
+        features: ["Sofortiger Zugang", "Ohne Registrierung", "Kernfunktionen"],
+        cta: "Jetzt abspielen"
+      },
+      liveDemo: {
+        title: "Live-Demo mit Experten",
+        subtitle: "30 Minuten – personalisiert",
+        features: ["Ihre Fragen beantwortet", "Konkrete Use-Cases", "Keine Verpflichtung"],
+        cta: "Termin buchen"
+      },
+      videoTitle: "Echo Pulse – Demo",
+      recommended: "Empfohlen"
     },
     data: {
       trustedBy: "VON FÜHRENDEN UNTERNEHMEN GENUTZT"

@@ -4,6 +4,8 @@ export type LeadPayload = {
   firstName?: string;
   lastName?: string;
   companySize?: string;
+  phone?: string;
+  role?: string;
   source?: string;
 };
 

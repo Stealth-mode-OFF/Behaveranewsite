@@ -1,49 +1,101 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, Gift } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useForm } from 'react-hook-form';
 import { submitLead } from '../utils/lead';
 
+/**
+ * LeadPopup with Exit-Intent Detection
+ * 
+ * Triggers:
+ * 1. Exit intent (mouse leaves viewport top) - PRIMARY
+ * 2. 60 seconds on page without interaction - FALLBACK
+ * 3. 70% scroll depth - FALLBACK
+ * 
+ * Does NOT trigger:
+ * - If already shown this session
+ * - If user is on mobile (no exit intent possible)
+ * - If user came from /try page (already engaged)
+ */
 export function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [hasOpened, setHasOpened] = useState(false);
+  const [hasTriggered, setHasTriggered] = useState(false);
   const { t } = useLanguage();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
+  // Check if mobile device
+  const isMobile = typeof window !== 'undefined' && 
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  const triggerPopup = useCallback(() => {
+    if (hasTriggered) return;
+    
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
     if (hasSeen) return;
 
-    const timer = setTimeout(() => {
-      if (!hasOpened) {
-        setIsOpen(true);
-        setHasOpened(true);
-      }
-    }, 8000);
+    // Don't show if user is on /try page (they're already engaged)
+    if (window.location.pathname === '/try') return;
 
+    setIsOpen(true);
+    setHasTriggered(true);
+  }, [hasTriggered]);
+
+  useEffect(() => {
+    const hasSeen = sessionStorage.getItem('leadPopupSeen');
+    if (hasSeen) {
+      setHasTriggered(true);
+      return;
+    }
+
+    // EXIT INTENT: Mouse leaves top of viewport (desktop only)
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (isMobile) return;
+      
+      // Only trigger when mouse leaves through the TOP of the page
+      // This indicates intent to close tab or navigate away
+      if (e.clientY <= 5 && e.relatedTarget === null) {
+        triggerPopup();
+      }
+    };
+
+    // FALLBACK 1: Time-based (60 seconds)
+    const timeoutTimer = setTimeout(() => {
+      if (isMobile) {
+        // On mobile, use time-based trigger since exit intent doesn't work
+        triggerPopup();
+      }
+    }, 60000); // 60 seconds
+
+    // FALLBACK 2: Deep scroll (70% of page)
     const handleScroll = () => {
       const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      if (scrollPercent > 40 && !hasOpened) {
-        setIsOpen(true);
-        setHasOpened(true);
+      if (scrollPercent > 70) {
+        // Only use scroll as trigger on mobile
+        if (isMobile && !hasTriggered) {
+          triggerPopup();
+        }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    // Add listeners
+    document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
     return () => {
-      clearTimeout(timer);
+      clearTimeout(timeoutTimer);
+      document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [hasOpened]);
+  }, [hasTriggered, isMobile, triggerPopup]);
 
   const closePopup = () => {
     setIsOpen(false);
-    setHasOpened(true);
+    setHasTriggered(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
   };
 
@@ -51,7 +103,7 @@ export function LeadPopup() {
     setError(null);
     const result = await submitLead({
       email: data.email,
-      source: "lead-popup"
+      source: "exit-intent-popup"
     });
 
     if (!result.ok) {
@@ -60,6 +112,8 @@ export function LeadPopup() {
     }
 
     setIsSuccess(true);
+    sessionStorage.setItem('leadPopupSeen', 'true');
+    
     setTimeout(() => {
       closePopup();
     }, 3000);
@@ -75,110 +129,98 @@ export function LeadPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closePopup}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
           />
           
-          {/* Modal Card */}
+          {/* Modal Card - Simplified, focused on value */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Close Button */}
             <button 
               onClick={closePopup}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/10 hover:bg-brand-primary-hover/5 rounded-full text-brand-text-muted transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 hover:bg-brand-background-secondary rounded-full text-brand-text-muted transition-colors"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {/* Left Side - Image */}
-            <div className="hidden md:block w-2/5 relative">
-              <img 
-                src="https://images.unsplash.com/photo-1766866763822-985dbc6f3405?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG1vZGVybiUyMG9mZmljZSUyMGFyY2hpdGVjdHVyZSUyMGJyaWdodHxlbnwxfHx8fDE3NzAxMjI1MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" 
-                alt="Office Context" 
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-brand-primary/80 mix-blend-multiply" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/90 to-transparent" />
-              
-              <div className="absolute bottom-8 left-8 right-8 text-white">
-                <p className="font-serif italic text-lg opacity-90 leading-relaxed">
-                  "{t.leadPopup.quote}"
-                </p>
-              </div>
+            {/* Content */}
+            <div className="p-8 md:p-10">
+              {isSuccess ? (
+                <div className="text-center py-6">
+                  <div className="w-16 h-16 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-brand-text-primary mb-3">
+                    {t.leadPopup.successTitle}
+                  </h3>
+                  <p className="text-brand-text-secondary">
+                    {t.leadPopup.successMessage}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  {/* Exit-intent specific header */}
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-primary/10 text-brand-primary rounded-2xl mb-5">
+                      <Gift className="w-7 h-7" />
+                    </div>
+                    
+                    <h3 className="text-2xl md:text-3xl font-bold text-brand-text-primary mb-3 leading-tight">
+                      {t.leadPopup.title}
+                    </h3>
+                    <p className="text-brand-text-secondary leading-relaxed max-w-sm mx-auto">
+                      {t.leadPopup.subtitle}
+                    </p>
+                  </div>
+
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <div>
+                      <Input 
+                        type="email" 
+                        placeholder={t.leadPopup.emailPlaceholder}
+                        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+                        className={`h-12 bg-brand-background-secondary border-brand-border focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/10 text-base ${errors.email ? 'border-red-500' : ''}`}
+                      />
+                      {errors.email && (
+                        <p className="text-sm text-red-600 mt-1">Zadejte platný email</p>
+                      )}
+                    </div>
+                    
+                    {error && (
+                      <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                        {error}
+                      </div>
+                    )}
+                    
+                    <Button 
+                      type="submit"
+                      className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg group"
+                    >
+                      {t.leadPopup.cta}
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </form>
+
+                  {/* Social proof */}
+                  <div className="mt-6 pt-6 border-t border-brand-border flex items-center justify-center gap-3 text-sm text-brand-text-muted">
+                    <span>{t.leadPopup.socialProofPre}</span>
+                    <span className="font-bold text-brand-primary">{t.leadPopup.socialProofCount}</span>
+                    <span>{t.leadPopup.socialProofPost}</span>
+                  </div>
+                  
+                  {/* No spam promise */}
+                  <p className="text-center text-xs text-brand-text-muted mt-4">
+                    Žádný spam. Pouze hodnotný obsah.
+                  </p>
+                </>
+              )}
             </div>
-
-            {/* Right Side - Content */}
-            <div className="w-full md:w-3/5 p-8 md:p-12 relative flex flex-col justify-center bg-white">
-                 {isSuccess ? (
-                    <div className="text-center py-10 animate-in fade-in zoom-in duration-300">
-                        <div className="w-16 h-16 bg-brand-accent/10 text-brand-primary rounded-full flex items-center justify-center mx-auto mb-6 border border-brand-accent/20 shadow-[0_0_15px_rgba(124,58,237,0.1)]">
-                            <CheckCircle2 className="w-8 h-8" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-brand-primary mb-3 tracking-tight">{t.leadPopup.successTitle}</h3>
-                        <p className="text-brand-text-secondary font-medium text-base max-w-xs mx-auto">
-                            {t.leadPopup.successMessage}
-                        </p>
-                    </div>
-                 ) : (
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <div className="mb-8">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-primary/5 rounded-full border border-brand-primary/10 mb-4">
-                                <span className="relative flex h-2 w-2">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
-                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
-                                </span>
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-brand-primary">
-                                    {t.leadPopup.badge}
-                                </span>
-                            </div>
-
-                            <h3 className="text-2xl md:text-3xl font-bold text-brand-primary mb-4 tracking-tight leading-[1.15]">
-                                {t.leadPopup.title}
-                            </h3>
-                            <p className="text-brand-text-secondary leading-relaxed font-medium text-base md:text-lg opacity-90">
-                                {t.leadPopup.subtitle}
-                            </p>
-                        </div>
-
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                            <div className="space-y-1.5">
-                                <label className="text-xs font-semibold text-brand-primary uppercase tracking-wide ml-1">
-                                    {t.leadPopup.inputLabel}
-                                </label>
-                                <Input 
-                                    type="email" 
-                                    placeholder={t.leadPopup.emailPlaceholder}
-                                    {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                                    className={`h-12 bg-brand-background-secondary border-brand-border/50 focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/10 transition-all text-sm placeholder:text-brand-text-muted/50 text-brand-text-primary shadow-sm rounded-lg ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
-                                />
-                            </div>
-                            {error && (
-                              <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
-                                {error}
-                              </div>
-                            )}
-                            <Button className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-sm rounded-lg">
-                                {t.leadPopup.cta} 
-                                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Button>
-                        </form>
-                        
-                        <div className="mt-6 pt-6 border-t border-brand-border/30 flex items-center justify-center gap-6">
-                            <div className="flex -space-x-2">
-                                {[1,2,3].map(i => (
-                                    <div key={i} className="w-6 h-6 rounded-full bg-brand-background-secondary border border-white ring-1 ring-brand-primary/10" />
-                                ))}
-                            </div>
-                            <p className="text-xs text-brand-text-muted font-medium">
-                                {t.leadPopup.socialProofPre} <span className="text-brand-primary font-bold">{t.leadPopup.socialProofCount}</span> {t.leadPopup.socialProofPost}
-                            </p>
-                        </div>
-                    </div>
-                 )}
-              </div>
           </motion.div>
         </div>
       )}
