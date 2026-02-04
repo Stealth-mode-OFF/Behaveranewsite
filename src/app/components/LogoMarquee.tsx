@@ -18,6 +18,9 @@ const logos = [
   { name: "Optimio", className: "font-sans font-bold tracking-tight" },
   { name: "Effectix", className: "font-sans font-bold" },
   { name: "Socialmind", className: "font-sans font-medium" },
+  { name: "Grammer", className: "font-sans font-bold" },
+  { name: "Raynet", className: "font-sans font-bold tracking-wide" },
+  { name: "StartupJobs", className: "font-sans font-bold" },
 ];
 
 export function LogoMarquee() {

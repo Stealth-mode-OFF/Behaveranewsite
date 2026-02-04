@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { submitLead } from "../utils/lead";
+import { useLanguage } from "../LanguageContext";
 
 type LeadFormData = {
   name?: string;
@@ -11,6 +12,7 @@ type LeadFormData = {
 };
 
 export function LeadCaptureSection() {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -32,7 +34,7 @@ export function LeadCaptureSection() {
       setIsSuccess(true);
       reset();
     } else {
-      setError(result.error || "Odeslání se nepodařilo.");
+      setError(result.error || t.leadCapture.errorGeneric);
     }
   };
 
@@ -42,13 +44,13 @@ export function LeadCaptureSection() {
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-widest mb-6 border border-slate-200">
-              E-book zdarma
+              {t.leadCapture.badge}
             </div>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
-              Získejte praktický přehled, jak řídit tým podle signálů.
+              {t.leadCapture.title}
             </h2>
             <p className="text-lg text-slate-600 leading-relaxed">
-              Pošleme vám e-book s konkrétními tipy, jak rychle odhalit, co a proč ve firmě nefunguje. Bez spamu.
+              {t.leadCapture.subtitle}
             </p>
           </div>
 
@@ -58,36 +60,36 @@ export function LeadCaptureSection() {
                 <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">E-book je na cestě.</h3>
-                <p className="text-slate-600">Zkontrolujte prosím e-mailovou schránku.</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">{t.leadCapture.successTitle}</h3>
+                <p className="text-slate-600">{t.leadCapture.successMessage}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="lead-name">
-                    Jméno (volitelné)
+                    {t.leadCapture.nameLabel}
                   </label>
                   <Input
                     id="lead-name"
                     {...register("name")}
                     className="h-11 border-slate-200 focus:ring-indigo-600"
-                    placeholder="Vaše jméno"
+                    placeholder={t.leadCapture.namePlaceholder}
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="lead-email">
-                    Pracovní e-mail
+                    {t.leadCapture.emailLabel}
                   </label>
                   <Input
                     id="lead-email"
                     type="email"
                     {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                     className={`h-11 border-slate-200 focus:ring-indigo-600 ${errors.email ? "border-red-500" : ""}`}
-                    placeholder="name@company.com"
+                    placeholder={t.leadCapture.emailPlaceholder}
                   />
                   {errors.email && (
-                    <p className="text-xs text-red-600 mt-2">Zadejte prosím platný e-mail.</p>
+                    <p className="text-xs text-red-600 mt-2">{t.leadCapture.errorInvalid}</p>
                   )}
                 </div>
 
@@ -103,11 +105,11 @@ export function LeadCaptureSection() {
                   className="w-full h-12 bg-slate-900 hover:bg-black text-white font-bold"
                 >
                   {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                  Chci e-book
+                  {t.leadCapture.submit}
                 </Button>
 
                 <p className="text-xs text-slate-400 text-center">
-                  Odesláním souhlasíte se zpracováním kontaktních údajů pro doručení e-booku.
+                  {t.leadCapture.consent}
                 </p>
               </form>
             )}
