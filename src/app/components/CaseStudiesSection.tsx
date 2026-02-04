@@ -2,9 +2,16 @@ import React, { useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { behaveraContent, ContentItem } from "../content/behaveraContent";
 import { ContentModal } from "./ContentModal";
+import { Button } from "./ui/button";
 
 export function CaseStudiesSection() {
   const [selectedItem, setSelectedItem] = useState<ContentItem | null>(null);
+  const scrollToLeadCapture = () => {
+    const element = document.getElementById("lead-capture");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const caseStudies = useMemo(() => {
     return behaveraContent
@@ -55,6 +62,18 @@ export function CaseStudiesSection() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-brand-text-secondary mb-4">
+            Chcete kompletní případové studie s čísly?
+          </p>
+          <Button
+            onClick={scrollToLeadCapture}
+            className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
+          >
+            Stáhnout PDF zdarma
+          </Button>
         </div>
       </div>
 

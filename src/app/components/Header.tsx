@@ -11,7 +11,7 @@ import { useModal } from "../ModalContext";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { openBooking } = useModal();
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -33,6 +33,7 @@ export function Header() {
   const pageLinks = [
     { path: '/blog', label: 'Blog' },
     { path: '/case-studies', label: 'Case Studies' },
+    { path: '/try', label: language === 'cz' ? 'Vyzkoušet' : 'Try it' },
   ];
 
   return (
