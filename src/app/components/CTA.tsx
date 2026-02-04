@@ -23,7 +23,7 @@ export function CTA() {
              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
                 <Button 
                     onClick={openBooking}
-                    className="h-14 px-8 bg-white text-brand-primary hover:bg-brand-background-secondary font-bold text-body rounded-xl shadow-lg w-full sm:w-auto"
+                    className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg w-full sm:w-auto"
                 >
                     <Calendar className="mr-2 w-5 h-5" />
                     {t.cta.primary}
@@ -31,7 +31,7 @@ export function CTA() {
                 <Button 
                     variant="outline"
                     onClick={openBooking}
-                    className="h-14 px-8 border-white/20 text-white hover:bg-white/10 bg-transparent font-bold text-body rounded-xl w-full sm:w-auto backdrop-blur-sm"
+                    className="h-12 px-8 bg-transparent border border-brand-primary text-brand-primary hover:bg-brand-primary/5 font-semibold rounded-lg w-full sm:w-auto"
                 >
                     {t.cta.secondary}
                     <ArrowRight className="ml-2 w-5 h-5" />

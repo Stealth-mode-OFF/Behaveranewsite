@@ -24,7 +24,7 @@ export function CtaSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
             <Button 
                 onClick={openBooking}
-                className="h-14 px-10 bg-brand-accent hover:bg-brand-accent-hover text-white text-lg font-semibold rounded min-w-[240px] shadow-lg shadow-brand-primary/20 transition-all"
+                className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg min-w-[240px]"
             >
                 {t.cta.primary}
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -34,7 +34,7 @@ export function CtaSection() {
 
             <a 
                 href="tel:+420777123456" 
-                className="flex items-center gap-3 text-indigo-200 hover:text-white transition-colors h-14 px-6 font-medium text-lg rounded border border-white/5 hover:bg-white/5"
+                className="flex items-center gap-3 text-indigo-200 hover:text-white transition-colors h-12 px-6 font-medium text-lg rounded-lg border border-white/5 hover:bg-white/5"
             >
                 <Phone className="w-5 h-5" />
                 <span>{t.cta.secondaryLink}</span>

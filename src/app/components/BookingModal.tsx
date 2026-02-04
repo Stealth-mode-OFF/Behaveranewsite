@@ -108,7 +108,7 @@ export function BookingModal() {
 
               <Button 
                 type="submit" 
-                className="w-full bg-brand-primary hover:bg-brand-primary-hover text-white font-bold h-12 mt-2" 
+                className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg mt-2" 
                 disabled={isSubmitting}
               >
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : t.forms.submit}

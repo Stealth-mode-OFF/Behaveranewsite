@@ -88,7 +88,7 @@ export function LeadPopup() {
             {/* Close Button */}
             <button 
               onClick={closePopup}
-              className="absolute top-4 right-4 z-10 p-2 bg-white/10 hover:bg-black/5 rounded-full text-brand-text-muted transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 bg-white/10 hover:bg-brand-primary-hover/5 rounded-full text-brand-text-muted transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -160,7 +160,7 @@ export function LeadPopup() {
                                 {error}
                               </div>
                             )}
-                            <Button className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-bold text-sm shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all rounded-lg group">
+                            <Button className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-sm rounded-lg">
                                 {t.leadPopup.cta} 
                                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Button>

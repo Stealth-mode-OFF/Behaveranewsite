@@ -24,7 +24,7 @@ export function LanguageSwitcher() {
     <Button 
       variant="ghost" 
       onClick={toggleLanguage}
-      className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0"
+      className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-brand-background-muted transition-colors focus-visible:ring-0 focus-visible:ring-offset-0"
       title={`Switch language (Current: ${currentLanguage.label})`}
     >
         <span className="text-2xl leading-none filter drop-shadow-sm">{currentLanguage.flag}</span>

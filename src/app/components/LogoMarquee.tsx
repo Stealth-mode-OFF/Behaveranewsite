@@ -42,12 +42,12 @@ export function LogoMarquee() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-10 bg-white border-b border-slate-200 relative z-20 overflow-hidden">
+    <section className="py-10 bg-white border-b border-brand-border relative z-20 overflow-hidden">
       <div className="container-default">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             
             {/* Label - Static Anchor */}
-            <div className="shrink-0 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-widest border-l-2 border-slate-300 pl-3 py-1">
+            <div className="shrink-0 text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-widest border-l-2 border-brand-border-strong pl-3 py-1">
                 {t.data.trustedBy}
             </div>
             
