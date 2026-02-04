@@ -8,13 +8,13 @@ export function MethodologySection() {
   const icons = [Radio, Cpu, Zap];
 
   return (
-    <section className="py-24 bg-brand-primary text-white border-y border-white/5">
+    <section className="py-24 bg-brand-background-dark text-white border-y border-brand-border-dark/40">
       <div className="container-default">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             {t.methodology.title}
           </h2>
-          <p className="text-lg text-indigo-200 leading-relaxed">
+          <p className="text-lg text-brand-text-inverse-secondary leading-relaxed">
             {t.methodology.subtitle}
           </p>
         </div>
@@ -29,20 +29,19 @@ export function MethodologySection() {
               if (!card?.title) return null;
               const Icon = icons[index] || Radio;
               return (
-                <div key={index} className="group relative bg-white/5 p-8 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all hover:-translate-y-1 duration-300 z-10">
+                <div key={index} className="group relative bg-white/5 p-8 rounded-2xl border border-white/10 hover:border-brand-accent/40 transition-all hover:-translate-y-1 duration-300 z-10">
                 
                 {/* Step Number - Process Indicator */}
                 <div className="absolute top-4 right-6 text-4xl font-black text-white/[0.03] font-mono select-none group-hover:text-white/[0.06] transition-colors">
                     0{index + 1}
                 </div>
 
-                <div className="relative w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-brand-accent border border-white/5 shadow-inner group-hover:shadow-[0_0_15px_rgba(167,139,250,0.3)] transition-all">
-                  <div className="absolute inset-0 bg-brand-accent/10 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-brand-accent border border-white/10 shadow-inner transition-all">
                   <Icon className="w-6 h-6 relative z-10" />
                 </div>
                 
                 <h3 className="text-xl font-bold mb-4 group-hover:text-white transition-colors">{card.title}</h3>
-                <p className="text-indigo-200 leading-relaxed text-sm md:text-base">
+                <p className="text-brand-text-inverse-secondary leading-relaxed text-sm md:text-base">
                   {card.desc || ''}
                 </p>
                 </div>

@@ -33,11 +33,10 @@ export function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <RoleSelection />
         <LogoMarquee />
         <AboutSection />
         <ProblemSection />
-        <LeadCaptureSection />
+        <RoleSelection />
         <MethodologySection />
         <SignalRadar />
         <DecisionLock />
@@ -49,6 +48,7 @@ export function LandingPage() {
         <SolutionsSection />
         <AIReadinessBanner />
         <PurchaseSection />
+        <LeadCaptureSection />
         <BlogSection />
         <ContentLibrary />
         <TrustCenter />

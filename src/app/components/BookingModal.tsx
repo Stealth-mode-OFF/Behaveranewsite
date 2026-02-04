@@ -51,12 +51,12 @@ export function BookingModal() {
 
   return (
     <Dialog open={isBookingOpen} onOpenChange={closeBooking}>
-      <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden bg-white border border-brand-border">
-        <div className="absolute top-0 left-0 w-full h-1 bg-brand-primary" />
+      <DialogContent className="sm:max-w-[520px] p-0 overflow-hidden bg-white border border-brand-border">
+        <div className="absolute top-0 left-0 w-full h-1 bg-brand-accent" />
         
         {isSuccess ? (
           <div className="p-12 flex flex-col items-center justify-center text-center">
-            <div className="w-16 h-16 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-brand-accent/10 text-brand-accent rounded-full flex items-center justify-center mb-6">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <DialogTitle className="text-2xl font-bold text-brand-text-primary mb-2">{t.leadPopup.successTitle}</DialogTitle>
@@ -78,7 +78,7 @@ export function BookingModal() {
                   id="email" 
                   type="email" 
                   {...register("email", { required: true })}
-                  className="h-10 border-brand-border focus:ring-brand-primary"
+                  className="h-10 border-brand-border focus:ring-brand-accent"
                 />
               </div>
 
@@ -88,7 +88,7 @@ export function BookingModal() {
                   id="phone" 
                   type="tel"
                   {...register("phone", { required: true })}
-                  className="h-10 border-brand-border focus:ring-brand-primary"
+                  className="h-10 border-brand-border focus:ring-brand-accent"
                 />
               </div>
 
@@ -96,7 +96,7 @@ export function BookingModal() {
                 <Label htmlFor="companySize" className="text-sm font-semibold text-brand-text-secondary">{t.calculator.sliders.companySize}</Label>
                 <select 
                     {...register("companySize")}
-                    className="flex h-10 w-full rounded-md border border-brand-border bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-brand-primary outline-none"
+                    className="flex h-10 w-full rounded-md border border-brand-border bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-brand-accent outline-none"
                  >
                     <option value="1-15">1-15</option>
                     <option value="16-50">16-50</option>

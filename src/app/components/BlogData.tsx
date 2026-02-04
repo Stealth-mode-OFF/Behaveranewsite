@@ -21,7 +21,7 @@ export const articles: Article[] = [
       readTime: '4 min',
       content: (
         <>
-          <p className="text-xl font-medium text-slate-800 leading-relaxed mb-8">
+          <p className="text-xl font-medium text-brand-text-primary leading-relaxed mb-8">
             Kolikrát jste už slyšeli tuhle větu: „Potřebujeme zlepšit engagement." A kolikrát jste na to udělali průzkum, workshop, iniciativu... a za půl roku zjistili, že se v podstatě nic nezměnilo?
           </p>
 
@@ -29,7 +29,7 @@ export const articles: Article[] = [
             Tohle není kritika vaší práce. Je to kritika <strong>nástrojů, se kterými pracujete</strong>. Problém není v tom, že byste nedělali dost. Problém je v tom, že měříte špatnou věc ve špatný čas.
           </SystemAlert>
 
-          <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-6">Engagement surveys jsou pitva, ne prevence</h2>
+          <h2 className="text-2xl font-bold text-brand-text-primary mt-12 mb-6">Engagement surveys jsou pitva, ne prevence</h2>
           <p className="mb-6">
             Roční engagement survey je jako lékařská prohlídka jednou za rok. Užitečná? Jistě. Ale když vám najdou problém, často už běží měsíce. A než zpracujete výsledky, připravíte akční plány a začnete cokoliv měnit, je tu další čtvrtletí. Kontext se změnil. Priorita se posunula.
           </p>
@@ -37,8 +37,8 @@ export const articles: Article[] = [
             Tím nechci říct, že surveys jsou k ničemu. Ale <strong>pokud jsou jediný zdroj</strong>, pak je vaše HR v podstatě slepé 90 % času.
           </p>
 
-          <div className="my-8 bg-slate-50 p-6 rounded-lg border border-slate-200">
-             <h3 className="font-bold text-slate-900 mb-4 uppercase tracking-wide text-xs">Neviditelná rizika</h3>
+          <div className="my-8 bg-brand-background-secondary p-6 rounded-lg border border-brand-border">
+             <h3 className="font-bold text-brand-text-primary mb-4 uppercase tracking-wide text-xs">Neviditelná rizika</h3>
              <ul className="space-y-2">
                 <li className="flex items-start gap-2">
                     <span className="text-red-500 font-bold">•</span>
@@ -59,7 +59,7 @@ export const articles: Article[] = [
              </ul>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-6">Exit interview je nejdražší forma zpětné vazby</h2>
+          <h2 className="text-2xl font-bold text-brand-text-primary mt-12 mb-6">Exit interview je nejdražší forma zpětné vazby</h2>
           <p className="mb-6">
             „Proč odcházíš?" ... „Lepší příležitost."
           </p>
@@ -71,7 +71,7 @@ export const articles: Article[] = [
              HR není kampaň. HR je systém. Teambuildingy a wellbeing programy často řeší symptom, ne příčinu. Příčina je v procesech, nástrojích a viditelnosti práce.
           </KeyConcept>
 
-          <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-6">Co kdybyste místo reportování problémů pomáhali je předcházet?</h2>
+          <h2 className="text-2xl font-bold text-brand-text-primary mt-12 mb-6">Co kdybyste místo reportování problémů pomáhali je předcházet?</h2>
           <p className="mb-6">
             Teď trávíte čas zpracováním dat z průzkumů a vysvětlováním, co se stalo. Ale co kdybyste místo toho trávili čas <strong>identifikací slabých signálů</strong> dřív, než se stanou problémy?
           </p>
@@ -85,9 +85,9 @@ export const articles: Article[] = [
                       <li>• Hašení požárů</li>
                   </ul>
               </div>
-              <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-100">
-                  <h4 className="font-bold text-emerald-800 mb-2">Preventivní HR</h4>
-                  <ul className="text-sm space-y-2 text-emerald-900/80">
+              <div className="bg-brand-background-secondary p-6 rounded-lg border border-brand-border">
+                  <h4 className="font-bold text-brand-text-primary mb-2">Preventivní HR</h4>
+                  <ul className="text-sm space-y-2 text-brand-text-secondary">
                       <li>• Detekce rizika vyhoření</li>
                       <li>• Průběžná optimalizace procesů</li>
                       <li>• Strategické poradenství</li>
@@ -95,12 +95,12 @@ export const articles: Article[] = [
               </div>
           </div>
 
-          <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-6">Echo Pulse není engagement survey. Je to řídicí systém.</h2>
+          <h2 className="text-2xl font-bold text-brand-text-primary mt-12 mb-6">Echo Pulse není engagement survey. Je to řídicí systém.</h2>
           <p className="mb-6">
             Představte si, že místo jednou ročně dostáváte signály průběžně. Kde workload stoupá, ale podpora ne. Kde lidi ztrácí důvěru v prioritizaci. Ne jako velká čísla v prezentaci. Ale jako <strong>živé trendy</strong>, se kterými můžete pracovat v reálném čase.
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900 mt-12 mb-6">Co to znamená pro vaši roli?</h2>
+          <h2 className="text-2xl font-bold text-brand-text-primary mt-12 mb-6">Co to znamená pro vaši roli?</h2>
           <p className="mb-6">
             Místo toho, abyste reagovali na výsledky surveys, začnete spoluvytvářet strategie na základě živých dat:
           </p>
@@ -117,9 +117,9 @@ export const articles: Article[] = [
              „Uznání za práci nefunguje v oddělení Y, i když děláme recognition program – je tam strukturální problém, ne problém motivace."
           </ProtocolStep>
 
-          <div className="mt-12 p-8 bg-[#2E1065] rounded-xl text-center">
+          <div className="mt-12 p-8 bg-brand-background-dark rounded-xl text-center">
               <h3 className="text-white font-bold text-xl mb-4">Přestaňte být reportéři. Staňte se architekty systémů.</h3>
-              <p className="text-indigo-200 mb-0">
+              <p className="text-brand-text-inverse-secondary mb-0">
                   Dobrý HR nepotřebuje víc dat. Potřebuje správná data ve správný čas. Prevence je levnější než reakce. A systém je silnější než kampaň.
               </p>
           </div>
@@ -141,7 +141,7 @@ export const articles: Article[] = [
             "Potřebujete dashboard pro kulturu, stejně jako máte pro finance."
           ]} />
 
-          <p className="text-xl text-slate-700 leading-relaxed mb-8">
+          <p className="text-xl text-brand-text-secondary leading-relaxed mb-8">
              Když jste měli 10 lidí, věděli jste o každém problému u oběda. Teď máte 100 lidí a o problémech se dozvídáte, až když vám klíčový člověk položí výpověď na stůl.
           </p>
 
@@ -155,7 +155,7 @@ export const articles: Article[] = [
              Kultura není o ovoci v kuchyňce. Je to operační systém firmy. Pokud je pomalý, zabugovaný a padá, vaše strategie nebude fungovat.
           </KeyConcept>
 
-          <h3 className="text-slate-900 font-bold text-2xl mt-12 mb-6">Jak obnovit viditelnost</h3>
+          <h3 className="text-brand-text-primary font-bold text-2xl mt-12 mb-6">Jak obnovit viditelnost</h3>
 
           <div className="mt-8">
               <ProtocolStep number="01" title="Data > Intuice">
@@ -184,7 +184,7 @@ export const articles: Article[] = [
             "Manažer potřebuje 'radar', ne jen 'dveře otevřené'."
           ]} />
 
-          <p className="text-xl text-slate-700 leading-relaxed mb-8">
+          <p className="text-xl text-brand-text-secondary leading-relaxed mb-8">
             "Myslel jsem, že je spokojený." Věta, kterou říká manažer poté, co ztratil svého nejlepšího člověka. Je to selhání detekce.
           </p>
 
@@ -192,8 +192,8 @@ export const articles: Article[] = [
              Nejlepší lidé si nestěžují nahlas. Když narazí na překážku, kterou management neřeší, prostě omezí svůj investovaný výkon (Quiet Quitting) a začnou hledat jinde.
           </SystemAlert>
 
-          <h3 className="text-slate-900 font-bold text-2xl mt-12 mb-6">Co ve skutečnosti řídí retenci?</h3>
-          <p className="text-slate-600 mb-6">
+          <h3 className="text-brand-text-primary font-bold text-2xl mt-12 mb-6">Co ve skutečnosti řídí retenci?</h3>
+          <p className="text-brand-text-secondary mb-6">
             Není to plat (pokud je tržní). Je to pocit "Progress". Že se věci hýbou. Že překážky mizí. Že jejich práce má dopad.
           </p>
 

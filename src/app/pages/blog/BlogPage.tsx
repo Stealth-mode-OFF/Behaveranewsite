@@ -47,7 +47,7 @@ export const BlogPage = () => {
                   )}
                 </div>
                 <div className="flex-1 p-6 flex flex-col">
-                  <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-brand-primary uppercase tracking-wider">
+                  <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-brand-accent uppercase tracking-wider">
                     {post.tags[0] || 'Insight'}
                   </div>
                   <h2 className="text-xl font-bold text-brand-text-primary mb-3 group-hover:text-brand-primary transition-colors line-clamp-2">
