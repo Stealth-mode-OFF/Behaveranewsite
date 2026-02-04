@@ -34,13 +34,13 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Continuous Insight System • V2.0",
-      title: "Manage culture",
-      titleHighlight: "exactly like finance.",
-      subtitle: "Real data instead of feelings. Echo Pulse replaces annual surveys with a continuous signal system, giving leadership clarity about stability and priorities.",
-      primaryCta: "Schedule Consultation",
-      secondaryCta: "Demo (3 min)",
-      riskReversal: "No commitment. Leave with a clear picture of what's happening in your company.",
+      badge: "Clarity before problems hit",
+      title: "Keep teams stable and",
+      titleHighlight: "performance on track",
+      subtitle: "Spot turnover risk, overload, and misalignment early — before it shows in results.",
+      primaryCta: "Schedule a 30‑min consultation",
+      secondaryCta: "See a 3‑min demo",
+      riskReversal: "No commitment. Leave with a clear view of what’s at risk and what to fix first.",
       trust: {
         security: "Data Security (GDPR)",
         support: "Native Support",
@@ -51,7 +51,7 @@ export const translations = {
     problems: {
       badge: "Critical System Blindness",
       title: "The silent killer of stability.",
-      subtitle: "Estimates, guesses, and incomplete feedback create management blindness. Traditional tools measure consequences, not causes.",
+      subtitle: "Estimates and incomplete feedback create management blindness. Traditional tools measure consequences, not causes.",
       items: [
         {
           title: "Hidden Reasons",
@@ -77,7 +77,7 @@ export const translations = {
     howItWorks: {
       title: "Operating System",
       titleHighlight: "for your culture.",
-      subtitle: "One system to replace annual surveys, random 1:1s, and assumptions. Structured data you can build decisions on.",
+      subtitle: "One system instead of annual surveys and assumptions. Clear priorities for leadership.",
       steps: {
         step1: {
           title: "Contextual Intelligence",
@@ -100,7 +100,7 @@ export const translations = {
     },
     methodology: {
       title: "Scientific Instrument, Not a 'Happiness Survey'.",
-      subtitle: "We separate signal from noise. Echo Pulse turns feelings into business strategy and clarifies priorities.",
+      subtitle: "We separate signal from noise and turn it into clear priorities.",
       cards: [
         {
           title: "We Don't Hunt 'Happiness'",
@@ -150,18 +150,18 @@ export const translations = {
     },
     roleSelection: {
       title: "View the company from your perspective.",
-      subtitle: "Choose your angle and get concrete answers.",
+      subtitle: "Pick your role and see the benefit in seconds.",
       benefits: [
         "I want a productive team",
-        "I want to know what and why isn’t working",
+        "I need to know what blocks performance",
         "I want full visibility"
       ],
       investor: {
         role: "Investor",
         title: "Asset Protection",
         list: [
-          "Risk Prediction",
-          "Continuous portfolio health monitoring"
+          "Portfolio health at a glance",
+          "Risks flagged early"
         ],
         cta: "Check portfolio health"
       },
@@ -169,8 +169,8 @@ export const translations = {
         role: "CEO / Owner",
         title: "Strategic Control",
         list: [
-          "Early Warning Signals",
-          "Eliminating Management Blind Spots"
+          "Early risk signals",
+          "Clear priorities for leadership"
         ],
         cta: "See company from above"
       },
@@ -178,8 +178,8 @@ export const translations = {
         role: "HR / People Ops",
         title: "Data over Impressions",
         list: [
-          "Arguments backed by hard data",
-          "Less firefighting, more prevention"
+          "Data to influence leadership",
+          "Prevention over firefighting"
         ],
         cta: "Get data for leadership"
       },
@@ -187,15 +187,15 @@ export const translations = {
         role: "Team Leader",
         title: "Team Performance",
         list: [
-          "Instant Feedback Loop",
-          "Early Burnout Detection"
+          "Fast feedback loop",
+          "Early overload detection"
         ],
         cta: "Improve team health"
       }
     },
     valueByRole: {
       title: "One platform, two different outputs.",
-      subtitle: "CEO needs a signal for decisions. HR needs a tool for prevention. Echo Pulse delivers both without creating information noise.",
+      subtitle: "CEO needs clarity for decisions. HR needs prevention. Echo Pulse delivers both without noise.",
       ceo: {
         title: "For CEO & Executives",
         desc: "The definitive end of 'gut feeling management'. See exactly which departments are overloaded, where turnover threatens, and where strategy communication fails.",
@@ -311,7 +311,7 @@ export const translations = {
       errorGeneric: "Something went wrong. Please try again."
     },
     data: {
-      trustedBy: "Trusted by HR Leaders"
+      trustedBy: "Trusted by leading companies"
     },
     forms: {
       firstName: "First Name",
@@ -359,13 +359,13 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Systém Kontinuálního Vhledu • V2.0",
-      title: "Odhalte včas",
-      titleHighlight: "problémy ve svých týmech",
-      subtitle: "Bez průběžných signálů vedete firmu naslepo — a platíte to v odchodech, výkonu a chaotických prioritách.",
-      primaryCta: "Domluvit online schůzku (30 minut)",
-      secondaryCta: "Získat přístup do demo aplikace",
-      riskReversal: "Bez závazku. Odejdete s jasným obrazem, co se ve firmě děje a kde se láme stabilita a prosperita.",
+      badge: "Jasno dřív, než je pozdě",
+      title: "Získejte kontrolu nad",
+      titleHighlight: "stabilitou a výkonem týmů",
+      subtitle: "Včas uvidíte, kde hrozí odchody, přetížení nebo ztráta směru — dřív než to zasáhne výsledky.",
+      primaryCta: "Domluvit 30min konzultaci",
+      secondaryCta: "Krátké demo (3 min)",
+      riskReversal: "Bez závazku. Odejdete s jasným obrazem, co je v riziku a co řešit jako první.",
       trust: {
         security: "Bezpečnost dat (GDPR)",
         support: "Podpora v češtině",
@@ -376,7 +376,7 @@ export const translations = {
     problems: {
       badge: "Kritická systémová slepota",
       title: "Tichý zabiják stability.",
-      subtitle: "Odhady, dohady, doměnky a neúplná zpětná vazba vytvářejí manažerskou slepotu. Tradiční nástroje měří následky, ne příčiny.",
+      subtitle: "Odhady a neúplná zpětná vazba vytvářejí manažerskou slepotu. Tradiční nástroje měří následky, ne příčiny.",
       items: [
         {
           title: "Skryté důvody",
@@ -402,7 +402,7 @@ export const translations = {
     howItWorks: {
       title: "Operační systém",
       titleHighlight: "pro vaši kulturu.",
-      subtitle: "Jeden systém, který nahradí výroční průzkumy, náhodné 1:1 konverzace a domněnky. Strukturovaná data, na kterých můžete stavět rozhodnutí.",
+      subtitle: "Jeden systém místo ročních průzkumů a domněnek. Vedení dostává jasné priority.",
       steps: {
         step1: {
           title: "Kontextová inteligence",
@@ -425,7 +425,7 @@ export const translations = {
     },
     methodology: {
       title: "Vědecký nástroj, ne 'dotazník'.",
-      subtitle: "Oddělujeme signál od šumu. Echo Pulse mění pocity na business strategii — dává jasno v tom, co má prioritu.",
+      subtitle: "Oddělujeme signál od šumu a měníme ho na jasné priority.",
       cards: [
         {
           title: "Data (Signál)",
@@ -475,18 +475,18 @@ export const translations = {
     },
     roleSelection: {
       title: "Podívejte se na firmu z jiného pohledu.",
-      subtitle: "Dívejte se na firmu ze své pozice a získejte konkrétní odpovědi.",
+      subtitle: "Vyberte roli a uvidíte přínos během pár sekund.",
       benefits: [
         "Chci mít produktivní tým",
-        "Chci vědět, co a proč nefunguje",
-        "Chci mít přehled o všem"
+        "Chci vědět, co blokuje výkon",
+        "Chci přehled bez slepých míst"
       ],
       investor: {
         role: "Investor",
         title: "Ochrana investice",
         list: [
-          "Predikce rizik",
-          "Průběžné sledování zdraví portfolia"
+          "Zdraví portfolia na očích",
+          "Rizika zachycená včas"
         ],
         cta: "Zkontrolovat zdraví portfolia"
       },
@@ -495,7 +495,7 @@ export const translations = {
         title: "Strategická kontrola",
         list: [
           "Signály včasného varování",
-          "Eliminace slepých míst v managementu"
+          "Jasné priority pro vedení"
         ],
         cta: "Chci vidět firmu z výšky"
       },
@@ -503,8 +503,8 @@ export const translations = {
         role: "HR / People Ops",
         title: "Data místo dojmů",
         list: [
-          "Argumenty podložené tvrdými daty",
-          "Méně hašení požárů, více prevence"
+          "Data pro rozhodnutí vedení",
+          "Prevence místo hašení"
         ],
         cta: "Chci mít data pro vedení"
       },
@@ -512,15 +512,15 @@ export const translations = {
         role: "Team Leader",
         title: "Výkon týmu",
         list: [
-          "Okamžitá zpětná vazba",
-          "Včasná detekce vyhoření"
+          "Rychlá zpětná vazba",
+          "Včasné zachycení přetížení"
         ],
         cta: "Zlepšit zdraví týmu"
       }
     },
     valueByRole: {
       title: "Jedna platforma, dva různé výstupy.",
-      subtitle: "CEO potřebuje signál k rozhodnutí. HR potřebuje nástroj k prevenci. Echo Pulse doručuje obojí, aniž by vytvářel informační šum.",
+      subtitle: "CEO potřebuje jasno pro rozhodnutí. HR potřebuje prevenci. Echo Pulse dodá obojí bez šumu.",
       ceo: {
         title: "Pro CEO a vedení",
         desc: "Definitivní konec 'pocitového managementu'. Vidíte přesně, která oddělení jsou přetížená, kde hrozí odchody a kde selhává komunikace strategie.",
@@ -636,7 +636,7 @@ export const translations = {
       errorGeneric: "Odeslání se nepodařilo."
     },
     data: {
-      trustedBy: "VYUŽÍVÁNO HR LÍDRY"
+      trustedBy: "DŮVĚŘUJÍ NÁM VELKÉ FIRMY"
     },
     forms: {
       firstName: "Jméno",
@@ -961,7 +961,7 @@ export const translations = {
       errorGeneric: "Senden fehlgeschlagen."
     },
     data: {
-      trustedBy: "VON HR-LEADERN GENUTZT"
+      trustedBy: "VON FÜHRENDEN UNTERNEHMEN GENUTZT"
     },
     forms: {
       firstName: "Vorname",
