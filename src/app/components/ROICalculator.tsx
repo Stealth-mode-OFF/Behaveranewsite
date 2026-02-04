@@ -193,7 +193,7 @@ export function ROICalculator() {
                  <div className="mt-10 pt-8 border-t border-brand-border flex justify-end">
                     <Button 
                         onClick={openBooking}
-                        className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white rounded-xl font-bold shadow-lg text-body"
+                        className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg text-body"
                     >
                         {t.calculator.cta.button} <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>

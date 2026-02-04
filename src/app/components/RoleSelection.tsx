@@ -13,7 +13,7 @@ export function RoleSelection() {
   };
 
   return (
-    <section className="py-12 md:py-24 bg-brand-primary border-b border-white/5 relative">
+    <section className="py-16 md:py-24 bg-brand-primary border-b border-white/5 relative">
       <div className="container-default max-w-[1400px]">
         
         {/* Header - Calm & Direct */}

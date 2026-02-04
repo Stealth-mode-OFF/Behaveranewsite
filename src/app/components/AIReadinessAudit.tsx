@@ -162,7 +162,7 @@ export function AIReadinessAudit() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <Button onClick={handleUnlock} disabled={isUnlocking} className="bg-brand-primary text-white text-body hover:bg-brand-primary-hover">
+                            <Button onClick={handleUnlock} disabled={isUnlocking} className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg">
                                 {isUnlocking ? <Loader2 className="animate-spin w-4 h-4" /> : "Unlock"}
                             </Button>
                         </div>

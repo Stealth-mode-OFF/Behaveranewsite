@@ -185,7 +185,7 @@ export function Header() {
                         setMobileMenuOpen(false);
                         openBooking();
                     }}
-                    className="w-full justify-center rounded h-14 text-lg font-bold bg-brand-primary text-white hover:bg-brand-primary-hover"
+                    className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
                 >
                   {t.header.bookDemo}
                 </Button>

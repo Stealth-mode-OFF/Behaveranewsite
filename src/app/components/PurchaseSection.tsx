@@ -121,7 +121,7 @@ export function PurchaseSection() {
                     </div>
                     
                     <div className="mt-8">
-                        <Button className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-bold rounded-xl shadow-lg shadow-brand-primary/20 transition-all text-body">
+                        <Button className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg text-body">
                             {t.purchase.button}
                         </Button>
                         <p className="text-center text-caption text-brand-text-muted mt-4 font-medium">
