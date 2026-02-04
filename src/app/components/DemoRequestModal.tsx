@@ -20,7 +20,7 @@ type DemoRequestFormData = {
 const czechPhonePattern = /^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 
 export function DemoRequestModal() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { demoRequestOpen, closeDemoRequest } = useModal();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
@@ -54,7 +54,7 @@ export function DemoRequestModal() {
     setIsSubmitting(false);
 
     if (!result.ok) {
-      setError(result.error || t.demoRequest.errorGeneric);
+      setError(result.error || errorGeneric);
       return;
     }
 
@@ -62,8 +62,15 @@ export function DemoRequestModal() {
     reset();
   };
 
-  const companySizes = t.demoRequest.companySizes || [];
-  const roles = t.demoRequest.roles || [];
+  const copy = t.demoRequest || {};
+  const isCz = language === "cz";
+  const pick = (en?: string, cz?: string) => (isCz ? cz || en || "" : en || cz || "");
+  const companySizes = copy.sizes ? Object.values(copy.sizes) : [];
+  const roles = copy.roles ? Object.values(copy.roles) : [];
+  const errorInvalidEmail = pick(copy.errorInvalidEmail, copy.errorInvalidEmailCz) || "Please enter a valid email.";
+  const errorInvalidPhone = pick(copy.errorInvalidPhone, copy.errorInvalidPhoneCz) || "Please enter a valid Czech phone number.";
+  const errorRequired = pick(copy.errorRequired, copy.errorRequiredCz) || "This field is required.";
+  const errorGeneric = pick(copy.errorGeneric, copy.errorGenericCz) || "Submission failed. Please try again.";
 
   return (
     <Dialog open={demoRequestOpen} onOpenChange={(open) => (!open ? closeDemoRequest() : undefined)}>
@@ -76,59 +83,59 @@ export function DemoRequestModal() {
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <DialogTitle className="text-2xl font-bold text-brand-text-primary mb-2">
-              {t.demoRequest.successTitle}
+              {pick(copy.successTitle, copy.successTitleCz)}
             </DialogTitle>
             <DialogDescription className="text-brand-text-secondary">
-              {t.demoRequest.successMessage}
+              {pick(copy.successMessage, copy.successMessageCz)}
             </DialogDescription>
           </div>
         ) : (
           <div className="p-8">
             <DialogHeader className="mb-6 text-left">
               <DialogTitle className="text-2xl font-bold text-brand-text-primary">
-                {t.demoRequest.title}
+                {pick(copy.title, copy.titleCz)}
               </DialogTitle>
               <DialogDescription className="text-brand-text-secondary">
-                {t.demoRequest.subtitle}
+                {pick(copy.subtitle, copy.subtitleCz)}
               </DialogDescription>
             </DialogHeader>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="demo-email" className="text-sm font-semibold text-brand-text-secondary">
-                  {t.demoRequest.emailLabel}
+                  {pick(copy.emailLabel, copy.emailLabelCz)}
                 </Label>
                 <Input
                   id="demo-email"
                   type="email"
                   {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                   className="h-10 border-brand-border focus:ring-brand-primary"
-                  placeholder={t.demoRequest.emailPlaceholder}
+                  placeholder={copy.emailPlaceholder || "name@company.com"}
                 />
                 {errors.email && (
-                  <p className="text-xs text-red-600">{t.demoRequest.errorInvalidEmail}</p>
+                  <p className="text-xs text-red-600">{errorInvalidEmail}</p>
                 )}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="demo-phone" className="text-sm font-semibold text-brand-text-secondary">
-                  {t.demoRequest.phoneLabel}
+                  {pick(copy.phoneLabel, copy.phoneLabelCz)}
                 </Label>
                 <Input
                   id="demo-phone"
                   type="tel"
                   {...register("phone", { required: true, pattern: czechPhonePattern })}
                   className="h-10 border-brand-border focus:ring-brand-primary"
-                  placeholder={t.demoRequest.phonePlaceholder}
+                  placeholder={copy.phonePlaceholder || "+420 777 123 456"}
                 />
                 {errors.phone && (
-                  <p className="text-xs text-red-600">{t.demoRequest.errorInvalidPhone}</p>
+                  <p className="text-xs text-red-600">{errorInvalidPhone}</p>
                 )}
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm font-semibold text-brand-text-secondary">
-                  {t.demoRequest.companySizeLabel}
+                  {pick(copy.sizeLabel, copy.sizeLabelCz)}
                 </Label>
                 <Controller
                   control={control}
@@ -137,7 +144,7 @@ export function DemoRequestModal() {
                   render={({ field }) => (
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger className="h-10 border-brand-border focus:ring-brand-primary">
-                        <SelectValue placeholder={t.demoRequest.companySizePlaceholder} />
+                        <SelectValue placeholder={copy.companySizePlaceholder || "Select size"} />
                       </SelectTrigger>
                       <SelectContent>
                         {companySizes.map((size: string) => (
@@ -150,13 +157,13 @@ export function DemoRequestModal() {
                   )}
                 />
                 {errors.companySize && (
-                  <p className="text-xs text-red-600">{t.demoRequest.errorRequired}</p>
+                  <p className="text-xs text-red-600">{errorRequired}</p>
                 )}
               </div>
 
               <div className="space-y-2">
                 <Label className="text-sm font-semibold text-brand-text-secondary">
-                  {t.demoRequest.roleLabel}
+                  {pick(copy.roleLabel, copy.roleLabelCz)}
                 </Label>
                 <Controller
                   control={control}
@@ -165,7 +172,7 @@ export function DemoRequestModal() {
                   render={({ field }) => (
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger className="h-10 border-brand-border focus:ring-brand-primary">
-                        <SelectValue placeholder={t.demoRequest.rolePlaceholder} />
+                        <SelectValue placeholder={copy.rolePlaceholder || "Select role"} />
                       </SelectTrigger>
                       <SelectContent>
                         {roles.map((role: string) => (
@@ -178,7 +185,7 @@ export function DemoRequestModal() {
                   )}
                 />
                 {errors.role && (
-                  <p className="text-xs text-red-600">{t.demoRequest.errorRequired}</p>
+                  <p className="text-xs text-red-600">{errorRequired}</p>
                 )}
               </div>
 
@@ -194,7 +201,7 @@ export function DemoRequestModal() {
                 className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
               >
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
-                {t.demoRequest.submit}
+                {pick(copy.submit, copy.submitCz)}
               </Button>
             </form>
           </div>
