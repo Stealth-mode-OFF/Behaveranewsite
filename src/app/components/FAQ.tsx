@@ -21,9 +21,9 @@ export function FAQ() {
             <p className="text-lg text-brand-text-secondary mb-8 leading-relaxed">
               {t.faq.desc}
             </p>
-            <a
-                href="mailto:support@echopulse.cz"
-                className="inline-flex items-center text-brand-accent font-bold hover:underline text-sm uppercase tracking-wide"
+            <a 
+                href="mailto:support@echopulse.cz" 
+                className="inline-flex items-center text-brand-primary font-bold hover:underline text-sm uppercase tracking-wide"
             >
               {t.faq.contact}
             </a>
@@ -33,7 +33,7 @@ export function FAQ() {
             <Accordion type="single" collapsible className="w-full">
               {t.faq.items.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border-b border-brand-border">
-                  <AccordionTrigger className="text-left text-lg font-medium text-brand-text-primary hover:text-brand-accent hover:no-underline py-6 transition-colors">
+                  <AccordionTrigger className="text-left text-lg font-medium text-brand-text-primary hover:text-brand-primary hover:no-underline py-6 transition-colors">
                     {faq.q}
                   </AccordionTrigger>
                   <AccordionContent className="text-base text-brand-text-secondary pb-6 leading-relaxed">

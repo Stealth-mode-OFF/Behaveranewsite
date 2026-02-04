@@ -30,7 +30,7 @@ export const BlogPostPage = () => {
       <Header />
       <main className="flex-1 pt-24 pb-16">
         <article className="max-w-4xl mx-auto px-4">
-          <Link to="/blog" className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-accent mb-8 transition-colors">
+          <Link to="/blog" className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-primary mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Insights
           </Link>
@@ -38,7 +38,7 @@ export const BlogPostPage = () => {
           <header className="mb-12 text-center">
              <div className="flex items-center justify-center gap-2 mb-6">
                 {post.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full bg-brand-background-secondary text-brand-accent text-xs font-bold uppercase tracking-wider border border-brand-border">
+                    <span key={tag} className="px-3 py-1 rounded-full bg-brand-primary/5 text-brand-primary text-xs font-bold uppercase tracking-wider">
                         {tag}
                     </span>
                 ))}
@@ -60,7 +60,7 @@ export const BlogPostPage = () => {
                         <div className="text-xs text-brand-text-muted">{post.author.role}</div>
                     </div>
                 </div>
-                <div className="h-8 w-px bg-brand-border mx-2" />
+                <div className="h-8 w-px bg-gray-200 mx-2" />
                 <div className="text-sm text-brand-text-muted">
                     {format(new Date(post.publishedAt), 'MMMM d, yyyy')}
                 </div>
@@ -73,8 +73,8 @@ export const BlogPostPage = () => {
             )}
           </div>
 
-          <div
-            className="prose prose-lg mx-auto max-w-none text-brand-text-secondary prose-headings:text-brand-text-primary prose-strong:text-brand-text-primary prose-a:text-brand-accent"
+          <div 
+            className="prose prose-lg prose-indigo mx-auto max-w-none text-brand-text-secondary"
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
           />
           

@@ -69,8 +69,8 @@ export function AIReadinessAudit() {
 
   const getResult = () => {
     // Simplified logic for wireframe
-    if (totalScore >= 80) return { label: "Pioneer", color: "text-brand-accent", bg: "bg-brand-background-secondary", msg: "You are ahead of the curve." };
-    if (totalScore >= 40) return { label: "Evolving", color: "text-brand-text-secondary", bg: "bg-brand-background-secondary", msg: "Good foundation, room to grow." };
+    if (totalScore >= 80) return { label: "Pioneer", color: "text-emerald-600", bg: "bg-emerald-50", msg: "You are ahead of the curve." };
+    if (totalScore >= 40) return { label: "Evolving", color: "text-amber-600", bg: "bg-amber-50", msg: "Good foundation, room to grow." };
     return { label: "Legacy", color: "text-red-600", bg: "bg-red-50", msg: "High risk of talent loss." };
   };
 
@@ -151,8 +151,8 @@ export function AIReadinessAudit() {
                              Unlock Full Report
                         </div>
                         <ul className="space-y-2 mb-6">
-                            <li className="flex gap-2 text-caption text-brand-text-secondary"><Check className="w-4 h-4 text-brand-accent" /> Action Plan</li>
-                            <li className="flex gap-2 text-caption text-brand-text-secondary"><Check className="w-4 h-4 text-brand-accent" /> Benchmark Data</li>
+                            <li className="flex gap-2 text-caption text-brand-text-secondary"><Check className="w-4 h-4 text-emerald-500" /> Action Plan</li>
+                            <li className="flex gap-2 text-caption text-brand-text-secondary"><Check className="w-4 h-4 text-emerald-500" /> Benchmark Data</li>
                         </ul>
                         <div className="flex gap-2">
                             <input 

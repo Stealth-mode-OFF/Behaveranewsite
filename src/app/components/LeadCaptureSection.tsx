@@ -39,53 +39,53 @@ export function LeadCaptureSection() {
   };
 
   return (
-    <section className="section-spacing bg-brand-background-primary border-t border-brand-border" id="lead-capture">
+    <section className="section-spacing bg-white border-t border-slate-200" id="lead-capture">
       <div className="container-default">
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-secondary text-brand-text-secondary text-xs font-bold uppercase tracking-widest mb-6 border border-brand-border">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold uppercase tracking-widest mb-6 border border-slate-200">
               {t.leadCapture.badge}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
               {t.leadCapture.title}
             </h2>
-            <p className="text-lg text-brand-text-secondary leading-relaxed">
+            <p className="text-lg text-slate-600 leading-relaxed">
               {t.leadCapture.subtitle}
             </p>
           </div>
 
-          <div className="bg-brand-background-secondary border border-brand-border rounded-2xl p-8 shadow-sm">
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 shadow-sm">
             {isSuccess ? (
               <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-brand-accent/10 text-brand-accent flex items-center justify-center mx-auto mb-4">
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-bold text-brand-text-primary mb-2">{t.leadCapture.successTitle}</h3>
-                <p className="text-brand-text-secondary">{t.leadCapture.successMessage}</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-2">{t.leadCapture.successTitle}</h3>
+                <p className="text-slate-600">{t.leadCapture.successMessage}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-semibold text-brand-text-secondary mb-2" htmlFor="lead-name">
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="lead-name">
                     {t.leadCapture.nameLabel}
                   </label>
                   <Input
                     id="lead-name"
                     {...register("name")}
-                    className="h-11 border-brand-border focus:ring-brand-accent"
+                    className="h-11 border-slate-200 focus:ring-indigo-600"
                     placeholder={t.leadCapture.namePlaceholder}
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-brand-text-secondary mb-2" htmlFor="lead-email">
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="lead-email">
                     {t.leadCapture.emailLabel}
                   </label>
                   <Input
                     id="lead-email"
                     type="email"
                     {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                    className={`h-11 border-brand-border focus:ring-brand-accent ${errors.email ? "border-red-500" : ""}`}
+                    className={`h-11 border-slate-200 focus:ring-indigo-600 ${errors.email ? "border-red-500" : ""}`}
                     placeholder={t.leadCapture.emailPlaceholder}
                   />
                   {errors.email && (
@@ -102,13 +102,13 @@ export function LeadCaptureSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-bold"
+                  className="w-full h-12 bg-slate-900 hover:bg-black text-white font-bold"
                 >
                   {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                   {t.leadCapture.submit}
                 </Button>
 
-                <p className="text-xs text-brand-text-muted text-center">
+                <p className="text-xs text-slate-400 text-center">
                   {t.leadCapture.consent}
                 </p>
               </form>

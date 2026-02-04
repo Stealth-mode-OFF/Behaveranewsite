@@ -23,7 +23,7 @@ export function PurchaseSection() {
       <div className="container-default">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-secondary text-brand-text-secondary text-caption font-bold uppercase tracking-widest mb-6 border border-brand-border">
-             <Star className="w-3.5 h-3.5 fill-current text-brand-accent" />
+             <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
              Pricing
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
@@ -41,7 +41,7 @@ export function PurchaseSection() {
                     <h3 className="text-h3 text-brand-text-primary mb-6">Configure Plan</h3>
                     
                     {/* Billing Toggle */}
-                    <div className="flex bg-brand-background-secondary p-1 rounded-lg mb-8 w-fit border border-brand-border/70">
+                    <div className="flex bg-brand-background-secondary p-1 rounded-lg mb-8 w-fit border border-brand-border/50">
                         <button 
                             onClick={() => setBillingInterval('monthly')}
                             className={cn(
@@ -102,7 +102,7 @@ export function PurchaseSection() {
                         </div>
                         
                          {isCapped && (
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-accent/10 text-brand-accent rounded-full text-caption font-bold uppercase tracking-wider mb-6 border border-brand-accent/20">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-success/10 text-brand-success rounded-full text-caption font-bold uppercase tracking-wider mb-6 border border-brand-success/20">
                                 <ShieldCheck className="w-3 h-3" />
                                 Price Capped at {PRICE_CAP.toLocaleString()}
                             </div>

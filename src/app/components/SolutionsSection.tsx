@@ -42,19 +42,19 @@ const solutions = [
 
 export function SolutionsSection() {
   return (
-    <section className="section-spacing bg-brand-background-primary border-t border-brand-border" id="solutions">
+    <section className="section-spacing bg-slate-50 border-t border-slate-200" id="solutions">
       <div className="container-default">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mb-4">
               Řešení, která mění data v akci
             </h2>
-            <p className="text-lg text-brand-text-secondary leading-relaxed">
+            <p className="text-lg text-slate-600 leading-relaxed">
               Od rychlých pulsů po hluboké diagnostiky. Vyberte si nástroje, které vám dají jistotu při náboru,
               rozvoji i vedení lidí.
             </p>
           </div>
-          <div className="text-sm font-mono uppercase tracking-widest text-brand-text-muted">
+          <div className="text-sm font-mono uppercase tracking-widest text-slate-400">
             Produkty a metodiky Behavera
           </div>
         </div>
@@ -65,13 +65,13 @@ export function SolutionsSection() {
             return (
               <div
                 key={solution.title}
-              className="bg-white border border-brand-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-            >
-                <div className="w-12 h-12 rounded-xl bg-brand-primary text-white flex items-center justify-center mb-4">
+                className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-text-primary mb-3">{solution.title}</h3>
-                <p className="text-sm text-brand-text-secondary leading-relaxed">{solution.description}</p>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">{solution.title}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{solution.description}</p>
               </div>
             );
           })}

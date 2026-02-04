@@ -30,8 +30,8 @@ export const CaseStudyPage = () => {
       <main className="flex-1 pt-24 pb-16">
         <article>
             {/* Hero Section */}
-            <div className="bg-brand-background-dark text-white py-20 md:py-32 relative overflow-hidden">
-                <div className="absolute inset-0 bg-brand-background-dark mix-blend-multiply opacity-90 z-10" />
+            <div className="bg-brand-primary text-white py-20 md:py-32 relative overflow-hidden">
+                <div className="absolute inset-0 bg-brand-primary mix-blend-multiply opacity-90 z-10" />
                 {study.coverImage && (
                     <img src={study.coverImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                 )}
@@ -52,16 +52,16 @@ export const CaseStudyPage = () => {
             </div>
 
             <div className="container mx-auto px-4 max-w-6xl -mt-16 relative z-30">
-                <div className="bg-white rounded-3xl shadow-xl border border-brand-border p-8 md:p-12">
+                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12">
                     <div className="grid md:grid-cols-3 gap-12">
                         {/* Metrics Sidebar */}
-                        <div className="md:col-span-1 space-y-8 border-b md:border-b-0 md:border-r border-brand-border pb-8 md:pb-0 md:pr-8">
+                        <div className="md:col-span-1 space-y-8 border-b md:border-b-0 md:border-r border-gray-100 pb-8 md:pb-0 md:pr-8">
                              <div>
                                 <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-4">Results</h3>
                                 <div className="space-y-6">
                                     {study.results.map((res, i) => (
                                         <div key={i}>
-                                            <div className="text-4xl font-bold text-brand-accent mb-1">{res.value}</div>
+                                            <div className="text-4xl font-bold text-brand-primary mb-1">{res.value}</div>
                                             <div className="text-sm text-brand-text-secondary">{res.label}</div>
                                         </div>
                                     ))}
@@ -89,8 +89,8 @@ export const CaseStudyPage = () => {
                                 </p>
                             </div>
 
-                            <div
-                                className="prose prose-lg max-w-none text-brand-text-secondary border-t border-brand-border pt-8 prose-headings:text-brand-text-primary prose-strong:text-brand-text-primary prose-a:text-brand-accent"
+                            <div 
+                                className="prose prose-lg prose-indigo max-w-none text-brand-text-secondary border-t border-gray-100 pt-8"
                             dangerouslySetInnerHTML={{ __html: sanitizeHtml(study.content) }}
                             />
                         </div>
