@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { Component, ErrorInfo, ReactNode } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./LanguageContext";
 import { ModalProvider } from "./ModalContext";
 import { AuthProvider } from "@/lib/auth-context";
@@ -21,46 +21,86 @@ import { PostList } from "./pages/admin/PostList";
 import { PostEditor } from "./pages/admin/PostEditor";
 import { CaseStudyList } from "./pages/admin/CaseStudyList";
 import { CaseStudyEditor } from "./pages/admin/CaseStudyEditor";
+import { adminEnabled } from "@/lib/config";
+
+// Error Boundary
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("App crashed:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: "40px", fontFamily: "system-ui", backgroundColor: "#1a1a2e", color: "white", minHeight: "100vh" }}>
+          <h1 style={{ color: "#ff6b6b" }}>Something went wrong</h1>
+          <pre style={{ backgroundColor: "#2d2d44", padding: "20px", borderRadius: "8px", overflow: "auto" }}>
+            {this.state.error?.message}
+            {"\n\n"}
+            {this.state.error?.stack}
+          </pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function App() {
   return (
-    <BrowserRouter>
-      <LanguageProvider>
-        <ModalProvider>
-          <AuthProvider>
-            <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary">
-              <Routes>
-                {/* Public Routes */}
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/terms" element={<TermsPage />} />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <LanguageProvider>
+          <ModalProvider>
+            <AuthProvider>
+              <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary">
+                <Routes>
+                  {/* Public Routes */}
+                  <Route path="/" element={<LandingPage />} />
+                  <Route path="/terms" element={<TermsPage />} />
 
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                  <Route path="/blog" element={<BlogPage />} />
+                  <Route path="/blog/:slug" element={<BlogPostPage />} />
 
-                <Route path="/case-studies" element={<CaseStudiesPage />} />
-                <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
+                  <Route path="/case-studies" element={<CaseStudiesPage />} />
+                  <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
 
                 {/* Admin Routes */}
-                <Route path="/admin/login" element={<AdminLogin />} />
+                {adminEnabled ? (
+                  <>
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin" element={<AdminLayout />}>
+                      <Route index element={<Dashboard />} />
 
-                <Route path="/admin" element={<AdminLayout />}>
-                  <Route index element={<Dashboard />} />
+                      <Route path="posts" element={<PostList />} />
+                      <Route path="posts/new" element={<PostEditor />} />
+                      <Route path="posts/edit/:id" element={<PostEditor />} />
 
-                  <Route path="posts" element={<PostList />} />
-                  <Route path="posts/new" element={<PostEditor />} />
-                  <Route path="posts/edit/:id" element={<PostEditor />} />
-
-                  <Route path="case-studies" element={<CaseStudyList />} />
-                  <Route path="case-studies/new" element={<CaseStudyEditor />} />
-                  <Route path="case-studies/edit/:id" element={<CaseStudyEditor />} />
-                </Route>
-              </Routes>
-              <Toaster position="top-center" richColors />
-            </div>
-          </AuthProvider>
-        </ModalProvider>
-      </LanguageProvider>
-    </BrowserRouter>
+                      <Route path="case-studies" element={<CaseStudyList />} />
+                      <Route path="case-studies/new" element={<CaseStudyEditor />} />
+                      <Route path="case-studies/edit/:id" element={<CaseStudyEditor />} />
+                    </Route>
+                  </>
+                ) : (
+                  <Route path="/admin/*" element={<Navigate to="/" replace />} />
+                )}
+                </Routes>
+                <Toaster position="top-center" richColors />
+              </div>
+            </AuthProvider>
+          </ModalProvider>
+        </LanguageProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

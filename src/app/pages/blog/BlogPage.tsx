@@ -12,7 +12,7 @@ export const BlogPage = () => {
 
   useEffect(() => {
     CmsService.getPosts().then(data => {
-      setPosts(data.filter(p => p.status === 'published'));
+      setPosts(data.filter(Boolean).filter(p => p.status === 'published'));
     });
   }, []);
 

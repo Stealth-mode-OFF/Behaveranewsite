@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { CmsService } from './cms-service';
+import { adminEnabled } from './config';
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -19,6 +20,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    if (!adminEnabled) {
+      setIsAuthenticated(false);
+      localStorage.removeItem('admin_auth');
+      return;
+    }
     const storedAuth = localStorage.getItem('admin_auth');
     if (storedAuth === 'true') {
       setIsAuthenticated(true);
@@ -26,6 +32,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (password: string) => {
+    if (!adminEnabled) return false;
     const success = await CmsService.login(password);
     if (success) {
       setIsAuthenticated(true);

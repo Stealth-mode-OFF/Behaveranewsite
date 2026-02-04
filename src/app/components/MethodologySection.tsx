@@ -23,10 +23,13 @@ export function MethodologySection() {
           {/* Visual Connection System (Desktop) */}
           <div className="absolute top-14 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent hidden md:block" />
           
-          {t.methodology.cards.map((card: any, index: number) => {
-            const Icon = icons[index];
-            return (
-              <div key={index} className="group relative bg-white/5 p-8 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all hover:-translate-y-1 duration-300 z-10">
+          {t.methodology.cards
+            .filter(Boolean)
+            .map((card: any, index: number) => {
+              if (!card?.title) return null;
+              const Icon = icons[index] || Radio;
+              return (
+                <div key={index} className="group relative bg-white/5 p-8 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all hover:-translate-y-1 duration-300 z-10">
                 
                 {/* Step Number - Process Indicator */}
                 <div className="absolute top-4 right-6 text-4xl font-black text-white/[0.03] font-mono select-none group-hover:text-white/[0.06] transition-colors">
@@ -40,11 +43,11 @@ export function MethodologySection() {
                 
                 <h3 className="text-xl font-bold mb-4 group-hover:text-white transition-colors">{card.title}</h3>
                 <p className="text-indigo-200 leading-relaxed text-sm md:text-base">
-                  {card.desc}
+                  {card.desc || ''}
                 </p>
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
         </div>
       </div>
     </section>

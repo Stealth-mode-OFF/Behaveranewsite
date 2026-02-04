@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { CmsService } from '@/lib/cms-service';
-import { BlogPost, CaseStudy } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/app/components/ui/card';
 import { FileText, Briefcase, TrendingUp, Users, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -24,7 +23,15 @@ export const Dashboard = () => {
     });
   }, []);
 
-  const StatCard = ({ title, value, icon: Icon, to, colorClass }: any) => (
+  type StatCardProps = {
+    title: string;
+    value: number | string;
+    icon: React.ComponentType<{ className?: string }>;
+    to: string;
+    colorClass: string;
+  };
+
+  const StatCard = ({ title, value, icon: Icon, to, colorClass }: StatCardProps) => (
     <Card className="card-hover border-brand-border/60 shadow-sm relative overflow-hidden group">
       <div className={cn("absolute -right-4 -top-4 w-24 h-24 rounded-full opacity-10 group-hover:scale-110 transition-transform duration-500", colorClass)} />
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-10">

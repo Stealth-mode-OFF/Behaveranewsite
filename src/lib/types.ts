@@ -18,6 +18,8 @@ export type BlogPost = {
   status: 'draft' | 'published';
 };
 
+export type BlogPostFormData = Omit<BlogPost, 'id' | 'author' | 'publishedAt'>;
+
 export type CaseStudy = {
   id: string;
   title: string;
@@ -26,15 +28,19 @@ export type CaseStudy = {
   industry: string;
   challenge: string;
   solution: string;
-  results: {
-    label: string;
-    value: string;
-  }[];
+  results: CaseStudyResult[];
   content: string;
   coverImage?: string;
   publishedAt: string;
   status: 'draft' | 'published';
 };
+
+export type CaseStudyResult = {
+  label: string;
+  value: string;
+};
+
+export type CaseStudyFormData = Omit<CaseStudy, 'id' | 'publishedAt'>;
 
 export type User = {
   id: string;

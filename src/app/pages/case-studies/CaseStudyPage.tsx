@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { CaseStudy } from '@/lib/types';
+import { sanitizeHtml } from '@/lib/sanitize';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { ArrowLeft } from 'lucide-react';
@@ -90,7 +91,7 @@ export const CaseStudyPage = () => {
 
                             <div 
                                 className="prose prose-lg prose-indigo max-w-none text-brand-text-secondary border-t border-gray-100 pt-8"
-                                dangerouslySetInnerHTML={{ __html: study.content }}
+                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(study.content) }}
                             />
                         </div>
                     </div>

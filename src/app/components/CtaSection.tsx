@@ -42,14 +42,21 @@ export function CtaSection() {
         </div>
 
         <div className="pt-16 border-t border-white/5 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left max-w-4xl mx-auto">
-            {t.cta.benefits.map((benefit, index) => (
-                <div key={index} className="flex flex-col gap-2">
-                    <strong className="block text-white text-xs uppercase tracking-widest font-bold">{benefit.title}</strong>
-                    <p className="text-indigo-200 text-sm leading-relaxed">
-                        {benefit.desc}
-                    </p>
-                </div>
-            ))}
+            {(Array.isArray(t.cta.benefits) ? t.cta.benefits : [])
+              .filter(Boolean)
+              .map((benefit: any, index: number) => {
+                const title = typeof benefit === "string" ? benefit : benefit?.title;
+                const desc = typeof benefit === "string" ? "" : benefit?.desc;
+                if (!title) return null;
+                return (
+                  <div key={index} className="flex flex-col gap-2">
+                    <strong className="block text-white text-xs uppercase tracking-widest font-bold">{title}</strong>
+                    {desc && (
+                      <p className="text-indigo-200 text-sm leading-relaxed">{desc}</p>
+                    )}
+                  </div>
+                );
+              })}
         </div>
 
       </div>

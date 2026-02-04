@@ -1,16 +1,84 @@
 import { BlogPost, CaseStudy, Author } from './types';
-import { format } from 'date-fns';
 import { createClient } from '@supabase/supabase-js';
+import { adminEnabled, adminPassword, supabaseAnonKey, supabaseUrl } from './config';
+
+type AuthorRow = {
+  id: string;
+  name: string;
+  avatar?: string | null;
+  role?: string | null;
+};
+
+type PostRow = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  cover_image?: string | null;
+  published_at: string;
+  tags?: string[] | null;
+  status: BlogPost["status"];
+  authors?: AuthorRow | null;
+};
+
+type CaseStudyRow = {
+  id: string;
+  title: string;
+  slug: string;
+  client_name: string;
+  industry: string;
+  challenge: string;
+  solution: string;
+  results?: { label: string; value: string }[] | null;
+  content: string;
+  cover_image?: string | null;
+  published_at: string;
+  status: CaseStudy["status"];
+};
 
 // Initialize Supabase
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-const supabaseClient = SUPABASE_URL && SUPABASE_ANON_KEY 
-  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+const supabaseClient = supabaseUrl && supabaseAnonKey
+  ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
 
-console.log('Supabase initialized:', !!supabaseClient);
+const resolveAuthor = (row?: AuthorRow | null): Author => {
+  if (!row) return MOCK_AUTHORS[0];
+  return {
+    id: row.id,
+    name: row.name,
+    avatar: row.avatar || undefined,
+    role: row.role || undefined
+  };
+};
+
+const mapPostRow = (row: PostRow): BlogPost => ({
+  id: row.id,
+  title: row.title,
+  slug: row.slug,
+  excerpt: row.excerpt,
+  content: row.content,
+  coverImage: row.cover_image || undefined,
+  author: resolveAuthor(row.authors),
+  publishedAt: row.published_at,
+  tags: row.tags || [],
+  status: row.status
+});
+
+const mapCaseStudyRow = (row: CaseStudyRow): CaseStudy => ({
+  id: row.id,
+  title: row.title,
+  slug: row.slug,
+  clientName: row.client_name,
+  industry: row.industry,
+  challenge: row.challenge,
+  solution: row.solution,
+  results: row.results || [],
+  content: row.content,
+  coverImage: row.cover_image || undefined,
+  publishedAt: row.published_at,
+  status: row.status
+});
 
 // Mock Data
 const MOCK_AUTHORS: Author[] = [
@@ -339,18 +407,10 @@ export const CmsService = {
       
       if (error) throw error;
       
-      return (data || []).map((post: any) => ({
-        id: post.id,
-        title: post.title,
-        slug: post.slug,
-        excerpt: post.excerpt,
-        content: post.content,
-        coverImage: post.cover_image,
-        author: post.authors || MOCK_AUTHORS[0],
-        publishedAt: post.published_at,
-        tags: post.tags || [],
-        status: post.status
-      }));
+      const rows = (data as PostRow[] | null) || [];
+      return rows
+        .filter((post) => post && post.title && post.slug)
+        .map(mapPostRow);
     } catch (err) {
       console.error('Error fetching posts:', err);
       return [...MOCK_POSTS];
@@ -369,18 +429,8 @@ export const CmsService = {
       
       if (error) throw error;
       
-      return {
-        id: data.id,
-        title: data.title,
-        slug: data.slug,
-        excerpt: data.excerpt,
-        content: data.content,
-        coverImage: data.cover_image,
-        author: data.authors || MOCK_AUTHORS[0],
-        publishedAt: data.published_at,
-        tags: data.tags || [],
-        status: data.status
-      };
+      if (!data || !data.title || !data.slug) return undefined;
+      return mapPostRow(data as PostRow);
     } catch (err) {
       console.error('Error fetching post:', err);
       return MOCK_POSTS.find(p => p.slug === slug);
@@ -416,19 +466,8 @@ export const CmsService = {
         .single();
       
       if (error) throw error;
-      
-      return {
-        id: data.id,
-        title: data.title,
-        slug: data.slug,
-        excerpt: data.excerpt,
-        content: data.content,
-        coverImage: data.cover_image,
-        author: data.authors || MOCK_AUTHORS[0],
-        publishedAt: data.published_at,
-        tags: data.tags || [],
-        status: data.status
-      };
+
+      return mapPostRow(data as PostRow);
     } catch (err) {
       console.error('Error creating post:', err);
       throw err;
@@ -460,19 +499,8 @@ export const CmsService = {
         .single();
       
       if (error) throw error;
-      
-      return {
-        id: data.id,
-        title: data.title,
-        slug: data.slug,
-        excerpt: data.excerpt,
-        content: data.content,
-        coverImage: data.cover_image,
-        author: data.authors || MOCK_AUTHORS[0],
-        publishedAt: data.published_at,
-        tags: data.tags || [],
-        status: data.status
-      };
+
+      return mapPostRow(data as PostRow);
     } catch (err) {
       console.error('Error updating post:', err);
       throw err;
@@ -512,20 +540,10 @@ export const CmsService = {
       
       if (error) throw error;
       
-      return (data || []).map((study: any) => ({
-        id: study.id,
-        title: study.title,
-        slug: study.slug,
-        clientName: study.client_name,
-        industry: study.industry,
-        challenge: study.challenge,
-        solution: study.solution,
-        results: study.results || [],
-        content: study.content,
-        coverImage: study.cover_image,
-        publishedAt: study.published_at,
-        status: study.status
-      }));
+      const rows = (data as CaseStudyRow[] | null) || [];
+      return rows
+        .filter((study) => study && study.title && study.slug)
+        .map(mapCaseStudyRow);
     } catch (err) {
       console.error('Error fetching case studies:', err);
       return [...MOCK_CASE_STUDIES];
@@ -544,20 +562,8 @@ export const CmsService = {
       
       if (error) throw error;
       
-      return {
-        id: data.id,
-        title: data.title,
-        slug: data.slug,
-        clientName: data.client_name,
-        industry: data.industry,
-        challenge: data.challenge,
-        solution: data.solution,
-        results: data.results || [],
-        content: data.content,
-        coverImage: data.cover_image,
-        publishedAt: data.published_at,
-        status: data.status
-      };
+      if (!data || !data.title || !data.slug) return undefined;
+      return mapCaseStudyRow(data as CaseStudyRow);
     } catch (err) {
       console.error('Error fetching case study:', err);
       return MOCK_CASE_STUDIES.find(c => c.slug === slug);
@@ -596,20 +602,7 @@ export const CmsService = {
       
       if (error) throw error;
       
-      return {
-        id: data.id,
-        title: data.title,
-        slug: data.slug,
-        clientName: data.client_name,
-        industry: data.industry,
-        challenge: data.challenge,
-        solution: data.solution,
-        results: data.results || [],
-        content: data.content,
-        coverImage: data.cover_image,
-        publishedAt: data.published_at,
-        status: data.status
-      };
+      return mapCaseStudyRow(data as CaseStudyRow);
     } catch (err) {
       console.error('Error creating case study:', err);
       throw err;
@@ -618,7 +611,8 @@ export const CmsService = {
 
   // Auth
   login: async (password: string): Promise<boolean> => {
-      // Mock auth - in real app, would use Supabase auth
-      return password === 'admin123';
+      if (!adminEnabled) return false;
+      if (!adminPassword) return false;
+      return password === adminPassword;
   }
 };

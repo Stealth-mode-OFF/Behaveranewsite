@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
+import { sanitizeHtml } from '@/lib/sanitize';
 import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { format } from 'date-fns';
@@ -74,7 +75,7 @@ export const BlogPostPage = () => {
 
           <div 
             className="prose prose-lg prose-indigo mx-auto max-w-none text-brand-text-secondary"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
           />
           
         </article>
