@@ -34,7 +34,7 @@ export const CaseStudiesPage = () => {
               <Link 
                 key={study.id} 
                 to={`/case-studies/${study.slug}`}
-                className="group relative bg-white rounded-3xl overflow-hidden border border-brand-border hover:shadow-2xl transition-all duration-300 flex flex-col md:flex-row min-h-[400px]"
+                className="group relative bg-white rounded-3xl overflow-hidden border border-brand-border/50 hover:shadow-2xl transition-all duration-300 flex flex-col md:flex-row min-h-[400px]"
               >
                 <div className="md:w-1/2 relative overflow-hidden">
                    {study.coverImage && (
@@ -44,15 +44,15 @@ export const CaseStudiesPage = () => {
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                     />
                   )}
-                  <div className="absolute inset-0 bg-brand-accent/10 mix-blend-multiply" />
+                  <div className="absolute inset-0 bg-brand-primary/20 mix-blend-multiply" />
                 </div>
                 
                 <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white relative">
                    <div className="mb-6">
-                        <div className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-2">
+                        <div className="text-sm font-bold text-brand-primary uppercase tracking-widest mb-2">
                             {study.clientName}
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 group-hover:text-brand-accent transition-colors">
+                        <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 group-hover:text-brand-primary transition-colors">
                             {study.title}
                         </h2>
                         <p className="text-brand-text-secondary text-lg leading-relaxed mb-8">
@@ -63,13 +63,13 @@ export const CaseStudiesPage = () => {
                    <div className="grid grid-cols-2 gap-6 mb-8 border-t border-brand-border/50 pt-8">
                         {study.results.slice(0, 2).map((res, idx) => (
                             <div key={idx}>
-                                <div className="text-3xl md:text-4xl font-bold text-brand-accent mb-1">{res.value}</div>
+                                <div className="text-3xl md:text-4xl font-bold text-brand-primary mb-1">{res.value}</div>
                                 <div className="text-sm text-brand-text-muted font-medium uppercase tracking-wide">{res.label}</div>
                             </div>
                         ))}
                    </div>
                    
-                   <div className="flex items-center text-brand-accent font-bold group-hover:translate-x-2 transition-transform mt-auto">
+                   <div className="flex items-center text-brand-primary font-bold group-hover:translate-x-2 transition-transform mt-auto">
                         Read Case Study <ArrowRight className="ml-2 w-5 h-5" />
                    </div>
                 </div>

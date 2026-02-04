@@ -42,20 +42,20 @@ export function LogoMarquee() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-10 bg-brand-background-primary border-b border-brand-border relative z-20 overflow-hidden">
+    <section className="py-10 bg-white border-b border-slate-200 relative z-20 overflow-hidden">
       <div className="container-default">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             
             {/* Label - Static Anchor */}
-            <div className="shrink-0 text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-widest border-l-2 border-brand-border-strong pl-3 py-1">
+            <div className="shrink-0 text-[11px] font-mono font-bold text-slate-500 uppercase tracking-widest border-l-2 border-slate-300 pl-3 py-1">
                 {t.data.trustedBy}
             </div>
             
             {/* Marquee Container */}
             <div className="w-full overflow-hidden relative mask-linear-fade">
                 {/* Gradient Masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-brand-background-primary to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-brand-background-primary to-transparent z-10" />
+                <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10" />
+                <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10" />
                 
                 <div className="w-full inline-flex flex-nowrap">
                     <ul className="flex items-center [&_li]:mx-8 animate-infinite-scroll">
@@ -65,7 +65,7 @@ export function LogoMarquee() {
                           <img
                             src={logo.src}
                             alt={`${logo.name} logo`}
-                            className="h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                            className="h-10 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                             loading="lazy"
                           />
                         </div>
@@ -79,7 +79,7 @@ export function LogoMarquee() {
                           <img
                             src={logo.src}
                             alt=""
-                            className="h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                            className="h-10 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                             loading="lazy"
                           />
                         </div>

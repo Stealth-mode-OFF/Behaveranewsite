@@ -7,7 +7,7 @@ export function AIReadinessBanner() {
   const { openBooking } = useModal();
 
   return (
-    <section className="section-spacing bg-brand-background-dark border-t border-brand-border-dark/40" id="ai-readiness">
+    <section className="section-spacing bg-[#0a0a0a] border-t border-white/5" id="ai-readiness">
       <div className="container-default">
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
           <div>
@@ -18,19 +18,19 @@ export function AIReadinessBanner() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
               Je Vaše firma připravena na éru AI?
             </h2>
-            <p className="text-lg text-brand-text-inverse-secondary leading-relaxed">
+            <p className="text-lg text-slate-300 leading-relaxed">
               Získejte exkluzivní přístup k nástroji, který během pár minut nabídne jasný a praktický přehled o stavu
               Vaší firmy – vytvořený na míru pro CEO a lídry.
             </p>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 text-white">
-            <p className="text-sm text-brand-text-inverse-secondary leading-relaxed mb-6">
+            <p className="text-sm text-slate-300 leading-relaxed mb-6">
               Zjistěte, jak Vaši lidé obstojí v době umělé inteligence. Získáte stručný report, který vám pomůže
               nastavit priority a investice do rozvoje lidí.
             </p>
             <Button
               onClick={openBooking}
-              className="w-full h-12 bg-white text-brand-primary hover:bg-brand-background-secondary font-bold rounded-lg"
+              className="w-full h-12 bg-white text-slate-900 hover:bg-slate-200 font-bold rounded-lg"
             >
               Chci AI readiness audit
               <ArrowRight className="w-4 h-4 ml-2" />

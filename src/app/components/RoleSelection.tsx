@@ -13,7 +13,7 @@ export function RoleSelection() {
   };
 
   return (
-    <section className="py-12 md:py-24 bg-brand-background-dark border-b border-brand-border-dark/40 relative">
+    <section className="py-12 md:py-24 bg-brand-primary border-b border-white/5 relative">
       <div className="container-default max-w-[1400px]">
         
         {/* Header - Calm & Direct */}
@@ -21,7 +21,7 @@ export function RoleSelection() {
             <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">
                 {t.roleSelection.title}
             </h2>
-            <p className="text-brand-text-inverse-secondary text-lg leading-relaxed opacity-90">
+            <p className="text-brand-accent text-lg leading-relaxed opacity-80">
                 {t.roleSelection.subtitle}
             </p>
             {t.roleSelection.benefits && (
@@ -42,7 +42,7 @@ export function RoleSelection() {
             {/* Investor Card */}
             <button 
                 onClick={scrollToLead}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30 items-center"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 {/* Subtle Top Highlight */}
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
@@ -60,7 +60,7 @@ export function RoleSelection() {
                     {t.roleSelection.investor.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.investor.list[0]}</span>
@@ -80,7 +80,7 @@ export function RoleSelection() {
             {/* CEO Card */}
             <button 
                 onClick={scrollToLead}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30 items-center"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
                 
@@ -97,7 +97,7 @@ export function RoleSelection() {
                     {t.roleSelection.ceo.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.ceo.list[0]}</span>
@@ -117,7 +117,7 @@ export function RoleSelection() {
             {/* HR Card */}
             <button 
                 onClick={scrollToLead}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30 items-center"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
                 
@@ -134,7 +134,7 @@ export function RoleSelection() {
                     {t.roleSelection.hr.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.hr.list[0]}</span>
@@ -154,7 +154,7 @@ export function RoleSelection() {
             {/* Team Leader Card */}
             <button 
                 onClick={scrollToLead}
-                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/30 items-center"
+                className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
             >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
                 
@@ -171,7 +171,7 @@ export function RoleSelection() {
                     {t.roleSelection.teamLeader.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-indigo-100 text-sm font-medium leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.teamLeader.list[0]}</span>

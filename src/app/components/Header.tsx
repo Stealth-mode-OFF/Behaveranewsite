@@ -59,7 +59,7 @@ export function Header() {
               Echo Pulse
             </span>
             <div className={cn(
-                "w-1.5 h-1.5 rounded-full bg-brand-accent group-hover:animate-pulse opacity-100"
+                "w-1.5 h-1.5 rounded-full bg-brand-primary group-hover:animate-pulse opacity-100"
             )} />
         </Link>
 
@@ -71,8 +71,8 @@ export function Header() {
                     key={item.id}
                     href={`#${item.id}`} 
                     className={cn(
-                        "text-xs font-bold transition-colors hover:text-brand-accent uppercase tracking-widest",
-                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-accent"
+                        "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
+                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
                     )}
                 >
                     {item.label}
@@ -82,8 +82,8 @@ export function Header() {
                     key={item.id}
                     to={`/#${item.id}`}
                     className={cn(
-                        "text-xs font-bold transition-colors hover:text-brand-accent uppercase tracking-widest",
-                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-accent"
+                        "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
+                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
                     )}
                  >
                      {item.label}
@@ -95,8 +95,8 @@ export function Header() {
                 key={link.path}
                 to={link.path}
                 className={cn(
-                    "text-xs font-bold transition-colors hover:text-brand-accent uppercase tracking-widest",
-                    isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-accent"
+                    "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
+                    isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
                 )}
             >
                 {link.label}
@@ -110,7 +110,7 @@ export function Header() {
              <LanguageSwitcher />
           </div>
           
-            <Button
+          <Button 
             onClick={openBooking}
             variant={isScrolled ? "default" : "secondary"}
             className={cn(
@@ -153,7 +153,7 @@ export function Header() {
                     <a 
                         key={item.id}
                         href={`#${item.id}`} 
-                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-accent transition-colors" 
+                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         {item.label}
@@ -162,7 +162,7 @@ export function Header() {
                     <Link
                         key={item.id}
                         to={`/#${item.id}`}
-                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-accent transition-colors" 
+                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
                         onClick={() => setMobileMenuOpen(false)}
                     >
                         {item.label}
@@ -173,7 +173,7 @@ export function Header() {
                  <Link 
                     key={link.path}
                     to={link.path}
-                    className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-accent transition-colors" 
+                    className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
                     onClick={() => setMobileMenuOpen(false)}
                 >
                     {link.label}

@@ -128,8 +128,8 @@ export function ROICalculator() {
                          </div>
                     </div>
                     
-                    <div className="border-l-2 border-brand-accent pl-6">
-                        <div className="text-caption text-brand-accent font-bold uppercase tracking-widest mb-2">
+                    <div className="border-l-2 border-emerald-500 pl-6">
+                        <div className="text-caption text-emerald-400 font-bold uppercase tracking-widest mb-2">
                             {t.calculator.metrics.recoverableRevenue}
                         </div>
                         <div className="text-h1 font-bold text-white font-mono tracking-tight">
