@@ -328,68 +328,297 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
 export const CmsService = {
   // Posts
   getPosts: async (): Promise<BlogPost[]> => {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    return [...MOCK_POSTS];
+    if (!supabaseClient) return [...MOCK_POSTS];
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('*, authors(*)')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+      
+      if (error) throw error;
+      
+      return (data || []).map((post: any) => ({
+        id: post.id,
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        content: post.content,
+        coverImage: post.cover_image,
+        author: post.authors || MOCK_AUTHORS[0],
+        publishedAt: post.published_at,
+        tags: post.tags || [],
+        status: post.status
+      }));
+    } catch (err) {
+      console.error('Error fetching posts:', err);
+      return [...MOCK_POSTS];
+    }
   },
 
   getPostBySlug: async (slug: string): Promise<BlogPost | undefined> => {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    return MOCK_POSTS.find(p => p.slug === slug);
+    if (!supabaseClient) return MOCK_POSTS.find(p => p.slug === slug);
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('*, authors(*)')
+        .eq('slug', slug)
+        .single();
+      
+      if (error) throw error;
+      
+      return {
+        id: data.id,
+        title: data.title,
+        slug: data.slug,
+        excerpt: data.excerpt,
+        content: data.content,
+        coverImage: data.cover_image,
+        author: data.authors || MOCK_AUTHORS[0],
+        publishedAt: data.published_at,
+        tags: data.tags || [],
+        status: data.status
+      };
+    } catch (err) {
+      console.error('Error fetching post:', err);
+      return MOCK_POSTS.find(p => p.slug === slug);
+    }
   },
 
   createPost: async (post: Omit<BlogPost, 'id' | 'author' | 'publishedAt'>): Promise<BlogPost> => {
-    await new Promise(resolve => setTimeout(resolve, 800));
-    const newPost: BlogPost = {
-      ...post,
-      id: Math.random().toString(36).substr(2, 9),
-      author: MOCK_AUTHORS[0], // Default author
-      publishedAt: new Date().toISOString(),
-    };
-    MOCK_POSTS.push(newPost);
-    return newPost;
+    if (!supabaseClient) {
+      const newPost: BlogPost = {
+        ...post,
+        id: Math.random().toString(36).substr(2, 9),
+        author: MOCK_AUTHORS[0],
+        publishedAt: new Date().toISOString(),
+      };
+      MOCK_POSTS.push(newPost);
+      return newPost;
+    }
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .insert([{
+          title: post.title,
+          slug: post.slug,
+          excerpt: post.excerpt,
+          content: post.content,
+          cover_image: post.coverImage,
+          tags: post.tags,
+          status: post.status,
+          published_at: new Date().toISOString()
+        }])
+        .select('*, authors(*)')
+        .single();
+      
+      if (error) throw error;
+      
+      return {
+        id: data.id,
+        title: data.title,
+        slug: data.slug,
+        excerpt: data.excerpt,
+        content: data.content,
+        coverImage: data.cover_image,
+        author: data.authors || MOCK_AUTHORS[0],
+        publishedAt: data.published_at,
+        tags: data.tags || [],
+        status: data.status
+      };
+    } catch (err) {
+      console.error('Error creating post:', err);
+      throw err;
+    }
   },
   
   updatePost: async (id: string, updates: Partial<BlogPost>): Promise<BlogPost> => {
-     await new Promise(resolve => setTimeout(resolve, 500));
-     const index = MOCK_POSTS.findIndex(p => p.id === id);
-     if (index === -1) throw new Error("Post not found");
-     
-     MOCK_POSTS[index] = { ...MOCK_POSTS[index], ...updates };
-     return MOCK_POSTS[index];
+    if (!supabaseClient) {
+      const index = MOCK_POSTS.findIndex(p => p.id === id);
+      if (index === -1) throw new Error("Post not found");
+      MOCK_POSTS[index] = { ...MOCK_POSTS[index], ...updates };
+      return MOCK_POSTS[index];
+    }
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .update({
+          title: updates.title,
+          slug: updates.slug,
+          excerpt: updates.excerpt,
+          content: updates.content,
+          cover_image: updates.coverImage,
+          tags: updates.tags,
+          status: updates.status
+        })
+        .eq('id', id)
+        .select('*, authors(*)')
+        .single();
+      
+      if (error) throw error;
+      
+      return {
+        id: data.id,
+        title: data.title,
+        slug: data.slug,
+        excerpt: data.excerpt,
+        content: data.content,
+        coverImage: data.cover_image,
+        author: data.authors || MOCK_AUTHORS[0],
+        publishedAt: data.published_at,
+        tags: data.tags || [],
+        status: data.status
+      };
+    } catch (err) {
+      console.error('Error updating post:', err);
+      throw err;
+    }
   },
   
   deletePost: async (id: string): Promise<void> => {
-      await new Promise(resolve => setTimeout(resolve, 500));
+    if (!supabaseClient) {
       const index = MOCK_POSTS.findIndex(p => p.id === id);
       if (index !== -1) MOCK_POSTS.splice(index, 1);
+      return;
+    }
+    
+    try {
+      const { error } = await supabaseClient
+        .from('posts')
+        .delete()
+        .eq('id', id);
+      
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error deleting post:', err);
+      throw err;
+    }
   },
 
   // Case Studies
   getCaseStudies: async (): Promise<CaseStudy[]> => {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    return [...MOCK_CASE_STUDIES];
+    if (!supabaseClient) return [...MOCK_CASE_STUDIES];
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('case_studies')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+      
+      if (error) throw error;
+      
+      return (data || []).map((study: any) => ({
+        id: study.id,
+        title: study.title,
+        slug: study.slug,
+        clientName: study.client_name,
+        industry: study.industry,
+        challenge: study.challenge,
+        solution: study.solution,
+        results: study.results || [],
+        content: study.content,
+        coverImage: study.cover_image,
+        publishedAt: study.published_at,
+        status: study.status
+      }));
+    } catch (err) {
+      console.error('Error fetching case studies:', err);
+      return [...MOCK_CASE_STUDIES];
+    }
   },
 
   getCaseStudyBySlug: async (slug: string): Promise<CaseStudy | undefined> => {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    return MOCK_CASE_STUDIES.find(c => c.slug === slug);
+    if (!supabaseClient) return MOCK_CASE_STUDIES.find(c => c.slug === slug);
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('case_studies')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+      
+      if (error) throw error;
+      
+      return {
+        id: data.id,
+        title: data.title,
+        slug: data.slug,
+        clientName: data.client_name,
+        industry: data.industry,
+        challenge: data.challenge,
+        solution: data.solution,
+        results: data.results || [],
+        content: data.content,
+        coverImage: data.cover_image,
+        publishedAt: data.published_at,
+        status: data.status
+      };
+    } catch (err) {
+      console.error('Error fetching case study:', err);
+      return MOCK_CASE_STUDIES.find(c => c.slug === slug);
+    }
   },
   
   createCaseStudy: async (study: Omit<CaseStudy, 'id' | 'publishedAt'>): Promise<CaseStudy> => {
-    await new Promise(resolve => setTimeout(resolve, 800));
-    const newStudy: CaseStudy = {
+    if (!supabaseClient) {
+      const newStudy: CaseStudy = {
         ...study,
         id: Math.random().toString(36).substr(2, 9),
         publishedAt: new Date().toISOString()
-    };
-    MOCK_CASE_STUDIES.push(newStudy);
-    return newStudy;
+      };
+      MOCK_CASE_STUDIES.push(newStudy);
+      return newStudy;
+    }
+    
+    try {
+      const { data, error } = await supabaseClient
+        .from('case_studies')
+        .insert([{
+          title: study.title,
+          slug: study.slug,
+          client_name: study.clientName,
+          industry: study.industry,
+          challenge: study.challenge,
+          solution: study.solution,
+          results: study.results,
+          content: study.content,
+          cover_image: study.coverImage,
+          status: study.status,
+          published_at: new Date().toISOString()
+        }])
+        .select('*')
+        .single();
+      
+      if (error) throw error;
+      
+      return {
+        id: data.id,
+        title: data.title,
+        slug: data.slug,
+        clientName: data.client_name,
+        industry: data.industry,
+        challenge: data.challenge,
+        solution: data.solution,
+        results: data.results || [],
+        content: data.content,
+        coverImage: data.cover_image,
+        publishedAt: data.published_at,
+        status: data.status
+      };
+    } catch (err) {
+      console.error('Error creating case study:', err);
+      throw err;
+    }
   },
 
-  // Auth (Mock)
+  // Auth
   login: async (password: string): Promise<boolean> => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return password === 'admin123'; // Simple mock password
+      // Mock auth - in real app, would use Supabase auth
+      return password === 'admin123';
   }
 };
