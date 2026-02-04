@@ -163,7 +163,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: 'Tomato Grotesk', 'Inter', sans-serif;
+  --font-sans: 'Object Sans', 'Arial', sans-serif;
+  --font-display: 'Tomato Grotesk', 'Object Sans', 'Arial', sans-serif;
 
   /* Register Custom Utilities */
   --radius-sm: var(--radius-sm);
@@ -215,6 +216,10 @@
     font-size: var(--text-body);
     line-height: var(--leading-body);
   }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+  }
 }
 
 @layer components {
@@ -224,18 +229,21 @@
     line-height: var(--leading-h1);
     font-weight: 700;
     letter-spacing: -0.02em;
+    font-family: var(--font-display);
   }
   .text-h2 {
     font-size: var(--text-h2);
     line-height: var(--leading-h2);
     font-weight: 600;
     letter-spacing: -0.02em;
+    font-family: var(--font-display);
   }
   .text-h3 {
     font-size: var(--text-h3);
     line-height: var(--leading-h3);
     font-weight: 600;
     letter-spacing: -0.01em;
+    font-family: var(--font-display);
   }
   .text-body {
     font-size: var(--text-body);
