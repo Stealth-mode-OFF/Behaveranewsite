@@ -53,7 +53,7 @@ export function ContentModal({ item, isOpen, onClose }: ContentModalProps) {
               <div className="overflow-y-auto custom-scrollbar">
                 <div className="px-8 pt-12 pb-8 md:px-12 md:pt-16 border-b border-slate-100 bg-brand-background-secondary/50">
                   <div className="flex flex-wrap items-center gap-3 mb-6">
-                    <span className="text-brand-primary font-bold tracking-wider text-xs uppercase bg-indigo-50 px-2 py-1 rounded-full border border-indigo-100">
+                    <span className="text-brand-primary font-bold tracking-wider text-xs uppercase bg-brand-background-secondary px-2 py-1 rounded-full border border-brand-border">
                       {item.category}
                     </span>
                     <span className="text-brand-text-muted text-xs">•</span>
@@ -91,7 +91,7 @@ export function ContentModal({ item, isOpen, onClose }: ContentModalProps) {
                 <div className="bg-brand-background-secondary px-8 py-8 md:px-12 border-t border-brand-border text-center">
                   <button
                     onClick={onClose}
-                    className="inline-flex items-center gap-2 text-brand-primary hover:text-indigo-700 font-bold transition-colors"
+                    className="inline-flex items-center gap-2 text-brand-primary hover:text-brand-primary-hover font-bold transition-colors"
                   >
                     Zavřít
                   </button>

@@ -24,7 +24,7 @@ export function WhyBehavera() {
             const Icon = icons[index];
             return (
               <div key={index} className="relative">
-                <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mb-6 text-indigo-600">
+                <div className="w-12 h-12 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center mb-6 text-brand-primary">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-h3 text-brand-text-primary mb-3">{point.title}</h3>

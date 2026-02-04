@@ -18,6 +18,7 @@ import { FAQ } from "./FAQ";
 import { Footer } from "./Footer";
 import { BookingModal } from "./BookingModal";
 import { DemoVideoModal } from "./DemoVideoModal";
+import { DemoAccessModal } from "./DemoAccessModal";
 import { LeadPopup } from "./LeadPopup";
 
 export function LandingPage() {
@@ -43,8 +44,10 @@ export function LandingPage() {
       </main>
       <Footer />
 
+      {/* Modals */}
       <BookingModal />
       <DemoVideoModal />
+      <DemoAccessModal />
       <LeadPopup />
     </>
   );

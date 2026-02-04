@@ -56,7 +56,7 @@ export function CaseStudiesSection() {
               <p className="text-brand-text-secondary text-sm leading-relaxed mb-6 flex-1">
                 {item.excerpt}
               </p>
-              <div className="flex items-center text-sm font-bold text-brand-primary group-hover:text-indigo-700">
+              <div className="flex items-center text-sm font-bold text-brand-primary group-hover:text-brand-primary-hover">
                 Číst případovou studii
                 <ArrowRight className="w-4 h-4 ml-2" />
               </div>

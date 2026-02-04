@@ -52,10 +52,10 @@ export const CaseStudyPage = () => {
             </div>
 
             <div className="container mx-auto px-4 max-w-6xl -mt-16 relative z-30">
-                <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 md:p-12">
+                <div className="bg-white rounded-3xl shadow-xl border border-brand-border p-8 md:p-12">
                     <div className="grid md:grid-cols-3 gap-12">
                         {/* Metrics Sidebar */}
-                        <div className="md:col-span-1 space-y-8 border-b md:border-b-0 md:border-r border-gray-100 pb-8 md:pb-0 md:pr-8">
+                        <div className="md:col-span-1 space-y-8 border-b md:border-b-0 md:border-r border-brand-border pb-8 md:pb-0 md:pr-8">
                              <div>
                                 <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-4">Results</h3>
                                 <div className="space-y-6">
@@ -90,7 +90,7 @@ export const CaseStudyPage = () => {
                             </div>
 
                             <div 
-                                className="prose prose-lg prose-indigo max-w-none text-brand-text-secondary border-t border-gray-100 pt-8"
+                                className="prose prose-lg prose-violet max-w-none text-brand-text-secondary border-t border-brand-border pt-8"
                             dangerouslySetInnerHTML={{ __html: sanitizeHtml(study.content) }}
                             />
                         </div>

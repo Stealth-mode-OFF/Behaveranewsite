@@ -244,7 +244,8 @@ export const translations = {
       title: "Don't wait for the next resignation.",
       subtitle: "Blindness costs companies millions annually in lost productivity and hiring. Regain control in 48 hours.",
       primary: "Schedule Consultation",
-      secondary: "or",
+      demoButton: "Try the demo",
+      secondary: "or call us",
       secondaryLink: "+420 777 123 456",
       benefits: [
         { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 20 minutes." },
@@ -375,6 +376,89 @@ export const translations = {
       videoTitle: "Echo Pulse – Demo",
       recommended: "Recommended"
     },
+    demoChoiceModal: {
+      title: "How would you like to explore Echo Pulse?",
+      subtitle: "Choose the path that works for you",
+      selfServe: {
+        badge: "Instant Access",
+        title: "Explore on your own",
+        subtitle: "Get access to our demo app with real data",
+        features: [
+          "Complete demo environment",
+          "Unlimited time to explore",
+          "Real company data"
+        ],
+        cta: "Get access",
+        note: "Requires work email + phone"
+      },
+      guided: {
+        badge: "Recommended",
+        title: "Consultation with expert",
+        subtitle: "20min video call with our consultant",
+        features: [
+          "Personalized walkthrough",
+          "All your questions answered",
+          "Specific use-cases for your industry"
+        ],
+        cta: "Pick a time",
+        note: "No commitment"
+      }
+    },
+    demoAccess: {
+      badge: "Full Demo Access",
+      title: "Try Echo Pulse",
+      titleHighlight: "with real data",
+      subtitle: "Explore the dashboard our clients see. No limits, no time restrictions.",
+      features: [
+        { icon: "monitor", text: "Complete demo environment" },
+        { icon: "clock", text: "Unlimited access" },
+        { icon: "users", text: "Real company data" }
+      ],
+      emailLabel: "Work email",
+      emailPlaceholder: "john.smith@company.com",
+      phoneLabel: "Phone",
+      phonePlaceholder: "+420 777 888 999",
+      companyLabel: "Company name (optional)",
+      companyPlaceholder: "Your Company Ltd.",
+      submitCta: "Get access",
+      submitting: "Submitting...",
+      noSpam: "No spam. We only use your data for verification.",
+      errors: {
+        workEmailRequired: "Please enter a work email (not gmail, yahoo...)",
+        phoneRequired: "Phone is required",
+        generic: "Something went wrong. Please try again."
+      },
+      successTitle: "Your access is ready!",
+      successSubtitle: "Use these credentials to log into the demo:",
+      credentials: {
+        urlLabel: "Demo app",
+        emailLabel: "Login email",
+        passwordLabel: "Password"
+      },
+      copyButton: "Copy",
+      copied: "Copied!",
+      openDemo: "Open demo app",
+      upsellTitle: "Want a guided tour?",
+      upsellText: "Book a 20min consultation and we'll show you what Echo Pulse reveals in your company.",
+      upsellCta: "Book consultation"
+    },
+    bookingModal: {
+      badge: "Personal Consultation",
+      title: "20 minutes that will",
+      titleHighlight: "change how you see data",
+      subtitle: "Video call with our consultant. We'll show you what Echo Pulse reveals in your company.",
+      benefits: [
+        { icon: "target", text: "Personalized demo for your industry" },
+        { icon: "users", text: "All your questions answered" },
+        { icon: "shield", text: "No commitment, no hard-sell" }
+      ],
+      duration: "20 minutes",
+      format: "Video call (Google Meet / Zoom)",
+      cta: "Pick a time",
+      calendarTitle: "Choose an available slot",
+      calendarSubtitle: "Loading calendar...",
+      back: "Back"
+    },
     data: {
       trustedBy: "Trusted by leading companies"
     },
@@ -424,18 +508,18 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Jasno dřív, než je pozdě",
-      title: "Získejte kontrolu nad",
-      titleHighlight: "stabilitou a výkonem týmů",
-      subtitle: "Včas uvidíte, kde hrozí odchody, přetížení nebo ztráta směru — dřív než to zasáhne výsledky.",
-      primaryCta: "Domluvit 30min konzultaci",
-      secondaryCta: "Krátké demo (3 min)",
-      riskReversal: "Bez závazku. Odejdete s jasným obrazem, co je v riziku a co řešit jako první.",
+      badge: "Continuous Insight System • Věda v praxi",
+      title: "Víte, kdo vám zítra",
+      titleHighlight: "podá výpověď?",
+      subtitle: "Emoce jsou nejrychlejší signál změny. Echo Pulse je zachytí dřív, než se projeví ve výkonu nebo fluktuaci. 2 minuty měsíčně. Nulová administrativa. Konkrétní kroky pro manažery.",
+      primaryCta: "20min konzultace zdarma",
+      secondaryCta: "Projít si demo sám",
+      riskReversal: "Žádný závazek. Ukážeme vám, co ve firmě nevidíte — a co s tím udělat jako první.",
       trust: {
-        security: "Bezpečnost dat (GDPR)",
-        support: "Podpora v češtině",
-        implementation: "Implementace 1 hodina",
-        languages: "CZ / EN"
+        security: "GDPR & anonymita",
+        support: "Česká podpora",
+        implementation: "Spuštění do 48h",
+        languages: "CZ / EN / DE"
       },
     },
     problems: {
@@ -634,7 +718,8 @@ export const translations = {
       title: "Nečekejte na další výpověď.",
       subtitle: "Slepota stojí české firmy miliony ročně na ztracené produktivitě a náboru. Získejte kontrolu zpět během 48 hodin.",
       primary: "Sjednat konzultaci",
-      secondary: "nebo",
+      demoButton: "Vyzkoušet demo",
+      secondary: "nebo zavolejte",
       secondaryLink: "+420 777 123 456",
       benefits: [
         { title: "Bez závazků", desc: "Úvodní konzultace a demo ukázka jsou zdarma. Pochopíte logiku systému za 20 minut." },
@@ -764,6 +849,89 @@ export const translations = {
       },
       videoTitle: "Echo Pulse – Demo",
       recommended: "Doporučeno"
+    },
+    demoChoiceModal: {
+      title: "Jak chcete poznat Echo Pulse?",
+      subtitle: "Vyberte si cestu, která vám vyhovuje",
+      selfServe: {
+        badge: "Okamžitý přístup",
+        title: "Projít si demo sám",
+        subtitle: "Získejte přístup k demo aplikaci s reálnými daty",
+        features: [
+          "Kompletní demo prostředí",
+          "Neomezený čas na prozkoumání",
+          "Reálná firemní data"
+        ],
+        cta: "Získat přístup",
+        note: "Vyžaduje pracovní email + telefon"
+      },
+      guided: {
+        badge: "Doporučujeme",
+        title: "Konzultace s expertem",
+        subtitle: "20min video hovor s naším konzultantem",
+        features: [
+          "Personalizovaná ukázka",
+          "Odpovědi na vaše dotazy",
+          "Konkrétní use-cases pro váš obor"
+        ],
+        cta: "Vybrat termín",
+        note: "Žádné závazky"
+      }
+    },
+    demoAccess: {
+      badge: "Plný přístup k demo",
+      title: "Vyzkoušejte Echo Pulse",
+      titleHighlight: "na reálných datech",
+      subtitle: "Projděte si dashboard, který vidí naši klienti. Žádné omezení, žádný časový limit.",
+      features: [
+        { icon: "monitor", text: "Kompletní demo prostředí" },
+        { icon: "clock", text: "Neomezený přístup" },
+        { icon: "users", text: "Reálná firemní data" }
+      ],
+      emailLabel: "Pracovní email",
+      emailPlaceholder: "jan.novak@firma.cz",
+      phoneLabel: "Telefon",
+      phonePlaceholder: "+420 777 888 999",
+      companyLabel: "Název firmy (volitelné)",
+      companyPlaceholder: "Vaše firma s.r.o.",
+      submitCta: "Získat přístup",
+      submitting: "Odesílám...",
+      noSpam: "Žádný spam. Údaje použijeme pouze pro ověření.",
+      errors: {
+        workEmailRequired: "Prosím zadejte pracovní email (ne gmail, yahoo...)",
+        phoneRequired: "Telefon je povinný",
+        generic: "Něco se pokazilo. Zkuste to prosím znovu."
+      },
+      successTitle: "Váš přístup je připraven!",
+      successSubtitle: "Použijte tyto údaje pro přihlášení do demo prostředí:",
+      credentials: {
+        urlLabel: "Demo aplikace",
+        emailLabel: "Přihlašovací email",
+        passwordLabel: "Heslo"
+      },
+      copyButton: "Kopírovat",
+      copied: "Zkopírováno!",
+      openDemo: "Otevřít demo aplikaci",
+      upsellTitle: "Chcete průvodce?",
+      upsellText: "Rezervujte si 20min konzultaci a ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
+      upsellCta: "Rezervovat konzultaci"
+    },
+    bookingModal: {
+      badge: "Osobní konzultace",
+      title: "20 minut, které",
+      titleHighlight: "změní váš pohled na data",
+      subtitle: "Video hovor s naším konzultantem. Ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
+      benefits: [
+        { icon: "target", text: "Personalizovaná ukázka pro váš obor" },
+        { icon: "users", text: "Odpovědi na všechny vaše dotazy" },
+        { icon: "shield", text: "Žádné závazky, žádný hard-sell" }
+      ],
+      duration: "20 minut",
+      format: "Video hovor (Google Meet / Zoom)",
+      cta: "Vybrat termín",
+      calendarTitle: "Vyberte si volný termín",
+      calendarSubtitle: "Kalendář se načítá...",
+      back: "Zpět"
     },
     data: {
       trustedBy: "DŮVĚŘUJÍ NÁM VELKÉ FIRMY"
@@ -1024,7 +1192,8 @@ export const translations = {
       title: "Warten Sie nicht auf die nächste Kündigung.",
       subtitle: "Blindheit kostet Unternehmen jährlich Millionen an verlorener Produktivität und Neueinstellungen. Gewinnen Sie die Kontrolle in 48 Stunden zurück.",
       primary: "Beratung vereinbaren",
-      secondary: "oder",
+      demoButton: "Demo testen",
+      secondary: "oder rufen Sie an",
       secondaryLink: "+420 777 123 456",
       benefits: [
         { title: "Keine Verpflichtung", desc: "Erstberatung und Demo sind kostenlos. Verstehen Sie die Systemlogik in 20 Minuten." },
@@ -1154,6 +1323,89 @@ export const translations = {
       },
       videoTitle: "Echo Pulse – Demo",
       recommended: "Empfohlen"
+    },
+    demoChoiceModal: {
+      title: "Wie möchten Sie Echo Pulse kennenlernen?",
+      subtitle: "Wählen Sie den Weg, der zu Ihnen passt",
+      selfServe: {
+        badge: "Sofortiger Zugang",
+        title: "Selbst erkunden",
+        subtitle: "Erhalten Sie Zugang zur Demo-App mit echten Daten",
+        features: [
+          "Komplette Demo-Umgebung",
+          "Unbegrenzte Zeit zum Erkunden",
+          "Echte Unternehmensdaten"
+        ],
+        cta: "Zugang erhalten",
+        note: "Erfordert Geschäfts-E-Mail + Telefon"
+      },
+      guided: {
+        badge: "Empfohlen",
+        title: "Beratung mit Experten",
+        subtitle: "20min Videoanruf mit unserem Berater",
+        features: [
+          "Personalisierte Führung",
+          "Alle Ihre Fragen beantwortet",
+          "Spezifische Use-Cases für Ihre Branche"
+        ],
+        cta: "Termin wählen",
+        note: "Keine Verpflichtung"
+      }
+    },
+    demoAccess: {
+      badge: "Voller Demo-Zugang",
+      title: "Testen Sie Echo Pulse",
+      titleHighlight: "mit echten Daten",
+      subtitle: "Erkunden Sie das Dashboard, das unsere Kunden sehen. Keine Einschränkungen, kein Zeitlimit.",
+      features: [
+        { icon: "monitor", text: "Komplette Demo-Umgebung" },
+        { icon: "clock", text: "Unbegrenzter Zugang" },
+        { icon: "users", text: "Echte Unternehmensdaten" }
+      ],
+      emailLabel: "Geschäfts-E-Mail",
+      emailPlaceholder: "max.mustermann@firma.de",
+      phoneLabel: "Telefon",
+      phonePlaceholder: "+49 170 123 4567",
+      companyLabel: "Firmenname (optional)",
+      companyPlaceholder: "Ihre Firma GmbH",
+      submitCta: "Zugang erhalten",
+      submitting: "Wird gesendet...",
+      noSpam: "Kein Spam. Wir verwenden Ihre Daten nur zur Verifizierung.",
+      errors: {
+        workEmailRequired: "Bitte geben Sie eine Geschäfts-E-Mail ein (nicht gmail, yahoo...)",
+        phoneRequired: "Telefon ist erforderlich",
+        generic: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+      },
+      successTitle: "Ihr Zugang ist bereit!",
+      successSubtitle: "Verwenden Sie diese Zugangsdaten für die Demo:",
+      credentials: {
+        urlLabel: "Demo-App",
+        emailLabel: "Login-E-Mail",
+        passwordLabel: "Passwort"
+      },
+      copyButton: "Kopieren",
+      copied: "Kopiert!",
+      openDemo: "Demo-App öffnen",
+      upsellTitle: "Möchten Sie eine geführte Tour?",
+      upsellText: "Buchen Sie eine 20min Beratung und wir zeigen Ihnen, was Echo Pulse in Ihrem Unternehmen aufdeckt.",
+      upsellCta: "Beratung buchen"
+    },
+    bookingModal: {
+      badge: "Persönliche Beratung",
+      title: "20 Minuten, die",
+      titleHighlight: "Ihren Blick auf Daten verändern",
+      subtitle: "Videoanruf mit unserem Berater. Wir zeigen Ihnen, was Echo Pulse in Ihrem Unternehmen aufdeckt.",
+      benefits: [
+        { icon: "target", text: "Personalisierte Demo für Ihre Branche" },
+        { icon: "users", text: "Alle Ihre Fragen beantwortet" },
+        { icon: "shield", text: "Keine Verpflichtung, kein Hard-Sell" }
+      ],
+      duration: "20 Minuten",
+      format: "Videoanruf (Google Meet / Zoom)",
+      cta: "Termin wählen",
+      calendarTitle: "Wählen Sie einen verfügbaren Termin",
+      calendarSubtitle: "Kalender wird geladen...",
+      back: "Zurück"
     },
     data: {
       trustedBy: "VON FÜHRENDEN UNTERNEHMEN GENUTZT"
