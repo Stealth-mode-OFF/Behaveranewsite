@@ -4,18 +4,18 @@ export const translations = {
   en: {
     radar: {
       badge: "Full Spectrum Analysis",
-      title: "9 Dimensions",
-      titleHighlight: "of Work Reality",
-      subtitle: "Echo Pulse continuously monitors 9 critical dimensions of work reality. No noise. Just clear signals where friction is building.",
+      title: "Signal",
+      titleHighlight: "Radar",
+      subtitle: "Echo Pulse continuously monitors key areas of work reality. No noise. Just clear signals where support or tools are missing.",
       methodology: "Methodology grounded in Job Demands–Resources (JD-R), Self-Determination Theory, and Equity Theory.",
       signals: {
-        mood: { title: "Emotional State", question: "How is the team actually feeling?", metrics: ["Well-being", "Valence", "Affect"] },
+        mood: { title: "How people feel", question: "How is the team actually feeling?", metrics: ["Mood", "Energy", "Stability"] },
         stress: { title: "Stress & Pressure", question: "Is pressure driving performance or burnout?", metrics: ["Chronic Stress", "Spillover", "Recovery"] },
         workload: { title: "Capacity & Load", question: "Are demands matching capacity?", metrics: ["Cognitive Load", "Priorities", "Pace"] },
-        tools: { title: "Enablement", question: "Do they have what they need to win?", metrics: ["Friction", "Resources", "Barriers"] },
+        tools: { title: "Enablement", question: "Do they have what they need to win?", metrics: ["Leadership Support", "Tools", "Helpers"] },
         recognition: { title: "Recognition", question: "Is good work being seen?", metrics: ["Visibility", "Appreciation", "Impact"] },
-        growth: { title: "Potential", question: "Are we using their full capability?", metrics: ["Autonomy", "Challenge", "Fit"] },
-        rewards: { title: "Fairness", question: "Is the exchange perceived as fair?", metrics: ["Compensation", "Equity", "Hygiene"] },
+        growth: { title: "Potential", question: "Are we using their full capability?", metrics: ["Career Growth", "Challenges", "Stagnation"] },
+        rewards: { title: "Fairness", question: "Is the exchange perceived as fair?", metrics: ["Fairness", "Transparency", "Bonuses"] },
         benefits: { title: "Benefits", question: "Do perks actually matter?", metrics: ["Relevance", "Utility", "ROI"] },
         evp: { title: "Values & Loyalty", question: "Do we walk the talk?", metrics: ["Pride", "Alignment", "Promise"] }
       }
@@ -37,39 +37,40 @@ export const translations = {
       badge: "Continuous Insight System • V2.0",
       title: "Manage culture",
       titleHighlight: "exactly like finance.",
-      subtitle: "Real data instead of feelings. Echo Pulse replaces annual surveys with a continuous signal system, giving leadership certainty that the company is sustainable.",
+      subtitle: "Real data instead of feelings. Echo Pulse replaces annual surveys with a continuous signal system, giving leadership clarity about stability and priorities.",
       primaryCta: "Schedule Consultation",
       secondaryCta: "Demo (3 min)",
       riskReversal: "No commitment. Leave with a clear picture of what's happening in your company.",
       trust: {
         security: "Data Security (GDPR)",
         support: "Native Support",
-        implementation: "48h Implementation"
+        implementation: "48h Implementation",
+        languages: "CZ / EN"
       },
     },
     problems: {
       badge: "Critical System Blindness",
       title: "The silent killer of stability.",
-      subtitle: "Intuition and delayed feedback create management blindness. Traditional tools measure consequences, not causes.",
+      subtitle: "Estimates, guesses, and incomplete feedback create management blindness. Traditional tools measure consequences, not causes.",
       items: [
         {
           title: "Hidden Reasons",
-          value: "72%",
-          desc: "Exit reasons you'll never hear in exit interviews. They stay in private chats.",
+          value: "Unseen",
+          desc: "Departure reasons rarely surface in exit interviews. They stay in private chats.",
         },
         {
           title: "Productivity Loss",
-          value: "-24%",
-          desc: "Average performance drop during 'Quiet Quitting'.",
+          value: "Quiet Decline",
+          desc: "Engagement drops quietly before anyone notices the impact.",
         },
         {
           title: "Detection Delay",
-          value: "8.5mo",
-          desc: "Time a problem exists before management notices and acts.",
+          value: "Too Late",
+          desc: "Issues grow silently before management reacts.",
         },
       ],
       ctaBox: {
-        title: "You can't manage this with 'gut feeling'.",
+        title: "You can't manage this with assumptions.",
         desc: "You need hard data. Without it, you're just guessing why people leave."
       }
     },
@@ -99,7 +100,7 @@ export const translations = {
     },
     methodology: {
       title: "Scientific Instrument, Not a 'Happiness Survey'.",
-      subtitle: "We separate signal from noise. Echo Pulse is designed to protect people's time and deliver valid data for decision making.",
+      subtitle: "We separate signal from noise. Echo Pulse turns feelings into business strategy and clarifies priorities.",
       cards: [
         {
           title: "We Don't Hunt 'Happiness'",
@@ -148,14 +149,19 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "You see the company from a different position.",
-      subtitle: "We account for that. Choose your perspective.",
+      title: "View the company from your perspective.",
+      subtitle: "Choose your angle and get concrete answers.",
+      benefits: [
+        "I want a productive team",
+        "I want to know what and why isn’t working",
+        "I want full visibility"
+      ],
       investor: {
         role: "Investor",
         title: "Asset Protection",
         list: [
           "Risk Prediction",
-          "Portfolio Health Visibility"
+          "Continuous portfolio health monitoring"
         ],
         cta: "Check portfolio health"
       },
@@ -229,7 +235,7 @@ export const translations = {
       secondaryLink: "+420 777 123 456",
       benefits: [
         { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 20 minutes." },
-        { title: "Privacy Guarantee", desc: "Full GDPR and ISO 27001 compliance. Your data is safe on European servers." },
+        { title: "Privacy Guarantee", desc: "GDPR compliance with clear data-handling rules. Your data stays on EU servers." },
         { title: "Fast Start", desc: "Implementation needs no IT department. We connect to your existing tools (M365, Slack)." }
       ]
     },
@@ -277,6 +283,21 @@ export const translations = {
       successMessage: "Check your inbox. We've just sent you the study.",
       close: "Close"
     },
+    leadCapture: {
+      badge: "Free E-book",
+      title: "Get a practical guide to managing teams by signals.",
+      subtitle: "We'll send you an ebook with concrete tips to quickly spot what's not working. No spam.",
+      nameLabel: "Name (optional)",
+      namePlaceholder: "Your name",
+      emailLabel: "Work email",
+      emailPlaceholder: "name@company.com",
+      submit: "Get the e-book",
+      successTitle: "E-book is on the way.",
+      successMessage: "Check your inbox.",
+      consent: "By submitting, you agree to data processing for ebook delivery.",
+      errorInvalid: "Please enter a valid email.",
+      errorGeneric: "Something went wrong. Please try again."
+    },
     data: {
       trustedBy: "Trusted by HR Leaders"
     },
@@ -296,18 +317,18 @@ export const translations = {
   cz: {
     radar: {
       badge: "Full Spectrum Analysis",
-      title: "9 dimenzí",
-      titleHighlight: "pracovní reality",
-      subtitle: "Echo Pulse kontinuálně monitoruje 9 kritických dimenzí pracovní reality. Žádný šum. Jen jasné signály tam, kde vzniká tření.",
+      title: "Radar",
+      titleHighlight: "aktivních signálů",
+      subtitle: "Echo Pulse kontinuálně monitoruje klíčové oblasti pracovní reality. Žádný šum. Jen jasné signály tam, kde chybí podpora, nástroje nebo vedení.",
       methodology: "Metodika podložena modely Job Demands–Resources (JD-R), Self-Determination Theory a Equity Theory.",
       signals: {
-        mood: { title: "Emoční stav", question: "Jak se tým skutečně cítí?", metrics: ["Well-being", "Valence", "Afekt"] },
+        mood: { title: "Jak se lidé cítí", question: "Jak se tým skutečně cítí?", metrics: ["Nálada", "Energie", "Stabilita"] },
         stress: { title: "Stres a tlak", question: "Je tlak motorem nebo cestou k vyhoření?", metrics: ["Chronický stres", "Přetížení", "Regenerace"] },
         workload: { title: "Kapacita a zátěž", question: "Odpovídají nároky kapacitám?", metrics: ["Kognitivní zátěž", "Priority", "Tempo"] },
-        tools: { title: "Podpora a nástroje", question: "Mají lidé to, co potřebují k výsledkům?", metrics: ["Tření", "Zdroje", "Bariéry"] },
+        tools: { title: "Podpora a nástroje", question: "Mají lidé to, co potřebují k výsledkům?", metrics: ["Podpora vedení", "Nástroje", "Pomůcky"] },
         recognition: { title: "Uznání a zpětná vazba", question: "Je dobrá práce vidět?", metrics: ["Viditelnost", "Ocenění", "Dopad"] },
-        growth: { title: "Potenciál", question: "Využíváme naplno jejich schopnosti?", metrics: ["Autonomie", "Výzvy", "Soulad"] },
-        rewards: { title: "Odměňování", question: "Je směna vnímána jako férová?", metrics: ["Kompenzace", "Spravedlnost", "Hygiena"] },
+        growth: { title: "Potenciál", question: "Využíváme naplno jejich schopnosti?", metrics: ["Kariérní posun", "Výzvy", "Stagnace"] },
+        rewards: { title: "Odměňování", question: "Je směna vnímána jako férová?", metrics: ["Férovost", "Transparentnost", "Bonusy"] },
         benefits: { title: "Benefity", question: "Mají benefity reálnou hodnotu?", metrics: ["Relevance", "Užitečnost", "ROI"] },
         evp: { title: "Hodnoty a loajalita", question: "Žijeme to, co hlásáme?", metrics: ["Hrdost", "Soulad", "Slib"] }
       }
@@ -332,36 +353,37 @@ export const translations = {
       subtitle: "Bez průběžných signálů vedete firmu naslepo — a platíte to v odchodech, výkonu a chaotických prioritách.",
       primaryCta: "Domluvit online schůzku (30 minut)",
       secondaryCta: "Získat přístup do demo aplikace",
-      riskReversal: "Bez závazku. Odejdete s jasným obrazem, co se ve firmě děje a kde se láme udržitelnost.",
+      riskReversal: "Bez závazku. Odejdete s jasným obrazem, co se ve firmě děje a kde se láme stabilita a prosperita.",
       trust: {
         security: "Bezpečnost dat (GDPR)",
         support: "Podpora v češtině",
-        implementation: "Implementace 1 hodina"
+        implementation: "Implementace 1 hodina",
+        languages: "CZ / EN"
       },
     },
     problems: {
       badge: "Kritická systémová slepota",
       title: "Tichý zabiják stability.",
-      subtitle: "Intuice a zpožděná zpětná vazba vytvářejí manažerskou slepotu. Tradiční nástroje měří následky, ne příčiny.",
+      subtitle: "Odhady, dohady, doměnky a neúplná zpětná vazba vytvářejí manažerskou slepotu. Tradiční nástroje měří následky, ne příčiny.",
       items: [
         {
           title: "Skryté důvody",
-          value: "72%",
-          desc: "Důvody odchodů, které se nikdy nedozvíte z exit interview. Zůstávají v soukromých chatech.",
+          value: "Neviditelné",
+          desc: "Důvody odchodů se často neobjeví v exit interview. Zůstávají v soukromých chatech.",
         },
         {
           title: "Ztráta produktivity",
-          value: "-24%",
-          desc: "Průměrný pokles výkonu zaměstnance v období 'tiché výpovědi' (Quiet Quitting).",
+          value: "Tichý pokles",
+          desc: "Výkon klesá dřív, než si někdo všimne, že lidé odpojují pozornost.",
         },
         {
           title: "Zpoždění detekce",
-          value: "8,5 měs.",
-          desc: "Doba, po kterou problém existuje, než si ho management všimne a začne řešit.",
+          value: "Pozdě",
+          desc: "Problémy rostou potichu, než je vedení stihne zachytit.",
         },
       ],
       ctaBox: {
-        title: "Tohle nelze 'uřídit' citem.",
+        title: "Tohle nejde řídit přes dojmy.",
         desc: "Potřebujete tvrdá data. Bez nich jen hádáte, proč lidé odcházejí."
       }
     },
@@ -391,15 +413,15 @@ export const translations = {
     },
     methodology: {
       title: "Vědecký nástroj, ne 'dotazník'.",
-      subtitle: "Oddělujeme signál od šumu. Echo Pulse transformuje pocity na řídicí systém.",
+      subtitle: "Oddělujeme signál od šumu. Echo Pulse mění pocity na business strategii — dává jasno v tom, co má prioritu.",
       cards: [
         {
           title: "Data (Signál)",
-          desc: "Ne měření spokojenosti. Sledujeme tvrdé metriky udržitelnosti a rizika vyhoření. (90s / měsíc)"
+          desc: "Ne měření spokojenosti. Sledujeme metriky stability, podpory a rizik vyhoření. (90s / měsíc)"
         },
         {
           title: "Analýza (Kontext)",
-          desc: "Ne reporty. Dostáváte rozhodovací kontext. Systém automaticky identifikuje priority."
+          desc: "Ne bezzubé reporty. Dostáváte jasný kontext a doporučení pro konkrétní situace."
         },
         {
           title: "Akce (Dopad)",
@@ -440,14 +462,19 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Díváte se na firmu z jiné pozice.",
-      subtitle: "My s tím počítáme. Vyberte si perspektivu.",
+      title: "Podívejte se na firmu z jiného pohledu.",
+      subtitle: "Dívejte se na firmu ze své pozice a získejte konkrétní odpovědi.",
+      benefits: [
+        "Chci mít produktivní tým",
+        "Chci vědět, co a proč nefunguje",
+        "Chci mít přehled o všem"
+      ],
       investor: {
         role: "Investor",
         title: "Ochrana investice",
         list: [
           "Predikce rizik",
-          "Viditelnost zdraví portfolia"
+          "Průběžné sledování zdraví portfolia"
         ],
         cta: "Zkontrolovat zdraví portfolia"
       },
@@ -521,7 +548,7 @@ export const translations = {
       secondaryLink: "+420 777 123 456",
       benefits: [
         { title: "Bez závazků", desc: "Úvodní konzultace a demo ukázka jsou zdarma. Pochopíte logiku systému za 20 minut." },
-        { title: "Garance soukromí", desc: "Plný soulad s GDPR a ISO 27001. Vaše data jsou v bezpečí na evropských serverech." },
+        { title: "Garance soukromí", desc: "Soulad s GDPR a jasná pravidla práce s daty. Vaše data zůstávají na evropských serverech." },
         { title: "Rychlý start", desc: "Implementace nevyžaduje IT oddělení. Napojíme se na vaše stávající nástroje (M365, Slack)." }
       ]
     },
@@ -569,6 +596,21 @@ export const translations = {
       successMessage: "Zkontrolujte svou e-mailovou schránku. Právě jsme vám studii odeslali.",
       close: "Zavřít"
     },
+    leadCapture: {
+      badge: "E-book zdarma",
+      title: "Získejte praktický přehled, jak řídit tým podle signálů.",
+      subtitle: "Pošleme vám e-book s konkrétními tipy, jak rychle odhalit, co a proč ve firmě nefunguje. Bez spamu.",
+      nameLabel: "Jméno (volitelné)",
+      namePlaceholder: "Vaše jméno",
+      emailLabel: "Pracovní e-mail",
+      emailPlaceholder: "name@company.com",
+      submit: "Chci e-book",
+      successTitle: "E-book je na cestě.",
+      successMessage: "Zkontrolujte prosím e-mailovou schránku.",
+      consent: "Odesláním souhlasíte se zpracováním kontaktních údajů pro doručení e-booku.",
+      errorInvalid: "Zadejte prosím platný e-mail.",
+      errorGeneric: "Odeslání se nepodařilo."
+    },
     data: {
       trustedBy: "VYUŽÍVÁNO HR LÍDRY"
     },
@@ -588,18 +630,18 @@ export const translations = {
   de: {
     radar: {
       badge: "Vollspektrumanalyse",
-      title: "9 Dimensionen",
-      titleHighlight: "der Arbeitsrealität",
-      subtitle: "Echo Pulse überwacht kontinuierlich 9 kritische Dimensionen der Arbeitsrealität. Kein Rauschen. Nur klare Signale, wo Reibung entsteht.",
+      title: "Signal",
+      titleHighlight: "Radar",
+      subtitle: "Echo Pulse überwacht kontinuierlich die wichtigsten Bereiche der Arbeitsrealität. Kein Rauschen. Nur klare Signale, wo Unterstützung oder Tools fehlen.",
       methodology: "Methodik basierend auf Job Demands–Resources (JD-R), Self-Determination Theory und Equity Theory.",
       signals: {
-        mood: { title: "Emotionaler Zustand", question: "Wie fühlt sich das Team wirklich?", metrics: ["Wohlbefinden", "Valenz", "Affekt"] },
+        mood: { title: "Wie sich Menschen fühlen", question: "Wie fühlt sich das Team wirklich?", metrics: ["Stimmung", "Energie", "Stabilität"] },
         stress: { title: "Stress & Druck", question: "Treibt Druck Leistung oder Burnout?", metrics: ["Chronischer Stress", "Spillover", "Erholung"] },
         workload: { title: "Kapazität & Last", question: "Passen Anforderungen zu Kapazitäten?", metrics: ["Kognitive Last", "Prioritäten", "Tempo"] },
-        tools: { title: "Befähigung", question: "Haben sie, was sie brauchen?", metrics: ["Reibung", "Ressourcen", "Barrieren"] },
+        tools: { title: "Befähigung", question: "Haben sie, was sie brauchen?", metrics: ["Führungssupport", "Tools", "Hilfsmittel"] },
         recognition: { title: "Anerkennung", question: "Wird gute Arbeit gesehen?", metrics: ["Sichtbarkeit", "Wertschätzung", "Wirkung"] },
-        growth: { title: "Potenzial", question: "Nutzen wir ihre volle Fähigkeit?", metrics: ["Autonomie", "Herausforderung", "Passung"] },
-        rewards: { title: "Fairness", question: "Wird der Austausch als fair empfunden?", metrics: ["Vergütung", "Gerechtigkeit", "Hygiene"] },
+        growth: { title: "Potenzial", question: "Nutzen wir ihre volle Fähigkeit?", metrics: ["Karriere", "Herausforderungen", "Stagnation"] },
+        rewards: { title: "Fairness", question: "Wird der Austausch als fair empfunden?", metrics: ["Fairness", "Transparenz", "Boni"] },
         benefits: { title: "Benefits", question: "Zählen die Vorteile wirklich?", metrics: ["Relevanz", "Nutzen", "ROI"] },
         evp: { title: "Werte & Loyalität", question: "Leben wir, was wir sagen?", metrics: ["Stolz", "Ausrichtung", "Versprechen"] }
       }
@@ -628,32 +670,33 @@ export const translations = {
       trust: {
         security: "Datensicherheit (DSGVO)",
         support: "Nativer Support",
-        implementation: "48h Implementierung"
+        implementation: "48h Implementierung",
+        languages: "CZ / EN"
       },
     },
     problems: {
       badge: "Kritische Systemblindheit",
       title: "Der stille Killer der Stabilität.",
-      subtitle: "Intuition und verzögertes Feedback schaffen Management-Blindheit. Traditionelle Tools messen Folgen, nicht Ursachen.",
+      subtitle: "Schätzungen, Vermutungen und unvollständiges Feedback schaffen Management-Blindheit. Traditionelle Tools messen Folgen, nicht Ursachen.",
       items: [
         {
           title: "Verborgene Gründe",
-          value: "72%",
-          desc: "Kündigungsgründe, die Sie nie in Exit-Interviews hören. Sie bleiben in privaten Chats.",
+          value: "Unsichtbar",
+          desc: "Kündigungsgründe tauchen oft nicht in Exit-Interviews auf. Sie bleiben in privaten Chats.",
         },
         {
           title: "Produktivitätsverlust",
-          value: "-24%",
-          desc: "Durchschnittlicher Leistungsabfall während 'Quiet Quitting'.",
+          value: "Leiser Rückgang",
+          desc: "Engagement sinkt leise, bevor jemand die Auswirkungen sieht.",
         },
         {
           title: "Erkennungsverzögerung",
-          value: "8.5Mon",
-          desc: "Zeit, die ein Problem existiert, bevor das Management es bemerkt und handelt.",
+          value: "Zu spät",
+          desc: "Probleme wachsen still, bevor das Management reagiert.",
         },
       ],
       ctaBox: {
-        title: "Das lässt sich nicht mit 'Bauchgefühl' managen.",
+        title: "Das lässt sich nicht mit Annahmen steuern.",
         desc: "Sie brauchen harte Daten. Ohne sie raten Sie nur, warum Leute gehen."
       }
     },
@@ -683,7 +726,7 @@ export const translations = {
     },
     methodology: {
       title: "Wissenschaftliches Instrument, keine 'Happiness Survey'.",
-      subtitle: "Wir trennen Signal von Rauschen. Echo Pulse schützt die Zeit Ihrer Mitarbeiter und liefert valide Daten für Entscheidungen.",
+      subtitle: "Wir trennen Signal von Rauschen. Echo Pulse macht aus Gefühlen Business-Strategie und klärt Prioritäten.",
       cards: [
         {
           title: "Wir suchen kein 'Glück'",
@@ -732,14 +775,19 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Sie sehen das Unternehmen aus einer anderen Position.",
-      subtitle: "Wir berücksichtigen das. Wählen Sie Ihre Perspektive.",
+      title: "Sehen Sie das Unternehmen aus Ihrer Perspektive.",
+      subtitle: "Wählen Sie Ihren Blickwinkel und erhalten Sie konkrete Antworten.",
+      benefits: [
+        "Ich will ein produktives Team",
+        "Ich will wissen, was und warum nicht funktioniert",
+        "Ich will volle Transparenz"
+      ],
       investor: {
         role: "Investor",
         title: "Investitionsschutz",
         list: [
           "Risikoprognose",
-          "Portfolio-Gesundheit sichtbar machen"
+          "Kontinuierliches Monitoring der Portfolio-Gesundheit"
         ],
         cta: "Portfolio-Gesundheit prüfen"
       },
@@ -813,7 +861,7 @@ export const translations = {
       secondaryLink: "+420 777 123 456",
       benefits: [
         { title: "Keine Verpflichtung", desc: "Erstberatung und Demo sind kostenlos. Verstehen Sie die Systemlogik in 20 Minuten." },
-        { title: "Datenschutz-Garantie", desc: "Volle DSGVO- und ISO 27001-Konformität. Ihre Daten sind sicher auf europäischen Servern." },
+        { title: "Datenschutz-Garantie", desc: "DSGVO-Konformität und klare Regeln für den Datenumgang. Ihre Daten bleiben auf EU-Servern." },
         { title: "Schnellstart", desc: "Implementierung benötigt keine IT-Abteilung. Wir verbinden uns mit Ihren bestehenden Tools (M365, Slack)." }
       ]
     },
@@ -860,6 +908,21 @@ export const translations = {
       successTitle: "E-Book ist unterwegs!",
       successMessage: "Prüfen Sie Ihren Posteingang. Wir haben Ihnen die Studie gerade gesendet.",
       close: "Schließen"
+    },
+    leadCapture: {
+      badge: "Kostenloses E-Book",
+      title: "Praktischer Leitfaden: Teams nach Signalen steuern.",
+      subtitle: "Wir schicken Ihnen ein E-Book mit konkreten Tipps, wie Sie schnell erkennen, was und warum etwas nicht funktioniert. Kein Spam.",
+      nameLabel: "Name (optional)",
+      namePlaceholder: "Ihr Name",
+      emailLabel: "Geschäftliche E-Mail",
+      emailPlaceholder: "name@company.com",
+      submit: "E-Book erhalten",
+      successTitle: "E-Book ist unterwegs.",
+      successMessage: "Bitte prüfen Sie Ihr Postfach.",
+      consent: "Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Kontaktdaten für die E-Book-Zustellung zu.",
+      errorInvalid: "Bitte geben Sie eine gültige E-Mail ein.",
+      errorGeneric: "Senden fehlgeschlagen."
     },
     data: {
       trustedBy: "VON HR-LEADERN GENUTZT"
