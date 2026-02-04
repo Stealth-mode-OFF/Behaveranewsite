@@ -6,9 +6,17 @@ import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { format } from 'date-fns';
 import { ArrowRight } from 'lucide-react';
+import { useSEO } from '@/app/hooks/useSEO';
 
 export const BlogPage = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  useSEO({
+    title: 'Blog & Insights',
+    description: 'Praktické články o engagementu, retenci a organizační psychologii. Vědecky podložené, srozumitelně vysvětlené.',
+    keywords: 'employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies',
+    ogType: 'website',
+  });
 
   useEffect(() => {
     CmsService.getPosts().then(data => {

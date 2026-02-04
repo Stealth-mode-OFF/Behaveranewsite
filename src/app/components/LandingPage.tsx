@@ -1,46 +1,65 @@
 import React from "react";
 import { Header } from "./Header";
 import { Hero } from "./Hero";
-import { LogoMarquee } from "./LogoMarquee";
-import { RoleSelection } from "./RoleSelection";
 import { ProblemSection } from "./ProblemSection";
-import { LeadCaptureSection } from "./LeadCaptureSection";
 import { MethodologySection } from "./MethodologySection";
 import { SignalRadar } from "./SignalRadar";
-import { HowItWorks } from "./HowItWorks";
 import { DashboardPreview } from "./DashboardPreview";
-import { ValueByRole } from "./ValueByRole";
 import { CaseStudiesSection } from "./CaseStudiesSection";
-import { PurchaseSection } from "./PurchaseSection";
 import { TrustCenter } from "./TrustCenter";
 import { CtaSection } from "./CtaSection";
-import { FAQ } from "./FAQ";
 import { Footer } from "./Footer";
 import { BookingModal } from "./BookingModal";
 import { DemoVideoModal } from "./DemoVideoModal";
 import { DemoAccessModal } from "./DemoAccessModal";
-import { LeadPopup } from "./LeadPopup";
+import { useSEO } from "@/app/hooks/useSEO";
+
+/**
+ * Enterprise Landing Page Structure
+ * 
+ * 6 Conceptual Layers (intelligence system narrative):
+ * 1. HERO - Statement of reality + position
+ * 2. PROBLEM - The cost of invisible signals (data layer)
+ * 3. SYSTEM - How Echo Pulse works (methodology + signal radar)
+ * 4. INTERFACE - Dashboard as control surface
+ * 5. EVIDENCE - Case studies + trust signals
+ * 6. ACTION - Single clear CTA
+ * 
+ * Removed: LogoMarquee, RoleSelection, LeadCaptureSection, 
+ *          HowItWorks, ValueByRole, PurchaseSection, FAQ, LeadPopup
+ */
 
 export function LandingPage() {
+  useSEO({
+    title: 'Echo Pulse — Continuous Employee Insight System',
+    description: 'Detect signals of disengagement, burnout, and attrition before they impact results. A scientifically validated system for predictive HR intelligence.',
+    keywords: 'employee engagement, HR analytics, burnout prevention, turnover prediction, people analytics, continuous feedback, Echo Pulse, Behavera',
+    ogType: 'website',
+  });
+
   return (
     <>
       <Header />
-      <main>
+      <main className="bg-[#FAFAFA]">
+        {/* Layer 1: Statement */}
         <Hero />
-        <LogoMarquee />
-        <RoleSelection />
+        
+        {/* Layer 2: The Problem (Data) */}
         <ProblemSection />
-        <LeadCaptureSection />
+        
+        {/* Layer 3: The System (How) */}
         <MethodologySection />
         <SignalRadar />
-        <HowItWorks />
+        
+        {/* Layer 4: The Interface */}
         <DashboardPreview />
-        <ValueByRole />
+        
+        {/* Layer 5: Evidence */}
         <CaseStudiesSection />
-        <PurchaseSection />
         <TrustCenter />
+        
+        {/* Layer 6: Action */}
         <CtaSection />
-        <FAQ />
       </main>
       <Footer />
 
@@ -48,7 +67,6 @@ export function LandingPage() {
       <BookingModal />
       <DemoVideoModal />
       <DemoAccessModal />
-      <LeadPopup />
     </>
   );
 }
