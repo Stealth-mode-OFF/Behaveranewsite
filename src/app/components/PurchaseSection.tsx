@@ -9,12 +9,14 @@ export function PurchaseSection() {
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   
-  const PRICE_CAP = 14900;
+  const BILLABLE_EMPLOYEE_CAP = 200;
   const pricePerPerson = billingInterval === 'monthly' ? 129 : 99;
   
-  const rawPrice = pricePerPerson * employeeCount;
-  const isCapped = rawPrice > PRICE_CAP;
-  const basePrice = Math.min(rawPrice, PRICE_CAP);
+  const billableEmployees = Math.min(employeeCount, BILLABLE_EMPLOYEE_CAP);
+  const rawPrice = pricePerPerson * billableEmployees;
+  const isCapped = employeeCount > BILLABLE_EMPLOYEE_CAP;
+  const priceCap = BILLABLE_EMPLOYEE_CAP * pricePerPerson;
+  const basePrice = Math.min(rawPrice, priceCap);
   const vat = basePrice * 0.21;
   const totalPrice = basePrice + vat;
 
@@ -104,7 +106,7 @@ export function PurchaseSection() {
                          {isCapped && (
                             <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-success/10 text-brand-success rounded-full text-caption font-bold uppercase tracking-wider mb-6 border border-brand-success/20">
                                 <ShieldCheck className="w-3 h-3" />
-                                Price Capped at {PRICE_CAP.toLocaleString()}
+                                Price capped at {BILLABLE_EMPLOYEE_CAP} employees
                             </div>
                         )}
                         
