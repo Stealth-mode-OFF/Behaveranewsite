@@ -33,8 +33,8 @@ export function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <RoleSelection />
         <LogoMarquee />
+        <RoleSelection />
         <AboutSection />
         <ProblemSection />
         <LeadCaptureSection />

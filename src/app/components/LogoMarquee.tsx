@@ -61,11 +61,11 @@ export function LogoMarquee() {
                     <ul className="flex items-center [&_li]:mx-8 animate-infinite-scroll">
                     {logos.map((logo, index) => (
                         <li key={index}>
-                        <div className="h-10 flex items-center">
+                        <div className="h-12 flex items-center">
                           <img
                             src={logo.src}
                             alt={`${logo.name} logo`}
-                            className="h-10 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                            className="h-12 w-auto object-contain opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                             loading="lazy"
                           />
                         </div>
@@ -75,11 +75,11 @@ export function LogoMarquee() {
                     <ul className="flex items-center [&_li]:mx-8 animate-infinite-scroll" aria-hidden="true">
                     {logos.map((logo, index) => (
                         <li key={`duplicate-${index}`}>
-                        <div className="h-10 flex items-center">
+                        <div className="h-12 flex items-center">
                           <img
                             src={logo.src}
                             alt=""
-                            className="h-10 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                            className="h-12 w-auto object-contain opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                             loading="lazy"
                           />
                         </div>

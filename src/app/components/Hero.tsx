@@ -84,8 +84,8 @@ export function Hero() {
             
             <Button 
               onClick={openBooking}
-              variant="outline"
-              className="h-12 px-8 border-brand-primary/10 hover:bg-brand-primary/5 text-brand-primary font-semibold rounded-lg w-full sm:w-auto"
+              variant="link"
+              className="h-auto px-0 text-brand-primary/80 hover:text-brand-primary font-semibold w-full sm:w-auto"
             >
               <Play className="w-4 h-4 mr-2 fill-current" />
               {t.hero.secondaryCta}
