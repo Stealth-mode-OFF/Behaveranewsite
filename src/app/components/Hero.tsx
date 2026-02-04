@@ -4,10 +4,18 @@ import { Play, ChevronRight, CheckCircle2 } from "lucide-react";
 import { useModal } from "../ModalContext";
 import { useLanguage } from "../LanguageContext";
 import { motion } from "framer-motion";
+// TODO: Replace with AI Assistant screenshot when available in src/assets (e.g. ai-assistant.png)
+import dashboardPreview from "../../assets/57784f33eede4d7388f560072042dfccbed29cab.png";
 
 export function Hero() {
   const { t } = useLanguage();
-  const { openBooking, openDemoVideo } = useModal();
+  const { openBooking } = useModal();
+  const scrollToLead = () => {
+    const element = document.getElementById("lead-capture");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden relative">
@@ -67,7 +75,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
             <Button 
-              onClick={openBooking}
+              onClick={scrollToLead}
               className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all w-full sm:w-auto group"
             >
               {t.hero.primaryCta}
@@ -75,7 +83,7 @@ export function Hero() {
             </Button>
             
             <Button 
-              onClick={openDemoVideo}
+              onClick={openBooking}
               variant="outline"
               className="h-12 px-8 border-brand-primary/10 hover:bg-brand-primary/5 text-brand-primary font-semibold rounded-lg w-full sm:w-auto"
             >
@@ -103,6 +111,10 @@ export function Hero() {
               <CheckCircle2 className="w-4 h-4 text-brand-primary" />
               {t.hero.trust.implementation}
             </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-brand-primary" />
+              {t.hero.trust.languages}
+            </div>
           </motion.div>
         </div>
 
@@ -115,7 +127,7 @@ export function Hero() {
         >
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-white/20 to-transparent pointer-events-none z-10" />
           <img 
-            src="/assets/dashboard-preview.svg" 
+            src={dashboardPreview} 
             alt="Echo Pulse Dashboard" 
             className="w-full h-auto"
           />
