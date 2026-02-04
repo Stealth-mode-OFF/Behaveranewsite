@@ -1,6 +1,7 @@
 import React from "react";
 import { ShieldCheck, FileText, Lock } from "lucide-react";
 import { getBehaveraItem } from "../content/behaveraContent";
+import { useLanguage } from "../LanguageContext";
 import {
   Accordion,
   AccordionContent,
@@ -11,18 +12,9 @@ import {
 const privacy = getBehaveraItem("/privacy-policy");
 const terms = getBehaveraItem("/terms");
 
-const securityHighlights = [
-  "Zpracování osobních údajů probíhá v souladu s GDPR a platnými právními předpisy.",
-  "Správcem údajů je Behavera s.r.o., Křižíkova 148/34, Karlín, Praha 8.",
-  "Pověřenec pro ochranu osobních údajů: gdpr@behavera.com.",
-  "Údaje uchováváme po dobu registrace a následně 6 měsíců, poté je anonymizujeme nebo vymažeme.",
-  "Agregované statistiky jsou anonymizované a neobsahují osobní údaje.",
-  "Subjekty údajů mají právo na přístup, přenos, opravu, výmaz a odvolání souhlasu."
-];
-
-const renderParagraphs = (content?: string) => {
+const renderParagraphs = (content?: string, fallback = "Content coming soon.") => {
   if (!content) {
-    return <p>Obsah připravujeme.</p>;
+    return <p>{fallback}</p>;
   }
 
   return content
@@ -33,6 +25,10 @@ const renderParagraphs = (content?: string) => {
 };
 
 export function TrustCenter() {
+  const { t } = useLanguage();
+  const copy = t.trustCenter || {};
+  const highlights = copy.highlights || [];
+
   return (
     <section className="section-spacing bg-white border-t border-brand-border" id="legal">
       <div className="container-default">
@@ -40,15 +36,14 @@ export function TrustCenter() {
           <div className="lg:w-1/3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-muted text-brand-text-secondary text-xs font-bold uppercase tracking-widest mb-6 border border-brand-border">
               <ShieldCheck className="w-4 h-4" />
-              Trust Center
+              {copy.badge}
             </div>
-            <h2 className="text-3xl font-bold text-brand-text-primary mb-4">Bezpečnost práce s daty</h2>
+            <h2 className="text-3xl font-bold text-brand-text-primary mb-4">{copy.title}</h2>
             <p className="text-brand-text-secondary leading-relaxed mb-6">
-              Transparentně popisujeme, jak nakládáme s osobními údaji, jaké povinnosti přebíráme a jak chráníme
-              důvěrné informace.
+              {copy.subtitle}
             </p>
             <ul className="space-y-3 text-sm text-brand-text-secondary">
-              {securityHighlights.map((item) => (
+              {highlights.map((item: string) => (
                 <li key={item} className="flex items-start gap-3">
                   <Lock className="w-4 h-4 text-brand-primary mt-1" />
                   <span>{item}</span>
@@ -63,11 +58,11 @@ export function TrustCenter() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-brand-text-primary hover:text-brand-primary hover:no-underline py-6 transition-colors">
                   <div className="flex items-center gap-3">
                     <FileText className="w-5 h-5" />
-                    {privacy?.title || "Zásady ochrany osobních údajů"}
+                    {privacy?.title || copy.privacyFallbackTitle}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-brand-text-secondary pb-6 leading-relaxed space-y-4">
-                  {renderParagraphs(privacy?.content)}
+                  {renderParagraphs(privacy?.content, copy.contentFallback)}
                 </AccordionContent>
               </AccordionItem>
 
@@ -75,11 +70,11 @@ export function TrustCenter() {
                 <AccordionTrigger className="text-left text-lg font-semibold text-brand-text-primary hover:text-brand-primary hover:no-underline py-6 transition-colors">
                   <div className="flex items-center gap-3">
                     <FileText className="w-5 h-5" />
-                    {terms?.title || "Obchodní a produktové podmínky"}
+                    {terms?.title || copy.termsFallbackTitle}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="text-sm text-brand-text-secondary pb-6 leading-relaxed space-y-4">
-                  {renderParagraphs(terms?.content)}
+                  {renderParagraphs(terms?.content, copy.contentFallback)}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

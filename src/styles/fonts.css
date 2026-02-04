@@ -1,13 +1,3 @@
-/* ============================================
-   ENTERPRISE INTELLIGENCE SYSTEM TYPOGRAPHY
-   ============================================ */
-
-/* JetBrains Mono - System Labels & Data */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
-
-/* Inter - Primary UI Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 @font-face {
   font-family: "Tomato Grotesk";
   font-style: normal;

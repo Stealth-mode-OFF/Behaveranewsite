@@ -6,61 +6,66 @@ export function HowItWorks() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 bg-white border-t border-brand-border" id="how-it-works">
-      <div className="container-default">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold text-brand-text-primary tracking-tight leading-[1.1] mb-6">
+    <section className="py-28 bg-white border-t border-brand-border" id="how-it-works">
+      <div className="container-default max-w-[1120px] mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-brand-primary/5 rounded-full border border-brand-primary/10 mb-10 shadow-sm">
+            <span className="font-mono text-[11px] font-bold text-brand-primary tracking-[0.15em] uppercase">
+              {t.howItWorks.badge}
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-brand-text-primary tracking-[-0.015em] leading-[1.1] mb-8">
             {t.howItWorks.title} <br />
             <span className="text-brand-primary">{t.howItWorks.titleHighlight}</span>
           </h2>
-          <p className="text-lg md:text-xl text-brand-text-secondary leading-relaxed font-medium">
+          <p className="text-xl text-brand-text-secondary leading-[1.7] font-medium">
             {t.howItWorks.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white border border-brand-border rounded-lg p-8 flex flex-col gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="bg-white border border-brand-border rounded-2xl p-10 flex flex-col gap-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:border-brand-primary/20">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 bg-brand-background-muted rounded flex items-center justify-center border border-brand-border text-brand-primary">
-                <Link className="w-5 h-5" />
+              <div className="w-14 h-14 bg-brand-background-secondary rounded-xl flex items-center justify-center border border-brand-primary/10 text-brand-primary">
+                <Link className="w-7 h-7" />
               </div>
-              <span className="text-xs font-mono font-bold text-brand-text-muted uppercase tracking-widest">
-                Step 01
+              <span className="text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-[0.15em]">
+                {t.howItWorks.stepLabel} 01
               </span>
             </div>
-            <h3 className="text-xl font-bold text-brand-text-primary">Connect</h3>
-            <p className="text-brand-text-secondary leading-relaxed">
-              Connect Echo Pulse to Slack or Teams. No IT required. 5-minute setup.
+            <h3 className="text-2xl font-bold text-brand-text-primary tracking-[-0.01em]">{t.howItWorks.steps.step1.title}</h3>
+            <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
+              {t.howItWorks.steps.step1.desc}
             </p>
           </div>
 
-          <div className="bg-white border border-brand-border rounded-lg p-8 flex flex-col gap-6">
+          <div className="bg-white border border-brand-border rounded-2xl p-10 flex flex-col gap-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:border-brand-primary/20">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 bg-brand-background-muted rounded flex items-center justify-center border border-brand-border text-brand-primary">
-                <Radio className="w-5 h-5" />
+              <div className="w-14 h-14 bg-brand-background-secondary rounded-xl flex items-center justify-center border border-brand-primary/10 text-brand-primary">
+                <Radio className="w-7 h-7" />
               </div>
-              <span className="text-xs font-mono font-bold text-brand-text-muted uppercase tracking-widest">
-                Step 02
+              <span className="text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-[0.15em]">
+                {t.howItWorks.stepLabel} 02
               </span>
             </div>
-            <h3 className="text-xl font-bold text-brand-text-primary">Listen</h3>
-            <p className="text-brand-text-secondary leading-relaxed">
-              AI continuously monitors signals from daily work. No surveys needed.
+            <h3 className="text-2xl font-bold text-brand-text-primary tracking-[-0.01em]">{t.howItWorks.steps.step2.title}</h3>
+            <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
+              {t.howItWorks.steps.step2.desc}
             </p>
           </div>
 
-          <div className="bg-white border border-brand-border rounded-lg p-8 flex flex-col gap-6">
+          <div className="bg-white border border-brand-border rounded-2xl p-10 flex flex-col gap-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 hover:border-brand-primary/20">
             <div className="flex items-center justify-between">
-              <div className="w-10 h-10 bg-brand-background-muted rounded flex items-center justify-center border border-brand-border text-brand-primary">
-                <Rocket className="w-5 h-5" />
+              <div className="w-14 h-14 bg-brand-background-secondary rounded-xl flex items-center justify-center border border-brand-primary/10 text-brand-primary">
+                <Rocket className="w-7 h-7" />
               </div>
-              <span className="text-xs font-mono font-bold text-brand-text-muted uppercase tracking-widest">
-                Step 03
+              <span className="text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-[0.15em]">
+                {t.howItWorks.stepLabel} 03
               </span>
             </div>
-            <h3 className="text-xl font-bold text-brand-text-primary">Act</h3>
-            <p className="text-brand-text-secondary leading-relaxed">
-              Receive weekly priority alerts and concrete action recommendations. 100% anonymous.
+            <h3 className="text-2xl font-bold text-brand-text-primary tracking-[-0.01em]">{t.howItWorks.steps.step3.title}</h3>
+            <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
+              {t.howItWorks.steps.step3.desc}
             </p>
           </div>
         </div>

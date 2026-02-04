@@ -75,26 +75,23 @@ export const translations = {
       }
     },
     howItWorks: {
+      badge: "Process",
+      stepLabel: "Step",
       title: "Operating System",
       titleHighlight: "for your culture.",
       subtitle: "One system instead of annual surveys and assumptions. Clear priorities for leadership.",
       steps: {
         step1: {
-          title: "Contextual Intelligence",
-          desc: "Echo Pulse doesn't just count keywords. It understands context, sarcasm, and urgency. From thousands of answers, it extracts 3 priorities you must address immediately."
+          title: "Connect",
+          desc: "Connect Echo Pulse to Slack or Teams. No IT required. 5-minute setup."
         },
         step2: {
-          title: "Auto-Pilot",
-          desc: "Feedback without forms. Echo Pulse asks automatically where people work (Slack, Teams, Email). Short pulses. Real answers. No admin.",
-          highlight: "System watches rhythm and fatigue. You get clean signals."
+          title: "Listen",
+          desc: "AI continuously monitors signals from daily work. No surveys needed."
         },
         step3: {
-          title: "Action Playbooks",
-          desc: "From problem to solution. Echo suggests concrete steps for managers."
-        },
-        step4: {
-          title: "100% Anonymity",
-          desc: "We guarantee a 'Psychological Safety Layer'. Employees know they can speak openly without risk."
+          title: "Act",
+          desc: "Receive weekly priority alerts and concrete action recommendations. 100% anonymous."
         }
       }
     },
@@ -194,8 +191,18 @@ export const translations = {
       }
     },
     valueByRole: {
+      badge: "By role",
       title: "One platform, two different outputs.",
       subtitle: "CEO needs clarity for decisions. HR needs prevention. Echo Pulse delivers both without noise.",
+      tabs: {
+        ceo: "CEO / Leadership",
+        hr: "HR / People Ops"
+      },
+      cta: {
+        ceo: "Schedule CEO demo",
+        hr: "Schedule HR demo"
+      },
+      ctaNote: "20 min • Personalized for your role",
       ceo: {
         title: "For CEO & Executives",
         desc: "The definitive end of 'gut feeling management'. See exactly which departments are overloaded, where turnover threatens, and where strategy communication fails.",
@@ -229,8 +236,19 @@ export const translations = {
       ]
     },
     purchase: {
+      badge: "Pricing",
       title: "Pricing based on company size",
       subtitle: "Estimate is driven by employee count. Final scope and price are confirmed after a short consultation.",
+      configTitle: "Configure plan",
+      billingMonthly: "Monthly",
+      billingYearly: "Yearly (-20%)",
+      companySizeLabel: "Company size",
+      employeesLabel: "employees",
+      estimatedLabel: "Estimated investment",
+      perMonthLabel: "CZK / mo",
+      priceCapped: "Price capped at {cap} employees",
+      basePriceLabel: "Base price",
+      vatLabel: "VAT (21%)",
       features: [
         "Continuous pulses and signal analysis",
         "Executive and HR dashboards",
@@ -239,6 +257,22 @@ export const translations = {
       ],
       button: "Request a tailored quote",
       guaranteeShort: "Final scope and price are confirmed after the intro call."
+    },
+    trustCenter: {
+      badge: "Trust center",
+      title: "Data security and privacy",
+      subtitle: "We explain transparently how we process personal data, what responsibilities we take, and how we protect confidential information.",
+      highlights: [
+        "Personal data processing follows GDPR and applicable legislation.",
+        "Data controller: Behavera s.r.o., Křižíkova 148/34, Karlín, Prague 8.",
+        "Data protection contact: gdpr@behavera.com.",
+        "We store data during registration and for 6 months afterwards, then anonymize or delete it.",
+        "Aggregated statistics are anonymized and do not contain personal data.",
+        "Data subjects have rights to access, portability, rectification, deletion, and withdrawal of consent."
+      ],
+      privacyFallbackTitle: "Privacy policy",
+      termsFallbackTitle: "Terms and conditions",
+      contentFallback: "Content coming soon."
     },
     cta: {
       title: "Don't wait for the next resignation.",
@@ -298,24 +332,21 @@ export const translations = {
       close: "Close"
     },
     demoRequest: {
-      title: "Get Demo Access",
-      titleCz: "Získat přístup k demo",
+      title: "Get demo access",
       subtitle: "We'll send you a personalized demo link",
-      subtitleCz: "Pošleme vám personalizovaný odkaz na demo",
       emailLabel: "Work email",
-      emailLabelCz: "Pracovní email",
       phoneLabel: "Phone",
-      phoneLabelCz: "Telefon",
       sizeLabel: "Company size",
-      sizeLabelCz: "Velikost firmy",
       roleLabel: "Your role",
-      roleLabelCz: "Vaše role",
       submit: "Send me the demo",
-      submitCz: "Poslat demo",
       successTitle: "Check your inbox!",
-      successTitleCz: "Zkontrolujte email!",
       successMessage: "Demo link is on its way.",
-      successMessageCz: "Odkaz na demo je na cestě.",
+      errorInvalidEmail: "Please enter a valid email.",
+      errorInvalidPhone: "Please enter a valid phone number.",
+      errorRequired: "This field is required.",
+      errorGeneric: "Submission failed. Please try again.",
+      companySizePlaceholder: "Select size",
+      rolePlaceholder: "Select role",
       roles: {
         ceo: "CEO / Founder",
         hr: "HR / People Ops",
@@ -333,15 +364,10 @@ export const translations = {
     },
     tryPage: {
       badge: "Interactive Preview",
-      badgeCz: "Interaktivní ukázka",
       title: "Try Echo Pulse yourself",
-      titleCz: "Vyzkoušejte Echo Pulse na vlastní kůži",
       subtitle: "See what your employees would experience",
-      subtitleCz: "Podívejte se, co zažijí vaši zaměstnanci",
       ctaTitle: "Want to see the results?",
-      ctaTitleCz: "Chcete vidět výsledky?",
-      ctaButton: "Get full demo access",
-      ctaButtonCz: "Získat plný přístup k demo"
+      ctaButton: "Get full demo access"
     },
     leadCapture: {
       badge: "Free E-book",

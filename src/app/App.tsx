@@ -43,9 +43,9 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: "40px", fontFamily: "system-ui", backgroundColor: "#1a1a2e", color: "white", minHeight: "100vh" }}>
+        <div style={{ padding: "40px", fontFamily: "system-ui", backgroundColor: "#2E1065", color: "white", minHeight: "100vh" }}>
           <h1 style={{ color: "#ff6b6b" }}>Something went wrong</h1>
-          <pre style={{ backgroundColor: "#2d2d44", padding: "20px", borderRadius: "8px", overflow: "auto" }}>
+          <pre style={{ backgroundColor: "#3D1A7A", padding: "20px", borderRadius: "8px", overflow: "auto" }}>
             {this.state.error?.message}
             {"\n\n"}
             {this.state.error?.stack}

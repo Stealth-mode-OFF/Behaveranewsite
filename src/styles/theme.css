@@ -1,80 +1,59 @@
 :root {
-  /* ============================================
-     ENTERPRISE INTELLIGENCE SYSTEM
-     Color System v2.0 - Precision & Authority
-     ============================================ */
+  /* BRAND COLOR SYSTEM (Logic: Deep Premium Purple) */
   
-  /* PRIMARY SURFACE SYSTEM - Near-Black Foundation */
-  --brand-surface-primary: #FAFAFA;      /* Light mode primary */
-  --brand-surface-secondary: #FFFFFF;    /* Cards, elevated surfaces */
-  --brand-surface-tertiary: #F5F5F5;     /* Muted backgrounds */
-  --brand-surface-dark: #0A0A0F;         /* Dark sections */
-  --brand-surface-dark-elevated: #141419;
-  
-  /* PRIMARY COLOR - Institutional Blue (more serious than purple) */
-  --brand-primary: #1E3A5F;              /* Deep Navy - Primary brand */
-  --brand-primary-hover: #152942;        /* Darker for interactions */
-  --brand-primary-active: #0D1A2A;       /* Pressed state */
+  /* Primary: The core "Black replacement" and main action color (#2E1065) */
+  --brand-primary: #2E1065;       /* Deep Purple - Main Brand Color */
+  --brand-primary-hover: #1A0B3B; /* Darker shade for interactions */
+  --brand-primary-active: #0F0529; 
 
-  /* ACCENT - Controlled Indigo (less playful) */
-  --brand-accent: #4F46E5;               /* Indigo 600 - Key actions */
-  --brand-accent-hover: #4338CA;         /* Indigo 700 */
-  --brand-accent-subtle: #EEF2FF;        /* Indigo 50 - Subtle highlights */
+  /* Accent: Used for highlights, icons on dark backgrounds, and gradients */
+  --brand-accent: #A78BFA;        /* Violet 400 - Vibrant highlight */
+  --brand-accent-hover: #8B5CF6;  /* Violet 500 */
 
-  /* TEXT HIERARCHY - High Contrast */
-  --brand-text-primary: #0A0A0F;         /* Near black - max contrast */
-  --brand-text-secondary: #3F3F46;       /* Zinc 700 - Secondary content */
-  --brand-text-muted: #71717A;           /* Zinc 500 - Captions, labels */
-  --brand-text-inverse: #FFFFFF;
-  --brand-text-inverse-secondary: rgba(255, 255, 255, 0.7);
+  /* Backgrounds */
+  --brand-background-primary: #FFFFFF;
+  --brand-background-secondary: #FAF5FF; /* Purple 50 */
+  --brand-background-muted: #F3E8FF;     /* Purple 100 */
+  --brand-background-dark: #2E1065;      /* The Deep Purple Background */
 
-  /* SIGNAL COLORS - Operational Status */
-  --brand-signal-active: #10B981;        /* Emerald 500 - System active */
-  --brand-signal-warning: #F59E0B;       /* Amber 500 - Attention */
-  --brand-signal-critical: #EF4444;      /* Red 500 - Critical */
-  --brand-signal-info: #3B82F6;          /* Blue 500 - Information */
+  /* Text Colors */
+  --brand-text-primary: #2E1065;   /* Same as primary - replaces black text */
+  --brand-text-secondary: #581C87; /* Purple 900 - Dark readable secondary */
+  --brand-text-muted: #7E22CE;     /* Purple 700 - Captions */
+  --brand-text-inverse: #FFFFFF;   /* White text on dark backgrounds */
+  --brand-text-inverse-secondary: #DDD6FE; /* Purple 200 - Muted text on dark bg */
 
-  /* BORDERS - Subtle, Single Weight */
-  --brand-border: #E5E5E5;               /* Neutral 200 */
-  --brand-border-strong: #D4D4D4;        /* Neutral 300 */
-  --brand-border-subtle: #F5F5F5;        /* Nearly invisible */
-  --brand-border-dark: #27272A;          /* For dark surfaces */
+  /* Borders */
+  --brand-border: #E9D5FF;         /* Purple 200 */
+  --brand-border-strong: #D8B4FE;  /* Purple 300 */
+  --brand-border-dark: #4C1D95;    /* Violet 900 - Border on dark backgrounds */
 
-  /* Legacy mappings for compatibility */
-  --brand-background-primary: var(--brand-surface-secondary);
-  --brand-background-secondary: var(--brand-surface-tertiary);
-  --brand-background-muted: var(--brand-surface-tertiary);
-  --brand-background-dark: var(--brand-surface-dark);
-  --brand-success: var(--brand-signal-active);
-  --brand-warning: var(--brand-signal-warning);
-  --brand-error: var(--brand-signal-critical);
+  /* Functional */
+  --brand-success: #059669;        /* Emerald 600 */
+  --brand-warning: #D97706;        /* Amber 600 */
+  --brand-error: #DC2626;          /* Red 600 */
 
-  /* TYPOGRAPHY SCALE - Authoritative */
-  --text-display: 72px;                  /* Hero statements */
-  --leading-display: 1.0;
-  
+  /* STRICT TYPOGRAPHY SCALE - Upgraded for Authority */
   --text-h1: 56px;
-  --leading-h1: 1.1;
+  --leading-h1: 64px;
+  --tracking-h1: -0.02em;
   
   --text-h2: 40px;
-  --leading-h2: 1.2;
+  --leading-h2: 48px;
+  --tracking-h2: -0.015em;
   
   --text-h3: 28px;
-  --leading-h3: 1.3;
+  --leading-h3: 36px;
+  --tracking-h3: -0.01em;
   
-  --text-body-lg: 18px;
-  --leading-body-lg: 1.7;
-  
-  --text-body: 16px;
-  --leading-body: 1.6;
+  --text-body: 17px;
+  --leading-body: 28px;
   
   --text-caption: 13px;
-  --leading-caption: 1.5;
-  
-  --text-system: 11px;                   /* Monospace labels */
-  --leading-system: 1.4;
+  --leading-caption: 20px;
+  --tracking-caption: 0.02em;
 
-  /* SPACING - More Generous */
+  /* SPACING SYSTEM (0-8 Scale) - Enhanced breathing room */
   --space-0: 0px;
   --space-1: 8px;
   --space-2: 16px;
@@ -83,44 +62,74 @@
   --space-5: 48px;
   --space-6: 64px;
   --space-7: 96px;
-  --space-8: 128px;                      /* Added for sections */
+  --space-8: 128px;
+  
+  /* Section spacing tokens */
+  --section-padding-y: 120px;
+  --section-padding-y-sm: 80px;
+  --section-max-width: 1120px;
 
-  /* RADIUS - More Restrained */
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* RADIUS SYSTEM */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 
-  /* SHADOWS - Minimal, Precise */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
-  --shadow-none: none;
+  /* SHADOW SYSTEM */
+  --shadow-sm: 0 1px 2px rgba(46, 16, 101, 0.05);
+  --shadow-md: 0 4px 12px rgba(46, 16, 101, 0.08);
+  --shadow-lg: 0 10px 25px rgba(46, 16, 101, 0.12);
+  --shadow-glow: 0 0 20px rgba(167, 139, 250, 0.5); /* Glow for accents */
 
-  /* MOTION - Fast, Not Bouncy */
-  --motion-fast: 100ms ease-out;
-  --motion-normal: 150ms ease-out;
-  --motion-slow: 250ms ease-out;
+  /* MOTION SYSTEM */
+  --motion-fast: 150ms ease-out;
+  --motion-normal: 250ms ease-out;
 
   /* COMPONENT TOKENS */
   --radius-card: var(--radius-lg);    
-  --padding-card: var(--space-4);     
+  --padding-card: var(--space-3);     
   
+  /* Button System - Intelligence Interface Philosophy
+   * Shape: Controlled geometry, not playful
+   * Weight: Confident but not screaming
+   * Behavior: System command, not marketing CTA
+   */
   --button-height: 48px;
-  --button-radius: var(--radius-sm);  
-  --button-padding-x: var(--space-3); 
-  --button-font-weight: 500;
+  --button-height-lg: 52px;
+  --button-height-sm: 40px;
+  --button-radius: 6px;               /* Controlled, not pill-shaped */
+  --button-padding-x: 24px;
+  --button-padding-x-lg: 32px;
+  --button-font-weight: 600;
+  --button-letter-spacing: 0.01em;
+  
+  /* Button Colors - System Command Palette */
+  --button-primary-bg: var(--brand-primary);
+  --button-primary-bg-hover: #3D1A7A;  /* Subtle lift, not dramatic */
+  --button-primary-border: rgba(167, 139, 250, 0.15);
+  
+  --button-secondary-bg: transparent;
+  --button-secondary-border: rgba(46, 16, 101, 0.25);
+  --button-secondary-border-hover: rgba(46, 16, 101, 0.45);
+  
+  --button-ghost-bg-hover: rgba(46, 16, 101, 0.06);
+  
+  /* Button Shadows - Understated depth */
+  --button-shadow: 0 1px 2px rgba(46, 16, 101, 0.08);
+  --button-shadow-hover: 0 2px 4px rgba(46, 16, 101, 0.12);
+  --button-shadow-active: 0 0 0 rgba(46, 16, 101, 0);
 
+  /* Input Tokens */
   --input-height: 48px;
-  --input-radius: var(--radius-sm);   
+  --input-radius: var(--radius-md);   
   --input-padding-x: var(--space-2);  
   --input-border-width: 1px;
 
+  /* Legacy */
   --radius-button: var(--button-radius);
   
-  /* Tailwind Theme Mappings */
-  --background: var(--brand-surface-primary);
+  /* Tailwind Theme Mappings - Base Variables */
+  --background: var(--brand-background-primary);
   --foreground: var(--brand-text-primary);
   
   --card: var(--brand-background-primary);
@@ -154,17 +163,12 @@
 @theme inline {
   --color-brand-primary: var(--brand-primary);
   --color-brand-primary-hover: var(--brand-primary-hover);
-  --color-brand-secondary: var(--brand-surface-tertiary);
+  --color-brand-secondary: var(--brand-background-secondary);
   --color-brand-text: var(--brand-text-primary);
-  --color-brand-dark: var(--brand-surface-dark);
+  --color-brand-dark: var(--brand-background-dark);
   --color-brand-accent: var(--brand-accent);
   
-  /* Signal Colors */
-  --color-signal-active: var(--brand-signal-active);
-  --color-signal-warning: var(--brand-signal-warning);
-  --color-signal-critical: var(--brand-signal-critical);
-  
-  /* Semantic Colors */
+  /* Register Semantic Colors for Utilities */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   
@@ -193,13 +197,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Font Stacks */
-  --font-sans: 'Inter', 'Object Sans', system-ui, sans-serif;
-  --font-display: 'Inter', 'Tomato Grotesk', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+  --font-sans: 'Object Sans', 'Arial', sans-serif;
+  --font-display: 'Tomato Grotesk', 'Object Sans', 'Arial', sans-serif;
 
-  /* Radius */
-  --radius-xs: var(--radius-xs);
+  /* Register Custom Utilities */
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
@@ -209,6 +210,7 @@
   --shadow-md: var(--shadow-md);
   --shadow-lg: var(--shadow-lg);
   
+  /* Component Props */
   --radius-button: var(--button-radius);
 }
 
@@ -220,22 +222,23 @@
   
   ::selection {
     background-color: var(--brand-accent);
-    color: white;
+    color: var(--brand-text-primary);
   }
 
-  /* Minimal Scrollbar */
+  /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
   
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--brand-background-secondary);
   }
   
   ::-webkit-scrollbar-thumb {
     background: var(--brand-border-strong);
-    border-radius: 4px;
+    border-radius: 5px;
+    border: 2px solid var(--brand-background-secondary);
   }
   
   ::-webkit-scrollbar-thumb:hover {
@@ -243,42 +246,25 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans);
+    @apply bg-background text-foreground font-sans antialiased;
     font-size: var(--text-body);
     line-height: var(--leading-body);
-    letter-spacing: -0.01em;
   }
 
-  h1, h2, h3, h4 {
+  h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: var(--brand-text-primary);
   }
 }
 
 @layer components {
-  /* ============================================
-     ENTERPRISE TYPOGRAPHY UTILITIES
-     ============================================ */
-  
-  .text-display {
-    font-size: var(--text-display);
-    line-height: var(--leading-display);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    font-family: var(--font-display);
-  }
-  
+  /* STRICT TYPOGRAPHY UTILITIES */
   .text-h1 {
     font-size: var(--text-h1);
     line-height: var(--leading-h1);
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.02em;
     font-family: var(--font-display);
   }
-  
   .text-h2 {
     font-size: var(--text-h2);
     line-height: var(--leading-h2);
@@ -286,7 +272,6 @@
     letter-spacing: -0.02em;
     font-family: var(--font-display);
   }
-  
   .text-h3 {
     font-size: var(--text-h3);
     line-height: var(--leading-h3);
@@ -294,64 +279,21 @@
     letter-spacing: -0.01em;
     font-family: var(--font-display);
   }
-  
-  .text-body-lg {
-    font-size: var(--text-body-lg);
-    line-height: var(--leading-body-lg);
-    font-weight: 400;
-    color: var(--brand-text-secondary);
-  }
-  
   .text-body {
     font-size: var(--text-body);
     line-height: var(--leading-body);
     font-weight: 400;
     color: var(--brand-text-secondary);
   }
-  
   .text-caption {
     font-size: var(--text-caption);
     line-height: var(--leading-caption);
     font-weight: 500;
     color: var(--brand-text-muted);
   }
-  
-  /* System Label - Monospace, Uppercase */
-  .text-system {
-    font-family: var(--font-mono);
-    font-size: var(--text-system);
-    line-height: var(--leading-system);
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--brand-text-muted);
-  }
-  
-  /* Data Display */
-  .text-data {
-    font-family: var(--font-mono);
-    font-size: 48px;
-    line-height: 1;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-  }
 
-  /* ============================================
-     LAYOUT UTILITIES
-     ============================================ */
-  
+  /* LAYOUT UTILITIES */
   .section-spacing {
-    padding-top: var(--space-7);
-    padding-bottom: var(--space-7);
-    
-    @media (min-width: 768px) {
-      padding-top: var(--space-8);
-      padding-bottom: var(--space-8);
-    }
-  }
-  
-  .section-spacing-sm {
     padding-top: var(--space-5);
     padding-bottom: var(--space-5);
     
@@ -359,99 +301,34 @@
       padding-top: var(--space-6);
       padding-bottom: var(--space-6);
     }
+    
+    @media (min-width: 1200px) {
+      padding-top: var(--space-7);
+      padding-bottom: var(--space-7);
+    }
   }
 
   .container-default {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding-left: var(--space-3);
-    padding-right: var(--space-3);
-    
-    @media (min-width: 768px) {
-      padding-left: var(--space-4);
-      padding-right: var(--space-4);
-    }
-  }
-  
-  .container-narrow {
-    max-width: 720px;
-    margin: 0 auto;
-    padding-left: var(--space-3);
-    padding-right: var(--space-3);
-  }
-  
-  .container-wide {
-    max-width: 1440px;
+    max-width: 1200px;
     margin: 0 auto;
     padding-left: var(--space-3);
     padding-right: var(--space-3);
   }
 
-  /* ============================================
-     COMPONENT UTILITIES
-     ============================================ */
-  
+  /* COMPONENT UTILITIES */
   .card-base {
-    background-color: var(--brand-surface-secondary);
+    background-color: var(--brand-background-primary);
     border: 1px solid var(--brand-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
+    border-radius: var(--radius-card);
+    padding: var(--padding-card);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--motion-normal);
   }
 
-  .card-elevated {
-    background-color: var(--brand-surface-secondary);
-    border: 1px solid var(--brand-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
+  .card-hover {
+    @apply hover:border-brand-primary/50;
     box-shadow: var(--shadow-md);
-  }
-  
-  /* Signal Status Indicators */
-  .signal-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  
-  .signal-dot-active {
-    background-color: var(--brand-signal-active);
-    box-shadow: 0 0 8px var(--brand-signal-active);
-  }
-  
-  .signal-dot-warning {
-    background-color: var(--brand-signal-warning);
-  }
-  
-  .signal-dot-critical {
-    background-color: var(--brand-signal-critical);
-    animation: pulse-critical 2s infinite;
-  }
-  
-  /* Dividers */
-  .divider {
-    height: 1px;
-    background: var(--brand-border);
-    border: none;
-    margin: var(--space-4) 0;
-  }
-  
-  .divider-strong {
-    height: 1px;
-    background: var(--brand-border-strong);
-    border: none;
-    margin: var(--space-5) 0;
-  }
-  
-  /* Dark surface utilities */
-  .surface-dark {
-    background-color: var(--brand-surface-dark);
-    color: var(--brand-text-inverse);
-  }
-  
-  .surface-dark-elevated {
-    background-color: var(--brand-surface-dark-elevated);
-    color: var(--brand-text-inverse);
+    transform: translateY(-4px);
   }
 }
 

@@ -277,7 +277,8 @@ export function DemoAccessModal() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base rounded-xl group"
+                  className="w-full"
+                  size="lg"
                 >
                   {isSubmitting ? (
                     <>
@@ -392,7 +393,8 @@ export function DemoAccessModal() {
               {/* Open Demo Button */}
               <Button
                 onClick={() => window.open(DEMO_CREDENTIALS.url, '_blank')}
-                className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base rounded-xl group mb-6"
+                className="w-full mb-6"
+                size="lg"
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
                 {copy.openDemo}
@@ -409,7 +411,8 @@ export function DemoAccessModal() {
                 <Button
                   onClick={handleBookConsultation}
                   variant="outline"
-                  className="w-full h-10 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white font-medium"
+                  size="sm"
+                  className="w-full"
                 >
                   {copy.upsellCta}
                   <ArrowRight className="w-4 h-4 ml-2" />

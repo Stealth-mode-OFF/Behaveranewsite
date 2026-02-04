@@ -26,7 +26,7 @@ export function PurchaseSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-secondary text-brand-text-secondary text-caption font-bold uppercase tracking-widest mb-6 border border-brand-border">
              <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
-             Pricing
+             {t.purchase.badge}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
             {t.purchase.title}
@@ -40,7 +40,7 @@ export function PurchaseSection() {
             <div className="grid md:grid-cols-2 gap-12">
                 {/* Configuration */}
                 <div>
-                    <h3 className="text-h3 text-brand-text-primary mb-6">Configure Plan</h3>
+                    <h3 className="text-h3 text-brand-text-primary mb-6">{t.purchase.configTitle}</h3>
                     
                     {/* Billing Toggle */}
                     <div className="flex bg-brand-background-secondary p-1 rounded-lg mb-8 w-fit border border-brand-border/50">
@@ -51,7 +51,7 @@ export function PurchaseSection() {
                                 billingInterval === 'monthly' ? "bg-white text-brand-primary shadow-sm" : "text-brand-text-muted hover:text-brand-text-primary"
                             )}
                         >
-                            Monthly
+                            {t.purchase.billingMonthly}
                         </button>
                         <button 
                             onClick={() => setBillingInterval('yearly')}
@@ -60,15 +60,15 @@ export function PurchaseSection() {
                                 billingInterval === 'yearly' ? "bg-white text-brand-primary shadow-sm" : "text-brand-text-muted hover:text-brand-text-primary"
                             )}
                         >
-                            Yearly (-20%)
+                            {t.purchase.billingYearly}
                         </button>
                     </div>
 
                     {/* Slider */}
                     <div className="mb-8">
                          <div className="flex justify-between items-end mb-4">
-                            <label className="text-caption font-bold text-brand-text-secondary">Company Size</label>
-                            <div className="text-h3 font-mono text-brand-text-primary">{employeeCount} <span className="text-body font-sans text-brand-text-muted font-normal">employees</span></div>
+                            <label className="text-caption font-bold text-brand-text-secondary">{t.purchase.companySizeLabel}</label>
+                            <div className="text-h3 font-mono text-brand-text-primary">{employeeCount} <span className="text-body font-sans text-brand-text-muted font-normal">{t.purchase.employeesLabel}</span></div>
                          </div>
                          <input 
                             type="range" 
@@ -94,36 +94,36 @@ export function PurchaseSection() {
                 {/* Summary Box */}
                 <div className="bg-brand-background-secondary rounded-xl p-8 border border-brand-border flex flex-col justify-between">
                     <div>
-                        <span className="text-caption font-bold text-brand-text-muted uppercase tracking-widest block mb-4">Estimated Investment</span>
+                    <span className="text-caption font-bold text-brand-text-muted uppercase tracking-widest block mb-4">{t.purchase.estimatedLabel}</span>
                         
                         <div className="flex items-baseline gap-2 mb-2">
                             <span className="text-h1 font-bold text-brand-text-primary tracking-tight">
                                 {basePrice.toLocaleString()}
                             </span>
-                            <span className="text-body font-semibold text-brand-text-muted">CZK / mo</span>
+                            <span className="text-body font-semibold text-brand-text-muted">{t.purchase.perMonthLabel}</span>
                         </div>
                         
-                         {isCapped && (
+                        {isCapped && (
                             <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-success/10 text-brand-success rounded-full text-caption font-bold uppercase tracking-wider mb-6 border border-brand-success/20">
                                 <ShieldCheck className="w-3 h-3" />
-                                Price capped at {BILLABLE_EMPLOYEE_CAP} employees
+                                {t.purchase.priceCapped.replace("{cap}", String(BILLABLE_EMPLOYEE_CAP))}
                             </div>
                         )}
                         
                         <div className="pt-6 border-t border-brand-border space-y-2">
                              <div className="flex justify-between text-body">
-                                <span className="text-brand-text-muted">Base Price</span>
+                                <span className="text-brand-text-muted">{t.purchase.basePriceLabel}</span>
                                 <span className="font-medium text-brand-text-primary">{basePrice.toLocaleString()} CZK</span>
                              </div>
                              <div className="flex justify-between text-body">
-                                <span className="text-brand-text-muted">VAT (21%)</span>
+                                <span className="text-brand-text-muted">{t.purchase.vatLabel}</span>
                                 <span className="font-medium text-brand-text-primary">{vat.toLocaleString(undefined, { maximumFractionDigits: 0 })} CZK</span>
                              </div>
                         </div>
                     </div>
                     
                     <div className="mt-8">
-                        <Button className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg text-body">
+                        <Button className="w-full" size="default">
                             {t.purchase.button}
                         </Button>
                         <p className="text-center text-caption text-brand-text-muted mt-4 font-medium">

@@ -8,27 +8,32 @@ export function WhyBehavera() {
   const icons = [MessageCircle, Zap, Target];
 
   return (
-    <section className="section-spacing bg-white text-brand-text-primary" id="about">
-      <div className="container-default">
-        <div className="max-w-3xl mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6 text-brand-text-primary">
+    <section className="py-28 bg-white text-brand-text-primary" id="about">
+      <div className="container-default max-w-[1120px] mx-auto px-4">
+        <div className="max-w-3xl mb-20">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-brand-primary/5 rounded-full border border-brand-primary/10 mb-10 shadow-sm">
+            <span className="font-mono text-[11px] font-bold text-brand-primary tracking-[0.15em] uppercase">
+              Why Us
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-[-0.015em] mb-8 text-brand-text-primary leading-[1.1]">
             {t.whyBehavera.title}
           </h2>
-          <p className="text-body text-brand-text-secondary">
+          <p className="text-xl text-brand-text-secondary leading-[1.7] font-medium">
             {t.whyBehavera.desc}
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-14">
           {t.whyBehavera.points.map((point, index) => {
             const Icon = icons[index];
             return (
               <div key={index} className="relative">
-                <div className="w-12 h-12 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center mb-6 text-brand-primary">
-                  <Icon className="w-6 h-6" />
+                <div className="w-14 h-14 rounded-xl bg-brand-background-secondary border border-brand-primary/10 flex items-center justify-center mb-8 text-brand-primary">
+                  <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-h3 text-brand-text-primary mb-3">{point.title}</h3>
-                <p className="text-body text-brand-text-secondary">
+                <h3 className="text-2xl font-bold text-brand-text-primary mb-4 tracking-[-0.01em]">{point.title}</h3>
+                <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
                   {point.desc}
                 </p>
               </div>

@@ -1,163 +1,140 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Shield, Clock, MessageCircle } from "lucide-react";
 import { useModal } from "../ModalContext";
 import { useLanguage } from "../LanguageContext";
 import { motion } from "framer-motion";
-
-// Evidence data - from Gallup Q12 Meta-Analysis
-const evidenceStats = [
-  { value: "183,806", label: "business units studied", labelCz: "zkoumaných týmů", labelDe: "untersuchte Teams" },
-  { value: "23%", label: "higher profit (engaged)", labelCz: "vyšší zisk (engagovaní)", labelDe: "höherer Gewinn (engagiert)" },
-  { value: "52%", label: "turnover preventable", labelCz: "odchodům šlo zabránit", labelDe: "Fluktuation vermeidbar" },
-  { value: "70%", label: "variance = manager", labelCz: "variace = manažer", labelDe: "Varianz = Manager" },
-];
+import dashboardPreview from "../../assets/57784f33eede4d7388f560072042dfccbed29cab.png";
 
 export function Hero() {
-  const { language } = useLanguage();
-  const { openBooking } = useModal();
-
-  // Statement-based hero content
-  const statements = {
-    en: {
-      status: "SYSTEM STATUS: OBSERVING",
-      line1: "Most organizations learn about instability",
-      line2: "after it becomes visible in results.",
-      line3: "By then, the cost is already incurred.",
-      solution: "Echo Pulse observes the signals you cannot see.",
-      solutionSub: "Continuously. Before they become problems.",
-      cta: "Request access",
-      source: "Gallup Q12 Meta-Analysis • 3.3M employees • 73 countries",
-    },
-    cz: {
-      status: "STAV SYSTÉMU: MONITOROVÁNÍ",
-      line1: "Většina organizací se dozví o nestabilitě,",
-      line2: "až když se projeví ve výsledcích.",
-      line3: "V tu chvíli už jsou náklady vynaloženy.",
-      solution: "Echo Pulse sleduje signály, které nevidíte.",
-      solutionSub: "Průběžně. Dřív, než se z nich stanou problémy.",
-      cta: "Získat přístup",
-      source: "Gallup Q12 Meta-Analysis • 3.3M zaměstnanců • 73 zemí",
-    },
-    de: {
-      status: "SYSTEMSTATUS: ÜBERWACHUNG",
-      line1: "Die meisten Organisationen erfahren von Instabilität,",
-      line2: "nachdem sie in den Ergebnissen sichtbar wird.",
-      line3: "Zu diesem Zeitpunkt sind die Kosten bereits entstanden.",
-      solution: "Echo Pulse beobachtet die Signale, die Sie nicht sehen.",
-      solutionSub: "Kontinuierlich. Bevor sie zu Problemen werden.",
-      cta: "Zugang anfordern",
-      source: "Gallup Q12 Meta-Analysis • 3.3M Mitarbeiter • 73 Länder",
-    },
-  };
-
-  const s = statements[language] || statements.en;
+  const { t } = useLanguage();
+  const { openVideo, openBooking } = useModal();
 
   return (
-    <section className="min-h-screen flex flex-col justify-center relative bg-[#FAFAFA]">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000006_1px,transparent_1px),linear-gradient(to_bottom,#00000006_1px,transparent_1px)] bg-[size:48px_48px]" />
-      
-      <div className="container-default relative z-10 py-32 md:py-40">
-        
-        {/* Main Content - Statement Based */}
-        <div className="max-w-4xl">
+    <section className="pt-40 pb-20 md:pt-48 md:pb-28 overflow-hidden relative bg-gradient-to-b from-brand-background-secondary/30 to-white">
+      {/* Subtle Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10 pointer-events-none">
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-brand-primary/3 rounded-full blur-3xl" />
+        <div className="absolute top-10 right-1/4 w-96 h-96 bg-brand-accent/3 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container-default px-4 mx-auto relative z-10">
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto mb-20">
           
-          {/* System Status - Monospace */}
+          {/* Target Audience Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-brand-primary/20 mb-10 shadow-sm"
+          >
+            <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-primary">
+              {t.hero.badge}
+            </span>
+          </motion.div>
+
+          {/* Outcome-First Title - UPGRADED */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] text-brand-text-primary mb-8 leading-[1.08]"
+          >
+            {t.hero.title}
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-primary to-brand-accent">
+              {t.hero.titleHighlight}
+            </span>
+          </motion.h1>
+
+          {/* Clear Value Proposition - UPGRADED */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-xl md:text-2xl text-brand-text-secondary leading-[1.6] max-w-3xl mb-12 font-medium"
+          >
+            {t.hero.subtitle}
+          </motion.p>
+
+          {/* Primary + Secondary CTA - SYSTEM COMMAND REDESIGN */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-8"
+          >
+            <Button 
+              onClick={openVideo}
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              {t.hero.primaryCta}
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+            
+            <Button
+              onClick={openBooking}
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
+              {t.hero.secondaryCta}
+            </Button>
+          </motion.div>
+
+          {/* Risk Reversal - UPGRADED */}
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-sm text-brand-text-muted max-w-lg leading-relaxed"
+          >
+            {t.hero.riskReversal}
+          </motion.p>
+
+          {/* Trust Indicators - UPGRADED */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-12 pt-10 border-t border-brand-border/40 flex flex-wrap justify-center gap-8 md:gap-12"
           >
-            <div className="flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981]" />
-              <span className="font-mono text-xs font-medium tracking-[0.15em] text-[#71717A] uppercase">
-                {s.status}
-              </span>
+            <div className="flex items-center gap-3 text-sm text-brand-text-secondary">
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-brand-primary" />
+              </div>
+              <span className="font-medium">{t.hero.trust.security}</span>
             </div>
-          </motion.div>
-
-          {/* The Statement - Reality, Not Marketing */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-12"
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-[44px] font-semibold leading-[1.25] text-[#0A0A0F] tracking-[-0.02em]">
-              {s.line1}
-              <br />
-              <span className="text-[#71717A]">{s.line2}</span>
-            </h1>
-            <p className="mt-6 text-xl md:text-2xl text-[#71717A] font-normal">
-              {s.line3}
-            </p>
-          </motion.div>
-
-          {/* Divider */}
-          <motion.div 
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-16 h-px bg-[#D4D4D4] mb-12 origin-left"
-          />
-
-          {/* The Solution Statement */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mb-12"
-          >
-            <p className="text-2xl md:text-3xl font-semibold text-[#1E3A5F] leading-tight tracking-[-0.01em]">
-              {s.solution}
-            </p>
-            <p className="mt-3 text-lg text-[#3F3F46]">
-              {s.solutionSub}
-            </p>
-          </motion.div>
-
-          {/* Single CTA - High Commitment */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Button 
-              onClick={openBooking}
-              className="h-14 px-10 bg-[#1E3A5F] hover:bg-[#152942] text-white font-medium text-base rounded-md transition-colors duration-150"
-            >
-              {s.cta}
-              <ArrowRight className="w-5 h-5 ml-3" />
-            </Button>
+            <div className="flex items-center gap-3 text-sm text-brand-text-secondary">
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
+                <MessageCircle className="w-5 h-5 text-brand-primary" />
+              </div>
+              <span className="font-medium">{t.hero.trust.support}</span>
+            </div>
+            <div className="flex items-center gap-3 text-sm text-brand-text-secondary">
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-brand-primary" />
+              </div>
+              <span className="font-medium">{t.hero.trust.implementation}</span>
+            </div>
           </motion.div>
         </div>
 
-        {/* Evidence Strip - Bottom */}
+        {/* Dashboard Preview - UPGRADED */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-24 pt-12 border-t border-[#E5E5E5]"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="relative max-w-6xl mx-auto rounded-2xl shadow-2xl border border-brand-border/30 bg-white overflow-hidden ring-1 ring-brand-primary/5"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {evidenceStats.map((stat, index) => (
-              <div key={index} className="text-left">
-                <div className="font-mono text-3xl md:text-4xl font-semibold text-[#0A0A0F] tracking-tight tabular-nums">
-                  {stat.value}
-                </div>
-                <div className="mt-2 text-sm text-[#71717A] leading-snug">
-                  {language === 'cz' ? stat.labelCz : language === 'de' ? stat.labelDe : stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 font-mono text-[11px] text-[#A1A1AA] uppercase tracking-wider">
-            {s.source}
-          </p>
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-white/10 to-transparent pointer-events-none z-10" />
+          <img 
+            src={dashboardPreview} 
+            alt="Echo Pulse Dashboard" 
+            className="w-full h-auto"
+          />
         </motion.div>
-
       </div>
     </section>
   );
