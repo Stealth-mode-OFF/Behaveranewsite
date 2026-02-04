@@ -18,7 +18,7 @@ export function TermsPage() {
       <div className="max-w-4xl mx-auto bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-brand-border">
         <div className="mb-8">
           <Link to="/">
-            <Button variant="ghost" className="pl-0 hover:bg-transparent hover:text-brand-primary gap-2">
+            <Button variant="ghost" className="pl-0 hover:bg-transparent hover:text-brand-accent gap-2">
               <ArrowLeft className="w-4 h-4" />
               {isCz ? "Zpět na hlavní stránku" : "Back to Home"}
             </Button>
@@ -30,7 +30,7 @@ export function TermsPage() {
         </h1>
         <p className="text-sm text-brand-text-secondary mb-8">
             {isCz ? "Podmínky a pravidla Služeb Assessmentů jsou k dispozici zde: " : "Terms and Conditions of the Assessments are available here: "}
-            <a href={isCz ? "https://cz.behavera.com/t-c-assessments" : "https://behavera.com/t-c-assessments"} className="text-brand-primary underline">
+            <a href={isCz ? "https://cz.behavera.com/t-c-assessments" : "https://behavera.com/t-c-assessments"} className="text-brand-accent underline">
                 {isCz ? "cz.behavera.com/t-c-assessments" : "behavera.com/t-c-assessments"}
             </a>
         </p>

@@ -11,8 +11,8 @@ export function ValueByRole() {
       
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent" />
-      <div className="absolute -left-20 top-40 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -right-20 bottom-40 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -left-20 top-40 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -right-20 bottom-40 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container-default relative z-10">
         
@@ -29,7 +29,7 @@ export function ValueByRole() {
         <div className="flex flex-col lg:flex-row gap-0 rounded-3xl overflow-hidden shadow-2xl shadow-brand-primary/5 max-w-6xl mx-auto ring-1 ring-brand-border">
             
             {/* CEO Column - Strategic / Light Purple Mode */}
-            <motion.div 
+            <motion.div
                 initial={{ flex: 1 }}
                 whileHover={{ flex: 1.2 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
@@ -39,7 +39,7 @@ export function ValueByRole() {
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 
                 <div className="flex items-center gap-4 mb-10 relative z-10">
-                    <div className="p-3 bg-white rounded-xl text-brand-primary border border-brand-border shadow-sm">
+                    <div className="p-3 bg-white rounded-xl text-brand-accent border border-brand-border shadow-sm">
                         <Target className="w-6 h-6" />
                     </div>
                     <div>
@@ -47,7 +47,7 @@ export function ValueByRole() {
                             {t.valueByRole.ceo.title}
                             <ArrowUpRight className="w-4 h-4 opacity-50" />
                         </h3>
-                        <div className="h-0.5 w-12 bg-brand-primary" />
+                        <div className="h-0.5 w-12 bg-brand-accent" />
                     </div>
                 </div>
 
@@ -67,11 +67,11 @@ export function ValueByRole() {
                                                         if (!title) return null;
                                                         return (
                                                             <li key={index} className="flex items-start gap-4 group/item">
-                                                                <div className="mt-1.5 p-1 rounded-full bg-brand-primary/10 text-brand-primary shrink-0 group-hover/item:bg-brand-primary group-hover/item:text-white transition-colors">
+                                                                <div className="mt-1.5 p-1 rounded-full bg-brand-accent/10 text-brand-accent shrink-0 group-hover/item:bg-brand-accent group-hover/item:text-white transition-colors">
                                                                     <Check className="w-3.5 h-3.5" />
                                                                 </div>
                                                                 <div>
-                                                                    <strong className="block text-brand-text-primary text-base font-bold uppercase tracking-wide mb-1 group-hover/item:text-brand-primary transition-colors">{title}</strong>
+                                                                    <strong className="block text-brand-text-primary text-base font-bold uppercase tracking-wide mb-1 group-hover/item:text-brand-accent transition-colors">{title}</strong>
                                                                     {desc && (
                                                                         <p className="text-sm text-brand-text-muted leading-relaxed">{desc}</p>
                                                                     )}
@@ -142,7 +142,7 @@ export function ValueByRole() {
         {/* Bottom Stabilizer */}
         <div className="mt-16 text-center">
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white rounded-full text-xs font-bold text-brand-text-muted border border-brand-border uppercase tracking-widest shadow-sm hover:shadow-md transition-shadow">
-                <Shield className="w-3.5 h-3.5 text-brand-primary" />
+                <Shield className="w-3.5 h-3.5 text-brand-accent" />
                 <span>{t.valueByRole.bottomBadge}</span>
             </div>
         </div>

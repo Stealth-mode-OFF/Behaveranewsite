@@ -9,15 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand-primary text-white hover:bg-brand-primary/90 shadow-md hover:shadow-lg transition-all duration-300 border border-transparent",
+        default: "bg-brand-primary text-white hover:bg-brand-primary-hover shadow-md hover:shadow-lg transition-all duration-300 border border-transparent",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border-[1.5px] border-brand-primary text-brand-primary bg-transparent hover:bg-brand-secondary/50",
+          "border border-brand-border-strong text-brand-text-primary bg-transparent hover:bg-brand-background-secondary",
         secondary:
-          "bg-brand-secondary text-brand-primary hover:bg-brand-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-brand-background-secondary text-brand-text-primary hover:bg-brand-background-muted border border-brand-border",
+        ghost: "hover:bg-brand-background-secondary hover:text-brand-text-primary",
+        link: "text-brand-accent underline-offset-4 hover:underline",
       },
       size: {
         // Updated to use CSS variables for height and padding
