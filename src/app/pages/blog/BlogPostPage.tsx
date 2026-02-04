@@ -7,6 +7,7 @@ import { Header } from '@/app/components/Header';
 import { Footer } from '@/app/components/Footer';
 import { format } from 'date-fns';
 import { ArrowLeft, Share2 } from 'lucide-react';
+import { useSEO } from '@/app/hooks/useSEO';
 
 export const BlogPostPage = () => {
   const { slug } = useParams();
@@ -21,6 +22,14 @@ export const BlogPostPage = () => {
       });
     }
   }, [slug]);
+
+  // Dynamic SEO based on post
+  useSEO({
+    title: post?.title || 'Blog',
+    description: post?.excerpt || 'Insights o engagementu, retenci a organizační psychologii.',
+    keywords: post?.tags?.join(', ') || 'employee engagement, HR analytics, burnout prevention',
+    ogType: 'article',
+  });
 
   if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">Loading...</div>;
   if (!post) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">Post not found</div>;

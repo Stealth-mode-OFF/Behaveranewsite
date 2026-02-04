@@ -7,7 +7,7 @@ export const translations = {
       title: "Signal",
       titleHighlight: "Radar",
       subtitle: "Echo Pulse continuously monitors key areas of work reality. No noise. Just clear signals where support or tools are missing.",
-      methodology: "Methodology grounded in Job Demands–Resources (JD-R), Self-Determination Theory, and Equity Theory.",
+      methodology: "Built on 40+ years of validated research: JD-R Model (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), and Affective Events Theory (Weiss & Cropanzano).",
       signals: {
         mood: { title: "How people feel", question: "How is the team actually feeling?", metrics: ["Mood", "Energy", "Stability"] },
         stress: { title: "Stress & Pressure", question: "Is pressure driving performance or burnout?", metrics: ["Chronic Stress", "Spillover", "Recovery"] },
@@ -100,7 +100,7 @@ export const translations = {
     },
     methodology: {
       title: "Scientific Instrument, Not a 'Happiness Survey'.",
-      subtitle: "We separate signal from noise and turn it into clear priorities.",
+      subtitle: "Built on 40+ years of validated organizational psychology research. Data from 183,000+ business units shows: engaged teams deliver 23% higher profit (Gallup Q12 Meta-Analysis, 2020).",
       cards: [
         {
           title: "We Don't Hunt 'Happiness'",
@@ -108,11 +108,11 @@ export const translations = {
         },
         {
           title: "90 Seconds a Month",
-          desc: "Maximum respect for focus. No 20-minute surveys. Our 'Low-Friction' protocol guarantees high response rates without annoyance."
+          desc: "Research shows response quality drops dramatically with survey length (Galesic & Bosnjak, 2009). One question daily, not 50 questions yearly."
         },
         {
           title: "Core: JD-R Model",
-          desc: "Everything is built on the Job Demands-Resources model. We measure the balance between demands on employees and the resources you provide."
+          desc: "Built on the Job Demands-Resources model (Demerouti & Bakker, 2001). Burnout occurs when demands exceed resources. Engagement when resources exceed demands."
         }
       ]
     },
@@ -481,7 +481,7 @@ export const translations = {
       title: "Radar",
       titleHighlight: "aktivních signálů",
       subtitle: "Echo Pulse kontinuálně monitoruje klíčové oblasti pracovní reality. Žádný šum. Jen jasné signály tam, kde chybí podpora, nástroje nebo vedení.",
-      methodology: "Metodika podložena modely Job Demands–Resources (JD-R), Self-Determination Theory a Equity Theory.",
+      methodology: "40+ let validovaného výzkumu: JD-R Model (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), Affective Events Theory (Weiss & Cropanzano).",
       signals: {
         mood: { title: "Jak se lidé cítí", question: "Jak se tým skutečně cítí?", metrics: ["Nálada", "Energie", "Stabilita"] },
         stress: { title: "Stres a tlak", question: "Je tlak motorem nebo cestou k vyhoření?", metrics: ["Chronický stres", "Přetížení", "Regenerace"] },
@@ -574,19 +574,19 @@ export const translations = {
     },
     methodology: {
       title: "Vědecký nástroj, ne 'dotazník'.",
-      subtitle: "Oddělujeme signál od šumu a měníme ho na jasné priority.",
+      subtitle: "40+ let výzkumu organizační psychologie. Data z 183,000+ týmů ukazují: engagované týmy mají o 23% vyšší ziskovost (Gallup Q12 Meta-Analysis, 2020).",
       cards: [
         {
-          title: "Data (Signál)",
-          desc: "Ne měření spokojenosti. Sledujeme metriky stability, podpory a rizik vyhoření. (90s / měsíc)"
+          title: "Signál, ne šum",
+          desc: "Neměříme spokojenost. Sledujeme metriky stability, podpory a rizik vyhoření podle JD-R modelu (Demerouti & Bakker, 2001)."
         },
         {
-          title: "Analýza (Kontext)",
-          desc: "Ne bezzubé reporty. Dostáváte jasný kontext a doporučení pro konkrétní situace."
+          title: "90 sekund / měsíc",
+          desc: "Výzkum ukazuje dramatický pokles kvality odpovědí s délkou dotazníku. Proto jedna otázka denně, ne 50 otázek ročně."
         },
         {
-          title: "Akce (Dopad)",
-          desc: "Ne kampaně. Průběžná viditelnost a konkrétní 'Action Plans' pro manažery."
+          title: "Emoce jako radar",
+          desc: "Affective Events Theory (Weiss & Cropanzano) říká, že emoce jsou nejrychlejší signál. Chytáme problém týdny předtím, než se projeví v chování."
         }
       ]
     },
@@ -955,7 +955,7 @@ export const translations = {
       title: "Signal",
       titleHighlight: "Radar",
       subtitle: "Echo Pulse überwacht kontinuierlich die wichtigsten Bereiche der Arbeitsrealität. Kein Rauschen. Nur klare Signale, wo Unterstützung oder Tools fehlen.",
-      methodology: "Methodik basierend auf Job Demands–Resources (JD-R), Self-Determination Theory und Equity Theory.",
+      methodology: "40+ Jahre validierte Forschung: JD-R Modell (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), Affective Events Theory (Weiss & Cropanzano).",
       signals: {
         mood: { title: "Wie sich Menschen fühlen", question: "Wie fühlt sich das Team wirklich?", metrics: ["Stimmung", "Energie", "Stabilität"] },
         stress: { title: "Stress & Druck", question: "Treibt Druck Leistung oder Burnout?", metrics: ["Chronischer Stress", "Spillover", "Erholung"] },
@@ -1048,7 +1048,7 @@ export const translations = {
     },
     methodology: {
       title: "Wissenschaftliches Instrument, keine 'Happiness Survey'.",
-      subtitle: "Wir trennen Signal von Rauschen. Echo Pulse macht aus Gefühlen Business-Strategie und klärt Prioritäten.",
+      subtitle: "40+ Jahre validierte Organisationspsychologie. Daten von 183.000+ Teams zeigen: Engagierte Teams liefern 23% höhere Rentabilität (Gallup Q12 Meta-Analysis, 2020).",
       cards: [
         {
           title: "Wir suchen kein 'Glück'",
@@ -1056,11 +1056,11 @@ export const translations = {
         },
         {
           title: "90 Sekunden pro Monat",
-          desc: "Maximaler Respekt für Fokus. Keine 20-Minuten-Umfragen. Unser 'Low-Friction'-Protokoll garantiert hohe Rücklaufquoten ohne Störung."
+          desc: "Forschung zeigt einen dramatischen Qualitätsabfall bei längeren Umfragen (Galesic & Bosnjak, 2009). Eine Frage täglich, nicht 50 Fragen jährlich."
         },
         {
           title: "Kern: JD-R Modell",
-          desc: "Alles basiert auf dem Job Demands-Resources Modell. Wir messen die Balance zwischen Anforderungen und Ressourcen."
+          desc: "Aufgebaut auf dem Job Demands-Resources Modell (Demerouti & Bakker, 2001). Burnout entsteht wenn Anforderungen Ressourcen übersteigen."
         }
       ]
     },

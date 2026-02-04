@@ -13,6 +13,7 @@ import { BlogPostPage } from "./pages/blog/BlogPostPage";
 import { CaseStudiesPage } from "./pages/case-studies/CaseStudiesPage";
 import { CaseStudyPage } from "./pages/case-studies/CaseStudyPage";
 import { TryPage } from "./pages/try/TryPage";
+import { ResearchPage } from "./pages/research/ResearchPage";
 
 // Admin Pages
 import { AdminLayout } from "./pages/admin/AdminLayout";
@@ -74,6 +75,7 @@ function App() {
 
                   <Route path="/case-studies" element={<CaseStudiesPage />} />
                   <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
+                  <Route path="/research" element={<ResearchPage />} />
                   <Route path="/try" element={<TryPage />} />
 
                 {/* Admin Routes */}

@@ -24,17 +24,14 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { id: 'problem', label: t.header.nav.problem, type: 'scroll' },
-    { id: 'how-it-works', label: t.header.nav.solution, type: 'scroll' },
-    { id: 'solutions', label: t.header.nav.impact, type: 'scroll' },
+  // Simplified enterprise nav - fewer items, clearer hierarchy
+  const pageLinks = [
+    { path: '/research', label: language === 'cz' ? 'Metodologie' : language === 'de' ? 'Methodik' : 'Methodology' },
+    { path: '/case-studies', label: language === 'cz' ? 'Reference' : language === 'de' ? 'Referenzen' : 'Evidence' },
+    { path: '/blog', label: language === 'cz' ? 'Analýzy' : language === 'de' ? 'Analysen' : 'Analysis' },
   ];
 
-  const pageLinks = [
-    { path: '/blog', label: 'Blog' },
-    { path: '/case-studies', label: 'Case Studies' },
-    { path: '/try', label: language === 'cz' ? 'Vyzkoušet' : 'Try it' },
-  ];
+  const ctaLabel = language === 'cz' ? 'Získat přístup' : language === 'de' ? 'Zugang anfordern' : 'Request access';
 
   return (
     <motion.header
@@ -42,153 +39,93 @@ export function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "bg-white/95 backdrop-blur-md border-b border-brand-border py-3" : "bg-transparent py-6"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-200",
+          isScrolled 
+            ? "bg-white/95 backdrop-blur-md border-b border-[#E5E5E5] py-4" 
+            : "bg-transparent py-6"
       )}
     >
       <div className="container-default flex items-center justify-between">
         
-        {/* Logo - Text Only, Strong */}
+        {/* Logo - Minimal, System-Like */}
         <Link 
             to="/"
-            className="flex items-center gap-2 cursor-pointer group" 
+            className="flex items-center gap-3 cursor-pointer group" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-            <span className={cn(
-                "text-xl font-bold tracking-tighter transition-colors text-brand-text-primary"
-            )}>
+            <span className="text-lg font-semibold tracking-[-0.02em] text-[#0A0A0F]">
               Echo Pulse
             </span>
-            <div className={cn(
-                "w-1.5 h-1.5 rounded-full bg-brand-primary group-hover:animate-pulse opacity-100"
-            )} />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_6px_#10B981] group-hover:shadow-[0_0_10px_#10B981] transition-shadow" />
         </Link>
 
-        {/* Desktop Nav - Minimal */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {navItems.map((item) => (
-             isHome ? (
-                 <a 
-                    key={item.id}
-                    href={`#${item.id}`} 
-                    className={cn(
-                        "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-                    )}
-                >
-                    {item.label}
-                 </a>
-             ) : (
-                 <Link
-                    key={item.id}
-                    to={`/#${item.id}`}
-                    className={cn(
-                        "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-                    )}
-                 >
-                     {item.label}
-                 </Link>
-             )
-          ))}
+        {/* Desktop Nav - Enterprise Minimal */}
+        <nav className="hidden lg:flex items-center gap-10">
           {pageLinks.map((link) => (
              <Link 
                 key={link.path}
                 to={link.path}
-                className={cn(
-                    "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                    isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-                )}
+                className="text-[13px] font-medium tracking-wide text-[#52525B] hover:text-[#0A0A0F] transition-colors duration-150"
             >
                 {link.label}
             </Link>
           ))}
         </nav>
 
-        {/* Actions */}
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="text-brand-text-primary">
-             <LanguageSwitcher />
-          </div>
+        {/* Actions - Streamlined */}
+        <div className="hidden lg:flex items-center gap-6">
+          <LanguageSwitcher />
           
           <Button 
             onClick={openBooking}
-            variant={isScrolled ? "default" : "secondary"}
-            className={cn(
-                "rounded h-10 px-6 font-semibold transition-all text-sm",
-                !isScrolled && "bg-brand-primary text-white hover:bg-brand-primary-hover",
-                isScrolled && "bg-brand-primary text-white hover:bg-brand-primary-hover"
-            )}
+            className="h-10 px-6 bg-[#1E3A5F] hover:bg-[#152942] text-white font-medium text-sm rounded-md transition-colors duration-150"
           >
-            {t.header.bookDemo}
+            {ctaLabel}
           </Button>
         </div>
 
         {/* Mobile Toggle */}
         <div className="lg:hidden flex items-center gap-4">
-          <div className="text-brand-text-primary">
-             <LanguageSwitcher />
-          </div>
+          <LanguageSwitcher />
           <button
-            className="p-2 transition-colors text-brand-text-primary"
+            className="p-2 text-[#0A0A0F]"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu - Full Screen Overlay */}
+      {/* Mobile Menu - Clean Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-white z-40 flex flex-col pt-32 px-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-white z-40 flex flex-col pt-28 px-6"
           >
-            <div className="flex flex-col gap-6">
-               {navItems.map((item) => (
-                 isHome ? (
-                    <a 
-                        key={item.id}
-                        href={`#${item.id}`} 
-                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
-                        {item.label}
-                    </a>
-                 ) : (
-                    <Link
-                        key={item.id}
-                        to={`/#${item.id}`}
-                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
-                        {item.label}
-                    </Link>
-                 )
-              ))}
+            <div className="flex flex-col gap-1">
               {pageLinks.map((link) => (
                  <Link 
                     key={link.path}
                     to={link.path}
-                    className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
+                    className="py-4 text-2xl font-semibold text-[#0A0A0F] tracking-tight border-b border-[#F4F4F5]" 
                     onClick={() => setMobileMenuOpen(false)}
                 >
                     {link.label}
                 </Link>
               ))}
-              <div className="mt-8 pt-8 border-t border-brand-border flex flex-col gap-4">
+              <div className="mt-8">
                 <Button 
                     onClick={() => {
                         setMobileMenuOpen(false);
                         openBooking();
                     }}
-                    className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
+                    className="w-full h-14 bg-[#1E3A5F] hover:bg-[#152942] text-white font-medium text-base rounded-md"
                 >
-                  {t.header.bookDemo}
+                  {ctaLabel}
                 </Button>
               </div>
             </div>
@@ -197,4 +134,5 @@ export function Header() {
       </AnimatePresence>
     </motion.header>
   );
+}
 }

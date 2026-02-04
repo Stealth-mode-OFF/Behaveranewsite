@@ -1,102 +1,145 @@
 import React from "react";
-import { Eye, Zap, ShieldAlert } from "lucide-react";
 import { useLanguage } from "../LanguageContext";
 import { motion } from "framer-motion";
-// TODO: Replace with AI Assistant screenshot when available in src/assets (e.g. ai-assistant.png)
 import dashboardPreview from "../../assets/57784f33eede4d7388f560072042dfccbed29cab.png";
 
-export function DashboardPreview() {
-  const { t } = useLanguage();
+// Control surface annotations
+const annotations = {
+  en: {
+    sectionLabel: "INTERFACE",
+    title: "A control surface, not a report",
+    subtitle: "Real-time organizational state, continuously updated.",
+    features: [
+      { label: "Signal detection", value: "Continuous", desc: "Pattern recognition across behavioral vectors" },
+      { label: "Risk classification", value: "Automated", desc: "Machine-scored severity across all monitored dimensions" },
+      { label: "Action priority", value: "Hierarchical", desc: "Intervention points ranked by predicted impact" },
+    ],
+  },
+  cz: {
+    sectionLabel: "ROZHRANÍ",
+    title: "Kontrolní panel, ne reporty",
+    subtitle: "Stav organizace v reálném čase, průběžně aktualizovaný.",
+    features: [
+      { label: "Detekce signálů", value: "Průběžná", desc: "Rozpoznávání vzorců napříč behaviorálními vektory" },
+      { label: "Klasifikace rizik", value: "Automatizovaná", desc: "Strojově hodnocená závažnost ve všech sledovaných dimenzích" },
+      { label: "Priorita akcí", value: "Hierarchická", desc: "Intervenční body seřazené podle predikovaného dopadu" },
+    ],
+  },
+  de: {
+    sectionLabel: "OBERFLÄCHE",
+    title: "Eine Steuerungsoberfläche, kein Bericht",
+    subtitle: "Organisationszustand in Echtzeit, kontinuierlich aktualisiert.",
+    features: [
+      { label: "Signalerkennung", value: "Kontinuierlich", desc: "Mustererkennung über Verhaltensvektoren hinweg" },
+      { label: "Risikoeinstufung", value: "Automatisiert", desc: "Maschinell bewerteter Schweregrad in allen überwachten Dimensionen" },
+      { label: "Aktionspriorität", value: "Hierarchisch", desc: "Interventionspunkte nach vorhergesagtem Impact geordnet" },
+    ],
+  },
+};
 
-  const icons = [Eye, ShieldAlert, Zap];
+export function DashboardPreview() {
+  const { language } = useLanguage();
+  const data = annotations[language] || annotations.en;
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden" id="preview">
-      
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30" />
-      
-      <div className="container-default relative z-10">
+    <section className="py-24 md:py-32 bg-[#0A0A0F]" id="preview">
+      <div className="container-default">
         
-        {/* Header - The "Why" behind the screen */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 max-w-5xl mx-auto">
-            <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="max-w-xl"
-            >
-                <div className="flex items-center gap-2 mb-4">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></span>
-                    <span className="text-[11px] font-mono font-bold text-brand-text-muted tracking-widest uppercase">
-                        {t.dashboard.badge}
-                    </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight leading-tight">
-                    {t.dashboard.title}
-                    <span className="block text-brand-primary mt-2">{t.dashboard.titleHighlight}</span>
-                </h2>
-            </motion.div>
-            <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="max-w-md text-left md:text-right mt-6 md:mt-0"
-            >
-                <p className="text-lg text-brand-text-secondary leading-relaxed">
-                    {t.dashboard.subtitle}
-                </p>
-            </motion.div>
-        </div>
-
-        {/* The Dashboard - Rigid Container */}
+        {/* Header */}
         <motion.div 
-             initial={{ opacity: 0, y: 40 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true, margin: "-100px" }}
-             transition={{ duration: 0.8 }}
-             className="relative rounded-xl overflow-hidden shadow-2xl shadow-brand-primary/10 border border-brand-border bg-brand-background-secondary mb-20 max-w-6xl mx-auto ring-1 ring-brand-primary/5 group"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-             <img 
-                src={dashboardPreview} 
-                alt="Echo Pulse Main Dashboard" 
-                className="w-full h-auto block transform group-hover:scale-[1.01] transition-transform duration-700"
-            />
-            {/* Overlay Gradient on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#10B981] shadow-[0_0_8px_#10B981]" />
+            <span className="font-mono text-xs font-medium tracking-[0.15em] text-[#71717A] uppercase">
+              {data.sectionLabel}
+            </span>
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white tracking-[-0.02em] mb-4 max-w-3xl">
+            {data.title}
+          </h2>
+          <p className="text-lg text-[#A1A1AA] max-w-2xl">
+            {data.subtitle}
+          </p>
         </motion.div>
 
-        {/* Key Capabilities Grid - Calm & Technical */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto border-t border-brand-border pt-12">
-                        {t.dashboard.features
-                            .filter(Boolean)
-                            .map((feature: any, index: number) => {
-                                if (!feature?.title) return null;
-                                const Icon = icons[index] || Eye;
-                                return (
-                                    <motion.div 
-                                        key={index}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                                        className="flex gap-5 items-start group"
-                                    >
-                                        <div className="w-12 h-12 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center shrink-0 text-brand-primary shadow-sm mt-1 group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300">
-                                            <Icon className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-brand-text-primary mb-2 text-base group-hover:text-brand-primary transition-colors">{feature.title}</h3>
-                                            <p className="text-sm text-brand-text-secondary leading-relaxed">
-                                                {feature.desc || ''}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })}
-                </div>
+        {/* Dashboard Image - Dark Framed */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative mb-20 border border-[#27272A] rounded-lg overflow-hidden bg-[#18181B] shadow-2xl"
+        >
+          {/* Annotation Overlays - System Readouts */}
+          <div className="absolute top-6 left-6 bg-[#0A0A0F]/90 backdrop-blur-sm border border-[#27272A] rounded px-4 py-2.5 z-10">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] shadow-[0_0_6px_#10B981]" />
+              <span className="font-mono text-[10px] text-[#71717A] uppercase tracking-wider">Live</span>
+            </div>
+          </div>
+
+          <div className="absolute top-6 right-6 bg-[#0A0A0F]/90 backdrop-blur-sm border border-[#27272A] rounded px-4 py-2.5 z-10">
+            <span className="font-mono text-xs text-white tabular-nums">12 active signals</span>
+          </div>
+
+          <img 
+            src={dashboardPreview} 
+            alt="Echo Pulse Dashboard" 
+            className="w-full h-auto block"
+          />
+
+          {/* Bottom readout strip */}
+          <div className="absolute bottom-0 left-0 right-0 bg-[#0A0A0F]/95 backdrop-blur-sm border-t border-[#27272A] px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] text-[#71717A] uppercase tracking-wider">Teams</span>
+                <span className="font-mono text-sm text-white tabular-nums">147</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] text-[#71717A] uppercase tracking-wider">Monitored</span>
+                <span className="font-mono text-sm text-white tabular-nums">2,841</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] text-[#71717A] uppercase tracking-wider">Response Rate</span>
+                <span className="font-mono text-sm text-[#10B981] tabular-nums">94%</span>
+              </div>
+            </div>
+            <span className="font-mono text-[10px] text-[#52525B] uppercase tracking-wider">
+              Updated: {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Capabilities Grid - System Style */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#27272A] border border-[#27272A]">
+          {data.features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-[#18181B] p-8 md:p-10"
+            >
+              <div className="flex items-baseline gap-3 mb-3">
+                <span className="font-mono text-lg font-semibold text-white">
+                  {feature.value}
+                </span>
+                <span className="text-[11px] font-medium uppercase tracking-wider text-[#71717A]">
+                  {feature.label}
+                </span>
+              </div>
+              <p className="text-sm text-[#A1A1AA] leading-relaxed">
+                {feature.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </section>
