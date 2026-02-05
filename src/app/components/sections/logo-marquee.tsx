@@ -18,6 +18,8 @@ import socialmindLogo from "@/assets/logos/normalized/socialmind.png";
 import hajdukLogo from "@/assets/logos/normalized/hajduk-partners.png";
 import websupportLogo from "@/assets/logos/normalized/websupport.png";
 import untitledLogo from "@/assets/logos/normalized/untitled-ui.png";
+import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
+import raynetLogo from "@/assets/logos/normalized/raynet.png";
 
 // Export logos for reuse in other components
 export const clientLogos = [
@@ -38,40 +40,32 @@ export const clientLogos = [
   { name: "Hajduk & Partners", src: hajdukLogo },
   { name: "Websupport", src: websupportLogo },
   { name: "Untitled UI", src: untitledLogo },
+  { name: "StartupJobs", src: startupjobsLogo },
+  { name: "Raynet", src: raynetLogo },
 ];
 
 export function LogoMarquee() {
   const { t, language } = useLanguage();
 
-  const stats = {
-    cz: { companies: '50+', tested: '50 000+', label: 'firem důvěřuje' },
-    en: { companies: '50+', tested: '50,000+', label: 'companies trust us' },
-    de: { companies: '50+', tested: '50.000+', label: 'Unternehmen vertrauen' },
+  const title = {
+    cz: 'Svěřili nám svou důvěru',
+    en: 'Trusted by leading companies',
+    de: 'Von führenden Unternehmen vertraut',
   };
-
-  const s = stats[language] || stats.en;
 
   return (
     <section className="py-12 md:py-16 bg-gradient-to-b from-white to-brand-background-secondary border-b border-brand-border relative z-20 overflow-hidden">
       <div className="container-default">
-        {/* Stats Badge */}
+        {/* Title */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-10"
         >
-          <div className="inline-flex items-center gap-6 px-6 py-3 bg-white rounded-full shadow-sm border border-brand-border">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-brand-primary">{s.companies}</span>
-              <span className="text-sm text-brand-text-muted">{s.label}</span>
-            </div>
-            <div className="w-px h-8 bg-brand-border" />
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-brand-text-primary">{s.tested}</span>
-              <span className="text-sm text-brand-text-muted">{language === 'cz' ? 'testovaných lidí' : language === 'de' ? 'getestete Personen' : 'people tested'}</span>
-            </div>
-          </div>
+          <h2 className="text-xl md:text-2xl font-semibold text-brand-text-secondary tracking-tight">
+            {title[language] || title.en}
+          </h2>
         </motion.div>
         
         {/* Marquee Container */}

@@ -5,23 +5,23 @@ import { BookingModal } from "@/app/components/layout/booking-modal";
 import { DemoVideoModal } from "@/app/components/layout/demo-video-modal";
 import { DemoAccessModal } from "@/app/components/layout/demo-access-modal";
 import { LeadPopup } from "@/app/components/layout/lead-popup";
-import { Hero } from "@/app/components/sections/hero";
+import { HeroV2 } from "@/app/components/sections/hero-v2";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
-import { ProblemSection } from "@/app/components/sections/problem";
-import { HowItWorks } from "@/app/components/sections/how-it-works";
-import { DashboardPreview } from "@/app/components/sections/dashboard-preview";
+import { ProblemSectionV2 } from "@/app/components/sections/problem-v2";
+import { HowItWorksV2 } from "@/app/components/sections/how-it-works-v2";
+import { DashboardPreviewV2 } from "@/app/components/sections/dashboard-preview-v2";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
-import { RoleSelection } from "@/app/components/sections/role-selection";
+import { RoleSelectionV2 } from "@/app/components/sections/role-selection-v2";
 import { ValueByRole } from "@/app/components/sections/value-by-role";
 import { MethodologySection } from "@/app/components/sections/methodology";
 const CaseStudiesSection = lazy(() =>
-  import("@/app/components/sections/case-studies").then((module) => ({
-    default: module.CaseStudiesSection,
+  import("@/app/components/sections/case-studies-v2").then((module) => ({
+    default: module.CaseStudiesSectionV2,
   }))
 );
 const FAQ = lazy(() =>
-  import("@/app/components/sections/faq").then((module) => ({
-    default: module.FAQ,
+  import("@/app/components/sections/faq-v2").then((module) => ({
+    default: module.FAQV2,
   }))
 );
 const PurchaseSection = lazy(() =>
@@ -35,8 +35,8 @@ const TrustCenter = lazy(() =>
   }))
 );
 const CtaSection = lazy(() =>
-  import("@/app/components/sections/cta-section").then((module) => ({
-    default: module.CtaSection,
+  import("@/app/components/sections/cta-section-v2").then((module) => ({
+    default: module.CtaSectionV2,
   }))
 );
 const LeadCaptureSection = lazy(() =>
@@ -47,11 +47,6 @@ const LeadCaptureSection = lazy(() =>
 const CoreTeamSection = lazy(() =>
   import("@/app/components/sections/core-team").then((module) => ({
     default: module.CoreTeamSection,
-  }))
-);
-const BackedBySection = lazy(() =>
-  import("@/app/components/sections/backed-by").then((module) => ({
-    default: module.BackedBySection,
   }))
 );
 const BuiltWithSection = lazy(() =>
@@ -84,25 +79,25 @@ export function LandingPage() {
       <Header />
       <main>
         {/* 1. HERO — Outcome promise + primary CTA */}
-        <Hero />
+        <HeroV2 />
         
         {/* 2. SOCIAL PROOF — Client logos */}
         <LogoMarquee />
         
         {/* 3. PROBLEM — Build pain awareness */}
-        <ProblemSection />
+        <ProblemSectionV2 />
         
         {/* 4. SOLUTION — Show simplicity */}
-        <HowItWorks />
+        <HowItWorksV2 />
         
         {/* 5. VISUAL PROOF — See it in action */}
-        <DashboardPreview />
+        <DashboardPreviewV2 />
         
         {/* 6. WHAT WE MEASURE — Scientific backing */}
         <SignalRadar />
         
         {/* 7. PERSONALIZATION — CEO vs HR paths */}
-        <RoleSelection />
+        <RoleSelectionV2 />
         <ValueByRole />
         
         {/* 8. AUTHORITY — Research foundation */}
@@ -111,11 +106,6 @@ export function LandingPage() {
         {/* 9. TEAM — Build trust with real people */}
         <LazySection>
           <CoreTeamSection />
-        </LazySection>
-        
-        {/* 9.5 BACKED BY — Investor credibility */}
-        <LazySection>
-          <BackedBySection />
         </LazySection>
         
         {/* 10. SOCIAL PROOF — Real results */}
