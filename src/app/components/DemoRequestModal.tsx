@@ -43,7 +43,7 @@ export function DemoRequestModal() {
   const companySizes = copy.sizes ? Object.values(copy.sizes) : [];
   const roles = copy.roles ? Object.values(copy.roles) : [];
   const errorInvalidEmail = copy.errorInvalidEmail || "Please enter a valid email.";
-  const errorInvalidPhone = copy.errorInvalidPhone || "Please enter a valid Czech phone number.";
+  const errorInvalidPhone = copy.errorInvalidPhone || "Please enter a valid phone number.";
   const errorRequired = copy.errorRequired || "This field is required.";
   const errorGeneric = copy.errorGeneric || "Submission failed. Please try again.";
 

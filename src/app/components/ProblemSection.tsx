@@ -74,7 +74,7 @@ export function ProblemSection() {
                         <h3 className="text-lg font-bold leading-tight mb-3 tracking-tight">
                           {t.problems.ctaBox?.title || ""}
                         </h3>
-                        <p className="text-sm text-white/80 leading-relaxed">
+                        <p className="text-sm text-brand-text-on-dark font-medium leading-relaxed">
                           {t.problems.ctaBox?.desc || ""}
                         </p>
                       </div>

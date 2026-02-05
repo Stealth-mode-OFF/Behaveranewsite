@@ -21,11 +21,11 @@ export function RoleSelection() {
             <h2 className="text-3xl font-bold text-white mb-4 tracking-tight">
                 {t.roleSelection.title}
             </h2>
-            <p className="text-brand-accent text-lg leading-relaxed opacity-80">
+            <p className="text-brand-text-on-dark text-lg leading-relaxed font-medium">
                 {t.roleSelection.subtitle}
             </p>
             {t.roleSelection.benefits && (
-              <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center text-sm text-white/80 font-medium">
+              <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center text-sm text-brand-text-on-dark font-semibold">
                 {t.roleSelection.benefits.map((benefit: string, index: number) => (
                   <span key={index} className="inline-flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-white" />
@@ -60,7 +60,7 @@ export function RoleSelection() {
                     {t.roleSelection.investor.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-on-dark text-sm font-semibold leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.investor.list[0]}</span>
@@ -97,7 +97,7 @@ export function RoleSelection() {
                     {t.roleSelection.ceo.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-on-dark text-sm font-semibold leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.ceo.list[0]}</span>
@@ -134,7 +134,7 @@ export function RoleSelection() {
                     {t.roleSelection.hr.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-on-dark text-sm font-semibold leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.hr.list[0]}</span>
@@ -171,7 +171,7 @@ export function RoleSelection() {
                     {t.roleSelection.teamLeader.title}
                 </h3>
                 
-                <ul className="space-y-4 mb-8 text-brand-text-inverse-secondary text-sm font-medium leading-relaxed flex-1 w-full">
+                <ul className="space-y-4 mb-8 text-brand-text-on-dark text-sm font-semibold leading-relaxed flex-1 w-full">
                     <li className="flex gap-3 items-start">
                         <BarChart className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
                         <span>{t.roleSelection.teamLeader.list[0]}</span>

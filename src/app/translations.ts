@@ -7,6 +7,9 @@ export const translations = {
       title: "Signal",
       titleHighlight: "Radar",
       subtitle: "Echo Pulse continuously monitors key areas of work reality. No noise. Just clear signals where support or tools are missing.",
+      summary: "From mood and stress to recognition and growth — we measure what matters.",
+      accordionLabel: "View all 9 signals we monitor →",
+      coreInsightLabel: "Core Insight",
       methodology: "Built on 40+ years of validated research: JD-R Model (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), and Affective Events Theory (Weiss & Cropanzano).",
       signals: {
         mood: { title: "How people feel", question: "How is the team actually feeling?", metrics: ["Mood", "Energy", "Stability"] },
@@ -181,7 +184,7 @@ export const translations = {
         cta: "Get data for leadership"
       },
       teamLeader: {
-        role: "Team Leader",
+        role: "Týmový lídr",
         title: "Team Performance",
         list: [
           "Fast feedback loop",
@@ -292,6 +295,36 @@ export const translations = {
       legal: ["Terms", "Privacy"],
       links: ["Product", "Pricing", "About", "Contact"]
     },
+    blog: {
+      title: "Blog",
+      pageTitle: "Insights & Analysis",
+      pageSubtitle: "Deep dives into organizational psychology, leadership data, and the future of work.",
+      defaultTag: "Insight",
+      backToList: "Back to Insights",
+      loading: "Loading...",
+      notFound: "Post not found",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Practical articles on engagement, retention, and organizational psychology.",
+      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies"
+    },
+    caseStudies: {
+      loading: "Loading...",
+      notFound: "Case study not found",
+      backToList: "Back to Success Stories",
+      resultsLabel: "Results",
+      industryLabel: "Industry",
+      challengeTitle: "The Challenge",
+      solutionTitle: "The Solution"
+    },
+    research: {
+      seoTitle: "Echo Pulse system architecture",
+      seoDescription: "Evidence base and methodology behind the early-warning system.",
+      seoKeywords: "organizational psychology, JD-R model, predictive analytics, burnout detection",
+      unavailableTitle: "Research content is available in Czech",
+      unavailableBody: "This page is currently maintained in Czech only. Switch to Czech to view the full research content.",
+      switchToCz: "Switch to Czech",
+      backToHome: "Back to home"
+    },
     booking: {
         title: "Schedule Consultation",
         desc: "Select a time that works for you. We'll show you how Echo Pulse can help your specific situation.",
@@ -368,6 +401,16 @@ export const translations = {
       subtitle: "See what your employees would experience",
       ctaTitle: "Want to see the results?",
       ctaButton: "Get full demo access"
+    },
+    questionnairePreview: {
+      progressLabel: "Question 2 of 6",
+      previewLabel: "Pulse preview",
+      footer: "Powered by Echo Pulse",
+      questions: [
+        "How do you feel at work today?",
+        "Do you have enough time to complete your tasks?",
+        "Do you feel supported by your manager?"
+      ]
     },
     leadCapture: {
       badge: "Free E-book",
@@ -503,10 +546,13 @@ export const translations = {
   },
   cz: {
     radar: {
-      badge: "Full Spectrum Analysis",
+      badge: "Plnospektrální analýza",
       title: "Radar",
       titleHighlight: "aktivních signálů",
       subtitle: "Echo Pulse kontinuálně monitoruje klíčové oblasti pracovní reality. Žádný šum. Jen jasné signály tam, kde chybí podpora, nástroje nebo vedení.",
+      summary: "Od nálady a stresu po uznání a růst — měříme to, na čem záleží.",
+      accordionLabel: "Zobrazit všech 9 signálů, které sledujeme →",
+      coreInsightLabel: "Klíčový signál",
       methodology: "40+ let validovaného výzkumu: JD-R Model (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), Affective Events Theory (Weiss & Cropanzano).",
       signals: {
         mood: { title: "Jak se lidé cítí", question: "Jak se tým skutečně cítí?", metrics: ["Nálada", "Energie", "Stabilita"] },
@@ -534,7 +580,7 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Continuous Insight System • Věda v praxi",
+      badge: "Systém průběžného vhledu • Věda v praxi",
       title: "Víte, kdo vám zítra",
       titleHighlight: "podá výpověď?",
       subtitle: "Emoce jsou nejrychlejší signál změny. Echo Pulse je zachytí dřív, než se projeví ve výkonu nebo fluktuaci. 2 minuty měsíčně. Nulová administrativa. Konkrétní kroky pro manažery.",
@@ -575,26 +621,23 @@ export const translations = {
       }
     },
     howItWorks: {
+      badge: "Jak to funguje",
+      stepLabel: "Krok",
       title: "Operační systém",
       titleHighlight: "pro vaši kulturu.",
       subtitle: "Jeden systém místo ročních průzkumů a domněnek. Vedení dostává jasné priority.",
       steps: {
         step1: {
-          title: "Kontextová inteligence",
-          desc: "Echo Pulse nepočítá jen klíčová slova. Chápe kontext, sarkasmus a naléhavost. Z tisíců odpovědí vytáhne 3 priority, které musíte řešit hned."
+          title: "Propojit",
+          desc: "Propojte Echo Pulse se Slackem nebo Teamsem. Bez IT. Nastavení do 5 minut."
         },
         step2: {
-          title: "Autopilot",
-          desc: "Zpětná vazba bez formulářů. Echo Pulse se ptá automaticky tam, kde lidé pracují (Slack, Teams, E-mail). Krátké pulsy. Reálné odpovědi. Žádná administrativa.",
-          highlight: "Systém hlídá rytmus a únavu respondentů. Vy dostáváte čisté signály."
+          title: "Naslouchat",
+          desc: "AI průběžně sleduje signály z každodenní práce. Bez dotazníků."
         },
         step3: {
-          title: "Akční plány",
-          desc: "Od problému k řešení. Echo navrhne konkrétní kroky pro manažery."
-        },
-        step4: {
-          title: "100% Anonymita",
-          desc: "Garantujeme 'vrstvu psychologického bezpečí'. Zaměstnanci ví, že mohou mluvit otevřeně bez rizika."
+          title: "Jednat",
+          desc: "Týdenní priority a konkrétní doporučení pro akce. 100% anonymita."
         }
       }
     },
@@ -696,6 +739,16 @@ export const translations = {
     valueByRole: {
       title: "Jedna platforma, dva různé výstupy.",
       subtitle: "CEO potřebuje jasno pro rozhodnutí. HR potřebuje prevenci. Echo Pulse dodá obojí bez šumu.",
+      badge: "Podle role",
+      tabs: {
+        ceo: "CEO / Vedení",
+        hr: "HR / People Ops"
+      },
+      cta: {
+        ceo: "Sjednat CEO demo",
+        hr: "Sjednat HR demo"
+      },
+      ctaNote: "20 min • Přizpůsobeno vaší roli",
       ceo: {
         title: "Pro CEO a vedení",
         desc: "Definitivní konec 'pocitového managementu'. Vidíte přesně, která oddělení jsou přetížená, kde hrozí odchody a kde selhává komunikace strategie.",
@@ -731,6 +784,17 @@ export const translations = {
     purchase: {
       title: "Ceník podle velikosti firmy",
       subtitle: "Orientační odhad se odvíjí od počtu zaměstnanců. Finální rozsah a cena se potvrdí po krátké konzultaci.",
+      badge: "Ceník",
+      configTitle: "Nastavení tarifu",
+      billingMonthly: "Měsíčně",
+      billingYearly: "Ročně (-20%)",
+      companySizeLabel: "Velikost firmy",
+      employeesLabel: "zaměstnanců",
+      estimatedLabel: "Odhad investice",
+      perMonthLabel: "Kč / měsíc",
+      priceCapped: "Cena zastropovaná na {cap} zaměstnancích",
+      basePriceLabel: "Základní cena",
+      vatLabel: "DPH (21%)",
       features: [
         "Průběžné pulsy a analýza signálů",
         "Dashboard pro vedení a HR",
@@ -739,6 +803,22 @@ export const translations = {
       ],
       button: "Chci nabídku na míru",
       guaranteeShort: "Finální rozsah a cena se potvrdí po úvodní konzultaci."
+    },
+    trustCenter: {
+      badge: "Trust Center",
+      title: "Bezpečnost práce s daty",
+      subtitle: "Transparentně popisujeme, jak nakládáme s osobními údaji, jaké povinnosti přebíráme a jak chráníme důvěrné informace.",
+      highlights: [
+        "Zpracování osobních údajů probíhá v souladu s GDPR a platnými právními předpisy.",
+        "Správcem údajů je Behavera s.r.o., Křižíkova 148/34, Karlín, Praha 8.",
+        "Pověřenec pro ochranu osobních údajů: gdpr@behavera.com.",
+        "Údaje uchováváme po dobu registrace a následně 6 měsíců, poté je anonymizujeme nebo vymažeme.",
+        "Agregované statistiky jsou anonymizované a neobsahují osobní údaje.",
+        "Subjekty údajů mají právo na přístup, přenos, opravu, výmaz a odvolání souhlasu."
+      ],
+      privacyFallbackTitle: "Zásady ochrany osobních údajů",
+      termsFallbackTitle: "Obchodní a produktové podmínky",
+      contentFallback: "Obsah připravujeme."
     },
     cta: {
       title: "Nečekejte na další výpověď.",
@@ -757,6 +837,36 @@ export const translations = {
       rights: "Behavera s.r.o. Všechna práva vyhrazena.",
       legal: ["Podmínky", "Soukromí"],
       links: ["Produkt", "Ceník", "O nás", "Kontakt"]
+    },
+    blog: {
+      title: "Blog",
+      pageTitle: "Analýzy a poznatky",
+      pageSubtitle: "Praktické články o psychologii práce, vedení a datově řízeném řízení lidí.",
+      defaultTag: "Poznatky",
+      backToList: "Zpět na články",
+      loading: "Načítání...",
+      notFound: "Článek nebyl nalezen",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Praktické články o engagementu, retenci a organizační psychologii.",
+      seoKeywords: "engagement, HR analytika, prevence vyhoření, organizační psychologie, retence"
+    },
+    caseStudies: {
+      loading: "Načítání...",
+      notFound: "Případová studie nebyla nalezena",
+      backToList: "Zpět na případové studie",
+      resultsLabel: "Výsledky",
+      industryLabel: "Odvětví",
+      challengeTitle: "Výzva",
+      solutionTitle: "Řešení"
+    },
+    research: {
+      seoTitle: "Architektura systému Echo Pulse",
+      seoDescription: "Detekční engine založený na JD-R Model, Self-Determination Theory a Affective Events Theory.",
+      seoKeywords: "organizational intelligence, predictive analytics, burnout detection, JD-R model",
+      unavailableTitle: "Obsah výzkumu je dostupný pouze česky",
+      unavailableBody: "Tuto stránku aktuálně udržujeme jen v češtině. Přepněte jazyk na češtinu pro zobrazení celého obsahu.",
+      switchToCz: "Přepnout do češtiny",
+      backToHome: "Zpět na hlavní stránku"
     },
     booking: {
         title: "Sjednat konzultaci",
@@ -798,50 +908,52 @@ export const translations = {
       close: "Zavřít"
     },
     demoRequest: {
-      title: "Get Demo Access",
-      titleCz: "Získat přístup k demo",
-      subtitle: "We'll send you a personalized demo link",
-      subtitleCz: "Pošleme vám personalizovaný odkaz na demo",
-      emailLabel: "Work email",
-      emailLabelCz: "Pracovní email",
-      phoneLabel: "Phone",
-      phoneLabelCz: "Telefon",
-      sizeLabel: "Company size",
-      sizeLabelCz: "Velikost firmy",
-      roleLabel: "Your role",
-      roleLabelCz: "Vaše role",
-      submit: "Send me the demo",
-      submitCz: "Poslat demo",
-      successTitle: "Check your inbox!",
-      successTitleCz: "Zkontrolujte email!",
-      successMessage: "Demo link is on its way.",
-      successMessageCz: "Odkaz na demo je na cestě.",
+      title: "Získat přístup k demo",
+      subtitle: "Pošleme vám personalizovaný odkaz na demo",
+      emailLabel: "Pracovní email",
+      phoneLabel: "Telefon",
+      sizeLabel: "Velikost firmy",
+      roleLabel: "Vaše role",
+      submit: "Poslat demo",
+      successTitle: "Zkontrolujte email!",
+      successMessage: "Odkaz na demo je na cestě.",
+      errorInvalidEmail: "Zadejte prosím platný email.",
+      errorInvalidPhone: "Zadejte prosím platné české telefonní číslo.",
+      errorRequired: "Toto pole je povinné.",
+      errorGeneric: "Odeslání se nezdařilo. Zkuste to prosím znovu.",
+      companySizePlaceholder: "Vyberte velikost",
+      rolePlaceholder: "Vyberte roli",
       roles: {
-        ceo: "CEO / Founder",
-        hr: "HR / People Ops",
-        leader: "Team Leader",
-        other: "Other"
+        ceo: "CEO / Zakladatel",
+        hr: "HR / Lidé a kultura",
+        leader: "Týmový lídr",
+        other: "Jiné"
       },
       sizes: {
-        xs: "10-30 employees",
-        sm: "31-50 employees",
-        md: "51-100 employees",
-        lg: "101-200 employees",
-        xl: "201-350 employees",
-        xxl: "350+ employees"
+        xs: "10–30 zaměstnanců",
+        sm: "31–50 zaměstnanců",
+        md: "51–100 zaměstnanců",
+        lg: "101–200 zaměstnanců",
+        xl: "201–350 zaměstnanců",
+        xxl: "350+ zaměstnanců"
       }
     },
     tryPage: {
-      badge: "Interactive Preview",
-      badgeCz: "Interaktivní ukázka",
-      title: "Try Echo Pulse yourself",
-      titleCz: "Vyzkoušejte Echo Pulse na vlastní kůži",
-      subtitle: "See what your employees would experience",
-      subtitleCz: "Podívejte se, co zažijí vaši zaměstnanci",
-      ctaTitle: "Want to see the results?",
-      ctaTitleCz: "Chcete vidět výsledky?",
-      ctaButton: "Get full demo access",
-      ctaButtonCz: "Získat plný přístup k demo"
+      badge: "Interaktivní ukázka",
+      title: "Vyzkoušejte Echo Pulse na vlastní kůži",
+      subtitle: "Podívejte se, co zažijí vaši zaměstnanci",
+      ctaTitle: "Chcete vidět výsledky?",
+      ctaButton: "Získat plný přístup k demo"
+    },
+    questionnairePreview: {
+      progressLabel: "Otázka 2 z 6",
+      previewLabel: "Ukázka pulsu",
+      footer: "Běží na Echo Pulse",
+      questions: [
+        "Jak se dnes cítíte v práci?",
+        "Máte dostatek času na dokončení svých úkolů?",
+        "Cítíte podporu od svého nadřízeného?"
+      ]
     },
     leadCapture: {
       badge: "E-book zdarma",
@@ -981,6 +1093,9 @@ export const translations = {
       title: "Signal",
       titleHighlight: "Radar",
       subtitle: "Echo Pulse überwacht kontinuierlich die wichtigsten Bereiche der Arbeitsrealität. Kein Rauschen. Nur klare Signale, wo Unterstützung oder Tools fehlen.",
+      summary: "Von Stimmung und Stress bis Anerkennung und Wachstum — wir messen, was zählt.",
+      accordionLabel: "Alle 9 überwachten Signale anzeigen →",
+      coreInsightLabel: "Kernsignal",
       methodology: "40+ Jahre validierte Forschung: JD-R Modell (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), Affective Events Theory (Weiss & Cropanzano).",
       signals: {
         mood: { title: "Wie sich Menschen fühlen", question: "Wie fühlt sich das Team wirklich?", metrics: ["Stimmung", "Energie", "Stabilität"] },
@@ -1049,26 +1164,23 @@ export const translations = {
       }
     },
     howItWorks: {
+      badge: "Ablauf",
+      stepLabel: "Schritt",
       title: "Betriebssystem",
       titleHighlight: "für Ihre Kultur.",
-      subtitle: "Ein System, das jährliche Umfragen, zufällige 1:1s und Vermutungen ersetzt. Strukturierte Daten, auf denen Sie Entscheidungen aufbauen können.",
+      subtitle: "Ein System statt jährlicher Umfragen und Vermutungen. Klare Prioritäten für die Führung.",
       steps: {
         step1: {
-          title: "Kontextuelle Intelligenz",
-          desc: "Echo Pulse zählt nicht nur Keywords. Es versteht Kontext, Sarkasmus und Dringlichkeit. Aus Tausenden von Antworten extrahiert es 3 Prioritäten, die Sie sofort angehen müssen."
+          title: "Verbinden",
+          desc: "Verbinden Sie Echo Pulse mit Slack oder Teams. Ohne IT. In 5 Minuten eingerichtet."
         },
         step2: {
-          title: "Auto-Pilot",
-          desc: "Feedback ohne Formulare. Echo Pulse fragt automatisch dort, wo Leute arbeiten (Slack, Teams, E-Mail). Kurze Impulse. Echte Antworten. Keine Admin.",
-          highlight: "Das System überwacht Rhythmus und Müdigkeit. Sie erhalten saubere Signale."
+          title: "Zuhören",
+          desc: "KI überwacht kontinuierlich Signale aus der täglichen Arbeit. Keine Umfragen nötig."
         },
         step3: {
-          title: "Action Playbooks",
-          desc: "Vom Problem zur Lösung. Echo schlägt konkrete Schritte für Manager vor."
-        },
-        step4: {
-          title: "100% Anonymität",
-          desc: "Wir garantieren eine 'Psychological Safety Layer'. Mitarbeiter wissen, dass sie offen und ohne Risiko sprechen können."
+          title: "Handeln",
+          desc: "Wöchentliche Prioritäten und konkrete Handlungsempfehlungen. 100% anonym."
         }
       }
     },
@@ -1170,6 +1282,16 @@ export const translations = {
     valueByRole: {
       title: "Eine Plattform, zwei verschiedene Ergebnisse.",
       subtitle: "CEO braucht ein Signal für Entscheidungen. HR braucht ein Werkzeug zur Prävention. Echo Pulse liefert beides ohne Informationsrauschen.",
+      badge: "Nach Rolle",
+      tabs: {
+        ceo: "CEO / Geschäftsführung",
+        hr: "HR / People Ops"
+      },
+      cta: {
+        ceo: "CEO-Demo vereinbaren",
+        hr: "HR-Demo vereinbaren"
+      },
+      ctaNote: "20 Min • Auf Ihre Rolle zugeschnitten",
       ceo: {
         title: "Für CEO & Geschäftsführung",
         desc: "Das definitive Ende des 'Bauchgefühl-Managements'. Sehen Sie genau, welche Abteilungen überlastet sind, wo Fluktuation droht und wo Strategiekommunikation scheitert.",
@@ -1205,6 +1327,17 @@ export const translations = {
     purchase: {
       title: "Preis nach Unternehmensgröße",
       subtitle: "Die Schätzung richtet sich nach der Mitarbeiterzahl. Endgültiger Umfang und Preis nach einem kurzen Gespräch.",
+      badge: "Preise",
+      configTitle: "Plan konfigurieren",
+      billingMonthly: "Monatlich",
+      billingYearly: "Jährlich (-20%)",
+      companySizeLabel: "Unternehmensgröße",
+      employeesLabel: "Mitarbeitende",
+      estimatedLabel: "Geschätzte Investition",
+      perMonthLabel: "CZK / Monat",
+      priceCapped: "Preis gedeckelt bei {cap} Mitarbeitenden",
+      basePriceLabel: "Grundpreis",
+      vatLabel: "MwSt. (21%)",
       features: [
         "Laufende Puls-Erhebungen und Signalanalyse",
         "Dashboard für Führung und HR",
@@ -1213,6 +1346,22 @@ export const translations = {
       ],
       button: "Individuelles Angebot anfordern",
       guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch."
+    },
+    trustCenter: {
+      badge: "Trust center",
+      title: "Datensicherheit und Datenschutz",
+      subtitle: "Wir erklären transparent, wie wir personenbezogene Daten verarbeiten, welche Verantwortung wir übernehmen und wie wir vertrauliche Informationen schützen.",
+      highlights: [
+        "Die Verarbeitung personenbezogener Daten erfolgt gemäß DSGVO und geltenden Gesetzen.",
+        "Datenverantwortlicher: Behavera s.r.o., Křižíkova 148/34, Karlín, Prag 8.",
+        "Datenschutzkontakt: gdpr@behavera.com.",
+        "Daten werden während der Registrierung und anschließend 6 Monate gespeichert, danach anonymisiert oder gelöscht.",
+        "Aggregierte Statistiken sind anonymisiert und enthalten keine personenbezogenen Daten.",
+        "Betroffene haben Rechte auf Auskunft, Übertragbarkeit, Berichtigung, Löschung und Widerruf der Einwilligung."
+      ],
+      privacyFallbackTitle: "Datenschutzerklärung",
+      termsFallbackTitle: "Allgemeine Geschäftsbedingungen",
+      contentFallback: "Inhalt folgt in Kürze."
     },
     cta: {
       title: "Warten Sie nicht auf die nächste Kündigung.",
@@ -1231,6 +1380,36 @@ export const translations = {
       rights: "Behavera s.r.o. Alle Rechte vorbehalten.",
       legal: ["AGB", "Datenschutz"],
       links: ["Produkt", "Preise", "Über uns", "Kontakt"]
+    },
+    blog: {
+      title: "Blog",
+      pageTitle: "Insights & Analysen",
+      pageSubtitle: "Praxisnahe Artikel zu Organisationspsychologie, Leadership-Daten und der Zukunft der Arbeit.",
+      defaultTag: "Insight",
+      backToList: "Zurück zu Insights",
+      loading: "Wird geladen...",
+      notFound: "Beitrag nicht gefunden",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Praktische Artikel zu Engagement, Retention und Organisationspsychologie.",
+      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies"
+    },
+    caseStudies: {
+      loading: "Wird geladen...",
+      notFound: "Fallstudie nicht gefunden",
+      backToList: "Zurück zu Erfolgsgeschichten",
+      resultsLabel: "Ergebnisse",
+      industryLabel: "Branche",
+      challengeTitle: "Herausforderung",
+      solutionTitle: "Lösung"
+    },
+    research: {
+      seoTitle: "Architektur des Echo-Pulse-Systems",
+      seoDescription: "Evidenzbasis und Methodik des Early-Warning-Systems.",
+      seoKeywords: "Organisationspsychologie, JD-R Modell, predictive analytics, burnout detection",
+      unavailableTitle: "Forschungsinhalte nur auf Tschechisch verfügbar",
+      unavailableBody: "Diese Seite wird derzeit nur auf Tschechisch gepflegt. Wechseln Sie zu Tschechisch, um den vollständigen Inhalt zu sehen.",
+      switchToCz: "Auf Tschechisch umschalten",
+      backToHome: "Zur Startseite"
     },
     booking: {
         title: "Beratung vereinbaren",
@@ -1272,50 +1451,52 @@ export const translations = {
       close: "Schließen"
     },
     demoRequest: {
-      title: "Get Demo Access",
-      titleCz: "Získat přístup k demo",
-      subtitle: "We'll send you a personalized demo link",
-      subtitleCz: "Pošleme vám personalizovaný odkaz na demo",
-      emailLabel: "Work email",
-      emailLabelCz: "Pracovní email",
-      phoneLabel: "Phone",
-      phoneLabelCz: "Telefon",
-      sizeLabel: "Company size",
-      sizeLabelCz: "Velikost firmy",
-      roleLabel: "Your role",
-      roleLabelCz: "Vaše role",
-      submit: "Send me the demo",
-      submitCz: "Poslat demo",
-      successTitle: "Check your inbox!",
-      successTitleCz: "Zkontrolujte email!",
-      successMessage: "Demo link is on its way.",
-      successMessageCz: "Odkaz na demo je na cestě.",
+      title: "Demo-Zugang erhalten",
+      subtitle: "Wir senden Ihnen einen personalisierten Demo-Link",
+      emailLabel: "Geschäftliche E-Mail",
+      phoneLabel: "Telefon",
+      sizeLabel: "Unternehmensgröße",
+      roleLabel: "Ihre Rolle",
+      submit: "Demo senden",
+      successTitle: "Bitte prüfen Sie Ihren Posteingang!",
+      successMessage: "Der Demo-Link ist unterwegs.",
+      errorInvalidEmail: "Bitte geben Sie eine gültige E-Mail ein.",
+      errorInvalidPhone: "Bitte geben Sie eine gültige Telefonnummer ein.",
+      errorRequired: "Dieses Feld ist erforderlich.",
+      errorGeneric: "Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      companySizePlaceholder: "Größe auswählen",
+      rolePlaceholder: "Rolle auswählen",
       roles: {
         ceo: "CEO / Founder",
         hr: "HR / People Ops",
-        leader: "Team Leader",
-        other: "Other"
+        leader: "Teamleiter",
+        other: "Andere"
       },
       sizes: {
-        xs: "10-30 employees",
-        sm: "31-50 employees",
-        md: "51-100 employees",
-        lg: "101-200 employees",
-        xl: "201-350 employees",
-        xxl: "350+ employees"
+        xs: "10–30 Mitarbeitende",
+        sm: "31–50 Mitarbeitende",
+        md: "51–100 Mitarbeitende",
+        lg: "101–200 Mitarbeitende",
+        xl: "201–350 Mitarbeitende",
+        xxl: "350+ Mitarbeitende"
       }
     },
     tryPage: {
-      badge: "Interactive Preview",
-      badgeCz: "Interaktivní ukázka",
-      title: "Try Echo Pulse yourself",
-      titleCz: "Vyzkoušejte Echo Pulse na vlastní kůži",
-      subtitle: "See what your employees would experience",
-      subtitleCz: "Podívejte se, co zažijí vaši zaměstnanci",
-      ctaTitle: "Want to see the results?",
-      ctaTitleCz: "Chcete vidět výsledky?",
-      ctaButton: "Get full demo access",
-      ctaButtonCz: "Získat plný přístup k demo"
+      badge: "Interaktive Vorschau",
+      title: "Echo Pulse selbst ausprobieren",
+      subtitle: "Sehen Sie, was Ihre Mitarbeitenden erleben würden",
+      ctaTitle: "Möchten Sie die Ergebnisse sehen?",
+      ctaButton: "Vollen Demo-Zugang erhalten"
+    },
+    questionnairePreview: {
+      progressLabel: "Frage 2 von 6",
+      previewLabel: "Puls-Vorschau",
+      footer: "Bereitgestellt von Echo Pulse",
+      questions: [
+        "Wie fühlen Sie sich heute bei der Arbeit?",
+        "Haben Sie genug Zeit, um Ihre Aufgaben zu erledigen?",
+        "Fühlen Sie sich von Ihrer Führungskraft unterstützt?"
+      ]
     },
     leadCapture: {
       badge: "Kostenloses E-Book",

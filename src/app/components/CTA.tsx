@@ -40,7 +40,7 @@ export function CTA() {
                     <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
              </div>
-             <p className="mt-12 text-brand-accent text-[11px] font-bold font-mono uppercase tracking-[0.15em] opacity-80">
+             <p className="mt-12 text-brand-text-muted-on-dark text-[11px] font-bold font-mono uppercase tracking-[0.15em]">
                 {t.cta.note}
              </p>
            </div>

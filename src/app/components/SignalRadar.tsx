@@ -49,14 +49,14 @@ export function SignalRadar() {
 
         <div className="text-center mb-10">
           <p className="text-xl text-brand-text-secondary leading-[1.7] font-medium">
-            From mood and stress to recognition and growth — we measure what matters.
+            {t.radar.summary}
           </p>
         </div>
 
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="signals" className="border-none">
             <AccordionTrigger className="text-xl font-bold text-brand-primary hover:no-underline py-6 hover:text-brand-accent transition-colors">
-              View all 9 signals we monitor →
+              {t.radar.accordionLabel}
             </AccordionTrigger>
             <AccordionContent>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 pt-12">
@@ -90,7 +90,7 @@ export function SignalRadar() {
                         <div className="mt-auto">
                           <div className="relative bg-brand-background-secondary/50 border border-brand-primary/10 rounded-xl p-6 group-hover:bg-brand-primary group-hover:border-brand-primary transition-all duration-300 group-hover:shadow-lg">
                             <p className="text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-[0.15em] mb-3 group-hover:text-brand-accent/80 transition-colors">
-                              Core Insight
+                              {t.radar.coreInsightLabel}
                             </p>
                             <p className="text-brand-primary font-bold text-lg leading-[1.6] group-hover:text-white transition-colors italic">
                               "{data.question}"
@@ -108,7 +108,7 @@ export function SignalRadar() {
 
         {/* Scientific Footnote */}
         <div className="mt-20 text-center">
-             <p className="text-[15px] font-medium text-brand-text-muted max-w-2xl mx-auto opacity-70 leading-[1.7]">
+             <p className="text-[15px] font-medium text-brand-text-secondary max-w-2xl mx-auto leading-[1.7]">
                 {t.radar.methodology}
             </p>
         </div>
