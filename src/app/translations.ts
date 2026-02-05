@@ -549,24 +549,24 @@ export const translations = {
   },
   cz: {
     radar: {
-      badge: "Plnospektrální analýza",
-      title: "Radar",
-      titleHighlight: "aktivních signálů",
-      subtitle: "Echo Pulse kontinuálně monitoruje klíčové oblasti pracovní reality. Žádný šum. Jen jasné signály tam, kde chybí podpora, nástroje nebo vedení.",
-      summary: "Od nálady a stresu po uznání a růst — měříme to, na čem záleží.",
-      accordionLabel: "Zobrazit všech 9 signálů, které sledujeme →",
+      badge: "Kompletní přehled",
+      title: "9 oblastí,",
+      titleHighlight: "které rozhodují o stabilitě týmu",
+      subtitle: "Echo Pulse průběžně sleduje 9 klíčových oblastí pracovního života. Bez zbytečného šumu - jen signály, které vám řeknou, kde to drhne.",
+      summary: "Od nálady a stresu po uznání a růst - měříme to, na čem záleží.",
+      accordionLabel: "Zobrazit všech 9 signálů →",
       coreInsightLabel: "Klíčový signál",
-      methodology: "40+ let validovaného výzkumu: JD-R Model (Demerouti & Bakker), Self-Determination Theory (Deci & Ryan), Affective Events Theory (Weiss & Cropanzano).",
+      methodology: "Postaveno na výzkumech Job Demands-Resources (JD-R), Self-Determination Theory a Equity Theory.",
       signals: {
-        mood: { title: "Jak se lidé cítí", question: "Jak se tým skutečně cítí?", metrics: ["Nálada", "Energie", "Stabilita"] },
-        stress: { title: "Stres a tlak", question: "Je tlak motorem nebo cestou k vyhoření?", metrics: ["Chronický stres", "Přetížení", "Regenerace"] },
-        workload: { title: "Kapacita a zátěž", question: "Odpovídají nároky kapacitám?", metrics: ["Kognitivní zátěž", "Priority", "Tempo"] },
-        tools: { title: "Podpora a nástroje", question: "Mají lidé to, co potřebují k výsledkům?", metrics: ["Podpora vedení", "Nástroje", "Pomůcky"] },
-        recognition: { title: "Uznání a zpětná vazba", question: "Je dobrá práce vidět?", metrics: ["Viditelnost", "Ocenění", "Dopad"] },
-        growth: { title: "Potenciál", question: "Využíváme naplno jejich schopnosti?", metrics: ["Kariérní posun", "Výzvy", "Stagnace"] },
-        rewards: { title: "Odměňování", question: "Je směna vnímána jako férová?", metrics: ["Férovost", "Transparentnost", "Bonusy"] },
-        benefits: { title: "Benefity", question: "Mají benefity reálnou hodnotu?", metrics: ["Relevance", "Užitečnost", "ROI"] },
-        evp: { title: "Hodnoty a loajalita", question: "Žijeme to, co hlásáme?", metrics: ["Hrdost", "Soulad", "Slib"] }
+        mood: { title: "Nálada v týmu", question: "Jak se lidé doopravdy cítí?", metrics: ["Pohoda", "Energie", "Motivace"] },
+        stress: { title: "Stres a tlak", question: "Pomáhá tlak výkonu, nebo lidi vypaluje?", metrics: ["Chronický stres", "Přetížení", "Odpočinek"] },
+        workload: { title: "Vytížení", question: "Stíhají to, co mají?", metrics: ["Zátěž", "Priority", "Tempo"] },
+        tools: { title: "Podpora", question: "Mají, co potřebují, aby mohli pracovat?", metrics: ["Nástroje", "Zdroje", "Překážky"] },
+        recognition: { title: "Uznání", question: "Ví lidé, že jejich práce má smysl?", metrics: ["Zpětná vazba", "Ocenění", "Dopad"] },
+        growth: { title: "Rozvoj", question: "Využíváme potenciál lidí naplno?", metrics: ["Autonomie", "Výzvy", "Růst"] },
+        rewards: { title: "Odměňování", question: "Berou lidé odměnu jako férovou?", metrics: ["Mzda", "Spravedlnost", "Transparentnost"] },
+        benefits: { title: "Benefity", question: "Používají lidé benefity, které nabízíme?", metrics: ["Využití", "Spokojenost", "Hodnota"] },
+        evp: { title: "Hodnoty firmy", question: "Děláme to, co říkáme?", metrics: ["Důvěra", "Soulad", "Hrdost"] }
       }
     },
     header: {
@@ -575,128 +575,134 @@ export const translations = {
       pricing: "Ceník",
       about: "O nás",
       login: "Přihlásit se",
-      bookDemo: "Rezervovat demo",
+      bookDemo: "Vyzkoušet zdarma",
       nav: {
         problem: "Problém",
         solution: "Řešení",
-        impact: "Dopad"
+        impact: "Výsledky"
       },
     },
     hero: {
-      badge: "Systém průběžného vhledu • Věda v praxi",
-      title: "Víte, kdo vám zítra",
-      titleHighlight: "podá výpověď?",
-      subtitle: "Emoce jsou nejrychlejší signál změny. Echo Pulse je zachytí dřív, než se projeví ve výkonu nebo fluktuaci. 2 minuty měsíčně. Nulová administrativa. Konkrétní kroky pro manažery.",
-      primaryCta: "20min konzultace zdarma",
-      secondaryCta: "Projít si demo sám",
-      riskReversal: "Žádný závazek. Ukážeme vám, co ve firmě nevidíte — a co s tím udělat jako první.",
+      badge: "Průběžný feedback od týmu",
+      title: "Mějte přehled,",
+      titleHighlight: "co se ve firmě skutečně děje",
+      subtitle: "Roční průzkumy zachytí problém, až když je pozdě. Echo Pulse vám dává průběžné signály - víte, kde to drhne, dřív než začnou výpovědi.",
+      primaryCta: "Zarezervovat ukázku (30 min)",
+      secondaryCta: "Prohlédnout demo",
+      riskReversal: "Žádné závazky. Po 30 minutách budete vědět, jestli to dává smysl pro vaši firmu.",
       trust: {
-        security: "GDPR & anonymita",
+        security: "GDPR compliant",
         support: "Česká podpora",
-        implementation: "Spuštění do 48h",
+        implementation: "Start do 1 hodiny",
         languages: "CZ / EN / DE"
       },
     },
     problems: {
-      badge: "Kritická systémová slepota",
-      title: "Tichý zabiják stability.",
-      subtitle: "Odhady a neúplná zpětná vazba vytvářejí manažerskou slepotu. Tradiční nástroje měří následky, ne příčiny.",
+      badge: "Proč to řešit",
+      title: "Lidé neodcházejí ze dne na den.",
+      subtitle: "Rozhodnutí odejít zraje měsíce. Problém je, že o tom většinou nevíte - dokud nedostanete výpověď.",
       items: [
         {
           title: "Skryté důvody",
-          value: "Neviditelné",
-          desc: "Důvody odchodů se často neobjeví v exit interview. Zůstávají v soukromých chatech.",
+          value: "70%+",
+          desc: "Skutečné důvody odchodu se nedozvíte z exit interview. Ty zůstávají v hlavách lidí a v soukromých rozhovorech.",
         },
         {
-          title: "Ztráta produktivity",
-          value: "Tichý pokles",
-          desc: "Výkon klesá dřív, než si někdo všimne, že lidé odpojují pozornost.",
+          title: "Ztráta výkonu",
+          value: "-20%",
+          desc: "Člověk, který už vnitřně rezignoval, pracuje na zlomek svého potenciálu. A často to trvá měsíce.",
         },
         {
-          title: "Zpoždění detekce",
-          value: "Pozdě",
-          desc: "Problémy rostou potichu, než je vedení stihne zachytit.",
+          title: "Zpoždění reakce",
+          value: "6+ měs.",
+          desc: "Průměrná doba, než si management všimne problému a začne ho řešit. Do té doby už je často pozdě.",
         },
       ],
       ctaBox: {
-        title: "Tohle nejde řídit přes dojmy.",
-        desc: "Potřebujete tvrdá data. Bez nich jen hádáte, proč lidé odcházejí."
+        title: "Na tohle intuice nestačí.",
+        desc: "Potřebujete průběžná data. Jinak jen hádáte, proč lidé ztrácejí motivaci."
       }
     },
     howItWorks: {
       badge: "Jak to funguje",
       stepLabel: "Krok",
-      title: "Operační systém",
-      titleHighlight: "pro vaši kulturu.",
-      subtitle: "Jeden systém místo ročních průzkumů a domněnek. Vedení dostává jasné priority.",
+      title: "Jak to",
+      titleHighlight: "funguje",
+      subtitle: "Žádné komplikované nastavování. Propojíte Echo Pulse s komunikačním nástrojem, který už používáte, a během hodiny máte první data.",
       steps: {
         step1: {
-          title: "Propojit",
-          desc: "Propojte Echo Pulse se Slackem nebo Teamsem. Bez IT. Nastavení do 5 minut."
+          title: "Rozumí kontextu",
+          desc: "Echo Pulse nepočítá jen slova. Chápe, co lidé říkají mezi řádky - a z tisíců odpovědí vybere to, co opravdu potřebujete vědět."
         },
         step2: {
-          title: "Naslouchat",
-          desc: "AI průběžně sleduje signály z každodenní práce. Bez dotazníků."
+          title: "Běží na autopilota",
+          desc: "Krátké otázky chodí automaticky přes Slack, Teams nebo e-mail. Lidé odpoví za minutu. Vy nemusíte nic rozesílat.",
+          highlight: "Systém hlídá, aby to lidi neobtěžovalo - a vy dostáváte čistá data."
         },
         step3: {
-          title: "Jednat",
-          desc: "Týdenní priority a konkrétní doporučení pro akce. 100% anonymita."
+          title: "Navrhuje, co dělat",
+          desc: "Nejde jen o grafy. Echo Pulse řekne manažerům konkrétně, co mají udělat a proč."
+        },
+        step4: {
+          title: "Garantovaná anonymita",
+          desc: "Lidé vědí, že jejich odpovědi nikdo nespojí s jejich jménem. Proto odpovídají upřímně."
         }
       }
     },
     methodology: {
       title: "Vědecký nástroj, ne 'dotazník'.",
-      subtitle: "40+ let výzkumu organizační psychologie. Data z 183,000+ týmů ukazují: engagované týmy mají o 23% vyšší ziskovost (Gallup Q12 Meta-Analysis, 2020).",
+      subtitle: "Nejsme další happiness survey. Měříme to, co skutečně ovlivňuje výkon a stabilitu týmu.",
       cards: [
         {
-          title: "Signál, ne šum",
-          desc: "Neměříme spokojenost. Sledujeme metriky stability, podpory a rizik vyhoření podle JD-R modelu (Demerouti & Bakker, 2001)."
+          title: "Signál, ne spokojenost",
+          desc: "Nezajímá nás, jestli jsou lidé spokojeni. Sledujeme rizika, překážky a to, co brání výkonu."
         },
         {
-          title: "90 sekund / měsíc",
-          desc: "Výzkum ukazuje dramatický pokles kvality odpovědí s délkou dotazníku. Proto jedna otázka denně, ne 50 otázek ročně."
+          title: "90 sekund měsíčně",
+          desc: "Žádné hodinové dotazníky. Krátké pulzy, které lidi nezatěžují - a přesto dávají relevantní data."
         },
         {
-          title: "Emoce jako radar",
-          desc: "Affective Events Theory (Weiss & Cropanzano) říká, že emoce jsou nejrychlejší signál. Chytáme problém týdny předtím, než se projeví v chování."
+          title: "Vědecký základ",
+          desc: "Vycházíme z modelu Job Demands-Resources. Měříme rovnováhu mezi tím, co od lidí chcete, a tím, co jim dáváte."
         }
       ]
     },
     czechReality: {
-      title: "Většina českých firem je dnes v jednom ze dvou extrémů.",
-      subtitle: "Náš trh se polarizuje. Ať už mluvíme s korporacemi nebo technologickými firmami, narážíme na stejný vzorec. Chybí schopnost vidět realitu včas.",
+      title: "Většina firem dnes spadá do jednoho ze dvou vzorců.",
+      subtitle: "Ať mluvíme s korporátem, nebo s rychle rostoucím startupem - narážíme na stejný problém. Vedení nevidí, co se děje v týmech, dokud není pozdě.",
+      diagnosisLabel: "Výsledek:",
       archetypeA: {
-        title: "A) Vyhořelá stabilita",
+        title: "A) Stabilní, ale unavená",
         point1: {
-          title: "Setrvačnost a únava.",
-          desc: "Lidé jsou loajální, ale pasivní. Procesy se dodržují, ale chybí energie. Změny narážejí na 'tichý odpor'."
+          title: "Všechno běží, ale nic se nehýbe.",
+          desc: "Lidé jsou loajální, ale už nemají energii. Procesy fungují, ale chybí iniciativa. Změny narážejí na tiché 'ale vždycky to tak bylo'."
         },
         point2: {
-          title: "Pomalá reakce vedení.",
-          desc: "Management je odtržený od 'výrobní linky'. O problémech se dozvídá, až když je pozdě."
+          title: "Vedení je daleko od reality.",
+          desc: "Management se dozvídá o problémech, až když eskalují. Chybí průběžný přehled o tom, co lidi trápí."
         },
-        diagnosis: "Ztráta konkurenceschopnosti bez varování."
+        diagnosis: "Ztráta konkurenceschopnosti - pomalu, ale jistě."
       },
       archetypeB: {
-        title: "B) Rychlost na dluh",
+        title: "B) Rychlá, ale křehká",
         point1: {
-          title: "Adrenalinová slepota.",
-          desc: "Mladý management, extrémní tempo. Všichni 'nestíhají'. Není čas na reflexi."
+          title: "Všichni jedou naplno, nikdo nestíhá.",
+          desc: "Mladý tým, vysoké tempo, věčný pocit 'nestíhám'. Na reflexi není čas. Problémy se zametají pod koberec."
         },
         point2: {
-          title: "Křehký úspěch.",
-          desc: "Výsledky rostou, ale kultura se drolí. Lidé jedou na dluh. První krize může způsobit kolaps."
+          title: "Úspěch stojí na pár lidech.",
+          desc: "Výsledky rostou, ale závisí na jednotlivcích, kteří jsou na hranici vyhoření. Stačí jeden odchod a systém se sesype."
         },
-        diagnosis: "Riziko náhlého odchodu klíčových talentů."
+        diagnosis: "Riziko, že klíčoví lidé odejdou bez varování."
       },
       synthesis: {
-        title: "Bez ohledu na scénář, řešení není 'motivace'.",
-        desc: "Potřebujete systém včasného varování. Stabilizátor v chaosu."
+        title: "V obou případech chybí to samé: průběžný přehled.",
+        desc: "Nepotřebujete víc motivace. Potřebujete vědět, co se děje - dřív, než to bude problém."
       }
     },
     roleSelection: {
-      title: "Podívejte se na firmu z jiného pohledu.",
-      subtitle: "Vyberte roli a uvidíte přínos během pár sekund.",
+      title: "Každý se na firmu dívá z jiného úhlu.",
+      subtitle: "Vyberte svou roli a uvidíte, co konkrétně vám Echo Pulse dá.",
       benefits: [
         "Chci mít produktivní tým",
         "Chci vědět, co blokuje výkon",
@@ -704,44 +710,44 @@ export const translations = {
       ],
       investor: {
         role: "Investor",
-        title: "Ochrana investice",
+        title: "Přehled o zdraví firmy",
         list: [
-          "Zdraví portfolia na očích",
+          "Včasné varování před problémy",
           "Rizika zachycená včas"
         ],
         cta: "Zkontrolovat zdraví portfolia"
       },
       ceo: {
         role: "CEO / Majitel",
-        title: "Strategická kontrola",
+        title: "Přehled bez filtru",
         list: [
-          "Signály včasného varování",
-          "Jasné priority pro vedení"
+          "Vidíte, co se děje v týmech",
+          "Řešíte problémy dřív, než eskalují"
         ],
-        cta: "Chci vidět firmu z výšky"
+        cta: "Jak to pomůže vedení"
       },
       hr: {
         role: "HR / People Ops",
-        title: "Data místo dojmů",
+        title: "Data místo dohadů",
         list: [
-          "Data pro rozhodnutí vedení",
-          "Prevence místo hašení"
+          "Argumenty, kterým vedení rozumí",
+          "Méně hašení, víc prevence"
         ],
-        cta: "Chci mít data pro vedení"
+        cta: "Jak to pomůže HR"
       },
       teamLeader: {
         role: "Team Leader",
-        title: "Výkon týmu",
+        title: "Zpětná vazba od týmu",
         list: [
-          "Rychlá zpětná vazba",
-          "Včasné zachycení přetížení"
+          "Víte, co lidi trápí",
+          "Zachytíte vyhoření včas"
         ],
-        cta: "Zlepšit zdraví týmu"
+        cta: "Jak to pomůže manažerům"
       }
     },
     valueByRole: {
-      title: "Jedna platforma, dva různé výstupy.",
-      subtitle: "CEO potřebuje jasno pro rozhodnutí. HR potřebuje prevenci. Echo Pulse dodá obojí bez šumu.",
+      title: "Jeden nástroj, různé přínosy.",
+      subtitle: "CEO potřebuje přehled pro rozhodování. HR potřebuje nástroj na prevenci. Echo Pulse dává obojí - bez zbytečného šumu.",
       badge: "Podle role",
       tabs: {
         ceo: "CEO / Vedení",
@@ -753,35 +759,35 @@ export const translations = {
       },
       ctaNote: "20 min • Přizpůsobeno vaší roli",
       ceo: {
-        title: "Pro CEO a vedení",
-        desc: "Definitivní konec 'pocitového managementu'. Vidíte přesně, která oddělení jsou přetížená, kde hrozí odchody a kde selhává komunikace strategie.",
+        title: "Pro vedení firmy",
+        desc: "Konec domněnek o tom, jak to lidé mají. Vidíte přesně, která oddělení jsou přetížená, kde hrozí odchody a kde se nedaří komunikovat strategii.",
         list: [
-          { title: "Retenční radar", desc: "Identifikace klíčových lidí v riziku odchodu 3 měsíce předem." },
-          { title: "Audit strategie", desc: "Reálná data o tom, zda týmy chápou vaše priority, nebo jedou na setrvačnost." },
-          { title: "Investiční ochrana", desc: "Ochrana nákladů na nábor a onboarding skrze snížení fluktuace." }
+          { title: "Včasné varování", desc: "Identifikujete lidi v riziku odchodu s měsíčním předstihem." },
+          { title: "Realita strategie", desc: "Zjistíte, jestli týmy chápou vaše priority - nebo jedou na setrvačníku." },
+          { title: "Návratnost investic", desc: "Méně neplánovaných odchodů = menší náklady na nábor a zaučení." }
         ]
       },
       hr: {
-        title: "Pro HR Management",
-        desc: "Posun od 'hašení požárů' k prevenci. Získáte data, díky kterým vás bude vedení brát jako strategického partnera, ne jako administrativu.",
+        title: "Pro HR a People Ops",
+        desc: "Přestaňte být ti, co řeší problémy. S průběžnými daty jste strategický partner, ne hasič.",
         list: [
-          { title: "Data místo dojmů", desc: "Když jdete za CEO s problémem, nesete tvrdá čísla, ne 'stížnosti z kuchyňky'." },
-          { title: "Automatizace pulsů", desc: "Žádné ruční rozesílání dotazníků. Systém běží sám, vy řešíte jen výsledky." },
-          { title: "Kultura důvěry", desc: "Zaměstnanci vidí, že se věci mění. Tím roste ochota sdílet pravdu." }
+          { title: "Data, ne dojmy", desc: "Když jdete za vedením, máte čísla - ne stížnosti z kuchyňky." },
+          { title: "Automatický sběr", desc: "Žádné ruční rozesílání. Systém běží sám, vy řešíte výsledky." },
+          { title: "Rostoucí důvěra", desc: "Lidé vidí, že se něco děje. Ochota sdílet pravdu roste." }
         ]
       },
-      bottomBadge: "Navrženo pro firmy od 30 do 350 zaměstnanců"
+      bottomBadge: "Pro firmy od 30 do 350 lidí"
     },
     dashboard: {
-      badge: "Exekutivní přehled",
-      title: "Vidíte to, co dřív viděli jen",
-      titleHighlight: "kolegové u kávovaru.",
-      subtitle: "Echo Pulse agreguje fragmentované signály do jednoho srozumitelného dashboardu.",
+      badge: "Přehled pro vedení",
+      title: "Vidíte to, co se dřív říkalo",
+      titleHighlight: "jen u kávy.",
+      subtitle: "Echo Pulse sbírá rozptýlené signály a ukazuje je na jednom místě. Jasně a bez zbytečných grafů.",
       watchDemo: "Přehrát demo",
       features: [
-        { title: "Rentgen nálady", desc: "Okamžitý přehled o tom, jak se cítí různé týmy. Rozklíčování dle oddělení, lokality nebo seniority." },
-        { title: "Detekce toxických ohnisek", desc: "Systém upozorní na anomálie, které naznačují šikanu, vyhoření nebo selhání manažera." },
-        { title: "Prioritizace zásahů", desc: "Nevíte, co řešit dřív? Echo seřadí problémy podle dopadu na byznys a rizika odchodů." }
+        { title: "Nálada podle týmů", desc: "Okamžitý přehled, jak se cítí jednotlivá oddělení. Rozděleno podle lokality, seniority nebo manažera." },
+        { title: "Varování před problémy", desc: "Systém upozorní, když něco nesedí - přetížení, napětí v týmu, nebo výrazný pokles energie." },
+        { title: "Priority pro akci", desc: "Nevíte, co řešit první? Echo seřadí problémy podle dopadu na byznys a rizika odchodu." }
       ]
     },
     purchase: {
@@ -799,7 +805,7 @@ export const translations = {
       basePriceLabel: "Základní cena",
       vatLabel: "DPH (21%)",
       features: [
-        "Průběžné pulsy a analýza signálů",
+        "Průběžné pulzy a analýza signálů",
         "Dashboard pro vedení a HR",
         "Akční doporučení pro manažery",
         "Bezpečné zpracování dat (GDPR)"
@@ -825,8 +831,8 @@ export const translations = {
     },
     cta: {
       title: "Nečekejte na další výpověď.",
-      subtitle: "Slepota stojí české firmy miliony ročně na ztracené produktivitě a náboru. Získejte kontrolu zpět během 48 hodin.",
-      primary: "Sjednat konzultaci",
+      subtitle: "Každý nečekaný odchod stojí měsíce práce a statisíce korun. Začněte mít přehled - ještě dnes.",
+      primary: "Zarezervovat ukázku",
       demoButton: "Vyzkoušet demo",
       secondary: "nebo zavolejte",
       secondaryLink: "+420 777 123 456",
