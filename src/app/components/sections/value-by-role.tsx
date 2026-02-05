@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Check, Shield, Users, Target, ArrowRight } from "lucide-react";
+import { Check, Shield, Users, Target, ArrowRight, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 
 type Role = "ceo" | "hr";
+type BenefitItem = string | { title: string; desc?: string };
 
 export function ValueByRole() {
   const { t } = useLanguage();
@@ -54,30 +55,18 @@ export function ValueByRole() {
         {/* Tab Navigation */}
         <div className="flex justify-center mb-8 md:mb-12">
           <div className="inline-flex bg-white p-1.5 md:p-2 rounded-xl shadow-md border border-brand-border">
-            <button
+            <RoleTabButton
+              active={activeRole === "ceo"}
               onClick={() => setActiveRole("ceo")}
-              className={cn(
-                "flex items-center gap-3 px-8 py-4 rounded-lg text-base font-bold transition-all",
-                activeRole === "ceo"
-                  ? "bg-brand-primary text-white shadow-md"
-                  : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-background-secondary"
-              )}
-            >
-              <Target className="w-5 h-5" />
-              {t.valueByRole?.tabs?.ceo}
-            </button>
-            <button
+              icon={Target}
+              label={t.valueByRole?.tabs?.ceo}
+            />
+            <RoleTabButton
+              active={activeRole === "hr"}
               onClick={() => setActiveRole("hr")}
-              className={cn(
-                "flex items-center gap-3 px-8 py-4 rounded-lg text-base font-bold transition-all",
-                activeRole === "hr"
-                  ? "bg-brand-primary text-white shadow-md"
-                  : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-background-secondary"
-              )}
-            >
-              <Users className="w-5 h-5" />
-              {t.valueByRole?.tabs?.hr}
-            </button>
+              icon={Users}
+              label={t.valueByRole?.tabs?.hr}
+            />
           </div>
         </div>
 
@@ -107,28 +96,9 @@ export function ValueByRole() {
               <ul className="grid md:grid-cols-1 gap-8">
                 {current.list
                   .filter(Boolean)
-                  .map((item: any, index: number) => {
-                    const title = typeof item === "string" ? item : item?.title;
-                    const desc = typeof item === "string" ? "" : item?.desc;
-                    if (!title) return null;
-                    return (
-                      <li key={index} className="flex items-start gap-5">
-                        <div className="mt-1.5 p-2 rounded-full bg-brand-primary text-white shrink-0">
-                          <Check className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <strong className="block text-brand-text-primary text-lg font-bold mb-2 tracking-[-0.005em]">
-                            {title}
-                          </strong>
-                          {desc && (
-                            <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
-                              {desc}
-                            </p>
-                          )}
-                        </div>
-                      </li>
-                    );
-                  })}
+                  .map((item: BenefitItem, index: number) => (
+                    <BenefitListItem key={index} item={item} />
+                  ))}
               </ul>
 
               {/* CTA */}
@@ -158,5 +128,57 @@ export function ValueByRole() {
 
       </div>
     </section>
+  );
+}
+
+type RoleTabButtonProps = {
+  active: boolean;
+  onClick: () => void;
+  icon: LucideIcon;
+  label?: string;
+};
+
+function RoleTabButton({ active, onClick, icon: Icon, label }: RoleTabButtonProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "flex items-center gap-3 px-8 py-4 rounded-lg text-base font-bold transition-all",
+        active
+          ? "bg-brand-primary text-white shadow-md"
+          : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-background-secondary"
+      )}
+    >
+      <Icon className="w-5 h-5" />
+      {label}
+    </button>
+  );
+}
+
+type BenefitListItemProps = {
+  item: BenefitItem;
+};
+
+function BenefitListItem({ item }: BenefitListItemProps) {
+  const title = typeof item === "string" ? item : item?.title;
+  const desc = typeof item === "string" ? "" : item?.desc;
+  if (!title) return null;
+
+  return (
+    <li className="flex items-start gap-5">
+      <div className="mt-1.5 p-2 rounded-full bg-brand-primary text-white shrink-0">
+        <Check className="w-5 h-5" />
+      </div>
+      <div>
+        <strong className="block text-brand-text-primary text-lg font-bold mb-2 tracking-[-0.005em]">
+          {title}
+        </strong>
+        {desc && (
+          <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
+            {desc}
+          </p>
+        )}
+      </div>
+    </li>
   );
 }
