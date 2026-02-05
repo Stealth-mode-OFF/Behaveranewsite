@@ -1,8 +1,7 @@
 import React from "react";
 import { useLanguage } from "@/app/LanguageContext";
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Linkedin, Github, ExternalLink, Mail, ArrowUpRight, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+import { Phone, Linkedin, Github, Mail, ArrowUpRight, Zap } from "lucide-react";
 
 export function Footer() {
   const { t, language } = useLanguage();
@@ -156,180 +155,162 @@ export function Footer() {
   const company = companyLinks[language] || companyLinks.en;
   const resources = resourceLinks[language] || resourceLinks.en;
   const legal = legalLinks[language] || legalLinks.en;
+
+  // Helper to render links properly (internal vs external vs anchor)
+  const renderLink = (item: { label: string; href: string; external?: boolean }, i: number) => {
+    if (item.external) {
+      return (
+        <a 
+          href={item.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-white/70 hover:text-white transition-colors inline-flex items-center gap-1"
+        >
+          {item.label}
+          <ArrowUpRight className="w-3 h-3" />
+        </a>
+      );
+    }
+    if (item.href.startsWith('#')) {
+      return (
+        <a href={item.href} className="text-sm text-white/70 hover:text-white transition-colors">
+          {item.label}
+        </a>
+      );
+    }
+    return (
+      <Link to={item.href} className="text-sm text-white/70 hover:text-white transition-colors">
+        {item.label}
+      </Link>
+    );
+  };
   
   return (
-    <footer className="bg-brand-primary text-white relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(167,139,250,0.15)_0%,transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(167,139,250,0.1)_0%,transparent_50%)]" />
-      
-      <div className="container-default relative z-10">
+    <footer className="bg-brand-primary text-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Main Footer Content */}
-        <div className="py-16 md:py-20 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="py-12 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
             
             {/* Brand Column */}
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-2">
               {/* Logo */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
+              <Link to="/" className="inline-flex items-center gap-2.5 mb-5">
+                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
                   <Zap className="w-5 h-5 text-brand-accent" />
                 </div>
-                <span className="text-xl font-bold tracking-tight">Echo Pulse</span>
-              </div>
+                <span className="text-lg font-bold tracking-tight">Echo Pulse</span>
+              </Link>
               
               {/* Tagline */}
-              <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-sm">
+              <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
                 {txt.tagline}
               </p>
               
-              {/* Contact */}
-              <div className="space-y-3 mb-8">
-                <a 
-                  href="tel:+420605839456" 
-                  className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <span className="font-medium">+420 605 839 456</span>
-                </a>
-                <a 
-                  href="mailto:hello@behavera.com" 
-                  className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group"
-                >
-                  <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <span className="font-medium">hello@behavera.com</span>
-                </a>
-                <div className="flex items-center gap-3 text-white/60">
-                  <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <span className="text-sm">{info.address}</span>
-                </div>
-              </div>
-              
               {/* Social Links */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <a
                   href="https://linkedin.com/company/behavera"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors border border-white/10 hover:border-white/20"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-4 h-4" />
                 </a>
                 <a
                   href="https://github.com/behavera"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors border border-white/10 hover:border-white/20"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="GitHub"
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-4 h-4" />
                 </a>
               </div>
             </div>
             
-            {/* Links Columns */}
-            <div className="lg:col-span-8">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-                {/* Product */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-5">
-                    {txt.product}
-                  </h4>
-                  <ul className="space-y-3">
-                    {products.map((item, i) => (
-                      <li key={i}>
-                        {item.external ? (
-                          <a 
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white/80 hover:text-white transition-colors flex items-center gap-1 group"
-                          >
-                            {item.label}
-                            <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-0.5 translate-x-0.5 group-hover:opacity-100 transition-all" />
-                          </a>
-                        ) : (
-                          <a href={item.href} className="text-white/80 hover:text-white transition-colors">
-                            {item.label}
-                          </a>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Company */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-5">
-                    {txt.company}
-                  </h4>
-                  <ul className="space-y-3">
-                    {company.map((item, i) => (
-                      <li key={i}>
-                        <Link to={item.href} className="text-white/80 hover:text-white transition-colors">
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Resources */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-5">
-                    {txt.resources}
-                  </h4>
-                  <ul className="space-y-3">
-                    {resources.map((item, i) => (
-                      <li key={i}>
-                        <Link to={item.href} className="text-white/80 hover:text-white transition-colors">
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Legal */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] text-white/50 mb-5">
-                    {txt.legal}
-                  </h4>
-                  <ul className="space-y-3">
-                    {legal.map((item, i) => (
-                      <li key={i}>
-                        <Link to={item.href} className="text-white/80 hover:text-white transition-colors">
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            {/* Product */}
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+                {txt.product}
+              </h4>
+              <ul className="space-y-2.5">
+                {products.map((item, i) => (
+                  <li key={i}>{renderLink(item, i)}</li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Company */}
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+                {txt.company}
+              </h4>
+              <ul className="space-y-2.5">
+                {company.map((item, i) => (
+                  <li key={i}>{renderLink(item, i)}</li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Resources */}
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+                {txt.resources}
+              </h4>
+              <ul className="space-y-2.5">
+                {resources.map((item, i) => (
+                  <li key={i}>{renderLink(item, i)}</li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Contact */}
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
+                {txt.legal}
+              </h4>
+              <ul className="space-y-2.5">
+                {legal.map((item, i) => (
+                  <li key={i}>{renderLink(item, i)}</li>
+                ))}
+              </ul>
+              
+              {/* Contact info under legal */}
+              <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
+                <a 
+                  href="mailto:hello@behavera.com" 
+                  className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  hello@behavera.com
+                </a>
+                <a 
+                  href="tel:+420605839456" 
+                  className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  +420 605 839 456
+                </a>
               </div>
             </div>
           </div>
         </div>
         
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/10">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-white/50">
+        <div className="py-5 border-t border-white/10">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/40">
+            <div className="flex items-center gap-1.5">
               <span>{txt.copyright}</span>
+              <span className="hidden sm:inline">•</span>
+              <span className="hidden sm:inline">{info.ico}</span>
             </div>
             
-            <div className="flex items-center gap-2 text-sm text-white/50">
+            <div className="flex items-center gap-1.5">
               <span>{txt.madeWith}</span>
               <span className="text-red-400">♥</span>
               <span>{txt.inPrague}</span>
-              <span className="mx-2">•</span>
-              <span className="text-white/70 font-medium">{info.ico}</span>
             </div>
           </div>
         </div>
