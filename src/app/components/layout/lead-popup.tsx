@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, ArrowRight, Sparkles, Shield, Mail } from 'lucide-react';
+import { X, ArrowRight, Sparkles, Shield, Mail, Download, FileText, PartyPopper } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
@@ -115,10 +115,6 @@ export function LeadPopup() {
 
     setIsSuccess(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
-    
-    setTimeout(() => {
-      closePopup();
-    }, 3000);
   };
 
   return (
@@ -168,13 +164,28 @@ export function LeadPopup() {
                     transition={{ type: "spring", damping: 15 }}
                     className="w-20 h-20 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-6"
                   >
-                    <CheckCircle2 className="w-10 h-10" />
+                    <PartyPopper className="w-10 h-10" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-brand-text-primary mb-3">
+                  <h3 className="text-2xl font-bold text-brand-text-primary mb-2">
                     {t.leadPopup.successTitle}
                   </h3>
-                  <p className="text-brand-text-secondary">
+                  <p className="text-brand-text-secondary mb-8">
                     {t.leadPopup.successMessage}
+                  </p>
+                  
+                  {/* Download Button */}
+                  <a
+                    href="/ebooks/lide-odchazeji-z-dobrych-firem.pdf"
+                    download
+                    className="inline-flex items-center justify-center gap-3 w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-primary/20 group"
+                  >
+                    <Download className="w-5 h-5 group-hover:animate-bounce" />
+                    {t.leadPopup.downloadButton}
+                  </a>
+                  
+                  <p className="text-xs text-brand-text-muted mt-4 flex items-center justify-center gap-2">
+                    <FileText className="w-3.5 h-3.5" />
+                    {t.leadPopup.downloadNote}
                   </p>
                 </motion.div>
               ) : (
