@@ -34,7 +34,6 @@ export function Header() {
     { path: '/research', label: language === 'cz' ? 'Věda' : language === 'de' ? 'Forschung' : 'Research' },
     { path: '/blog', label: 'Blog' },
     { path: '/case-studies', label: 'Case Studies' },
-    { path: '/try', label: language === 'cz' ? 'Vyzkoušet' : language === 'de' ? 'Ausprobieren' : 'Try it' },
   ];
 
   return (
