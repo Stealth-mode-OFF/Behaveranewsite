@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { FormField } from "@/app/components/ui/form-field";
+import { PhoneInput, phoneValidationRules } from "@/app/components/ui/phone-input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select";
 import { useModal } from "@/app/ModalContext";
 import { submitLead } from "@/app/utils/lead";
@@ -116,11 +117,19 @@ export function DemoRequestModal() {
                 error={errors.phone?.message}
                 required
               >
-                <Input
-                  type="tel"
-                  autoComplete={autocompleteAttributes.phone}
-                  placeholder={copy.phonePlaceholder || "+420 777 123 456"}
-                  {...register("phone", validationRules.czechPhone)}
+                <Controller
+                  name="phone"
+                  control={control}
+                  rules={phoneValidationRules}
+                  render={({ field, fieldState }) => (
+                    <PhoneInput
+                      value={field.value}
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
+                      error={!!fieldState.error}
+                      defaultCountry="CZ"
+                    />
+                  )}
                 />
               </FormField>
 

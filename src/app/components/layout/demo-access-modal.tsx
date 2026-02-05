@@ -4,7 +4,8 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/com
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { FormField } from '@/app/components/ui/form-field';
-import { useForm } from 'react-hook-form';
+import { PhoneInput, phoneValidationRules } from '@/app/components/ui/phone-input';
+import { useForm, Controller } from 'react-hook-form';
 import { useModal } from '@/app/ModalContext';
 import { useLanguage } from '@/app/LanguageContext';
 import { submitLead } from '@/app/utils/lead';
@@ -13,7 +14,6 @@ import {
   Monitor, 
   Lock, 
   Mail, 
-  Phone, 
   ArrowRight, 
   CheckCircle2, 
   Copy, 
@@ -21,7 +21,8 @@ import {
   Shield,
   Clock,
   Users,
-  Sparkles
+  Sparkles,
+  Play
 } from 'lucide-react';
 
 /**
@@ -63,7 +64,7 @@ export function DemoAccessModal() {
   const [error, setError] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
+  const { register, handleSubmit, formState: { errors }, reset, control } = useForm<FormData>();
 
   const handleClose = () => {
     closeDemoRequest();
@@ -230,11 +231,19 @@ export function DemoAccessModal() {
                   error={errors.phone?.message}
                   required
                 >
-                  <Input
-                    type="tel"
-                    autoComplete={autocompleteAttributes.phone}
-                    placeholder={copy.phonePlaceholder}
-                    {...register("phone", validationRules.czechPhone)}
+                  <Controller
+                    name="phone"
+                    control={control}
+                    rules={phoneValidationRules}
+                    render={({ field, fieldState }) => (
+                      <PhoneInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
+                        error={!!fieldState.error}
+                        defaultCountry="CZ"
+                      />
+                    )}
                   />
                 </FormField>
 
