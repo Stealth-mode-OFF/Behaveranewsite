@@ -1,7 +1,7 @@
 import React from "react";
 import { useLanguage } from "../LanguageContext";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Footer() {
@@ -80,10 +80,17 @@ export function Footer() {
             <h4 className="font-bold text-brand-text-primary mb-4 text-sm uppercase tracking-wider">Contact</h4>
             <a 
               href="mailto:hello@echopulse.cz" 
-              className="inline-flex items-center gap-2 text-brand-text-secondary hover:text-brand-primary transition-colors font-medium mb-6"
+              className="inline-flex items-center gap-2 text-brand-text-secondary hover:text-brand-primary transition-colors font-medium mb-3"
             >
               <Mail className="w-4 h-4" />
               hello@echopulse.cz
+            </a>
+            <a 
+              href="tel:+420605839456" 
+              className="inline-flex items-center gap-2 text-brand-text-secondary hover:text-brand-primary transition-colors font-medium mb-6"
+            >
+              <Phone className="w-4 h-4" />
+              +420 605 839 456
             </a>
             
             <div className="mt-6 pt-6 border-t border-brand-border">

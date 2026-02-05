@@ -33,8 +33,10 @@ export function Header() {
   const pageLinks = [
     { path: '/research', label: language === 'cz' ? 'Věda' : language === 'de' ? 'Forschung' : 'Research' },
     { path: '/blog', label: 'Blog' },
-    { path: '/case-studies', label: 'Case Studies' },
   ];
+
+  // Case studies scrolls to section on homepage
+  const caseStudiesLabel = language === 'cz' ? 'Případové studie' : language === 'de' ? 'Fallstudien' : 'Case Studies';
 
   return (
     <motion.header
@@ -103,6 +105,28 @@ export function Header() {
                 {link.label}
             </Link>
           ))}
+          {/* Case Studies - scrolls to section */}
+          {isHome ? (
+            <a
+              href="#case-studies"
+              className={cn(
+                "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
+                isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
+              )}
+            >
+              {caseStudiesLabel}
+            </a>
+          ) : (
+            <Link
+              to="/#case-studies"
+              className={cn(
+                "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
+                isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
+              )}
+            >
+              {caseStudiesLabel}
+            </Link>
+          )}
         </nav>
 
         {/* Actions */}
@@ -179,6 +203,24 @@ export function Header() {
                     {link.label}
                 </Link>
               ))}
+              {/* Case Studies - scrolls to section */}
+              {isHome ? (
+                <a
+                  href="#case-studies"
+                  className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {caseStudiesLabel}
+                </a>
+              ) : (
+                <Link
+                  to="/#case-studies"
+                  className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {caseStudiesLabel}
+                </Link>
+              )}
               <div className="mt-8 pt-8 border-t border-brand-border flex flex-col gap-4">
                 <Button 
                     onClick={() => {

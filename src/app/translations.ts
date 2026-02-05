@@ -289,7 +289,7 @@ export const translations = {
       primary: "Schedule Consultation",
       demoButton: "Try the demo",
       secondary: "or call us",
-      secondaryLink: "+420 777 123 456",
+      secondaryLink: "+420 605 839 456",
       benefits: [
         { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 20 minutes." },
         { title: "Privacy Guarantee", desc: "GDPR compliance with clear data-handling rules. Your data stays on EU servers." },
@@ -841,7 +841,7 @@ export const translations = {
       primary: "Zarezervovat ukázku",
       demoButton: "Vyzkoušet demo",
       secondary: "nebo zavolejte",
-      secondaryLink: "+420 777 123 456",
+      secondaryLink: "+420 605 839 456",
       benefits: [
         { title: "Bez závazků", desc: "Úvodní konzultace a demo ukázka jsou zdarma. Pochopíte logiku systému za 20 minut." },
         { title: "Garance soukromí", desc: "Soulad s GDPR a jasná pravidla práce s daty. Vaše data zůstávají na evropských serverech." },
@@ -1393,7 +1393,7 @@ export const translations = {
       primary: "Beratung vereinbaren",
       demoButton: "Demo testen",
       secondary: "oder rufen Sie an",
-      secondaryLink: "+420 777 123 456",
+      secondaryLink: "+420 605 839 456",
       benefits: [
         { title: "Keine Verpflichtung", desc: "Erstberatung und Demo sind kostenlos. Verstehen Sie die Systemlogik in 20 Minuten." },
         { title: "Datenschutz-Garantie", desc: "DSGVO-Konformität und klare Regeln für den Datenumgang. Ihre Daten bleiben auf EU-Servern." },
