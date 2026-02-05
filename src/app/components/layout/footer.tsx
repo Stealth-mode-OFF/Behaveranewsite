@@ -1,7 +1,7 @@
 import React from "react";
 import { useLanguage } from "@/app/LanguageContext";
 import { Link } from "react-router-dom";
-import { Phone, MapPin, Linkedin } from "lucide-react";
+import { Phone, MapPin, Linkedin, Github, ExternalLink } from "lucide-react";
 
 export function Footer() {
   const { t, language } = useLanguage();
@@ -26,6 +26,21 @@ export function Footer() {
     },
   };
 
+  const appLinks = {
+    cz: [
+      { label: "Vyzkoušet Echo Pulse", href: "https://app.behavera.com/echo-pulse/join", external: true },
+      { label: "Nastavení účtu", href: "https://app.behavera.com/setup/", external: true },
+    ],
+    en: [
+      { label: "Try Echo Pulse", href: "https://app.behavera.com/echo-pulse/join", external: true },
+      { label: "Account Setup", href: "https://app.behavera.com/setup/", external: true },
+    ],
+    de: [
+      { label: "Echo Pulse testen", href: "https://app.behavera.com/echo-pulse/join", external: true },
+      { label: "Konto einrichten", href: "https://app.behavera.com/setup/", external: true },
+    ],
+  };
+
   const legalLinks = {
     cz: [
       { label: "Podmínky", href: "/terms" },
@@ -46,6 +61,7 @@ export function Footer() {
 
   const info = companyInfo[language] || companyInfo.en;
   const legal = legalLinks[language] || legalLinks.en;
+  const apps = appLinks[language] || appLinks.en;
   
   return (
     <footer className="bg-brand-background-secondary border-t border-brand-border py-12 md:py-16 lg:py-20 text-sm text-brand-text-secondary">
@@ -75,11 +91,33 @@ export function Footer() {
             </div>
             
             {/* Navigation */}
-            <div className="flex gap-8">
-                {t.footer.links.map((link, i) => (
-                <a key={i} href={linkTargets[i] || "#"} className="hover:text-brand-primary transition-colors font-medium">{link}</a>
-                ))}
-                <Link to="/blog" className="hover:text-brand-primary transition-colors font-medium">Blog</Link>
+            <div className="flex flex-col md:flex-row gap-8">
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-text-muted mb-1">
+                    {language === 'cz' ? 'Produkt' : language === 'de' ? 'Produkt' : 'Product'}
+                  </span>
+                  {apps.map((item, i) => (
+                    <a 
+                      key={i} 
+                      href={item.href} 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-brand-primary transition-colors font-medium flex items-center gap-1"
+                    >
+                      {item.label}
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider text-brand-text-muted mb-1">
+                    {language === 'cz' ? 'Více' : language === 'de' ? 'Mehr' : 'More'}
+                  </span>
+                  {t.footer.links.map((link, i) => (
+                    <a key={i} href={linkTargets[i] || "#"} className="hover:text-brand-primary transition-colors font-medium">{link}</a>
+                  ))}
+                  <Link to="/blog" className="hover:text-brand-primary transition-colors font-medium">Blog</Link>
+                </div>
             </div>
 
             {/* Legal & Social */}
@@ -100,6 +138,15 @@ export function Footer() {
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://github.com/behavera"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-primary transition-colors"
+                  aria-label="GitHub"
+                >
+                  <Github className="w-4 h-4" />
                 </a>
             </div>
         </div>
