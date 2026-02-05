@@ -31,6 +31,7 @@ export function Footer() {
                 {t.footer.links.map((link, i) => (
                 <a key={i} href={linkTargets[i] || "#"} className="hover:text-brand-primary transition-colors font-medium">{link}</a>
                 ))}
+                <Link to="/blog" className="hover:text-brand-primary transition-colors font-medium">Blog</Link>
             </div>
 
             <div className="text-right flex flex-col items-end gap-2">
