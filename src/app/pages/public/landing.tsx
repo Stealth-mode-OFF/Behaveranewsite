@@ -1,4 +1,5 @@
 import React, { lazy, Suspense } from "react";
+import { pageSEO } from "@/app/config/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { BookingModal } from "@/app/components/layout/booking-modal";
@@ -13,50 +14,56 @@ import { DashboardPreviewV2 } from "@/app/components/sections/dashboard-preview-
 import { SignalRadar } from "@/app/components/sections/signal-radar";
 import { RoleSelectionV2 } from "@/app/components/sections/role-selection-v2";
 import { MethodologySection } from "@/app/components/sections/methodology";
-const CaseStudiesSection = lazy(() =>
-  import("@/app/components/sections/case-studies-v2").then((module) => ({
-    default: module.CaseStudiesSectionV2,
-  }))
-);
-const FAQ = lazy(() =>
-  import("@/app/components/sections/faq-v2").then((module) => ({
-    default: module.FAQV2,
-  }))
-);
-const PurchaseSection = lazy(() =>
-  import("@/app/components/sections/pricing").then((module) => ({
-    default: module.PurchaseSection,
-  }))
-);
-const TrustCenter = lazy(() =>
-  import("@/app/components/sections/trust-center").then((module) => ({
-    default: module.TrustCenter,
-  }))
-);
-const CtaSection = lazy(() =>
-  import("@/app/components/sections/cta-section-v2").then((module) => ({
-    default: module.CtaSectionV2,
-  }))
-);
-const LeadCaptureSection = lazy(() =>
-  import("@/app/components/sections/lead-capture").then((module) => ({
-    default: module.LeadCaptureSection,
-  }))
-);
-const CoreTeamSection = lazy(() =>
-  import("@/app/components/sections/core-team").then((module) => ({
-    default: module.CoreTeamSection,
-  }))
-);
-const BuiltWithSection = lazy(() =>
-  import("@/app/components/sections/built-with").then((module) => ({
-    default: module.BuiltWithSection,
-  }))
-);
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
 import { useLanguage } from "@/app/LanguageContext";
-import { pageSEO } from "@/app/config/seo.config";
+
+type LazyComponent<TProps = Record<string, unknown>> = React.ComponentType<TProps>;
+
+// Helper to load named exports via React.lazy without repeating boilerplate.
+function lazyNamed<TProps>(
+  importer: () => Promise<Record<string, LazyComponent<TProps>>>,
+  exportName: string
+) {
+  return lazy(() =>
+    importer().then((module) => ({
+      default: module[exportName] as LazyComponent<TProps>,
+    }))
+  );
+}
+
+const CaseStudiesSection = lazyNamed(
+  () => import("@/app/components/sections/case-studies-v2"),
+  "CaseStudiesSectionV2"
+);
+const FAQ = lazyNamed(
+  () => import("@/app/components/sections/faq-v2"),
+  "FAQV2"
+);
+const PurchaseSection = lazyNamed(
+  () => import("@/app/components/sections/pricing"),
+  "PurchaseSection"
+);
+const TrustCenter = lazyNamed(
+  () => import("@/app/components/sections/trust-center"),
+  "TrustCenter"
+);
+const CtaSection = lazyNamed(
+  () => import("@/app/components/sections/cta-section-v2"),
+  "CtaSectionV2"
+);
+const LeadCaptureSection = lazyNamed(
+  () => import("@/app/components/sections/lead-capture"),
+  "LeadCaptureSection"
+);
+const CoreTeamSection = lazyNamed(
+  () => import("@/app/components/sections/core-team"),
+  "CoreTeamSection"
+);
+const BuiltWithSection = lazyNamed(
+  () => import("@/app/components/sections/built-with"),
+  "BuiltWithSection"
+);
 
 export function LandingPage() {
   const { language } = useLanguage();
