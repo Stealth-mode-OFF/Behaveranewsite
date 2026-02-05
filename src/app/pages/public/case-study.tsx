@@ -7,12 +7,21 @@ import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
+import { useSEO } from '@/app/hooks/useSEO';
 
 export const CaseStudyPage = () => {
   const { slug } = useParams();
   const [study, setStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
   const { t } = useLanguage();
+  const seoTitle = study?.title || 'Case Study';
+  const seoDescription = study?.challenge || 'Customer story from Echo Pulse.';
+
+  useSEO({
+    title: seoTitle,
+    description: seoDescription,
+    ogType: 'article',
+  });
 
   useEffect(() => {
     if (slug) {

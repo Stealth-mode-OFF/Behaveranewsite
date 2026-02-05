@@ -5,9 +5,16 @@ import { CaseStudy } from '@/lib/types';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { ArrowRight } from 'lucide-react';
+import { useSEO } from '@/app/hooks/useSEO';
 
 export const CaseStudiesPage = () => {
   const [studies, setStudies] = useState<CaseStudy[]>([]);
+
+  useSEO({
+    title: 'Case Studies',
+    description: 'Real results from companies using Echo Pulse to transform their culture and retention.',
+    ogType: 'website',
+  });
 
   useEffect(() => {
     CmsService.getCaseStudies().then(data => {
