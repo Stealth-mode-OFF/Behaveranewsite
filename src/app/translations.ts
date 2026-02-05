@@ -522,8 +522,28 @@ export const translations = {
       submit: "Submit"
     },
     calculator: {
+      badge: "Hard Data",
+      title: "Calculate Your",
+      titleHighlight: "ROI",
+      subtitle: "See the financial impact of turnover on your organization.",
       sliders: {
-        companySize: "Company Size"
+        companySize: "Company Size",
+        employees: "Employees",
+        avgAnnualCost: "Avg. Annual Cost",
+        annualTurnover: "Annual Turnover"
+      },
+      boardReport: {
+        title: "Board Report",
+        subtitle: "Get a PDF summary for your leadership team.",
+        button: "Generate Report",
+        buttonGenerating: "Generating..."
+      },
+      metrics: {
+        annualLoss: "Annual Loss from Turnover",
+        recoverableRevenue: "Recoverable with Echo Pulse"
+      },
+      cta: {
+        button: "See How It Works"
       }
     }
   },
@@ -1048,8 +1068,28 @@ export const translations = {
       submit: "Odeslat"
     },
     calculator: {
+      badge: "Tvrdá data",
+      title: "Spočítejte si svou",
+      titleHighlight: "návratnost",
+      subtitle: "Podívejte se, kolik vás fluktuace skutečně stojí.",
       sliders: {
-        companySize: "Velikost firmy"
+        companySize: "Velikost firmy",
+        employees: "Počet zaměstnanců",
+        avgAnnualCost: "Průměrné roční náklady",
+        annualTurnover: "Roční fluktuace"
+      },
+      boardReport: {
+        title: "Report pro vedení",
+        subtitle: "PDF shrnutí pro váš leadership tým.",
+        button: "Vygenerovat report",
+        buttonGenerating: "Generuji..."
+      },
+      metrics: {
+        annualLoss: "Roční ztráta z fluktuace",
+        recoverableRevenue: "Zachránitelné s Echo Pulse"
+      },
+      cta: {
+        button: "Jak to funguje"
       }
     }
   },
@@ -1574,8 +1614,28 @@ export const translations = {
       submit: "Absenden"
     },
     calculator: {
+      badge: "Harte Daten",
+      title: "Berechnen Sie Ihren",
+      titleHighlight: "ROI",
+      subtitle: "Sehen Sie die finanziellen Auswirkungen von Fluktuation.",
       sliders: {
-        companySize: "Unternehmensgröße"
+        companySize: "Unternehmensgröße",
+        employees: "Mitarbeiter",
+        avgAnnualCost: "Durchschn. Jahreskosten",
+        annualTurnover: "Jährliche Fluktuation"
+      },
+      boardReport: {
+        title: "Vorstandsbericht",
+        subtitle: "PDF-Zusammenfassung für Ihr Leadership-Team.",
+        button: "Bericht generieren",
+        buttonGenerating: "Wird generiert..."
+      },
+      metrics: {
+        annualLoss: "Jährlicher Verlust durch Fluktuation",
+        recoverableRevenue: "Einsparbar mit Echo Pulse"
+      },
+      cta: {
+        button: "So funktioniert es"
       }
     }
   }

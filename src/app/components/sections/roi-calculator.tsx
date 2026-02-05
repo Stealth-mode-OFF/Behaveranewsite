@@ -59,15 +59,15 @@ export function ROICalculator() {
           <div className="lg:col-span-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-background-secondary text-brand-text-secondary rounded-full text-caption font-bold uppercase tracking-widest mb-6 border border-brand-border">
               <PieChart className="w-3.5 h-3.5" />
-              Hard Data
+              {t.calculator.badge}
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-primary mb-6">
-              Calculate Your <span className="text-brand-accent">ROI</span>
+              {t.calculator.title} <span className="text-brand-accent">{t.calculator.titleHighlight}</span>
             </h2>
             
             <p className="text-body text-brand-text-muted mb-8">
-              See the financial impact of turnover on your organization.
+              {t.calculator.subtitle}
             </p>
 
             <div className="card-base p-6 bg-brand-background-secondary">
@@ -144,7 +144,7 @@ export function ROICalculator() {
                  <div className="space-y-8">
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <label className="text-body font-bold text-brand-primary">Employees</label>
+                            <label className="text-body font-bold text-brand-primary">{t.calculator.sliders.employees}</label>
                             <span className="font-mono text-h3 font-bold text-brand-primary">{employees}</span>
                         </div>
                         <input 
@@ -159,7 +159,7 @@ export function ROICalculator() {
                     
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <label className="text-body font-bold text-brand-primary">Avg. Annual Cost</label>
+                            <label className="text-body font-bold text-brand-primary">{t.calculator.sliders.avgAnnualCost}</label>
                             <span className="font-mono text-h3 font-bold text-brand-primary">
                                 {currency === 'EUR' ? '€' : ''}{salary.toLocaleString()}{currency === 'CZK' ? ' Kč' : ''}
                             </span>
@@ -176,7 +176,7 @@ export function ROICalculator() {
 
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <label className="text-body font-bold text-brand-primary">Annual Turnover</label>
+                            <label className="text-body font-bold text-brand-primary">{t.calculator.sliders.annualTurnover}</label>
                             <span className="font-mono text-h3 font-bold text-brand-primary">{turnover}%</span>
                         </div>
                         <input 
