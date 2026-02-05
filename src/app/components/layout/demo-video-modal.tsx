@@ -39,12 +39,13 @@ import {
  */
 
 export function DemoVideoModal() {
-  const { isVideoOpen, closeVideo, openDemoRequest, openBooking } = useModal();
+  const { isVideoOpen, closeVideo, openBooking } = useModal();
   const { t } = useLanguage();
 
   const handleSelfServeDemo = () => {
     closeVideo();
-    setTimeout(() => openDemoRequest(), 100);
+    // Both options now lead to Pipedrive scheduler for unified booking experience
+    setTimeout(() => openBooking(), 100);
   };
 
   const handleConsultation = () => {
