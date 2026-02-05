@@ -4,6 +4,7 @@ import { Footer } from '@/app/components/Footer';
 import { ArrowRight, BookOpen, Brain, Scale, Zap, Users, TrendingUp, ExternalLink, AlertTriangle, Database, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useSEO } from '@/app/hooks/useSEO';
+import { useLanguage } from '@/app/LanguageContext';
 
 const ModelCard = ({ 
   icon: Icon, 
@@ -74,12 +75,51 @@ const EvidenceCard = ({
 );
 
 export const ResearchPage = () => {
+  const { t, language, setLanguage } = useLanguage();
+  const isCz = language === 'cz';
+
   useSEO({
-    title: 'Architektura systému Echo Pulse',
-    description: 'Detekční engine založený na JD-R Model, Self-Determination Theory a Affective Events Theory. Evidence base pro organizační early-warning systém.',
-    keywords: 'JD-R model, Self-Determination Theory, Affective Events Theory, organizational intelligence, predictive analytics, burnout detection',
+    title: isCz ? 'Architektura systému Echo Pulse' : t.research.seoTitle,
+    description: isCz
+      ? 'Detekční engine založený na JD-R Model, Self-Determination Theory a Affective Events Theory. Evidence base pro organizační early-warning systém.'
+      : t.research.seoDescription,
+    keywords: isCz
+      ? 'JD-R model, Self-Determination Theory, Affective Events Theory, organizational intelligence, predictive analytics, burnout detection'
+      : t.research.seoKeywords,
     ogType: 'website',
   });
+
+  if (!isCz) {
+    return (
+      <div className="min-h-screen flex flex-col bg-brand-background-primary">
+        <Header />
+        <main className="flex-1 pt-24 pb-16">
+          <div className="container mx-auto px-4 max-w-3xl text-center">
+            <div className="bg-white border border-brand-border rounded-2xl p-10 shadow-sm">
+              <h1 className="text-3xl font-bold text-brand-text-primary mb-4">
+                {t.research.unavailableTitle}
+              </h1>
+              <p className="text-brand-text-secondary leading-relaxed mb-8">
+                {t.research.unavailableBody}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                  onClick={() => setLanguage('cz')}
+                  className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
+                >
+                  {t.research.switchToCz}
+                </button>
+                <Link to="/" className="text-brand-primary font-semibold">
+                  {t.research.backToHome}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-background-primary">
@@ -336,30 +376,30 @@ export const ResearchPage = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
                 <h3 className="font-bold text-white mb-3">Není náhradou klinické diagnostiky</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
+                <p className="text-brand-text-on-dark text-sm font-medium leading-relaxed">
                   Systém detekuje rizikové signály. Není substitute za profesionální psychologickou nebo lékařskou intervenci při klinickém burnoutu nebo duševním onemocnění.
                 </p>
               </div>
               <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
                 <h3 className="font-bold text-white mb-3">Není performance management tool</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
+                <p className="text-brand-text-on-dark text-sm font-medium leading-relaxed">
                   Měří organizační zdraví a signály dysfunkce. Není navržen pro individuální hodnocení výkonu ani pro KPI tracking.
                 </p>
               </div>
               <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
                 <h3 className="font-bold text-white mb-3">Není universal engagement survey</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
+                <p className="text-brand-text-on-dark text-sm font-medium leading-relaxed">
                   Zaměřuje se na prediktivní signály (turnover, burnout, manažerský dopad). Nezahrnuje broad satisfaction metrics nebo kompletní culture assessment.
                 </p>
               </div>
               <div className="bg-white/10 rounded-lg p-6 backdrop-blur-sm">
                 <h3 className="font-bold text-white mb-3">Není real-time monitoring</h3>
-                <p className="text-white/80 text-sm leading-relaxed">
+                <p className="text-brand-text-on-dark text-sm font-medium leading-relaxed">
                   Pulse design vyžaduje minimální týdenní window pro validní agregaci. Není vhodný pro immediate crisis detection (potřebuje jiné protokoly).
                 </p>
               </div>
             </div>
-            <p className="text-center text-white/70 text-sm mt-8 max-w-2xl mx-auto">
+            <p className="text-center text-brand-text-muted-on-dark text-sm font-medium mt-8 max-w-2xl mx-auto">
               Tyto hranice zajišťují, že systém je používán účelně a ethicky. Určují také komplementární nástroje, které organizace potřebuje vedle Echo Pulse.
             </p>
           </div>

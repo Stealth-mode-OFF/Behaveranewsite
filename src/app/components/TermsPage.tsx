@@ -12,6 +12,36 @@ export function TermsPage() {
   }, []);
 
   const isCz = language === 'cz';
+  const isDe = language === 'de';
+
+  if (isDe) {
+    return (
+      <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto bg-white p-8 sm:p-12 rounded-2xl shadow-sm border border-brand-border text-center">
+          <div className="mb-8">
+            <Link to="/">
+              <Button variant="ghost" className="pl-0 hover:bg-transparent hover:text-brand-primary gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                Zurück zur Startseite
+              </Button>
+            </Link>
+          </div>
+          <h1 className="text-3xl font-bold mb-4">Deutsche Version in Vorbereitung</h1>
+          <p className="text-brand-text-secondary leading-relaxed mb-8">
+            Die AGB sind derzeit nur auf Tschechisch oder Englisch verfügbar. Bitte nutzen Sie eine dieser Versionen.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://cz.behavera.com/terms" className="text-brand-primary font-semibold underline">
+              Tschechische Version
+            </a>
+            <a href="https://behavera.com/terms" className="text-brand-primary font-semibold underline">
+              Englische Version
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary py-12 px-4 sm:px-6 lg:px-8">
