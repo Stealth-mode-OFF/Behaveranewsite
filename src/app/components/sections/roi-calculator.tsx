@@ -128,11 +128,33 @@ export function ROICalculator() {
                         <input 
                             type="range" 
                             min="10" 
-                            max="350" 
+                            max="500" 
                             value={employees} 
                             onChange={(e) => setEmployees(Number(e.target.value))}
                             className="w-full h-2 bg-brand-background-secondary rounded-lg appearance-none cursor-pointer accent-brand-primary"
                         />
+                        {/* 500+ employees note */}
+                        {employees >= 500 && (
+                          <div className="mt-4 p-4 bg-brand-accent/10 border border-brand-accent/30 rounded-xl">
+                            <p className="text-sm font-semibold text-brand-primary">
+                              {language === 'cz' 
+                                ? '🏢 Pro 500+ zaměstnanců nabízíme custom enterprise řešení.' 
+                                : language === 'de'
+                                ? '🏢 Für 500+ Mitarbeiter bieten wir individuelle Enterprise-Lösungen an.'
+                                : '🏢 For 500+ employees, we offer custom enterprise solutions.'}
+                            </p>
+                            <button 
+                              onClick={openBooking}
+                              className="mt-2 text-sm font-bold text-brand-accent hover:text-brand-primary transition-colors underline underline-offset-2"
+                            >
+                              {language === 'cz' 
+                                ? 'Domluvit konzultaci →' 
+                                : language === 'de'
+                                ? 'Beratung vereinbaren →'
+                                : 'Schedule a consultation →'}
+                            </button>
+                          </div>
+                        )}
                     </div>
                     
                     <div>
