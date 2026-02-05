@@ -4,6 +4,7 @@ export type LeadPayload = {
   firstName?: string;
   lastName?: string;
   companySize?: string;
+  company?: string;
   phone?: string;
   role?: string;
   source?: string;
@@ -12,51 +13,69 @@ export type LeadPayload = {
 export type LeadResult = {
   ok: boolean;
   error?: string;
+  personId?: number;
+  leadId?: string;
 };
 
-const endpoint = (import.meta.env.VITE_LEAD_ENDPOINT as string | undefined) || "";
+// Use Vercel serverless function for Pipedrive integration
+const PIPEDRIVE_ENDPOINT = '/api/submit-lead';
+
+// Fallback to Supabase if configured
+const supabaseEndpoint = (import.meta.env.VITE_LEAD_ENDPOINT as string | undefined) || "";
 
 export const submitLead = async (payload: LeadPayload): Promise<LeadResult> => {
-  if (!endpoint) {
-    return {
-      ok: false,
-      error: "Formulář zatím není aktivní. Zkuste to prosím později."
-    };
-  }
-
-  // Get Supabase configuration
-  const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
-  
-  // Prepare headers (works for both Supabase REST API and Edge Functions)
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json"
-  };
-  
-  // Add Supabase auth headers if available (for direct REST API)
-  if (supabaseKey) {
-    headers["apikey"] = supabaseKey;
-    headers["Authorization"] = `Bearer ${supabaseKey}`;
-  }
-
+  // Try Pipedrive first (via serverless function)
   try {
-    const response = await fetch(endpoint, {
+    const pipedriveResponse = await fetch(PIPEDRIVE_ENDPOINT, {
       method: "POST",
-      headers,
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(payload)
     });
 
-    if (!response.ok) {
-      return {
-        ok: false,
-        error: "Odeslání se nepodařilo. Zkuste to prosím znovu."
+    if (pipedriveResponse.ok) {
+      const data = await pipedriveResponse.json();
+      return { 
+        ok: true, 
+        personId: data.personId,
+        leadId: data.leadId 
       };
     }
-
-    return { ok: true };
-  } catch {
-    return {
-      ok: false,
-      error: "Odeslání se nepodařilo. Zkuste to prosím později."
-    };
+  } catch (error) {
+    console.warn('Pipedrive submission failed, trying fallback:', error);
   }
+
+  // Fallback to Supabase if Pipedrive fails
+  if (supabaseEndpoint) {
+    const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+    
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json"
+    };
+    
+    if (supabaseKey) {
+      headers["apikey"] = supabaseKey;
+      headers["Authorization"] = `Bearer ${supabaseKey}`;
+    }
+
+    try {
+      const response = await fetch(supabaseEndpoint, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        return { ok: true };
+      }
+    } catch {
+      // Both failed
+    }
+  }
+
+  return {
+    ok: false,
+    error: "Odeslání se nepodařilo. Zkuste to prosím znovu."
+  };
 };

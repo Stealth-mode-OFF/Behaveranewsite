@@ -10,8 +10,7 @@ import {
   ArrowRight,
   Users,
   Target,
-  Shield,
-  X
+  Shield
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
@@ -31,10 +30,8 @@ import { useLanguage } from '@/app/LanguageContext';
  * Replace CAL_EMBED_URL with your actual Cal.com booking link
  */
 
-// CONFIGURE: Replace with your actual Cal.com or Pipedrive booking URL
-const CAL_EMBED_URL = 'https://cal.com/behavera/demo'; // Cal.com embed
-// Alternative: Pipedrive Scheduler
-// const PIPEDRIVE_EMBED_URL = 'https://scheduler.pipedrive.com/your-link';
+// Pipedrive Scheduler - Demo booking
+const SCHEDULER_EMBED_URL = 'https://behavera.pipedrive.com/scheduler/GX27Q8iw/konzultace-jak-ziskat-jasna-data-o-svem-tymu-30-minutes';
 
 type ViewMode = 'info' | 'calendar';
 
@@ -81,15 +78,6 @@ export function BookingModal() {
       <DialogContent className={`${view === 'calendar' ? 'sm:max-w-[900px] sm:max-h-[90vh]' : 'sm:max-w-[520px]'} p-0 overflow-hidden bg-white border-brand-border transition-all duration-300`}>
         <DialogTitle className="sr-only">Book Consultation</DialogTitle>
         <DialogDescription className="sr-only">Schedule a consultation with our team</DialogDescription>
-
-        {/* Close button */}
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 z-50 p-2 hover:bg-brand-background-secondary rounded-full text-brand-text-muted transition-colors"
-          aria-label="Close"
-        >
-          <X className="w-5 h-5" />
-        </button>
 
         <AnimatePresence mode="wait">
           {view === 'info' ? (
@@ -178,13 +166,9 @@ export function BookingModal() {
 
               {/* Calendar Embed */}
               <div className="relative min-h-[500px] bg-brand-background-secondary">
-                {/* 
-                  Cal.com Embed
-                  Replace with your actual Cal.com embed URL
-                  For Pipedrive, use their scheduler embed code instead
-                */}
+                {/* Pipedrive Scheduler Embed */}
                 <iframe
-                  src={CAL_EMBED_URL}
+                  src={SCHEDULER_EMBED_URL}
                   title="Schedule a consultation"
                   className="w-full h-[600px] border-0"
                   loading="lazy"
