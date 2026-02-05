@@ -4,8 +4,10 @@ import { X, CheckCircle2, ArrowRight, Gift } from 'lucide-react';
 import { useLanguage } from '../LanguageContext';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import { FormField } from './ui/form-field';
 import { useForm } from 'react-hook-form';
 import { submitLead } from '../utils/lead';
+import { validationRules, autocompleteAttributes } from '../utils/validation';
 
 /**
  * LeadPopup with Exit-Intent Detection
@@ -18,11 +20,11 @@ import { submitLead } from '../utils/lead';
  * Does NOT trigger:
  * - If already shown this session
  * - If user is on mobile (no exit intent possible)
- * - If user came from /try page (already engaged)
  */
 export function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const { t } = useLanguage();
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -37,9 +39,6 @@ export function LeadPopup() {
     
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
     if (hasSeen) return;
-
-    // Don't show if user is on /try page (they're already engaged)
-    if (window.location.pathname === '/try') return;
 
     setIsOpen(true);
     setHasTriggered(true);
@@ -101,10 +100,14 @@ export function LeadPopup() {
 
   const onSubmit = async (data: any) => {
     setError(null);
+    setIsSubmitting(true);
+    
     const result = await submitLead({
       email: data.email,
       source: "exit-intent-popup"
     });
+    
+    setIsSubmitting(false);
 
     if (!result.ok) {
       setError(result.error || "Odeslání se nepodařilo.");
@@ -180,17 +183,19 @@ export function LeadPopup() {
                   </div>
 
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <div>
+                    <FormField
+                      error={errors.email?.message}
+                      helperText="Bez spamu. Pouze hodnotný obsah."
+                      required
+                    >
                       <Input 
-                        type="email" 
+                        type="email"
+                        name="email"
+                        autoComplete={autocompleteAttributes.email}
                         placeholder={t.leadPopup.emailPlaceholder}
-                        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                        className={`h-12 bg-brand-background-secondary border-brand-border focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/10 text-base ${errors.email ? 'border-red-500' : ''}`}
+                        {...register("email", validationRules.email)}
                       />
-                      {errors.email && (
-                        <p className="text-sm text-red-600 mt-1">Zadejte platný email</p>
-                      )}
-                    </div>
+                    </FormField>
                     
                     {error && (
                       <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
@@ -200,7 +205,8 @@ export function LeadPopup() {
                     
                     <Button 
                       type="submit"
-                      className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg group"
+                      disabled={isSubmitting || isSuccess}
+                      className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg group disabled:opacity-50"
                     >
                       {t.leadPopup.cta}
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -395,23 +395,6 @@ export const translations = {
         xxl: "350+ employees"
       }
     },
-    tryPage: {
-      badge: "Interactive Preview",
-      title: "Try Echo Pulse yourself",
-      subtitle: "See what your employees would experience",
-      ctaTitle: "Want to see the results?",
-      ctaButton: "Get full demo access"
-    },
-    questionnairePreview: {
-      progressLabel: "Question 2 of 6",
-      previewLabel: "Pulse preview",
-      footer: "Powered by Echo Pulse",
-      questions: [
-        "How do you feel at work today?",
-        "Do you have enough time to complete your tasks?",
-        "Do you feel supported by your manager?"
-      ]
-    },
     leadCapture: {
       badge: "Free E-book",
       title: "Get a practical guide to managing teams by signals.",
@@ -938,23 +921,6 @@ export const translations = {
         xxl: "350+ zaměstnanců"
       }
     },
-    tryPage: {
-      badge: "Interaktivní ukázka",
-      title: "Vyzkoušejte Echo Pulse na vlastní kůži",
-      subtitle: "Podívejte se, co zažijí vaši zaměstnanci",
-      ctaTitle: "Chcete vidět výsledky?",
-      ctaButton: "Získat plný přístup k demo"
-    },
-    questionnairePreview: {
-      progressLabel: "Otázka 2 z 6",
-      previewLabel: "Ukázka pulsu",
-      footer: "Běží na Echo Pulse",
-      questions: [
-        "Jak se dnes cítíte v práci?",
-        "Máte dostatek času na dokončení svých úkolů?",
-        "Cítíte podporu od svého nadřízeného?"
-      ]
-    },
     leadCapture: {
       badge: "E-book zdarma",
       title: "Získejte praktický přehled, jak řídit tým podle signálů.",
@@ -1480,23 +1446,6 @@ export const translations = {
         xl: "201–350 Mitarbeitende",
         xxl: "350+ Mitarbeitende"
       }
-    },
-    tryPage: {
-      badge: "Interaktive Vorschau",
-      title: "Echo Pulse selbst ausprobieren",
-      subtitle: "Sehen Sie, was Ihre Mitarbeitenden erleben würden",
-      ctaTitle: "Möchten Sie die Ergebnisse sehen?",
-      ctaButton: "Vollen Demo-Zugang erhalten"
-    },
-    questionnairePreview: {
-      progressLabel: "Frage 2 von 6",
-      previewLabel: "Puls-Vorschau",
-      footer: "Bereitgestellt von Echo Pulse",
-      questions: [
-        "Wie fühlen Sie sich heute bei der Arbeit?",
-        "Haben Sie genug Zeit, um Ihre Aufgaben zu erledigen?",
-        "Fühlen Sie sich von Ihrer Führungskraft unterstützt?"
-      ]
     },
     leadCapture: {
       badge: "Kostenloses E-Book",
