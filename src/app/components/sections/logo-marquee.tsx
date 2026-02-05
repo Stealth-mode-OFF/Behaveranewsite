@@ -71,32 +71,32 @@ export function LogoMarquee() {
         {/* Marquee Container */}
         <div className="relative">
           {/* Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-brand-background-secondary via-brand-background-secondary/80 to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-brand-background-secondary via-brand-background-secondary/80 to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
           
-          <div className="w-full inline-flex flex-nowrap">
-            <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll">
+          <div className="w-full inline-flex flex-nowrap overflow-hidden">
+            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll">
               {clientLogos.map((logo, index) => (
                 <li key={index}>
-                  <div className="h-10 md:h-12 flex items-center">
+                  <div className="w-[100px] md:w-[120px] h-[32px] md:h-[40px] flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt={`${logo.name} logo`}
-                      className="h-10 md:h-12 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      className="max-w-full max-h-full w-auto h-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
                 </li>
               ))}
             </ul>
-            <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll" aria-hidden="true">
+            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll" aria-hidden="true">
               {clientLogos.map((logo, index) => (
                 <li key={`duplicate-${index}`}>
-                  <div className="h-10 md:h-12 flex items-center">
+                  <div className="w-[100px] md:w-[120px] h-[32px] md:h-[40px] flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt=""
-                      className="h-10 md:h-12 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      className="max-w-full max-h-full w-auto h-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
