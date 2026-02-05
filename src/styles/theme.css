@@ -37,24 +37,24 @@
   --brand-warning: #D97706;        /* Amber 600 */
   --brand-error: #DC2626;          /* Red 600 */
 
-  /* STRICT TYPOGRAPHY SCALE - Upgraded for Authority */
-  --text-h1: 56px;
-  --leading-h1: 64px;
+  /* STRICT TYPOGRAPHY SCALE - iPad Pro Authority */
+  --text-h1: 64px;
+  --leading-h1: 1.05;
   --tracking-h1: -0.02em;
   
-  --text-h2: 40px;
-  --leading-h2: 48px;
+  --text-h2: 48px;
+  --leading-h2: 1.1;
   --tracking-h2: -0.015em;
   
-  --text-h3: 28px;
-  --leading-h3: 36px;
+  --text-h3: 32px;
+  --leading-h3: 1.2;
   --tracking-h3: -0.01em;
   
   --text-body: 17px;
-  --leading-body: 28px;
+  --leading-body: 1.65;
   
   --text-caption: 13px;
-  --leading-caption: 20px;
+  --leading-caption: 1.5;
   --tracking-caption: 0.02em;
 
   /* SPACING SYSTEM (0-8 Scale) - Enhanced breathing room */
@@ -88,9 +88,11 @@
   --shadow-lg: 0 10px 25px rgba(46, 16, 101, 0.12);
   --shadow-glow: 0 0 20px rgba(167, 139, 250, 0.5); /* Glow for accents */
 
-  /* MOTION SYSTEM */
+  /* MOTION SYSTEM - Apple-style Spring Animations */
   --motion-fast: 150ms ease-out;
-  --motion-normal: 250ms ease-out;
+  --motion-normal: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-smooth: 500ms cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-spring: cubic-bezier(0.16, 1, 0.3, 1); /* Framer spring approximation */
 
   /* COMPONENT TOKENS */
   --radius-card: var(--radius-lg);    

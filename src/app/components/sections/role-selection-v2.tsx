@@ -1,0 +1,267 @@
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Briefcase, 
+  Users, 
+  TrendingUp, 
+  Target, 
+  BarChart, 
+  ShieldCheck, 
+  ArrowRight,
+  type LucideIcon 
+} from "lucide-react";
+import { useLanguage } from "@/app/LanguageContext";
+import { Button } from "@/app/components/ui/button";
+import { cn } from "@/app/components/ui/utils";
+
+type RoleConfig = {
+  id: string;
+  icon: LucideIcon;
+  label: string;
+  shortLabel: string;
+  title: string;
+  subtitle: string;
+  benefits: string[];
+  cta: string;
+  color: string;
+};
+
+/**
+ * Role Selection V2 - iOS Segmented Control Style
+ * 
+ * Features:
+ * - Horizontal segmented control for role selection
+ * - Animated content panel that changes based on selection
+ * - Reduced cognitive load (select first, see benefits)
+ * - Clean iPad Pro aesthetic
+ */
+export function RoleSelectionV2() {
+  const { t, language } = useLanguage();
+  const [activeRole, setActiveRole] = useState("ceo");
+
+  const roles: RoleConfig[] = [
+    {
+      id: "investor",
+      icon: TrendingUp,
+      label: language === 'cz' ? 'Investor' : language === 'de' ? 'Investor' : 'Investor',
+      shortLabel: language === 'cz' ? 'Investor' : language === 'de' ? 'Investor' : 'Investor',
+      title: t.roleSelection?.investor?.title || "Predict portfolio risk",
+      subtitle: language === 'cz' 
+        ? "Identifikujte lidská rizika ve vašich portfoliových společnostech dříve, než ovlivní valuaci."
+        : "Identify people risks in your portfolio companies before they impact valuation.",
+      benefits: t.roleSelection?.investor?.list || [
+        "Portfolio-wide risk visibility",
+        "Early warning on key person risk"
+      ],
+      cta: t.roleSelection?.investor?.cta || "Learn more",
+      color: "bg-emerald-500",
+    },
+    {
+      id: "ceo",
+      icon: Briefcase,
+      label: language === 'cz' ? 'CEO / Founder' : language === 'de' ? 'CEO / Gründer' : 'CEO / Founder',
+      shortLabel: 'CEO',
+      title: t.roleSelection?.ceo?.title || "See what you're missing",
+      subtitle: language === 'cz'
+        ? "Získejte přehled o náladě v týmu a rizicích odchodů bez toho, abyste museli spoléhat jen na intuici."
+        : "Get visibility into team sentiment and departure risks without relying on gut feel alone.",
+      benefits: t.roleSelection?.ceo?.list || [
+        "Real-time team pulse",
+        "Data-driven people decisions"
+      ],
+      cta: t.roleSelection?.ceo?.cta || "Learn more",
+      color: "bg-brand-primary",
+    },
+    {
+      id: "hr",
+      icon: Users,
+      label: language === 'cz' ? 'HR Leader' : language === 'de' ? 'HR Leiter' : 'HR Leader',
+      shortLabel: 'HR',
+      title: t.roleSelection?.hr?.title || "Prevent turnover proactively",
+      subtitle: language === 'cz'
+        ? "Přestaňte hasit požáry. Identifikujte rizikové jedince a týmy předtím, než dají výpověď."
+        : "Stop firefighting. Identify at-risk individuals and teams before they hand in their notice.",
+      benefits: t.roleSelection?.hr?.list || [
+        "Predictive attrition alerts",
+        "Actionable engagement insights"
+      ],
+      cta: t.roleSelection?.hr?.cta || "Learn more",
+      color: "bg-violet-500",
+    },
+    {
+      id: "teamLeader",
+      icon: Target,
+      label: language === 'cz' ? 'Team Lead' : language === 'de' ? 'Team Lead' : 'Team Lead',
+      shortLabel: 'Lead',
+      title: t.roleSelection?.teamLeader?.title || "Build a thriving team",
+      subtitle: language === 'cz'
+        ? "Pochopte dynamiku vašeho týmu a získejte nástroje pro budování zdravého pracovního prostředí."
+        : "Understand your team dynamics and get tools to build a healthy work environment.",
+      benefits: t.roleSelection?.teamLeader?.list || [
+        "Team health visibility",
+        "Concrete improvement actions"
+      ],
+      cta: t.roleSelection?.teamLeader?.cta || "Learn more",
+      color: "bg-amber-500",
+    },
+  ];
+
+  const activeRoleData = roles.find(r => r.id === activeRole) || roles[1];
+
+  const scrollToLead = () => {
+    const element = document.getElementById('lead-capture');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <section className="section-spacing bg-gradient-to-b from-brand-primary to-[#1a0a3e] relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[150px]" />
+      </div>
+
+      <div className="container-default max-w-[1000px] relative z-10">
+        
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
+            {t.roleSelection?.title || "Who are you?"}
+          </h2>
+          <p className="text-brand-text-on-dark text-lg leading-relaxed">
+            {t.roleSelection?.subtitle || "Select your role to see how Echo Pulse helps you specifically."}
+          </p>
+        </motion.div>
+
+        {/* Segmented Control */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="flex justify-center mb-12"
+        >
+          <div className="inline-flex p-1.5 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl">
+            {roles.map((role) => {
+              const Icon = role.icon;
+              const isActive = activeRole === role.id;
+              
+              return (
+                <button
+                  key={role.id}
+                  onClick={() => setActiveRole(role.id)}
+                  className={cn(
+                    "relative px-4 sm:px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2",
+                    isActive 
+                      ? "text-brand-primary" 
+                      : "text-white/60 hover:text-white"
+                  )}
+                >
+                  {/* Animated background pill */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="segmentBg"
+                      className="absolute inset-0 bg-white rounded-xl shadow-lg"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  
+                  <span className="relative z-10 flex items-center gap-2">
+                    <Icon className={cn(
+                      "w-4 h-4 transition-colors",
+                      isActive ? "text-brand-primary" : ""
+                    )} />
+                    <span className="hidden sm:inline">{role.label}</span>
+                    <span className="sm:hidden">{role.shortLabel}</span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Content Panel */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeRole}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 sm:p-12"
+          >
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+              
+              {/* Left: Content */}
+              <div>
+                {/* Role Badge */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className={cn(
+                    "w-10 h-10 rounded-xl flex items-center justify-center",
+                    activeRoleData.color
+                  )}>
+                    <activeRoleData.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-sm font-bold uppercase tracking-[0.15em] text-brand-accent">
+                    {activeRoleData.label}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
+                  {activeRoleData.title}
+                </h3>
+
+                {/* Subtitle */}
+                <p className="text-brand-text-on-dark text-lg leading-relaxed mb-8">
+                  {activeRoleData.subtitle}
+                </p>
+
+                {/* CTA */}
+                <Button
+                  onClick={scrollToLead}
+                  size="lg"
+                  className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl"
+                >
+                  {activeRoleData.cta}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </div>
+
+              {/* Right: Benefits List */}
+              <div className="space-y-4">
+                {activeRoleData.benefits.map((benefit, index) => {
+                  const Icon = index === 0 ? BarChart : ShieldCheck;
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 + 0.2 }}
+                      className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-brand-accent/20 flex items-center justify-center shrink-0">
+                        <Icon className="w-5 h-5 text-brand-accent" />
+                      </div>
+                      <span className="text-white font-medium pt-2">
+                        {benefit}
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+      </div>
+    </section>
+  );
+}
