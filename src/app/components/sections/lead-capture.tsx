@@ -3,10 +3,11 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { FormField } from "@/app/components/ui/form-field";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, Mail, ArrowRight, Sparkles, BookOpen, Shield } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/LanguageContext";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
+import { motion } from "framer-motion";
 
 type LeadFormData = {
   name?: string;
@@ -14,11 +15,76 @@ type LeadFormData = {
 };
 
 export function LeadCaptureSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [isSuccess, setIsSuccess] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<LeadFormData>();
+
+  const copy = {
+    cz: {
+      badge: "Zdarma ke stažení",
+      title: "Průvodce prevencí fluktuace",
+      subtitle: "Praktický e-book s checklisty a frameworky. Co měřit, kdy reagovat, jak předejít odchodům klíčových lidí.",
+      benefits: [
+        "7 varovných signálů před odchodem",
+        "ROI kalkulačka prevence",
+        "Checklist pro 1:1 rozhovory"
+      ],
+      nameLabel: "Jméno",
+      namePlaceholder: "Jan Novák",
+      emailLabel: "Pracovní email",
+      emailPlaceholder: "jan.novak@firma.cz",
+      submit: "Stáhnout zdarma",
+      consent: "Odesláním souhlasíte se zpracováním osobních údajů.",
+      noSpam: "Bez spamu. Pouze hodnotný obsah.",
+      successTitle: "Odesláno!",
+      successMessage: "E-book je na cestě do vaší schránky.",
+      errorGeneric: "Něco se pokazilo. Zkuste to prosím znovu."
+    },
+    en: {
+      badge: "Free Download",
+      title: "Turnover Prevention Guide",
+      subtitle: "Practical e-book with checklists and frameworks. What to measure, when to act, how to prevent key people from leaving.",
+      benefits: [
+        "7 warning signs before departure",
+        "Prevention ROI calculator",
+        "1:1 meeting checklist"
+      ],
+      nameLabel: "Name",
+      namePlaceholder: "John Smith",
+      emailLabel: "Work email",
+      emailPlaceholder: "john.smith@company.com",
+      submit: "Download free",
+      consent: "By submitting you agree to our privacy policy.",
+      noSpam: "No spam. Only valuable content.",
+      successTitle: "Sent!",
+      successMessage: "The e-book is on its way to your inbox.",
+      errorGeneric: "Something went wrong. Please try again."
+    },
+    de: {
+      badge: "Kostenloser Download",
+      title: "Leitfaden zur Fluktuationsprävention",
+      subtitle: "Praktisches E-Book mit Checklisten und Frameworks. Was messen, wann reagieren, wie Abgänge verhindern.",
+      benefits: [
+        "7 Warnsignale vor dem Abgang",
+        "ROI-Rechner für Prävention",
+        "Checkliste für 1:1-Gespräche"
+      ],
+      nameLabel: "Name",
+      namePlaceholder: "Max Mustermann",
+      emailLabel: "Geschäftliche E-Mail",
+      emailPlaceholder: "max.mustermann@firma.de",
+      submit: "Kostenlos herunterladen",
+      consent: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.",
+      noSpam: "Kein Spam. Nur wertvolle Inhalte.",
+      successTitle: "Gesendet!",
+      successMessage: "Das E-Book ist auf dem Weg in Ihren Posteingang.",
+      errorGeneric: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+    }
+  };
+
+  const txt = copy[language] || copy.en;
 
   const onSubmit = async (data: LeadFormData) => {
     setIsSubmitting(true);
@@ -36,84 +102,155 @@ export function LeadCaptureSection() {
       setIsSuccess(true);
       reset();
     } else {
-      setError(result.error || t.leadCapture.errorGeneric);
+      setError(result.error || txt.errorGeneric);
     }
   };
 
   return (
-    <section className="section-spacing bg-white border-t border-brand-border" id="lead-capture">
-      <div className="container-default">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-muted text-brand-text-secondary text-xs font-bold uppercase tracking-widest mb-6 border border-brand-border">
-              {t.leadCapture.badge}
+    <section className="py-20 md:py-28 bg-gradient-to-b from-brand-background-secondary/50 to-white relative overflow-hidden" id="lead-capture">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-accent/5 rounded-full blur-3xl" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Column - Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-full text-xs font-bold uppercase tracking-wider mb-6 shadow-lg shadow-brand-primary/20">
+              <BookOpen className="w-4 h-4" />
+              {txt.badge}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
-              {t.leadCapture.title}
+            
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-brand-text-primary mb-5 leading-tight">
+              {txt.title}
             </h2>
-            <p className="text-lg text-brand-text-secondary leading-relaxed">
-              {t.leadCapture.subtitle}
+            
+            <p className="text-lg text-brand-text-secondary leading-relaxed mb-8">
+              {txt.subtitle}
             </p>
-          </div>
-
-          <div className="bg-brand-background-secondary border border-brand-border rounded-2xl p-6 md:p-8 shadow-sm">
-            {isSuccess ? (
-              <div className="text-center">
-                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold text-brand-text-primary mb-2">{t.leadCapture.successTitle}</h3>
-                <p className="text-brand-text-secondary">{t.leadCapture.successMessage}</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  label={t.leadCapture.nameLabel}
-                  error={errors.name?.message}
+            
+            {/* Benefits */}
+            <ul className="space-y-3">
+              {txt.benefits.map((benefit, i) => (
+                <motion.li 
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.1 }}
+                  className="flex items-center gap-3"
                 >
-                  <Input
-                    type="text"
-                    autoComplete={autocompleteAttributes.name}
-                    placeholder={t.leadCapture.namePlaceholder}
-                    {...register("name")}
-                  />
-                </FormField>
-
-                <FormField
-                  label={t.leadCapture.emailLabel}
-                  error={errors.email?.message}
-                  helperText="Bez spamu. Pouze hodnotný obsah."
-                  required
-                >
-                  <Input
-                    type="email"
-                    autoComplete={autocompleteAttributes.email}
-                    placeholder={t.leadCapture.emailPlaceholder}
-                    {...register("email", validationRules.workEmail)}
-                  />
-                </FormField>
-
-                {error && (
-                  <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
-                    {error}
+                  <div className="w-6 h-6 rounded-full bg-brand-success/10 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle2 className="w-4 h-4 text-brand-success" />
                   </div>
-                )}
+                  <span className="text-brand-text-primary font-medium">{benefit}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting || isSuccess}
-                  className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg disabled:opacity-50"
-                >
-                  {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                  {t.leadCapture.submit}
-                </Button>
+          {/* Right Column - Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl shadow-brand-primary/5 border border-brand-border/50">
+              {isSuccess ? (
+                <div className="text-center py-8">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 15 }}
+                    className="w-20 h-20 rounded-full bg-brand-success/10 text-brand-success flex items-center justify-center mx-auto mb-6"
+                  >
+                    <CheckCircle2 className="w-10 h-10" />
+                  </motion.div>
+                  <h3 className="text-2xl font-bold text-brand-text-primary mb-3">{txt.successTitle}</h3>
+                  <p className="text-brand-text-secondary">{txt.successMessage}</p>
+                </div>
+              ) : (
+                <>
+                  {/* Form Header */}
+                  <div className="text-center mb-8">
+                    <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 flex items-center justify-center mx-auto mb-4">
+                      <Mail className="w-7 h-7 text-brand-primary" />
+                    </div>
+                    <p className="text-sm text-brand-text-muted flex items-center justify-center gap-2">
+                      <Shield className="w-4 h-4" />
+                      {txt.noSpam}
+                    </p>
+                  </div>
+                  
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                    <FormField
+                      label={txt.nameLabel}
+                      error={errors.name?.message}
+                    >
+                      <Input
+                        type="text"
+                        autoComplete={autocompleteAttributes.name}
+                        placeholder={txt.namePlaceholder}
+                        className="h-12 rounded-xl"
+                        {...register("name")}
+                      />
+                    </FormField>
 
-                <p className="text-xs text-brand-text-muted text-center">
-                  {t.leadCapture.consent}
-                </p>
-              </form>
-            )}
-          </div>
+                    <FormField
+                      label={txt.emailLabel}
+                      error={errors.email?.message}
+                      required
+                    >
+                      <Input
+                        type="email"
+                        autoComplete={autocompleteAttributes.email}
+                        placeholder={txt.emailPlaceholder}
+                        className="h-12 rounded-xl"
+                        {...register("email", validationRules.workEmail)}
+                      />
+                    </FormField>
+
+                    {error && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3"
+                      >
+                        {error}
+                      </motion.div>
+                    )}
+
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting || isSuccess}
+                      className="w-full h-14 text-base font-semibold rounded-xl group"
+                      size="lg"
+                    >
+                      {isSubmitting ? (
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      ) : (
+                        <>
+                          {txt.submit}
+                          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
+                    </Button>
+
+                    <p className="text-xs text-brand-text-muted text-center pt-2">
+                      {txt.consent}
+                    </p>
+                  </form>
+                </>
+              )}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

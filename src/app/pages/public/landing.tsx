@@ -12,7 +12,6 @@ import { HowItWorksV2 } from "@/app/components/sections/how-it-works-v2";
 import { DashboardPreviewV2 } from "@/app/components/sections/dashboard-preview-v2";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
 import { RoleSelectionV2 } from "@/app/components/sections/role-selection-v2";
-import { ValueByRole } from "@/app/components/sections/value-by-role";
 import { MethodologySection } from "@/app/components/sections/methodology";
 const CaseStudiesSection = lazy(() =>
   import("@/app/components/sections/case-studies-v2").then((module) => ({
@@ -96,9 +95,8 @@ export function LandingPage() {
         {/* 6. WHAT WE MEASURE — Scientific backing */}
         <SignalRadar />
         
-        {/* 7. PERSONALIZATION — CEO vs HR paths */}
+        {/* 7. PERSONALIZATION — Role-based value proposition */}
         <RoleSelectionV2 />
-        <ValueByRole />
         
         {/* 8. AUTHORITY — Research foundation */}
         <MethodologySection />
