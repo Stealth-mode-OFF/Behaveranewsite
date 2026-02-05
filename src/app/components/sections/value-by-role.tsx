@@ -34,7 +34,7 @@ export function ValueByRole() {
   const Icon = current.icon;
 
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-brand-background-secondary" id="value-by-role">
+    <section className="section-spacing bg-brand-background-secondary" id="value-by-role">
       <div className="container-default max-w-[1120px] mx-auto">
         
         {/* Header */}

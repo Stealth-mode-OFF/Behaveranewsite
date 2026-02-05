@@ -9,7 +9,7 @@ export function CtaSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-brand-primary border-t border-white/5">
+    <section className="section-spacing bg-brand-primary border-t border-white/5">
       <div className="container-default text-center max-w-[1120px] mx-auto">
         
         <div className="max-w-4xl mx-auto mb-16">

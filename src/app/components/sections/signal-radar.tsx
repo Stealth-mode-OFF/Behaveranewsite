@@ -24,7 +24,7 @@ export function SignalRadar() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-brand-background-secondary/30 border-b border-white/5 relative overflow-hidden" id="radar">
+    <section className="section-spacing bg-brand-background-secondary/30 border-b border-white/5 relative overflow-hidden" id="radar">
       <div className="container-default max-w-[1120px] mx-auto relative z-10">
         
         {/* Header - Expert & Authoritative */}

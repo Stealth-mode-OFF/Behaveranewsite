@@ -18,7 +18,7 @@ export function ProblemSection() {
   ];
 
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-white text-brand-text-primary border-b border-brand-border" id="problem">
+    <section className="section-spacing bg-white text-brand-text-primary border-b border-brand-border" id="problem">
       
       <div className="container-default max-w-[1120px] mx-auto">
         
