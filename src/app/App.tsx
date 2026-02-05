@@ -34,7 +34,7 @@ const AdminLogin = lazy(() =>
   import("./pages/admin/admin-login").then((module) => ({ default: module.AdminLogin }))
 );
 const Dashboard = lazy(() =>
-  import("./pages/admin/dashboard").then((module) => ({ default: module.Dashboard }))
+  import("./pages/admin/Dashboard").then((module) => ({ default: module.Dashboard }))
 );
 const PostList = lazy(() =>
   import("./pages/admin/post-list").then((module) => ({ default: module.PostList }))
