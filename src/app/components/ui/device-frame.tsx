@@ -86,6 +86,7 @@ export function DeviceFrame({
 
 /**
  * iPad Pro Frame - Standalone component for carousel use
+ * Ultra-thin bezels like real iPad Pro 13"
  */
 export function IPadProFrame({ 
   children,
@@ -96,32 +97,30 @@ export function IPadProFrame({
 }) {
   return (
     <div className={cn("relative inline-block", className)}>
-      {/* iPad Pro 13" Frame - Portrait */}
-      <div className="relative bg-gradient-to-b from-[#2d2d2d] to-[#1a1a1a] rounded-[28px] p-[12px] shadow-[0_25px_80px_-15px_rgba(0,0,0,0.5)]">
+      {/* iPad Pro 13" Frame - Portrait with ultra-thin bezels */}
+      <div className="relative bg-gradient-to-b from-[#2d2d2d] to-[#1a1a1a] rounded-[20px] p-[4px] shadow-[0_25px_80px_-15px_rgba(0,0,0,0.5)]">
         {/* Metallic edge highlight */}
-        <div className="absolute inset-0 rounded-[28px] border border-[#4a4a4a]/30" />
+        <div className="absolute inset-0 rounded-[20px] border border-[#4a4a4a]/40" />
         
-        {/* Inner bezel */}
-        <div className="relative bg-[#0a0a0a] rounded-[18px] p-[8px]">
-          {/* Front camera */}
-          <div className="absolute top-[16px] left-1/2 -translate-x-1/2 z-10">
-            <div className="w-[10px] h-[10px] rounded-full bg-[#1a1a2a] border border-[#3a3a3a] shadow-inner">
-              <div className="absolute inset-[3px] rounded-full bg-[#0f0f1a]" />
-            </div>
+        {/* Screen container with minimal bezel */}
+        <div className="relative bg-[#0a0a0a] rounded-[16px] p-[3px]">
+          {/* Front camera - smaller and subtle */}
+          <div className="absolute top-[6px] left-1/2 -translate-x-1/2 z-10">
+            <div className="w-[6px] h-[6px] rounded-full bg-[#1a1a2a] border border-[#2a2a2a]" />
           </div>
           
-          {/* Screen container */}
-          <div className="relative rounded-[12px] overflow-hidden bg-black">
+          {/* Screen */}
+          <div className="relative rounded-[13px] overflow-hidden bg-black">
             {children}
           </div>
         </div>
         
-        {/* Volume buttons - left side */}
-        <div className="absolute left-[-3px] top-[100px] w-[3px] h-[32px] bg-gradient-to-r from-[#4a4a4a] to-[#3a3a3a] rounded-l-[2px]" />
-        <div className="absolute left-[-3px] top-[140px] w-[3px] h-[32px] bg-gradient-to-r from-[#4a4a4a] to-[#3a3a3a] rounded-l-[2px]" />
+        {/* Volume buttons - left side (thinner) */}
+        <div className="absolute left-[-2px] top-[80px] w-[2px] h-[24px] bg-gradient-to-r from-[#4a4a4a] to-[#3a3a3a] rounded-l-[1px]" />
+        <div className="absolute left-[-2px] top-[110px] w-[2px] h-[24px] bg-gradient-to-r from-[#4a4a4a] to-[#3a3a3a] rounded-l-[1px]" />
         
-        {/* Power button - top right area */}
-        <div className="absolute right-[-3px] top-[100px] w-[3px] h-[44px] bg-gradient-to-l from-[#4a4a4a] to-[#3a3a3a] rounded-r-[2px]" />
+        {/* Power button - right side (thinner) */}
+        <div className="absolute right-[-2px] top-[80px] w-[2px] h-[32px] bg-gradient-to-l from-[#4a4a4a] to-[#3a3a3a] rounded-r-[1px]" />
       </div>
     </div>
   );
