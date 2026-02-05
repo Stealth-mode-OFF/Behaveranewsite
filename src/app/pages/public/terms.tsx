@@ -3,6 +3,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/app/LanguageContext';
+import { useSEO } from '@/app/hooks/useSEO';
 
 export function TermsPage() {
   const { language } = useLanguage();
@@ -13,6 +14,22 @@ export function TermsPage() {
 
   const isCz = language === 'cz';
   const isDe = language === 'de';
+  const pageTitle = isCz
+    ? 'Podmínky Echo Pulse'
+    : isDe
+    ? 'Echo Pulse AGB'
+    : 'Echo Pulse Terms';
+  const pageDescription = isCz
+    ? 'Podmínky a pravidla služby Echo Pulse.'
+    : isDe
+    ? 'Allgemeine Geschäftsbedingungen für Echo Pulse.'
+    : 'Terms and Conditions for the Echo Pulse Service.';
+
+  useSEO({
+    title: pageTitle,
+    description: pageDescription,
+    ogType: 'article',
+  });
 
   if (isDe) {
     return (
