@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, TrendingUp, Users, Clock, Building2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, TrendingUp, Users, Clock, Building2, ChevronLeft, ChevronRight, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
 import { useLanguage } from "@/app/LanguageContext";
@@ -21,13 +21,17 @@ import { cn } from "@/app/components/ui/utils";
 export function CaseStudiesSectionV2() {
   const [studies, setStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
   const { openBooking } = useModal();
 
   useEffect(() => {
     CmsService.getCaseStudies()
       .then((data) => {
-        setStudies(data.filter(Boolean).filter((s) => s.status === "published").slice(0, 3));
+        // Get all published case studies (not just 3)
+        setStudies(data.filter(Boolean).filter((s) => s.status === "published"));
       })
       .finally(() => setLoading(false));
   }, []);
@@ -41,6 +45,8 @@ export function CaseStudiesSectionV2() {
       cta: "Chcete podobné výsledky?",
       ctaButton: "Domluvit konzultaci",
       allCases: "Všechny případové studie",
+      showMore: "Zobrazit více případovek",
+      showLess: "Zobrazit méně",
     },
     en: {
       badge: "Proven Results",
@@ -50,6 +56,8 @@ export function CaseStudiesSectionV2() {
       cta: "Want similar results?",
       ctaButton: "Schedule consultation",
       allCases: "All case studies",
+      showMore: "Show more case studies",
+      showLess: "Show less",
     },
     de: {
       badge: "Bewährte Ergebnisse",
@@ -59,10 +67,37 @@ export function CaseStudiesSectionV2() {
       cta: "Möchten Sie ähnliche Ergebnisse?",
       ctaButton: "Beratung vereinbaren",
       allCases: "Alle Fallstudien",
+      showMore: "Mehr Fallstudien anzeigen",
+      showLess: "Weniger anzeigen",
     },
   };
 
   const t = texts[language] || texts.en;
+
+  // Show first 3 on desktop, all when expanded
+  const visibleStudies = isExpanded ? studies : studies.slice(0, 3);
+  const hasMoreStudies = studies.length > 3;
+
+  // Carousel navigation
+  const scrollToCard = (index: number) => {
+    if (carouselRef.current) {
+      const cards = carouselRef.current.querySelectorAll('.case-study-card');
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        setActiveIndex(index);
+      }
+    }
+  };
+
+  const nextCard = () => {
+    const newIndex = Math.min(activeIndex + 1, studies.length - 1);
+    scrollToCard(newIndex);
+  };
+
+  const prevCard = () => {
+    const newIndex = Math.max(activeIndex - 1, 0);
+    scrollToCard(newIndex);
+  };
 
   // Loading skeleton
   if (loading) {
@@ -110,19 +145,142 @@ export function CaseStudiesSectionV2() {
           </p>
         </motion.div>
 
-        {/* Case Study Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {studies.map((study, index) => (
+        {/* Mobile: Horizontal Carousel */}
+        <div className="md:hidden relative">
+          {/* Carousel Container */}
+          <div 
+            ref={carouselRef}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            onScroll={(e) => {
+              const container = e.currentTarget;
+              const scrollLeft = container.scrollLeft;
+              const cardWidth = container.offsetWidth * 0.85;
+              const newIndex = Math.round(scrollLeft / cardWidth);
+              setActiveIndex(Math.min(newIndex, studies.length - 1));
+            }}
+          >
+            {studies.map((study, index) => (
+              <motion.div
+                key={study.id}
+                className="case-study-card flex-shrink-0 w-[85%] snap-center"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <CaseStudyCard study={study} readMoreText={t.readMore} index={index} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Navigation Arrows */}
+          {studies.length > 1 && (
+            <div className="flex justify-center items-center gap-4 mt-4">
+              <button
+                onClick={prevCard}
+                disabled={activeIndex === 0}
+                className={cn(
+                  "p-2 rounded-full border border-brand-border bg-white shadow-sm transition-all",
+                  activeIndex === 0 ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-background-secondary hover:shadow-md"
+                )}
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-5 h-5 text-brand-primary" />
+              </button>
+
+              {/* Dots indicator */}
+              <div className="flex gap-2">
+                {studies.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => scrollToCard(index)}
+                    className={cn(
+                      "w-2 h-2 rounded-full transition-all duration-300",
+                      index === activeIndex 
+                        ? "w-6 bg-brand-primary" 
+                        : "bg-brand-border hover:bg-brand-accent"
+                    )}
+                    aria-label={`Go to case study ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={nextCard}
+                disabled={activeIndex === studies.length - 1}
+                className={cn(
+                  "p-2 rounded-full border border-brand-border bg-white shadow-sm transition-all",
+                  activeIndex === studies.length - 1 ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-background-secondary hover:shadow-md"
+                )}
+                aria-label="Next"
+              >
+                <ChevronRight className="w-5 h-5 text-brand-primary" />
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Desktop: Grid with Expand Effect */}
+        <div className="hidden md:block">
+          <motion.div 
+            layout
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          >
+            <AnimatePresence mode="popLayout">
+              {visibleStudies.map((study, index) => (
+                <motion.div
+                  key={study.id}
+                  layout
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: index < 3 ? index * 0.1 : (index - 3) * 0.1 + 0.1,
+                    layout: { duration: 0.3 }
+                  }}
+                >
+                  <CaseStudyCard study={study} readMoreText={t.readMore} index={index} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Show More/Less Button */}
+          {hasMoreStudies && (
             <motion.div
-              key={study.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex justify-center mt-10"
             >
-              <CaseStudyCard study={study} readMoreText={t.readMore} index={index} />
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className={cn(
+                  "group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 transition-all duration-300",
+                  "bg-gradient-to-br from-brand-background-secondary to-white",
+                  "border-brand-border hover:border-brand-accent",
+                  "hover:shadow-lg hover:-translate-y-0.5"
+                )}
+              >
+                <span className="text-brand-text-primary font-semibold">
+                  {isExpanded ? t.showLess : t.showMore}
+                </span>
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center"
+                >
+                  <ChevronDown className="w-5 h-5 text-white" />
+                </motion.div>
+                {!isExpanded && (
+                  <span className="text-sm text-brand-text-muted">
+                    +{studies.length - 3}
+                  </span>
+                )}
+              </button>
             </motion.div>
-          ))}
+          )}
         </div>
 
         {/* CTA */}

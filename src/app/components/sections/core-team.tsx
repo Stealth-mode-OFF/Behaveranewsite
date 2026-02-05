@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
 import { Linkedin } from 'lucide-react';
-import { clientLogos } from './logo-marquee';
 
 // Team member images from src/assets
 import igorImg from '@/assets/imgi_23_63f4a99d1dc162409a74256f_igor.png';
@@ -292,35 +291,6 @@ export function CoreTeamSection() {
           ))}
         </motion.div>
 
-        {/* Trusted By */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mt-20 pt-16 border-t border-brand-border/50"
-        >
-          <p className="text-center text-xs font-medium text-brand-text-muted uppercase tracking-widest mb-8">
-            {language === 'cz' 
-              ? 'Pomáháme těmto firmám'
-              : language === 'de'
-              ? 'Wir helfen diesen Unternehmen'
-              : 'We help these companies'
-            }
-          </p>
-          
-          <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap">
-            {clientLogos.slice(0, 8).map((logo, index) => (
-              <img
-                key={index}
-                src={logo.src}
-                alt={logo.name}
-                className="h-7 md:h-9 w-auto object-contain opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
