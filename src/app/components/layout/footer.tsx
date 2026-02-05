@@ -1,20 +1,30 @@
 import React from "react";
 import { useLanguage } from "@/app/LanguageContext";
 import { Link } from "react-router-dom";
-import { Github } from "lucide-react";
+import { Github, Phone } from "lucide-react";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const linkTargets = ["#solutions", "#pricing", "#about", "#lead-capture"];
   const legalTargets = ["#legal", "#legal"];
+  const phoneLabel = language === 'cz' ? 'Zavolejte nám' : language === 'de' ? 'Rufen Sie uns an' : 'Call us';
   
   return (
     <footer className="bg-brand-background-secondary border-t border-brand-border py-12 md:py-16 lg:py-20 text-sm text-brand-text-secondary">
       <div className="container-default">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-primary"></span>
-                <span className="font-bold text-brand-text-primary tracking-tight">Echo Pulse</span>
+            <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-primary"></span>
+                    <span className="font-bold text-brand-text-primary tracking-tight">Echo Pulse</span>
+                </div>
+                <a 
+                  href="tel:+420605839456" 
+                  className="flex items-center gap-2 text-brand-text-secondary hover:text-brand-primary transition-colors font-medium"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>+420 605 839 456</span>
+                </a>
             </div>
             
             <div className="flex gap-8">

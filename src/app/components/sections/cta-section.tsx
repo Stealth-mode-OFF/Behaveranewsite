@@ -54,7 +54,7 @@ export function CtaSection() {
         <div className="flex items-center justify-center gap-4 text-brand-text-inverse-secondary mb-20">
             <span className="text-base font-medium">{t.cta.secondary}</span>
             <a 
-                href="tel:+420777123456" 
+                href="tel:+420605839456" 
                 className="flex items-center gap-2 text-white hover:text-brand-accent transition-colors font-bold text-lg"
             >
                 <Phone className="w-5 h-5" />

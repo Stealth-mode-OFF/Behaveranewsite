@@ -33,8 +33,10 @@ export function Header() {
   const pageLinks = [
     { path: '/research', label: language === 'cz' ? 'Věda' : language === 'de' ? 'Forschung' : 'Research' },
     { path: '/blog', label: 'Blog' },
-    { path: '/case-studies', label: 'Case Studies' },
   ];
+  
+  // Case studies scrolls to section on homepage
+  const caseStudiesLabel = language === 'cz' ? 'Případové studie' : language === 'de' ? 'Fallstudien' : 'Case Studies';
 
   return (
     <motion.header
