@@ -3,9 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import slugify from 'slugify';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPostFormData } from '@/lib/types';
+import { createSlug } from '@/lib/slug';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
@@ -33,7 +33,7 @@ export const PostEditor = () => {
 
   useEffect(() => {
     if (title && !isEditing) {
-      setValue('slug', slugify(title, { lower: true, strict: true }));
+      setValue('slug', createSlug(title));
     }
   }, [title, isEditing, setValue]);
 
