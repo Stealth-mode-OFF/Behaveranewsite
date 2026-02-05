@@ -25,8 +25,8 @@ export function HeroV2() {
   const copy = {
     cz: {
       badge: "Pro firmy 30–350 lidí",
-      headline: "Předvídejte odchody",
-      headlineHighlight: "dřív než nastanou",
+        headline: "Mějte přehled co se ve firmě skutečně děje",
+        headlineHighlight: "",
       subheadline: "Průběžný pulse feedback a risk signály. Víte, kde to vře — a co s tím.",
       primaryCta: "Konzultace zdarma",
       secondaryCta: "3min demo",
