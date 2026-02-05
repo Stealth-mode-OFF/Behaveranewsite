@@ -63,7 +63,12 @@ export function DashboardPreview() {
              onClick={openVideo}
              role="button"
              tabIndex={0}
-             onKeyDown={(e) => e.key === 'Enter' && openVideo()}
+             onKeyDown={(e) => {
+               if (e.key === 'Enter' || e.key === ' ') {
+                 e.preventDefault();
+                 openVideo();
+               }
+             }}
              aria-label="Watch product demo"
         >
              <img 
