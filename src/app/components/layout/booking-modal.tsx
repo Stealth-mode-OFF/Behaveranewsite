@@ -54,7 +54,7 @@ export function BookingModal() {
 
   const copy = t.bookingModal || {
     badge: "Osobní konzultace",
-    title: "20 minut, které",
+    title: "30 minut, které",
     titleHighlight: "změní váš pohled na data",
     subtitle: "Video hovor s naším konzultantem. Ukážeme vám, jak Echo Pulse funguje s reálnými firemními daty.",
     
@@ -64,7 +64,7 @@ export function BookingModal() {
       { icon: "shield", text: "Žádné závazky, žádný hard-sell" },
     ],
     
-    duration: "20 minut",
+    duration: "30 minut",
     format: "Google Meet / Zoom",
     
     cta: "Vybrat termín",
@@ -73,7 +73,7 @@ export function BookingModal() {
     calendarSubtitle: "Načítám kalendář...",
     back: "Zpět",
     
-    socialProof: "150+ firem už využívá Echo Pulse"
+    socialProof: "50+ firem už využívá Echo Pulse"
   };
 
   const benefitIcons: Record<string, React.ReactNode> = {
