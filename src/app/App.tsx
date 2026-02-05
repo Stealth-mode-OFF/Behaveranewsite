@@ -4,24 +4,25 @@ import { LanguageProvider } from "./LanguageContext";
 import { ModalProvider } from "./ModalContext";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "sonner";
-import { LandingPage } from "./components/LandingPage";
-import { TermsPage } from "./components/TermsPage";
+import { ScrollProgress } from "./components/ui/scroll-progress";
+import { LandingPage } from "./pages/public/landing";
+import { TermsPage } from "./pages/public/terms";
 
 // Public Pages
-import { BlogPage } from "./pages/blog/BlogPage";
-import { BlogPostPage } from "./pages/blog/BlogPostPage";
-import { CaseStudiesPage } from "./pages/case-studies/CaseStudiesPage";
-import { CaseStudyPage } from "./pages/case-studies/CaseStudyPage";
-import { ResearchPage } from "./pages/research/ResearchPage";
+import { BlogPage } from "./pages/public/blog";
+import { BlogPostPage } from "./pages/public/blog-post";
+import { CaseStudiesPage } from "./pages/public/case-studies";
+import { CaseStudyPage } from "./pages/public/case-study";
+import { ResearchPage } from "./pages/public/research";
 
 // Admin Pages
-import { AdminLayout } from "./pages/admin/AdminLayout";
-import { AdminLogin } from "./pages/admin/AdminLogin";
-import { Dashboard } from "./pages/admin/Dashboard";
-import { PostList } from "./pages/admin/PostList";
-import { PostEditor } from "./pages/admin/PostEditor";
-import { CaseStudyList } from "./pages/admin/CaseStudyList";
-import { CaseStudyEditor } from "./pages/admin/CaseStudyEditor";
+import { AdminLayout } from "./pages/admin/admin-layout";
+import { AdminLogin } from "./pages/admin/admin-login";
+import { Dashboard } from "./pages/admin/dashboard";
+import { PostList } from "./pages/admin/post-list";
+import { PostEditor } from "./pages/admin/post-editor";
+import { CaseStudyList } from "./pages/admin/case-study-list";
+import { CaseStudyEditor } from "./pages/admin/case-study-editor";
 import { adminEnabled } from "@/lib/config";
 
 // Error Boundary
@@ -63,6 +64,7 @@ function App() {
         <LanguageProvider>
           <ModalProvider>
             <AuthProvider>
+              <ScrollProgress />
               <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary">
                 <Routes>
                   {/* Public Routes */}
