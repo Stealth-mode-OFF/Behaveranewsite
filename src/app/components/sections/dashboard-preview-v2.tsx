@@ -5,13 +5,13 @@ import { useModal } from "@/app/ModalContext";
 import { motion } from "framer-motion";
 import { SnapCarousel, FeatureGrid } from "@/app/components/ui/snap-carousel";
 // iPad App Screenshots - CZ version
-import screenshotBenefitsCz from "@/assets/IMG_2149.PNG";
-import screenshotAICz from "@/assets/IMG_2152.PNG";
-import screenshotValuesCz from "@/assets/IMG_2153.PNG";
+import screenshotBenefitsCz from "@/assets/IMG_2149.webp";
+import screenshotAICz from "@/assets/IMG_2152.webp";
+import screenshotValuesCz from "@/assets/IMG_2153.webp";
 // iPad App Screenshots - EN version
-import screenshotBenefitsEn from "@/assets/IMG_2156.PNG";
-import screenshotAIEn from "@/assets/IMG_2157.PNG";
-import screenshotValuesEn from "@/assets/IMG_2158.PNG";
+import screenshotBenefitsEn from "@/assets/IMG_2156.webp";
+import screenshotAIEn from "@/assets/IMG_2157.webp";
+import screenshotValuesEn from "@/assets/IMG_2158.webp";
 
 /**
  * Dashboard Preview V2 - iPad Pro Level Design

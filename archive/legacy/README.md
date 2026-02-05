@@ -14,4 +14,5 @@ This folder contains code that appears to be **unused or duplicated** in the cur
 
 ## Notes
 - This archive is intentionally **not** referenced by the app. Nothing here is bundled by Vite unless re-imported.
+- High-resolution source images moved here were replaced by optimized `.webp` assets in `src/assets/` for faster loading.
 - If you plan to permanently delete this code later, do so after a production release confirms it is no longer needed.

@@ -140,7 +140,10 @@ export function SnapCarousel({
                   src={slide.image} 
                   alt={slide.title}
                   className="w-full h-auto block"
+                  width={1500}
+                  height={2000}
                   loading="lazy"
+                  decoding="async"
                   onClick={onSlideClick}
                   style={{ cursor: onSlideClick ? 'pointer' : 'default' }}
                 />

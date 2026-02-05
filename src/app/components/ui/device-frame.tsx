@@ -131,10 +131,16 @@ export function IPadProFrame({
  */
 export function AnimatedDashboardContent({ 
   imageSrc,
-  imageAlt = "Dashboard"
+  imageAlt = "Dashboard",
+  width,
+  height,
+  fetchPriority = "auto"
 }: { 
   imageSrc: string;
   imageAlt?: string;
+  width?: number;
+  height?: number;
+  fetchPriority?: "auto" | "high" | "low";
 }) {
   return (
     <motion.img
@@ -143,8 +149,12 @@ export function AnimatedDashboardContent({
       transition={{ duration: 0.8, delay: 0.3 }}
       src={imageSrc}
       alt={imageAlt}
+      width={width}
+      height={height}
+      decoding="async"
       className="w-full h-auto block"
       loading="eager"
+      fetchPriority={fetchPriority}
     />
   );
 }

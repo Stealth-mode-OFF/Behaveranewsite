@@ -5,8 +5,8 @@ import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";
-import heroDashboardCz from "@/assets/hero-dashboard-cz.png";
-import heroDashboardEn from "@/assets/hero-dashboard-en.png";
+import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
+import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
 
 /**
  * Hero V2 - iPad Pro Level Design
@@ -65,6 +65,9 @@ export function HeroV2() {
   };
 
   const c = copy[language] || copy.en;
+  const heroImage = language === 'cz'
+    ? { src: heroDashboardCz, width: 2400, height: 1456 }
+    : { src: heroDashboardEn, width: 2400, height: 1453 };
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-24 pb-8 md:pt-32 md:pb-16 overflow-hidden">
@@ -186,8 +189,11 @@ export function HeroV2() {
           >
             <DeviceFrame type="macbook" className="w-full max-w-[500px] sm:max-w-[640px] md:max-w-[800px] lg:max-w-[960px] xl:max-w-[1100px] 2xl:max-w-[1200px] mx-auto">
               <AnimatedDashboardContent 
-                imageSrc={language === 'cz' ? heroDashboardCz : heroDashboardEn} 
+                imageSrc={heroImage.src} 
                 imageAlt="Echo Pulse Dashboard - Risk signály a team analytics"
+                width={heroImage.width}
+                height={heroImage.height}
+                fetchPriority="high"
               />
             </DeviceFrame>
           </motion.div>
