@@ -275,7 +275,6 @@ export const translations = {
         "Personal data processing follows GDPR and applicable legislation.",
         "Data controller: Behavera s.r.o., Křižíkova 148/34, Karlín, Prague 8.",
         "Data protection contact: gdpr@behavera.com.",
-        "We store data during registration and for 6 months afterwards, then anonymize or delete it.",
         "Aggregated statistics are anonymized and do not contain personal data.",
         "Data subjects have rights to access, portability, rectification, deletion, and withdrawal of consent."
       ],
@@ -827,7 +826,6 @@ export const translations = {
         "Zpracování osobních údajů probíhá v souladu s GDPR a platnými právními předpisy.",
         "Správcem údajů je Behavera s.r.o., Křižíkova 148/34, Karlín, Praha 8.",
         "Pověřenec pro ochranu osobních údajů: gdpr@behavera.com.",
-        "Údaje uchováváme po dobu registrace a následně 6 měsíců, poté je anonymizujeme nebo vymažeme.",
         "Agregované statistiky jsou anonymizované a neobsahují osobní údaje.",
         "Subjekty údajů mají právo na přístup, přenos, opravu, výmaz a odvolání souhlasu."
       ],
@@ -1379,7 +1377,6 @@ export const translations = {
         "Die Verarbeitung personenbezogener Daten erfolgt gemäß DSGVO und geltenden Gesetzen.",
         "Datenverantwortlicher: Behavera s.r.o., Křižíkova 148/34, Karlín, Prag 8.",
         "Datenschutzkontakt: gdpr@behavera.com.",
-        "Daten werden während der Registrierung und anschließend 6 Monate gespeichert, danach anonymisiert oder gelöscht.",
         "Aggregierte Statistiken sind anonymisiert und enthalten keine personenbezogenen Daten.",
         "Betroffene haben Rechte auf Auskunft, Übertragbarkeit, Berichtigung, Löschung und Widerruf der Einwilligung."
       ],
