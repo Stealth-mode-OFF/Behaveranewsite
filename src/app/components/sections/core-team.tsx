@@ -343,7 +343,8 @@ function TeamCard({ member, size, founderLabel, investorLabel }: TeamCardProps) 
         <img
           src={teamImages[member.name]}
           alt={member.name}
-          className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+          className="w-full h-full object-cover rounded-xl group-hover:scale-[1.02] transition-transform duration-500"
+          style={{ aspectRatio: '1 / 1', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
           loading="lazy"
         />
         {/* Bottom Gradient for text readability */}

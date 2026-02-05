@@ -180,21 +180,28 @@ export function LeadCaptureSection() {
                     <PartyPopper className="w-10 h-10" />
                   </motion.div>
                   <h3 className="text-2xl font-bold text-brand-text-primary mb-2">{txt.successTitle}</h3>
-                  <p className="text-brand-text-secondary mb-8">{txt.successMessage}</p>
-                  
-                  {/* Download Button */}
-                  <a
-                    href="/ebooks/lide-odchazeji-z-dobrych-firem.pdf"
-                    download
-                    className="inline-flex items-center justify-center gap-3 w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-primary/20 group"
-                  >
-                    <Download className="w-5 h-5 group-hover:animate-bounce" />
-                    {txt.downloadButton}
-                  </a>
-                  
-                  <p className="text-xs text-brand-text-muted mt-4 flex items-center justify-center gap-2">
+                  <p className="text-brand-text-secondary mb-6">{txt.successMessage}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <a
+                      href="/ebooks/lide-odchazeji-z-dobrych-firem.pdf"
+                      download
+                      className="inline-flex items-center justify-center gap-3 w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-primary/20 group"
+                    >
+                      <Download className="w-5 h-5 group-hover:animate-bounce" />
+                      Stáhnout e-book: Lidé odcházejí i z dobrých firem
+                    </a>
+                    <a
+                      href="/ebooks/motivovani-jen-2-z-10.pdf"
+                      download
+                      className="inline-flex items-center justify-center gap-3 w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-primary/20 group"
+                    >
+                      <Download className="w-5 h-5 group-hover:animate-bounce" />
+                      Stáhnout e-book: Opravdu motivovaní jsou jen 2 z 10
+                    </a>
+                  </div>
+                  <p className="text-xs text-brand-text-muted mt-2 flex items-center justify-center gap-2">
                     <FileText className="w-3.5 h-3.5" />
-                    {txt.downloadNote}
+                    PDF • Okamžité stažení • 4 MB
                   </p>
                 </div>
               ) : (
@@ -211,32 +218,33 @@ export function LeadCaptureSection() {
                   </div>
                   
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                    <FormField
-                      label={txt.nameLabel}
-                      error={errors.name?.message}
-                    >
-                      <Input
-                        type="text"
-                        autoComplete={autocompleteAttributes.name}
-                        placeholder={txt.namePlaceholder}
-                        className="h-12 rounded-xl"
-                        {...register("name")}
-                      />
-                    </FormField>
-
-                    <FormField
-                      label={txt.emailLabel}
-                      error={errors.email?.message}
-                      required
-                    >
-                      <Input
-                        type="email"
-                        autoComplete={autocompleteAttributes.email}
-                        placeholder={txt.emailPlaceholder}
-                        className="h-12 rounded-xl"
-                        {...register("email", validationRules.workEmail)}
-                      />
-                    </FormField>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <FormField
+                        label={txt.nameLabel}
+                        error={errors.name?.message}
+                      >
+                        <Input
+                          type="text"
+                          autoComplete={autocompleteAttributes.name}
+                          placeholder={txt.namePlaceholder}
+                          className="h-12 rounded-xl"
+                          {...register("name")}
+                        />
+                      </FormField>
+                      <FormField
+                        label={txt.emailLabel}
+                        error={errors.email?.message}
+                        required
+                      >
+                        <Input
+                          type="email"
+                          autoComplete={autocompleteAttributes.email}
+                          placeholder={txt.emailPlaceholder}
+                          className="h-12 rounded-xl"
+                          {...register("email", validationRules.workEmail)}
+                        />
+                      </FormField>
+                    </div>
 
                     {error && (
                       <motion.div 
