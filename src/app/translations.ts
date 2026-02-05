@@ -47,29 +47,29 @@ export const translations = {
       trust: {
         security: "Data Security (GDPR)",
         support: "Native Support",
-        implementation: "48h Implementation",
+        implementation: "1h Implementation",
         languages: "CZ / EN"
       },
     },
     problems: {
-      badge: "Why solve this",
+      badge: "Attrition cost",
       title: "People don't leave overnight.",
       subtitle: "The decision to leave takes months to ripen. The problem is you usually don't know - until you get the resignation.",
       items: [
         {
-          title: "Hidden reasons",
-          value: "70%+",
-          desc: "You won't learn the real reasons from exit interviews. They stay in people's heads and private conversations.",
+          title: "UNWANTED ATTRITION",
+          value: "6–9× salary",
+          desc: "Replacing one employee costs 6–9× their monthly salary on average. Senior roles can reach up to 24×. [Source: SHRM, Gallup]",
         },
         {
-          title: "Performance loss",
-          value: "-20%",
-          desc: "Someone who has mentally resigned works at a fraction of their potential. And it often lasts months.",
+          title: "PERFORMANCE LOSS",
+          value: "–21%",
+          desc: "Actively disengaged teams show 21% lower profitability and significantly lower productivity. [Source: Gallup State of the Workplace]",
         },
         {
-          title: "Delayed reaction",
-          value: "6+ mo.",
-          desc: "Average time before management notices a problem and starts addressing it. By then it's often too late.",
+          title: "MANAGER IMPACT",
+          value: "69%",
+          desc: "69% of employee experience is shaped by their direct manager. Your message is filtered through them. [Source: Gallup]",
         },
       ],
       ctaBox: {
@@ -112,8 +112,8 @@ export const translations = {
           desc: "We don't care if people are satisfied. We track risks, blockers, and what prevents performance."
         },
         {
-          title: "90 seconds a month",
-          desc: "No hour-long surveys. Short pulses that don't burden people - yet still give relevant data."
+          title: "1–3 minutes a month",
+          desc: "No hour-long surveys. One short pulse per month that doesn't burden people - yet still gives relevant data."
         },
         {
           title: "Scientific foundation",
@@ -211,7 +211,7 @@ export const translations = {
         ceo: "Schedule CEO demo",
         hr: "Schedule HR demo"
       },
-      ctaNote: "20 min • Personalized for your role",
+      ctaNote: "30 min • Personalized for your role",
       ceo: {
         title: "For company leadership",
         desc: "End of guessing how people are doing. You see exactly which departments are overloaded, where departures threaten, and where strategy communication fails.",
@@ -291,7 +291,7 @@ export const translations = {
       secondary: "or call us",
       secondaryLink: "+420 605 839 456",
       benefits: [
-        { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 20 minutes." },
+        { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 30 minutes." },
         { title: "Privacy Guarantee", desc: "GDPR compliance with clear data-handling rules. Your data stays on EU servers." },
         { title: "Fast Start", desc: "Implementation needs no IT department. We connect to your existing tools (M365, Slack)." }
       ]
@@ -348,7 +348,7 @@ export const translations = {
       desc: "Most common concerns we address with CEOs and HR directors.",
       contact: "Write to us →",
       items: [
-        { q: "Will it annoy people?", a: "No. The system uses a 'Low-Friction' protocol. No long surveys, just 90 seconds monthly. We keep respondent burden low." },
+        { q: "Will it annoy people?", a: "No. The system uses a 'Low-Friction' protocol. No long surveys, just 1–3 minutes once a month. We keep respondent burden low." },
         { q: "Does it require complex IT implementation?", a: "No. We're a cloud service. We connect to your systems (M365/Slack) without IT intervention. No project required." },
         { q: "Is it truly anonymous?", a: "Absolutely. We guarantee a 'safety layer'. No one from leadership sees individual responses. People know this and trust it." },
         { q: "Will it add work for managers?", a: "The opposite. Echo Pulse does the analytical work for them and gives them guidance. It doesn't increase manager workload." },
@@ -358,12 +358,12 @@ export const translations = {
     leadPopup: {
       badge: "New Study 2026",
       title: "People leave even good companies. Why?",
-      subtitle: "Exclusive data from 50+ companies. Uncover the real reasons for performance drops that annual surveys miss.",
+      subtitle: "Exclusive data from 30+ companies. Uncover the real reasons for performance drops that annual surveys miss.",
       emailPlaceholder: "name@company.com",
       inputLabel: "Where should we send the E-book?",
       cta: "Download Study for Free",
       socialProofPre: "Already downloaded by",
-      socialProofCount: "1,200+",
+      socialProofCount: "500+",
       socialProofPost: "leaders",
       quote: "Data that changes how we view people management.",
       successTitle: "E-book is on the way!",
@@ -452,7 +452,7 @@ export const translations = {
       guided: {
         badge: "Recommended",
         title: "Consultation with expert",
-        subtitle: "20min video call with our consultant",
+        subtitle: "30min video call with our consultant",
         features: [
           "Personalized walkthrough",
           "All your questions answered",
@@ -497,12 +497,12 @@ export const translations = {
       copied: "Copied!",
       openDemo: "Open demo app",
       upsellTitle: "Want a guided tour?",
-      upsellText: "Book a 20min consultation and we'll show you what Echo Pulse reveals in your company.",
+      upsellText: "Book a 30min consultation and we'll show you what Echo Pulse reveals in your company.",
       upsellCta: "Book consultation"
     },
     bookingModal: {
       badge: "Personal Consultation",
-      title: "20 minutes that will",
+      title: "30 minutes that will",
       titleHighlight: "change how you see data",
       subtitle: "Video call with our consultant. We'll show you what Echo Pulse reveals in your company.",
       benefits: [
@@ -510,7 +510,7 @@ export const translations = {
         { icon: "users", text: "All your questions answered" },
         { icon: "shield", text: "No commitment, no hard-sell" }
       ],
-      duration: "20 minutes",
+      duration: "30 minutes",
       format: "Video call (Google Meet / Zoom)",
       cta: "Pick a time",
       calendarTitle: "Choose an available slot",
@@ -604,24 +604,24 @@ export const translations = {
       },
     },
     problems: {
-      badge: "Proč to řešit",
+      badge: "Náklady na odchody",
       title: "Lidé neodcházejí ze dne na den.",
       subtitle: "Rozhodnutí odejít zraje měsíce. Problém je, že o tom většinou nevíte - dokud nedostanete výpověď.",
       items: [
         {
-          title: "Skryté důvody",
-          value: "70%+",
-          desc: "Skutečné důvody odchodu se nedozvíte z exit interview. Ty zůstávají v hlavách lidí a v soukromých rozhovorech.",
+          title: "NECHTĚNÁ FLUKTUACE",
+          value: "6–9× mzda",
+          desc: "Nahradit jednoho zaměstnance stojí průměrně 6–9× jeho měsíční mzdu. U seniorních pozic až 24×. [Zdroj: SHRM, Gallup]",
         },
         {
-          title: "Ztráta výkonu",
-          value: "-20%",
-          desc: "Člověk, který už vnitřně rezignoval, pracuje na zlomek svého potenciálu. A často to trvá měsíce.",
+          title: "POKLES VÝKONU",
+          value: "–21%",
+          desc: "Aktivně neangažované týmy mají o 21 % nižší ziskovost a výrazně nižší produktivitu. [Zdroj: Gallup State of the Workplace]",
         },
         {
-          title: "Zpoždění reakce",
-          value: "6+ měs.",
-          desc: "Průměrná doba, než si management všimne problému a začne ho řešit. Do té doby už je často pozdě.",
+          title: "VLIV MANAŽERA",
+          value: "69%",
+          desc: "69 % zaměstnanecké zkušenosti formuje přímý nadřízený. Váš vzkaz prochází přes něj. [Zdroj: Gallup]",
         },
       ],
       ctaBox: {
@@ -664,8 +664,8 @@ export const translations = {
           desc: "Nezajímá nás, jestli jsou lidé spokojeni. Sledujeme rizika, překážky a to, co brání výkonu."
         },
         {
-          title: "90 sekund měsíčně",
-          desc: "Žádné hodinové dotazníky. Krátké pulzy, které lidi nezatěžují - a přesto dávají relevantní data."
+          title: "1–3 minuty měsíčně",
+          desc: "Žádné hodinové dotazníky. Jeden krátký pulz za měsíc, který lidi nezatěžuje - a přesto dává relevantní data."
         },
         {
           title: "Vědecký základ",
@@ -763,7 +763,7 @@ export const translations = {
         ceo: "Sjednat CEO demo",
         hr: "Sjednat HR demo"
       },
-      ctaNote: "20 min • Přizpůsobeno vaší roli",
+      ctaNote: "30 min • Přizpůsobeno vaší roli",
       ceo: {
         title: "Pro vedení firmy",
         desc: "Konec domněnek o tom, jak to lidé mají. Vidíte přesně, která oddělení jsou přetížená, kde hrozí odchody a kde se nedaří komunikovat strategii.",
@@ -843,7 +843,7 @@ export const translations = {
       secondary: "nebo zavolejte",
       secondaryLink: "+420 605 839 456",
       benefits: [
-        { title: "Bez závazků", desc: "Úvodní konzultace a demo ukázka jsou zdarma. Pochopíte logiku systému za 20 minut." },
+        { title: "Bez závazků", desc: "Úvodní konzultace a demo ukázka jsou zdarma. Pochopíte logiku systému za 30 minut." },
         { title: "Garance soukromí", desc: "Soulad s GDPR a jasná pravidla práce s daty. Vaše data zůstávají na evropských serverech." },
         { title: "Rychlý start", desc: "Implementace nevyžaduje IT oddělení. Napojíme se na vaše stávající nástroje (M365, Slack)." }
       ]
@@ -900,7 +900,7 @@ export const translations = {
       desc: "Nejčastější obavy, které řešíme s CEO a HR řediteli.",
       contact: "Napište nám →",
       items: [
-        { q: "Bude to lidi otravovat?", a: "Ne. Systém používá 'Low-Friction' protokol. Žádné dlouhé dotazníky, jen 90 vteřin měsíčně. Udržíme zátěž respondentů nízko." },
+        { q: "Bude to lidi otravovat?", a: "Ne. Systém používá 'Low-Friction' protokol. Žádné dlouhé dotazníky, jen 1–3 minuty jednou za měsíc. Udržíme zátěž respondentů nízko." },
         { q: "Vyžaduje to složitou IT implementaci?", a: "Ne. Jsme cloudová služba. Napojíme se na vaše systémy (M365/Slack) bez zásahu IT. Nevyžaduje to projekt." },
         { q: "Je to skutečně anonymní?", a: "Absolutně. Garantujeme 'vrstvu bezpečí'. Nikdo z vedení neuvidí individuální odpovědi. Lidé to ví a věří tomu." },
         { q: "Přidělá to práci manažerům?", a: "Naopak. Echo Pulse za ně dělá analytickou práci a dává jim návod. Nezvyšuje to práci manažerům." },
@@ -910,12 +910,12 @@ export const translations = {
     leadPopup: {
       badge: "Nová studie 2026",
       title: "Lidé odcházejí i z dobrých firem. Proč?",
-      subtitle: "Exkluzivní data z 50+ českých firem. Odhalte skutečné důvody poklesu výkonu, které v ročních průzkumech nenajdete.",
+      subtitle: "Exkluzivní data z 30+ českých firem. Odhalte skutečné důvody poklesu výkonu, které v ročních průzkumech nenajdete.",
       emailPlaceholder: "name@company.com",
       inputLabel: "Kam máme E-book poslat?",
       cta: "Stáhnout studii zdarma",
       socialProofPre: "Již stáhlo",
-      socialProofCount: "1 200+",
+      socialProofCount: "500+",
       socialProofPost: "lídrů",
       quote: "Data, která mění pohled na řízení lidí v Česku.",
       successTitle: "E-book je na cestě!",
@@ -1004,7 +1004,7 @@ export const translations = {
       guided: {
         badge: "Doporučujeme",
         title: "Konzultace s expertem",
-        subtitle: "20min video hovor s naším konzultantem",
+        subtitle: "30min video hovor s naším konzultantem",
         features: [
           "Personalizovaná ukázka",
           "Odpovědi na vaše dotazy",
@@ -1049,12 +1049,12 @@ export const translations = {
       copied: "Zkopírováno!",
       openDemo: "Otevřít demo aplikaci",
       upsellTitle: "Chcete průvodce?",
-      upsellText: "Rezervujte si 20min konzultaci a ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
+      upsellText: "Rezervujte si 30min konzultaci a ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
       upsellCta: "Rezervovat konzultaci"
     },
     bookingModal: {
       badge: "Osobní konzultace",
-      title: "20 minut, které",
+      title: "30 minut, které",
       titleHighlight: "změní váš pohled na data",
       subtitle: "Video hovor s naším konzultantem. Ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
       benefits: [
@@ -1062,7 +1062,7 @@ export const translations = {
         { icon: "users", text: "Odpovědi na všechny vaše dotazy" },
         { icon: "shield", text: "Žádné závazky, žádný hard-sell" }
       ],
-      duration: "20 minut",
+      duration: "30 minut",
       format: "Video hovor (Google Meet / Zoom)",
       cta: "Vybrat termín",
       calendarTitle: "Vyberte si volný termín",
@@ -1156,24 +1156,24 @@ export const translations = {
       },
     },
     problems: {
-      badge: "Warum das lösen",
+      badge: "Fluktuationskosten",
       title: "Menschen kündigen nicht von heute auf morgen.",
       subtitle: "Die Entscheidung zu gehen reift monatelang. Das Problem ist, dass Sie es meist nicht wissen - bis Sie die Kündigung bekommen.",
       items: [
         {
-          title: "Versteckte Gründe",
-          value: "70%+",
-          desc: "Die wahren Kündigungsgründe erfahren Sie nicht aus Exit-Interviews. Sie bleiben in den Köpfen der Menschen und in privaten Gesprächen.",
+          title: "UNGEWOLLTE FLUKTUATION",
+          value: "6–9× Monatsgehalt",
+          desc: "Der Ersatz einer Person kostet durchschnittlich 6–9× das Monatsgehalt. Bei Senior-Positionen bis zu 24×. [Quelle: SHRM, Gallup]",
         },
         {
-          title: "Leistungsverlust",
-          value: "-20%",
-          desc: "Jemand, der innerlich bereits gekündigt hat, arbeitet nur mit einem Bruchteil seines Potenzials. Und das dauert oft Monate.",
+          title: "LEISTUNGSVERLUST",
+          value: "–21%",
+          desc: "Aktiv unengagierte Teams zeigen 21 % geringere Profitabilität und deutlich niedrigere Produktivität. [Quelle: Gallup State of the Workplace]",
         },
         {
-          title: "Verzögerte Reaktion",
-          value: "6+ Mo.",
-          desc: "Durchschnittliche Zeit, bis das Management ein Problem bemerkt und es angeht. Bis dahin ist es oft zu spät.",
+          title: "MANAGER-EINFLUSS",
+          value: "69%",
+          desc: "69 % der Employee Experience wird vom direkten Vorgesetzten geprägt. Ihre Botschaft wird durch ihn gefiltert. [Quelle: Gallup]",
         },
       ],
       ctaBox: {
@@ -1216,8 +1216,8 @@ export const translations = {
           desc: "Uns interessiert nicht, ob Menschen zufrieden sind. Wir verfolgen Risiken, Blocker und was Leistung verhindert."
         },
         {
-          title: "90 Sekunden monatlich",
-          desc: "Keine stundenlangen Umfragen. Kurze Impulse, die Menschen nicht belasten - und trotzdem relevante Daten liefern."
+          title: "1–3 Minuten monatlich",
+          desc: "Keine stundenlangen Umfragen. Ein kurzer Impuls pro Monat, der Menschen nicht belastet - und trotzdem relevante Daten liefert."
         },
         {
           title: "Wissenschaftliche Grundlage",
@@ -1315,7 +1315,7 @@ export const translations = {
         ceo: "CEO-Demo vereinbaren",
         hr: "HR-Demo vereinbaren"
       },
-      ctaNote: "20 Min • Auf Ihre Rolle zugeschnitten",
+      ctaNote: "30 Min • Auf Ihre Rolle zugeschnitten",
       ceo: {
         title: "Für CEO & Geschäftsführung",
         desc: "Das definitive Ende des 'Bauchgefühl-Managements'. Sehen Sie genau, welche Abteilungen überlastet sind, wo Fluktuation droht und wo Strategiekommunikation scheitert.",
@@ -1395,7 +1395,7 @@ export const translations = {
       secondary: "oder rufen Sie an",
       secondaryLink: "+420 605 839 456",
       benefits: [
-        { title: "Keine Verpflichtung", desc: "Erstberatung und Demo sind kostenlos. Verstehen Sie die Systemlogik in 20 Minuten." },
+        { title: "Keine Verpflichtung", desc: "Erstberatung und Demo sind kostenlos. Verstehen Sie die Systemlogik in 30 Minuten." },
         { title: "Datenschutz-Garantie", desc: "DSGVO-Konformität und klare Regeln für den Datenumgang. Ihre Daten bleiben auf EU-Servern." },
         { title: "Schnellstart", desc: "Implementierung benötigt keine IT-Abteilung. Wir verbinden uns mit Ihren bestehenden Tools (M365, Slack)." }
       ]
@@ -1452,7 +1452,7 @@ export const translations = {
       desc: "Die häufigsten Bedenken, die wir mit CEOs und HR-Leitern besprechen.",
       contact: "Schreiben Sie uns →",
       items: [
-        { q: "Wird es die Leute nerven?", a: "Nein. Das System nutzt ein 'Low-Friction'-Protokoll. Keine langen Umfragen, nur 90 Sekunden monatlich. Wir halten die Belastung niedrig." },
+        { q: "Wird es die Leute nerven?", a: "Nein. Das System nutzt ein 'Low-Friction'-Protokoll. Keine langen Umfragen, nur 1–3 Minuten einmal im Monat. Wir halten die Belastung niedrig." },
         { q: "Erfordert es komplexe IT-Implementierung?", a: "Nein. Wir sind ein Cloud-Service. Wir verbinden uns mit Ihren Systemen (M365/Slack) ohne IT-Eingriff. Kein Projekt erforderlich." },
         { q: "Ist es wirklich anonym?", a: "Absolut. Wir garantieren eine 'Sicherheitsschicht'. Niemand aus der Führung sieht einzelne Antworten. Menschen wissen das und vertrauen darauf." },
         { q: "Bedeutet es mehr Arbeit für Manager?", a: "Im Gegenteil. Echo Pulse übernimmt die analytische Arbeit und gibt Anleitungen. Es erhöht nicht die Manager-Arbeitslast." },
@@ -1462,12 +1462,12 @@ export const translations = {
     leadPopup: {
       badge: "Neue Studie 2026",
       title: "Menschen verlassen auch gute Firmen. Warum?",
-      subtitle: "Exklusive Daten von 50+ Unternehmen. Entdecken Sie die wahren Gründe für Leistungsabfall, die Jahresumfragen übersehen.",
+      subtitle: "Exklusive Daten von 30+ Unternehmen. Entdecken Sie die wahren Gründe für Leistungsabfall, die Jahresumfragen übersehen.",
       emailPlaceholder: "name@company.com",
       inputLabel: "Wohin sollen wir das E-Book senden?",
       cta: "Studie kostenlos herunterladen",
       socialProofPre: "Bereits von",
-      socialProofCount: "1.200+",
+      socialProofCount: "500+",
       socialProofPost: "Führungskräften genutzt",
       quote: "Daten, die den Blick auf Personalmanagement verändern.",
       successTitle: "E-Book ist unterwegs!",
@@ -1556,7 +1556,7 @@ export const translations = {
       guided: {
         badge: "Empfohlen",
         title: "Beratung mit Experten",
-        subtitle: "20min Videoanruf mit unserem Berater",
+        subtitle: "30min Videoanruf mit unserem Berater",
         features: [
           "Personalisierte Führung",
           "Alle Ihre Fragen beantwortet",
@@ -1601,12 +1601,12 @@ export const translations = {
       copied: "Kopiert!",
       openDemo: "Demo-App öffnen",
       upsellTitle: "Möchten Sie eine geführte Tour?",
-      upsellText: "Buchen Sie eine 20min Beratung und wir zeigen Ihnen, was Echo Pulse in Ihrem Unternehmen aufdeckt.",
+      upsellText: "Buchen Sie eine 30min Beratung und wir zeigen Ihnen, was Echo Pulse in Ihrem Unternehmen aufdeckt.",
       upsellCta: "Beratung buchen"
     },
     bookingModal: {
       badge: "Persönliche Beratung",
-      title: "20 Minuten, die",
+      title: "30 Minuten, die",
       titleHighlight: "Ihren Blick auf Daten verändern",
       subtitle: "Videoanruf mit unserem Berater. Wir zeigen Ihnen, was Echo Pulse in Ihrem Unternehmen aufdeckt.",
       benefits: [
@@ -1614,7 +1614,7 @@ export const translations = {
         { icon: "users", text: "Alle Ihre Fragen beantwortet" },
         { icon: "shield", text: "Keine Verpflichtung, kein Hard-Sell" }
       ],
-      duration: "20 Minuten",
+      duration: "30 Minuten",
       format: "Videoanruf (Google Meet / Zoom)",
       cta: "Termin wählen",
       calendarTitle: "Wählen Sie einen verfügbaren Termin",

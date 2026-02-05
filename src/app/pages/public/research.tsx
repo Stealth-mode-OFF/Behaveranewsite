@@ -232,7 +232,7 @@ export const ResearchPage = () => {
             <div className="flex items-center justify-center gap-3 mt-10 pt-8 border-t border-brand-border/30">
               <Database className="w-4 h-4 text-brand-text-muted" />
               <p className="text-xs text-brand-text-muted font-mono">
-                Evidence base: 183,806 business units | 3.3M+ respondentů | 50+ zemí
+                Založeno na meta-analýzách Gallup: 183,806 business units | 3.3M+ respondentů | 50+ zemí
               </p>
             </div>
           </div>
@@ -403,7 +403,7 @@ export const ResearchPage = () => {
                     <ul className="space-y-3 text-sm text-brand-text-secondary">
                       <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 text-brand-success mt-0.5 shrink-0" />
-                        <span>Pulse design: 1 otázka/den, rotační model, completion &lt; 30s</span>
+                        <span>Pulse design: 1× měsíčně, 1–3 minuty, rotační model otázek</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 text-brand-success mt-0.5 shrink-0" />
@@ -411,7 +411,7 @@ export const ResearchPage = () => {
                       </li>
                       <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 text-brand-success mt-0.5 shrink-0" />
-                        <span>Frekvence: týdenní reporting, měsíční trend analýza</span>
+                        <span>Frekvence: měsíční reporting, kvartální trend analýza</span>
                       </li>
                       <li className="flex items-start gap-3">
                         <CheckCircle2 className="w-4 h-4 text-brand-success mt-0.5 shrink-0" />

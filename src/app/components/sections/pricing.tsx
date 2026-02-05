@@ -222,7 +222,7 @@ export function PurchaseSection() {
                                 </div>
                                 <div className="flex items-center gap-1.5">
                                     <Zap className="w-3.5 h-3.5 text-brand-warning" />
-                                    <span>Start do 48h</span>
+                                    <span>Start do 1h</span>
                                 </div>
                             </div>
                         </div>

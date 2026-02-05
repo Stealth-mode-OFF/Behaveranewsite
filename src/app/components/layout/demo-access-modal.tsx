@@ -157,7 +157,7 @@ export function DemoAccessModal() {
     openDemo: "Otevřít demo aplikaci",
     
     upsellTitle: "Chcete průvodce?",
-    upsellText: "Rezervujte si 20min konzultaci a ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
+    upsellText: "Rezervujte si 30min konzultaci a ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
     upsellCta: "Rezervovat konzultaci"
   };
 
