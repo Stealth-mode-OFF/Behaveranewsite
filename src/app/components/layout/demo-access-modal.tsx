@@ -169,7 +169,7 @@ export function DemoAccessModal() {
 
   return (
     <Dialog open={demoRequestOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[520px] p-0 overflow-hidden bg-white border-brand-border">
+      <DialogContent className="sm:max-w-[520px] p-0 overflow-hidden bg-white border-brand-border max-h-[100dvh] sm:max-h-[90vh] flex flex-col">
         <DialogTitle className="sr-only">Demo Access</DialogTitle>
         <DialogDescription className="sr-only">Get access to Echo Pulse demo</DialogDescription>
 
@@ -180,26 +180,26 @@ export function DemoAccessModal() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, x: -20 }}
-              className="p-8"
+              className="p-6 sm:p-8 overflow-y-auto"
             >
               {/* Header */}
-              <div className="text-center mb-8">
+              <div className="text-center mb-6 sm:mb-8">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-full text-sm font-medium mb-4">
                   <Sparkles className="w-4 h-4" />
                   {copy.badge}
                 </div>
                 
-                <h2 className="text-2xl md:text-3xl font-bold text-brand-text-primary mb-2">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-brand-text-primary mb-2">
                   {copy.title}{' '}
                   <span className="text-brand-primary">{copy.titleHighlight}</span>
                 </h2>
-                <p className="text-brand-text-secondary">
+                <p className="text-sm sm:text-base text-brand-text-secondary">
                   {copy.subtitle}
                 </p>
               </div>
 
               {/* Features */}
-              <div className="flex flex-wrap justify-center gap-4 mb-8">
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
                 {copy.features.map((feature: any, idx: number) => (
                   <div key={idx} className="flex items-center gap-2 text-sm text-brand-text-secondary">
                     <div className="w-6 h-6 rounded-full bg-brand-success/10 text-brand-success flex items-center justify-center">
@@ -302,7 +302,7 @@ export function DemoAccessModal() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0 }}
-              className="p-8"
+              className="p-6 sm:p-8 overflow-y-auto"
             >
               {/* Success Header */}
               <div className="text-center mb-8">

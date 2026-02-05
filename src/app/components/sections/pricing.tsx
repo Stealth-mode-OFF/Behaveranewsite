@@ -95,10 +95,12 @@ export function PurchaseSection() {
                               step="5"
                               value={employeeCount}
                               onChange={(e) => setEmployeeCount(Number(e.target.value))}
-                              className="relative w-full h-3 appearance-none cursor-pointer bg-transparent z-10
+                              className="relative w-full h-8 sm:h-3 appearance-none cursor-pointer bg-transparent z-10
                                 [&::-webkit-slider-thumb]:appearance-none
-                                [&::-webkit-slider-thumb]:w-6
-                                [&::-webkit-slider-thumb]:h-6
+                                [&::-webkit-slider-thumb]:w-10
+                                [&::-webkit-slider-thumb]:h-10
+                                [&::-webkit-slider-thumb]:sm:w-6
+                                [&::-webkit-slider-thumb]:sm:h-6
                                 [&::-webkit-slider-thumb]:rounded-full
                                 [&::-webkit-slider-thumb]:bg-white
                                 [&::-webkit-slider-thumb]:border-4
@@ -109,8 +111,10 @@ export function PurchaseSection() {
                                 [&::-webkit-slider-thumb]:active:cursor-grabbing
                                 [&::-webkit-slider-thumb]:hover:scale-110
                                 [&::-webkit-slider-thumb]:transition-transform
-                                [&::-moz-range-thumb]:w-6
-                                [&::-moz-range-thumb]:h-6
+                                [&::-moz-range-thumb]:w-10
+                                [&::-moz-range-thumb]:h-10
+                                [&::-moz-range-thumb]:sm:w-6
+                                [&::-moz-range-thumb]:sm:h-6
                                 [&::-moz-range-thumb]:rounded-full
                                 [&::-moz-range-thumb]:bg-white
                                 [&::-moz-range-thumb]:border-4

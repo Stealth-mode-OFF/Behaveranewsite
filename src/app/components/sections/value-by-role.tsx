@@ -75,16 +75,16 @@ export function ValueByRole() {
           <div className="bg-white rounded-2xl shadow-lg border border-brand-border overflow-hidden">
             
             {/* Content Header */}
-            <div className="p-12 border-b border-brand-border bg-gradient-to-r from-brand-background-secondary/50 to-transparent">
-              <div className="flex items-start gap-6">
-                <div className="p-5 bg-brand-primary/10 rounded-xl text-brand-primary ring-1 ring-brand-primary/20">
-                  <Icon className="w-10 h-10" />
+            <div className="p-6 md:p-10 lg:p-12 border-b border-brand-border bg-gradient-to-r from-brand-background-secondary/50 to-transparent">
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                <div className="p-3 sm:p-5 bg-brand-primary/10 rounded-xl text-brand-primary ring-1 ring-brand-primary/20">
+                  <Icon className="w-8 h-8 sm:w-10 sm:h-10" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-bold text-brand-text-primary mb-4 tracking-[-0.01em]">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-brand-text-primary mb-3 sm:mb-4 tracking-[-0.01em]">
                     {current.title}
                   </h3>
-                  <p className="text-brand-text-secondary text-xl leading-[1.7] max-w-2xl font-medium">
+                  <p className="text-brand-text-secondary text-base sm:text-lg lg:text-xl leading-[1.7] max-w-2xl font-medium">
                     {current.desc}
                   </p>
                 </div>
@@ -92,8 +92,8 @@ export function ValueByRole() {
             </div>
 
             {/* Benefits List */}
-            <div className="p-12">
-              <ul className="grid md:grid-cols-1 gap-8">
+            <div className="p-6 md:p-10 lg:p-12">
+              <ul className="grid md:grid-cols-1 gap-6 md:gap-8">
                 {current.list
                   .filter(Boolean)
                   .map((item: BenefitItem, index: number) => (
@@ -102,7 +102,7 @@ export function ValueByRole() {
               </ul>
 
               {/* CTA */}
-              <div className="mt-12 pt-10 border-t border-brand-border flex flex-col sm:flex-row items-center gap-5">
+              <div className="mt-8 md:mt-12 pt-6 md:pt-10 border-t border-brand-border flex flex-col sm:flex-row items-center gap-4 sm:gap-5">
                 <Button
                   onClick={openBooking}
                   size="lg"
@@ -143,13 +143,13 @@ function RoleTabButton({ active, onClick, icon: Icon, label }: RoleTabButtonProp
     <button
       onClick={onClick}
       className={cn(
-        "flex items-center gap-3 px-8 py-4 rounded-lg text-base font-bold transition-all",
+        "flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-bold transition-all",
         active
           ? "bg-brand-primary text-white shadow-md"
           : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-background-secondary"
       )}
     >
-      <Icon className="w-5 h-5" />
+      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
       {label}
     </button>
   );

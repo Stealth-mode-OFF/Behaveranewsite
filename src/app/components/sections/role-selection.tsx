@@ -105,37 +105,37 @@ function RoleCard({ role, onClick }: RoleCardProps) {
   return (
     <button 
       onClick={onClick}
-      className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-6 md:p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
+      className="group relative bg-white/5 backdrop-blur-sm border border-white/10 p-5 sm:p-6 md:p-8 rounded-2xl text-left hover:border-white/30 hover:bg-white/10 transition-all duration-300 flex flex-col h-full hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-accent/10 items-center"
     >
       {/* Subtle Top Highlight */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-accent to-transparent group-hover:via-white opacity-30 group-hover:opacity-80 transition-all" />
       
-      <div className="flex flex-col items-center mb-6 md:mb-8 gap-3 md:gap-4 w-full">
-        <div className="p-3 md:p-4 bg-white/10 rounded-2xl border border-white/10 group-hover:border-white/30 group-hover:bg-brand-accent/20 transition-all shadow-inner">
-          <Icon className="w-6 h-6 md:w-8 md:h-8 text-brand-accent group-hover:text-white transition-colors" />
+      <div className="flex flex-col items-center mb-4 sm:mb-6 md:mb-8 gap-2 sm:gap-3 md:gap-4 w-full">
+        <div className="p-2.5 sm:p-3 md:p-4 bg-white/10 rounded-xl sm:rounded-2xl border border-white/10 group-hover:border-white/30 group-hover:bg-brand-accent/20 transition-all shadow-inner">
+          <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-brand-accent group-hover:text-white transition-colors" />
         </div>
-        <span className="text-base md:text-lg font-bold uppercase tracking-widest text-brand-accent group-hover:text-white transition-colors text-center">
+        <span className="text-sm sm:text-base md:text-lg font-bold uppercase tracking-widest text-brand-accent group-hover:text-white transition-colors text-center">
           {role.role}
         </span>
       </div>
 
-      <h3 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 text-center group-hover:text-white transition-colors tracking-tight leading-tight">
+      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-6 text-center group-hover:text-white transition-colors tracking-tight leading-tight">
         {role.title}
       </h3>
       
-      <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8 text-brand-text-on-dark text-sm font-semibold leading-relaxed flex-1 w-full">
+      <ul className="space-y-2 sm:space-y-3 md:space-y-4 mb-4 sm:mb-6 md:mb-8 text-brand-text-on-dark text-xs sm:text-sm font-semibold leading-relaxed flex-1 w-full">
         {role.list.map((item, index) => {
           const ItemIcon = listIcons[index] || BarChart;
           return (
-            <li key={index} className="flex gap-3 items-start">
-              <ItemIcon className="w-5 h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
+            <li key={index} className="flex gap-2 sm:gap-3 items-start">
+              <ItemIcon className="w-4 h-4 sm:w-5 sm:h-5 text-brand-accent shrink-0 group-hover:text-white transition-colors mt-0.5" />
               <span>{item}</span>
             </li>
           );
         })}
       </ul>
 
-      <div className="mt-auto flex items-center text-white font-semibold text-sm group-hover:translate-x-1 duration-300 border-t border-white/10 pt-4 w-full">
+      <div className="mt-auto flex items-center text-white font-semibold text-xs sm:text-sm group-hover:translate-x-1 duration-300 border-t border-white/10 pt-3 sm:pt-4 w-full">
         {role.cta}
         <ChevronRight className="w-4 h-4 ml-auto text-brand-accent group-hover:text-white transition-colors" />
       </div>
