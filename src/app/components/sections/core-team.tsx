@@ -80,7 +80,7 @@ const translations = {
         role: 'Investor & Advisor',
         focus: 'Serial Entrepreneur',
         bio: '4× exit: Zomato, Dáme Jídlo, Foodora, Teya.',
-        linkedin: 'https://linkedin.com/in/igortreslin',
+        linkedin: 'https://www.linkedin.com/in/igor-treslin-99a02422/',
         isInvestor: true,
       },
     ],
@@ -338,10 +338,8 @@ function TeamCard({ member, size, founderLabel, investorLabel }: TeamCardProps) 
         </a>
       )}
 
-      {/* Image Container - Full portrait style */}
-      <div className={`relative overflow-hidden bg-gradient-to-br from-brand-background-secondary to-brand-primary/5 ${
-        isLarge ? 'aspect-[4/5]' : 'aspect-[3/4]'
-      }`}>
+      {/* Image Container - Unified square aspect ratio for all cards */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-background-secondary to-brand-primary/5 aspect-square">
         <img
           src={teamImages[member.name]}
           alt={member.name}
