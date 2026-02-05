@@ -6,8 +6,8 @@ export function HowItWorks() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-28 bg-white border-t border-brand-border" id="how-it-works">
-      <div className="container-default max-w-[1120px] mx-auto px-4">
+    <section className="py-20 md:py-28 lg:py-32 bg-white border-t border-brand-border" id="how-it-works">
+      <div className="container-default max-w-[1120px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-brand-primary/5 rounded-full border border-brand-primary/10 mb-10 shadow-sm">
             <span className="font-mono text-[11px] font-bold text-brand-primary tracking-[0.15em] uppercase">

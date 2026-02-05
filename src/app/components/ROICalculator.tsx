@@ -101,7 +101,7 @@ export function ROICalculator() {
                             onClick={() => toggleCurrency('EUR')}
                             className={cn(
                                 "px-3 py-1 rounded text-caption font-bold transition-all",
-                                currency === 'EUR' ? "bg-white text-brand-primary" : "text-white/60 hover:text-white"
+                                currency === 'EUR' ? "bg-white text-brand-primary" : "text-white/90 hover:text-white"
                             )}
                         >
                             EUR
@@ -110,7 +110,7 @@ export function ROICalculator() {
                             onClick={() => toggleCurrency('CZK')}
                             className={cn(
                                 "px-3 py-1 rounded text-caption font-bold transition-all",
-                                currency === 'CZK' ? "bg-white text-brand-primary" : "text-white/60 hover:text-white"
+                                currency === 'CZK' ? "bg-white text-brand-primary" : "text-white/90 hover:text-white"
                             )}
                         >
                             CZK

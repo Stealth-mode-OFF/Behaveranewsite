@@ -11,7 +11,7 @@ export function FAQ() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 bg-white border-b border-brand-border" id="faq">
+    <section className="py-20 md:py-28 lg:py-32 bg-white border-b border-brand-border" id="faq">
       <div className="container-default">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
           <div className="lg:w-1/3">

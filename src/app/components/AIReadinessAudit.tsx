@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { cn } from "./ui/utils";
 import { toast } from "sonner";
 import { useLanguage } from "../LanguageContext";
+import { submitLead } from "../utils/lead";
 
 export function AIReadinessAudit() {
   const { t } = useLanguage();
@@ -74,17 +75,41 @@ export function AIReadinessAudit() {
     return { label: "Legacy", color: "text-red-600", bg: "bg-red-50", msg: "High risk of talent loss." };
   };
 
-  const handleUnlock = () => {
+  const handleUnlock = async () => {
     if (!email || !email.includes('@')) {
         toast.error("Please enter a valid work email.");
         return;
     }
+    
+    // Basic work email validation (reject free providers)
+    const workEmailPattern = /^(?!.*@(gmail|yahoo|outlook|hotmail|seznam|email\.cz|centrum\.cz|icloud)\.).+@.+\..+$/i;
+    if (!workEmailPattern.test(email)) {
+        toast.error("Please use your work email (not gmail, seznam...)");
+        return;
+    }
+    
     setIsUnlocking(true);
-    setTimeout(() => {
-        setIsUnlocking(false);
-        toast.success("Audit sent!", { description: `Report sent to ${email}` });
-        setEmail("");
-    }, 1500);
+    
+    const result = await submitLead({
+      email,
+      source: "ai-readiness-audit",
+      // Include audit score for context
+      role: `Audit Score: ${totalScore}/100 (${getResult().label})`
+    });
+    
+    setIsUnlocking(false);
+    
+    if (!result.ok) {
+      toast.error("Submission failed", { 
+        description: result.error || "Please try again." 
+      });
+      return;
+    }
+    
+    toast.success("Audit sent!", { 
+      description: `Full report sent to ${email}` 
+    });
+    setEmail("");
   };
 
   const result = getResult();
@@ -157,12 +182,16 @@ export function AIReadinessAudit() {
                         <div className="flex gap-2">
                             <input 
                                 type="email" 
+                                name="email"
+                                autoComplete="email"
                                 placeholder="Work Email" 
-                                className="flex-1 px-4 py-2 rounded-lg border border-brand-border text-body focus:ring-2 focus:ring-brand-primary outline-none"
+                                className="flex-1 px-4 py-2 rounded-lg border border-brand-border text-body focus:ring-2 focus:ring-brand-primary outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                disabled={isUnlocking}
+                                required
                             />
-                            <Button onClick={handleUnlock} disabled={isUnlocking}>
+                            <Button onClick={handleUnlock} disabled={isUnlocking || !email}>
                                 {isUnlocking ? <Loader2 className="animate-spin w-4 h-4" /> : "Unlock"}
                             </Button>
                         </div>

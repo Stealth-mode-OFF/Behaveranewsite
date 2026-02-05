@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Label } from './ui/label';
+import { FormField } from './ui/form-field';
 import { useForm } from 'react-hook-form';
 import { useModal } from '../ModalContext';
 import { useLanguage } from '../LanguageContext';
 import { submitLead } from '../utils/lead';
+import { validationRules, autocompleteAttributes } from '../utils/validation';
 import { 
   Monitor, 
   Lock, 
@@ -64,13 +65,6 @@ export function DemoAccessModal() {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>();
 
-  // Work email validation - reject personal emails
-  const isWorkEmail = (email: string) => {
-    const personalDomains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'seznam.cz', 'email.cz', 'centrum.cz', 'icloud.com'];
-    const domain = email.split('@')[1]?.toLowerCase();
-    return domain && !personalDomains.includes(domain);
-  };
-
   const handleClose = () => {
     closeDemoRequest();
     setTimeout(() => {
@@ -97,13 +91,6 @@ export function DemoAccessModal() {
 
   const onSubmit = async (data: FormData) => {
     setError(null);
-    
-    // Validate work email
-    if (!isWorkEmail(data.email)) {
-      setError(copy.errors.workEmailRequired);
-      return;
-    }
-
     setIsSubmitting(true);
 
     const result = await submitLead({
@@ -224,49 +211,44 @@ export function DemoAccessModal() {
 
               {/* Form */}
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="demo-email" className="text-sm font-semibold text-brand-text-primary flex items-center gap-2">
-                    <Mail className="w-4 h-4 text-brand-primary" />
-                    {copy.emailLabel}
-                  </Label>
+                <FormField
+                  label={copy.emailLabel}
+                  error={errors.email?.message}
+                  helperText={copy.noSpam}
+                  required
+                >
                   <Input
-                    id="demo-email"
                     type="email"
+                    autoComplete={autocompleteAttributes.email}
                     placeholder={copy.emailPlaceholder}
-                    {...register("email", { 
-                      required: true, 
-                      pattern: /^\S+@\S+$/i 
-                    })}
-                    className={`h-12 bg-brand-background-secondary border-brand-border focus:border-brand-primary ${errors.email ? 'border-red-500' : ''}`}
+                    {...register("email", validationRules.workEmail)}
                   />
-                </div>
+                </FormField>
 
-                <div className="space-y-2">
-                  <Label htmlFor="demo-phone" className="text-sm font-semibold text-brand-text-primary flex items-center gap-2">
-                    <Phone className="w-4 h-4 text-brand-primary" />
-                    {copy.phoneLabel}
-                  </Label>
+                <FormField
+                  label={copy.phoneLabel}
+                  error={errors.phone?.message}
+                  required
+                >
                   <Input
-                    id="demo-phone"
                     type="tel"
+                    autoComplete={autocompleteAttributes.phone}
                     placeholder={copy.phonePlaceholder}
-                    {...register("phone", { required: true })}
-                    className={`h-12 bg-brand-background-secondary border-brand-border focus:border-brand-primary ${errors.phone ? 'border-red-500' : ''}`}
+                    {...register("phone", validationRules.czechPhone)}
                   />
-                </div>
+                </FormField>
 
-                <div className="space-y-2">
-                  <Label htmlFor="demo-company" className="text-sm font-semibold text-brand-text-muted flex items-center gap-2">
-                    {copy.companyLabel}
-                  </Label>
+                <FormField
+                  label={copy.companyLabel}
+                  error={errors.company?.message}
+                >
                   <Input
-                    id="demo-company"
                     type="text"
+                    autoComplete={autocompleteAttributes.company}
                     placeholder={copy.companyPlaceholder}
-                    {...register("company")}
-                    className="h-12 bg-brand-background-secondary border-brand-border focus:border-brand-primary"
+                    {...register("company", validationRules.company)}
                   />
-                </div>
+                </FormField>
 
                 {error && (
                   <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-4 py-3">
@@ -276,7 +258,7 @@ export function DemoAccessModal() {
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || view === 'success'}
                   className="w-full"
                   size="lg"
                 >

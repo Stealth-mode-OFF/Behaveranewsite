@@ -4,7 +4,7 @@ import { Brain, Database, ShieldCheck } from "lucide-react";
 
 export function ExpertiseBackground() {
   return (
-    <section className="py-24 bg-brand-background-secondary text-brand-text-primary relative overflow-hidden">
+    <section className="py-20 md:py-28 lg:py-32 bg-brand-background-secondary text-brand-text-primary relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-30" 
            style={{ backgroundImage: 'radial-gradient(rgba(124, 58, 237, 0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>

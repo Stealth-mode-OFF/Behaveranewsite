@@ -9,8 +9,8 @@ export function CTA() {
   const { openBooking } = useModal();
 
   return (
-    <section className="py-28 bg-white">
-      <div className="container-default max-w-[1120px] mx-auto px-4">
+    <section className="py-20 md:py-28 lg:py-32 bg-white">
+      <div className="container-default max-w-[1120px] mx-auto">
         <div className="card-base bg-brand-primary border-brand-primary/50 p-16 md:p-24 text-center relative overflow-hidden rounded-3xl">
            {/* Abstract Decoration */}
            <div className="absolute top-0 right-0 w-80 h-80 bg-white opacity-5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />

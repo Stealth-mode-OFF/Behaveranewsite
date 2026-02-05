@@ -24,12 +24,24 @@ export const submitLead = async (payload: LeadPayload): Promise<LeadResult> => {
     };
   }
 
+  // Get Supabase configuration
+  const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+  
+  // Prepare headers (works for both Supabase REST API and Edge Functions)
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json"
+  };
+  
+  // Add Supabase auth headers if available (for direct REST API)
+  if (supabaseKey) {
+    headers["apikey"] = supabaseKey;
+    headers["Authorization"] = `Bearer ${supabaseKey}`;
+  }
+
   try {
     const response = await fetch(endpoint, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers,
       body: JSON.stringify(payload)
     });
 

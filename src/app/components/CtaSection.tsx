@@ -9,8 +9,8 @@ export function CtaSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-32 bg-brand-primary border-t border-white/5">
-      <div className="container-default text-center max-w-[1120px] mx-auto px-4">
+    <section className="py-20 md:py-28 lg:py-32 bg-brand-primary border-t border-white/5">
+      <div className="container-default text-center max-w-[1120px] mx-auto">
         
         <div className="max-w-4xl mx-auto mb-16">
             <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 rounded-full border border-white/20 mb-12 backdrop-blur-sm">

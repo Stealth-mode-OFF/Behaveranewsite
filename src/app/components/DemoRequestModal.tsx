@@ -3,11 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+import { FormField } from "./ui/form-field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { useModal } from "../ModalContext";
 import { submitLead } from "../utils/lead";
 import { useLanguage } from "../LanguageContext";
+import { validationRules, autocompleteAttributes } from "../utils/validation";
 import { CheckCircle2, Loader2 } from "lucide-react";
 
 type DemoRequestFormData = {
@@ -16,8 +17,6 @@ type DemoRequestFormData = {
   companySize: string;
   role: string;
 };
-
-const czechPhonePattern = /^(\+420)?\s?\d{3}\s?\d{3}\s?\d{3}$/;
 
 export function DemoRequestModal() {
   const { t } = useLanguage();
@@ -99,49 +98,44 @@ export function DemoRequestModal() {
             </DialogHeader>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="demo-email" className="text-sm font-semibold text-brand-text-secondary">
-                  {copy.emailLabel}
-                </Label>
+              <FormField
+                label={copy.emailLabel}
+                error={errors.email?.message}
+                required
+              >
                 <Input
-                  id="demo-email"
                   type="email"
-                  {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                  className="h-10 border-brand-border focus:ring-brand-primary"
+                  autoComplete={autocompleteAttributes.email}
                   placeholder={copy.emailPlaceholder || "name@company.com"}
+                  {...register("email", validationRules.workEmail)}
                 />
-                {errors.email && (
-                  <p className="text-xs text-red-600">{errorInvalidEmail}</p>
-                )}
-              </div>
+              </FormField>
 
-              <div className="space-y-2">
-                <Label htmlFor="demo-phone" className="text-sm font-semibold text-brand-text-secondary">
-                  {copy.phoneLabel}
-                </Label>
+              <FormField
+                label={copy.phoneLabel}
+                error={errors.phone?.message}
+                required
+              >
                 <Input
-                  id="demo-phone"
                   type="tel"
-                  {...register("phone", { required: true, pattern: czechPhonePattern })}
-                  className="h-10 border-brand-border focus:ring-brand-primary"
+                  autoComplete={autocompleteAttributes.phone}
                   placeholder={copy.phonePlaceholder || "+420 777 123 456"}
+                  {...register("phone", validationRules.czechPhone)}
                 />
-                {errors.phone && (
-                  <p className="text-xs text-red-600">{errorInvalidPhone}</p>
-                )}
-              </div>
+              </FormField>
 
-              <div className="space-y-2">
-                <Label className="text-sm font-semibold text-brand-text-secondary">
-                  {copy.sizeLabel}
-                </Label>
+              <FormField
+                label={copy.sizeLabel}
+                error={errors.companySize?.message || (errors.companySize ? errorRequired : undefined)}
+                required
+              >
                 <Controller
                   control={control}
                   name="companySize"
-                  rules={{ required: true }}
+                  rules={{ required: errorRequired }}
                   render={({ field }) => (
                     <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger className="h-10 border-brand-border focus:ring-brand-primary">
+                      <SelectTrigger>
                         <SelectValue placeholder={copy.companySizePlaceholder || "Select size"} />
                       </SelectTrigger>
                       <SelectContent>
@@ -154,22 +148,20 @@ export function DemoRequestModal() {
                     </Select>
                   )}
                 />
-                {errors.companySize && (
-                  <p className="text-xs text-red-600">{errorRequired}</p>
-                )}
-              </div>
+              </FormField>
 
-              <div className="space-y-2">
-                <Label className="text-sm font-semibold text-brand-text-secondary">
-                  {copy.roleLabel}
-                </Label>
+              <FormField
+                label={copy.roleLabel}
+                error={errors.role?.message || (errors.role ? errorRequired : undefined)}
+                required
+              >
                 <Controller
                   control={control}
                   name="role"
-                  rules={{ required: true }}
+                  rules={{ required: errorRequired }}
                   render={({ field }) => (
                     <Select value={field.value} onValueChange={field.onChange}>
-                      <SelectTrigger className="h-10 border-brand-border focus:ring-brand-primary">
+                      <SelectTrigger>
                         <SelectValue placeholder={copy.rolePlaceholder || "Select role"} />
                       </SelectTrigger>
                       <SelectContent>
@@ -182,10 +174,7 @@ export function DemoRequestModal() {
                     </Select>
                   )}
                 />
-                {errors.role && (
-                  <p className="text-xs text-red-600">{errorRequired}</p>
-                )}
-              </div>
+              </FormField>
 
               {error && (
                 <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
@@ -195,7 +184,7 @@ export function DemoRequestModal() {
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || isSuccess}
                 className="w-full"
               >
                 {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
