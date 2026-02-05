@@ -111,12 +111,12 @@ export function SnapCarousel({
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className="flex-none w-full snap-center flex justify-center items-start py-4"
+            className="flex-none w-full snap-center flex justify-center items-start py-4 px-4"
             role="group"
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${slides.length}`}
           >
-          <div className="relative group/slide max-w-[500px]">
+          <div className="relative group/slide w-full max-w-[380px] sm:max-w-[500px] md:max-w-[600px] lg:max-w-[700px] xl:max-w-[750px]">
               {/* iPad Pro Frame */}
               <IPadProFrame>
                 {/* Badge */}

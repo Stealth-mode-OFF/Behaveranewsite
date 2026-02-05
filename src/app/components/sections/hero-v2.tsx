@@ -92,11 +92,11 @@ export function HeroV2() {
       </div>
 
       <div className="container-default mx-auto relative z-10">
-        {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        {/* Content - Stacked Layout for Maximum Device Impact */}
+        <div className="flex flex-col items-center gap-12 lg:gap-16">
           
-          {/* Left: Copy */}
-          <div className="text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+          {/* Top: Copy - Centered */}
+          <div className="text-center max-w-3xl mx-auto">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -129,7 +129,7 @@ export function HeroV2() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg md:text-xl text-brand-text-secondary leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-brand-text-secondary leading-relaxed mb-10 max-w-xl mx-auto"
             >
               {c.subheadline}
             </motion.p>
@@ -139,7 +139,7 @@ export function HeroV2() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center gap-4 mb-12 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row items-center gap-4 mb-12 justify-center"
             >
               <Button
                 onClick={openBooking}
@@ -166,7 +166,7 @@ export function HeroV2() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap items-center gap-6 justify-center lg:justify-start"
+              className="flex flex-wrap items-center gap-6 justify-center"
             >
               {c.trust.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-sm text-brand-text-muted">
@@ -177,14 +177,14 @@ export function HeroV2() {
             </motion.div>
           </div>
 
-          {/* Right: Device Stage */}
+          {/* Bottom: Device Stage - Full Width */}
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative lg:ml-8"
+            className="relative w-full"
           >
-            <DeviceFrame type="macbook" className="max-w-[700px] mx-auto">
+            <DeviceFrame type="macbook" className="w-full max-w-[500px] sm:max-w-[640px] md:max-w-[800px] lg:max-w-[960px] xl:max-w-[1100px] 2xl:max-w-[1200px] mx-auto">
               <AnimatedDashboardContent 
                 imageSrc={language === 'cz' ? heroDashboardCz : heroDashboardEn} 
                 imageAlt="Echo Pulse Dashboard - Risk signály a team analytics"
