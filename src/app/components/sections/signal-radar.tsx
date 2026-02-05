@@ -55,11 +55,11 @@ export function SignalRadar() {
 
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="signals" className="border-none">
-            <AccordionTrigger className="text-xl font-bold text-brand-primary hover:no-underline py-6 hover:text-brand-accent transition-colors">
+            <AccordionTrigger className="text-lg sm:text-xl font-bold text-brand-primary hover:no-underline py-4 sm:py-6 hover:text-brand-accent transition-colors">
               {t.radar.accordionLabel}
             </AccordionTrigger>
             <AccordionContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 pt-8 md:pt-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-10 pt-6 sm:pt-8 md:pt-12">
                 {signals.map((signal, index) => {
                   const Icon = signal.icon;
                   const data = t.radar.signals[signal.key as keyof typeof t.radar.signals];
@@ -68,19 +68,19 @@ export function SignalRadar() {
 
                   return (
                     <div key={index} className="flex flex-col h-full group">
-                      <div className="bg-white rounded-2xl p-6 md:p-10 shadow-[0_2px_20px_rgba(46,16,101,0.05)] hover:shadow-[0_20px_40px_rgba(46,16,101,0.1)] border border-brand-primary/5 hover:border-brand-primary/20 transition-all duration-300 relative h-full flex flex-col hover:-translate-y-1">
-                        <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-10">
-                          <div className="p-3 md:p-4 bg-brand-background-secondary rounded-xl text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300 ring-1 ring-brand-primary/10 group-hover:ring-brand-primary/20">
-                            <Icon className="w-6 h-6 md:w-7 md:h-7" />
+                      <div className="bg-white rounded-2xl p-4 sm:p-6 md:p-10 shadow-[0_2px_20px_rgba(46,16,101,0.05)] hover:shadow-[0_20px_40px_rgba(46,16,101,0.1)] border border-brand-primary/5 hover:border-brand-primary/20 transition-all duration-300 relative h-full flex flex-col hover:-translate-y-1">
+                        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-10">
+                          <div className="p-2.5 sm:p-3 md:p-4 bg-brand-background-secondary rounded-xl text-brand-primary group-hover:bg-brand-primary group-hover:text-white transition-colors duration-300 ring-1 ring-brand-primary/10 group-hover:ring-brand-primary/20">
+                            <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
                           </div>
-                          <h3 className="text-xl md:text-2xl font-bold text-brand-primary tracking-[-0.01em]">
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-brand-primary tracking-[-0.01em]">
                             {data.title}
                           </h3>
                         </div>
 
-                        <div className="space-y-4 md:space-y-5 mb-6 md:mb-10 flex-1">
+                        <div className="space-y-3 sm:space-y-4 md:space-y-5 mb-4 sm:mb-6 md:mb-10 flex-1">
                           {data.metrics.map((metric: string, i: number) => (
-                            <div key={i} className="flex items-start gap-3 text-[15px] font-semibold text-brand-text-secondary/80 group-hover:text-brand-text-primary transition-colors">
+                            <div key={i} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-[15px] font-semibold text-brand-text-secondary/80 group-hover:text-brand-text-primary transition-colors">
                               <div className="w-2 h-2 rounded-full bg-brand-accent mt-2 shrink-0 shadow-[0_0_8px_rgba(167,139,250,0.5)]" />
                               <span className="leading-[1.7]">{metric}</span>
                             </div>
@@ -88,11 +88,11 @@ export function SignalRadar() {
                         </div>
 
                         <div className="mt-auto">
-                          <div className="relative bg-brand-background-secondary/50 border border-brand-primary/10 rounded-xl p-6 group-hover:bg-brand-primary group-hover:border-brand-primary transition-all duration-300 group-hover:shadow-lg">
-                            <p className="text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-[0.15em] mb-3 group-hover:text-brand-accent/80 transition-colors">
+                          <div className="relative bg-brand-background-secondary/50 border border-brand-primary/10 rounded-xl p-4 sm:p-6 group-hover:bg-brand-primary group-hover:border-brand-primary transition-all duration-300 group-hover:shadow-lg">
+                            <p className="text-[10px] sm:text-[11px] font-mono font-bold text-brand-text-muted uppercase tracking-[0.15em] mb-2 sm:mb-3 group-hover:text-brand-accent/80 transition-colors">
                               {t.radar.coreInsightLabel}
                             </p>
-                            <p className="text-brand-primary font-bold text-lg leading-[1.6] group-hover:text-white transition-colors italic">
+                            <p className="text-brand-primary font-bold text-base sm:text-lg leading-[1.6] group-hover:text-white transition-colors italic">
                               "{data.question}"
                             </p>
                           </div>

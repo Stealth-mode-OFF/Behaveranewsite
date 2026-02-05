@@ -84,7 +84,7 @@ export function BookingModal() {
 
   return (
     <Dialog open={isBookingOpen} onOpenChange={handleClose}>
-      <DialogContent className={`${view === 'calendar' ? 'sm:max-w-[900px] sm:max-h-[90vh]' : 'sm:max-w-[560px]'} p-0 overflow-hidden bg-white border-0 shadow-2xl transition-all duration-300`}>
+      <DialogContent className={`${view === 'calendar' ? 'sm:max-w-[900px]' : 'sm:max-w-[560px]'} p-0 overflow-hidden bg-white border-0 shadow-2xl transition-all duration-300 max-h-[100dvh] sm:max-h-[90vh] flex flex-col`}>
         <DialogTitle className="sr-only">Rezervovat konzultaci</DialogTitle>
         <DialogDescription className="sr-only">Naplánujte si konzultaci s naším týmem</DialogDescription>
 
@@ -95,10 +95,10 @@ export function BookingModal() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, x: -20 }}
-              className="flex flex-col"
+              className="flex flex-col overflow-y-auto"
             >
               {/* Premium Gradient Header */}
-              <div className="relative bg-gradient-to-br from-brand-primary via-brand-primary to-[#4C1D95] p-8 pb-10 text-white overflow-hidden">
+              <div className="relative bg-gradient-to-br from-brand-primary via-brand-primary to-[#4C1D95] p-6 sm:p-8 pb-8 sm:pb-10 text-white overflow-hidden shrink-0">
                 {/* Animated background elements */}
                 <motion.div 
                   animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
@@ -147,9 +147,9 @@ export function BookingModal() {
               </div>
 
               {/* Content Area */}
-              <div className="p-8 pt-6">
+              <div className="p-6 sm:p-8 pt-4 sm:pt-6 overflow-y-auto">
                 {/* Benefits List */}
-                <div className="space-y-3 mb-8">
+                <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
                   {copy.benefits.map((benefit: { icon: string; text: string }, idx: number) => (
                     <motion.div 
                       key={idx}
@@ -173,7 +173,7 @@ export function BookingModal() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="flex items-center justify-center gap-4 mb-8"
+                  className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
                 >
                   <div className="flex items-center gap-2 px-4 py-2 bg-brand-background-secondary rounded-full text-sm">
                     <Clock className="w-4 h-4 text-brand-primary" />
@@ -239,7 +239,7 @@ export function BookingModal() {
               </div>
 
               {/* Calendar Embed */}
-              <div className="relative min-h-[550px] bg-white">
+              <div className="relative min-h-[450px] sm:min-h-[550px] bg-white flex-1 overflow-hidden">
                 {/* Loading State */}
                 <AnimatePresence>
                   {!isIframeLoaded && (
@@ -260,7 +260,7 @@ export function BookingModal() {
                 <iframe
                   src={SCHEDULER_EMBED_URL}
                   title="Naplánovat konzultaci"
-                  className="w-full h-[600px] border-0"
+                  className="w-full h-[500px] sm:h-[600px] border-0"
                   loading="lazy"
                   onLoad={() => setIsIframeLoaded(true)}
                 />

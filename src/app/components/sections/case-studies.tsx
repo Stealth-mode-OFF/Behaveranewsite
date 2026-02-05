@@ -91,7 +91,7 @@ export function CaseStudiesSection() {
             >
               {/* Image */}
               {study.coverImage && (
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative aspect-[16/10] overflow-hidden">
                   <img
                     src={study.coverImage}
                     alt={study.title}
@@ -102,30 +102,30 @@ export function CaseStudiesSection() {
               )}
               
               {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
+              <div className="p-4 sm:p-6 flex flex-col flex-1">
                 <span className="text-xs font-bold uppercase tracking-widest text-brand-primary mb-2">
                   {study.clientName}
                 </span>
-                <h3 className="text-lg font-bold text-brand-text-primary mb-3 group-hover:text-brand-primary transition-colors line-clamp-2">
+                <h3 className="text-base sm:text-lg font-bold text-brand-text-primary mb-2 sm:mb-3 group-hover:text-brand-primary transition-colors line-clamp-2">
                   {study.title}
                 </h3>
-                <p className="text-brand-text-secondary text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
+                <p className="text-brand-text-secondary text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 flex-1 line-clamp-3">
                   {study.challenge}
                 </p>
                 
                 {/* Results preview */}
                 {study.results.length > 0 && (
-                  <div className="flex gap-4 mb-4 pt-4 border-t border-brand-border">
+                  <div className="flex gap-3 sm:gap-4 mb-3 sm:mb-4 pt-3 sm:pt-4 border-t border-brand-border">
                     {study.results.slice(0, 2).map((result, idx) => (
                       <div key={idx} className="flex-1">
-                        <div className="text-xl font-bold text-brand-primary">{result.value}</div>
-                        <div className="text-xs text-brand-text-muted uppercase tracking-wide">{result.label}</div>
+                        <div className="text-lg sm:text-xl font-bold text-brand-primary">{result.value}</div>
+                        <div className="text-[10px] sm:text-xs text-brand-text-muted uppercase tracking-wide">{result.label}</div>
                       </div>
                     ))}
                   </div>
                 )}
                 
-                <div className="flex items-center text-sm font-bold text-brand-primary group-hover:text-brand-primary-hover">
+                <div className="flex items-center text-xs sm:text-sm font-bold text-brand-primary group-hover:text-brand-primary-hover">
                   {t.readMore}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </div>

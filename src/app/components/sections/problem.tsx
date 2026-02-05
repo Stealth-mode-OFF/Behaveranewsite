@@ -72,22 +72,22 @@ type ProblemDataCellProps = {
 
 function ProblemDataCell({ item, icon: Icon, valueClass }: ProblemDataCellProps) {
   return (
-    <div className="p-6 md:p-10 flex flex-col items-start gap-3 h-full hover:bg-brand-background-secondary/50 transition-colors group">
+    <div className="p-5 sm:p-6 md:p-10 flex flex-col items-start gap-2 sm:gap-3 h-full hover:bg-brand-background-secondary/50 transition-colors group">
       {/* Icon - 24×24, structural element */}
-      <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
+      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
       
       {/* Label - 11px uppercase, part of rhythm */}
-      <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted group-hover:text-brand-text-secondary transition-colors">
+      <h3 className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted group-hover:text-brand-text-secondary transition-colors">
         {item?.title || ""}
       </h3>
       
-      {/* Primary Content - Large metric */}
-      <div className={`text-6xl font-bold tracking-tight mt-6 ${valueClass || "text-brand-text-primary"}`}>
+      {/* Primary Content - Large metric - RESPONSIVE */}
+      <div className={`text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mt-4 sm:mt-6 ${valueClass || "text-brand-text-primary"}`}>
         {item?.value || ""}
       </div>
       
       {/* Secondary Text - Body copy */}
-      <p className="text-[15px] text-brand-text-secondary leading-[1.7] mt-3">
+      <p className="text-sm sm:text-[15px] text-brand-text-secondary leading-[1.7] mt-2 sm:mt-3">
         {item?.desc || ""}
       </p>
     </div>
@@ -102,22 +102,22 @@ type ProblemAlertCardProps = {
 
 function ProblemAlertCard({ label, title, desc }: ProblemAlertCardProps) {
   return (
-    <div className="p-6 md:p-10 flex flex-col items-start gap-3 h-full bg-brand-primary text-white group">
+    <div className="p-5 sm:p-6 md:p-10 flex flex-col items-start gap-2 sm:gap-3 h-full bg-brand-primary text-white group">
       {/* Icon - Same size, same position, no container */}
-      <AlertTriangle className="w-6 h-6" />
+      <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6" />
       
       {/* Label - Consistent with other cells */}
-      <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted-on-dark">
+      <h3 className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted-on-dark">
         {label}
       </h3>
       
       {/* Primary Content - Heading (replaces large number) */}
-      <h4 className="text-xl font-bold tracking-tight leading-tight mt-6">
+      <h4 className="text-lg sm:text-xl font-bold tracking-tight leading-tight mt-4 sm:mt-6">
         {title}
       </h4>
       
       {/* Secondary Text - Body copy */}
-      <p className="text-sm text-brand-text-on-dark font-medium leading-relaxed mt-3">
+      <p className="text-xs sm:text-sm text-brand-text-on-dark font-medium leading-relaxed mt-2 sm:mt-3">
         {desc}
       </p>
     </div>
