@@ -18,13 +18,13 @@ import {
 } from 'lucide-react';
 
 // Team member images
-import igorImg from '@/assets/imgi_23_63f4a99d1dc162409a74256f_igor.png';
-import dusanImg from '@/assets/imgi_24_63f4ab8c6a107ed7cce0bcba_dusan.png';
-import janaImg from '@/assets/imgi_25_686d2af4b3022512644e32a4_jana.png';
-import veronikaImg from '@/assets/imgi_26_686d156a1cb983f39a6e470a_veru.png';
-import josefImg from '@/assets/imgi_27_68e777c37c3e0ee92d4a6b2f_Pepa.png';
-import igorTreslinImg from '@/assets/imgi_28_686d181e2536dd17ff0dda8c_Untitled design (30).png';
-import jiriImg from '@/assets/imgi_22_68d3e452ae5a2da9698ea094_Untitled design (45) (1).png';
+import igorImg from '@/assets/imgi_23_63f4a99d1dc162409a74256f_igor.webp';
+import dusanImg from '@/assets/imgi_24_63f4ab8c6a107ed7cce0bcba_dusan.webp';
+import janaImg from '@/assets/imgi_25_686d2af4b3022512644e32a4_jana.webp';
+import veronikaImg from '@/assets/imgi_26_686d156a1cb983f39a6e470a_veru.webp';
+import josefImg from '@/assets/imgi_27_68e777c37c3e0ee92d4a6b2f_Pepa.webp';
+import igorTreslinImg from '@/assets/imgi_28_686d181e2536dd17ff0dda8c_Untitled design (30).webp';
+import jiriImg from '@/assets/imgi_22_68d3e452ae5a2da9698ea094_Untitled design (45) (1).webp';
 
 interface TeamMemberFull {
   id: string;
@@ -667,6 +667,10 @@ function TeamMemberCard({ member, index, translations: t }: TeamMemberCardProps)
               src={teamImages[member.image]}
               alt={member.name}
               className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+              width={800}
+              height={800}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           
