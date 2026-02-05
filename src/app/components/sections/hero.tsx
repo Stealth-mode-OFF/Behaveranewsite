@@ -64,17 +64,18 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-6 md:mb-8"
           >
-            <Button 
-              onClick={openBooking}
-              size="lg"
-              className="w-full sm:w-auto"
+            <a 
+              href="https://app.behavera.com/echo-pulse/join"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full sm:w-auto h-12 px-8 rounded-lg bg-brand-primary text-white font-semibold text-base hover:bg-brand-primary-hover transition-all shadow-lg"
             >
               {t.hero.primaryCta}
               <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            </a>
             
-            <Button
-              onClick={openVideo}
+            <Button 
+              onClick={openBooking}
               variant="outline"
               size="lg"
               className="w-full sm:w-auto"

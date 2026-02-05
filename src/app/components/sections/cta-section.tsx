@@ -6,7 +6,7 @@ import { useLanguage } from "@/app/LanguageContext";
 
 export function CtaSection() {
   const { openBooking, openVideo } = useModal();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="section-spacing bg-brand-primary border-t border-white/5">
@@ -27,23 +27,33 @@ export function CtaSection() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-20">
-            {/* Primary CTA - Consultation */}
+            {/* Primary CTA - Start Free */}
+            <a
+                href="https://app.behavera.com/echo-pulse/join"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center min-w-[280px] h-14 px-8 rounded-lg bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-lg"
+            >
+                {language === 'cz' ? 'Začít zdarma' : language === 'de' ? 'Kostenlos starten' : 'Start Free'}
+                <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+            
+            {/* Secondary CTA - Book Call */}
             <Button 
                 onClick={openBooking}
-                variant="inverse"
-                size="lg"
-                className="min-w-[280px]"
-            >
-                {t.cta.primary}
-                <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-            
-            {/* Secondary CTA - Demo */}
-            <Button 
-                onClick={openVideo}
                 variant="outline"
                 size="lg"
                 className="min-w-[280px] border-white/30 hover:border-white/50 text-white hover:bg-white/10"
+            >
+                {t.cta.primary}
+            </Button>
+            
+            {/* Tertiary CTA - Watch Demo */}
+            <Button 
+                onClick={openVideo}
+                variant="ghost"
+                size="lg"
+                className="text-white/80 hover:text-white hover:bg-white/10"
             >
                 <Play className="w-4 h-4 mr-2" />
                 {t.cta.demoButton}
