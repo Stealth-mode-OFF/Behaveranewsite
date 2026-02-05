@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
 import { Linkedin } from 'lucide-react';
+import { clientLogos } from './logo-marquee';
 
 // Team member images from src/assets
 import igorImg from '@/assets/imgi_23_63f4a99d1dc162409a74256f_igor.png';
@@ -356,6 +357,41 @@ export function CoreTeamSection() {
             : 'We also collaborate with leading psychologists, marketing specialists, and leaders from diverse fields.'
           }
         </motion.p>
+
+        {/* Trusted By Mini Marquee */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="mt-16 pt-12 border-t border-brand-border"
+        >
+          <p className="text-center text-xs font-medium text-brand-text-muted uppercase tracking-wider mb-6">
+            {language === 'cz' 
+              ? 'Pomáháme změnit způsob práce s lidmi v těchto firmách'
+              : language === 'de'
+              ? 'Wir helfen diesen Unternehmen, die Art der Zusammenarbeit zu verändern'
+              : 'Helping these companies transform how they work with people'
+            }
+          </p>
+          
+          <div className="relative overflow-hidden">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-brand-background-secondary to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-brand-background-secondary to-transparent z-10" />
+            
+            <div className="flex items-center justify-center gap-8 md:gap-12 flex-wrap opacity-50">
+              {clientLogos.slice(0, 8).map((logo, index) => (
+                <img
+                  key={index}
+                  src={logo.src}
+                  alt={logo.name}
+                  className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
