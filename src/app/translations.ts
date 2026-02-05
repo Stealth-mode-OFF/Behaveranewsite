@@ -99,104 +99,105 @@ export const translations = {
       }
     },
     methodology: {
-      title: "Scientific Instrument, Not a 'Happiness Survey'.",
-      subtitle: "Built on 40+ years of validated organizational psychology research. Data from 183,000+ business units shows: engaged teams deliver 23% higher profit (Gallup Q12 Meta-Analysis, 2020).",
+      title: "Scientific tool, not a 'survey'.",
+      subtitle: "We're not another happiness survey. We measure what actually affects performance and team stability.",
       cards: [
         {
-          title: "We Don't Hunt 'Happiness'",
-          desc: "We don't care about superficial satisfaction, but functional stability. We measure risks, friction, and performance barriers. Data, not feelings."
+          title: "Signal, not satisfaction",
+          desc: "We don't care if people are satisfied. We track risks, blockers, and what prevents performance."
         },
         {
-          title: "90 Seconds a Month",
-          desc: "Research shows response quality drops dramatically with survey length (Galesic & Bosnjak, 2009). One question daily, not 50 questions yearly."
+          title: "90 seconds a month",
+          desc: "No hour-long surveys. Short pulses that don't burden people - yet still give relevant data."
         },
         {
-          title: "Core: JD-R Model",
-          desc: "Built on the Job Demands-Resources model (Demerouti & Bakker, 2001). Burnout occurs when demands exceed resources. Engagement when resources exceed demands."
+          title: "Scientific foundation",
+          desc: "Based on the Job Demands-Resources model. We measure the balance between what you ask from people and what you give them."
         }
       ]
     },
     czechReality: {
-      title: "Most companies today are in one of two extremes.",
-      subtitle: "The market is polarizing. Whether we talk to corporations or tech companies, we see the same pattern. The capacity to see reality in time is missing.",
+      title: "Most companies today fall into one of two patterns.",
+      subtitle: "Whether we talk to corporations or fast-growing startups - we hit the same problem. Leadership doesn't see what's happening in teams until it's too late.",
+      diagnosisLabel: "Result:",
       archetypeA: {
-        title: "A) Burnout Stability",
+        title: "A) Stable, but tired",
         point1: {
-          title: "Inertia and fatigue.",
-          desc: "People are loyal but passive. Processes are followed, but energy is missing. Changes face 'silent resistance'."
+          title: "Everything runs, but nothing moves.",
+          desc: "People are loyal but out of energy. Processes work, but initiative is missing. Changes hit silent 'but we've always done it this way'."
         },
         point2: {
-          title: "Slow leadership reaction.",
-          desc: "Management is detached from the 'production line'. They learn about problems only when it's too late."
+          title: "Leadership is far from reality.",
+          desc: "Management learns about problems only when they escalate. Missing continuous overview of what troubles people."
         },
-        diagnosis: "Loss of competitiveness without warning."
+        diagnosis: "Loss of competitiveness - slowly but surely."
       },
       archetypeB: {
-        title: "B) Speed on Credit",
+        title: "B) Fast, but fragile",
         point1: {
-          title: "Adrenaline blindness.",
-          desc: "Young management, extreme pace. Everyone is 'swamped'. No time for reflection."
+          title: "Everyone's going full throttle, no one's keeping up.",
+          desc: "Young team, high tempo, eternal feeling of 'I can't keep up'. No time for reflection. Problems are swept under the rug."
         },
         point2: {
-          title: "Fragile success.",
-          desc: "Results grow, but culture crumbles. People run on credit. The first crisis can cause collapse."
+          title: "Success depends on a few people.",
+          desc: "Results grow, but depend on individuals on the edge of burnout. One departure and the system collapses."
         },
-        diagnosis: "Risk of sudden departure of key talents."
+        diagnosis: "Risk that key people leave without warning."
       },
       synthesis: {
-        title: "Regardless of scenario, the solution isn't 'motivation'.",
-        desc: "You need an early warning system. A stabilizer in chaos."
+        title: "In both cases the same thing is missing: continuous visibility.",
+        desc: "You don't need more motivation. You need to know what's happening - before it becomes a problem."
       }
     },
     roleSelection: {
-      title: "View the company from your perspective.",
-      subtitle: "Pick your role and see the benefit in seconds.",
+      title: "Everyone sees the company from a different angle.",
+      subtitle: "Select your role and see what specifically Echo Pulse gives you.",
       benefits: [
         "I want a productive team",
-        "I need to know what blocks performance",
-        "I want full visibility"
+        "I want to know what blocks performance",
+        "I want visibility without blind spots"
       ],
       investor: {
         role: "Investor",
-        title: "Asset Protection",
+        title: "Company health overview",
         list: [
-          "Portfolio health at a glance",
-          "Risks flagged early"
+          "Early warning before problems",
+          "Risks caught in time"
         ],
         cta: "Check portfolio health"
       },
       ceo: {
         role: "CEO / Owner",
-        title: "Strategic Control",
+        title: "Unfiltered overview",
         list: [
-          "Early risk signals",
-          "Clear priorities for leadership"
+          "You see what's happening in teams",
+          "You solve problems before they escalate"
         ],
-        cta: "See company from above"
+        cta: "How it helps leadership"
       },
       hr: {
         role: "HR / People Ops",
-        title: "Data over Impressions",
+        title: "Data instead of guesses",
         list: [
-          "Data to influence leadership",
-          "Prevention over firefighting"
+          "Arguments leadership understands",
+          "Less firefighting, more prevention"
         ],
-        cta: "Get data for leadership"
+        cta: "How it helps HR"
       },
       teamLeader: {
-        role: "Týmový lídr",
-        title: "Team Performance",
+        role: "Team Leader",
+        title: "Feedback from team",
         list: [
-          "Fast feedback loop",
-          "Early overload detection"
+          "You know what troubles people",
+          "You catch burnout early"
         ],
-        cta: "Improve team health"
+        cta: "How it helps managers"
       }
     },
     valueByRole: {
       badge: "By role",
-      title: "One platform, two different outputs.",
-      subtitle: "CEO needs clarity for decisions. HR needs prevention. Echo Pulse delivers both without noise.",
+      title: "One tool, different benefits.",
+      subtitle: "CEO needs overview for decisions. HR needs a prevention tool. Echo Pulse gives both - without unnecessary noise.",
       tabs: {
         ceo: "CEO / Leadership",
         hr: "HR / People Ops"
@@ -1135,69 +1136,74 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Kontinuierliches Einsichtssystem • V2.0",
-      title: "Managen Sie Kultur",
-      titleHighlight: "genau wie Finanzen.",
-      subtitle: "Echte Daten statt Gefühle. Echo Pulse ersetzt jährliche Umfragen durch ein kontinuierliches Signalsystem und gibt der Führung Sicherheit.",
-      primaryCta: "Beratung vereinbaren",
-      secondaryCta: "Demo (3 Min)",
-      riskReversal: "Keine Verpflichtung. Verlassen Sie das Gespräch mit einem klaren Bild.",
+      badge: "Kontinuierliches Team-Feedback",
+      title: "Wissen Sie, was",
+      titleHighlight: "wirklich in Ihrem Unternehmen passiert",
+      subtitle: "Jährliche Umfragen erfassen Probleme zu spät. Echo Pulse gibt Ihnen kontinuierliche Signale - Sie wissen, wo es hakt, bevor Kündigungen kommen.",
+      primaryCta: "Demo buchen (30 Min)",
+      secondaryCta: "Demo erkunden",
+      riskReversal: "Keine Verpflichtung. Nach 30 Minuten wissen Sie, ob es für Ihr Unternehmen Sinn macht.",
       trust: {
-        security: "Datensicherheit (DSGVO)",
-        support: "Nativer Support",
-        implementation: "48h Implementierung",
-        languages: "CZ / EN"
+        security: "DSGVO-konform",
+        support: "Lokaler Support",
+        implementation: "Start in 1 Stunde",
+        languages: "CZ / EN / DE"
       },
     },
     problems: {
-      badge: "Kritische Systemblindheit",
-      title: "Der stille Killer der Stabilität.",
-      subtitle: "Schätzungen, Vermutungen und unvollständiges Feedback schaffen Management-Blindheit. Traditionelle Tools messen Folgen, nicht Ursachen.",
+      badge: "Warum das lösen",
+      title: "Menschen kündigen nicht von heute auf morgen.",
+      subtitle: "Die Entscheidung zu gehen reift monatelang. Das Problem ist, dass Sie es meist nicht wissen - bis Sie die Kündigung bekommen.",
       items: [
         {
-          title: "Verborgene Gründe",
-          value: "Unsichtbar",
-          desc: "Kündigungsgründe tauchen oft nicht in Exit-Interviews auf. Sie bleiben in privaten Chats.",
+          title: "Versteckte Gründe",
+          value: "70%+",
+          desc: "Die wahren Kündigungsgründe erfahren Sie nicht aus Exit-Interviews. Sie bleiben in den Köpfen der Menschen und in privaten Gesprächen.",
         },
         {
-          title: "Produktivitätsverlust",
-          value: "Leiser Rückgang",
-          desc: "Engagement sinkt leise, bevor jemand die Auswirkungen sieht.",
+          title: "Leistungsverlust",
+          value: "-20%",
+          desc: "Jemand, der innerlich bereits gekündigt hat, arbeitet nur mit einem Bruchteil seines Potenzials. Und das dauert oft Monate.",
         },
         {
-          title: "Erkennungsverzögerung",
-          value: "Zu spät",
-          desc: "Probleme wachsen still, bevor das Management reagiert.",
+          title: "Verzögerte Reaktion",
+          value: "6+ Mo.",
+          desc: "Durchschnittliche Zeit, bis das Management ein Problem bemerkt und es angeht. Bis dahin ist es oft zu spät.",
         },
       ],
       ctaBox: {
-        title: "Das lässt sich nicht mit Annahmen steuern.",
-        desc: "Sie brauchen harte Daten. Ohne sie raten Sie nur, warum Leute gehen."
+        title: "Für das reicht Intuition nicht aus.",
+        desc: "Sie brauchen kontinuierliche Daten. Sonst raten Sie nur, warum Menschen die Motivation verlieren."
       }
     },
     howItWorks: {
-      badge: "Ablauf",
+      badge: "So funktioniert es",
       stepLabel: "Schritt",
-      title: "Betriebssystem",
-      titleHighlight: "für Ihre Kultur.",
-      subtitle: "Ein System statt jährlicher Umfragen und Vermutungen. Klare Prioritäten für die Führung.",
+      title: "So funktioniert",
+      titleHighlight: "es",
+      subtitle: "Keine komplizierte Einrichtung. Verbinden Sie Echo Pulse mit dem Kommunikationstool, das Sie bereits nutzen, und Sie haben innerhalb einer Stunde erste Daten.",
       steps: {
         step1: {
-          title: "Verbinden",
-          desc: "Verbinden Sie Echo Pulse mit Slack oder Teams. Ohne IT. In 5 Minuten eingerichtet."
+          title: "Versteht den Kontext",
+          desc: "Echo Pulse zählt nicht nur Wörter. Es versteht, was Menschen zwischen den Zeilen sagen - und wählt aus tausenden Antworten aus, was Sie wirklich wissen müssen."
         },
         step2: {
-          title: "Zuhören",
-          desc: "KI überwacht kontinuierlich Signale aus der täglichen Arbeit. Keine Umfragen nötig."
+          title: "Läuft auf Autopilot",
+          desc: "Kurze Fragen gehen automatisch über Slack, Teams oder E-Mail raus. Menschen antworten in einer Minute. Sie müssen nichts versenden.",
+          highlight: "Das System stellt sicher, dass Menschen nicht gestört werden - und Sie saubere Daten bekommen."
         },
         step3: {
-          title: "Handeln",
-          desc: "Wöchentliche Prioritäten und konkrete Handlungsempfehlungen. 100% anonym."
+          title: "Schlägt vor, was zu tun ist",
+          desc: "Es sind nicht nur Grafiken. Echo Pulse sagt Managern konkret, was zu tun ist und warum."
+        },
+        step4: {
+          title: "Garantierte Anonymität",
+          desc: "Menschen wissen, dass ihre Antworten nicht mit ihrem Namen verknüpft werden. Deshalb antworten sie ehrlich."
         }
       }
     },
     methodology: {
-      title: "Wissenschaftliches Instrument, keine 'Happiness Survey'.",
+      title: "Wissenschaftliches Tool, keine 'Umfrage'.",
       subtitle: "40+ Jahre validierte Organisationspsychologie. Daten von 183.000+ Teams zeigen: Engagierte Teams liefern 23% höhere Rentabilität (Gallup Q12 Meta-Analysis, 2020).",
       cards: [
         {
