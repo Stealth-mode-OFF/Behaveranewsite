@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, CheckCircle2, ArrowRight, Gift } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, Sparkles, Shield, Mail } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
-import { FormField } from '@/app/components/ui/form-field';
 import { useForm } from 'react-hook-form';
 import { submitLead } from '@/app/utils/lead';
 import { validationRules, autocompleteAttributes } from '@/app/utils/validation';
@@ -135,95 +134,145 @@ export function LeadPopup() {
             className="absolute inset-0 bg-brand-primary/30 backdrop-blur-sm"
           />
           
-          {/* Modal Card - Simplified, focused on value */}
+          {/* Modal Card - Premium Design */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
           >
             {/* Close Button */}
             <button 
               onClick={closePopup}
-              className="absolute top-4 right-4 z-10 p-2 hover:bg-brand-background-secondary rounded-full text-brand-text-muted transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 hover:bg-brand-background-secondary rounded-full text-brand-text-muted hover:text-brand-text-primary transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
 
+            {/* Gradient top accent */}
+            <div className="h-1.5 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary" />
+
             {/* Content */}
             <div className="p-8 md:p-10">
               {isSuccess ? (
-                <div className="text-center py-6">
-                  <div className="w-16 h-16 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center py-4"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 15 }}
+                    className="w-20 h-20 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-6"
+                  >
+                    <CheckCircle2 className="w-10 h-10" />
+                  </motion.div>
                   <h3 className="text-2xl font-bold text-brand-text-primary mb-3">
                     {t.leadPopup.successTitle}
                   </h3>
                   <p className="text-brand-text-secondary">
                     {t.leadPopup.successMessage}
                   </p>
-                </div>
+                </motion.div>
               ) : (
                 <>
-                  {/* Exit-intent specific header */}
+                  {/* Header */}
                   <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-primary/10 text-brand-primary rounded-2xl mb-5">
-                      <Gift className="w-7 h-7" />
-                    </div>
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", damping: 15, delay: 0.1 }}
+                      className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 text-brand-primary rounded-2xl mb-5"
+                    >
+                      <Sparkles className="w-8 h-8" />
+                    </motion.div>
                     
-                    <h3 className="text-2xl md:text-3xl font-bold text-brand-text-primary mb-3 leading-tight">
+                    <motion.h3 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                      className="text-2xl md:text-3xl font-bold text-brand-text-primary mb-3 leading-tight"
+                    >
                       {t.leadPopup.title}
-                    </h3>
-                    <p className="text-brand-text-secondary leading-relaxed max-w-sm mx-auto">
+                    </motion.h3>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-brand-text-secondary leading-relaxed"
+                    >
                       {t.leadPopup.subtitle}
-                    </p>
+                    </motion.p>
                   </div>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                    <FormField
-                      error={errors.email?.message}
-                      helperText="Bez spamu. Pouze hodnotný obsah."
-                      required
-                    >
+                  <motion.form 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                    onSubmit={handleSubmit(onSubmit)} 
+                    className="space-y-4"
+                  >
+                    {/* Email Input - clean design */}
+                    <div className="relative">
+                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-text-muted">
+                        <Mail className="w-5 h-5" />
+                      </div>
                       <Input 
                         type="email"
                         name="email"
                         autoComplete={autocompleteAttributes.email}
                         placeholder={t.leadPopup.emailPlaceholder}
+                        className={`h-14 pl-12 pr-4 rounded-xl text-base ${errors.email ? 'border-red-300 focus:border-red-500' : ''}`}
                         {...register("email", validationRules.email)}
                       />
-                    </FormField>
+                    </div>
+                    
+                    {errors.email && (
+                      <p className="text-sm text-red-600">{errors.email.message}</p>
+                    )}
                     
                     {error && (
-                      <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
+                      <motion.div 
+                        initial={{ opacity: 0, y: -5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3"
+                      >
                         {error}
-                      </div>
+                      </motion.div>
                     )}
                     
                     <Button 
                       type="submit"
                       disabled={isSubmitting || isSuccess}
-                      className="w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg group disabled:opacity-50"
+                      className="w-full h-14 text-base font-semibold rounded-xl group"
+                      size="lg"
                     >
                       {t.leadPopup.cta}
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Button>
-                  </form>
+                  </motion.form>
 
-                  {/* Social proof */}
-                  <div className="mt-6 pt-6 border-t border-brand-border flex items-center justify-center gap-3 text-sm text-brand-text-muted">
-                    <span>{t.leadPopup.socialProofPre}</span>
-                    <span className="font-bold text-brand-primary">{t.leadPopup.socialProofCount}</span>
-                    <span>{t.leadPopup.socialProofPost}</span>
-                  </div>
-                  
-                  {/* No spam promise */}
-                  <p className="text-center text-xs text-brand-text-muted mt-4">
-                    Žádný spam. Pouze hodnotný obsah.
-                  </p>
+                  {/* Trust indicators */}
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.35 }}
+                    className="mt-6 pt-6 border-t border-brand-border/50"
+                  >
+                    <div className="flex items-center justify-center gap-2 text-sm text-brand-text-muted mb-3">
+                      <Shield className="w-4 h-4" />
+                      <span>Žádný spam. Pouze hodnotný obsah.</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-center gap-2 text-sm">
+                      <span className="text-brand-text-muted">{t.leadPopup.socialProofPre}</span>
+                      <span className="font-bold text-brand-primary">{t.leadPopup.socialProofCount}</span>
+                      <span className="text-brand-text-muted">{t.leadPopup.socialProofPost}</span>
+                    </div>
+                  </motion.div>
                 </>
               )}
             </div>
