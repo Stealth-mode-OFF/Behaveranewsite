@@ -133,6 +133,11 @@ export function Hero() {
             src={dashboardPreview} 
             alt="Echo Pulse Dashboard" 
             className="w-full h-auto"
+            width={3559}
+            height={2138}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </motion.div>
       </div>
