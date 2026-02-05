@@ -30,55 +30,67 @@ export function ProblemSection() {
             </div>
         </div>
 
-        {/* The Grid of Truth - Clean & Bordered */}
+        {/* The Grid of Truth - Precision Grid System */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 bg-white border border-brand-border shadow-md rounded-2xl overflow-hidden divide-y md:divide-y-0 md:divide-x divide-brand-border">
             {(() => {
               const items = Array.isArray(t.problems.items) ? t.problems.items : [];
-              const cell = (index: number, icon: React.ReactNode, valueClass?: string) => {
+              
+              // SYSTEM CELL: Uniform structure for cells 1-3
+              const dataCell = (index: number, Icon: React.ElementType, valueClass?: string) => {
                 const item = items[index] || { title: "", value: "", desc: "" };
                 return (
-                  <div className="p-10 flex flex-col h-full hover:bg-brand-background-secondary/50 transition-colors group">
-                    <div className="flex justify-between items-start mb-12">
-                      <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted group-hover:text-brand-text-secondary transition-colors">{item.title}</h3>
-                      {icon}
+                  <div className="p-10 flex flex-col items-start gap-3 h-full hover:bg-brand-background-secondary/50 transition-colors group">
+                    {/* Icon - 24×24, structural element */}
+                    <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
+                    
+                    {/* Label - 11px uppercase, part of rhythm */}
+                    <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted group-hover:text-brand-text-secondary transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    {/* Primary Content - Large metric */}
+                    <div className={`text-6xl font-bold tracking-tight mt-6 ${valueClass || "text-brand-text-primary"}`}>
+                      {item.value}
                     </div>
-                    <div className="mt-auto">
-                      <div className={`text-5xl md:text-6xl font-bold mb-4 tracking-[-0.02em] ${valueClass || "text-brand-text-primary"}`}>{item.value}</div>
-                      <p className="text-[15px] text-brand-text-secondary leading-[1.7] pr-2">{item.desc}</p>
-                    </div>
+                    
+                    {/* Secondary Text - Body copy */}
+                    <p className="text-[15px] text-brand-text-secondary leading-[1.7] mt-3">
+                      {item.desc}
+                    </p>
                   </div>
                 );
               };
 
               return (
                 <>
-                  {/* Cell 1 */}
-                  {cell(0, <EyeOff className="w-5 h-5 text-brand-text-muted/50 group-hover:text-brand-text-muted transition-colors" />)}
+                  {/* Cell 1 - Data */}
+                  {dataCell(0, EyeOff)}
 
-                  {/* Cell 2 */}
-                  {cell(1, <ZapOff className="w-5 h-5 text-brand-text-muted/50 group-hover:text-brand-error transition-colors" />, "text-brand-error")}
+                  {/* Cell 2 - Data with accent */}
+                  {dataCell(1, ZapOff, "text-brand-error")}
 
-                  {/* Cell 3 */}
-                  {cell(2, <TrendingDown className="w-5 h-5 text-brand-text-muted/50 group-hover:text-brand-text-muted transition-colors" />)}
+                  {/* Cell 3 - Data */}
+                  {dataCell(2, TrendingDown)}
 
-                  {/* Cell 4 - The Call to Action / Insight */}
-                  <div className="p-8 flex flex-col h-full bg-brand-primary text-white relative overflow-hidden group">
-                    {/* Subtle pattern */}
-                    <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:16px_16px]" />
-
-                    <div className="relative z-10 flex flex-col h-full justify-between">
-                      <div className="w-10 h-10 bg-white/10 rounded flex items-center justify-center mb-6 border border-white/20 group-hover:border-white/40 transition-colors">
-                        <AlertTriangle className="w-5 h-5 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-bold leading-tight mb-3 tracking-tight">
-                          {t.problems.ctaBox?.title || ""}
-                        </h3>
-                        <p className="text-sm text-brand-text-on-dark font-medium leading-relaxed">
-                          {t.problems.ctaBox?.desc || ""}
-                        </p>
-                      </div>
-                    </div>
+                  {/* Cell 4 - System Alert (MATCHES STRUCTURE) */}
+                  <div className="p-10 flex flex-col items-start gap-3 h-full bg-brand-primary text-white group">
+                    {/* Icon - Same size, same position, no container */}
+                    <AlertTriangle className="w-6 h-6" />
+                    
+                    {/* Label - Consistent with other cells */}
+                    <h3 className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted-on-dark">
+                      {t.problems.ctaBox?.label || "SYSTEM ALERT"}
+                    </h3>
+                    
+                    {/* Primary Content - Heading (replaces large number) */}
+                    <h4 className="text-xl font-bold tracking-tight leading-tight mt-6">
+                      {t.problems.ctaBox?.title || ""}
+                    </h4>
+                    
+                    {/* Secondary Text - Body copy */}
+                    <p className="text-sm text-brand-text-on-dark font-medium leading-relaxed mt-3">
+                      {t.problems.ctaBox?.desc || ""}
+                    </p>
                   </div>
                 </>
               );
