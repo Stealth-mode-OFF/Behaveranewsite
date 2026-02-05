@@ -1,19 +1,60 @@
 import React from "react";
 import { useLanguage } from "../LanguageContext";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Twitter, Mail, Phone } from "lucide-react";
+import { Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const linkTargets = ["#solutions", "#pricing", "#about", "#lead-capture"];
-  const legalTargets = ["#legal", "#legal"];
   
   const socialLinks = [
-    { icon: Linkedin, href: "https://linkedin.com/company/echopulse", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com/echopulse", label: "Twitter" },
-    { icon: Github, href: "https://github.com/behavera/echo-pulse", label: "GitHub" },
+    { icon: Linkedin, href: "https://linkedin.com/company/behavera", label: "LinkedIn" },
+    { icon: Twitter, href: "https://twitter.com/behavera", label: "Twitter" },
   ];
+
+  const legalLinks = {
+    cz: [
+      { label: "Podmínky služby", href: "/terms" },
+      { label: "Ochrana osobních údajů", href: "/terms#privacy" },
+      { label: "Trust Center", href: "/terms#trust" },
+    ],
+    en: [
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Privacy Policy", href: "/terms#privacy" },
+      { label: "Trust Center", href: "/terms#trust" },
+    ],
+    de: [
+      { label: "AGB", href: "/terms" },
+      { label: "Datenschutz", href: "/terms#privacy" },
+      { label: "Trust Center", href: "/terms#trust" },
+    ],
+  };
+
+  const currentLegalLinks = legalLinks[language] || legalLinks.en;
+
+  const companyInfo = {
+    cz: {
+      name: "Behavera s.r.o.",
+      address: "Křižíkova 148/34, Karlín, 186 00 Praha 8",
+      ico: "IČO: 19060369",
+      email: "hello@echopulse.cz",
+    },
+    en: {
+      name: "Behavera s.r.o.",
+      address: "Křižíkova 148/34, Karlín, 186 00 Prague 8, Czech Republic",
+      ico: "Company ID: 19060369",
+      email: "hello@echopulse.cz",
+    },
+    de: {
+      name: "Behavera s.r.o.",
+      address: "Křižíkova 148/34, Karlín, 186 00 Prag 8, Tschechien",
+      ico: "Handelsregister-Nr.: 19060369",
+      email: "hello@echopulse.cz",
+    },
+  };
+
+  const info = companyInfo[language] || companyInfo.en;
   
   return (
     <footer className="relative bg-gradient-to-b from-brand-background-secondary to-brand-background-muted/30 border-t border-brand-border py-16 md:py-20 lg:py-24 text-sm overflow-hidden">
@@ -38,6 +79,16 @@ export function Footer() {
             <p className="text-brand-text-secondary max-w-sm mb-6 leading-relaxed">
               AI-powered behavioral intelligence for proactive team management. Predict issues before they escalate.
             </p>
+            
+            {/* Company info */}
+            <div className="text-sm text-brand-text-muted space-y-1 mb-6">
+              <p className="font-medium text-brand-text-secondary">{info.name}</p>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+                <span>{info.address}</span>
+              </div>
+              <p>{info.ico}</p>
+            </div>
             
             {/* Social links */}
             <div className="flex items-center gap-3">
@@ -72,6 +123,15 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link 
+                  to="/blog" 
+                  className="text-brand-text-secondary hover:text-brand-primary transition-colors font-medium inline-flex items-center gap-1 group"
+                >
+                  <span className="w-0 group-hover:w-2 h-px bg-brand-primary transition-all duration-300" />
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
           
@@ -79,11 +139,11 @@ export function Footer() {
           <div>
             <h4 className="font-bold text-brand-text-primary mb-4 text-sm uppercase tracking-wider">Contact</h4>
             <a 
-              href="mailto:hello@echopulse.cz" 
+              href={`mailto:${info.email}`}
               className="inline-flex items-center gap-2 text-brand-text-secondary hover:text-brand-primary transition-colors font-medium mb-3"
             >
               <Mail className="w-4 h-4" />
-              hello@echopulse.cz
+              {info.email}
             </a>
             <a 
               href="tel:+420605839456" 
@@ -93,22 +153,18 @@ export function Footer() {
               +420 605 839 456
             </a>
             
+            {/* Legal links */}
             <div className="mt-6 pt-6 border-t border-brand-border">
-              {t.footer.legal.map((item, i) => {
-                const isTerms = item === "Terms" || item === "Podmínky" || item === "AGB";
-                if (isTerms) {
-                  return (
-                    <Link key={i} to="/terms" className="text-sm text-brand-text-muted hover:text-brand-primary transition-colors block mb-2">
-                      {item}
-                    </Link>
-                  );
-                }
-                return (
-                  <a key={i} href={legalTargets[i] || "#legal"} className="text-sm text-brand-text-muted hover:text-brand-primary transition-colors block mb-2">
-                    {item}
-                  </a>
-                );
-              })}
+              <h4 className="font-bold text-brand-text-primary mb-3 text-xs uppercase tracking-wider">Legal</h4>
+              {currentLegalLinks.map((item, i) => (
+                <Link 
+                  key={i} 
+                  to={item.href} 
+                  className="text-sm text-brand-text-muted hover:text-brand-primary transition-colors block mb-2"
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -116,7 +172,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-brand-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-brand-text-muted text-sm">
-            {t.footer.rights}
+            © {new Date().getFullYear()} {info.name} {t.footer.rights.replace(/Behavera s\.r\.o\.\s*/i, '')}
           </p>
           <p className="text-brand-text-muted text-xs">
             Crafted with precision in Prague 🇨🇿

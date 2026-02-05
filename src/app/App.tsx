@@ -5,6 +5,7 @@ import { ModalProvider } from "./ModalContext";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "./components/ui/scroll-progress";
+import { CookieBanner } from "./components/CookieBanner";
 import { LandingPage } from "./pages/public/landing";
 import { adminEnabled } from "@/lib/config";
 
@@ -125,6 +126,7 @@ function App() {
                   </Routes>
                 </Suspense>
                 <Toaster position="top-center" richColors />
+                <CookieBanner />
               </div>
             </AuthProvider>
           </ModalProvider>
