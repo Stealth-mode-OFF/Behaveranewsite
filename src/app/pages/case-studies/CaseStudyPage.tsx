@@ -38,7 +38,7 @@ export const CaseStudyPage = () => {
                     <img src={study.coverImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
                 )}
                 <div className="container mx-auto px-4 max-w-6xl relative z-20">
-                     <Link to="/case-studies" className="inline-flex items-center text-sm font-medium text-white/80 hover:text-white mb-8 transition-colors">
+                     <Link to="/case-studies" className="inline-flex items-center text-sm font-medium text-white hover:text-white/90 mb-8 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         {t.caseStudies.backToList}
                     </Link>

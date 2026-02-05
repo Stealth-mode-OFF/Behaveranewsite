@@ -9,7 +9,7 @@ export function Footer() {
   const legalTargets = ["#legal", "#legal"];
   
   return (
-    <footer className="bg-brand-background-secondary border-t border-brand-border py-12 md:py-24 text-sm text-brand-text-secondary">
+    <footer className="bg-brand-background-secondary border-t border-brand-border py-12 md:py-16 lg:py-20 text-sm text-brand-text-secondary">
       <div className="container-default">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center gap-2">

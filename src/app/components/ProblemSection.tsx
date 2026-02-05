@@ -6,9 +6,9 @@ export function ProblemSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-28 bg-white text-brand-text-primary border-b border-brand-border" id="problem">
+    <section className="py-20 md:py-28 lg:py-32 bg-white text-brand-text-primary border-b border-brand-border" id="problem">
       
-      <div className="container-default max-w-[1120px] mx-auto px-4">
+      <div className="container-default max-w-[1120px] mx-auto">
         
         {/* Section Header - Strict Alignment */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 pb-10 border-b border-brand-border">

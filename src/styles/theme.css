@@ -24,8 +24,8 @@
   
   /* Text on Dark Backgrounds - HIGH CONTRAST MANDATORY */
   --brand-text-inverse: #FFFFFF;   /* White text on dark - headings only (14.1:1) */
-  --brand-text-on-dark: #F3E8FF;   /* Purple 100 - Body text on dark (11.2:1) - NEW */
-  --brand-text-muted-on-dark: #E9D5FF; /* Purple 200 - Metadata on dark (8.4:1) - NEW */
+  --brand-text-on-dark: #FFFFFF;   /* White - Body text on dark (14.1:1) - FIXED for readability */
+  --brand-text-muted-on-dark: rgba(255, 255, 255, 0.85); /* White/85 - Metadata on dark (12:1) - FIXED */
 
   /* Borders */
   --brand-border: #E9D5FF;         /* Purple 200 */
@@ -70,7 +70,8 @@
   
   /* Section spacing tokens */
   --section-padding-y: 120px;
-  --section-padding-y-sm: 80px;
+  --section-padding-y-md: 96px;
+  --section-padding-y-sm: 64px;
   --section-max-width: 1120px;
 
   /* RADIUS SYSTEM */
@@ -129,6 +130,63 @@
   --input-padding-x: var(--space-2);  
   --input-border-width: 1px;
 
+  /* Form Field System - Mission-Critical Conversion Infrastructure
+   * Philosophy: Touch-friendly, trust-building, completion-optimized
+   * All forms use these tokens for consistency
+   */
+  
+  /* Form Field Sizing - Touch-Friendly (44px minimum for mobile) */
+  --form-field-height: 48px;          /* Exceeds touch target minimum */
+  --form-field-height-sm: 44px;       /* Compact variant (still accessible) */
+  --form-field-height-lg: 52px;       /* Prominent variant */
+  --form-field-padding-x: 16px;       /* Horizontal padding */
+  --form-field-padding-y: 12px;       /* Vertical padding */
+  --form-field-radius: 10px;          /* Softer than buttons (approachable) */
+  --form-field-border-width: 1px;
+  
+  /* Form Field Spacing */
+  --form-field-gap: 16px;             /* Between fields in a form */
+  --form-label-gap: 8px;              /* Label to input */
+  --form-helper-gap: 6px;             /* Input to helper text */
+  
+  /* Form Field States - Semantic Color System */
+  --form-field-border-default: var(--brand-border);
+  --form-field-border-hover: var(--brand-border-strong);
+  --form-field-border-focus: var(--brand-primary);
+  --form-field-border-error: var(--brand-error);
+  --form-field-border-success: var(--brand-success);
+  --form-field-border-disabled: var(--brand-border);
+  
+  /* Form Field Background States */
+  --form-field-bg-default: var(--brand-background-primary);
+  --form-field-bg-hover: var(--brand-background-secondary);
+  --form-field-bg-focus: var(--brand-background-primary);
+  --form-field-bg-disabled: var(--brand-background-muted);
+  
+  /* Form Field Focus Ring - High Visibility for Accessibility */
+  --form-field-ring-width: 3px;
+  --form-field-ring-color: var(--brand-primary);
+  --form-field-ring-opacity: 0.15;    /* Subtle but visible */
+  --form-field-ring: 0 0 0 var(--form-field-ring-width) rgba(46, 16, 101, var(--form-field-ring-opacity));
+  
+  /* Form Typography - Consistent Hierarchy */
+  --form-label-size: 14px;
+  --form-label-weight: 600;           /* Semibold for clarity */
+  --form-label-color: var(--brand-text-primary);
+  
+  --form-input-size: 16px;            /* CRITICAL: Prevents iOS zoom on focus */
+  --form-input-weight: 400;
+  --form-input-color: var(--brand-text-primary);
+  --form-input-placeholder-color: var(--brand-text-muted);
+  
+  --form-helper-size: 13px;
+  --form-helper-weight: 400;
+  --form-helper-color: var(--brand-text-muted);
+  
+  --form-error-size: 13px;
+  --form-error-weight: 500;           /* Slightly bolder for attention */
+  --form-error-color: var(--brand-error);
+
   /* Legacy */
   --radius-button: var(--button-radius);
   
@@ -171,6 +229,11 @@
   --color-brand-text: var(--brand-text-primary);
   --color-brand-dark: var(--brand-background-dark);
   --color-brand-accent: var(--brand-accent);
+  
+  /* Text on Dark - HIGH CONTRAST */
+  --color-brand-text-on-dark: var(--brand-text-on-dark);
+  --color-brand-text-muted-on-dark: var(--brand-text-muted-on-dark);
+  --color-brand-text-inverse-secondary: rgba(255, 255, 255, 0.90); /* 90% white for body text on dark */
   
   /* Register Semantic Colors for Utilities */
   --color-background: var(--background);
@@ -331,6 +394,21 @@
     margin: 0 auto;
     padding-left: var(--space-3);
     padding-right: var(--space-3);
+  }
+
+  /* Responsive container padding */
+  @media (min-width: 768px) {
+    .container-default {
+      padding-left: var(--space-4);
+      padding-right: var(--space-4);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-default {
+      padding-left: var(--space-5);
+      padding-right: var(--space-5);
+    }
   }
 
   /* COMPONENT UTILITIES */

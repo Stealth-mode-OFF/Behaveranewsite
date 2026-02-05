@@ -2,9 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { FormField } from "./ui/form-field";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { submitLead } from "../utils/lead";
 import { useLanguage } from "../LanguageContext";
+import { validationRules, autocompleteAttributes } from "../utils/validation";
 
 type LeadFormData = {
   name?: string;
@@ -65,33 +67,31 @@ export function LeadCaptureSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold text-brand-text-secondary mb-2" htmlFor="lead-name">
-                    {t.leadCapture.nameLabel}
-                  </label>
+                <FormField
+                  label={t.leadCapture.nameLabel}
+                  error={errors.name?.message}
+                >
                   <Input
-                    id="lead-name"
-                    {...register("name")}
-                    className="h-11 border-brand-border focus:ring-brand-primary"
+                    type="text"
+                    autoComplete={autocompleteAttributes.name}
                     placeholder={t.leadCapture.namePlaceholder}
+                    {...register("name")}
                   />
-                </div>
+                </FormField>
 
-                <div>
-                  <label className="block text-sm font-semibold text-brand-text-secondary mb-2" htmlFor="lead-email">
-                    {t.leadCapture.emailLabel}
-                  </label>
+                <FormField
+                  label={t.leadCapture.emailLabel}
+                  error={errors.email?.message}
+                  helperText="Bez spamu. Pouze hodnotný obsah."
+                  required
+                >
                   <Input
-                    id="lead-email"
                     type="email"
-                    {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                    className={`h-11 border-brand-border focus:ring-brand-primary ${errors.email ? "border-red-500" : ""}`}
+                    autoComplete={autocompleteAttributes.email}
                     placeholder={t.leadCapture.emailPlaceholder}
+                    {...register("email", validationRules.workEmail)}
                   />
-                  {errors.email && (
-                    <p className="text-xs text-red-600 mt-2">{t.leadCapture.errorInvalid}</p>
-                  )}
-                </div>
+                </FormField>
 
                 {error && (
                   <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-3 py-2">
@@ -101,8 +101,8 @@ export function LeadCaptureSection() {
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
+                  disabled={isSubmitting || isSuccess}
+                  className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg disabled:opacity-50"
                 >
                   {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
                   {t.leadCapture.submit}

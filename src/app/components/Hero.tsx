@@ -11,15 +11,15 @@ export function Hero() {
   const { openVideo, openBooking } = useModal();
 
   return (
-    <section className="pt-40 pb-20 md:pt-48 md:pb-28 overflow-hidden relative bg-gradient-to-b from-brand-background-secondary/30 to-white">
+    <section className="pt-32 pb-16 md:pt-40 md:pb-20 lg:pt-48 lg:pb-28 overflow-hidden relative bg-gradient-to-b from-brand-background-secondary/30 to-white">
       {/* Subtle Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl -z-10 pointer-events-none">
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-brand-primary/3 rounded-full blur-3xl" />
-        <div className="absolute top-10 right-1/4 w-96 h-96 bg-brand-accent/3 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-1/4 w-48 md:w-96 h-48 md:h-96 bg-brand-primary/3 rounded-full blur-3xl" />
+        <div className="absolute top-10 right-1/4 w-48 md:w-96 h-48 md:h-96 bg-brand-accent/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="container-default px-4 mx-auto relative z-10">
-        <div className="flex flex-col items-center text-center max-w-5xl mx-auto mb-20">
+      <div className="container-default mx-auto relative z-10">
+        <div className="flex flex-col items-center text-center max-w-5xl mx-auto mb-12 md:mb-20">
           
           {/* Target Audience Badge */}
           <motion.div 
@@ -38,7 +38,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] text-brand-text-primary mb-8 leading-[1.08]"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.02em] text-brand-text-primary mb-6 md:mb-8 leading-[1.08]"
           >
             {t.hero.title}
             <br />
@@ -52,7 +52,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl md:text-2xl text-brand-text-secondary leading-[1.6] max-w-3xl mb-12 font-medium"
+            className="text-lg md:text-xl lg:text-2xl text-brand-text-secondary leading-[1.6] max-w-3xl mb-8 md:mb-12 font-medium"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -62,7 +62,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-8"
+            className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-6 md:mb-8"
           >
             <Button 
               onClick={openVideo}
@@ -98,22 +98,22 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-12 pt-10 border-t border-brand-border/40 flex flex-wrap justify-center gap-8 md:gap-12"
+            className="mt-8 md:mt-12 pt-8 md:pt-10 border-t border-brand-border/40 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-12"
           >
             <div className="flex items-center gap-3 text-sm text-brand-text-secondary">
-              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center shrink-0">
                 <Shield className="w-5 h-5 text-brand-primary" />
               </div>
               <span className="font-medium">{t.hero.trust.security}</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-brand-text-secondary">
-              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center shrink-0">
                 <MessageCircle className="w-5 h-5 text-brand-primary" />
               </div>
               <span className="font-medium">{t.hero.trust.support}</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-brand-text-secondary">
-              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center shrink-0">
                 <Clock className="w-5 h-5 text-brand-primary" />
               </div>
               <span className="font-medium">{t.hero.trust.implementation}</span>
