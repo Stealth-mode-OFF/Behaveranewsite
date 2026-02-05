@@ -106,7 +106,7 @@ export function Header() {
         </nav>
 
         {/* Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="flex items-center gap-4">
           <div className="text-brand-text-primary">
              <LanguageSwitcher />
           </div>
@@ -115,22 +115,16 @@ export function Header() {
             onClick={openBooking}
             variant={isScrolled ? "default" : "secondary"}
             className={cn(
-                "rounded h-10 px-6 font-semibold transition-all text-sm",
+                "hidden lg:inline-flex rounded h-10 px-6 font-semibold transition-all text-sm",
                 !isScrolled && "bg-brand-primary text-white hover:bg-brand-primary-hover",
                 isScrolled && "bg-brand-primary text-white hover:bg-brand-primary-hover"
             )}
           >
             {t.header.bookDemo}
           </Button>
-        </div>
 
-        {/* Mobile Toggle */}
-        <div className="lg:hidden flex items-center gap-4">
-          <div className="text-brand-text-primary">
-             <LanguageSwitcher />
-          </div>
           <button
-            className="p-2 transition-colors text-brand-text-primary"
+            className="lg:hidden p-2 transition-colors text-brand-text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X /> : <Menu />}
