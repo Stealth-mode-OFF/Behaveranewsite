@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { FormField } from "@/app/components/ui/form-field";
-import { CheckCircle2, Loader2, Mail, ArrowRight, Sparkles, BookOpen, Shield } from "lucide-react";
+import { CheckCircle2, Loader2, Mail, ArrowRight, BookOpen, Shield, Download, FileText, PartyPopper } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/LanguageContext";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
@@ -35,11 +35,13 @@ export function LeadCaptureSection() {
       namePlaceholder: "Jan Novák",
       emailLabel: "Pracovní email",
       emailPlaceholder: "jan.novak@firma.cz",
-      submit: "Stáhnout zdarma",
+      submit: "Získat e-book zdarma",
       consent: "Odesláním souhlasíte se zpracováním osobních údajů.",
       noSpam: "Bez spamu. Pouze hodnotný obsah.",
-      successTitle: "Odesláno!",
-      successMessage: "E-book je na cestě do vaší schránky.",
+      successTitle: "Váš e-book je připraven!",
+      successMessage: "Klikněte na tlačítko níže a stáhněte si PDF.",
+      downloadButton: "Stáhnout PDF",
+      downloadNote: "Přímé stažení • PDF • 2.4 MB",
       errorGeneric: "Něco se pokazilo. Zkuste to prosím znovu."
     },
     en: {
@@ -55,11 +57,13 @@ export function LeadCaptureSection() {
       namePlaceholder: "John Smith",
       emailLabel: "Work email",
       emailPlaceholder: "john.smith@company.com",
-      submit: "Download free",
+      submit: "Get free e-book",
       consent: "By submitting you agree to our privacy policy.",
       noSpam: "No spam. Only valuable content.",
-      successTitle: "Sent!",
-      successMessage: "The e-book is on its way to your inbox.",
+      successTitle: "Your e-book is ready!",
+      successMessage: "Click the button below to download your PDF.",
+      downloadButton: "Download PDF",
+      downloadNote: "Direct download • PDF • 2.4 MB",
       errorGeneric: "Something went wrong. Please try again."
     },
     de: {
@@ -75,11 +79,13 @@ export function LeadCaptureSection() {
       namePlaceholder: "Max Mustermann",
       emailLabel: "Geschäftliche E-Mail",
       emailPlaceholder: "max.mustermann@firma.de",
-      submit: "Kostenlos herunterladen",
+      submit: "Kostenloses E-Book erhalten",
       consent: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.",
       noSpam: "Kein Spam. Nur wertvolle Inhalte.",
-      successTitle: "Gesendet!",
-      successMessage: "Das E-Book ist auf dem Weg in Ihren Posteingang.",
+      successTitle: "Ihr E-Book ist bereit!",
+      successMessage: "Klicken Sie auf die Schaltfläche unten, um Ihr PDF herunterzuladen.",
+      downloadButton: "PDF herunterladen",
+      downloadNote: "Direkter Download • PDF • 2.4 MB",
       errorGeneric: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
     }
   };
@@ -164,17 +170,32 @@ export function LeadCaptureSection() {
           >
             <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl shadow-brand-primary/5 border border-brand-border/50">
               {isSuccess ? (
-                <div className="text-center py-8">
+                <div className="text-center py-6">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", damping: 15 }}
                     className="w-20 h-20 rounded-full bg-brand-success/10 text-brand-success flex items-center justify-center mx-auto mb-6"
                   >
-                    <CheckCircle2 className="w-10 h-10" />
+                    <PartyPopper className="w-10 h-10" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-brand-text-primary mb-3">{txt.successTitle}</h3>
-                  <p className="text-brand-text-secondary">{txt.successMessage}</p>
+                  <h3 className="text-2xl font-bold text-brand-text-primary mb-2">{txt.successTitle}</h3>
+                  <p className="text-brand-text-secondary mb-8">{txt.successMessage}</p>
+                  
+                  {/* Download Button */}
+                  <a
+                    href="/ebooks/lide-odchazeji-z-dobrych-firem.pdf"
+                    download
+                    className="inline-flex items-center justify-center gap-3 w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-primary/20 group"
+                  >
+                    <Download className="w-5 h-5 group-hover:animate-bounce" />
+                    {txt.downloadButton}
+                  </a>
+                  
+                  <p className="text-xs text-brand-text-muted mt-4 flex items-center justify-center gap-2">
+                    <FileText className="w-3.5 h-3.5" />
+                    {txt.downloadNote}
+                  </p>
                 </div>
               ) : (
                 <>
