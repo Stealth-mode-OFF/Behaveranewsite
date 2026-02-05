@@ -8,7 +8,7 @@ export function MethodologySection() {
   const icons = [Radio, Cpu, Zap];
 
   return (
-    <section className="py-20 md:py-28 lg:py-32 bg-brand-primary text-white border-y border-white/5">
+    <section className="section-spacing bg-brand-primary text-white border-y border-white/5">
       <div className="container-default max-w-[1120px] mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
           <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/10 rounded-full border border-white/20 mb-10 backdrop-blur-sm">

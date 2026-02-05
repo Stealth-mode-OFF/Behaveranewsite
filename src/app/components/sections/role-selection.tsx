@@ -59,7 +59,7 @@ export function RoleSelection() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-brand-primary border-b border-white/5 relative">
+    <section className="section-spacing-compact bg-brand-primary border-b border-white/5 relative">
       <div className="container-default max-w-[1200px]">
         
         {/* Header - Calm & Direct */}
