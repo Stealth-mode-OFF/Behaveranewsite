@@ -44,6 +44,11 @@ const LeadCaptureSection = lazy(() =>
     default: module.LeadCaptureSection,
   }))
 );
+const CoreTeamSection = lazy(() =>
+  import("@/app/components/sections/core-team").then((module) => ({
+    default: module.CoreTeamSection,
+  }))
+);
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
 import { useLanguage } from "@/app/LanguageContext";
@@ -93,32 +98,37 @@ export function LandingPage() {
         {/* 8. AUTHORITY — Research foundation */}
         <MethodologySection />
         
-        {/* 9. SOCIAL PROOF — Real results */}
+        {/* 9. TEAM — Build trust with real people */}
+        <LazySection>
+          <CoreTeamSection />
+        </LazySection>
+        
+        {/* 10. SOCIAL PROOF — Real results */}
         <LazySection>
           <CaseStudiesSection />
         </LazySection>
         
-        {/* 10. OBJECTION HANDLING — Address concerns */}
+        {/* 11. OBJECTION HANDLING — Address concerns */}
         <LazySection>
           <FAQ />
         </LazySection>
         
-        {/* 11. INVESTMENT — Pricing with trust signals */}
+        {/* 12. INVESTMENT — Pricing with trust signals */}
         <LazySection>
           <PurchaseSection />
         </LazySection>
         
-        {/* 12. COMPLIANCE — GDPR, data handling */}
+        {/* 13. COMPLIANCE — GDPR, data handling */}
         <LazySection>
           <TrustCenter />
         </LazySection>
         
-        {/* 13. FINAL CTA — Clear next step */}
+        {/* 14. FINAL CTA — Clear next step */}
         <LazySection>
           <CtaSection />
         </LazySection>
         
-        {/* 14. SOFT CAPTURE — E-book for undecided */}
+        {/* 15. SOFT CAPTURE — E-book for undecided */}
         <LazySection>
           <LeadCaptureSection />
         </LazySection>
