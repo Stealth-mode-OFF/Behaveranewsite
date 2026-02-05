@@ -27,6 +27,9 @@ const CaseStudyPage = lazy(() =>
 const ResearchPage = lazy(() =>
   import("./pages/public/research").then((module) => ({ default: module.ResearchPage }))
 );
+const NotFoundPage = lazy(() =>
+  import("./pages/public/NotFoundPage").then((module) => ({ default: module.NotFoundPage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -123,6 +126,9 @@ function App() {
                     ) : (
                       <Route path="/admin/*" element={<Navigate to="/" replace />} />
                     )}
+
+                    {/* 404 Catch-all */}
+                    <Route path="*" element={<NotFoundPage />} />
                   </Routes>
                 </Suspense>
                 <Toaster position="top-center" richColors />
