@@ -26,6 +26,7 @@ export function LanguageSwitcher() {
       onClick={toggleLanguage}
       className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-brand-background-muted transition-colors focus-visible:ring-0 focus-visible:ring-offset-0"
       title={`Switch language (Current: ${currentLanguage.label})`}
+      aria-label={`Switch language (current: ${currentLanguage.label})`}
     >
         <span className="text-2xl leading-none filter drop-shadow-sm">{currentLanguage.flag}</span>
     </Button>

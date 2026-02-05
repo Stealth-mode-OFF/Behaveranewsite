@@ -124,8 +124,12 @@ export function Header() {
           </Button>
 
           <button
+            type="button"
             className="lg:hidden p-2 transition-colors text-brand-text-primary"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
@@ -141,6 +145,7 @@ export function Header() {
             exit={{ opacity: 0, y: "-100%" }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 bg-white z-40 flex flex-col pt-32 px-6"
+            id="mobile-navigation"
           >
             <div className="flex flex-col gap-6">
                {navItems.map((item) => (
