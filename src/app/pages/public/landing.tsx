@@ -45,14 +45,24 @@ const LeadCaptureSection = lazy(() =>
   }))
 );
 import { useSEO } from "@/app/hooks/useSEO";
+import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
+import { useLanguage } from "@/app/LanguageContext";
+import { pageSEO } from "@/app/config/seo.config";
 
 export function LandingPage() {
+  const { language } = useLanguage();
+  const seo = pageSEO.home[language] || pageSEO.home.en;
+  
   useSEO({
-    title: 'Echo Pulse — Continuous Employee Insight System',
-    description: 'Zachyťte signály disengagementu, burnoutu a odchodů dřív, než se projeví ve výsledcích. Vědecky validovaný systém pro prediktivní HR analytics.',
-    keywords: 'employee engagement, HR analytics, burnout prevention, turnover prediction, people analytics, continuous feedback, Echo Pulse, Behavera',
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords.join(', '),
     ogType: 'website',
+    canonicalUrl: 'https://echopulse.cz/',
   });
+  
+  // Inject Schema.org JSON-LD for AI discoverability
+  useSchemaOrg();
 
   return (
     <>
