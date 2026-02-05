@@ -8,25 +8,25 @@ import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
 
 export function ROICalculator() {
+  const { openBooking } = useModal();
+  const { t, language } = useLanguage();
+  
+  // Currency based on language: CZ = CZK, EN/DE = EUR
+  const currency = language === 'cz' ? 'CZK' : 'EUR';
+  const EXCHANGE_RATE = 25;
+  
+  // Default salary based on currency (annual cost per employee)
+  const defaultSalary = currency === 'CZK' ? 840000 : 33600; // ~840k CZK or ~33.6k EUR
+  
   const [employees, setEmployees] = useState(150);
-  const [currency, setCurrency] = useState<'EUR' | 'CZK'>('CZK');
-  const [salary, setSalary] = useState(840000); 
+  const [salary, setSalary] = useState(defaultSalary); 
   const [turnover, setTurnover] = useState(15);
   const [isGenerating, setIsGenerating] = useState(false);
-  const { openBooking } = useModal();
-  const { t } = useLanguage();
-  
-  const EXCHANGE_RATE = 25;
 
-  const toggleCurrency = (newCurrency: 'EUR' | 'CZK') => {
-    if (currency === newCurrency) return;
-    setCurrency(newCurrency);
-    if (newCurrency === 'CZK') {
-        setSalary(Math.round(salary * EXCHANGE_RATE));
-    } else {
-        setSalary(Math.round(salary / EXCHANGE_RATE));
-    }
-  };
+  // Update salary when language changes
+  React.useEffect(() => {
+    setSalary(currency === 'CZK' ? 840000 : 33600);
+  }, [currency]);
 
   const replacementCost = salary * 0.33;
   const employeesLeaving = Math.ceil(employees * (turnover / 100));
@@ -95,28 +95,6 @@ export function ROICalculator() {
             <div className="card-base p-0 overflow-hidden shadow-xl shadow-brand-primary/10">
               {/* Header / Results Area */}
               <div className="bg-brand-primary p-8 text-white">
-                <div className="flex justify-end mb-8">
-                    <div className="flex bg-white/10 rounded-lg p-1 border border-white/10">
-                        <button 
-                            onClick={() => toggleCurrency('EUR')}
-                            className={cn(
-                                "px-3 py-1 rounded text-caption font-bold transition-all",
-                                currency === 'EUR' ? "bg-white text-brand-primary" : "text-white/90 hover:text-white"
-                            )}
-                        >
-                            EUR
-                        </button>
-                        <button 
-                            onClick={() => toggleCurrency('CZK')}
-                            className={cn(
-                                "px-3 py-1 rounded text-caption font-bold transition-all",
-                                currency === 'CZK' ? "bg-white text-brand-primary" : "text-white/90 hover:text-white"
-                            )}
-                        >
-                            CZK
-                        </button>
-                    </div>
-                </div>
                 
                 <div className="grid md:grid-cols-2 gap-12">
                     <div className="border-l-2 border-white/20 pl-6">
