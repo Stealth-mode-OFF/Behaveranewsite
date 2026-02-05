@@ -24,19 +24,20 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Simplified navigation - only 3 essential links + CTA
   const navItems = [
-    { id: 'problem', label: t.header.nav.problem, type: 'scroll' },
-    { id: 'how-it-works', label: t.header.nav.solution, type: 'scroll' },
-    { id: 'solutions', label: t.header.nav.impact, type: 'scroll' },
+    { 
+      id: 'how-it-works', 
+      label: language === 'cz' ? 'Jak to funguje' : language === 'de' ? 'So funktioniert es' : 'How it works'
+    },
+    { 
+      id: 'case-studies', 
+      label: language === 'cz' ? 'Případové studie' : language === 'de' ? 'Fallstudien' : 'Case Studies'
+    },
   ];
 
-  const pageLinks = [
-    { path: '/research', label: language === 'cz' ? 'Věda' : language === 'de' ? 'Forschung' : 'Research' },
-    { path: '/blog', label: 'Blog' },
-  ];
-
-  // Case studies scrolls to section on homepage
-  const caseStudiesLabel = language === 'cz' ? 'Případové studie' : language === 'de' ? 'Fallstudien' : 'Case Studies';
+  // Only one page link - renamed from "Věda" to "Metodologie"
+  const methodologyLabel = language === 'cz' ? 'Metodologie' : language === 'de' ? 'Methodik' : 'Methodology';
 
   return (
     <motion.header
@@ -66,8 +67,9 @@ export function Header() {
             )} />
         </Link>
 
-        {/* Desktop Nav - Minimal */}
+        {/* Desktop Nav - Minimal & Clean */}
         <nav className="hidden lg:flex items-center gap-8">
+          {/* Scroll links */}
           {navItems.map((item) => (
              isHome ? (
                  <a 
@@ -93,40 +95,16 @@ export function Header() {
                  </Link>
              )
           ))}
-          {pageLinks.map((link) => (
-             <Link 
-                key={link.path}
-                to={link.path}
-                className={cn(
-                    "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                    isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-                )}
-            >
-                {link.label}
-            </Link>
-          ))}
-          {/* Case Studies - scrolls to section */}
-          {isHome ? (
-            <a
-              href="#case-studies"
-              className={cn(
+          {/* Methodology page link */}
+          <Link 
+            to="/research"
+            className={cn(
                 "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
                 isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-              )}
-            >
-              {caseStudiesLabel}
-            </a>
-          ) : (
-            <Link
-              to="/#case-studies"
-              className={cn(
-                "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-              )}
-            >
-              {caseStudiesLabel}
-            </Link>
-          )}
+            )}
+          >
+            {methodologyLabel}
+          </Link>
         </nav>
 
         {/* Actions */}
@@ -172,6 +150,7 @@ export function Header() {
             id="mobile-navigation"
           >
             <div className="flex flex-col gap-6">
+               {/* Scroll links */}
                {navItems.map((item) => (
                  isHome ? (
                     <a 
@@ -193,34 +172,14 @@ export function Header() {
                     </Link>
                  )
               ))}
-              {pageLinks.map((link) => (
-                 <Link 
-                    key={link.path}
-                    to={link.path}
-                    className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                    onClick={() => setMobileMenuOpen(false)}
-                >
-                    {link.label}
-                </Link>
-              ))}
-              {/* Case Studies - scrolls to section */}
-              {isHome ? (
-                <a
-                  href="#case-studies"
-                  className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {caseStudiesLabel}
-                </a>
-              ) : (
-                <Link
-                  to="/#case-studies"
-                  className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {caseStudiesLabel}
-                </Link>
-              )}
+              {/* Methodology page link */}
+              <Link 
+                to="/research"
+                className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {methodologyLabel}
+              </Link>
               <div className="mt-8 pt-8 border-t border-brand-border flex flex-col gap-4">
                 <Button 
                     onClick={() => {
