@@ -30,6 +30,12 @@ const ResearchPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import("./pages/public/NotFoundPage").then((module) => ({ default: module.NotFoundPage }))
 );
+const ChangelogPage = lazy(() =>
+  import("./pages/public/changelog").then((module) => ({ default: module.ChangelogPage }))
+);
+const TeamPage = lazy(() =>
+  import("./pages/public/team").then((module) => ({ default: module.TeamPage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -106,6 +112,8 @@ function App() {
                     <Route path="/case-studies" element={<CaseStudiesPage />} />
                     <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
                     <Route path="/research" element={<ResearchPage />} />
+                    <Route path="/changelog" element={<ChangelogPage />} />
+                    <Route path="/team" element={<TeamPage />} />
 
                     {/* Admin Routes */}
                     {adminEnabled ? (

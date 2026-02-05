@@ -117,6 +117,10 @@ export function Footer() {
                     <a key={i} href={linkTargets[i] || "#"} className="hover:text-brand-primary transition-colors font-medium">{link}</a>
                   ))}
                   <Link to="/blog" className="hover:text-brand-primary transition-colors font-medium">Blog</Link>
+                  <Link to="/team" className="hover:text-brand-primary transition-colors font-medium">
+                    {language === 'cz' ? 'Tým' : language === 'de' ? 'Team' : 'Team'}
+                  </Link>
+                  <Link to="/changelog" className="hover:text-brand-primary transition-colors font-medium">Changelog</Link>
                 </div>
             </div>
 

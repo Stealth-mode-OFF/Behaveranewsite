@@ -49,6 +49,16 @@ const CoreTeamSection = lazy(() =>
     default: module.CoreTeamSection,
   }))
 );
+const BackedBySection = lazy(() =>
+  import("@/app/components/sections/backed-by").then((module) => ({
+    default: module.BackedBySection,
+  }))
+);
+const BuiltWithSection = lazy(() =>
+  import("@/app/components/sections/built-with").then((module) => ({
+    default: module.BuiltWithSection,
+  }))
+);
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
 import { useLanguage } from "@/app/LanguageContext";
@@ -103,6 +113,11 @@ export function LandingPage() {
           <CoreTeamSection />
         </LazySection>
         
+        {/* 9.5 BACKED BY — Investor credibility */}
+        <LazySection>
+          <BackedBySection />
+        </LazySection>
+        
         {/* 10. SOCIAL PROOF — Real results */}
         <LazySection>
           <CaseStudiesSection />
@@ -131,6 +146,11 @@ export function LandingPage() {
         {/* 15. SOFT CAPTURE — E-book for undecided */}
         <LazySection>
           <LeadCaptureSection />
+        </LazySection>
+        
+        {/* 16. BUILT WITH — Tech stack transparency */}
+        <LazySection>
+          <BuiltWithSection />
         </LazySection>
       </main>
       <Footer />
