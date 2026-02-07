@@ -125,7 +125,7 @@ export function Header() {
                   : "border-brand-primary/70 text-brand-primary hover:bg-brand-primary/5"
             )}
           >
-            {language === 'cz' ? 'Vyzkoušet' : language === 'de' ? 'Ausprobieren' : 'Try Free'}
+            {t.cta.demoButton}
           </a>
           
           <Button 
