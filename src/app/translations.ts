@@ -2,8 +2,126 @@ export type Language = "en" | "cz" | "de";
 
 export const translations = {
   en: {
-    ...translations.cz
-  },
+    radar: {
+      badge: "Complete overview",
+      title: "9 areas",
+      titleHighlight: "that determine team stability",
+      subtitle: "Echo Pulse continuously monitors 9 key areas of work life. No unnecessary noise - just signals that tell you where things are stuck.",
+      summary: "From mood and stress to recognition and growth - we measure what matters.",
+      accordionLabel: "Show all 9 signals →",
+      coreInsightLabel: "Key signal",
+      methodology: "Built on Job Demands-Resources (JD-R), Self-Determination Theory, and Equity Theory research.",
+      signals: {
+        mood: { title: "How people feel", question: "How is the team actually feeling?", metrics: ["Mood", "Energy", "Stability"] },
+        stress: { title: "Stress & Pressure", question: "Is pressure driving performance or burnout?", metrics: ["Chronic Stress", "Spillover", "Recovery"] },
+        workload: { title: "Capacity & Load", question: "Are demands matching capacity?", metrics: ["Cognitive Load", "Priorities", "Pace"] },
+        tools: { title: "Enablement", question: "Do they have what they need to win?", metrics: ["Leadership Support", "Tools", "Helpers"] },
+        recognition: { title: "Recognition", question: "Is good work being seen?", metrics: ["Visibility", "Appreciation", "Impact"] },
+        growth: { title: "Potential", question: "Are we using their full capability?", metrics: ["Career Growth", "Challenges", "Stagnation"] },
+        rewards: { title: "Fairness", question: "Is the exchange perceived as fair?", metrics: ["Fairness", "Transparency", "Bonuses"] },
+        benefits: { title: "Benefits", question: "Do perks actually matter?", metrics: ["Relevance", "Utility", "ROI"] },
+        evp: { title: "Values & Loyalty", question: "Do we walk the talk?", metrics: ["Pride", "Alignment", "Promise"] }
+      }
+    },
+    header: {
+      product: "Product",
+      solutions: "Solutions",
+      pricing: "Pricing",
+      about: "About",
+      login: "Log in",
+      bookDemo: "Book a Demo",
+      nav: {
+        problem: "Problem",
+        solution: "Solution",
+        impact: "Impact"
+      },
+    },
+    hero: {
+      badge: "Clarity before problems hit",
+      title: "Keep teams stable and",
+      titleHighlight: "performance on track",
+      subtitle: "Spot turnover risk, overload, and misalignment early — before it shows in results.",
+      primaryCta: "Schedule a 30‑min consultation",
+      secondaryCta: "See a 3‑min demo",
+      riskReversal: "No commitment. Leave with a clear view of what’s at risk and what to fix first.",
+      trust: {
+        security: "Data Security (GDPR)",
+        support: "Native Support",
+        implementation: "1h Implementation",
+        languages: "CZ / EN"
+      },
+    },
+    problems: {
+      badge: "Attrition cost",
+      title: "People don't leave overnight.",
+      subtitle: "The decision to leave takes months to ripen. The problem is you usually don't know - until you get the resignation.",
+      items: [
+        {
+          title: "UNWANTED ATTRITION",
+          value: "6–9× salary",
+          desc: "Replacing one employee costs 6–9× their monthly salary on average. Senior roles can reach up to 24×. [Source: SHRM, Gallup]",
+        },
+        {
+          title: "PERFORMANCE LOSS",
+          value: "–21%",
+          desc: "Actively disengaged teams show 21% lower profitability and significantly lower productivity. [Source: Gallup State of the Workplace]",
+        },
+        {
+          title: "MANAGER IMPACT",
+          value: "69%",
+          desc: "69% of employee experience is shaped by their direct manager. Your message is filtered through them. [Source: Gallup]",
+        },
+      ],
+      ctaBox: {
+        title: "Intuition isn't enough for this.",
+        desc: "You need continuous data. Otherwise you're just guessing why people lose motivation."
+      }
+    },
+    howItWorks: {
+      badge: "How it works",
+      stepLabel: "Step",
+      title: "How it",
+      titleHighlight: "works",
+      subtitle: "No complicated setup. Connect Echo Pulse to the communication tool you already use, and you'll have first data within an hour.",
+      steps: {
+        step1: {
+          title: "Understands context",
+          desc: "Echo Pulse doesn't just count words. It understands what people say between the lines - and from thousands of responses picks what you really need to know."
+        },
+        step2: {
+          title: "Runs on autopilot",
+          desc: "Short questions go out automatically via Slack, Teams, or email. People respond in a minute. You don't have to send anything.",
+          highlight: "The system ensures people aren't bothered - and you get clean data."
+        },
+        step3: {
+          title: "Suggests what to do",
+          desc: "It's not just graphs. Echo Pulse tells managers specifically what to do and why."
+        },
+        step4: {
+          title: "Guaranteed anonymity",
+          desc: "People know their responses won't be linked to their name. That's why they answer honestly."
+        }
+      }
+    },
+    methodology: {
+      title: "Scientific tool, not a 'survey'.",
+      subtitle: "We're not another happiness survey. We measure what actually affects performance and team stability.",
+      cards: [
+        {
+          title: "Signal, not satisfaction",
+          desc: "We don't care if people are satisfied. We track risks, blockers, and what prevents performance."
+        },
+        {
+          title: "1–3 minutes a month",
+          desc: "No hour-long surveys. One short pulse per month that doesn't burden people - yet still gives relevant data."
+        },
+        {
+          title: "Scientific foundation",
+          desc: "Based on the Job Demands-Resources model. We measure the balance between what you ask from people and what you give them."
+        }
+      ]
+    },
+    czechReality: {
       title: "Most companies today fall into one of two patterns.",
       subtitle: "Whether we talk to corporations or fast-growing startups - we hit the same problem. Leadership doesn't see what's happening in teams until it's too late.",
       diagnosisLabel: "Result:",
@@ -72,9 +190,127 @@ export const translations = {
         cta: "How it helps HR"
       },
       teamLeader: {
-        de: {
-          ...translations.cz
-        },
+        role: "Team Leader",
+        title: "Feedback from team",
+        list: [
+          "You know what troubles people",
+          "You catch burnout early"
+        ],
+        cta: "How it helps managers"
+      }
+    },
+    valueByRole: {
+      badge: "By role",
+      title: "One tool, different benefits.",
+      subtitle: "CEO needs overview for decisions. HR needs a prevention tool. Echo Pulse gives both - without unnecessary noise.",
+      tabs: {
+        ceo: "CEO / Leadership",
+        hr: "HR / People Ops"
+      },
+      cta: {
+        ceo: "Schedule CEO demo",
+        hr: "Schedule HR demo"
+      },
+      ctaNote: "30 min • Personalized for your role",
+      ceo: {
+        title: "For company leadership",
+        desc: "End of guessing how people are doing. You see exactly which departments are overloaded, where departures threaten, and where strategy communication fails.",
+        list: [
+          { title: "Early warning", desc: "Identify people at risk of leaving with months of advance notice." },
+          { title: "Strategy reality", desc: "Find out if teams understand your priorities - or run on autopilot." },
+          { title: "Return on investment", desc: "Fewer unplanned departures = lower recruitment and training costs." }
+        ]
+      },
+      hr: {
+        title: "For HR and People Ops",
+        desc: "Stop being the ones who fix problems. With continuous data, you're a strategic partner, not a firefighter.",
+        list: [
+          { title: "Data, not impressions", desc: "When you go to leadership, you have numbers - not complaints from the kitchen." },
+          { title: "Automatic collection", desc: "No manual sending. The system runs itself, you deal with results." },
+          { title: "Growing trust", desc: "People see things happening. Willingness to share the truth grows." }
+        ]
+      },
+      bottomBadge: "Designed for companies from 30 to 350 employees"
+    },
+    dashboard: {
+      badge: "Overview for leadership",
+      title: "See what used to be said",
+      titleHighlight: "only at the coffee machine.",
+      subtitle: "Echo Pulse collects scattered signals and shows them in one place. Clear and without unnecessary graphs.",
+      watchDemo: "Play demo",
+      features: [
+        { title: "Mood by team", desc: "Instant overview of how each department feels. Broken down by location, seniority, or manager." },
+        { title: "Warning before problems", desc: "The system alerts when something's off - overload, team tension, or significant energy drop." },
+        { title: "Action priorities", desc: "Don't know what to solve first? Echo ranks problems by business impact and departure risk." }
+      ]
+    },
+    purchase: {
+      badge: "Pricing",
+      title: "Pricing based on company size",
+      subtitle: "Estimate is driven by employee count. Final scope and price are confirmed after a short consultation.",
+      configTitle: "Configure plan",
+      billingMonthly: "Monthly",
+      billingYearly: "Yearly (-20%)",
+      companySizeLabel: "Company size",
+      employeesLabel: "employees",
+      estimatedLabel: "Estimated investment",
+      perMonthLabel: "CZK / mo",
+      priceCapped: "Price capped at {cap} employees",
+      basePriceLabel: "Base price",
+      vatLabel: "VAT (21%)",
+      features: [
+        "Continuous pulses and signal analysis",
+        "Executive and HR dashboards",
+        "Actionable recommendations for managers",
+        "Secure data handling (GDPR)"
+      ],
+      button: "Request a tailored quote",
+      guaranteeShort: "Final scope and price are confirmed after the intro call."
+    },
+    trustCenter: {
+      badge: "Trust center",
+      title: "Data security and privacy",
+      subtitle: "We explain transparently how we process personal data, what responsibilities we take, and how we protect confidential information.",
+      highlights: [
+        "Personal data processing follows GDPR and applicable legislation.",
+        "Data controller: Behavera s.r.o., Křižíkova 148/34, Karlín, Prague 8.",
+        "Data protection contact: gdpr@behavera.com.",
+        "Aggregated statistics are anonymized and do not contain personal data.",
+        "Data subjects have rights to access, portability, rectification, deletion, and withdrawal of consent."
+      ],
+      privacyFallbackTitle: "Privacy policy",
+      termsFallbackTitle: "Terms and conditions",
+      contentFallback: "Content coming soon."
+    },
+    cta: {
+      title: "Don't wait for the next resignation.",
+      subtitle: "Blindness costs companies millions annually in lost productivity and hiring. Regain control in 48 hours.",
+      primary: "Schedule Consultation",
+      demoButton: "Try the demo",
+      secondary: "or call us",
+      secondaryLink: "+420 605 839 456",
+      benefits: [
+        { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 30 minutes." },
+        { title: "Privacy Guarantee", desc: "GDPR compliance with clear data-handling rules. Your data stays on EU servers." },
+        { title: "Fast Start", desc: "Implementation needs no IT department. We connect to your existing tools (M365, Slack)." }
+      ]
+    },
+    footer: {
+      rights: "Behavera s.r.o. All rights reserved.",
+      legal: ["Terms", "Privacy"],
+      links: ["Product", "Pricing", "About", "Contact"]
+    },
+    blog: {
+      title: "Blog",
+      pageTitle: "Insights & Analysis",
+      pageSubtitle: "Deep dives into organizational psychology, leadership data, and the future of work.",
+      defaultTag: "Insight",
+      backToList: "Back to Insights",
+      loading: "Loading...",
+      notFound: "Post not found",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Practical articles on engagement, retention, and organizational psychology.",
+      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies"
     },
     caseStudies: {
       loading: "Loading...",
