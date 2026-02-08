@@ -77,15 +77,30 @@ export function LeadPopup() {
     sessionStorage.setItem('leadPopupSeen', 'true');
   };
 
+  // Trigger file download
+  const downloadEbook = () => {
+    const link = document.createElement('a');
+    link.href = '/ebooks/lide-odchazeji-z-dobrych-firem.pdf';
+    link.download = 'Lidé odcházejí i z dobrých firem.pdf';
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const onSubmit = async (data: any) => {
     setError(null);
     setIsSubmitting(true);
-    const result = await submitLead({ email: data.email, source: "exit-intent-popup" });
+    
+    // Submit lead (don't block on it)
+    submitLead({ email: data.email, source: "exit-intent-popup" });
+    
+    // Immediately trigger download
+    setTimeout(() => {
+      downloadEbook();
+    }, 100);
+    
     setIsSubmitting(false);
-    if (!result.ok) {
-      setError(result.error || "Odeslání se nepodařilo.");
-      return;
-    }
     setIsSuccess(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
   };
@@ -128,40 +143,34 @@ export function LeadPopup() {
                     <Check className="w-6 h-6" strokeWidth={2.5} />
                   </div>
                   <h3 className="text-lg font-bold text-brand-text-primary mb-1">
-                    {t.leadPopup.successTitle}
+                    {t.leadPopup?.successTitle || "Stahování začalo!"}
                   </h3>
-                  <p className="text-[14px] text-brand-text-muted mb-6">
-                    {t.leadPopup.successMessage}
+                  <p className="text-[14px] text-brand-text-muted mb-5">
+                    {t.leadPopup?.successMessage || "Pokud se stahování nespustilo, klikněte níže:"}
                   </p>
 
                   <button
-                    onClick={() => {
-                      const link = document.createElement('a');
-                      link.href = '/ebooks/lide-odchazeji-z-dobrych-firem.pdf';
-                      link.download = 'Lidé odcházejí i z dobrých firem.pdf';
-                      document.body.appendChild(link);
-                      link.click();
-                      document.body.removeChild(link);
-                    }}
+                    type="button"
+                    onClick={downloadEbook}
                     className="inline-flex items-center justify-center gap-2 w-full h-11 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg transition-colors text-[14px]"
                   >
                     <Download className="w-4 h-4" />
-                    {t.leadPopup.downloadButton}
+                    {t.leadPopup?.downloadButton || "Stáhnout PDF"}
                   </button>
 
                   <p className="text-xs text-brand-text-muted mt-3 flex items-center justify-center gap-1.5">
                     <FileText className="w-3 h-3" />
-                    {t.leadPopup.downloadNote}
+                    {t.leadPopup?.downloadNote || "PDF · 4.3 MB"}
                   </p>
                 </div>
               ) : (
                 /* Form state */
                 <>
                   <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-1.5 pr-6">
-                    {t.leadPopup.title}
+                    {t.leadPopup?.title || "Stáhněte si zdarma e-book"}
                   </h3>
                   <p className="text-[14px] text-brand-text-muted leading-relaxed mb-5">
-                    {t.leadPopup.subtitle}
+                    {t.leadPopup?.subtitle || "Zjistěte, proč lidé odcházejí i z dobrých firem."}
                   </p>
 
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
@@ -169,7 +178,7 @@ export function LeadPopup() {
                       type="email"
                       name="email"
                       autoComplete={autocompleteAttributes.email}
-                      placeholder={t.leadPopup.emailPlaceholder}
+                      placeholder={t.leadPopup?.emailPlaceholder || "Váš pracovní e-mail"}
                       className={`h-11 ${errors.email ? 'border-red-300' : ''}`}
                       {...register("email", validationRules.email)}
                     />
@@ -188,7 +197,7 @@ export function LeadPopup() {
                       className="w-full h-11 text-[14px] font-semibold"
                       size="lg"
                     >
-                      {t.leadPopup.cta}
+                      {t.leadPopup?.cta || "Stáhnout e-book zdarma"}
                       <ArrowRight className="ml-1.5 w-4 h-4" />
                     </Button>
                   </form>
