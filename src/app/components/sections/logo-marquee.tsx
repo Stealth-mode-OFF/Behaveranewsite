@@ -51,15 +51,15 @@ export function LogoMarquee() {
         </motion.div>
         
         {/* Marquee Container */}
-        <div className="relative">
+        <div className="relative marquee-container">
           {/* Gradient Masks */}
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
           
           <div className="w-full inline-flex flex-nowrap overflow-hidden">
-            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll">
+            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll shrink-0">
               {clientLogos.map((logo, index) => (
-                <li key={index}>
+                <li key={index} className="shrink-0">
                   <div className="w-[100px] md:w-[120px] h-[32px] md:h-[40px] flex items-center justify-center">
                     <img
                       src={logo.src}
@@ -71,9 +71,9 @@ export function LogoMarquee() {
                 </li>
               ))}
             </ul>
-            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll" aria-hidden="true">
+            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll shrink-0" aria-hidden="true">
               {clientLogos.map((logo, index) => (
-                <li key={`duplicate-${index}`}>
+                <li key={`duplicate-${index}`} className="shrink-0">
                   <div className="w-[100px] md:w-[120px] h-[32px] md:h-[40px] flex items-center justify-center">
                     <img
                       src={logo.src}
