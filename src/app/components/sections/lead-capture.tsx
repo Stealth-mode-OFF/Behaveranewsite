@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { FormField } from "@/app/components/ui/form-field";
-import { CheckCircle2, Loader2, ArrowRight, Download, Check } from "lucide-react";
+import { CheckCircle2, Loader2, ArrowRight, Check } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/LanguageContext";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
@@ -14,19 +14,6 @@ type LeadFormData = {
   email: string;
 };
 
-const EBOOKS = [
-  {
-    file: "/ebooks/lide-odchazeji-z-dobrych-firem.pdf",
-    title: { cz: "Lidé odcházejí i z dobrých firem", en: "People Leave Good Companies Too", de: "Mitarbeiter verlassen auch gute Firmen" },
-    size: "4.3 MB",
-  },
-  {
-    file: "/ebooks/motivovani-jen-2-z-10.pdf",
-    title: { cz: "Opravdu motivovaní jsou jen 2 z 10", en: "Only 2 in 10 Are Truly Motivated", de: "Nur 2 von 10 sind wirklich motiviert" },
-    size: "4.1 MB",
-  },
-];
-
 export function LeadCaptureSection() {
   const { language } = useLanguage();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
@@ -36,56 +23,56 @@ export function LeadCaptureSection() {
 
   const copy = {
     cz: {
-      title: "Stáhněte si zdarma 2 e-booky",
-      subtitle: "Praktické průvodce prevencí fluktuace — s checklisty, frameworky a reálnými čísly.",
+      title: "Vyzkoušejte demo zdarma",
+      subtitle: "Získejte okamžitý přístup k demo verzi Echo Pulse. Žádná instalace, žádné závazky.",
       benefits: [
-        "7 varovných signálů před odchodem",
-        "ROI kalkulačka prevence",
-        "Checklist pro 1:1 rozhovory",
+        "Živá data a interaktivní dashboardy",
+        "Vyzkoušejte všechny funkce",
+        "Přístup ihned po registraci",
       ],
       nameLabel: "Jméno",
       namePlaceholder: "Jan Novák",
       emailLabel: "Pracovní email",
       emailPlaceholder: "jan.novak@firma.cz",
-      submit: "Získat e-booky zdarma",
+      submit: "Získat demo přístup",
       consent: "Odesláním souhlasíte se zpracováním osobních údajů. Žádný spam.",
-      successTitle: "Hotovo! Stáhněte si oba e-booky:",
+      successTitle: "Přístup aktivován!",
       errorGeneric: "Něco se pokazilo. Zkuste to prosím znovu.",
       downloadCta: "Stáhnout PDF",
     },
     en: {
-      title: "Download 2 free e-books",
-      subtitle: "Practical guides to turnover prevention — with checklists, frameworks, and real data.",
+      title: "Try the demo for free",
+      subtitle: "Get instant access to the Echo Pulse demo. No installation, no commitment.",
       benefits: [
-        "7 warning signs before departure",
-        "Prevention ROI calculator",
-        "1:1 meeting checklist",
+        "Live data and interactive dashboards",
+        "Try all features",
+        "Access immediately after registration",
       ],
       nameLabel: "Name",
       namePlaceholder: "John Smith",
       emailLabel: "Work email",
       emailPlaceholder: "john.smith@company.com",
-      submit: "Get free e-books",
+      submit: "Get demo access",
       consent: "By submitting you agree to our privacy policy. No spam.",
-      successTitle: "Done! Download both e-books:",
+      successTitle: "Access activated!",
       errorGeneric: "Something went wrong. Please try again.",
       downloadCta: "Download PDF",
     },
     de: {
-      title: "Laden Sie 2 kostenlose E-Books herunter",
-      subtitle: "Praktische Leitfäden zur Fluktuationsprävention — mit Checklisten, Frameworks und echten Zahlen.",
+      title: "Testen Sie die Demo kostenlos",
+      subtitle: "Erhalten Sie sofortigen Zugang zur Echo Pulse Demo. Keine Installation, keine Verpflichtung.",
       benefits: [
-        "7 Warnsignale vor dem Abgang",
-        "ROI-Rechner für Prävention",
-        "Checkliste für 1:1-Gespräche",
+        "Live-Daten und interaktive Dashboards",
+        "Alle Funktionen ausprobieren",
+        "Zugang sofort nach der Registrierung",
       ],
       nameLabel: "Name",
       namePlaceholder: "Max Mustermann",
       emailLabel: "Geschäftliche E-Mail",
       emailPlaceholder: "max.mustermann@firma.de",
-      submit: "Kostenlose E-Books erhalten",
+      submit: "Demo-Zugang erhalten",
       consent: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu. Kein Spam.",
-      successTitle: "Fertig! Laden Sie beide E-Books herunter:",
+      successTitle: "Zugang aktiviert!",
       errorGeneric: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
       downloadCta: "PDF herunterladen",
     },
@@ -133,16 +120,6 @@ export function LeadCaptureSection() {
                 </li>
               ))}
             </ul>
-
-            {/* Mini ebook previews */}
-            <div className="mt-6 flex items-center gap-3">
-              {EBOOKS.map((eb, i) => (
-                <div key={i} className="flex items-center gap-2 text-[12px] text-brand-text-muted bg-white border border-brand-border rounded-lg px-3 py-2">
-                  <Download className="w-3.5 h-3.5 text-brand-primary shrink-0" />
-                  <span className="truncate max-w-[160px]">{eb.title[language] || eb.title.en}</span>
-                </div>
-              ))}
-            </div>
           </motion.div>
 
           {/* Right — Form or Downloads */}
@@ -154,7 +131,7 @@ export function LeadCaptureSection() {
           >
             <div className="bg-white rounded-2xl p-7 sm:p-8 shadow-lg shadow-black/[0.03] border border-brand-border/60">
               {isSuccess ? (
-                /* ─── Success: download cards ─── */
+                /* ─── Success: Demo access ─── */
                 <div>
                   <div className="flex items-center gap-2.5 mb-5">
                     <div className="w-8 h-8 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center shrink-0">
@@ -165,29 +142,28 @@ export function LeadCaptureSection() {
                     </h3>
                   </div>
 
-                  <div className="space-y-3">
-                    {EBOOKS.map((eb, i) => (
-                      <a
-                        key={i}
-                        href={eb.file}
-                        download
-                        className="flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-[#FDFBFF] transition-all group"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-brand-primary/8 text-brand-primary flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-all">
-                          <Download className="w-[18px] h-[18px]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-[14px] font-semibold text-brand-text-primary truncate">
-                            {eb.title[language] || eb.title.en}
-                          </p>
-                          <p className="text-[12px] text-brand-text-muted">
-                            PDF · {eb.size}
-                          </p>
-                        </div>
-                        <ArrowRight className="w-4 h-4 text-brand-text-muted group-hover:text-brand-primary shrink-0 transition-colors" />
-                      </a>
-                    ))}
+                  {/* Login credentials */}
+                  <div className="bg-[#FDFBFF] border border-brand-border rounded-xl p-5 mb-5 space-y-3">
+                    <div>
+                      <p className="text-[12px] text-brand-text-muted uppercase tracking-wide mb-1">Login</p>
+                      <p className="text-[15px] font-mono font-medium text-brand-text-primary select-all">pulsedemo@behavera.com</p>
+                    </div>
+                    <div>
+                      <p className="text-[12px] text-brand-text-muted uppercase tracking-wide mb-1">{language === "cz" ? "Heslo" : language === "de" ? "Passwort" : "Password"}</p>
+                      <p className="text-[15px] font-mono font-medium text-brand-text-primary select-all">showdemo</p>
+                    </div>
                   </div>
+
+                  {/* CTA button */}
+                  <a
+                    href="https://app.behavera.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 h-12 rounded-xl bg-brand-primary text-white font-semibold text-[15px] hover:bg-brand-primary-hover transition-colors"
+                  >
+                    {language === "cz" ? "Otevřít demo aplikaci" : language === "de" ? "Demo-App öffnen" : "Open demo app"}
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
               ) : (
                 /* ─── Form ─── */
