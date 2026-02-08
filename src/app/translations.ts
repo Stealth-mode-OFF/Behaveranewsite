@@ -582,7 +582,7 @@ export const translations = {
       pricing: "Ceník",
       about: "O nás",
       login: "Přihlásit se",
-      bookDemo: "Vyzkoušet zdarma",
+      bookDemo: "Domluvit ukázku",
       nav: {
         problem: "Problém",
         solution: "Řešení",

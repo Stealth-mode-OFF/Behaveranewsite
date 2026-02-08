@@ -17,10 +17,14 @@
   --brand-background-dark: #2E1065;      /* The Deep Purple Background */
 
   /* Text Colors - CONTRAST OPTIMIZED FOR EXECUTIVE READABILITY */
-  --brand-text-primary: #2E1065;   /* Same as primary - replaces black text (13.8:1) */
-  --brand-text-secondary: #581C87; /* Purple 900 - Emphasis text (9.2:1) */
-  --brand-text-body: #3D1A7A;      /* Purple 800 - Primary reading text (11.5:1) */
-  --brand-text-muted: #6B21A8;     /* Purple 800 - Captions/metadata (7.2:1) - UPGRADED */
+  --brand-text-primary: #1A0533;   /* Near-black purple for headings */
+  --brand-text-secondary: #3D1A7A; /* Main reading text */
+  --brand-text-body: #4A3563;      /* Body text alternative */
+  --brand-text-muted: #8B7BA3;     /* Captions/metadata */
+
+  /* Font Families */
+  --font-sans: "Inter", "Arial", sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", "Arial", sans-serif;
   
   /* Text on Dark Backgrounds - HIGH CONTRAST MANDATORY */
   --brand-text-inverse: #FFFFFF;   /* White text on dark - headings only (14.1:1) */
@@ -268,8 +272,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: 'Object Sans', 'Arial', sans-serif;
-  --font-display: 'Tomato Grotesk', 'Object Sans', 'Arial', sans-serif;
+  --font-sans: "Inter", "Arial", sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", "Arial", sans-serif;
 
   /* Register Custom Utilities */
   --radius-sm: var(--radius-sm);

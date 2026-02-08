@@ -113,28 +113,11 @@ export function Header() {
              <LanguageSwitcher />
           </div>
           
-          {/* Sign Up - Direct to App */}
-          <a
-            href="https://app.behavera.com/echo-pulse/join"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(
-                "hidden lg:inline-flex items-center rounded h-10 px-5 font-semibold transition-all text-sm border",
-                isScrolled 
-                  ? "border-brand-primary text-brand-primary hover:bg-brand-primary/5" 
-                  : "border-brand-primary/70 text-brand-primary hover:bg-brand-primary/5"
-            )}
-          >
-            {language === 'cz' ? 'Vyzkoušet' : language === 'de' ? 'Ausprobieren' : 'Try Free'}
-          </a>
-          
           <Button 
             onClick={openBooking}
-            variant={isScrolled ? "default" : "secondary"}
             className={cn(
                 "hidden lg:inline-flex rounded h-10 px-6 font-semibold transition-all text-sm",
-                !isScrolled && "bg-brand-primary text-white hover:bg-brand-primary-hover",
-                isScrolled && "bg-brand-primary text-white hover:bg-brand-primary-hover"
+                "bg-brand-primary text-white hover:bg-brand-primary-hover"
             )}
           >
             {t.header.bookDemo}

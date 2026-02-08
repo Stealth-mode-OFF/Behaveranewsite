@@ -7,17 +7,8 @@ import notinoLogo from "@/assets/logos/normalized/notino.png";
 import o2Logo from "@/assets/logos/normalized/o2.png";
 import lidlLogo from "@/assets/logos/normalized/lidl.png";
 import prusaLogo from "@/assets/logos/normalized/prusa.png";
-import valxonLogo from "@/assets/logos/normalized/valxon.png";
-import medevioLogo from "@/assets/logos/normalized/medevio.png";
 import teyaLogo from "@/assets/logos/normalized/teya.png";
-import sprinxLogo from "@/assets/logos/normalized/sprinx.png";
 import martinusLogo from "@/assets/logos/normalized/martinus.png";
-import optimioLogo from "@/assets/logos/normalized/optimio.png";
-import effectixLogo from "@/assets/logos/normalized/effectix.png";
-import socialmindLogo from "@/assets/logos/normalized/socialmind.png";
-import hajdukLogo from "@/assets/logos/normalized/hajduk-partners.png";
-import websupportLogo from "@/assets/logos/normalized/websupport.png";
-import untitledLogo from "@/assets/logos/normalized/untitled-ui.png";
 import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
 import raynetLogo from "@/assets/logos/normalized/raynet.png";
 
@@ -29,17 +20,8 @@ export const clientLogos = [
   { name: "O2", src: o2Logo },
   { name: "Lidl", src: lidlLogo },
   { name: "Prusa", src: prusaLogo },
-  { name: "Valxon", src: valxonLogo },
-  { name: "Medevio", src: medevioLogo },
   { name: "Teya", src: teyaLogo },
-  { name: "Sprinx", src: sprinxLogo },
   { name: "Martinus", src: martinusLogo },
-  { name: "Optimio", src: optimioLogo },
-  { name: "Effectix", src: effectixLogo },
-  { name: "Socialmind", src: socialmindLogo },
-  { name: "Hajduk & Partners", src: hajdukLogo },
-  { name: "Websupport", src: websupportLogo },
-  { name: "Untitled UI", src: untitledLogo },
   { name: "StartupJobs", src: startupjobsLogo },
   { name: "Raynet", src: raynetLogo },
 ];
@@ -48,9 +30,9 @@ export function LogoMarquee() {
   const { t, language } = useLanguage();
 
   const title = {
-    cz: 'Svěřili nám svou důvěru',
-    en: 'Trusted by leading companies',
-    de: 'Von führenden Unternehmen vertraut',
+    cz: "Důvěřuje nám 50+ firem v Česku",
+    en: "Trusted by 50+ companies in the Czech Republic",
+    de: "Über 50 Unternehmen in Tschechien vertrauen uns",
   };
 
   return (
@@ -61,9 +43,9 @@ export function LogoMarquee() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-10"
+          className="flex justify-center mb-6"
         >
-          <h2 className="text-xl md:text-2xl font-semibold text-brand-text-secondary tracking-tight">
+          <h2 className="text-center text-sm font-medium text-brand-text-muted uppercase tracking-widest">
             {title[language] || title.en}
           </h2>
         </motion.div>
