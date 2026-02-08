@@ -2,31 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
 import { Button } from '@/app/components/ui/button';
 import { useModal } from '@/app/ModalContext';
-import { 
-  Calendar, 
-  Clock, 
-  Video, 
-  CheckCircle2, 
-  ArrowRight,
-  Users,
-  Target,
-  Shield,
-  Sparkles
-} from 'lucide-react';
+import { ArrowRight, ArrowLeft, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
 
-/**
- * BookingModal - Premium Consultation Scheduler
- * 
- * Design principles:
- * - Premium, enterprise-grade look
- * - Trust-building social proof
- * - Clear value proposition
- * - Seamless Pipedrive scheduler integration
- */
-
-// Pipedrive Scheduler - Demo booking
 const SCHEDULER_EMBED_URL = 'https://behavera.pipedrive.com/scheduler/GX27Q8iw/konzultace-jak-ziskat-jasna-data-o-svem-tymu-30-minutes';
 
 type ViewMode = 'info' | 'calendar';
@@ -45,46 +24,26 @@ export function BookingModal() {
     }, 300);
   };
 
-  // Reset iframe state when modal opens
   useEffect(() => {
-    if (isBookingOpen) {
-      setIsIframeLoaded(false);
-    }
+    if (isBookingOpen) setIsIframeLoaded(false);
   }, [isBookingOpen]);
 
   const copy = t.bookingModal || {
-    badge: "Osobní konzultace",
-    title: "30 minut, které",
-    titleHighlight: "změní váš pohled na data",
-    subtitle: "Video hovor s naším konzultantem. Ukážeme vám, jak Echo Pulse funguje s reálnými firemními daty.",
-    
+    title: "Domluvte si ukázku",
+    subtitle: "30minutový video hovor. Ukážeme vám Echo Pulse na reálných datech — bez závazků.",
     benefits: [
-      { icon: "target", text: "Personalizovaná ukázka pro váš obor" },
-      { icon: "users", text: "Odpovědi na všechny vaše dotazy" },
-      { icon: "shield", text: "Žádné závazky, žádný hard-sell" },
+      "Personalizovaná ukázka pro váš obor",
+      "Odpovědi na všechny dotazy",
+      "Žádný hard-sell",
     ],
-    
-    duration: "30 minut",
-    format: "Google Meet / Zoom",
-    
     cta: "Vybrat termín",
-    
-    calendarTitle: "Vyberte si volný termín",
-    calendarSubtitle: "Načítám kalendář...",
+    calendarTitle: "Vyberte termín",
     back: "Zpět",
-    
-    socialProof: "50+ firem už využívá Echo Pulse"
-  };
-
-  const benefitIcons: Record<string, React.ReactNode> = {
-    target: <Target className="w-5 h-5" />,
-    users: <Users className="w-5 h-5" />,
-    shield: <Shield className="w-5 h-5" />,
   };
 
   return (
     <Dialog open={isBookingOpen} onOpenChange={handleClose}>
-      <DialogContent className={`${view === 'calendar' ? 'sm:max-w-[900px]' : 'sm:max-w-[560px]'} p-0 overflow-hidden bg-white border-0 shadow-2xl transition-all duration-300 max-h-[100dvh] sm:max-h-[90vh] flex flex-col`}>
+      <DialogContent className={`${view === 'calendar' ? 'sm:max-w-[900px]' : 'sm:max-w-[440px]'} p-0 overflow-hidden border-0 transition-all duration-300 max-h-[100dvh] sm:max-h-[90vh] flex flex-col`}>
         <DialogTitle className="sr-only">Rezervovat konzultaci</DialogTitle>
         <DialogDescription className="sr-only">Naplánujte si konzultaci s naším týmem</DialogDescription>
 
@@ -94,169 +53,74 @@ export function BookingModal() {
               key="info"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="flex flex-col overflow-y-auto"
+              exit={{ opacity: 0 }}
+              className="p-7 sm:p-9"
             >
-              {/* Premium Gradient Header */}
-              <div className="relative bg-gradient-to-br from-brand-primary via-brand-primary to-[#4C1D95] p-6 sm:p-8 pb-8 sm:pb-10 text-white overflow-hidden shrink-0">
-                {/* Animated background elements */}
-                <motion.div 
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full blur-3xl"
-                />
-                <motion.div 
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.05, 0.15, 0.05] }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                  className="absolute bottom-0 left-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-2xl"
-                />
-                
-                <div className="relative z-10">
-                  {/* Badge */}
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/15 backdrop-blur-sm rounded-full text-sm font-medium mb-5"
-                  >
-                    <Sparkles className="w-3.5 h-3.5" />
-                    {copy.badge}
-                  </motion.div>
-                  
-                  {/* Title */}
-                  <motion.h2 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 }}
-                    className="text-2xl md:text-3xl font-bold mb-3 leading-tight"
-                  >
-                    {copy.title}{' '}
-                    <span className="text-brand-accent">{copy.titleHighlight}</span>
-                  </motion.h2>
-                  
-                  {/* Subtitle */}
-                  <motion.p 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="text-white/80 text-base max-w-md leading-relaxed"
-                  >
-                    {copy.subtitle}
-                  </motion.p>
-                </div>
-              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-brand-text-primary tracking-tight mb-2">
+                {copy.title}
+              </h2>
 
-              {/* Content Area */}
-              <div className="p-6 sm:p-8 pt-4 sm:pt-6 overflow-y-auto">
-                {/* Benefits List */}
-                <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                  {copy.benefits.map((benefit: { icon: string; text: string }, idx: number) => (
-                    <motion.div 
-                      key={idx}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.25 + idx * 0.08 }}
-                      className="flex items-center gap-4 p-4 bg-gradient-to-r from-brand-background-secondary to-white rounded-xl border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-sm transition-all"
-                    >
-                      <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 text-brand-primary flex items-center justify-center shrink-0">
-                        {benefitIcons[benefit.icon] || <CheckCircle2 className="w-5 h-5" />}
-                      </div>
-                      <span className="text-brand-text-primary font-medium">
-                        {benefit.text}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+              <p className="text-[14px] text-brand-text-muted leading-relaxed mb-6">
+                {copy.subtitle}
+              </p>
 
-                {/* Meeting Details Pills */}
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8"
-                >
-                  <div className="flex items-center gap-2 px-4 py-2 bg-brand-background-secondary rounded-full text-sm">
-                    <Clock className="w-4 h-4 text-brand-primary" />
-                    <span className="text-brand-text-secondary font-medium">{copy.duration}</span>
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-brand-background-secondary rounded-full text-sm">
-                    <Video className="w-4 h-4 text-brand-primary" />
-                    <span className="text-brand-text-secondary font-medium">{copy.format}</span>
-                  </div>
-                </motion.div>
+              <ul className="space-y-2.5 mb-7">
+                {(copy.benefits || []).map((text: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-2.5 text-[14px] text-brand-text-secondary">
+                    <Check className="w-4 h-4 mt-0.5 text-brand-primary shrink-0" strokeWidth={2.5} />
+                    {text}
+                  </li>
+                ))}
+              </ul>
 
-                {/* CTA Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.55 }}
-                >
-                  <Button
-                    onClick={() => setView('calendar')}
-                    size="lg"
-                    className="w-full h-14 text-base font-semibold btn-shine group"
-                  >
-                    <Calendar className="w-5 h-5 mr-2" />
-                    {copy.cta}
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </motion.div>
+              <Button
+                onClick={() => setView('calendar')}
+                size="lg"
+                className="w-full h-12 text-[15px] font-semibold"
+              >
+                {copy.cta}
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
 
-                {/* Social Proof */}
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.65 }}
-                  className="mt-6 text-center text-sm text-brand-text-muted flex items-center justify-center gap-2"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-brand-success" />
-                  {copy.socialProof}
-                </motion.p>
-              </div>
+              <p className="mt-4 text-center text-xs text-brand-text-muted">
+                30 min · Google Meet / Zoom · Zdarma
+              </p>
             </motion.div>
           ) : (
             <motion.div
               key="calendar"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               className="flex flex-col"
             >
-              {/* Calendar Header */}
-              <div className="p-4 border-b border-brand-border bg-brand-background-secondary/30 flex items-center justify-between">
+              <div className="px-5 py-3.5 border-b border-brand-border/60 flex items-center gap-3">
                 <button
                   onClick={() => setView('info')}
-                  className="flex items-center gap-2 text-sm text-brand-text-muted hover:text-brand-primary transition-colors px-3 py-1.5 rounded-lg hover:bg-brand-background-secondary"
+                  className="flex items-center gap-1.5 text-[13px] text-brand-text-muted hover:text-brand-primary transition-colors"
                 >
-                  <ArrowRight className="w-4 h-4 rotate-180" />
+                  <ArrowLeft className="w-3.5 h-3.5" />
                   {copy.back}
                 </button>
-                <h3 className="font-semibold text-brand-text-primary flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-brand-primary" />
-                  {copy.calendarTitle}
-                </h3>
-                <div className="w-20" /> {/* Spacer for centering */}
+                <div className="flex-1 text-center">
+                  <span className="text-[14px] font-semibold text-brand-text-primary">{copy.calendarTitle}</span>
+                </div>
+                <div className="w-14" />
               </div>
 
-              {/* Calendar Embed */}
               <div className="relative min-h-[450px] sm:min-h-[550px] bg-white flex-1 overflow-hidden">
-                {/* Loading State */}
                 <AnimatePresence>
                   {!isIframeLoaded && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       className="absolute inset-0 flex items-center justify-center bg-white z-10"
                     >
-                      <div className="text-center">
-                        <div className="w-10 h-10 border-3 border-brand-primary/20 border-t-brand-primary rounded-full animate-spin mx-auto mb-4" />
-                        <p className="text-sm text-brand-text-muted font-medium">{copy.calendarSubtitle}</p>
-                      </div>
+                      <div className="w-6 h-6 border-2 border-brand-primary/20 border-t-brand-primary rounded-full animate-spin" />
                     </motion.div>
                   )}
                 </AnimatePresence>
-                
-                {/* Pipedrive Scheduler Embed */}
+
                 <iframe
                   src={SCHEDULER_EMBED_URL}
                   title="Naplánovat konzultaci"

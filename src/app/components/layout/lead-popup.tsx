@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, Sparkles, Shield, Mail, Download, FileText, PartyPopper } from 'lucide-react';
+import { X, ArrowRight, Download, FileText, Check } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
@@ -10,15 +10,11 @@ import { validationRules, autocompleteAttributes } from '@/app/utils/validation'
 
 /**
  * LeadPopup with Exit-Intent Detection
- * 
+ *
  * Triggers:
  * 1. Exit intent (mouse leaves viewport top) - PRIMARY
- * 2. 60 seconds on page without interaction - FALLBACK
- * 3. 70% scroll depth - FALLBACK
- * 
- * Does NOT trigger:
- * - If already shown this session
- * - If user is on mobile (no exit intent possible)
+ * 2. 60 seconds on page without interaction - FALLBACK (mobile)
+ * 3. 70% scroll depth - FALLBACK (mobile)
  */
 export function LeadPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,16 +25,13 @@ export function LeadPopup() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [error, setError] = useState<string | null>(null);
 
-  // Check if mobile device
-  const isMobile = typeof window !== 'undefined' && 
+  const isMobile = typeof window !== 'undefined' &&
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   const triggerPopup = useCallback(() => {
     if (hasTriggered) return;
-    
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
     if (hasSeen) return;
-
     setIsOpen(true);
     setHasTriggered(true);
   }, [hasTriggered]);
@@ -50,37 +43,24 @@ export function LeadPopup() {
       return;
     }
 
-    // EXIT INTENT: Mouse leaves top of viewport (desktop only)
     const handleMouseLeave = (e: MouseEvent) => {
       if (isMobile) return;
-      
-      // Only trigger when mouse leaves through the TOP of the page
-      // This indicates intent to close tab or navigate away
       if (e.clientY <= 5 && e.relatedTarget === null) {
         triggerPopup();
       }
     };
 
-    // FALLBACK 1: Time-based (60 seconds)
     const timeoutTimer = setTimeout(() => {
-      if (isMobile) {
-        // On mobile, use time-based trigger since exit intent doesn't work
-        triggerPopup();
-      }
-    }, 60000); // 60 seconds
+      if (isMobile) triggerPopup();
+    }, 60000);
 
-    // FALLBACK 2: Deep scroll (70% of page)
     const handleScroll = () => {
       const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      if (scrollPercent > 70) {
-        // Only use scroll as trigger on mobile
-        if (isMobile && !hasTriggered) {
-          triggerPopup();
-        }
+      if (scrollPercent > 70 && isMobile && !hasTriggered) {
+        triggerPopup();
       }
     };
 
-    // Add listeners
     document.addEventListener('mouseleave', handleMouseLeave);
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -100,19 +80,12 @@ export function LeadPopup() {
   const onSubmit = async (data: any) => {
     setError(null);
     setIsSubmitting(true);
-    
-    const result = await submitLead({
-      email: data.email,
-      source: "exit-intent-popup"
-    });
-    
+    const result = await submitLead({ email: data.email, source: "exit-intent-popup" });
     setIsSubmitting(false);
-
     if (!result.ok) {
       setError(result.error || "Odeslání se nepodařilo.");
       return;
     }
-
     setIsSuccess(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
   };
@@ -122,168 +95,101 @@ export function LeadPopup() {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Backdrop */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closePopup}
-            className="absolute inset-0 bg-brand-primary/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#0D0118]/30 backdrop-blur-sm"
           />
-          
-          {/* Modal Card - Premium Design */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
+
+          {/* Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
+            className="relative w-full max-w-[400px] bg-white rounded-2xl shadow-[0_25px_50px_-12px_rgba(13,1,24,0.25)] overflow-hidden"
           >
-            {/* Close Button */}
-            <button 
+            {/* Close */}
+            <button
               onClick={closePopup}
-              className="absolute top-4 right-4 z-10 p-2 hover:bg-brand-background-secondary rounded-full text-brand-text-muted hover:text-brand-text-primary transition-colors"
+              className="absolute top-3.5 right-3.5 z-10 p-1.5 hover:bg-black/5 rounded-full text-brand-text-muted hover:text-brand-text-primary transition-colors"
               aria-label="Close"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            {/* Gradient top accent */}
-            <div className="h-1.5 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary" />
-
-            {/* Content */}
-            <div className="p-8 md:p-10">
+            <div className="p-7 sm:p-8">
               {isSuccess ? (
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-4"
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", damping: 15 }}
-                    className="w-20 h-20 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-6"
-                  >
-                    <PartyPopper className="w-10 h-10" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-brand-text-primary mb-2">
+                /* Success state */
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Check className="w-6 h-6" strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-lg font-bold text-brand-text-primary mb-1">
                     {t.leadPopup.successTitle}
                   </h3>
-                  <p className="text-brand-text-secondary mb-8">
+                  <p className="text-[14px] text-brand-text-muted mb-6">
                     {t.leadPopup.successMessage}
                   </p>
-                  
-                  {/* Download Button */}
+
                   <a
                     href="/ebooks/lide-odchazeji-z-dobrych-firem.pdf"
                     download
-                    className="inline-flex items-center justify-center gap-3 w-full h-14 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-colors shadow-lg shadow-brand-primary/20 group"
+                    className="inline-flex items-center justify-center gap-2 w-full h-11 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg transition-colors text-[14px]"
                   >
-                    <Download className="w-5 h-5 group-hover:animate-bounce" />
+                    <Download className="w-4 h-4" />
                     {t.leadPopup.downloadButton}
                   </a>
-                  
-                  <p className="text-xs text-brand-text-muted mt-4 flex items-center justify-center gap-2">
-                    <FileText className="w-3.5 h-3.5" />
+
+                  <p className="text-xs text-brand-text-muted mt-3 flex items-center justify-center gap-1.5">
+                    <FileText className="w-3 h-3" />
                     {t.leadPopup.downloadNote}
                   </p>
-                </motion.div>
+                </div>
               ) : (
+                /* Form state */
                 <>
-                  {/* Header */}
-                  <div className="text-center mb-8">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: "spring", damping: 15, delay: 0.1 }}
-                      className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-primary/10 to-brand-accent/10 text-brand-primary rounded-2xl mb-5"
-                    >
-                      <Sparkles className="w-8 h-8" />
-                    </motion.div>
-                    
-                    <motion.h3 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 }}
-                      className="text-2xl md:text-3xl font-bold text-brand-text-primary mb-3 leading-tight"
-                    >
-                      {t.leadPopup.title}
-                    </motion.h3>
-                    <motion.p 
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="text-brand-text-secondary leading-relaxed"
-                    >
-                      {t.leadPopup.subtitle}
-                    </motion.p>
-                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-1.5 pr-6">
+                    {t.leadPopup.title}
+                  </h3>
+                  <p className="text-[14px] text-brand-text-muted leading-relaxed mb-5">
+                    {t.leadPopup.subtitle}
+                  </p>
 
-                  <motion.form 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.25 }}
-                    onSubmit={handleSubmit(onSubmit)} 
-                    className="space-y-4"
-                  >
-                    {/* Email Input - clean design */}
-                    <div className="relative">
-                      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-text-muted">
-                        <Mail className="w-5 h-5" />
-                      </div>
-                      <Input 
-                        type="email"
-                        name="email"
-                        autoComplete={autocompleteAttributes.email}
-                        placeholder={t.leadPopup.emailPlaceholder}
-                        className={`h-14 pl-12 pr-4 rounded-xl text-base ${errors.email ? 'border-red-300 focus:border-red-500' : ''}`}
-                        {...register("email", validationRules.email)}
-                      />
-                    </div>
-                    
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+                    <Input
+                      type="email"
+                      name="email"
+                      autoComplete={autocompleteAttributes.email}
+                      placeholder={t.leadPopup.emailPlaceholder}
+                      className={`h-11 ${errors.email ? 'border-red-300' : ''}`}
+                      {...register("email", validationRules.email)}
+                    />
+
                     {errors.email && (
-                      <p className="text-sm text-red-600">{errors.email.message}</p>
+                      <p className="text-xs text-red-600">{errors.email.message}</p>
                     )}
-                    
+
                     {error && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: -5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3"
-                      >
-                        {error}
-                      </motion.div>
+                      <p className="text-[13px] text-red-600 bg-red-50 rounded-lg px-3.5 py-2">{error}</p>
                     )}
-                    
-                    <Button 
+
+                    <Button
                       type="submit"
                       disabled={isSubmitting || isSuccess}
-                      className="w-full h-14 text-base font-semibold rounded-xl group"
+                      className="w-full h-11 text-[14px] font-semibold"
                       size="lg"
                     >
                       {t.leadPopup.cta}
-                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="ml-1.5 w-4 h-4" />
                     </Button>
-                  </motion.form>
+                  </form>
 
-                  {/* Trust indicators */}
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.35 }}
-                    className="mt-6 pt-6 border-t border-brand-border/50"
-                  >
-                    <div className="flex items-center justify-center gap-2 text-sm text-brand-text-muted mb-3">
-                      <Shield className="w-4 h-4" />
-                      <span>Žádný spam. Pouze hodnotný obsah.</span>
-                    </div>
-                    
-                    <div className="flex items-center justify-center gap-2 text-sm">
-                      <span className="text-brand-text-muted">{t.leadPopup.socialProofPre}</span>
-                      <span className="font-bold text-brand-primary">{t.leadPopup.socialProofCount}</span>
-                      <span className="text-brand-text-muted">{t.leadPopup.socialProofPost}</span>
-                    </div>
-                  </motion.div>
+                  <p className="mt-4 text-center text-xs text-brand-text-muted">
+                    Žádný spam. Pouze hodnotný obsah.
+                  </p>
                 </>
               )}
             </div>
