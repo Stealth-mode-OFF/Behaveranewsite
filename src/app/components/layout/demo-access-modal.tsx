@@ -10,38 +10,13 @@ import { useModal } from '@/app/ModalContext';
 import { useLanguage } from '@/app/LanguageContext';
 import { submitLead } from '@/app/utils/lead';
 import { validationRules, autocompleteAttributes } from '@/app/utils/validation';
-import { 
-  Monitor, 
-  Lock, 
-  Mail, 
-  ArrowRight, 
-  CheckCircle2, 
-  Copy, 
+import {
+  Lock,
+  ArrowRight,
+  CheckCircle2,
+  Copy,
   ExternalLink,
-  Shield,
-  Clock,
-  Users,
-  Sparkles,
-  Play
 } from 'lucide-react';
-
-/**
- * DemoAccessModal - Gated Demo Access
- * 
- * UX Strategy:
- * 1. Show clear value proposition (what they'll see in demo)
- * 2. Collect work email + phone (higher quality leads)
- * 3. On success: reveal credentials + direct link to app
- * 4. Offer upsell to consultation for guided tour
- * 
- * Key UX decisions:
- * - Work email validation (no gmail/yahoo)
- * - Phone required (sales follow-up)
- * - Immediate gratification (credentials shown instantly)
- * - Clear "no spam" promise to reduce friction
- */
-
-type ModalView = 'form' | 'success';
 
 interface FormData {
   email: string;
@@ -49,7 +24,6 @@ interface FormData {
   company?: string;
 }
 
-// Demo credentials - in production, these could be fetched from backend
 const DEMO_CREDENTIALS = {
   url: 'https://app.behavera.com',
   email: 'pulsedemo@behavera.com',
@@ -58,8 +32,8 @@ const DEMO_CREDENTIALS = {
 
 export function DemoAccessModal() {
   const { demoRequestOpen, closeDemoRequest, openBooking } = useModal();
-  const { t, language } = useLanguage();
-  const [view, setView] = useState<ModalView>('form');
+  const { t } = useLanguage();
+  const [view, setView] = useState<'form' | 'success'>('form');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copiedField, setCopiedField] = useState<string | null>(null);
@@ -93,83 +67,50 @@ export function DemoAccessModal() {
   const onSubmit = async (data: FormData) => {
     setError(null);
     setIsSubmitting(true);
-
     const result = await submitLead({
       email: data.email,
       phone: data.phone,
       company: data.company,
       source: "demo-access-modal"
     });
-
     setIsSubmitting(false);
-
     if (!result.ok) {
-      setError(result.error || copy.errors.generic);
+      setError(result.error || "Něco se pokazilo. Zkuste to znovu.");
       return;
     }
-
     setView('success');
   };
 
   const copy = t.demoAccess || {
-    // Form view
-    badge: "Plný přístup k demo",
     title: "Vyzkoušejte Echo Pulse",
-    titleHighlight: "na reálných datech",
-    subtitle: "Projděte si dashboard, který vidí naši klienti. Žádné omezení, žádný časový limit.",
-    
-    features: [
-      { icon: "monitor", text: "Kompletní demo prostředí" },
-      { icon: "clock", text: "Neomezený přístup" },
-      { icon: "users", text: "Reálná firemní data" },
-    ],
-    
+    subtitle: "Zadejte údaje a získejte okamžitý přístup k demo aplikaci.",
     emailLabel: "Pracovní email",
     emailPlaceholder: "jan.novak@firma.cz",
     phoneLabel: "Telefon",
     phonePlaceholder: "+420 777 888 999",
-    companyLabel: "Název firmy (volitelné)",
+    companyLabel: "Firma (volitelné)",
     companyPlaceholder: "Vaše firma s.r.o.",
-    
     submitCta: "Získat přístup",
     submitting: "Odesílám...",
-    
     noSpam: "Žádný spam. Údaje použijeme pouze pro ověření.",
-    
-    errors: {
-      workEmailRequired: "Prosím zadejte pracovní email (ne gmail, yahoo...)",
-      phoneRequired: "Telefon je povinný",
-      generic: "Něco se pokazilo. Zkuste to prosím znovu."
-    },
-    
-    // Success view
-    successTitle: "Váš přístup je připraven!",
-    successSubtitle: "Použijte tyto údaje pro přihlášení do demo prostředí:",
-    
+    successTitle: "Váš přístup je připraven",
+    successSubtitle: "Přihlašovací údaje do demo prostředí:",
     credentials: {
-      urlLabel: "Demo aplikace",
-      emailLabel: "Přihlašovací email",
+      urlLabel: "URL",
+      emailLabel: "Email",
       passwordLabel: "Heslo"
     },
-    
     copyButton: "Kopírovat",
-    copied: "Zkopírováno!",
-    openDemo: "Otevřít demo aplikaci",
-    
+    copied: "Zkopírováno",
+    openDemo: "Otevřít demo",
     upsellTitle: "Chcete průvodce?",
-    upsellText: "Rezervujte si 30min konzultaci a ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
+    upsellText: "Rezervujte si 30min konzultaci — ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
     upsellCta: "Rezervovat konzultaci"
-  };
-
-  const featureIcons: Record<string, React.ReactNode> = {
-    monitor: <Monitor className="w-4 h-4" />,
-    clock: <Clock className="w-4 h-4" />,
-    users: <Users className="w-4 h-4" />,
   };
 
   return (
     <Dialog open={demoRequestOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[520px] p-0 overflow-hidden bg-white border-brand-border max-h-[100dvh] sm:max-h-[90vh] flex flex-col">
+      <DialogContent className="sm:max-w-[440px] p-0 overflow-hidden border-0 max-h-[100dvh] sm:max-h-[90vh] flex flex-col">
         <DialogTitle className="sr-only">Demo Access</DialogTitle>
         <DialogDescription className="sr-only">Get access to Echo Pulse demo</DialogDescription>
 
@@ -179,45 +120,18 @@ export function DemoAccessModal() {
               key="form"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="p-6 sm:p-8 overflow-y-auto"
+              exit={{ opacity: 0 }}
+              className="p-7 sm:p-9 overflow-y-auto"
             >
-              {/* Header */}
-              <div className="text-center mb-6 sm:mb-8">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-full text-sm font-medium mb-4">
-                  <Sparkles className="w-4 h-4" />
-                  {copy.badge}
-                </div>
-                
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-brand-text-primary mb-2">
-                  {copy.title}{' '}
-                  <span className="text-brand-primary">{copy.titleHighlight}</span>
-                </h2>
-                <p className="text-sm sm:text-base text-brand-text-secondary">
-                  {copy.subtitle}
-                </p>
-              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-brand-text-primary tracking-tight mb-1.5">
+                {copy.title}
+              </h2>
+              <p className="text-[14px] text-brand-text-muted leading-relaxed mb-6">
+                {copy.subtitle}
+              </p>
 
-              {/* Features */}
-              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                {copy.features.map((feature: any, idx: number) => (
-                  <div key={idx} className="flex items-center gap-2 text-sm text-brand-text-secondary">
-                    <div className="w-6 h-6 rounded-full bg-brand-success/10 text-brand-success flex items-center justify-center">
-                      {featureIcons[feature.icon] || <CheckCircle2 className="w-3 h-3" />}
-                    </div>
-                    {feature.text}
-                  </div>
-                ))}
-              </div>
-
-              {/* Form */}
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  label={copy.emailLabel}
-                  error={errors.email?.message}
-                  helperText={copy.noSpam}
-                  required
-                >
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
+                <FormField label={copy.emailLabel} error={errors.email?.message} required>
                   <Input
                     type="email"
                     autoComplete={autocompleteAttributes.email}
@@ -226,11 +140,7 @@ export function DemoAccessModal() {
                   />
                 </FormField>
 
-                <FormField
-                  label={copy.phoneLabel}
-                  error={errors.phone?.message}
-                  required
-                >
+                <FormField label={copy.phoneLabel} error={errors.phone?.message} required>
                   <Controller
                     name="phone"
                     control={control}
@@ -247,10 +157,7 @@ export function DemoAccessModal() {
                   />
                 </FormField>
 
-                <FormField
-                  label={copy.companyLabel}
-                  error={errors.company?.message}
-                >
+                <FormField label={copy.companyLabel} error={errors.company?.message}>
                   <Input
                     type="text"
                     autoComplete={autocompleteAttributes.company}
@@ -260,154 +167,103 @@ export function DemoAccessModal() {
                 </FormField>
 
                 {error && (
-                  <div className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-4 py-3">
-                    {error}
-                  </div>
+                  <p className="text-[13px] text-red-600 bg-red-50 rounded-lg px-3.5 py-2.5">{error}</p>
                 )}
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting || view === 'success'}
-                  className="w-full"
+                  disabled={isSubmitting}
+                  className="w-full h-11 mt-1"
                   size="lg"
                 >
                   {isSubmitting ? (
                     <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full mr-2"
-                      />
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-1.5" />
                       {copy.submitting}
                     </>
                   ) : (
                     <>
-                      <Lock className="w-4 h-4 mr-2" />
+                      <Lock className="w-3.5 h-3.5 mr-1" />
                       {copy.submitCta}
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
                 </Button>
               </form>
 
-              {/* Trust note */}
-              <div className="flex items-center justify-center gap-2 mt-6 text-sm text-brand-text-muted">
-                <Shield className="w-4 h-4" />
+              <p className="mt-4 text-center text-xs text-brand-text-muted">
                 {copy.noSpam}
-              </div>
+              </p>
             </motion.div>
           ) : (
             <motion.div
               key="success"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="p-6 sm:p-8 overflow-y-auto"
+              className="p-7 sm:p-9 overflow-y-auto"
             >
-              {/* Success Header */}
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-8 h-8" />
+              <div className="text-center mb-5">
+                <div className="w-12 h-12 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h2 className="text-2xl font-bold text-brand-text-primary mb-2">
+                <h2 className="text-xl font-bold text-brand-text-primary mb-1">
                   {copy.successTitle}
                 </h2>
-                <p className="text-brand-text-secondary">
+                <p className="text-[13px] text-brand-text-muted">
                   {copy.successSubtitle}
                 </p>
               </div>
 
-              {/* Credentials Card */}
-              <div className="bg-brand-background-secondary border border-brand-border rounded-xl p-5 space-y-4 mb-6">
-                {/* URL */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-medium text-brand-text-muted uppercase tracking-wide mb-1">
-                      {copy.credentials.urlLabel}
+              {/* Credentials */}
+              <div className="bg-[#FAFAFA] border border-brand-border rounded-xl divide-y divide-brand-border mb-5">
+                {[
+                  { label: copy.credentials.urlLabel, value: DEMO_CREDENTIALS.url, field: 'url', accent: true },
+                  { label: copy.credentials.emailLabel, value: DEMO_CREDENTIALS.email, field: 'email', accent: false },
+                  { label: copy.credentials.passwordLabel, value: DEMO_CREDENTIALS.password, field: 'password', accent: false },
+                ].map((item) => (
+                  <div key={item.field} className="flex items-center justify-between px-4 py-3">
+                    <div>
+                      <div className="text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider mb-0.5">
+                        {item.label}
+                      </div>
+                      <div className={`text-[13px] font-mono font-medium ${item.accent ? 'text-brand-primary' : 'text-brand-text-primary'}`}>
+                        {item.value}
+                      </div>
                     </div>
-                    <div className="font-mono text-sm text-brand-primary font-medium">
-                      {DEMO_CREDENTIALS.url}
-                    </div>
+                    <button
+                      onClick={() => copyToClipboard(item.value, item.field)}
+                      className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-brand-text-muted hover:text-brand-primary rounded-md transition-colors"
+                    >
+                      {copiedField === item.field ? (
+                        <><CheckCircle2 className="w-3 h-3 text-brand-success" />{copy.copied}</>
+                      ) : (
+                        <><Copy className="w-3 h-3" />{copy.copyButton}</>
+                      )}
+                    </button>
                   </div>
-                  <button
-                    onClick={() => copyToClipboard(DEMO_CREDENTIALS.url, 'url')}
-                    className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-brand-text-muted hover:text-brand-primary hover:bg-white rounded-lg transition-colors"
-                  >
-                    {copiedField === 'url' ? <CheckCircle2 className="w-3 h-3 text-brand-success" /> : <Copy className="w-3 h-3" />}
-                    {copiedField === 'url' ? copy.copied : copy.copyButton}
-                  </button>
-                </div>
-
-                <div className="border-t border-brand-border" />
-
-                {/* Email */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-medium text-brand-text-muted uppercase tracking-wide mb-1">
-                      {copy.credentials.emailLabel}
-                    </div>
-                    <div className="font-mono text-sm text-brand-text-primary font-medium">
-                      {DEMO_CREDENTIALS.email}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => copyToClipboard(DEMO_CREDENTIALS.email, 'email')}
-                    className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-brand-text-muted hover:text-brand-primary hover:bg-white rounded-lg transition-colors"
-                  >
-                    {copiedField === 'email' ? <CheckCircle2 className="w-3 h-3 text-brand-success" /> : <Copy className="w-3 h-3" />}
-                    {copiedField === 'email' ? copy.copied : copy.copyButton}
-                  </button>
-                </div>
-
-                <div className="border-t border-brand-border" />
-
-                {/* Password */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-medium text-brand-text-muted uppercase tracking-wide mb-1">
-                      {copy.credentials.passwordLabel}
-                    </div>
-                    <div className="font-mono text-sm text-brand-text-primary font-medium">
-                      {DEMO_CREDENTIALS.password}
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => copyToClipboard(DEMO_CREDENTIALS.password, 'password')}
-                    className="flex items-center gap-1 px-3 py-1.5 text-xs font-medium text-brand-text-muted hover:text-brand-primary hover:bg-white rounded-lg transition-colors"
-                  >
-                    {copiedField === 'password' ? <CheckCircle2 className="w-3 h-3 text-brand-success" /> : <Copy className="w-3 h-3" />}
-                    {copiedField === 'password' ? copy.copied : copy.copyButton}
-                  </button>
-                </div>
+                ))}
               </div>
 
-              {/* Open Demo Button */}
               <Button
                 onClick={() => window.open(DEMO_CREDENTIALS.url, '_blank')}
-                className="w-full mb-6"
+                className="w-full mb-4"
                 size="lg"
               >
-                <ExternalLink className="w-4 h-4 mr-2" />
+                <ExternalLink className="w-4 h-4 mr-1.5" />
                 {copy.openDemo}
               </Button>
 
-              {/* Upsell to Consultation */}
-              <div className="bg-brand-primary/5 border border-brand-primary/10 rounded-xl p-5">
-                <h3 className="font-bold text-brand-text-primary mb-1">
-                  {copy.upsellTitle}
-                </h3>
-                <p className="text-sm text-brand-text-secondary mb-4">
+              {/* Upsell — quiet */}
+              <div className="border border-brand-border rounded-xl p-4 text-center">
+                <p className="text-[13px] text-brand-text-muted mb-2.5">
                   {copy.upsellText}
                 </p>
-                <Button
+                <button
                   onClick={handleBookConsultation}
-                  variant="outline"
-                  size="sm"
-                  className="w-full"
+                  className="text-[13px] font-semibold text-brand-primary hover:underline underline-offset-2"
                 >
-                  {copy.upsellCta}
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
+                  {copy.upsellCta} →
+                </button>
               </div>
             </motion.div>
           )}
