@@ -104,22 +104,80 @@ export const translations = {
       }
     },
     methodology: {
-      title: "Scientific tool, not a 'survey'.",
-      subtitle: "We're not another happiness survey. We measure what actually affects performance and team stability.",
-      cards: [
+      badge: "Scientific Foundation",
+      title: "Built on Science, Not Assumptions",
+      subtitle: "Echo Pulse is grounded in decades of organizational psychology research. No made-up metrics — only validated models that predict team performance and stability.",
+      scienceHeader: "Three Pillars of Our Methodology",
+      theories: [
         {
-          title: "Signal, not satisfaction",
-          desc: "We don't care if people are satisfied. We track risks, blockers, and what prevents performance."
+          title: "Job Demands-Resources (JD-R)",
+          authors: "Bakker & Demerouti, 2001",
+          desc: "The model explaining why people burn out or deliver peak performance. We measure the balance between what you demand (pressure, workload, emotional strain) and what you provide (support, autonomy, feedback).",
+          points: [
+            "High demands + low resources = burnout",
+            "High resources = engagement even under pressure",
+            "Over 2,000 citations in academic literature"
+          ]
         },
         {
-          title: "1–3 minutes a month",
-          desc: "No hour-long surveys. One short pulse per month that doesn't burden people - yet still gives relevant data."
+          title: "Self-Determination Theory (SDT)",
+          authors: "Deci & Ryan, 1985",
+          desc: "The theory explaining what truly motivates people. Humans need three things for sustainable performance: autonomy (self-direction), competence (sense of mastery), and relatedness (team connection).",
+          points: [
+            "Autonomy: Can I make decisions about my work?",
+            "Competence: Do I see that my work matters?",
+            "Relatedness: Am I part of the team?"
+          ]
         },
         {
-          title: "Scientific foundation",
-          desc: "Based on the Job Demands-Resources model. We measure the balance between what you ask from people and what you give them."
+          title: "Equity Theory",
+          authors: "Adams, 1963",
+          desc: "Equity theory explains why compensation isn't just about money. People compare their input-output ratio with others — and when they sense unfairness, motivation and loyalty drop.",
+          points: [
+            "Perceived fairness affects performance",
+            "It's not just salary, but overall recognition",
+            "Inequity = quiet quitting"
+          ]
         }
-      ]
+      ],
+      howItWorks: {
+        title: "How Echo Pulse Applies Science to Practice",
+        desc: "Questions in Echo Pulse aren't randomly generated. Each is designed by a psychometric team to measure specific factors from validated models — and AI analysis detects patterns humans would miss.",
+        features: [
+          {
+            title: "Chat, Not Survey",
+            desc: "Conversational chatbot format achieves 91% response rate — people respond more honestly than with traditional forms."
+          },
+          {
+            title: "Psychometrically Validated Questions",
+            desc: "Every question is peer-reviewed and measures specific constructs from JD-R, SDT, or Equity Theory."
+          },
+          {
+            title: "AI Multivariate Analysis",
+            desc: "We detect hidden patterns, shifts in response tone, and performance barriers — not just averages."
+          },
+          {
+            title: "Action Steps, Not Reports",
+            desc: "Output isn't a 50-page presentation, but concrete steps for leaders."
+          }
+        ]
+      },
+      topicsTitle: "7 Measured Areas",
+      topics: [
+        "Pressure & Stress",
+        "Workload",
+        "Tools & Support",
+        "Financial Rewards",
+        "Benefits",
+        "Recognition",
+        "Growth & Potential"
+      ],
+      stats: {
+        responseRate: "response rate",
+        completion: "to complete",
+        tested: "people tested"
+      },
+      citation: "Our methodology is based on peer-reviewed research published in Journal of Applied Psychology, Journal of Organizational Behavior, and American Psychologist. Over 2,000 citations in academic literature."
     },
     czechReality: {
       title: "Most companies today fall into one of two patterns.",
@@ -625,22 +683,80 @@ export const translations = {
       }
     },
     methodology: {
-      title: "Vědecký nástroj, ne 'dotazník'.",
-      subtitle: "Nejsme další happiness survey. Měříme to, co skutečně ovlivňuje výkon a stabilitu týmu.",
-      cards: [
+      badge: "Vědecký základ",
+      title: "Postaveno na vědě, ne na dojmech",
+      subtitle: "Echo Pulse vychází z desetiletí výzkumu v organizační psychologii. Žádné vymyšlené metriky — pouze ověřené modely, které předpovídají výkon a stabilitu týmů.",
+      scienceHeader: "Tři pilíře naší metodologie",
+      theories: [
         {
-          title: "Signál, ne spokojenost",
-          desc: "Nezajímá nás, jestli jsou lidé spokojeni. Sledujeme rizika, překážky a to, co brání výkonu."
+          title: "Job Demands-Resources (JD-R)",
+          authors: "Bakker & Demerouti, 2001",
+          desc: "Model, který vysvětluje, proč lidé vyhořívají nebo naopak podávají špičkový výkon. Měříme rovnováhu mezi tím, co od lidí požadujete (tlak, zátěž, emoční nároky) a tím, co jim dáváte (podpora, autonomie, zpětná vazba).",
+          points: [
+            "Vysoké nároky + nízké zdroje = vyhoření",
+            "Vysoké zdroje = angažovanost i pod tlakem",
+            "Přes 2000 citací v akademické literatuře"
+          ]
         },
         {
-          title: "1–3 minuty měsíčně",
-          desc: "Žádné hodinové dotazníky. Jeden krátký pulz za měsíc, který lidi nezatěžuje - a přesto dává relevantní data."
+          title: "Self-Determination Theory (SDT)",
+          authors: "Deci & Ryan, 1985",
+          desc: "Teorie vysvětlující, co lidi skutečně motivuje. Lidé potřebují tři věci, aby podávali udržitelný výkon: autonomii (vlastní rozhodování), kompetenci (pocit zvládnutí) a sounáležitost (vztahy v týmu).",
+          points: [
+            "Autonomie: Mohu rozhodovat o své práci?",
+            "Kompetence: Vidím, že má práce má smysl?",
+            "Sounáležitost: Jsem součástí týmu?"
+          ]
         },
         {
-          title: "Vědecký základ",
-          desc: "Vycházíme z modelu Job Demands-Resources. Měříme rovnováhu mezi tím, co od lidí chcete, a tím, co jim dáváte."
+          title: "Equity Theory",
+          authors: "Adams, 1963",
+          desc: "Teorie spravedlnosti vysvětluje, proč odměňování není jen o penězích. Lidé porovnávají svůj vklad a výstup s ostatními — a když cítí nespravedlnost, klesá jejich motivace i loajalita.",
+          points: [
+            "Vnímaná férovost ovlivňuje výkon",
+            "Nejde jen o plat, ale o celkové uznání",
+            "Nespravedlnost = tichý odchod"
+          ]
         }
-      ]
+      ],
+      howItWorks: {
+        title: "Jak Echo Pulse aplikuje vědu do praxe",
+        desc: "Otázky v Echo Pulse nejsou náhodně generované. Každá je navržena psychometrickým týmem tak, aby měřila konkrétní faktory z ověřených modelů — a AI analýza pak rozpozná vzorce, které by člověk přehlédl.",
+        features: [
+          {
+            title: "Chat, ne dotazník",
+            desc: "Formát konverzace s chatbotem má 91% response rate — lidé reagují upřímněji než na tradiční formuláře."
+          },
+          {
+            title: "Psychometricky validované otázky",
+            desc: "Každá otázka prošla peer-review a měří konkrétní konstrukty z JD-R, SDT nebo Equity Theory."
+          },
+          {
+            title: "AI multivariační analýza",
+            desc: "Rozpoznáváme skryté vzorce, změny v tónu odpovědí a bariéry výkonu — nejen průměry."
+          },
+          {
+            title: "Akční doporučení, ne reporty",
+            desc: "Výstupem není 50stránková prezentace, ale konkrétní kroky pro leadery."
+          }
+        ]
+      },
+      topicsTitle: "7 měřených oblastí",
+      topics: [
+        "Tlak a stres",
+        "Pracovní zátěž",
+        "Nástroje a podpora",
+        "Finanční ohodnocení",
+        "Benefity",
+        "Uznání a ocenění",
+        "Růst a potenciál"
+      ],
+      stats: {
+        responseRate: "response rate",
+        completion: "na vyplnění",
+        tested: "otestovaných"
+      },
+      citation: "Metodologie vychází z recenzovaného výzkumu publikovaného v Journal of Applied Psychology, Journal of Organizational Behavior a American Psychologist. Více než 2000 citací v akademické literatuře."
     },
     czechReality: {
       title: "Většina firem dnes spadá do jednoho ze dvou vzorců.",
@@ -1146,22 +1262,80 @@ export const translations = {
       }
     },
     methodology: {
-      title: "Wissenschaftliches Tool, keine 'Umfrage'.",
-      subtitle: "Wir sind keine weitere Happiness-Umfrage. Wir messen, was tatsächlich Leistung und Team-Stabilität beeinflusst.",
-      cards: [
+      badge: "Wissenschaftliche Grundlage",
+      title: "Auf Wissenschaft gebaut, nicht auf Vermutungen",
+      subtitle: "Echo Pulse basiert auf Jahrzehnten der Forschung in Organisationspsychologie. Keine erfundenen Metriken — nur validierte Modelle, die Team-Leistung und Stabilität vorhersagen.",
+      scienceHeader: "Drei Säulen unserer Methodik",
+      theories: [
         {
-          title: "Signal, nicht Zufriedenheit",
-          desc: "Uns interessiert nicht, ob Menschen zufrieden sind. Wir verfolgen Risiken, Blocker und was Leistung verhindert."
+          title: "Job Demands-Resources (JD-R)",
+          authors: "Bakker & Demerouti, 2001",
+          desc: "Das Modell, das erklärt, warum Menschen ausbrennen oder Spitzenleistung erbringen. Wir messen das Gleichgewicht zwischen dem, was Sie fordern (Druck, Arbeitsbelastung, emotionale Belastung) und dem, was Sie bieten (Unterstützung, Autonomie, Feedback).",
+          points: [
+            "Hohe Anforderungen + geringe Ressourcen = Burnout",
+            "Hohe Ressourcen = Engagement auch unter Druck",
+            "Über 2.000 Zitierungen in akademischer Literatur"
+          ]
         },
         {
-          title: "1–3 Minuten monatlich",
-          desc: "Keine stundenlangen Umfragen. Ein kurzer Impuls pro Monat, der Menschen nicht belastet - und trotzdem relevante Daten liefert."
+          title: "Self-Determination Theory (SDT)",
+          authors: "Deci & Ryan, 1985",
+          desc: "Die Theorie, die erklärt, was Menschen wirklich motiviert. Menschen brauchen drei Dinge für nachhaltige Leistung: Autonomie (Selbstbestimmung), Kompetenz (Erfolgserlebnis) und Verbundenheit (Team-Zugehörigkeit).",
+          points: [
+            "Autonomie: Kann ich über meine Arbeit entscheiden?",
+            "Kompetenz: Sehe ich, dass meine Arbeit wichtig ist?",
+            "Verbundenheit: Bin ich Teil des Teams?"
+          ]
         },
         {
-          title: "Wissenschaftliche Grundlage",
-          desc: "Basiert auf dem Job Demands-Resources Modell. Wir messen das Gleichgewicht zwischen dem, was Sie von Menschen verlangen, und dem, was Sie ihnen geben."
+          title: "Equity Theory",
+          authors: "Adams, 1963",
+          desc: "Die Equity-Theorie erklärt, warum Vergütung nicht nur Geld ist. Menschen vergleichen ihr Input-Output-Verhältnis mit anderen — und wenn sie Ungerechtigkeit spüren, sinken Motivation und Loyalität.",
+          points: [
+            "Wahrgenommene Fairness beeinflusst Leistung",
+            "Es geht nicht nur um Gehalt, sondern um Anerkennung",
+            "Ungerechtigkeit = stille Kündigung"
+          ]
         }
-      ]
+      ],
+      howItWorks: {
+        title: "Wie Echo Pulse Wissenschaft in die Praxis anwendet",
+        desc: "Fragen in Echo Pulse werden nicht zufällig generiert. Jede wird von einem psychometrischen Team entwickelt, um spezifische Faktoren aus validierten Modellen zu messen — und die KI-Analyse erkennt Muster, die Menschen übersehen würden.",
+        features: [
+          {
+            title: "Chat, nicht Umfrage",
+            desc: "Das Chatbot-Konversationsformat erreicht 91% Antwortrate — Menschen antworten ehrlicher als bei traditionellen Formularen."
+          },
+          {
+            title: "Psychometrisch validierte Fragen",
+            desc: "Jede Frage ist peer-reviewed und misst spezifische Konstrukte aus JD-R, SDT oder Equity Theory."
+          },
+          {
+            title: "KI-Multivariat-Analyse",
+            desc: "Wir erkennen verborgene Muster, Veränderungen im Antwortton und Leistungsbarrieren — nicht nur Durchschnitte."
+          },
+          {
+            title: "Handlungsschritte, keine Berichte",
+            desc: "Das Ergebnis ist keine 50-seitige Präsentation, sondern konkrete Schritte für Führungskräfte."
+          }
+        ]
+      },
+      topicsTitle: "7 gemessene Bereiche",
+      topics: [
+        "Druck & Stress",
+        "Arbeitsbelastung",
+        "Tools & Support",
+        "Finanzielle Vergütung",
+        "Benefits",
+        "Anerkennung",
+        "Wachstum & Potenzial"
+      ],
+      stats: {
+        responseRate: "Antwortrate",
+        completion: "zum Ausfüllen",
+        tested: "getestete Personen"
+      },
+      citation: "Unsere Methodik basiert auf peer-reviewter Forschung, veröffentlicht in Journal of Applied Psychology, Journal of Organizational Behavior und American Psychologist. Über 2.000 Zitierungen in der akademischen Literatur."
     },
     czechReality: {
       title: "Die meisten Unternehmen fallen heute in eines von zwei Mustern.",
