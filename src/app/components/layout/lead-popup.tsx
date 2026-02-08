@@ -134,14 +134,20 @@ export function LeadPopup() {
                     {t.leadPopup.successMessage}
                   </p>
 
-                  <a
-                    href="/ebooks/lide-odchazeji-z-dobrych-firem.pdf"
-                    download
+                  <button
+                    onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = '/ebooks/lide-odchazeji-z-dobrych-firem.pdf';
+                      link.download = 'Lidé odcházejí i z dobrých firem.pdf';
+                      document.body.appendChild(link);
+                      link.click();
+                      document.body.removeChild(link);
+                    }}
                     className="inline-flex items-center justify-center gap-2 w-full h-11 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg transition-colors text-[14px]"
                   >
                     <Download className="w-4 h-4" />
                     {t.leadPopup.downloadButton}
-                  </a>
+                  </button>
 
                   <p className="text-xs text-brand-text-muted mt-3 flex items-center justify-center gap-1.5">
                     <FileText className="w-3 h-3" />
