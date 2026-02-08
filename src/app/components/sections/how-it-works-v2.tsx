@@ -23,6 +23,7 @@ export function HowItWorksV2() {
       title: t.howItWorks?.steps?.step1?.title || "Connect",
       desc: t.howItWorks?.steps?.step1?.desc || "Integrate with your existing tools in minutes.",
       color: "from-violet-500 to-purple-500",
+      integrations: ["Slack", "Microsoft Teams", "Google Workspace", "API"],
     },
     {
       number: "02",
@@ -108,6 +109,7 @@ type StepCardProps = {
     title: string;
     desc: string;
     color: string;
+    integrations?: string[];
   };
   isLast: boolean;
 };
@@ -157,6 +159,18 @@ function StepCard({ step, isLast }: StepCardProps) {
       <p className="text-brand-text-secondary leading-relaxed max-w-xs">
         {step.desc}
       </p>
+      {step.integrations && (
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
+          {step.integrations.map((label) => (
+            <span
+              key={label}
+              className="text-[11px] font-semibold tracking-wide text-brand-text-muted uppercase border border-brand-border rounded-full px-2.5 py-1"
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

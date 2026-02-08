@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
-import { ArrowRight, Play, Sparkles, Shield, Clock, Check } from "lucide-react";
+import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 
 /**
@@ -25,9 +25,8 @@ export function CtaSectionV2() {
       headline: "Vaši lidé mluví.",
       headlineHighlight: "Slyšíte je?",
       subheadline: "Získejte jasný signál z vašeho týmu. Bez anonymních dotazníků, které nikdo nečte.",
-      primaryCta: "Začít zdarma",
-      secondaryCta: "Konzultace",
-      demoCta: "Přehrát demo",
+      primaryCta: "Domluvit ukázku – 30 minut, bez závazků",
+      demoCta: "Nebo se nejdřív podívejte na 3min ukázku →",
       trust: ["30denní trial", "Bez kreditky", "GDPR ready"],
     },
     en: {
@@ -35,9 +34,8 @@ export function CtaSectionV2() {
       headline: "Your people are talking.",
       headlineHighlight: "Are you listening?",
       subheadline: "Get clear signals from your team. Without anonymous surveys nobody reads.",
-      primaryCta: "Start free",
-      secondaryCta: "Book a call",
-      demoCta: "Watch demo",
+      primaryCta: "Book a Demo — 30 minutes, no commitment",
+      demoCta: "Or watch the 3-minute demo first →",
       trust: ["30-day trial", "No credit card", "GDPR ready"],
     },
     de: {
@@ -45,9 +43,8 @@ export function CtaSectionV2() {
       headline: "Ihre Mitarbeiter sprechen.",
       headlineHighlight: "Hören Sie zu?",
       subheadline: "Erhalten Sie klare Signale von Ihrem Team. Ohne anonyme Umfragen, die niemand liest.",
-      primaryCta: "Kostenlos starten",
-      secondaryCta: "Gespräch buchen",
-      demoCta: "Demo ansehen",
+      primaryCta: "Demo buchen — 30 Minuten, unverbindlich",
+      demoCta: "Oder sehen Sie sich zuerst die 3-Min-Demo an →",
       trust: ["30 Tage Test", "Keine Kreditkarte", "DSGVO-konform"],
     },
   };
@@ -123,45 +120,29 @@ export function CtaSectionV2() {
             {c.subheadline}
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col items-center justify-center gap-4 mb-12"
           >
-            {/* Primary CTA */}
-            <a
-              href="https://app.behavera.com/echo-pulse/join"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center min-w-[220px] h-14 px-8 rounded-xl bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
+            <Button 
+              onClick={openBooking}
+              size="lg"
+              className="min-w-[240px] h-14 px-8 bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
             >
               {c.primaryCta}
               <ArrowRight className="w-4 h-4 ml-2" />
-            </a>
-            
-            {/* Secondary CTA */}
-            <Button 
-              onClick={openBooking}
-              variant="outline"
-              size="lg"
-              className="min-w-[180px] h-14 border-white/30 hover:border-white/50 text-white hover:bg-white/10 rounded-xl"
-            >
-              {c.secondaryCta}
             </Button>
-            
-            {/* Demo CTA */}
-            <Button 
+            <button
+              type="button"
               onClick={openVideo}
-              variant="ghost"
-              size="lg"
-              className="h-14 text-white/70 hover:text-white hover:bg-white/10 rounded-xl"
+              className="text-white/70 hover:text-white underline underline-offset-4 transition-colors"
             >
-              <Play className="w-4 h-4 mr-2 fill-current" />
               {c.demoCta}
-            </Button>
+            </button>
           </motion.div>
 
           {/* Trust Indicators */}

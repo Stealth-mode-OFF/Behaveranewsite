@@ -13,7 +13,7 @@ import { HowItWorksV2 } from "@/app/components/sections/how-it-works-v2";
 import { DashboardPreviewV2 } from "@/app/components/sections/dashboard-preview-v2";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
 import { RoleSelectionV2 } from "@/app/components/sections/role-selection-v2";
-import { MethodologySection } from "@/app/components/sections/methodology";
+import { StickyMobileCta } from "@/app/components/layout/sticky-mobile-cta";
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
 import { useLanguage } from "@/app/LanguageContext";
@@ -56,14 +56,6 @@ const LeadCaptureSection = lazyNamed(
   () => import("@/app/components/sections/lead-capture"),
   "LeadCaptureSection"
 );
-const CoreTeamSection = lazyNamed(
-  () => import("@/app/components/sections/core-team"),
-  "CoreTeamSection"
-);
-const BuiltWithSection = lazyNamed(
-  () => import("@/app/components/sections/built-with"),
-  "BuiltWithSection"
-);
 
 export function LandingPage() {
   const { language } = useLanguage();
@@ -96,59 +88,47 @@ export function LandingPage() {
         {/* 4. SOLUTION — Show simplicity */}
         <HowItWorksV2 />
         
-        {/* 5. VISUAL PROOF — See it in action */}
-        <DashboardPreviewV2 />
-        
-        {/* 6. WHAT WE MEASURE — Scientific backing */}
-        <SignalRadar />
-        
-        {/* 7. PERSONALIZATION — Role-based value proposition */}
-        <RoleSelectionV2 />
-        
-        {/* 8. AUTHORITY — Research foundation */}
-        <MethodologySection />
-        
-        {/* 9. TEAM — Build trust with real people */}
-        <LazySection>
-          <CoreTeamSection />
-        </LazySection>
-        
-        {/* 10. SOCIAL PROOF — Real results */}
+        {/* 5. SOCIAL PROOF — Real results */}
         <LazySection>
           <CaseStudiesSection />
         </LazySection>
-        
-        {/* 11. OBJECTION HANDLING — Address concerns */}
-        <LazySection>
-          <FAQ />
-        </LazySection>
-        
-        {/* 12. INVESTMENT — Pricing with trust signals */}
+
+        {/* 6. VISUAL PROOF — See it in action */}
+        <DashboardPreviewV2 />
+
+        {/* 7. WHAT WE MEASURE — Scientific backing */}
+        <SignalRadar />
+
+        {/* 8. PERSONALIZATION — Role-based value proposition */}
+        <RoleSelectionV2 />
+
+        {/* 9. INVESTMENT — Pricing with trust signals */}
         <LazySection>
           <PurchaseSection />
         </LazySection>
-        
-        {/* 13. COMPLIANCE — GDPR, data handling */}
+
+        {/* 10. OBJECTION HANDLING — Address concerns */}
+        <LazySection>
+          <FAQ />
+        </LazySection>
+
+        {/* 11. COMPLIANCE — GDPR, data handling */}
         <LazySection>
           <TrustCenter />
         </LazySection>
-        
-        {/* 14. FINAL CTA — Clear next step */}
+
+        {/* 12. FINAL CTA — Clear next step */}
         <LazySection>
           <CtaSection />
         </LazySection>
-        
-        {/* 15. SOFT CAPTURE — E-book for undecided */}
+
+        {/* 13. SOFT CAPTURE — E-book for undecided */}
         <LazySection>
           <LeadCaptureSection />
         </LazySection>
-        
-        {/* 16. BUILT WITH — Tech stack transparency */}
-        <LazySection>
-          <BuiltWithSection />
-        </LazySection>
       </main>
       <Footer />
+      <StickyMobileCta />
 
       {/* Modals */}
       <BookingModal />
