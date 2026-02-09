@@ -711,8 +711,7 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── System Boundaries ── */}
-        <section className="py-24 bg-gradient-to-br from-brand-primary via-brand-primary-hover to-brand-background-dark relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-brand-accent/15 via-transparent to-transparent" />
+        <section className="py-24 bg-brand-primary relative overflow-hidden">
 
           <div className="container mx-auto px-4 max-w-5xl relative">
             <motion.div
