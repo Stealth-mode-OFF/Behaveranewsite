@@ -1,53 +1,73 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { CmsService } from './cms-service';
-import { adminEnabled } from './config';
+import { supabase } from './supabase';
+import type { User } from '@supabase/supabase-js';
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  login: (password: string) => Promise<boolean>;
-  logout: () => void;
+  user: User | null;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  logout: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
-  login: async () => false,
-  logout: () => {},
+  user: null,
+  isLoading: true,
+  login: async () => ({ success: false }),
+  logout: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!adminEnabled) {
-      setIsAuthenticated(false);
-      localStorage.removeItem('admin_auth');
+    if (!supabase) {
+      setIsLoading(false);
       return;
     }
-    const storedAuth = localStorage.getItem('admin_auth');
-    if (storedAuth === 'true') {
-      setIsAuthenticated(true);
-    }
+
+    // Check existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setIsLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const login = async (password: string) => {
-    if (!adminEnabled) return false;
-    const success = await CmsService.login(password);
-    if (success) {
-      setIsAuthenticated(true);
-      localStorage.setItem('admin_auth', 'true');
+  const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+    if (!supabase) return { success: false, error: 'Supabase is not configured' };
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      return { success: false, error: error.message };
     }
-    return success;
+    return { success: true };
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem('admin_auth');
+  const logout = async () => {
+    if (!supabase) return;
+    await supabase.auth.signOut();
+    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{
+      isAuthenticated: !!user,
+      user,
+      isLoading,
+      login,
+      logout,
+    }}>
       {children}
     </AuthContext.Provider>
   );

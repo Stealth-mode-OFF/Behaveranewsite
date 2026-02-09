@@ -1,6 +1,6 @@
 import { BlogPost, CaseStudy, Author } from './types';
-import { createClient } from '@supabase/supabase-js';
-import { adminEnabled, adminPassword, supabaseAnonKey, supabaseUrl } from './config';
+import { supabase as supabaseClient } from './supabase';
+import { adminEnabled } from './config';
 
 type AuthorRow = {
   id: string;
@@ -37,10 +37,7 @@ type CaseStudyRow = {
   status: CaseStudy["status"];
 };
 
-// Initialize Supabase
-const supabaseClient = supabaseUrl && supabaseAnonKey
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null;
+// Supabase client is imported from shared module
 
 const resolveAuthor = (row?: AuthorRow | null): Author => {
   if (!row) return MOCK_AUTHORS[0];
@@ -609,10 +606,5 @@ export const CmsService = {
     }
   },
 
-  // Auth
-  login: async (password: string): Promise<boolean> => {
-      if (!adminEnabled) return false;
-      if (!adminPassword) return false;
-      return password === adminPassword;
-  }
+  // Auth is handled by Supabase Auth via auth-context.tsx
 };

@@ -4,24 +4,9 @@ export const translations = {
   en: {
     radar: {
       badge: "Complete overview",
-      title: "9 areas",
+      title: "8 areas",
       titleHighlight: "that determine team stability",
-      subtitle: "Echo Pulse continuously monitors 9 key areas of work life. No unnecessary noise - just signals that tell you where things are stuck.",
-      summary: "From mood and stress to recognition and growth - we measure what matters.",
-      accordionLabel: "Show all 9 signals →",
-      coreInsightLabel: "Key signal",
-      methodology: "Built on Job Demands-Resources (JD-R), Self-Determination Theory, and Equity Theory research.",
-      signals: {
-        mood: { title: "How people feel", question: "How is the team actually feeling?", metrics: ["Mood", "Energy", "Stability"] },
-        stress: { title: "Stress & Pressure", question: "Is pressure driving performance or burnout?", metrics: ["Chronic Stress", "Spillover", "Recovery"] },
-        workload: { title: "Capacity & Load", question: "Are demands matching capacity?", metrics: ["Cognitive Load", "Priorities", "Pace"] },
-        tools: { title: "Enablement", question: "Do they have what they need to win?", metrics: ["Leadership Support", "Tools", "Helpers"] },
-        recognition: { title: "Recognition", question: "Is good work being seen?", metrics: ["Visibility", "Appreciation", "Impact"] },
-        growth: { title: "Potential", question: "Are we using their full capability?", metrics: ["Career Growth", "Challenges", "Stagnation"] },
-        rewards: { title: "Fairness", question: "Is the exchange perceived as fair?", metrics: ["Fairness", "Transparency", "Bonuses"] },
-        benefits: { title: "Benefits", question: "Do perks actually matter?", metrics: ["Relevance", "Utility", "ROI"] },
-        evp: { title: "Values & Loyalty", question: "Do we walk the talk?", metrics: ["Pride", "Alignment", "Promise"] }
-      }
+      subtitle: "Echo Pulse continuously monitors 8 key areas of work life. No unnecessary noise - just signals that tell you where things are stuck."
     },
     header: {
       product: "Product",
@@ -52,29 +37,30 @@ export const translations = {
       },
     },
     problems: {
-      badge: "Attrition cost",
+      badge: "Turnover cost",
       title: "People don't leave overnight.",
       subtitle: "The decision to leave takes months to ripen. The problem is you usually don't know - until you get the resignation.",
       items: [
         {
           title: "UNWANTED ATTRITION",
           value: "6–9× salary",
-          desc: "Replacing one employee costs 6–9× their monthly salary on average. Senior roles can reach up to 24×. [Source: SHRM, Gallup]",
+          desc: "Replacing one employee costs 6–9× their monthly salary on average. Senior roles can reach up to 24×. That's not just hiring costs - it's lost knowledge, broken team dynamics, and months of onboarding before the new hire reaches full productivity. Save €50k by retaining just one key employee. [Source: SHRM, Gallup]",
         },
         {
           title: "PERFORMANCE LOSS",
           value: "–21%",
-          desc: "Actively disengaged teams show 21% lower profitability and significantly lower productivity. [Source: Gallup State of the Workplace]",
+          desc: "Actively disengaged teams show 21% lower profitability and significantly lower productivity. Engaged employees are up to 20% more productive at work. But you can't fix what you can't see - and most companies don't see until exit interviews, when it's already too late. [Source: Gallup State of the Workplace]",
         },
         {
           title: "MANAGER IMPACT",
           value: "69%",
-          desc: "69% of employee experience is shaped by their direct manager. Your message is filtered through them. [Source: Gallup]",
+          desc: "69% of employee experience is shaped by their direct manager. Your message is filtered through them. When a leader lacks visibility into what's blocking their team, quiet quitting and burnout spread silently - and you see 59% more people leave. [Source: Gallup]",
         },
       ],
       ctaBox: {
+        label: "System Alert",
         title: "Intuition isn't enough for this.",
-        desc: "You need continuous data. Otherwise you're just guessing why people lose motivation."
+        desc: "You need continuous data from the field. Otherwise you're just guessing why people lose motivation - and by the time you notice, talent is already walking out the door."
       }
     },
     howItWorks: {
@@ -102,63 +88,6 @@ export const translations = {
           desc: "People know their responses won't be linked to their name. That's why they answer honestly."
         }
       }
-    },
-    methodology: {
-      badge: "Why It Works",
-      title: "We Ask What Actually Drives Performance",
-      subtitle: "We don't wait for exit interviews. Every month we learn what keeps people in your company — and what's quietly pushing them toward the door.",
-      
-      insightTitle: "People Don't Leave Because of One Thing",
-      insightDesc: "Departure is always a combination: overwork + feeling undervalued + unclear growth. That's why we don't measure 'satisfaction' with one number. We track 7 key areas that science has proven predict performance and turnover.",
-      proofPoints: [
-        "50,000+ people tested",
-        "91% response rate",
-        "Scientifically validated"
-      ],
-      
-      howItWorksLabel: "How It Works",
-      howItWorksTitle: "3 Minutes a Month That Save You Hundreds of Thousands",
-      steps: [
-        {
-          num: "1",
-          title: "Quick Chat",
-          desc: "Employee gets 5 questions in a chat format. Takes 3 minutes, 91% of people complete it."
-        },
-        {
-          num: "2",
-          title: "AI Analysis",
-          desc: "The system finds patterns across responses. We see what HR would never catch manually."
-        },
-        {
-          num: "3",
-          title: "Clear Action",
-          desc: "Manager gets concrete recommendations. No 50-page reports."
-        }
-      ],
-      
-      topicsTitle: "7 Areas That Determine If People Stay",
-      topicsSubtitle: "Each area directly impacts whether someone stays and performs — or quietly burns out.",
-      topics: [
-        { name: "Pressure", why: "Too much = burnout" },
-        { name: "Workload", why: "Imbalance = frustration" },
-        { name: "Support", why: "Missing = hopelessness" },
-        { name: "Money", why: "Unfair = demotivation" },
-        { name: "Benefits", why: "Empty = feeling unvalued" },
-        { name: "Recognition", why: "None = why bother" },
-        { name: "Growth", why: "Stagnation = exit" }
-      ],
-      
-      scienceTitle: "Backed by Science, Not Trends",
-      scienceDesc: "Echo Pulse is built on research with thousands of citations: Job Demands-Resources model (what drains vs. energizes), Self-Determination Theory (intrinsic motivation), and Equity Theory (fairness of rewards). These aren't buzzwords — they're models that predict behavior.",
-      scienceTags: ["JD-R Model", "SDT", "Equity Theory"],
-      
-      stats: {
-        responseRate: "complete it",
-        completion: "monthly",
-        tested: "people tested"
-      },
-      
-      citation: "Methodology based on Bakker & Demerouti (2001), Deci & Ryan (1985), Adams (1963). Published in Journal of Applied Psychology, Journal of Organizational Behavior."
     },
     czechReality: {
       title: "Most companies today fall into one of two patterns.",
@@ -293,7 +222,7 @@ export const translations = {
       companySizeLabel: "Company size",
       employeesLabel: "employees",
       estimatedLabel: "Estimated investment",
-      perMonthLabel: "CZK / mo",
+      perMonthLabel: "/ mo",
       priceCapped: "Price capped at {cap} employees",
       basePriceLabel: "Base price",
       vatLabel: "VAT (21%)",
@@ -307,16 +236,43 @@ export const translations = {
       guaranteeShort: "Final scope and price are confirmed after the intro call."
     },
     trustCenter: {
-      badge: "Trust center",
-      title: "Data security and privacy",
-      subtitle: "We explain transparently how we process personal data, what responsibilities we take, and how we protect confidential information.",
-      highlights: [
-        "Personal data processing follows GDPR and applicable legislation.",
-        "Data controller: Behavera s.r.o., Křižíkova 148/34, Karlín, Prague 8.",
-        "Data protection contact: gdpr@behavera.com.",
-        "Aggregated statistics are anonymized and do not contain personal data.",
-        "Data subjects have rights to access, portability, rectification, deletion, and withdrawal of consent."
+      badge: "Trust Center",
+      title: "Your data is safe with us",
+      subtitle: "We handle sensitive people data. That's why security isn't just a feature - it's the foundation of everything we do. Audit-ready from day one.",
+      guarantees: [
+        {
+          icon: "server",
+          title: "Data stays in the EU",
+          desc: "All data is stored exclusively on servers within the European Union. No transfers outside EU/EEA.",
+          detail: "Frankfurt (AWS eu-central-1), AES-256 encryption at rest and in transit"
+        },
+        {
+          icon: "eye",
+          title: "100% employee anonymity",
+          desc: "Managers never see individual responses. Results are shown only in aggregate form from 5+ people.",
+          detail: "Differential privacy - individuals cannot be re-identified"
+        },
+        {
+          icon: "lock",
+          title: "GDPR by design",
+          desc: "Legitimate interest under Art. 6(1)(f) GDPR. No employee consent required - processing goes via the employer.",
+          detail: "DPIA completed, DPO available, data subject rights fully covered"
+        },
+        {
+          icon: "users",
+          title: "Audit-ready compliance",
+          desc: "Complete documentation: processing records, DPIA, data processing agreements, technical measures.",
+          detail: "Full audit trail of all access, contractual SLA guarantee 99.9%"
+        }
       ],
+      complianceBadges: [
+        { label: "GDPR", sub: "Full compliance" },
+        { label: "ISO 27001", sub: "Security standard" },
+        { label: "SOC 2 Type II", sub: "Audit certification" },
+        { label: "Encryption", sub: "AES-256 / TLS 1.3" }
+      ],
+      legalDocsTitle: "Legal documents",
+      dpoLabel: "Data Protection Officer:",
       privacyFallbackTitle: "Privacy policy",
       termsFallbackTitle: "Terms and conditions",
       contentFallback: "Content coming soon."
@@ -324,7 +280,7 @@ export const translations = {
     cta: {
       title: "Don't wait for the next resignation.",
       subtitle: "Blindness costs companies millions annually in lost productivity and hiring. Regain control in 48 hours.",
-      primary: "Schedule Consultation",
+      primary: "Book a Demo",
       demoButton: "Try the demo",
       secondary: "or call us",
       secondaryLink: "+420 605 839 456",
@@ -359,15 +315,6 @@ export const translations = {
       industryLabel: "Industry",
       challengeTitle: "The Challenge",
       solutionTitle: "The Solution"
-    },
-    research: {
-      seoTitle: "Echo Pulse system architecture",
-      seoDescription: "Evidence base and methodology behind the early-warning system.",
-      seoKeywords: "organizational psychology, JD-R model, predictive analytics, burnout detection",
-      unavailableTitle: "Research content is available in Czech",
-      unavailableBody: "This page is currently maintained in Czech only. Switch to Czech to view the full research content.",
-      switchToCz: "Switch to Czech",
-      backToHome: "Back to home"
     },
     booking: {
         title: "Schedule Consultation",
@@ -564,24 +511,9 @@ export const translations = {
   cz: {
     radar: {
       badge: "Kompletní přehled",
-      title: "9 oblastí,",
+      title: "8 oblastí,",
       titleHighlight: "které rozhodují o stabilitě týmu",
-      subtitle: "Echo Pulse průběžně sleduje 9 klíčových oblastí pracovního života. Bez zbytečného šumu - jen signály, které vám řeknou, kde to drhne.",
-      summary: "Od nálady a stresu po uznání a růst - měříme to, na čem záleží.",
-      accordionLabel: "Zobrazit všech 9 signálů →",
-      coreInsightLabel: "Klíčový signál",
-      methodology: "Postaveno na výzkumech Job Demands-Resources (JD-R), Self-Determination Theory a Equity Theory.",
-      signals: {
-        mood: { title: "Nálada v týmu", question: "Jak se lidé doopravdy cítí?", metrics: ["Pohoda", "Energie", "Motivace"] },
-        stress: { title: "Stres a tlak", question: "Pomáhá tlak výkonu, nebo lidi vypaluje?", metrics: ["Chronický stres", "Přetížení", "Odpočinek"] },
-        workload: { title: "Vytížení", question: "Stíhají to, co mají?", metrics: ["Zátěž", "Priority", "Tempo"] },
-        tools: { title: "Podpora", question: "Mají, co potřebují, aby mohli pracovat?", metrics: ["Nástroje", "Zdroje", "Překážky"] },
-        recognition: { title: "Uznání", question: "Ví lidé, že jejich práce má smysl?", metrics: ["Zpětná vazba", "Ocenění", "Dopad"] },
-        growth: { title: "Rozvoj", question: "Využíváme potenciál lidí naplno?", metrics: ["Autonomie", "Výzvy", "Růst"] },
-        rewards: { title: "Odměňování", question: "Berou lidé odměnu jako férovou?", metrics: ["Mzda", "Spravedlnost", "Transparentnost"] },
-        benefits: { title: "Benefity", question: "Používají lidé benefity, které nabízíme?", metrics: ["Využití", "Spokojenost", "Hodnota"] },
-        evp: { title: "Hodnoty firmy", question: "Děláme to, co říkáme?", metrics: ["Důvěra", "Soulad", "Hrdost"] }
-      }
+      subtitle: "Echo Pulse průběžně sleduje 8 klíčových oblastí pracovního života. Bez zbytečného šumu - jen signály, které vám řeknou, kde to drhne."
     },
     header: {
       product: "Produkt",
@@ -619,22 +551,23 @@ export const translations = {
         {
           title: "NECHTĚNÁ FLUKTUACE",
           value: "6–9× mzda",
-          desc: "Nahradit jednoho zaměstnance stojí průměrně 6–9× jeho měsíční mzdu. U seniorních pozic až 24×. [Zdroj: SHRM, Gallup]",
+          desc: "Nahradit jednoho zaměstnance stojí průměrně 6–9× jeho měsíční mzdu. U seniorních pozic až 24×. Nejde jen o náklady na nábor - je to ztráta know-how, rozpadlá dynamika týmu a měsíce, než se nový člověk dostane na plný výkon. Udržením jednoho klíčového zaměstnance ušetříte v průměru 1,2 mil. Kč. [Zdroj: SHRM, Gallup]",
         },
         {
           title: "POKLES VÝKONU",
           value: "–21%",
-          desc: "Aktivně neangažované týmy mají o 21 % nižší ziskovost a výrazně nižší produktivitu. [Zdroj: Gallup State of the Workplace]",
+          desc: "Aktivně neangažované týmy mají o 21 % nižší ziskovost a výrazně nižší produktivitu. Angažovaní zaměstnanci jsou až o 20 % produktivnější. Jenže problém nevidíte - a většina firem se to dozví až na exit interview, kdy je pozdě cokoliv měnit. [Zdroj: Gallup State of the Workplace]",
         },
         {
           title: "VLIV MANAŽERA",
           value: "69%",
-          desc: "69 % zaměstnanecké zkušenosti formuje přímý nadřízený. Váš vzkaz prochází přes něj. [Zdroj: Gallup]",
+          desc: "69 % zaměstnanecké zkušenosti formuje přímý nadřízený. Váš vzkaz prochází přes něj. Když manažer nemá přehled o tom, co jeho lidi brzdí, quiet quitting a vyhoření se šíří potichu - a odchází o 59 % víc lidí, než je nutné. [Zdroj: Gallup]",
         },
       ],
       ctaBox: {
+        label: "Systémové varování",
         title: "Na tohle intuice nestačí.",
-        desc: "Potřebujete průběžná data. Jinak jen hádáte, proč lidé ztrácejí motivaci."
+        desc: "Potřebujete průběžná data z terénu. Jinak jen hádáte, proč lidé ztrácejí motivaci - a než si toho všimnete, talent už je za dveřmi."
       }
     },
     howItWorks: {
@@ -662,63 +595,6 @@ export const translations = {
           desc: "Lidé vědí, že jejich odpovědi nikdo nespojí s jejich jménem. Proto odpovídají upřímně."
         }
       }
-    },
-    methodology: {
-      badge: "Proč to funguje",
-      title: "Ptáme se na to, co skutečně ovlivňuje výkon",
-      subtitle: "Nečekáme na exit interview. Každý měsíc zjistíme, co lidi drží ve firmě — a co je tiše blíží k odchodu.",
-      
-      insightTitle: "Člověk neodchází kvůli jedné věci",
-      insightDesc: "Odchod je vždy kombinace faktorů: přetížení + pocit nedoceněnosti + nejasný růst. Proto neměříme „spokojenost" jedním číslem. Sledujeme 7 klíčových oblastí, které věda prokázala jako prediktory výkonu a fluktuace.",
-      proofPoints: [
-        "50 000+ lidí otestováno",
-        "91% response rate",
-        "Vědecky ověřeno"
-      ],
-      
-      howItWorksLabel: "Jak to funguje",
-      howItWorksTitle: "3 minuty měsíčně, které vám ušetří statisíce",
-      steps: [
-        {
-          num: "1",
-          title: "Krátký chat",
-          desc: "Zaměstnanec dostane 5 otázek v chatovém formátu. Trvá 3 minuty, vyplní to 91 % lidí."
-        },
-        {
-          num: "2",
-          title: "AI analýza",
-          desc: "Systém hledá vzorce napříč odpověďmi. Vidíme, co HR manuálně neodhalí."
-        },
-        {
-          num: "3",
-          title: "Jasná akce",
-          desc: "Manažer dostane konkrétní doporučení. Žádné 50stránkové reporty."
-        }
-      ],
-      
-      topicsTitle: "7 oblastí, které rozhodují o setrvání",
-      topicsSubtitle: "Každá oblast má přímý vliv na to, jestli člověk zůstane a podá výkon — nebo tiše vyhoří.",
-      topics: [
-        { name: "Tlak", why: "Příliš = vyhoření" },
-        { name: "Zátěž", why: "Nerovnováha = frustrace" },
-        { name: "Podpora", why: "Chybí = beznaděj" },
-        { name: "Peníze", why: "Neférovost = demotivace" },
-        { name: "Benefity", why: "Prázdné = nedocenění" },
-        { name: "Uznání", why: "Žádné = proč se snažit" },
-        { name: "Růst", why: "Stagnace = odchod" }
-      ],
-      
-      scienceTitle: "Podloženo vědou, ne módními trendy",
-      scienceDesc: "Echo Pulse vychází z výzkumů s tisíci citacemi v akademické literatuře: Job Demands-Resources model (co vyčerpává vs. co nabíjí), Self-Determination Theory (vnitřní motivace) a Equity Theory (spravedlnost odměňování). Nejsou to buzzwordy — jsou to modely, které předpovídají chování.",
-      scienceTags: ["JD-R Model", "SDT", "Equity Theory"],
-      
-      stats: {
-        responseRate: "lidí vyplní",
-        completion: "měsíčně stačí",
-        tested: "otestovaných"
-      },
-      
-      citation: "Metodologie založena na Bakker & Demerouti (2001), Deci & Ryan (1985), Adams (1963). Publikováno v Journal of Applied Psychology, Journal of Organizational Behavior."
     },
     czechReality: {
       title: "Většina firem dnes spadá do jednoho ze dvou vzorců.",
@@ -868,15 +744,42 @@ export const translations = {
     },
     trustCenter: {
       badge: "Trust Center",
-      title: "Bezpečnost práce s daty",
-      subtitle: "Transparentně popisujeme, jak nakládáme s osobními údaji, jaké povinnosti přebíráme a jak chráníme důvěrné informace.",
-      highlights: [
-        "Zpracování osobních údajů probíhá v souladu s GDPR a platnými právními předpisy.",
-        "Správcem údajů je Behavera s.r.o., Křižíkova 148/34, Karlín, Praha 8.",
-        "Pověřenec pro ochranu osobních údajů: gdpr@behavera.com.",
-        "Agregované statistiky jsou anonymizované a neobsahují osobní údaje.",
-        "Subjekty údajů mají právo na přístup, přenos, opravu, výmaz a odvolání souhlasu."
+      title: "Vaše data jsou u nás v bezpečí",
+      subtitle: "Pracujeme s citlivými daty o lidech. Proto bezpečnost není jen funkce - je to základ všeho, co děláme. Připraveni na GDPR audit.",
+      guarantees: [
+        {
+          icon: "server",
+          title: "Data zůstávají v EU",
+          desc: "Veškerá data jsou uložena výhradně na serverech v Evropské unii. Žádný transfer mimo EU/EEA.",
+          detail: "Frankfurt (AWS eu-central-1), šifrování AES-256 at rest i in transit"
+        },
+        {
+          icon: "eye",
+          title: "100% anonymita zaměstnanců",
+          desc: "Manažeři nikdy nevidí individuální odpovědi. Výsledky se zobrazují pouze v agregované podobě od 5 lidí výše.",
+          detail: "Diferenciální privacita - nelze zpětně identifikovat jednotlivce"
+        },
+        {
+          icon: "lock",
+          title: "GDPR by design",
+          desc: "Oprávněný zájem dle čl. 6(1)(f) GDPR. Žádný souhlas zaměstnanců není potřeba - zpracování jde přes zaměstnavatele.",
+          detail: "DPIA zpracována, DPO k dispozici, práva subjektů plně zajištěna"
+        },
+        {
+          icon: "users",
+          title: "Připraveni na kontrolu ÚOOÚ",
+          desc: "Máme kompletní dokumentaci: záznamy o zpracování, DPIA, smlouvy o zpracování, technická opatření.",
+          detail: "Auditní trail všech přístupů, smluvní garance SLA 99.9%"
+        }
       ],
+      complianceBadges: [
+        { label: "GDPR", sub: "Plný soulad" },
+        { label: "ISO 27001", sub: "Bezpečnostní standard" },
+        { label: "SOC 2 Type II", sub: "Auditní certifikace" },
+        { label: "Šifrování", sub: "AES-256 / TLS 1.3" }
+      ],
+      legalDocsTitle: "Právní dokumenty",
+      dpoLabel: "Pověřenec pro ochranu osobních údajů:",
       privacyFallbackTitle: "Zásady ochrany osobních údajů",
       termsFallbackTitle: "Obchodní a produktové podmínky",
       contentFallback: "Obsah připravujeme."
@@ -919,15 +822,6 @@ export const translations = {
       industryLabel: "Odvětví",
       challengeTitle: "Výzva",
       solutionTitle: "Řešení"
-    },
-    research: {
-      seoTitle: "Architektura systému Echo Pulse",
-      seoDescription: "Detekční engine založený na JD-R Model, Self-Determination Theory a Affective Events Theory.",
-      seoKeywords: "organizational intelligence, predictive analytics, burnout detection, JD-R model",
-      unavailableTitle: "Obsah výzkumu je dostupný pouze česky",
-      unavailableBody: "Tuto stránku aktuálně udržujeme jen v češtině. Přepněte jazyk na češtinu pro zobrazení celého obsahu.",
-      switchToCz: "Přepnout do češtiny",
-      backToHome: "Zpět na hlavní stránku"
     },
     booking: {
         title: "Sjednat konzultaci",
@@ -1124,24 +1018,9 @@ export const translations = {
   de: {
     radar: {
       badge: "Kompletter Überblick",
-      title: "9 Bereiche,",
+      title: "8 Bereiche,",
       titleHighlight: "die über Team-Stabilität entscheiden",
-      subtitle: "Echo Pulse überwacht kontinuierlich 9 Schlüsselbereiche des Arbeitslebens. Kein unnötiges Rauschen - nur Signale, die zeigen, wo es hakt.",
-      summary: "Von Stimmung und Stress bis Anerkennung und Wachstum - wir messen, was zählt.",
-      accordionLabel: "Alle 9 Signale anzeigen →",
-      coreInsightLabel: "Schlüsselsignal",
-      methodology: "Basiert auf Job Demands-Resources (JD-R), Self-Determination Theory und Equity Theory Forschung.",
-      signals: {
-        mood: { title: "Wie sich Menschen fühlen", question: "Wie fühlt sich das Team wirklich?", metrics: ["Stimmung", "Energie", "Stabilität"] },
-        stress: { title: "Stress & Druck", question: "Treibt Druck Leistung oder Burnout?", metrics: ["Chronischer Stress", "Spillover", "Erholung"] },
-        workload: { title: "Kapazität & Last", question: "Passen Anforderungen zu Kapazitäten?", metrics: ["Kognitive Last", "Prioritäten", "Tempo"] },
-        tools: { title: "Befähigung", question: "Haben sie, was sie brauchen?", metrics: ["Führungssupport", "Tools", "Hilfsmittel"] },
-        recognition: { title: "Anerkennung", question: "Wird gute Arbeit gesehen?", metrics: ["Sichtbarkeit", "Wertschätzung", "Wirkung"] },
-        growth: { title: "Potenzial", question: "Nutzen wir ihre volle Fähigkeit?", metrics: ["Karriere", "Herausforderungen", "Stagnation"] },
-        rewards: { title: "Fairness", question: "Wird der Austausch als fair empfunden?", metrics: ["Fairness", "Transparenz", "Boni"] },
-        benefits: { title: "Benefits", question: "Zählen die Vorteile wirklich?", metrics: ["Relevanz", "Nutzen", "ROI"] },
-        evp: { title: "Werte & Loyalität", question: "Leben wir, was wir sagen?", metrics: ["Stolz", "Ausrichtung", "Versprechen"] }
-      }
+      subtitle: "Echo Pulse überwacht kontinuierlich 8 Schlüsselbereiche des Arbeitslebens. Kein unnötiges Rauschen - nur Signale, die zeigen, wo es hakt."
     },
     header: {
       product: "Produkt",
@@ -1179,22 +1058,23 @@ export const translations = {
         {
           title: "UNGEWOLLTE FLUKTUATION",
           value: "6–9× Monatsgehalt",
-          desc: "Der Ersatz einer Person kostet durchschnittlich 6–9× das Monatsgehalt. Bei Senior-Positionen bis zu 24×. [Quelle: SHRM, Gallup]",
+          desc: "Der Ersatz einer Person kostet durchschnittlich 6–9× das Monatsgehalt. Bei Senior-Positionen bis zu 24×. Das sind nicht nur Recruitingkosten - es ist verlorenes Know-how, zerstörte Teamdynamik und Monate, bis der Neue volle Leistung bringt. Halten Sie nur einen Schlüsselmitarbeiter und sparen Sie €50k. [Quelle: SHRM, Gallup]",
         },
         {
           title: "LEISTUNGSVERLUST",
           value: "–21%",
-          desc: "Aktiv unengagierte Teams zeigen 21 % geringere Profitabilität und deutlich niedrigere Produktivität. [Quelle: Gallup State of the Workplace]",
+          desc: "Aktiv unengagierte Teams zeigen 21 % geringere Profitabilität und deutlich niedrigere Produktivität. Engagierte Mitarbeiter sind bis zu 20 % produktiver. Aber was Sie nicht sehen, können Sie nicht beheben - und die meisten Unternehmen erfahren es erst im Exit-Interview, wenn es zu spät ist. [Quelle: Gallup State of the Workplace]",
         },
         {
           title: "MANAGER-EINFLUSS",
           value: "69%",
-          desc: "69 % der Employee Experience wird vom direkten Vorgesetzten geprägt. Ihre Botschaft wird durch ihn gefiltert. [Quelle: Gallup]",
+          desc: "69 % der Employee Experience wird vom direkten Vorgesetzten geprägt. Ihre Botschaft wird durch ihn gefiltert. Wenn eine Führungskraft keinen Einblick hat, breiten sich Quiet Quitting und Burnout still aus - und es gehen 59 % mehr Menschen als nötig. [Quelle: Gallup]",
         },
       ],
       ctaBox: {
+        label: "Systemwarnung",
         title: "Für das reicht Intuition nicht aus.",
-        desc: "Sie brauchen kontinuierliche Daten. Sonst raten Sie nur, warum Menschen die Motivation verlieren."
+        desc: "Sie brauchen kontinuierliche Daten aus dem Feld. Sonst raten Sie nur, warum Menschen die Motivation verlieren - und wenn Sie es bemerken, ist das Talent bereits zur Tür hinaus."
       }
     },
     howItWorks: {
@@ -1222,63 +1102,6 @@ export const translations = {
           desc: "Menschen wissen, dass ihre Antworten nicht mit ihrem Namen verknüpft werden. Deshalb antworten sie ehrlich."
         }
       }
-    },
-    methodology: {
-      badge: "Warum es funktioniert",
-      title: "Wir fragen, was wirklich die Leistung beeinflusst",
-      subtitle: "Wir warten nicht auf Exit-Interviews. Jeden Monat erfahren wir, was Menschen im Unternehmen hält — und was sie still zur Tür bewegt.",
-      
-      insightTitle: "Menschen gehen nicht wegen einer Sache",
-      insightDesc: "Ein Weggang ist immer eine Kombination: Überlastung + Gefühl der Unterbewertung + unklares Wachstum. Deshalb messen wir 'Zufriedenheit' nicht mit einer Zahl. Wir verfolgen 7 Schlüsselbereiche, die nachweislich Leistung und Fluktuation vorhersagen.",
-      proofPoints: [
-        "50.000+ Menschen getestet",
-        "91% Antwortrate",
-        "Wissenschaftlich validiert"
-      ],
-      
-      howItWorksLabel: "So funktioniert es",
-      howItWorksTitle: "3 Minuten monatlich, die Ihnen Hunderttausende sparen",
-      steps: [
-        {
-          num: "1",
-          title: "Kurzer Chat",
-          desc: "Mitarbeiter bekommt 5 Fragen im Chat-Format. Dauert 3 Minuten, 91% der Menschen füllen es aus."
-        },
-        {
-          num: "2",
-          title: "KI-Analyse",
-          desc: "Das System findet Muster in den Antworten. Wir sehen, was HR manuell nie erkennen würde."
-        },
-        {
-          num: "3",
-          title: "Klare Aktion",
-          desc: "Manager bekommt konkrete Empfehlungen. Keine 50-seitigen Berichte."
-        }
-      ],
-      
-      topicsTitle: "7 Bereiche, die über das Bleiben entscheiden",
-      topicsSubtitle: "Jeder Bereich beeinflusst direkt, ob jemand bleibt und leistet — oder still ausbrennt.",
-      topics: [
-        { name: "Druck", why: "Zu viel = Burnout" },
-        { name: "Last", why: "Ungleichgewicht = Frustration" },
-        { name: "Support", why: "Fehlt = Hoffnungslosigkeit" },
-        { name: "Geld", why: "Unfair = Demotivation" },
-        { name: "Benefits", why: "Leer = sich unterbewertet fühlen" },
-        { name: "Anerkennung", why: "Keine = warum sich bemühen" },
-        { name: "Wachstum", why: "Stagnation = Abgang" }
-      ],
-      
-      scienceTitle: "Durch Wissenschaft gestützt, nicht Trends",
-      scienceDesc: "Echo Pulse basiert auf Forschung mit tausenden Zitierungen: Job Demands-Resources Modell (was erschöpft vs. energetisiert), Self-Determination Theory (intrinsische Motivation) und Equity Theory (Fairness der Vergütung). Das sind keine Buzzwords — es sind Modelle, die Verhalten vorhersagen.",
-      scienceTags: ["JD-R Modell", "SDT", "Equity Theory"],
-      
-      stats: {
-        responseRate: "füllen es aus",
-        completion: "monatlich reicht",
-        tested: "Menschen getestet"
-      },
-      
-      citation: "Methodik basierend auf Bakker & Demerouti (2001), Deci & Ryan (1985), Adams (1963). Veröffentlicht in Journal of Applied Psychology, Journal of Organizational Behavior."
     },
     czechReality: {
       title: "Die meisten Unternehmen fallen heute in eines von zwei Mustern.",
@@ -1413,7 +1236,7 @@ export const translations = {
       companySizeLabel: "Unternehmensgröße",
       employeesLabel: "Mitarbeitende",
       estimatedLabel: "Geschätzte Investition",
-      perMonthLabel: "CZK / Monat",
+      perMonthLabel: "/ Monat",
       priceCapped: "Preis gedeckelt bei {cap} Mitarbeitenden",
       basePriceLabel: "Grundpreis",
       vatLabel: "MwSt. (21%)",
@@ -1427,16 +1250,43 @@ export const translations = {
       guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch."
     },
     trustCenter: {
-      badge: "Trust center",
-      title: "Datensicherheit und Datenschutz",
-      subtitle: "Wir erklären transparent, wie wir personenbezogene Daten verarbeiten, welche Verantwortung wir übernehmen und wie wir vertrauliche Informationen schützen.",
-      highlights: [
-        "Die Verarbeitung personenbezogener Daten erfolgt gemäß DSGVO und geltenden Gesetzen.",
-        "Datenverantwortlicher: Behavera s.r.o., Křižíkova 148/34, Karlín, Prag 8.",
-        "Datenschutzkontakt: gdpr@behavera.com.",
-        "Aggregierte Statistiken sind anonymisiert und enthalten keine personenbezogenen Daten.",
-        "Betroffene haben Rechte auf Auskunft, Übertragbarkeit, Berichtigung, Löschung und Widerruf der Einwilligung."
+      badge: "Trust Center",
+      title: "Ihre Daten sind bei uns sicher",
+      subtitle: "Wir arbeiten mit sensiblen Personaldaten. Deshalb ist Sicherheit keine Funktion - sie ist das Fundament unserer Arbeit. Audit-bereit ab Tag eins.",
+      guarantees: [
+        {
+          icon: "server",
+          title: "Daten bleiben in der EU",
+          desc: "Alle Daten werden ausschließlich auf Servern in der Europäischen Union gespeichert. Kein Transfer außerhalb der EU/des EWR.",
+          detail: "Frankfurt (AWS eu-central-1), AES-256-Verschlüsselung at rest und in transit"
+        },
+        {
+          icon: "eye",
+          title: "100% Mitarbeiter-Anonymität",
+          desc: "Manager sehen niemals individuelle Antworten. Ergebnisse werden nur in aggregierter Form ab 5+ Personen angezeigt.",
+          detail: "Differentielle Privatsphäre - Einzelpersonen können nicht re-identifiziert werden"
+        },
+        {
+          icon: "lock",
+          title: "DSGVO by Design",
+          desc: "Berechtigtes Interesse gem. Art. 6(1)(f) DSGVO. Keine Mitarbeiter-Einwilligung erforderlich - Verarbeitung erfolgt über den Arbeitgeber.",
+          detail: "DSFA durchgeführt, DSB verfügbar, Betroffenenrechte vollständig gewährleistet"
+        },
+        {
+          icon: "users",
+          title: "Audit-bereite Compliance",
+          desc: "Vollständige Dokumentation: Verarbeitungsverzeichnis, DSFA, Auftragsverarbeitungsverträge, technische Maßnahmen.",
+          detail: "Vollständiger Audit-Trail aller Zugriffe, vertragliche SLA-Garantie 99,9%"
+        }
       ],
+      complianceBadges: [
+        { label: "DSGVO", sub: "Volle Konformität" },
+        { label: "ISO 27001", sub: "Sicherheitsstandard" },
+        { label: "SOC 2 Type II", sub: "Audit-Zertifizierung" },
+        { label: "Verschlüsselung", sub: "AES-256 / TLS 1.3" }
+      ],
+      legalDocsTitle: "Rechtliche Dokumente",
+      dpoLabel: "Datenschutzbeauftragter:",
       privacyFallbackTitle: "Datenschutzerklärung",
       termsFallbackTitle: "Allgemeine Geschäftsbedingungen",
       contentFallback: "Inhalt folgt in Kürze."
@@ -1479,15 +1329,6 @@ export const translations = {
       industryLabel: "Branche",
       challengeTitle: "Herausforderung",
       solutionTitle: "Lösung"
-    },
-    research: {
-      seoTitle: "Architektur des Echo-Pulse-Systems",
-      seoDescription: "Evidenzbasis und Methodik des Early-Warning-Systems.",
-      seoKeywords: "Organisationspsychologie, JD-R Modell, predictive analytics, burnout detection",
-      unavailableTitle: "Forschungsinhalte nur auf Tschechisch verfügbar",
-      unavailableBody: "Diese Seite wird derzeit nur auf Tschechisch gepflegt. Wechseln Sie zu Tschechisch, um den vollständigen Inhalt zu sehen.",
-      switchToCz: "Auf Tschechisch umschalten",
-      backToHome: "Zur Startseite"
     },
     booking: {
         title: "Beratung vereinbaren",

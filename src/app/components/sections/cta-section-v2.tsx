@@ -89,7 +89,7 @@ export function CtaSectionV2() {
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-10"
           >
             <Sparkles className="w-4 h-4 text-brand-accent" />
-            <span className="text-sm font-semibold text-white">
+            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-white">
               {c.badge}
             </span>
           </motion.div>
@@ -100,7 +100,7 @@ export function CtaSectionV2() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
           >
             {c.headline}
             <br />
@@ -115,7 +115,7 @@ export function CtaSectionV2() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             {c.subheadline}
           </motion.p>

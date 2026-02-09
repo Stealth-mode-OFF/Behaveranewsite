@@ -36,8 +36,7 @@ export function Header() {
     },
   ];
 
-  // Only one page link - renamed from "Věda" to "Metodologie"
-  const methodologyLabel = language === 'cz' ? 'Metodologie' : language === 'de' ? 'Methodik' : 'Methodology';
+  const methodologyLabel = language === 'cz' ? 'Vědecký základ' : language === 'de' ? 'Wissenschaft' : 'Research';
 
   return (
     <motion.header

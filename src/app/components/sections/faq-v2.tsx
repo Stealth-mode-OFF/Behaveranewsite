@@ -70,7 +70,7 @@ export function FAQV2() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-brand-text-primary mb-4 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary mb-4 tracking-tight">
             {t.faq?.title || "Frequently Asked Questions"}
           </h2>
           <p className="text-lg text-brand-text-secondary max-w-2xl mx-auto">
