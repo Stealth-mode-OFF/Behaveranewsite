@@ -2,29 +2,29 @@
   /* BRAND COLOR SYSTEM (Logic: Deep Premium Purple) */
   
   /* Primary: The core "Black replacement" and main action color (#2E1065) */
-  --brand-primary: #2E1065;       /* Deep Purple - Main Brand Color */
-  --brand-primary-hover: #1A0B3B; /* Darker shade for interactions */
-  --brand-primary-active: #0F0529; 
+  --brand-primary: #2D1B69;       /* Deep Purple - Main Brand Color */
+  --brand-primary-hover: #1E0F4D; /* Darker shade for interactions */
+  --brand-primary-active: #120833;
 
   /* Accent: Used for highlights, icons on dark backgrounds, and gradients */
-  --brand-accent: #A78BFA;        /* Violet 400 - Vibrant highlight */
-  --brand-accent-hover: #8B5CF6;  /* Violet 500 */
+  --brand-accent: #9F7AEA;        /* Softer violet - refined highlight */
+  --brand-accent-hover: #805AD5;  /* Violet 500 */
 
   /* Backgrounds */
   --brand-background-primary: #FFFFFF;
-  --brand-background-secondary: #FAF5FF; /* Purple 50 */
-  --brand-background-muted: #F3E8FF;     /* Purple 100 */
-  --brand-background-dark: #2E1065;      /* The Deep Purple Background */
+  --brand-background-secondary: #F8F6FF; /* Subtle cool lavender */
+  --brand-background-muted: #F0EBFF;     /* Light lavender */
+  --brand-background-dark: #1A0F3C;      /* Deeper, richer dark */
 
-  /* Text Colors - CONTRAST OPTIMIZED FOR EXECUTIVE READABILITY */
-  --brand-text-primary: #1A0533;   /* Near-black purple for headings */
-  --brand-text-secondary: #3D1A7A; /* Main reading text */
-  --brand-text-body: #4A3563;      /* Body text alternative */
-  --brand-text-muted: #8B7BA3;     /* Captions/metadata */
+  /* Text Colors - REFINED FOR MODERN READABILITY */
+  --brand-text-primary: #1C1237;   /* Warm deep purple-black for headings */
+  --brand-text-secondary: #3B2D5E; /* Rich secondary text */
+  --brand-text-body: #4D3D6B;      /* Body text - warmer purple-grey */
+  --brand-text-muted: #8A7DA0;     /* Softer muted text */
 
   /* Font Families */
-  --font-sans: "Inter", "Arial", sans-serif;
-  --font-display: "Plus Jakarta Sans", "Inter", "Arial", sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
   
   /* Text on Dark Backgrounds - HIGH CONTRAST MANDATORY */
   --brand-text-inverse: #FFFFFF;   /* White text on dark - headings only (14.1:1) */
@@ -32,9 +32,9 @@
   --brand-text-muted-on-dark: rgba(255, 255, 255, 0.85); /* White/85 - Metadata on dark (12:1) - FIXED */
 
   /* Borders */
-  --brand-border: #E9D5FF;         /* Purple 200 */
-  --brand-border-strong: #D8B4FE;  /* Purple 300 */
-  --brand-border-dark: #4C1D95;    /* Violet 900 - Border on dark backgrounds */
+  --brand-border: #E8E0F5;         /* Softer purple border */
+  --brand-border-strong: #D4C5F0;  /* Medium purple border */
+  --brand-border-dark: #3D2175;    /* Border on dark backgrounds */
 
   /* Functional */
   --brand-success: #059669;        /* Emerald 600 */
@@ -118,7 +118,7 @@
   
   /* Button Colors - System Command Palette */
   --button-primary-bg: var(--brand-primary);
-  --button-primary-bg-hover: #3D1A7A;  /* Subtle lift, not dramatic */
+  --button-primary-bg-hover: #3B2375;  /* Subtle lift, not dramatic */
   --button-primary-border: rgba(167, 139, 250, 0.15);
   
   --button-secondary-bg: transparent;
@@ -272,8 +272,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --font-sans: "Inter", "Arial", sans-serif;
-  --font-display: "Plus Jakarta Sans", "Inter", "Arial", sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
 
   /* Register Custom Utilities */
   --radius-sm: var(--radius-sm);
@@ -296,7 +296,7 @@
   }
   
   ::selection {
-    background-color: var(--brand-accent);
+    background-color: rgba(139, 92, 246, 0.2);
     color: var(--brand-text-primary);
   }
 
@@ -336,22 +336,22 @@
   .text-h1 {
     font-size: var(--text-h1);
     line-height: var(--leading-h1);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-family: var(--font-display);
   }
   .text-h2 {
     font-size: var(--text-h2);
     line-height: var(--leading-h2);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.025em;
     font-family: var(--font-display);
   }
   .text-h3 {
     font-size: var(--text-h3);
     line-height: var(--leading-h3);
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    letter-spacing: -0.015em;
     font-family: var(--font-display);
   }
   .text-body {

@@ -1,23 +1,33 @@
 import React, { useEffect } from 'react';
-import { Outlet, NavLink, useNavigate, Navigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
-import { LayoutDashboard, FileText, Briefcase, LogOut, Menu } from 'lucide-react';
+import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 import { cn } from '@/app/components/ui/utils';
-import { adminEnabled } from '@/lib/config';
 
 export const AdminLayout = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, isLoading, user, logout } = useAuth();
   const navigate = useNavigate();
+  
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isLoading && !isAuthenticated) {
       navigate('/admin/login');
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, isLoading, navigate]);
 
-  if (!adminEnabled) return <Navigate to="/" replace />;
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-brand-background-secondary">
+        <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
+      </div>
+    );
+  }
+
   if (!isAuthenticated) return null;
+
+  const userEmail = user?.email || 'admin';
+  const userInitials = userEmail.slice(0, 2).toUpperCase();
 
   const NavItems = () => (
     <div className="space-y-1.5">
@@ -87,10 +97,9 @@ export const AdminLayout = () => {
 
         <div className="p-4 border-t border-brand-border/40 bg-brand-background-secondary/20">
           <div className="flex items-center gap-3 px-2 mb-4">
-             <div className="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-primary text-xs font-bold">AD</div>
+             <div className="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-primary text-xs font-bold">{userInitials}</div>
              <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold text-brand-text-primary truncate">Admin User</div>
-                <div className="text-xs text-brand-text-muted truncate">admin@echopulse.com</div>
+                <div className="text-sm font-semibold text-brand-text-primary truncate">{userEmail}</div>
              </div>
           </div>
           <Button 

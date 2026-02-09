@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
 import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
-import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 
 /**
@@ -25,7 +23,6 @@ export function CaseStudiesSectionV2() {
   const [activeIndex, setActiveIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
-  const { openBooking } = useModal();
 
   useEffect(() => {
     CmsService.getCaseStudies()
@@ -137,7 +134,7 @@ export function CaseStudiesSectionV2() {
               {t.badge}
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-brand-text-primary mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
             {t.title}
           </h2>
           <p className="text-lg text-brand-text-secondary max-w-lg mx-auto">
@@ -283,27 +280,6 @@ export function CaseStudiesSectionV2() {
           )}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-brand-background-secondary rounded-2xl border border-brand-border">
-            <p className="text-brand-text-primary font-semibold">
-              {t.cta}
-            </p>
-            <Button
-              onClick={openBooking}
-              className="h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl"
-            >
-              {t.ctaButton}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

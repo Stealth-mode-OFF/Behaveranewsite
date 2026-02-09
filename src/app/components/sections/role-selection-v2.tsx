@@ -108,8 +108,8 @@ export function RoleSelectionV2() {
 
   const activeRoleData = roles.find(r => r.id === activeRole) || roles[1];
 
-  const scrollToLead = () => {
-    const element = document.getElementById('lead-capture');
+  const scrollToPricing = () => {
+    const element = document.getElementById('pricing');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -132,7 +132,7 @@ export function RoleSelectionV2() {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             {t.roleSelection?.title || "Who are you?"}
           </h2>
           <p className="text-brand-text-on-dark text-lg leading-relaxed">
@@ -226,7 +226,7 @@ export function RoleSelectionV2() {
 
                 {/* CTA */}
                 <Button
-                  onClick={scrollToLead}
+                  onClick={scrollToPricing}
                   size="lg"
                   className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl"
                 >

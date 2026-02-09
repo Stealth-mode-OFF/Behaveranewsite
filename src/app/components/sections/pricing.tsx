@@ -1,16 +1,21 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { Check, ShieldCheck, Star, Users, Zap } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/LanguageContext";
 
 export function PurchaseSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   
+  const isEur = language === 'en' || language === 'de';
+  
   const BILLABLE_EMPLOYEE_CAP = 200;
-  const pricePerPerson = billingInterval === 'monthly' ? 129 : 99;
+  const monthlyPrice = isEur ? 5 : 129;
+  const yearlyPrice = isEur ? 4 : 99;
+  const pricePerPerson = billingInterval === 'monthly' ? monthlyPrice : yearlyPrice;
   
   const billableEmployees = Math.min(employeeCount, BILLABLE_EMPLOYEE_CAP);
   const rawPrice = pricePerPerson * billableEmployees;
@@ -21,13 +26,19 @@ export function PurchaseSection() {
   const totalPrice = basePrice + vat;
   
   // Calculate savings
-  const yearlySavings = billingInterval === 'yearly' ? (129 - 99) * billableEmployees * 12 : 0;
+  const yearlySavings = billingInterval === 'yearly' ? (monthlyPrice - yearlyPrice) * billableEmployees * 12 : 0;
 
   return (
     <section className="section-spacing bg-gradient-to-b from-white to-brand-background-secondary" id="pricing">
       <div className="container-default">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-background-secondary text-brand-text-secondary text-caption font-bold uppercase tracking-widest mb-6 border border-brand-border">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
              <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
              {t.purchase.badge}
           </div>
@@ -37,9 +48,15 @@ export function PurchaseSection() {
           <p className="text-body text-brand-text-secondary">
             {t.purchase.subtitle}
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-2xl shadow-brand-primary/10 border border-brand-border">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="max-w-4xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-2xl shadow-brand-primary/10 border border-brand-border"
+        >
             <div className="grid md:grid-cols-2 gap-12">
                 {/* Configuration */}
                 <div>
@@ -161,13 +178,13 @@ export function PurchaseSection() {
                         {/* Price per person */}
                         <div className="mb-2">
                             <span className="text-sm text-white/60">
-                                {pricePerPerson} CZK × {billableEmployees} {t.purchase.employeesLabel}
+                                {isEur ? `€${pricePerPerson}` : `${pricePerPerson} CZK`} × {billableEmployees} {t.purchase.employeesLabel}
                             </span>
                         </div>
                         
                         <div className="flex items-baseline gap-2 mb-3">
                             <span className="text-5xl md:text-6xl font-bold text-white tracking-tight transition-all duration-300">
-                                {basePrice.toLocaleString()}
+                                {isEur ? `€${basePrice.toLocaleString()}` : basePrice.toLocaleString()}
                             </span>
                             <span className="text-lg font-medium text-white/70">{t.purchase.perMonthLabel}</span>
                         </div>
@@ -175,7 +192,11 @@ export function PurchaseSection() {
                         {billingInterval === 'yearly' && yearlySavings > 0 && (
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-success/20 text-brand-success rounded-full text-sm font-bold mb-4 border border-brand-success/30">
                                 <Check className="w-4 h-4" />
-                                Ušetříte {yearlySavings.toLocaleString()} CZK/rok
+                                {language === 'de'
+                                  ? `Sparen Sie €${yearlySavings.toLocaleString()}/Jahr`
+                                  : language === 'en'
+                                  ? `Save €${yearlySavings.toLocaleString()}/year`
+                                  : `Ušetříte ${yearlySavings.toLocaleString()} CZK/rok`}
                             </div>
                         )}
                         
@@ -189,11 +210,11 @@ export function PurchaseSection() {
                         <div className="pt-4 border-t border-white/10 space-y-2">
                              <div className="flex justify-between text-sm">
                                 <span className="text-white/60">{t.purchase.basePriceLabel}</span>
-                                <span className="font-medium text-white">{basePrice.toLocaleString()} CZK</span>
+                                <span className="font-medium text-white">{isEur ? `€${basePrice.toLocaleString()}` : `${basePrice.toLocaleString()} CZK`}</span>
                              </div>
                              <div className="flex justify-between text-sm">
                                 <span className="text-white/60">{t.purchase.vatLabel}</span>
-                                <span className="font-medium text-white">{vat.toLocaleString(undefined, { maximumFractionDigits: 0 })} CZK</span>
+                                <span className="font-medium text-white">{isEur ? `€${vat.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `${vat.toLocaleString(undefined, { maximumFractionDigits: 0 })} CZK`}</span>
                              </div>
                         </div>
                     </div>
@@ -229,7 +250,7 @@ export function PurchaseSection() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

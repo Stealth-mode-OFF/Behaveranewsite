@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/app/components/ui/button";
-import { ArrowRight, Shield, Clock, Zap } from "lucide-react";
+import { ArrowRight, Play, Shield, Clock, Zap } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion } from "framer-motion";
@@ -25,12 +25,11 @@ export function HeroV2() {
   const copy = {
     cz: {
       badge: "Pro firmy 30–350 lidí",
-      headline: "Vaši lidé mluví.",
-      headlineHighlight: "Slyšíte je?",
-      subheadline: "Průběžný pulse feedback místo ročních průzkumů. Zachytíte riziko odchodu dřív, než dostanete výpověď.",
-      primaryCta: "Domluvit ukázku",
-      secondaryCta: "3min ukázka",
-      socialProof: "Používá 50+ firem v Česku a na Slovensku",
+      headline: "Mějte přehled co se ve firmě skutečně děje",
+      headlineHighlight: "",
+      subheadline: "Průběžný pulse feedback a risk signály. Víte, kde to vře — a co s tím.",
+      primaryCta: "Konzultace zdarma",
+      secondaryCta: "3min demo",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Setup za 1 hodinu" },
@@ -39,12 +38,11 @@ export function HeroV2() {
     },
     en: {
       badge: "For companies of 30–350 people",
-      headline: "Your people are talking.",
-      headlineHighlight: "Are you listening?",
-      subheadline: "Continuous pulse feedback replaces annual surveys. Catch attrition risk before you get a resignation letter.",
-      primaryCta: "Book a Demo",
-      secondaryCta: "3-min demo",
-      socialProof: "Used by 50+ companies in Central Europe",
+      headline: "Predict departures",
+      headlineHighlight: "before they happen",
+      subheadline: "Continuous pulse feedback and risk signals. Know where it's brewing — and what to do.",
+      primaryCta: "Free consultation",
+      secondaryCta: "3min demo",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "1 hour setup" },
@@ -53,12 +51,11 @@ export function HeroV2() {
     },
     de: {
       badge: "Für Unternehmen mit 30–350 Mitarbeitern",
-      headline: "Ihre Mitarbeiter reden.",
-      headlineHighlight: "Hören Sie zu?",
-      subheadline: "Kontinuierliches Pulse-Feedback statt jährlicher Umfragen. Erkennen Sie Fluktuationsrisiken, bevor eine Kündigung kommt.",
-      primaryCta: "Demo buchen",
-      secondaryCta: "3-min Demo",
-      socialProof: "Von 50+ Unternehmen in Mitteleuropa genutzt",
+      headline: "Kündigungen vorhersagen",
+      headlineHighlight: "bevor sie passieren",
+      subheadline: "Kontinuierliches Pulse-Feedback und Risikosignale. Wissen Sie, wo es brodelt — und was zu tun ist.",
+      primaryCta: "Kostenlose Beratung",
+      secondaryCta: "3min Demo",
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
         { icon: Clock, text: "Setup in 1 Stunde" },
@@ -95,7 +92,7 @@ export function HeroV2() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-brand-border shadow-sm mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-brand-success animate-pulse" />
-              <span className="text-xs font-semibold uppercase tracking-[0.1em] text-brand-text-secondary">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-text-muted">
                 {c.badge}
               </span>
             </motion.div>
@@ -104,14 +101,16 @@ export function HeroV2() {
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.05 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-bold tracking-[-0.02em] text-brand-text-primary leading-[1.05] mb-6"
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.05] mb-6 font-display"
             >
               {c.headline}
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary to-brand-accent">
-                {c.headlineHighlight}
-              </span>
+              {c.headlineHighlight && <br />}
+              {c.headlineHighlight && (
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">
+                  {c.headlineHighlight}
+                </span>
+              )}
             </motion.h1>
 
             {/* Subheadline */}
@@ -119,7 +118,7 @@ export function HeroV2() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-lg md:text-xl text-brand-text-secondary leading-relaxed mb-10 max-w-xl mx-auto"
+              className="text-lg md:text-xl text-brand-text-body leading-relaxed mb-10 max-w-xl mx-auto font-normal"
             >
               {c.subheadline}
             </motion.p>
@@ -134,18 +133,21 @@ export function HeroV2() {
               <Button
                 onClick={openBooking}
                 size="lg"
-                className="w-full sm:w-auto h-14 px-8 text-base font-semibold"
+                className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
               >
                 {c.primaryCta}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-              <button
-                type="button"
+              
+              <Button
                 onClick={openVideo}
-                className="text-brand-text-secondary hover:text-brand-primary font-medium underline underline-offset-4 transition-colors"
+                variant="ghost"
+                size="lg"
+                className="w-full sm:w-auto h-14 px-6 text-base font-semibold text-brand-text-secondary hover:text-brand-primary"
               >
+                <Play className="w-4 h-4 mr-2 fill-current" />
                 {c.secondaryCta}
-              </button>
+              </Button>
             </motion.div>
 
             {/* Trust indicators */}
@@ -162,10 +164,6 @@ export function HeroV2() {
                 </div>
               ))}
             </motion.div>
-
-            <p className="mt-6 text-sm text-brand-text-muted">
-              {c.socialProof}
-            </p>
           </div>
 
           {/* Bottom: Device Stage - Full Width */}

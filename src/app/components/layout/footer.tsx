@@ -1,7 +1,7 @@
 import React from "react";
 import { useLanguage } from "@/app/LanguageContext";
 import { Link } from "react-router-dom";
-import { Phone, Linkedin, Github, Mail, ArrowUpRight, Zap } from "lucide-react";
+import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Zap } from "lucide-react";
 
 export function Footer() {
   const { t, language } = useLanguage();
@@ -116,7 +116,7 @@ export function Footer() {
 
   const resourceLinks = {
     cz: [
-      { label: "Výzkum", href: "/research" },
+      { label: "Vědecký základ", href: "/research" },
       { label: "Trust Center", href: "/trust-center" },
       { label: "FAQ", href: "#faq" },
     ],
@@ -126,7 +126,7 @@ export function Footer() {
       { label: "FAQ", href: "#faq" },
     ],
     de: [
-      { label: "Forschung", href: "/research" },
+      { label: "Wissenschaft", href: "/research" },
       { label: "Trust Center", href: "/trust-center" },
       { label: "FAQ", href: "#faq" },
     ],
@@ -210,7 +210,7 @@ export function Footer() {
               {/* Social Links */}
               <div className="flex items-center gap-2">
                 <a
-                  href="https://linkedin.com/company/behavera"
+                  href="https://www.linkedin.com/company/behavera/posts/?feedView=all"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
@@ -219,13 +219,22 @@ export function Footer() {
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://github.com/behavera"
+                  href="https://www.instagram.com/behavera"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  aria-label="GitHub"
+                  aria-label="Instagram"
                 >
-                  <Github className="w-4 h-4" />
+                  <Instagram className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.facebook.com/BehaveraTDC"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-4 h-4" />
                 </a>
               </div>
             </div>

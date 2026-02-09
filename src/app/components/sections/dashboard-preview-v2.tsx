@@ -101,7 +101,7 @@ export function DashboardPreviewV2() {
                 {t.dashboard?.badge}
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-text-primary tracking-[-0.015em] leading-[1.15]">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-[-0.015em] leading-[1.15]">
               {t.dashboard?.title}
               <span className="block text-brand-primary mt-3">{t.dashboard?.titleHighlight}</span>
             </h2>
@@ -114,7 +114,7 @@ export function DashboardPreviewV2() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-md text-left md:text-right mt-8 md:mt-0"
           >
-            <p className="text-lg text-brand-text-secondary leading-[1.7] font-medium">
+            <p className="text-lg text-brand-text-secondary leading-relaxed">
               {t.dashboard?.subtitle}
             </p>
           </motion.div>

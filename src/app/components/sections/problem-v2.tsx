@@ -75,7 +75,7 @@ export function ProblemSectionV2() {
             transition={{ delay: 0.1 }}
             className="max-w-md text-left md:text-right mt-8 md:mt-0"
           >
-            <p className="text-lg font-medium text-brand-text-secondary leading-[1.7]">
+            <p className="text-lg text-brand-text-secondary leading-relaxed">
               {t.problems?.subtitle || "These numbers represent the hidden costs of poor visibility."}
             </p>
           </motion.div>
@@ -126,18 +126,18 @@ export function ProblemSectionV2() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            <div className="h-full min-h-[240px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-between text-white relative overflow-hidden group">
+            <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
               
-              <div className="relative z-10">
-                <AlertTriangle className="w-6 h-6 mb-4 text-brand-accent" />
-                <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/60">
-                  {t.problems?.ctaBox?.label || "System Alert"}
-                </span>
+              <div className="relative z-10 mb-4 flex justify-center">
+                <AlertTriangle className="w-6 h-6 text-brand-accent" />
               </div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 text-left">
+                <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/60 block mb-2">
+                  {t.problems?.ctaBox?.label || "System Alert"}
+                </span>
                 <h4 className="text-lg font-bold tracking-tight mb-3">
                   {t.problems?.ctaBox?.title || "Don't wait until it's too late"}
                 </h4>
@@ -176,28 +176,28 @@ type BentoCellProps = {
 function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProps) {
   return (
     <div className={cn(
-      "h-full min-h-[240px] rounded-3xl p-6 md:p-8 flex flex-col justify-between border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
+      "h-full rounded-3xl p-6 md:p-8 flex flex-col justify-start border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
       accent || "bg-brand-background-secondary",
-      size === "large" && "min-h-[400px] lg:min-h-[500px]"
+      size === "large" ? "min-h-[280px] lg:min-h-[340px]" : "min-h-[200px]"
     )}>
-      <div>
-        <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors mb-4" />
-        <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted">
-          {item?.title || ""}
-        </span>
+      <div className="mb-4 flex justify-center">
+        <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
       </div>
       
-      <div>
+      <div className="text-left">
+        <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-2">
+          {item?.title || ""}
+        </span>
         {/* Animated Counter */}
         <div className={cn(
-          "font-bold tracking-tight mb-3 transition-colors",
-          size === "large" ? "text-6xl md:text-7xl lg:text-8xl" : "text-5xl md:text-6xl",
+          "font-bold tracking-tight mb-2 transition-colors",
+          size === "large" ? "text-5xl md:text-6xl lg:text-7xl" : "text-4xl md:text-5xl",
           valueColor || "text-brand-text-primary"
         )}>
           {item?.value || ""}
         </div>
         
-        <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
+        <p className="text-[15px] text-brand-text-secondary leading-[1.6]">
           {item?.desc || ""}
         </p>
       </div>

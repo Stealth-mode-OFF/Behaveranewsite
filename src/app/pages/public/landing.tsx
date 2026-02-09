@@ -9,7 +9,6 @@ import { LeadPopup } from "@/app/components/layout/lead-popup";
 import { HeroV2 } from "@/app/components/sections/hero-v2";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
 import { ProblemSectionV2 } from "@/app/components/sections/problem-v2";
-import { HowItWorksV2 } from "@/app/components/sections/how-it-works-v2";
 import { DashboardPreviewV2 } from "@/app/components/sections/dashboard-preview-v2";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
 import { RoleSelectionV2 } from "@/app/components/sections/role-selection-v2";
@@ -85,21 +84,18 @@ export function LandingPage() {
         {/* 3. PROBLEM — Build pain awareness */}
         <ProblemSectionV2 />
         
-        {/* 4. SOLUTION — Show simplicity */}
-        <HowItWorksV2 />
-        
-        {/* 5. SOCIAL PROOF — Real results */}
+        {/* 4. SOCIAL PROOF — Real results */}
         <LazySection>
           <CaseStudiesSection />
         </LazySection>
 
-        {/* 6. VISUAL PROOF — See it in action */}
+        {/* 5. VISUAL PROOF — See it in action */}
         <DashboardPreviewV2 />
 
-        {/* 7. WHAT WE MEASURE — Scientific backing */}
+        {/* 6. HOW IT WORKS + WHAT WE MEASURE */}
         <SignalRadar />
 
-        {/* 8. PERSONALIZATION — Role-based value proposition */}
+        {/* 7. PERSONALIZATION — Role-based value proposition */}
         <RoleSelectionV2 />
 
         {/* 9. INVESTMENT — Pricing with trust signals */}
