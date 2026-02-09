@@ -383,9 +383,9 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             )} />
 
             {/* Logo */}
-            <div className="relative z-10 mb-6">
+            <div className="relative z-10 mb-4">
               {logo ? (
-                <div className="w-20 h-20 rounded-2xl bg-white shadow-lg border border-brand-border/30 flex items-center justify-center p-3 mx-auto">
+                <div className="w-36 h-36 rounded-3xl bg-white/90 shadow-xl border border-brand-border/20 flex items-center justify-center p-5 mx-auto backdrop-blur-sm">
                   <img
                     src={logo}
                     alt={study.clientName}
@@ -394,10 +394,10 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                 </div>
               ) : (
                 <div className={cn(
-                  "w-20 h-20 rounded-2xl bg-gradient-to-br flex items-center justify-center mx-auto shadow-lg",
+                  "w-36 h-36 rounded-3xl bg-gradient-to-br flex items-center justify-center mx-auto shadow-xl",
                   gradient
                 )}>
-                  <span className="text-white text-2xl font-bold">
+                  <span className="text-white text-5xl font-bold">
                     {study.clientName.charAt(0)}
                   </span>
                 </div>
@@ -408,7 +408,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             <h3 className="relative z-10 text-lg font-bold text-brand-text-primary mb-1">
               {study.clientName}
             </h3>
-            <span className="relative z-10 text-xs text-brand-text-muted mb-6">
+            <span className="relative z-10 text-xs text-brand-text-muted mb-4">
               {study.industry || "Enterprise"}
             </span>
 

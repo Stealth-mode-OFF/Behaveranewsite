@@ -74,7 +74,16 @@ export function Header() {
              isHome ? (
                  <a 
                     key={item.id}
-                    href={`#${item.id}`} 
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById(item.id);
+                      if (el) {
+                        const offset = 80;
+                        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                      }
+                    }}
                     className={cn(
                         "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
                         isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
@@ -167,7 +176,18 @@ export function Header() {
                         key={item.id}
                         href={`#${item.id}`} 
                         className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMobileMenuOpen(false);
+                          setTimeout(() => {
+                            const el = document.getElementById(item.id);
+                            if (el) {
+                              const offset = 80;
+                              const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                              window.scrollTo({ top: y, behavior: 'smooth' });
+                            }
+                          }, 400);
+                        }}
                     >
                         {item.label}
                     </a>
