@@ -4,7 +4,7 @@ export const translations = {
   en: {
     radar: {
       badge: "Complete overview",
-      title: "8 areas",
+      title: "8 areas,",
       titleHighlight: "that determine team stability",
       subtitle: "Echo Pulse continuously monitors 8 key areas of work life. No unnecessary noise - just signals that tell you where things are stuck."
     },
@@ -22,18 +22,18 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Clarity before problems hit",
-      title: "Keep teams stable and",
-      titleHighlight: "performance on track",
-      subtitle: "Spot turnover risk, overload, and misalignment early — before it shows in results.",
-      primaryCta: "Schedule a 30‑min consultation",
-      secondaryCta: "See a 3‑min demo",
-      riskReversal: "No commitment. Leave with a clear view of what’s at risk and what to fix first.",
+      badge: "Continuous team feedback",
+      title: "Have an overview of",
+      titleHighlight: "what's really happening in your company",
+      subtitle: "Annual surveys catch problems too late. Echo Pulse gives you continuous signals — you know where things are stuck before resignations start.",
+      primaryCta: "Book a demo (30 min)",
+      secondaryCta: "Explore the demo",
+      riskReversal: "No commitment. After 30 minutes, you'll know if it makes sense for your company.",
       trust: {
-        security: "Data Security (GDPR)",
-        support: "Native Support",
-        implementation: "1h Implementation",
-        languages: "CZ / EN"
+        security: "GDPR compliant",
+        support: "Local Support",
+        implementation: "Start within 1 hour",
+        languages: "CZ / EN / DE"
       },
     },
     problems: {
@@ -44,17 +44,17 @@ export const translations = {
         {
           title: "UNWANTED ATTRITION",
           value: "6–9× salary",
-          desc: "Replacing one employee costs 6–9× their monthly salary on average. Senior roles can reach up to 24×. That's not just hiring costs - it's lost knowledge, broken team dynamics, and months of onboarding before the new hire reaches full productivity. Save €50k by retaining just one key employee. [Source: SHRM, Gallup]",
+          desc: "Replacing one employee costs 6–9× their monthly salary on average. Senior roles can reach up to 24×. That's not just hiring costs — it's lost know-how, broken team dynamics, and months before the new person reaches full productivity. By retaining just one key employee, you save an average of €50k. [Source: SHRM, Gallup]",
         },
         {
           title: "PERFORMANCE LOSS",
           value: "–21%",
-          desc: "Actively disengaged teams show 21% lower profitability and significantly lower productivity. Engaged employees are up to 20% more productive at work. But you can't fix what you can't see - and most companies don't see until exit interviews, when it's already too late. [Source: Gallup State of the Workplace]",
+          desc: "Actively disengaged teams show 21% lower profitability and significantly lower productivity. Engaged employees are up to 20% more productive. But you don't see the problem — and most companies only find out at exit interviews, when it's too late to change anything. [Source: Gallup State of the Workplace]",
         },
         {
           title: "MANAGER IMPACT",
           value: "69%",
-          desc: "69% of employee experience is shaped by their direct manager. Your message is filtered through them. When a leader lacks visibility into what's blocking their team, quiet quitting and burnout spread silently - and you see 59% more people leave. [Source: Gallup]",
+          desc: "69% of employee experience is shaped by their direct manager. Your message is filtered through them. When a manager lacks visibility into what's blocking their people, quiet quitting and burnout spread silently — and 59% more people leave than necessary. [Source: Gallup]",
         },
       ],
       ctaBox: {
@@ -279,8 +279,8 @@ export const translations = {
     },
     cta: {
       title: "Don't wait for the next resignation.",
-      subtitle: "Blindness costs companies millions annually in lost productivity and hiring. Regain control in 48 hours.",
-      primary: "Book a Demo",
+      subtitle: "Every unexpected departure costs months of work and hundreds of thousands. Start having visibility — today.",
+      primary: "Book a demo",
       demoButton: "Try the demo",
       secondary: "or call us",
       secondaryLink: "+420 605 839 456",
@@ -324,8 +324,8 @@ export const translations = {
         title: "See Echo Pulse in Action",
     },
     decisionLock: {
-      title: "Both extremes share the same issue: leadership loses visibility.",
-      subtitle: "Echo Pulse restores visibility without slowing the company.",
+      title: "In both extremes (burnout and hyper-growth), the problem is the same: leadership loses visibility.",
+      subtitle: "Echo Pulse gives you continuous signals back without slowing the company.",
       cta: "I want to see signals from our reality"
     },
     faq: {
@@ -473,7 +473,7 @@ export const translations = {
       back: "Back"
     },
     data: {
-      trustedBy: "Trusted by leading companies"
+      trustedBy: "TRUSTED BY LEADING COMPANIES"
     },
     forms: {
       firstName: "First Name",
@@ -486,7 +486,7 @@ export const translations = {
       badge: "Hard Data",
       title: "Calculate Your",
       titleHighlight: "ROI",
-      subtitle: "See the financial impact of turnover on your organization.",
+      subtitle: "See how much turnover is really costing you.",
       sliders: {
         companySize: "Company Size",
         employees: "Employees",
@@ -1058,12 +1058,12 @@ export const translations = {
         {
           title: "UNGEWOLLTE FLUKTUATION",
           value: "6–9× Monatsgehalt",
-          desc: "Der Ersatz einer Person kostet durchschnittlich 6–9× das Monatsgehalt. Bei Senior-Positionen bis zu 24×. Das sind nicht nur Recruitingkosten - es ist verlorenes Know-how, zerstörte Teamdynamik und Monate, bis der Neue volle Leistung bringt. Halten Sie nur einen Schlüsselmitarbeiter und sparen Sie €50k. [Quelle: SHRM, Gallup]",
+          desc: "Der Ersatz einer Person kostet durchschnittlich 6–9× das Monatsgehalt. Bei Senior-Positionen bis zu 24×. Das sind nicht nur Recruitingkosten — es ist verlorenes Know-how, zerstörte Teamdynamik und Monate, bis die neue Person volle Leistung erreicht. Durch die Bindung nur eines Schlüsselmitarbeiters sparen Sie durchschnittlich €50k. [Quelle: SHRM, Gallup]",
         },
         {
           title: "LEISTUNGSVERLUST",
           value: "–21%",
-          desc: "Aktiv unengagierte Teams zeigen 21 % geringere Profitabilität und deutlich niedrigere Produktivität. Engagierte Mitarbeiter sind bis zu 20 % produktiver. Aber was Sie nicht sehen, können Sie nicht beheben - und die meisten Unternehmen erfahren es erst im Exit-Interview, wenn es zu spät ist. [Quelle: Gallup State of the Workplace]",
+          desc: "Aktiv unengagierte Teams zeigen 21 % geringere Profitabilität und deutlich niedrigere Produktivität. Engagierte Mitarbeiter sind bis zu 20 % produktiver. Aber Sie sehen das Problem nicht — und die meisten Unternehmen erfahren es erst im Exit-Interview, wenn es zu spät ist, etwas zu ändern. [Quelle: Gallup State of the Workplace]",
         },
         {
           title: "MANAGER-EINFLUSS",
@@ -1195,21 +1195,21 @@ export const translations = {
       },
       ctaNote: "30 Min • Auf Ihre Rolle zugeschnitten",
       ceo: {
-        title: "Für CEO & Geschäftsführung",
-        desc: "Das definitive Ende des 'Bauchgefühl-Managements'. Sehen Sie genau, welche Abteilungen überlastet sind, wo Fluktuation droht und wo Strategiekommunikation scheitert.",
+        title: "Für die Unternehmensführung",
+        desc: "Schluss mit Vermutungen darüber, wie es den Menschen geht. Sie sehen genau, welche Abteilungen überlastet sind, wo Abgänge drohen und wo die Strategiekommunikation nicht funktioniert.",
         list: [
-          { title: "Retention Radar", desc: "Identifizierung von Schlüsselpersonen mit Abwanderungsrisiko 3 Monate im Voraus." },
-          { title: "Strategie-Audit", desc: "Echte Daten darüber, ob Teams Ihre Prioritäten verstehen oder auf Trägheit laufen." },
-          { title: "Investitionsschutz", desc: "Schutz der Rekrutierungs- und Onboarding-Kosten durch Reduzierung der Fluktuation." }
+          { title: "Frühwarnung", desc: "Identifizieren Sie Mitarbeiter mit Abgangsrisiko mit monatlichem Vorsprung." },
+          { title: "Strategie-Realität", desc: "Erfahren Sie, ob Ihre Teams Ihre Prioritäten verstehen — oder auf Autopilot fahren." },
+          { title: "Return on Investment", desc: "Weniger ungeplante Abgänge = geringere Recruiting- und Einarbeitungskosten." }
         ]
       },
       hr: {
-        title: "Für HR Management",
-        desc: "Weg vom 'Feuerlöschen' hin zur Prävention. Erhalten Sie Daten, mit denen die Führung Sie als strategischen Partner behandelt, nicht als Admin.",
+        title: "Für HR und People Ops",
+        desc: "Hören Sie auf, diejenigen zu sein, die Probleme lösen. Mit kontinuierlichen Daten sind Sie strategischer Partner, kein Feuerlöscher.",
         list: [
-          { title: "Daten über Eindrücke", desc: "Wenn Sie mit einem Problem zum CEO gehen, bringen Sie harte Zahlen, keine 'Küchenbeschwerden'." },
-          { title: "Puls-Automatisierung", desc: "Kein manuelles Versenden von Umfragen. Das System läuft von selbst, Sie lösen Ergebnisse." },
-          { title: "Vertrauenskultur", desc: "Mitarbeiter sehen, dass sich Dinge ändern. Die Bereitschaft, die Wahrheit zu teilen, wächst." }
+          { title: "Daten, nicht Eindrücke", desc: "Wenn Sie zur Führung gehen, haben Sie Zahlen — nicht Beschwerden aus der Teeküche." },
+          { title: "Automatische Erfassung", desc: "Kein manuelles Versenden. Das System läuft von selbst, Sie kümmern sich um Ergebnisse." },
+          { title: "Wachsendes Vertrauen", desc: "Menschen sehen, dass etwas passiert. Die Bereitschaft, die Wahrheit zu teilen, wächst." }
         ]
       },
       bottomBadge: "Entwickelt für Unternehmen von 30 bis 350 Mitarbeitern"
@@ -1500,7 +1500,7 @@ export const translations = {
       badge: "Harte Daten",
       title: "Berechnen Sie Ihren",
       titleHighlight: "ROI",
-      subtitle: "Sehen Sie die finanziellen Auswirkungen von Fluktuation.",
+      subtitle: "Sehen Sie, wie viel Sie die Fluktuation wirklich kostet.",
       sliders: {
         companySize: "Unternehmensgröße",
         employees: "Mitarbeiter",
