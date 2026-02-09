@@ -1,20 +1,65 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Building2, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Quote } from "lucide-react";
+import { ArrowRight, Building2, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Quote, TrendingUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
 import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
 
+// Logo imports
+import effectixLogo from "@/assets/logos/normalized/effectix.png";
+import growRangersLogo from "@/assets/logos/normalized/grow-rangers.png";
+import hajdukPartnersLogo from "@/assets/logos/normalized/hajduk-partners.png";
+import lidlLogo from "@/assets/logos/normalized/lidl.png";
+import martinusLogo from "@/assets/logos/normalized/martinus.png";
+import medevioLogo from "@/assets/logos/normalized/medevio.png";
+import notinoLogo from "@/assets/logos/normalized/notino.png";
+import o2Logo from "@/assets/logos/normalized/o2.png";
+import optimioLogo from "@/assets/logos/normalized/optimio.png";
+import prusaLogo from "@/assets/logos/normalized/prusa.png";
+import pwcLogo from "@/assets/logos/normalized/pwc.png";
+import raynetLogo from "@/assets/logos/normalized/raynet.png";
+import socialmindLogo from "@/assets/logos/normalized/socialmind.png";
+import sprinxLogo from "@/assets/logos/normalized/sprinx.png";
+import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
+import teyaLogo from "@/assets/logos/normalized/teya.png";
+import valxonLogo from "@/assets/logos/normalized/valxon.png";
+import vodafoneLogo from "@/assets/logos/normalized/vodafone.png";
+import websupportLogo from "@/assets/logos/normalized/websupport.png";
+import logo365 from "@/assets/logos/normalized/365.svg";
+import expandoLogo from "@/assets/logos/normalized/expando.svg";
+
+// Map clientName → logo
+const LOGO_MAP: Record<string, string> = {
+  'Vodafone Czech Republic': vodafoneLogo,
+  'Valxon': valxonLogo,
+  'Expando': expandoLogo,
+  '365.bank': logo365,
+  'Effectix': effectixLogo,
+  'Grow Rangers': growRangersLogo,
+  'Hajduk Partners': hajdukPartnersLogo,
+  'Lidl': lidlLogo,
+  'Martinus': martinusLogo,
+  'Medevio': medevioLogo,
+  'Notino': notinoLogo,
+  'O2': o2Logo,
+  'Optimio': optimioLogo,
+  'Prusa': prusaLogo,
+  'PwC': pwcLogo,
+  'Raynet': raynetLogo,
+  'Socialmind': socialmindLogo,
+  'Sprinx': sprinxLogo,
+  'StartupJobs': startupjobsLogo,
+  'Teya': teyaLogo,
+  'Websupport': websupportLogo,
+};
+
 /**
  * Case Studies V2 - 3D Flip Card Design
  * 
- * Features:
- * - 3D card flip on hover (front: visual + basics, back: details)
- * - Glassmorphism & gradient accents
- * - Smooth perspective transitions
- * - Mobile: tap to flip
+ * Front: Logo + Company name + Hero metric + Tags
+ * Back: All results + Challenge + Solution + CTA
  */
 export function CaseStudiesSectionV2() {
   const [studies, setStudies] = useState<CaseStudy[]>([]);
@@ -35,7 +80,8 @@ export function CaseStudiesSectionV2() {
   const texts = {
     cz: {
       badge: "Ověřené výsledky",
-      title: "Co říkají klienti",
+      title: "Co říkají",
+      titleHighlight: " klienti",
       subtitle: "Konkrétní čísla od skutečných firem.",
       readMore: "Celá případovka",
       cta: "Chcete podobné výsledky?",
@@ -46,7 +92,8 @@ export function CaseStudiesSectionV2() {
     },
     en: {
       badge: "Proven Results",
-      title: "What clients say",
+      title: "What clients",
+      titleHighlight: " say",
       subtitle: "Real numbers from real companies.",
       readMore: "Full case study",
       cta: "Want similar results?",
@@ -57,7 +104,8 @@ export function CaseStudiesSectionV2() {
     },
     de: {
       badge: "Bewährte Ergebnisse",
-      title: "Was Kunden sagen",
+      title: "Was Kunden",
+      titleHighlight: " sagen",
       subtitle: "Echte Zahlen von echten Unternehmen.",
       readMore: "Vollständige Fallstudie",
       cta: "Möchten Sie ähnliche Ergebnisse?",
@@ -123,6 +171,9 @@ export function CaseStudiesSectionV2() {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
             {t.title}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+              {t.titleHighlight}
+            </span>
           </h2>
           <p className="text-lg text-brand-text-secondary max-w-lg mx-auto">
             {t.subtitle}
@@ -267,20 +318,28 @@ const gradients = [
   "from-[#B45309] via-[#D97706] to-[#F59E0B]",
 ];
 
-const bgPatterns = [
-  "from-violet-50 via-purple-50 to-fuchsia-50",
-  "from-blue-50 via-sky-50 to-cyan-50",
-  "from-amber-50 via-orange-50 to-yellow-50",
+const accentDots = [
+  "bg-violet-500",
+  "bg-blue-500",
+  "bg-amber-500",
+];
+
+const tagColors = [
+  "bg-violet-100 text-violet-700 border-violet-200",
+  "bg-blue-100 text-blue-700 border-blue-200",
+  "bg-amber-100 text-amber-700 border-amber-200",
 ];
 
 function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const gradient = gradients[index % gradients.length];
-  const bgPattern = bgPatterns[index % bgPatterns.length];
+  const accentDot = accentDots[index % accentDots.length];
+  const tagColor = tagColors[index % tagColors.length];
+  const logo = LOGO_MAP[study.clientName];
 
   return (
     <div
-      className="flip-card-container h-[420px] w-full"
+      className="flip-card-container h-[420px] w-full cursor-pointer"
       style={{ perspective: "1200px" }}
       onMouseEnter={() => !isMobile && setFlipped(true)}
       onMouseLeave={() => !isMobile && setFlipped(false)}
@@ -298,86 +357,97 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
           className="absolute inset-0 rounded-3xl overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
+          {/* Cover image background */}
+          {study.coverImage && (
+            <>
+              <img
+                src={study.coverImage}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-white/70" />
+            </>
+          )}
           <div className={cn(
-            "h-full flex flex-col justify-between bg-gradient-to-br border border-brand-border/40 rounded-3xl relative overflow-hidden",
-            bgPattern
+            "h-full flex flex-col items-center justify-center text-center rounded-3xl relative overflow-hidden px-6 py-8",
+            !study.coverImage && "bg-white border border-brand-border/50"
           )}>
-            {/* Decorative gradient blob */}
+            {/* Decorative gradient blobs */}
             <div className={cn(
-              "absolute -top-20 -right-20 w-56 h-56 rounded-full blur-[80px] opacity-30 bg-gradient-to-br",
+              "absolute -top-24 -right-24 w-56 h-56 rounded-full blur-[100px] opacity-20 bg-gradient-to-br",
               gradient
             )} />
             <div className={cn(
-              "absolute -bottom-16 -left-16 w-40 h-40 rounded-full blur-[60px] opacity-20 bg-gradient-to-br",
+              "absolute -bottom-20 -left-20 w-44 h-44 rounded-full blur-[80px] opacity-15 bg-gradient-to-br",
               gradient
             )} />
 
-            {/* Top: Cover image or gradient header */}
-            <div className={cn(
-              "relative h-[160px] flex items-end p-6 overflow-hidden"
-            )}>
-              {study.coverImage ? (
-                <>
+            {/* Logo */}
+            <div className="relative z-10 mb-6">
+              {logo ? (
+                <div className="w-20 h-20 rounded-2xl bg-white shadow-lg border border-brand-border/30 flex items-center justify-center p-3 mx-auto">
                   <img
-                    src={study.coverImage}
+                    src={logo}
                     alt={study.clientName}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                </>
+                </div>
               ) : (
-                <div className={cn("absolute inset-0 bg-gradient-to-br opacity-90", gradient)} />
-              )}
-              <div className="relative z-10 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
-                  <Building2 className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <span className="text-white font-bold text-base block leading-tight drop-shadow-lg">
-                    {study.clientName}
+                <div className={cn(
+                  "w-20 h-20 rounded-2xl bg-gradient-to-br flex items-center justify-center mx-auto shadow-lg",
+                  gradient
+                )}>
+                  <span className="text-white text-2xl font-bold">
+                    {study.clientName.charAt(0)}
                   </span>
-                  <span className="text-white/70 text-xs">
-                    {study.industry || "Enterprise"}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Middle: Hero metric */}
-            <div className="px-6 pt-5 pb-2 flex-1 relative z-10">
-              {study.results.length > 0 && (
-                <div className="mb-4">
-                  <div className={cn(
-                    "text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r mb-1",
-                    gradient
-                  )}>
-                    {study.results[0].value}
-                  </div>
-                  <div className="text-sm text-brand-text-secondary font-medium">
-                    {study.results[0].label}
-                  </div>
-                </div>
-              )}
-
-              {/* Secondary results */}
-              {study.results.length > 1 && (
-                <div className="flex gap-6">
-                  {study.results.slice(1, 3).map((r, i) => (
-                    <div key={i}>
-                      <div className="text-lg font-bold text-brand-text-primary">{r.value}</div>
-                      <div className="text-[11px] text-brand-text-muted">{r.label}</div>
-                    </div>
-                  ))}
                 </div>
               )}
             </div>
 
-            {/* Bottom: hint */}
-            <div className="px-6 pb-5 relative z-10">
-              <div className="flex items-center gap-2 text-xs text-brand-text-muted">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>{flipHint}</span>
+            {/* Company name */}
+            <h3 className="relative z-10 text-lg font-bold text-brand-text-primary mb-1">
+              {study.clientName}
+            </h3>
+            <span className="relative z-10 text-xs text-brand-text-muted mb-6">
+              {study.industry || "Enterprise"}
+            </span>
+
+            {/* Hero metric */}
+            {study.results.length > 0 && (
+              <div className="relative z-10 mb-6">
+                <div className={cn(
+                  "text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r",
+                  gradient
+                )}>
+                  {study.results[0].value}
+                </div>
+                <div className="text-sm text-brand-text-secondary font-medium mt-1">
+                  {study.results[0].label}
+                </div>
               </div>
+            )}
+
+            {/* Tags */}
+            {study.tags && study.tags.length > 0 && (
+              <div className="relative z-10 flex flex-wrap justify-center gap-2">
+                {study.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className={cn(
+                      "text-[10px] font-semibold px-2.5 py-1 rounded-full border",
+                      tagColor
+                    )}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Flip hint */}
+            <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-1.5 text-[11px] text-brand-text-muted/60 z-10">
+              <Sparkles className="w-3 h-3" />
+              <span>{flipHint}</span>
             </div>
           </div>
         </div>
@@ -387,46 +457,59 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
           className="absolute inset-0 rounded-3xl overflow-hidden"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <div className={cn(
-            "h-full flex flex-col bg-gradient-to-br rounded-3xl p-6 relative overflow-hidden border border-brand-border/40",
-            bgPattern
-          )}>
+          <div className="h-full flex flex-col bg-white rounded-3xl p-6 relative overflow-hidden border border-brand-border/50">
             {/* Decorative blob */}
             <div className={cn(
-              "absolute -top-16 -right-16 w-48 h-48 rounded-full blur-[70px] opacity-20 bg-gradient-to-br",
+              "absolute -top-16 -right-16 w-48 h-48 rounded-full blur-[70px] opacity-15 bg-gradient-to-br",
               gradient
             )} />
 
-            {/* Header */}
-            <div className="relative z-10 flex items-center gap-3 mb-5 pb-4 border-b border-brand-border/40">
-              <div className={cn(
-                "w-9 h-9 rounded-xl bg-gradient-to-br flex items-center justify-center",
-                gradient
-              )}>
-                <Building2 className="w-4 h-4 text-white" />
-              </div>
-              <div>
-                <span className="text-sm font-bold text-brand-text-primary block">{study.clientName}</span>
+            {/* Header with logo */}
+            <div className="relative z-10 flex items-center gap-3 mb-4 pb-3 border-b border-brand-border/30">
+              {logo ? (
+                <div className="w-9 h-9 rounded-lg bg-white shadow-sm border border-brand-border/30 flex items-center justify-center p-1.5 shrink-0">
+                  <img src={logo} alt={study.clientName} className="w-full h-full object-contain" />
+                </div>
+              ) : (
+                <div className={cn("w-9 h-9 rounded-lg bg-gradient-to-br flex items-center justify-center shrink-0", gradient)}>
+                  <span className="text-white text-sm font-bold">{study.clientName.charAt(0)}</span>
+                </div>
+              )}
+              <div className="min-w-0">
+                <span className="text-sm font-bold text-brand-text-primary block truncate">{study.clientName}</span>
                 <span className="text-[11px] text-brand-text-muted">{study.industry || "Enterprise"}</span>
               </div>
             </div>
 
-            {/* Challenge */}
-            <div className="relative z-10 flex-1 flex flex-col">
-              <div className="flex items-start gap-2 mb-3">
-                <Quote className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
-                <p className="text-sm text-brand-text-secondary leading-relaxed line-clamp-4">
+            {/* All results */}
+            <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-2.5 mb-4">
+              {study.results.map((r, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <div className={cn("w-1.5 h-1.5 rounded-full mt-1.5 shrink-0", accentDot)} />
+                  <div>
+                    <div className="text-base font-bold text-brand-text-primary leading-tight">{r.value}</div>
+                    <div className="text-[10px] text-brand-text-muted leading-tight">{r.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Challenge quote */}
+            <div className="relative z-10 flex-1 flex flex-col min-h-0">
+              <div className="flex items-start gap-2 mb-2">
+                <Quote className="w-3.5 h-3.5 text-brand-accent shrink-0 mt-0.5" />
+                <p className="text-[12px] text-brand-text-secondary leading-relaxed line-clamp-3">
                   {study.challenge}
                 </p>
               </div>
 
               {/* Solution preview */}
               {study.solution && (
-                <div className="mt-auto mb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-1.5">
+                <div className="mt-auto">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-1">
                     {language === 'cz' ? 'Řešení' : language === 'de' ? 'Lösung' : 'Solution'}
                   </span>
-                  <p className="text-[13px] text-brand-text-body leading-relaxed line-clamp-3">
+                  <p className="text-[11px] text-brand-text-body leading-relaxed line-clamp-2">
                     {study.solution}
                   </p>
                 </div>
@@ -436,8 +519,9 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             {/* CTA */}
             <Link
               to={`/case-studies/${study.slug}`}
+              onClick={(e) => e.stopPropagation()}
               className={cn(
-                "relative z-10 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:scale-[1.02] bg-gradient-to-r",
+                "relative z-10 flex items-center justify-center gap-2 py-2.5 mt-3 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:scale-[1.02] bg-gradient-to-r",
                 gradient
               )}
             >

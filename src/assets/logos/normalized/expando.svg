@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" fill="none">
+  <!-- e -->
+  <text x="0" y="78" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="400" fill="#222222">e</text>
+  <!-- x with orange brackets -->
+  <g transform="translate(48, 0)">
+    <!-- Orange bracket-X shape -->
+    <path d="M10 18 L25 18 L50 50 L25 82 L10 82" stroke="#E67300" stroke-width="6" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M70 18 L55 18 L30 50 L55 82 L70 82" stroke="#E67300" stroke-width="6" fill="none" stroke-linecap="square" stroke-linejoin="miter"/>
+  </g>
+  <!-- pando -->
+  <text x="130" y="78" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="400" fill="#222222">pando</text>
+</svg>

@@ -64,7 +64,10 @@ export function ProblemSectionV2() {
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.015em] text-brand-text-primary leading-[1.15]">
-              {t.problems?.title || "What you're not seeing"}
+              {t.problems?.title || "People don't leave"}
+              <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+                {t.problems?.titleHighlight || " overnight."}
+              </span>
             </h2>
           </motion.div>
           

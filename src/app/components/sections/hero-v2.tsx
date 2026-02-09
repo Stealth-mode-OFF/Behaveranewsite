@@ -107,7 +107,7 @@ export function HeroV2() {
               {c.headline}
               {c.headlineHighlight && <br />}
               {c.headlineHighlight && (
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary">
                   {c.headlineHighlight}
                 </span>
               )}

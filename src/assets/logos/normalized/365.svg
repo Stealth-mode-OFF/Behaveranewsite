@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" fill="none">
+  <!-- Green arc -->
+  <path d="M30 110 A70 70 0 0 1 170 110" stroke="#2DDBA6" stroke-width="16" stroke-linecap="round" fill="none"/>
+  <!-- 365 text -->
+  <text x="100" y="150" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="600" fill="#555555">365</text>
+</svg>

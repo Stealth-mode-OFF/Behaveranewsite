@@ -44,6 +44,9 @@ export function PurchaseSection() {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
             {t.purchase.title}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+              {t.purchase.titleHighlight}
+            </span>
           </h2>
           <p className="text-body text-brand-text-secondary">
             {t.purchase.subtitle}

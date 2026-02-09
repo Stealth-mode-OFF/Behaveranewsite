@@ -47,6 +47,9 @@ export function TrustCenter() {
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary tracking-tight mb-5">
             {copy.title}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+              {copy.titleHighlight}
+            </span>
           </h2>
           <p className="text-lg text-brand-text-secondary leading-relaxed">
             {copy.subtitle}

@@ -247,7 +247,7 @@ export function CoreTeamSection() {
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text-primary mb-4 tracking-tight">
             {t.title}{' '}
-            <span className="text-brand-primary">
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {t.titleHighlight}
             </span>
           </h2>

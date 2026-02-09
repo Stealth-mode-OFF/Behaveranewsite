@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/app/components/ui/button";
 import { LanguageSwitcher } from "./language-switcher";
@@ -37,6 +37,7 @@ export function Header() {
   ];
 
   const methodologyLabel = language === 'cz' ? 'Vědecký základ' : language === 'de' ? 'Wissenschaft' : 'Research';
+  const loginLabel = language === 'cz' ? 'Přihlásit se' : language === 'de' ? 'Anmelden' : 'Login';
 
   return (
     <motion.header
@@ -111,6 +112,18 @@ export function Header() {
           <div className="text-brand-text-primary">
              <LanguageSwitcher />
           </div>
+
+          <a
+            href="https://app.behavera.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+                "hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold transition-colors",
+                "text-brand-text-secondary hover:text-brand-primary"
+            )}
+          >
+            {loginLabel}
+          </a>
           
           <Button 
             onClick={openBooking}
@@ -178,6 +191,16 @@ export function Header() {
                 {methodologyLabel}
               </Link>
               <div className="mt-8 pt-8 border-t border-brand-border flex flex-col gap-4">
+                <a
+                    href="https://app.behavera.com/login"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full h-12 px-8 border border-brand-border hover:border-brand-primary text-brand-text-primary font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                >
+                  <LogIn className="w-4 h-4" />
+                  {loginLabel}
+                </a>
                 <Button 
                     onClick={() => {
                         setMobileMenuOpen(false);

@@ -38,7 +38,8 @@ export const translations = {
     },
     problems: {
       badge: "Turnover cost",
-      title: "People don't leave overnight.",
+      title: "People don't leave",
+      titleHighlight: " overnight.",
       subtitle: "The decision to leave takes months to ripen. The problem is you usually don't know - until you get the resignation.",
       items: [
         {
@@ -123,7 +124,8 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Everyone sees the company from a different angle.",
+      title: "Everyone sees the company",
+      titleHighlight: " from a different angle.",
       subtitle: "Select your role and see what specifically Echo Pulse gives you.",
       benefits: [
         "I want a productive team",
@@ -214,7 +216,8 @@ export const translations = {
     },
     purchase: {
       badge: "Pricing",
-      title: "Pricing based on company size",
+      title: "Pricing based on",
+      titleHighlight: " company size",
       subtitle: "Estimate is driven by employee count. Final scope and price are confirmed after a short consultation.",
       configTitle: "Configure plan",
       billingMonthly: "Monthly",
@@ -237,7 +240,8 @@ export const translations = {
     },
     trustCenter: {
       badge: "Trust Center",
-      title: "Your data is safe with us",
+      title: "Your data is safe",
+      titleHighlight: " with us",
       subtitle: "We handle sensitive people data. That's why security isn't just a feature - it's the foundation of everything we do. Audit-ready from day one.",
       guarantees: [
         {
@@ -329,7 +333,8 @@ export const translations = {
       cta: "I want to see signals from our reality"
     },
     faq: {
-      title: "Remove risks, not just questions",
+      title: "Remove risks,",
+      titleHighlight: " not just questions",
       desc: "Most common concerns we address with CEOs and HR directors.",
       contact: "Write to us →",
       items: [
@@ -390,7 +395,8 @@ export const translations = {
     },
     leadCapture: {
       badge: "Free E-book",
-      title: "Get a practical guide to managing teams by signals.",
+      title: "Get a practical guide to",
+      titleHighlight: " managing teams by signals.",
       subtitle: "We'll send you an ebook with concrete tips to quickly spot what's not working. No spam.",
       nameLabel: "Name (optional)",
       namePlaceholder: "Your name",
@@ -545,7 +551,8 @@ export const translations = {
     },
     problems: {
       badge: "Náklady na odchody",
-      title: "Lidé neodcházejí ze dne na den.",
+      title: "Lidé neodcházejí",
+      titleHighlight: " ze dne na den.",
       subtitle: "Rozhodnutí odejít zraje měsíce. Problém je, že o tom většinou nevíte - dokud nedostanete výpověď.",
       items: [
         {
@@ -630,7 +637,8 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Každý se na firmu dívá z jiného úhlu.",
+      title: "Každý se na firmu dívá",
+      titleHighlight: " z jiného úhlu.",
       subtitle: "Vyberte svou roli a uvidíte, co konkrétně vám Echo Pulse dá.",
       benefits: [
         "Chci mít produktivní tým",
@@ -720,7 +728,8 @@ export const translations = {
       ]
     },
     purchase: {
-      title: "Ceník podle velikosti firmy",
+      title: "Ceník podle",
+      titleHighlight: " velikosti firmy",
       subtitle: "Orientační odhad se odvíjí od počtu zaměstnanců. Finální rozsah a cena se potvrdí po krátké konzultaci.",
       badge: "Ceník",
       configTitle: "Nastavení tarifu",
@@ -744,7 +753,8 @@ export const translations = {
     },
     trustCenter: {
       badge: "Trust Center",
-      title: "Vaše data jsou u nás v bezpečí",
+      title: "Vaše data jsou",
+      titleHighlight: " u nás v bezpečí",
       subtitle: "Pracujeme s citlivými daty o lidech. Proto bezpečnost není jen funkce - je to základ všeho, co děláme. Připraveni na GDPR audit.",
       guarantees: [
         {
@@ -836,7 +846,8 @@ export const translations = {
       cta: "Chci vidět signály z naší reality"
     },
     faq: {
-      title: "Odstraňte rizika, ne jen otázky",
+      title: "Odstraňte rizika,",
+      titleHighlight: " ne jen otázky",
       desc: "Nejčastější obavy, které řešíme s CEO a HR řediteli.",
       contact: "Napište nám →",
       items: [
@@ -897,7 +908,8 @@ export const translations = {
     },
     leadCapture: {
       badge: "E-book zdarma",
-      title: "Získejte praktický přehled, jak řídit tým podle signálů.",
+      title: "Získejte praktický přehled,",
+      titleHighlight: " jak řídit tým podle signálů.",
       subtitle: "Pošleme vám e-book s konkrétními tipy, jak rychle odhalit, co a proč ve firmě nefunguje. Bez spamu.",
       nameLabel: "Jméno (volitelné)",
       namePlaceholder: "Vaše jméno",
@@ -1052,7 +1064,8 @@ export const translations = {
     },
     problems: {
       badge: "Fluktuationskosten",
-      title: "Menschen kündigen nicht von heute auf morgen.",
+      title: "Menschen kündigen nicht",
+      titleHighlight: " von heute auf morgen.",
       subtitle: "Die Entscheidung zu gehen reift monatelang. Das Problem ist, dass Sie es meist nicht wissen - bis Sie die Kündigung bekommen.",
       items: [
         {
@@ -1137,7 +1150,8 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Jeder sieht das Unternehmen aus einem anderen Blickwinkel.",
+      title: "Jeder sieht das Unternehmen",
+      titleHighlight: " aus einem anderen Blickwinkel.",
       subtitle: "Wählen Sie Ihre Rolle und sehen Sie, was Echo Pulse Ihnen konkret bietet.",
       benefits: [
         "Ich will ein produktives Team",
@@ -1227,7 +1241,8 @@ export const translations = {
       ]
     },
     purchase: {
-      title: "Preis nach Unternehmensgröße",
+      title: "Preis nach",
+      titleHighlight: " Unternehmensgröße",
       subtitle: "Die Schätzung richtet sich nach der Mitarbeiterzahl. Endgültiger Umfang und Preis nach einem kurzen Gespräch.",
       badge: "Preise",
       configTitle: "Plan konfigurieren",
@@ -1251,7 +1266,8 @@ export const translations = {
     },
     trustCenter: {
       badge: "Trust Center",
-      title: "Ihre Daten sind bei uns sicher",
+      title: "Ihre Daten sind",
+      titleHighlight: " bei uns sicher",
       subtitle: "Wir arbeiten mit sensiblen Personaldaten. Deshalb ist Sicherheit keine Funktion - sie ist das Fundament unserer Arbeit. Audit-bereit ab Tag eins.",
       guarantees: [
         {
@@ -1343,7 +1359,8 @@ export const translations = {
       cta: "Ich möchte Signale aus unserer Realität sehen"
     },
     faq: {
-      title: "Risiken beseitigen, nicht nur Fragen",
+      title: "Risiken beseitigen,",
+      titleHighlight: " nicht nur Fragen",
       desc: "Die häufigsten Bedenken, die wir mit CEOs und HR-Leitern besprechen.",
       contact: "Schreiben Sie uns →",
       items: [
@@ -1404,7 +1421,8 @@ export const translations = {
     },
     leadCapture: {
       badge: "Kostenloses E-Book",
-      title: "Praktischer Leitfaden: Teams nach Signalen steuern.",
+      title: "Praktischer Leitfaden:",
+      titleHighlight: " Teams nach Signalen steuern.",
       subtitle: "Wir schicken Ihnen ein E-Book mit konkreten Tipps, wie Sie schnell erkennen, was und warum etwas nicht funktioniert. Kein Spam.",
       nameLabel: "Name (optional)",
       namePlaceholder: "Ihr Name",

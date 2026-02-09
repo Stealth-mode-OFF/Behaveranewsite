@@ -12,6 +12,8 @@ import martinusLogo from "@/assets/logos/normalized/martinus.png";
 import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
 import raynetLogo from "@/assets/logos/normalized/raynet.png";
 import growRangersLogo from "@/assets/logos/normalized/grow-rangers.png";
+import logo365 from "@/assets/logos/normalized/365.svg";
+import expandoLogo from "@/assets/logos/normalized/expando.svg";
 
 // Export logos for reuse in other components
 export const clientLogos = [
@@ -26,6 +28,8 @@ export const clientLogos = [
   { name: "StartupJobs", src: startupjobsLogo },
   { name: "Raynet", src: raynetLogo },
   { name: "Grow Rangers", src: growRangersLogo },
+  { name: "365", src: logo365 },
+  { name: "Expando", src: expandoLogo },
 ];
 
 export function LogoMarquee() {
