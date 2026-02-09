@@ -25,7 +25,7 @@ export function CtaSectionV2() {
       headline: "Vaši lidé mluví.",
       headlineHighlight: "Slyšíte je?",
       subheadline: "Získejte jasný signál z vašeho týmu. Bez anonymních dotazníků, které nikdo nečte.",
-      primaryCta: "Domluvit ukázku – 30 minut, bez závazků",
+      primaryCta: "Vyzkoušet demo – 30 minut, bez závazků",
       demoCta: "Nebo se nejdřív podívejte na 3min ukázku →",
       trust: ["30denní trial", "Bez kreditky", "GDPR ready"],
     },

@@ -167,7 +167,7 @@ const copy: Record<string, ResearchCopy> = {
     ctaTitle: 'Zjistěte, jestli Echo Pulse',
     ctaTitleHighlight: 'sedí na vaši firmu',
     ctaDesc: '15minutové demo. Ukážeme vám, jak Echo Pulse funguje pro firmy jako je ta vaše — a co se dozvíte už z prvního Pulse Checku.',
-    ctaPrimary: 'Rezervovat demo',
+    ctaPrimary: 'Vyzkoušet demo',
     ctaSecondary: 'Zpět na hlavní stránku',
     ctaNote: 'Zdarma pro tým do 5 lidí. Bez závazků.',
   },

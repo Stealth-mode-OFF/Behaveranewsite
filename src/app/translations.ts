@@ -521,7 +521,7 @@ export const translations = {
       pricing: "Ceník",
       about: "O nás",
       login: "Přihlásit se",
-      bookDemo: "Domluvit ukázku",
+      bookDemo: "Vyzkoušet demo",
       nav: {
         problem: "Problém",
         solution: "Řešení",
@@ -533,7 +533,7 @@ export const translations = {
       title: "Mějte přehled,",
       titleHighlight: "co se ve firmě skutečně děje",
       subtitle: "Roční průzkumy zachytí problém, až když je pozdě. Echo Pulse vám dává průběžné signály - víte, kde to drhne, dřív než začnou výpovědi.",
-      primaryCta: "Zarezervovat ukázku (30 min)",
+      primaryCta: "Vyzkoušet demo (30 min)",
       secondaryCta: "Prohlédnout demo",
       riskReversal: "Žádné závazky. Po 30 minutách budete vědět, jestli to dává smysl pro vaši firmu.",
       trust: {
@@ -787,7 +787,7 @@ export const translations = {
     cta: {
       title: "Nečekejte na další výpověď.",
       subtitle: "Každý nečekaný odchod stojí měsíce práce a statisíce korun. Začněte mít přehled - ještě dnes.",
-      primary: "Zarezervovat ukázku",
+      primary: "Vyzkoušet demo",
       demoButton: "Vyzkoušet demo",
       secondary: "nebo zavolejte",
       secondaryLink: "+420 605 839 456",
