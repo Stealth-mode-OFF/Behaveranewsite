@@ -71,8 +71,8 @@ export function BookingModal() {
       ],
       meta: '30 min · Video hovor · Zdarma',
       social: {
-        stat: '250+',
-        label: 'týmů už používá Echo Pulse',
+        stat: '50+',
+        label: 'firem už používá Behavera',
       },
       testimonial: {
         quote: '"Konečně vidíme, co se v týmu opravdu děje."',
@@ -91,8 +91,8 @@ export function BookingModal() {
       ],
       meta: '30 min · Video call · Free',
       social: {
-        stat: '250+',
-        label: 'teams already use Echo Pulse',
+        stat: '50+',
+        label: 'companies already use Behavera',
       },
       testimonial: {
         quote: '"Finally, we see what\'s really happening in our team."',
@@ -111,8 +111,8 @@ export function BookingModal() {
       ],
       meta: '30 Min · Videoanruf · Kostenlos',
       social: {
-        stat: '250+',
-        label: 'Teams nutzen bereits Echo Pulse',
+        stat: '50+',
+        label: 'Unternehmen nutzen bereits Behavera',
       },
       testimonial: {
         quote: '"Endlich sehen wir, was in unserem Team wirklich passiert."',
