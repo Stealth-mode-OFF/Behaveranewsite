@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight, Download, FileText, Check } from 'lucide-react';
+import { X, ArrowRight, Download, FileText, Check, BookOpen, Users, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
@@ -115,22 +115,25 @@ export function LeadPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closePopup}
-            className="absolute inset-0 bg-[#0D0118]/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#0D0118]/40 backdrop-blur-sm"
           />
 
           {/* Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
-            className="relative w-full max-w-[400px] bg-white rounded-2xl shadow-[0_25px_50px_-12px_rgba(13,1,24,0.25)] overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 10 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-[440px] bg-white rounded-2xl shadow-[0_25px_60px_-12px_rgba(13,1,24,0.3)] overflow-hidden"
           >
+            {/* Top accent gradient */}
+            <div className="h-1 bg-gradient-to-r from-brand-primary via-brand-primary-hover to-brand-primary/60" />
+
             {/* Close */}
             <button
               onClick={closePopup}
-              className="absolute top-3.5 right-3.5 z-10 p-1.5 hover:bg-black/5 rounded-full text-brand-text-muted hover:text-brand-text-primary transition-colors"
-              aria-label="Close"
+              className="absolute top-4 right-4 z-10 p-1.5 hover:bg-black/5 rounded-full text-brand-text-muted hover:text-brand-text-primary transition-colors"
+              aria-label={t.leadPopup?.close || "Close"}
             >
               <X className="w-4 h-4" />
             </button>
@@ -139,20 +142,25 @@ export function LeadPopup() {
               {isSuccess ? (
                 /* Success state */
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Check className="w-6 h-6" strokeWidth={2.5} />
-                  </div>
-                  <h3 className="text-lg font-bold text-brand-text-primary mb-1">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 15, stiffness: 200, delay: 0.1 }}
+                    className="w-14 h-14 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-5"
+                  >
+                    <Check className="w-7 h-7" strokeWidth={2.5} />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-brand-text-primary mb-1.5">
                     {t.leadPopup?.successTitle || "Stahování začalo!"}
                   </h3>
-                  <p className="text-[14px] text-brand-text-muted mb-5">
+                  <p className="text-[14px] text-brand-text-muted mb-6">
                     {t.leadPopup?.successMessage || "Pokud se stahování nespustilo, klikněte níže:"}
                   </p>
 
                   <button
                     type="button"
                     onClick={downloadEbook}
-                    className="inline-flex items-center justify-center gap-2 w-full h-11 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg transition-colors text-[14px]"
+                    className="inline-flex items-center justify-center gap-2 w-full h-12 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-xl transition-all text-[14px] shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30"
                   >
                     <Download className="w-4 h-4" />
                     {t.leadPopup?.downloadButton || "Stáhnout PDF"}
@@ -166,22 +174,48 @@ export function LeadPopup() {
               ) : (
                 /* Form state */
                 <>
-                  <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-1.5 pr-6">
+                  {/* Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-primary/5 border border-brand-primary/10 rounded-full mb-4">
+                    <Sparkles className="w-3 h-3 text-brand-primary" />
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-brand-primary">
+                      {t.leadPopup?.badge || "Nová studie 2026"}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-[22px] font-bold text-brand-text-primary leading-tight mb-2 pr-6">
                     {t.leadPopup?.title || "Stáhněte si zdarma e-book"}
                   </h3>
                   <p className="text-[14px] text-brand-text-muted leading-relaxed mb-5">
                     {t.leadPopup?.subtitle || "Zjistěte, proč lidé odcházejí i z dobrých firem."}
                   </p>
 
+                  {/* E-book preview card */}
+                  <div className="flex items-center gap-3.5 p-3.5 bg-gradient-to-r from-slate-50 to-slate-50/50 rounded-xl border border-slate-100 mb-5">
+                    <div className="flex-shrink-0 w-11 h-14 bg-gradient-to-br from-brand-primary to-brand-primary-hover rounded-lg flex items-center justify-center shadow-sm">
+                      <BookOpen className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[13px] font-semibold text-brand-text-primary leading-snug truncate">
+                        {t.leadPopup?.title || "E-book"}
+                      </p>
+                      <p className="text-[11px] text-brand-text-muted mt-0.5">PDF • 4.3 MB</p>
+                    </div>
+                  </div>
+
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-                    <Input
-                      type="email"
-                      name="email"
-                      autoComplete={autocompleteAttributes.email}
-                      placeholder={t.leadPopup?.emailPlaceholder || "Váš pracovní e-mail"}
-                      className={`h-11 ${errors.email ? 'border-red-300' : ''}`}
-                      {...register("email", validationRules.email)}
-                    />
+                    <div>
+                      <label className="text-[13px] font-medium text-brand-text-secondary mb-1.5 block">
+                        {t.leadPopup?.inputLabel || "Kam máme e-book poslat?"}
+                      </label>
+                      <Input
+                        type="email"
+                        name="email"
+                        autoComplete={autocompleteAttributes.email}
+                        placeholder={t.leadPopup?.emailPlaceholder || "Váš pracovní e-mail"}
+                        className={`h-12 rounded-xl bg-slate-50 border-slate-200 focus:bg-white transition-colors ${errors.email ? 'border-red-300 bg-red-50/30' : ''}`}
+                        {...register("email", validationRules.email)}
+                      />
+                    </div>
 
                     {errors.email && (
                       <p className="text-xs text-red-600">{errors.email.message}</p>
@@ -194,7 +228,7 @@ export function LeadPopup() {
                     <Button
                       type="submit"
                       disabled={isSubmitting || isSuccess}
-                      className="w-full h-11 text-[14px] font-semibold"
+                      className="w-full h-12 text-[14px] font-semibold rounded-xl shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
                       size="lg"
                     >
                       {t.leadPopup?.cta || "Stáhnout e-book zdarma"}
@@ -202,9 +236,19 @@ export function LeadPopup() {
                     </Button>
                   </form>
 
-                  <p className="mt-4 text-center text-xs text-brand-text-muted">
-                    Žádný spam. Pouze hodnotný obsah.
-                  </p>
+                  {/* Social proof */}
+                  <div className="mt-5 pt-4 border-t border-slate-100">
+                    <div className="flex items-center justify-center gap-2 text-[13px] text-brand-text-muted">
+                      <Users className="w-3.5 h-3.5 text-brand-text-muted/60" />
+                      <span>
+                        {t.leadPopup?.socialProofPre || "Již stáhlo"}{' '}
+                        <span className="font-semibold text-brand-text-secondary">
+                          {t.leadPopup?.socialProofCount || "500+"}
+                        </span>{' '}
+                        {t.leadPopup?.socialProofPost || "lídrů"}
+                      </span>
+                    </div>
+                  </div>
                 </>
               )}
             </div>
