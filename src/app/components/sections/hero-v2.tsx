@@ -38,8 +38,8 @@ export function HeroV2() {
     },
     en: {
       badge: "For companies of 30–350 people",
-      headline: "Predict departures",
-      headlineHighlight: "before they happen",
+      headline: "Know what's really",
+      headlineHighlight: "happening in your company",
       subheadline: "Continuous pulse feedback and risk signals. Know where it's brewing — and what to do.",
       primaryCta: "Free consultation",
       secondaryCta: "3min demo",
@@ -51,8 +51,8 @@ export function HeroV2() {
     },
     de: {
       badge: "Für Unternehmen mit 30–350 Mitarbeitern",
-      headline: "Kündigungen vorhersagen",
-      headlineHighlight: "bevor sie passieren",
+      headline: "Wissen Sie, was in Ihrem",
+      headlineHighlight: "Unternehmen wirklich passiert",
       subheadline: "Kontinuierliches Pulse-Feedback und Risikosignale. Wissen Sie, wo es brodelt — und was zu tun ist.",
       primaryCta: "Kostenlose Beratung",
       secondaryCta: "3min Demo",
