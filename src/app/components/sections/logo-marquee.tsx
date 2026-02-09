@@ -11,6 +11,7 @@ import teyaLogo from "@/assets/logos/normalized/teya.png";
 import martinusLogo from "@/assets/logos/normalized/martinus.png";
 import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
 import raynetLogo from "@/assets/logos/normalized/raynet.png";
+import growRangersLogo from "@/assets/logos/normalized/grow-rangers.png";
 
 // Export logos for reuse in other components
 export const clientLogos = [
@@ -24,6 +25,7 @@ export const clientLogos = [
   { name: "Martinus", src: martinusLogo },
   { name: "StartupJobs", src: startupjobsLogo },
   { name: "Raynet", src: raynetLogo },
+  { name: "Grow Rangers", src: growRangersLogo },
 ];
 
 export function LogoMarquee() {
