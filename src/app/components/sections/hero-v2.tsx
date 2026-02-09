@@ -25,11 +25,11 @@ export function HeroV2() {
   const copy = {
     cz: {
       badge: "Pro firmy 30–350 lidí",
-      headline: "Mějte přehled co se ve firmě skutečně děje",
+      headline: <>Mějte přehled,<br className="hidden md:block" />{' '}co se ve firmě{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">skutečně děje</span></>,
       headlineHighlight: "",
-      subheadline: "Průběžný pulse feedback a risk signály. Víte, kde to vře — a co s tím.",
+      subheadline: <>Roční průzkumy zachytí problém, až když je pozdě.<br className="hidden sm:block" />My vám dáme echo včas.</>,
       primaryCta: "Konzultace zdarma",
-      secondaryCta: "3min demo",
+      secondaryCta: "Domluvit demo",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Setup za 1 hodinu" },
