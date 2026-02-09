@@ -378,9 +378,9 @@ const copy: Record<string, ResearchCopy> = {
 /* ------------------------------------------------------------------ */
 
 const modelColors = [
-  { bg: 'bg-blue-500', border: 'border-blue-200', icon: Scale },
-  { bg: 'bg-emerald-500', border: 'border-emerald-200', icon: Brain },
-  { bg: 'bg-violet-500', border: 'border-violet-200', icon: Target },
+  { bg: 'bg-brand-primary', border: 'border-brand-border', icon: Scale },
+  { bg: 'bg-brand-accent', border: 'border-brand-border', icon: Brain },
+  { bg: 'bg-brand-primary-hover', border: 'border-brand-border', icon: Target },
 ];
 
 const areaIcons = [Activity, DollarSign, Gift, Wrench, BarChart3, Award, Heart, Rocket];
@@ -401,7 +401,7 @@ const ModelCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`group relative bg-white rounded-3xl overflow-hidden border-2 ${color.border} hover:shadow-2xl hover:shadow-brand-primary/10 transition-all duration-500`}
+      className={`group relative bg-brand-background-primary rounded-3xl overflow-hidden border ${color.border} hover:shadow-2xl hover:shadow-brand-primary/10 transition-all duration-500`}
     >
       <div className={`${color.bg} p-8 relative overflow-hidden`}>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
@@ -472,17 +472,17 @@ export const ResearchPage = () => {
   });
 
   const stepIcons = [MessageCircle, Zap, BarChart3];
-  const stepColors = ['bg-blue-500', 'bg-purple-500', 'bg-amber-500'];
+  const stepColors = ['bg-brand-primary', 'bg-brand-accent', 'bg-brand-primary-hover'];
   const boundaryIcons = [AlertTriangle, BarChart3, FileText, Shield];
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-background-primary">
+    <div className="min-h-screen flex flex-col bg-brand-background-primary text-brand-text-body">
       <Header />
       <main className="flex-1">
         {/* ── Hero ── */}
         <section className="relative pt-32 pb-20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-background-secondary/50 to-transparent" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-brand-primary/5 via-transparent to-transparent rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-background-muted/60 to-transparent" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-radial from-brand-accent/8 via-transparent to-transparent rounded-full blur-3xl" />
 
           <div className="container mx-auto px-4 max-w-5xl relative">
             <motion.div
@@ -491,9 +491,9 @@ export const ResearchPage = () => {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-full text-xs font-mono font-bold mb-8 shadow-lg shadow-brand-primary/20">
-                <Microscope className="w-4 h-4" />
-                {c.badge}
+              <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-primary/5 rounded-full border border-brand-primary/10 text-xs font-mono font-bold mb-8">
+                <Microscope className="w-4 h-4 text-brand-primary" />
+                <span className="text-brand-primary tracking-[0.15em] uppercase">{c.badge}</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text-primary mb-6 tracking-tight leading-[1.1]">
@@ -520,9 +520,9 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── Evidence Strip ── */}
-        <section className="bg-white border-y border-brand-border/50 py-12">
+        <section className="bg-brand-background-primary border-y border-brand-border py-12">
           <div className="container mx-auto px-4 max-w-6xl">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-border/30">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-border">
               {c.evidenceStats.map((s, i) => (
                 <div key={i} className="text-center p-6">
                   <div className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-brand-primary to-brand-accent bg-clip-text text-transparent mb-2">
@@ -537,7 +537,7 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── Primary Models ── */}
-        <section className="py-24 bg-gradient-to-b from-brand-background-secondary/30 to-transparent">
+        <section className="py-24 bg-brand-background-secondary">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -545,7 +545,7 @@ export const ResearchPage = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-primary text-white rounded-lg text-xs font-mono font-bold uppercase tracking-wider mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-lg text-xs font-mono font-bold uppercase tracking-wider mb-4">
                 {c.modelsLabel}
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 tracking-tight">
@@ -563,7 +563,7 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── 8 Areas We Measure ── */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-brand-background-primary">
           <div className="container mx-auto px-4 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -590,7 +590,7 @@ export const ResearchPage = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
-                    className="group bg-brand-background-secondary hover:bg-brand-primary/5 p-5 rounded-xl border border-brand-border/50 hover:border-brand-primary/30 transition-all text-center"
+                    className="group bg-brand-background-secondary hover:bg-brand-background-muted p-5 rounded-xl border border-brand-border hover:border-brand-primary/30 transition-all text-center"
                   >
                     <AreaIcon className="w-7 h-7 mx-auto mb-3 text-brand-primary" />
                     <div className="font-semibold text-brand-text-primary text-sm mb-2">{area.name}</div>
@@ -603,7 +603,7 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── How Collection Works ── */}
-        <section className="py-24 bg-gradient-to-b from-brand-background-secondary/30 to-transparent">
+        <section className="py-24 bg-brand-background-secondary">
           <div className="container mx-auto px-4 max-w-5xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -611,7 +611,7 @@ export const ResearchPage = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-primary text-white rounded-lg text-xs font-mono font-bold uppercase tracking-wider mb-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-primary/10 text-brand-primary rounded-lg text-xs font-mono font-bold uppercase tracking-wider mb-4">
                 {c.howLabel}
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 tracking-tight">
@@ -630,7 +630,7 @@ export const ResearchPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="relative bg-white p-8 rounded-2xl border border-brand-border/50 hover:shadow-xl transition-all"
+                    className="relative bg-brand-background-primary p-8 rounded-2xl border border-brand-border hover:shadow-xl hover:border-brand-primary/20 transition-all"
                   >
                     <div className="flex items-center gap-4 mb-6">
                       <div className={`w-12 h-12 rounded-xl ${stepColors[i]} flex items-center justify-center`}>
@@ -655,12 +655,12 @@ export const ResearchPage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 border border-brand-border/50"
+              className="bg-brand-background-primary rounded-2xl p-8 border border-brand-border"
             >
               <div className="grid sm:grid-cols-2 gap-4">
                 {c.howProofs.map((proof, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-brand-success mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-brand-primary mt-0.5 flex-shrink-0" />
                     <span className="text-brand-text-secondary text-sm">{proof}</span>
                   </div>
                 ))}
@@ -670,7 +670,7 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── Scientific Rigor ── */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-brand-background-primary">
           <div className="container mx-auto px-4 max-w-5xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -695,7 +695,7 @@ export const ResearchPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="group bg-brand-background-secondary rounded-2xl p-6 border border-brand-border/50 hover:border-brand-primary/30 hover:shadow-xl transition-all duration-300"
+                  className="group bg-brand-background-secondary rounded-2xl p-6 border border-brand-border hover:border-brand-primary/30 hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-primary group-hover:scale-105 transition-all duration-300">
@@ -711,8 +711,8 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── System Boundaries ── */}
-        <section className="py-24 bg-gradient-to-br from-brand-primary via-brand-primary-hover to-brand-primary relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-brand-accent/20 via-transparent to-transparent" />
+        <section className="py-24 bg-gradient-to-br from-brand-primary via-brand-primary-hover to-brand-background-dark relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-brand-accent/15 via-transparent to-transparent" />
 
           <div className="container mx-auto px-4 max-w-5xl relative">
             <motion.div
@@ -739,18 +739,18 @@ export const ResearchPage = () => {
         </section>
 
         {/* ── CTA ── */}
-        <section className="py-24 bg-gradient-to-b from-brand-background-secondary/30 to-white">
+        <section className="py-24 bg-gradient-to-b from-brand-background-secondary to-brand-background-primary">
           <div className="container mx-auto px-4 max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative bg-white rounded-3xl p-10 md:p-14 shadow-2xl shadow-brand-primary/10 border border-brand-border/50 overflow-hidden"
+              className="relative bg-brand-background-primary rounded-3xl p-10 md:p-14 shadow-2xl shadow-brand-primary/10 border border-brand-border overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-brand-accent/10 via-brand-primary/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
+              <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-brand-accent/8 via-brand-primary/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
 
               <div className="relative text-center max-w-2xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary text-white rounded-full text-xs font-mono font-bold mb-6 shadow-md">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 text-brand-primary rounded-full text-xs font-mono font-bold mb-6">
                   <Lightbulb className="w-4 h-4" />
                   {c.ctaBadge}
                 </div>
