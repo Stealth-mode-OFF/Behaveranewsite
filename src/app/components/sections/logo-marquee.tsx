@@ -33,8 +33,8 @@ export function LogoMarquee() {
 
   const title = {
     cz: "Důvěřuje nám 50+ firem v Česku",
-    en: "Trusted by 50+ companies in the Czech Republic",
-    de: "Über 50 Unternehmen in Tschechien vertrauen uns",
+    en: "Trusted by 50+ companies",
+    de: "Über 50 Unternehmen vertrauen uns",
   };
 
   return (
@@ -59,10 +59,10 @@ export function LogoMarquee() {
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
           
           <div className="w-full inline-flex flex-nowrap overflow-hidden">
-            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll shrink-0">
+            <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll shrink-0">
               {clientLogos.map((logo, index) => (
                 <li key={index} className="shrink-0">
-                  <div className="w-[100px] md:w-[120px] h-[32px] md:h-[40px] flex items-center justify-center">
+                  <div className="w-[100px] md:w-[120px] h-[36px] md:h-[44px] flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt={`${logo.name} logo`}
@@ -73,10 +73,10 @@ export function LogoMarquee() {
                 </li>
               ))}
             </ul>
-            <ul className="flex items-center [&_li]:mx-8 md:[&_li]:mx-12 animate-infinite-scroll shrink-0" aria-hidden="true">
+            <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll shrink-0" aria-hidden="true">
               {clientLogos.map((logo, index) => (
                 <li key={`duplicate-${index}`} className="shrink-0">
-                  <div className="w-[120px] md:w-[150px] h-[40px] md:h-[52px] flex items-center justify-center">
+                  <div className="w-[100px] md:w-[120px] h-[36px] md:h-[44px] flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt=""

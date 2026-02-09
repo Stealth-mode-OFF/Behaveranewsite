@@ -551,21 +551,21 @@ export const translations = {
         {
           title: "NECHTĚNÁ FLUKTUACE",
           value: "6–9× mzda",
-          desc: "Nahradit jednoho zaměstnance stojí průměrně 6–9× jeho měsíční mzdu. U seniorních pozic až 24×. Nejde jen o náklady na nábor - je to ztráta know-how, rozpadlá dynamika týmu a měsíce, než se nový člověk dostane na plný výkon. Udržením jednoho klíčového zaměstnance ušetříte v průměru 1,2 mil. Kč. [Zdroj: SHRM, Gallup]",
+          desc: "Nahradit jednoho zaměstnance stojí průměrně 6–9× jeho měsíční mzdu. U seniorních pozic až 24×. Nejde jen o náklady na nábor - je to ztráta know-how, rozpadlá dynamika týmu a měsíce, než se nový člověk dostane na plný výkon. Udržením jednoho klíčového zaměstnance ušetříte v průměru 1,2 mil. Kč. Zdroj: SHRM, Gallup.",
         },
         {
           title: "POKLES VÝKONU",
           value: "–21%",
-          desc: "Aktivně neangažované týmy mají o 21 % nižší ziskovost a výrazně nižší produktivitu. Angažovaní zaměstnanci jsou až o 20 % produktivnější. Jenže problém nevidíte - a většina firem se to dozví až na exit interview, kdy je pozdě cokoliv měnit. [Zdroj: Gallup State of the Workplace]",
+          desc: "Aktivně neangažované týmy mají o 21 % nižší ziskovost a výrazně nižší produktivitu. Angažovaní zaměstnanci jsou až o 20 % produktivnější. Jenže problém nevidíte - a většina firem se to dozví až na exit interview, kdy je pozdě cokoliv měnit. Zdroj: Gallup, State of the Workplace.",
         },
         {
           title: "VLIV MANAŽERA",
           value: "69%",
-          desc: "69 % zaměstnanecké zkušenosti formuje přímý nadřízený. Váš vzkaz prochází přes něj. Když manažer nemá přehled o tom, co jeho lidi brzdí, quiet quitting a vyhoření se šíří potichu - a odchází o 59 % víc lidí, než je nutné. [Zdroj: Gallup]",
+          desc: "69 % zaměstnanecké zkušenosti formuje přímý nadřízený. Váš vzkaz prochází přes něj. Když manažer nemá přehled o tom, co jeho lidi brzdí, quiet quitting a vyhoření se šíří potichu - a odchází o 59 % víc lidí, než je nutné. Zdroj: Gallup.",
         },
       ],
       ctaBox: {
-        label: "Systémové varování",
+        label: "Co s tím?",
         title: "Na tohle intuice nestačí.",
         desc: "Potřebujete průběžná data z terénu. Jinak jen hádáte, proč lidé ztrácejí motivaci - a než si toho všimnete, talent už je za dveřmi."
       }

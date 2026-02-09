@@ -90,7 +90,7 @@ export function ProblemSectionV2() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="lg:col-span-2 lg:row-span-2"
+            className="lg:col-span-2"
           >
             <BentoCell
               item={items[0]}
@@ -178,7 +178,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProp
     <div className={cn(
       "h-full rounded-3xl p-6 md:p-8 flex flex-col justify-start border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
       accent || "bg-brand-background-secondary",
-      size === "large" ? "min-h-[280px] lg:min-h-[340px]" : "min-h-[200px]"
+      size === "large" ? "min-h-[240px] lg:min-h-[280px]" : "min-h-[180px]"
     )}>
       <div className="mb-4 flex justify-center">
         <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
