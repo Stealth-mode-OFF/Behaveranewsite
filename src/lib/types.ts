@@ -32,6 +32,7 @@ export type CaseStudy = {
   content: string;
   coverImage?: string;
   tags?: string[];
+  employeeCount?: string;
   publishedAt: string;
   status: 'draft' | 'published';
 };

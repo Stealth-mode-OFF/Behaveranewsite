@@ -19,13 +19,24 @@ export const CaseStudyList = () => {
   const loadStudies = async () => {
     setIsLoading(true);
     try {
-      const data = await CmsService.getCaseStudies();
+      const data = await CmsService.getAllCaseStudies();
       setStudies(data);
       setFilteredStudies(data);
     } catch (error) {
       toast.error('Failed to load case studies');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDelete = async (study: CaseStudy) => {
+    if (!window.confirm(`Delete "${study.clientName}"? This cannot be undone.`)) return;
+    try {
+      await CmsService.deleteCaseStudy(study.id);
+      toast.success(`Deleted: ${study.clientName}`);
+      loadStudies();
+    } catch {
+      toast.error('Failed to delete case study');
     }
   };
 
@@ -134,7 +145,7 @@ export const CaseStudyList = () => {
                             <Pencil className="w-4 h-4" />
                             </Link>
                         </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-red-600 hover:bg-red-50" onClick={() => toast.info('Delete functionality placeholder')} title="Delete">
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(study)} title="Delete">
                             <Trash2 className="w-4 h-4" />
                         </Button>
                         </div>
