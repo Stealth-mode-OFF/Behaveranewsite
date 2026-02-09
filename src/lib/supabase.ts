@@ -5,9 +5,14 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
 /**
  * Shared Supabase client instance.
- * Returns null if env vars are not configured.
+ * Returns null if env vars are not configured or still have placeholder values.
  */
-export const supabase =
-  supabaseUrl && supabaseAnonKey
-    ? createClient(supabaseUrl, supabaseAnonKey)
-    : null;
+const isConfigured =
+  supabaseUrl &&
+  supabaseAnonKey &&
+  !supabaseAnonKey.includes('your_') &&
+  supabaseAnonKey.length > 20;
+
+export const supabase = isConfigured
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;

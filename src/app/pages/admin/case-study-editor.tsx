@@ -44,8 +44,7 @@ export const CaseStudyEditor = () => {
 
   useEffect(() => {
     if (isEditing && id) {
-      CmsService.getCaseStudies().then(studies => {
-        const study = studies.find(s => s.id === id);
+      CmsService.getCaseStudyById(id).then(study => {
         if (study) {
             setValue('clientName', study.clientName);
             setValue('industry', study.industry);
@@ -57,16 +56,19 @@ export const CaseStudyEditor = () => {
             setValue('coverImage', study.coverImage || '');
             setValue('results', study.results && study.results.length > 0 ? study.results : [{ label: '', value: '' }]);
             setValue('status', study.status);
+        } else {
+            toast.error('Case study not found');
+            navigate('/admin/case-studies');
         }
       });
     }
-  }, [id, isEditing, setValue]);
+  }, [id, isEditing, setValue, navigate]);
 
   const onSubmit = async (data: CaseStudyFormData) => {
     setIsLoading(true);
     try {
-      if (isEditing) {
-        // Mock update
+      if (isEditing && id) {
+        await CmsService.updateCaseStudy(id, data);
         toast.success('Case Study updated');
       } else {
         await CmsService.createCaseStudy(data);

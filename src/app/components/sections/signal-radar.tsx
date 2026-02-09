@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import {
   Activity, Zap, Briefcase, Heart, Shield, Award, Scale, Cpu,
   MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
-  Lock, Send, CheckCircle2, XCircle, TrendingUp
+  Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* ─── Icons ─── */
 const topicIcons: Record<string, React.ElementType> = {
@@ -23,7 +23,7 @@ type TCopy = {
   topicsTitle: string; topicsSubtitle: string;
   topics: Record<string, { name: string; desc: string }>;
   topicChip: string; defaultBadge: string;
-  compTitle: string; compSubtitle: string;
+  compTitle: string; compSubtitle: string; compTimeSaved: string;
   advantages: { title: string; oldWay: string; ourWay: string }[];
   tryTitle: string; tryDesc: string; tryCta: string; tryNote: string;
 };
@@ -36,7 +36,7 @@ const copy: Record<string, TCopy> = {
     subtitle: "Žádné formuláře. Zaměstnanci odpovídají v krátkém AI chatu \u2014 5\u20136 otázek, 2 minuty, anonymně. Výsledky okamžitě v dashboardu.",
     stepsTitle: "Jak to funguje",
     steps: [
-      { title: "Rozešlete Pulse Check", desc: "Jeden odkaz pro celý tým. Žádná instalace, žádné přihlašování." },
+      { title: "Pulse Check se sám rozešle", desc: "Nastavíte jednou, dál běží automaticky. Slack, Teams nebo e-mail — bez práce navíc." },
       { title: "2min AI konverzace", desc: "Chatbot pokládá chytré otázky. Přirozeně, ne jako nudný formulář." },
       { title: "Výsledky v dashboardu", desc: "Okamžitý přehled, trendy v čase, AI doporučení k akci." },
     ],
@@ -56,6 +56,7 @@ const copy: Record<string, TCopy> = {
     defaultBadge: "Doporučený start",
     compTitle: "Proč ne Google Forms?",
     compSubtitle: "Sbírat zpětnou vazbu přes formuláře umí každý. Ale funguje to?",
+    compTimeSaved: "Ušetříte ~6 hodin na každém kole zpětné vazby",
     advantages: [
       { title: "85 % návratnost vs. 15 %", oldWay: "Formuláře: 15\u201330 % lidí dokončí", ourWay: "Pulse: 85 %+ díky chat formátu" },
       { title: "Okamžitá analýza, ne Excel", oldWay: "Formuláře: Export \u2192 Excel \u2192 ruční grafy", ourWay: "Pulse: Real-time dashboard s AI insights" },
@@ -74,7 +75,7 @@ const copy: Record<string, TCopy> = {
     subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 5\u20136 questions, 2 minutes, fully anonymous. Results appear instantly in your dashboard.",
     stepsTitle: "How it works",
     steps: [
-      { title: "Send a Pulse Check", desc: "One link for the whole team. No install, no login required." },
+      { title: "Pulse Check sends itself", desc: "Set it up once, it runs automatically. Slack, Teams, or email — zero extra work." },
       { title: "2-min AI conversation", desc: "A chatbot asks smart questions. Natural, not like a boring form." },
       { title: "Results in dashboard", desc: "Instant overview, trends over time, AI-powered action recommendations." },
     ],
@@ -94,6 +95,7 @@ const copy: Record<string, TCopy> = {
     defaultBadge: "Recommended start",
     compTitle: "Why not Google Forms?",
     compSubtitle: "Anyone can collect feedback with forms. But does it actually work?",
+    compTimeSaved: "Save ~6 hours on every feedback cycle",
     advantages: [
       { title: "85% completion vs. 15%", oldWay: "Forms: 15\u201330% of people finish it", ourWay: "Pulse: 85%+ thanks to chat format" },
       { title: "Instant analysis, not Excel", oldWay: "Forms: Export \u2192 Excel \u2192 manual charts", ourWay: "Pulse: Real-time dashboard with AI insights" },
@@ -112,7 +114,7 @@ const copy: Record<string, TCopy> = {
     subtitle: "Keine Formulare. Mitarbeiter antworten in einem kurzen AI-Chat \u2014 5\u20136 Fragen, 2 Minuten, völlig anonym. Ergebnisse sofort im Dashboard.",
     stepsTitle: "So funktioniert es",
     steps: [
-      { title: "Pulse Check senden", desc: "Ein Link für das gesamte Team. Keine Installation, keine Anmeldung." },
+      { title: "Pulse Check sendet sich selbst", desc: "Einmal einrichten, läuft automatisch. Slack, Teams oder E-Mail — kein Mehraufwand." },
       { title: "2-Min AI-Gespräch", desc: "Ein Chatbot stellt kluge Fragen. Natürlich, nicht wie ein Formular." },
       { title: "Ergebnisse im Dashboard", desc: "Sofortiger Überblick, Trends und KI-gestützte Handlungsempfehlungen." },
     ],
@@ -132,6 +134,7 @@ const copy: Record<string, TCopy> = {
     defaultBadge: "Empfohlener Start",
     compTitle: "Warum nicht Google Forms?",
     compSubtitle: "Feedback mit Formularen sammeln kann jeder. Aber funktioniert es?",
+    compTimeSaved: "Sparen Sie ~6 Stunden pro Feedback-Zyklus",
     advantages: [
       { title: "85 % Rücklauf vs. 15 %", oldWay: "Formulare: 15\u201330 % füllen es aus", ourWay: "Pulse: 85 %+ dank Chat-Format" },
       { title: "Sofortige Analyse, kein Excel", oldWay: "Formulare: Export \u2192 Excel \u2192 manuelle Diagramme", ourWay: "Pulse: Echtzeit-Dashboard mit KI-Insights" },
@@ -147,6 +150,7 @@ const copy: Record<string, TCopy> = {
 
 export function SignalRadar() {
   const { language } = useLanguage();
+  const [compOpen, setCompOpen] = useState(false);
 
   const c = copy[language] || copy.en;
 
@@ -296,16 +300,47 @@ export function SignalRadar() {
 
         {/* ═══════════ WHY NOT GOOGLE FORMS ═══════════ */}
         <div className="mb-16">
-          <div className="text-center mb-10">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-brand-text-primary mb-3">
-              {c.compTitle}
-            </h3>
-            <p className="text-base text-brand-text-body max-w-2xl mx-auto leading-relaxed">
-              {c.compSubtitle}
-            </p>
-          </div>
+          <button
+            onClick={() => setCompOpen(!compOpen)}
+            className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-white border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 transition-all group cursor-pointer"
+          >
+            <div className="flex items-center gap-4 text-left">
+              <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0">
+                <Brain className="w-5 h-5 text-brand-primary" />
+              </div>
+              <div>
+                <h3 className="text-base sm:text-lg font-bold text-brand-text-primary">
+                  {c.compTitle}
+                </h3>
+                <div className="flex items-center gap-2 mt-1">
+                  <Timer className="w-3.5 h-3.5 text-emerald-500" />
+                  <span className="text-sm text-emerald-600 font-semibold">{c.compTimeSaved}</span>
+                </div>
+              </div>
+            </div>
+            <motion.div
+              animate={{ rotate: compOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-8 h-8 rounded-full bg-brand-background-secondary flex items-center justify-center shrink-0 group-hover:bg-brand-primary/10 transition-colors"
+            >
+              <ChevronDown className="w-5 h-5 text-brand-text-muted" />
+            </motion.div>
+          </button>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <motion.div
+            initial={false}
+            animate={{
+              height: compOpen ? 'auto' : 0,
+              opacity: compOpen ? 1 : 0,
+            }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pt-6">
+              <p className="text-sm text-brand-text-body text-center max-w-2xl mx-auto leading-relaxed mb-6">
+                {c.compSubtitle}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {c.advantages.map((adv, i) => {
               const AdvIcon = advantageIcons[i] || Sparkles;
 
@@ -339,49 +374,178 @@ export function SignalRadar() {
                 </motion.div>
               );
             })}
-          </div>
+            </div>
+            </div>
+          </motion.div>
         </div>
-
-        {/* ═══════════ TRY IT CTA ═══════════ */}
+        {/* ═══════════ QUICK SCAN CTA + TESTIMONIALS ═══════════ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-primary via-[#3B1899] to-[#2D1B69] p-8 sm:p-10 md:p-12 text-center shadow-xl"
+          className="rounded-2xl border border-brand-border/60 bg-white p-6 sm:p-8 md:p-10 shadow-sm"
         >
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-violet-400 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
-          </div>
-
-          <div className="relative z-10 max-w-xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-full border border-white/20 mb-5">
-              <Lock className="w-3.5 h-3.5 text-white/70" />
-              <span className="text-[11px] font-semibold text-white/80 tracking-[0.06em]">{c.tryNote}</span>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+            <div className="md:max-w-[55%]">
+              <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-2 leading-tight">
+                {c.tryTitle}
+              </h3>
+              <p className="text-sm text-brand-text-muted leading-relaxed">
+                {c.tryDesc}
+              </p>
             </div>
-
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 leading-tight">
-              {c.tryTitle}
-            </h3>
-
-            <p className="text-base text-white/75 leading-relaxed mb-7 max-w-md mx-auto">
-              {c.tryDesc}
-            </p>
-
-            <a
-              href={tryLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2.5 h-[52px] px-8 rounded-xl bg-white text-brand-primary font-bold text-[15px] hover:bg-white/90 hover:shadow-lg hover:shadow-white/20 transition-all active:translate-y-[1px] no-underline"
+            <button
+              onClick={() => {
+                window.open(tryLink, 'pulseScan', 'width=480,height=820,left=200,top=80,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
+              }}
+              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
             >
               {c.tryCta}
-              <ExternalLink className="w-4 h-4" />
-            </a>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </button>
           </div>
+
+          {/* Testimonials carousel */}
+          <QuickScanTestimonials lang={language} />
         </motion.div>
 
       </div>
     </section>
+  );
+}
+
+/* ─── Testimonials embedded in Quick Scan CTA ─── */
+
+type Testimonial = {
+  name: string;
+  role: string;
+  company: string;
+  quote: string;
+};
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Dominik Hegedus",
+    role: "CEO",
+    company: "Expando",
+    quote: "It took just a moment — and those few answers delivered exactly what we needed. No complicated reports, no endless spreadsheets — just clear, actionable insights.",
+  },
+  {
+    name: "Jiří",
+    role: "CEO",
+    company: "Logistika",
+    quote: "Jsem nadšený! Jsem na pozici CEO od srpna. Mám dát do pořádku celou firmu a potřebuji rychle zjistit, co se kde děje. Tohle je pro mě nesmírně cenné!",
+  },
+  {
+    name: "Tereza Müllerová",
+    role: "COO",
+    company: "StartupJobs",
+    quote: "Překvapilo mě, kolik lidí se zapojilo. A i když naši lídři se svými týmy pravidelně mluví, v Pulsu se ukázaly věci, které jim lidé do očí neřekli.",
+  },
+  {
+    name: "Karel Poplstein",
+    role: "CEO",
+    company: "Valxon",
+    quote: "I thought people are no longer engaged and gave up on us. I was surprised when I saw how engaged and invested our employees are. Moreover, without Behavera, we would've kept treating symptoms instead of the real causes. It helped us see what we would've otherwise missed.",
+  },
+  {
+    name: "Dana Kultová",
+    role: "COO",
+    company: "",
+    quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations. Thanks to that, we fine-tuned our processes, set clear KPIs, and improved team communication.",
+  },
+  {
+    name: "Head of HR",
+    role: "Head of HR",
+    company: "",
+    quote: "I had given up hope of finding out what the company thinks. People hated surveys and just 30 % responded. And the data was useless. Behavera gave us clear message from over two-thirds of employees, which is more than enough to act.",
+  },
+  {
+    name: "Ema Nováková",
+    role: "HR Manager",
+    company: "Expando",
+    quote: "Díky Behaveře lídři dostanou výstupy z průzkumu automaticky a to i s akčními doporučeními okamžitě a já tak ušetřím celý týden, který nyní mohu investovat do zlepšování procesů a rozvoje zaměstnanců.",
+  },
+  {
+    name: "Martina",
+    role: "Manažerka telesales týmu",
+    company: "Teya",
+    quote: "Díky Echo Pulse mám pravidelný feedback o tom, jestli je můj tým v pohodě. Hned vidím, kdy je třeba urgentně řešit nějaký problém i co moje lidi pálí nejvíc. Jsem v roli lídra čerstvě a Behavera mi pomáhá si správně definovat priority.",
+  },
+  {
+    name: "Ján Pavlík",
+    role: "Project Manager",
+    company: "Expando",
+    quote: "Behavera nám ukázala, že kromě špatné interní komunikace máme také problémy s efektivní motivací lidí. Hodně mě to překvapilo. Nikdy předtím jsem to nepovažoval za problém.",
+  },
+];
+
+function QuickScanTestimonials({ lang }: { lang: string }) {
+  const [idx, setIdx] = useState(0);
+
+  const next = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIdx((i) => (i + 1) % testimonials.length);
+  }, []);
+
+  const prev = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIdx((i) => (i - 1 + testimonials.length) % testimonials.length);
+  }, []);
+
+  const t = testimonials[idx];
+
+  return (
+    <div className="border-t border-brand-border/40 pt-5">
+      <div className="relative min-h-[100px] flex items-center">
+        <button
+          onClick={prev}
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
+          aria-label="Previous"
+        >
+          <ChevronDown className="w-3.5 h-3.5 rotate-90" />
+        </button>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="px-10 text-center w-full"
+          >
+            <p className="text-[13px] sm:text-sm text-brand-text-secondary leading-relaxed italic mb-3">
+              &ldquo;{t.quote}&rdquo;
+            </p>
+            <span className="text-xs text-brand-text-muted">
+              — {t.name}, {t.role}{t.company ? ` · ${t.company}` : ''}
+            </span>
+          </motion.div>
+        </AnimatePresence>
+
+        <button
+          onClick={next}
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
+          aria-label="Next"
+        >
+          <ChevronDown className="w-3.5 h-3.5 -rotate-90" />
+        </button>
+      </div>
+
+      <div className="flex items-center justify-center gap-1 mt-3">
+        {testimonials.map((_, i) => (
+          <button
+            key={i}
+            onClick={(e) => { e.stopPropagation(); setIdx(i); }}
+            className={`h-1 rounded-full transition-all cursor-pointer ${
+              i === idx ? 'bg-brand-accent w-4' : 'bg-brand-border w-1.5 hover:bg-brand-text-muted/40'
+            }`}
+            aria-label={`Testimonial ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

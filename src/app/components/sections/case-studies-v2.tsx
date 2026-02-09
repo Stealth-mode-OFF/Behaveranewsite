@@ -357,35 +357,20 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
           className="absolute inset-0 rounded-3xl overflow-hidden"
           style={{ backfaceVisibility: "hidden" }}
         >
-          {/* Cover image background */}
-          {study.coverImage && (
-            <>
-              <img
-                src={study.coverImage}
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/95 to-white/70" />
-            </>
-          )}
-          <div className={cn(
-            "h-full flex flex-col items-center justify-center text-center rounded-3xl relative overflow-hidden px-6 py-8",
-            !study.coverImage && "bg-white border border-brand-border/50"
-          )}>
-            {/* Decorative gradient blobs */}
-            <div className={cn(
-              "absolute -top-24 -right-24 w-56 h-56 rounded-full blur-[100px] opacity-20 bg-gradient-to-br",
-              gradient
-            )} />
-            <div className={cn(
-              "absolute -bottom-20 -left-20 w-44 h-44 rounded-full blur-[80px] opacity-15 bg-gradient-to-br",
-              gradient
-            )} />
+          {/* Full-bleed photo */}
+          <img
+            src={study.coverImage || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200'}
+            alt={study.clientName}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Dark gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
-            {/* Logo */}
-            <div className="relative z-10 mb-4">
+          <div className="h-full flex flex-col relative p-6">
+            {/* Top: Logo */}
+            <div className="flex items-start justify-between">
               {logo ? (
-                <div className="w-36 h-36 rounded-3xl bg-white/90 shadow-xl border border-brand-border/20 flex items-center justify-center p-5 mx-auto backdrop-blur-sm">
+                <div className="w-16 h-16 rounded-2xl bg-white/95 backdrop-blur-sm shadow-lg flex items-center justify-center p-2.5">
                   <img
                     src={logo}
                     alt={study.clientName}
@@ -394,58 +379,52 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                 </div>
               ) : (
                 <div className={cn(
-                  "w-36 h-36 rounded-3xl bg-gradient-to-br flex items-center justify-center mx-auto shadow-xl",
+                  "w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center shadow-lg",
                   gradient
                 )}>
-                  <span className="text-white text-5xl font-bold">
+                  <span className="text-white text-2xl font-bold">
                     {study.clientName.charAt(0)}
                   </span>
                 </div>
               )}
+              {/* Employee count badge */}
+              {study.employeeCount && (
+                <div className="flex items-center gap-1.5 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-3 py-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-white/80" />
+                  <span className="text-xs font-semibold text-white">{study.employeeCount}</span>
+                </div>
+              )}
             </div>
 
-            {/* Company name */}
-            <h3 className="relative z-10 text-lg font-bold text-brand-text-primary mb-1">
-              {study.clientName}
-            </h3>
-            <span className="relative z-10 text-xs text-brand-text-muted mb-4">
-              {study.industry || "Enterprise"}
-            </span>
+            {/* Spacer */}
+            <div className="flex-1" />
 
-            {/* Hero metric */}
-            {study.results.length > 0 && (
-              <div className="relative z-10 mb-6">
-                <div className={cn(
-                  "text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r",
-                  gradient
-                )}>
-                  {study.results[0].value}
-                </div>
-                <div className="text-sm text-brand-text-secondary font-medium mt-1">
-                  {study.results[0].label}
-                </div>
-              </div>
-            )}
+            {/* Bottom: Company info + tags */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-0.5 drop-shadow-lg">
+                {study.clientName}
+              </h3>
+              <span className="text-sm text-white/70 font-medium">
+                {study.industry || "Enterprise"}
+              </span>
 
-            {/* Tags */}
-            {study.tags && study.tags.length > 0 && (
-              <div className="relative z-10 flex flex-wrap justify-center gap-2">
-                {study.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className={cn(
-                      "text-[10px] font-semibold px-2.5 py-1 rounded-full border",
-                      tagColor
-                    )}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+              {/* Tags */}
+              {study.tags && study.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {study.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Flip hint */}
-            <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-1.5 text-[11px] text-brand-text-muted/60 z-10">
+            <div className="flex items-center justify-center gap-1.5 text-[11px] text-white/50 mt-4">
               <Sparkles className="w-3 h-3" />
               <span>{flipHint}</span>
             </div>

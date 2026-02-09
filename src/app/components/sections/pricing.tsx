@@ -193,7 +193,7 @@ export function PurchaseSection() {
                         </div>
                         
                         {billingInterval === 'yearly' && yearlySavings > 0 && (
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-success/20 text-brand-success rounded-full text-sm font-bold mb-4 border border-brand-success/30">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm font-bold mb-4 border border-white/30">
                                 <Check className="w-4 h-4" />
                                 {language === 'de'
                                   ? `Sparen Sie €${yearlySavings.toLocaleString()}/Jahr`

@@ -77,6 +77,35 @@ const mapCaseStudyRow = (row: CaseStudyRow): CaseStudy => ({
   status: row.status
 });
 
+/* ─── localStorage helpers ─── */
+const LS_KEY_CASE_STUDIES = 'behavera_case_studies';
+const LS_KEY_POSTS = 'behavera_posts';
+
+function loadLocalCaseStudies(): CaseStudy[] {
+  try {
+    const raw = localStorage.getItem(LS_KEY_CASE_STUDIES);
+    if (raw) return JSON.parse(raw);
+  } catch { /* ignore */ }
+  return [];
+}
+
+function saveLocalCaseStudies(studies: CaseStudy[]) {
+  localStorage.setItem(LS_KEY_CASE_STUDIES, JSON.stringify(studies));
+}
+
+/** Merge mock + localStorage, deduplicate by id (local overrides mock), respect deletions */
+function getMergedCaseStudies(): CaseStudy[] {
+  const local = loadLocalCaseStudies();
+  const localIds = new Set(local.map(s => s.id));
+  const deletedIds = new Set<string>(
+    JSON.parse(localStorage.getItem('behavera_deleted_cs') || '[]')
+  );
+  const fromMock = MOCK_CASE_STUDIES.filter(s => !localIds.has(s.id) && !deletedIds.has(s.id));
+  return [...local, ...fromMock].sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
+}
+
 // Mock Data
 const MOCK_AUTHORS: Author[] = [
   {
@@ -156,8 +185,9 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
       <p>Průzkum také poskytl detailnější pohled na fungování firmy napříč různými týmy a rolemi a stal se dalším podkladem pro cílený rozvoj leadershipu, spolupráce a pracovního prostředí.</p>
       <p>A proč to funguje? Za pouhé tři minuty času každého zaměstnance získali v Průša Research data, která jim umožňují dlouhodobě posilovat svou reputaci atraktivního zaměstnavatele a přitahovat správné talenty na základě reálných zkušeností lidí uvnitř firmy.</p>
     `,
-    coverImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200',
     tags: ['Employer Branding', 'Culture', 'EVP'],
+    employeeCount: '800+',
     publishedAt: new Date('2024-04-01').toISOString(),
     status: 'published'
   },
@@ -187,8 +217,9 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
       <p>Within three months of launching the first Echo Pulse, internal collaboration improved thanks to regular information sharing, clear goals, and a newly defined set of processes. One key achievement was the strong growth on the Kaufland marketplace, driven by an employee who, after stepping into her new role as Key Account Manager, activated 18% more clients on the platform and increased overall sales there by 14.5% in just 8 months. She even helped one of Expando's top clients boost their sales volume by 37%.</p>
       <p>Regular surveys now take employees just three minutes to complete and reach 84% participation — 25% more than with previous in-house questionnaires. HR can now complete the entire feedback cycle, including creation of a presentation, in one day instead of the original seven.</p>
     `,
-    coverImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1200',
     tags: ['Engagement', 'Promotion', 'Communication'],
+    employeeCount: '50+',
     publishedAt: new Date('2024-01-15').toISOString(),
     status: 'published'
   },
@@ -223,8 +254,9 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
         <li>8-Point Increase in Employee Engagement Scores</li>
       </ul>
     `,
-    coverImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1200',
     tags: ['Retention', 'Productivity', 'Development'],
+    employeeCount: '1,500+',
     publishedAt: new Date('2024-02-10').toISOString(),
     status: 'published'
   },
@@ -258,8 +290,9 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
         <li>Significantly reduced hiring risks — Better role fit, smoother onboarding, and lower turnover</li>
       </ul>
     `,
-    coverImage: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200',
     tags: ['Culture', 'Turnover', 'Leadership'],
+    employeeCount: '400+',
     publishedAt: new Date('2024-03-05').toISOString(),
     status: 'published'
   },
@@ -301,8 +334,9 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
         <li>Trust rebuilt between employees and leadership through transparent communication</li>
       </ul>
     `,
-    coverImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1000',
+    coverImage: 'https://images.unsplash.com/photo-1606857521015-7f9fcf423740?auto=format&fit=crop&q=80&w=1200',
     tags: ['Engagement', 'Compensation', 'Retention'],
+    employeeCount: '30+',
     publishedAt: new Date('2024-01-20').toISOString(),
     status: 'published'
   }
@@ -443,9 +477,13 @@ export const CmsService = {
     }
   },
 
-  // Case Studies
+  // ═══════════ Case Studies ═══════════
+
+  /** Public: returns only published case studies */
   getCaseStudies: async (): Promise<CaseStudy[]> => {
-    if (!supabaseClient) return [...MOCK_CASE_STUDIES];
+    if (!supabaseClient) {
+      return getMergedCaseStudies().filter(s => s.status === 'published');
+    }
     
     try {
       const { data, error } = await supabaseClient
@@ -462,12 +500,36 @@ export const CmsService = {
         .map(mapCaseStudyRow);
     } catch (err) {
       console.error('Error fetching case studies:', err);
-      return [...MOCK_CASE_STUDIES];
+      return getMergedCaseStudies().filter(s => s.status === 'published');
+    }
+  },
+
+  /** Admin: returns ALL case studies (drafts + published) */
+  getAllCaseStudies: async (): Promise<CaseStudy[]> => {
+    if (!supabaseClient) {
+      return getMergedCaseStudies();
+    }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('case_studies')
+        .select('*')
+        .order('published_at', { ascending: false });
+
+      if (error) throw error;
+
+      const rows = (data as CaseStudyRow[] | null) || [];
+      return rows
+        .filter((study) => study && study.title && study.slug)
+        .map(mapCaseStudyRow);
+    } catch (err) {
+      console.error('Error fetching all case studies:', err);
+      return getMergedCaseStudies();
     }
   },
 
   getCaseStudyBySlug: async (slug: string): Promise<CaseStudy | undefined> => {
-    if (!supabaseClient) return MOCK_CASE_STUDIES.find(c => c.slug === slug);
+    if (!supabaseClient) return getMergedCaseStudies().find(c => c.slug === slug);
     
     try {
       const { data, error } = await supabaseClient
@@ -482,7 +544,26 @@ export const CmsService = {
       return mapCaseStudyRow(data as CaseStudyRow);
     } catch (err) {
       console.error('Error fetching case study:', err);
-      return MOCK_CASE_STUDIES.find(c => c.slug === slug);
+      return getMergedCaseStudies().find(c => c.slug === slug);
+    }
+  },
+
+  getCaseStudyById: async (id: string): Promise<CaseStudy | undefined> => {
+    if (!supabaseClient) return getMergedCaseStudies().find(c => c.id === id);
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('case_studies')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) throw error;
+      if (!data) return undefined;
+      return mapCaseStudyRow(data as CaseStudyRow);
+    } catch (err) {
+      console.error('Error fetching case study by id:', err);
+      return getMergedCaseStudies().find(c => c.id === id);
     }
   },
   
@@ -490,10 +571,12 @@ export const CmsService = {
     if (!supabaseClient) {
       const newStudy: CaseStudy = {
         ...study,
-        id: Math.random().toString(36).substr(2, 9),
+        id: 'cs_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 5),
         publishedAt: new Date().toISOString()
       };
-      MOCK_CASE_STUDIES.push(newStudy);
+      const all = loadLocalCaseStudies();
+      all.push(newStudy);
+      saveLocalCaseStudies(all);
       return newStudy;
     }
     
@@ -521,6 +604,86 @@ export const CmsService = {
       return mapCaseStudyRow(data as CaseStudyRow);
     } catch (err) {
       console.error('Error creating case study:', err);
+      throw err;
+    }
+  },
+
+  updateCaseStudy: async (id: string, updates: Partial<CaseStudy>): Promise<CaseStudy> => {
+    if (!supabaseClient) {
+      // Check localStorage first
+      const local = loadLocalCaseStudies();
+      const localIdx = local.findIndex(s => s.id === id);
+      if (localIdx !== -1) {
+        local[localIdx] = { ...local[localIdx], ...updates };
+        saveLocalCaseStudies(local);
+        return local[localIdx];
+      }
+      // If it's a mock item, copy to localStorage with updates
+      const mock = MOCK_CASE_STUDIES.find(s => s.id === id);
+      if (mock) {
+        const updated = { ...mock, ...updates };
+        local.push(updated);
+        saveLocalCaseStudies(local);
+        return updated;
+      }
+      throw new Error('Case study not found');
+    }
+
+    try {
+      const payload: Record<string, unknown> = {};
+      if (updates.title !== undefined) payload.title = updates.title;
+      if (updates.slug !== undefined) payload.slug = updates.slug;
+      if (updates.clientName !== undefined) payload.client_name = updates.clientName;
+      if (updates.industry !== undefined) payload.industry = updates.industry;
+      if (updates.challenge !== undefined) payload.challenge = updates.challenge;
+      if (updates.solution !== undefined) payload.solution = updates.solution;
+      if (updates.results !== undefined) payload.results = updates.results;
+      if (updates.content !== undefined) payload.content = updates.content;
+      if (updates.coverImage !== undefined) payload.cover_image = updates.coverImage;
+      if (updates.status !== undefined) payload.status = updates.status;
+
+      const { data, error } = await supabaseClient
+        .from('case_studies')
+        .update(payload)
+        .eq('id', id)
+        .select('*')
+        .single();
+
+      if (error) throw error;
+      return mapCaseStudyRow(data as CaseStudyRow);
+    } catch (err) {
+      console.error('Error updating case study:', err);
+      throw err;
+    }
+  },
+
+  deleteCaseStudy: async (id: string): Promise<void> => {
+    if (!supabaseClient) {
+      const local = loadLocalCaseStudies();
+      const filtered = local.filter(s => s.id !== id);
+      saveLocalCaseStudies(filtered);
+      // Note: mock entries reappear on reload unless overridden.
+      // Add a "deleted" marker for mock items.
+      const isMock = MOCK_CASE_STUDIES.some(s => s.id === id);
+      if (isMock) {
+        const deleted = JSON.parse(localStorage.getItem('behavera_deleted_cs') || '[]') as string[];
+        if (!deleted.includes(id)) {
+          deleted.push(id);
+          localStorage.setItem('behavera_deleted_cs', JSON.stringify(deleted));
+        }
+      }
+      return;
+    }
+
+    try {
+      const { error } = await supabaseClient
+        .from('case_studies')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error deleting case study:', err);
       throw err;
     }
   },
