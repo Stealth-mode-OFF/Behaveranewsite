@@ -58,7 +58,7 @@ export function HowItWorksV2() {
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-text-primary tracking-tight mb-6">
             {t.howItWorks?.title || "Simple to start,"}
-            <span className="block text-brand-primary mt-2">
+            <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-2">
               {t.howItWorks?.titleHighlight || "powerful to scale"}
             </span>
           </h2>

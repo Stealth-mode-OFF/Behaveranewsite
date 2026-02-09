@@ -31,6 +31,7 @@ export type CaseStudy = {
   results: CaseStudyResult[];
   content: string;
   coverImage?: string;
+  tags?: string[];
   publishedAt: string;
   status: 'draft' | 'published';
 };

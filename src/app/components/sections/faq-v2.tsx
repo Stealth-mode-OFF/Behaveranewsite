@@ -71,7 +71,10 @@ export function FAQV2() {
           className="text-center mb-12"
         >
           <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary mb-4 tracking-tight">
-            {t.faq?.title || "Frequently Asked Questions"}
+            {t.faq?.title || "Remove risks,"}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+              {t.faq?.titleHighlight || " not just questions"}
+            </span>
           </h2>
           <p className="text-lg text-brand-text-secondary max-w-2xl mx-auto">
             {t.faq?.desc || "Get answers to common questions about Echo Pulse."}

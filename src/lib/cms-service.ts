@@ -122,269 +122,188 @@ const MOCK_POSTS: BlogPost[] = [
 
 const MOCK_CASE_STUDIES: CaseStudy[] = [
   {
-    id: '1',
-    title: 'Objevený potenciál otevřel nejen Expandu nové obchodní příležitosti',
-    slug: 'discovered-potential-led-to-new-business-opportunities',
-    clientName: 'Expando',
-    industry: 'E-commerce',
-    challenge: 'Ve firmě Expando díky Engagementu od Behavery zjistili, že zaměstnancům chybí motivace a příležitosti k růstu.',
-    solution: 'Dali příležitost talentované zaměstnankyni – a ona rozproudila obchod na novém marketplace.',
+    id: '0',
+    title: 'Za 3 minuty jasno, jak na Employer Branding',
+    slug: 'za-3-minuty-jasno-jak-na-employer-branding',
+    clientName: 'Prusa',
+    industry: 'Technology / 3D Printing',
+    challenge: 'Průša Research chtěla ověřit, jak jsou klíčové hodnoty a firemní kultura vnímány napříč organizací, a získat kvalitní datový podklad pro další strategická rozhodnutí v oblasti employer brandu.',
+    solution: 'Využili Echo Pulse od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition). Krátký, konverzační formát dotazníku zapojil 60,1 % zaměstnanců během několika dní.',
     results: [
-      { label: 'Navýšení prodejů', value: '14.5%' },
-      { label: 'Aktivace klientů', value: '+18%' },
-      { label: 'Nárůst tržeb klienta', value: '37%' },
-      { label: 'Úspora času HR', value: '40 hodin/měsíc' }
+      { label: 'Zapojení zaměstnanců', value: '60.1%' },
+      { label: 'Čas na vyplnění', value: '3 min' },
+      { label: 'Ověřené hodnoty pro EB', value: '✓' }
     ],
     content: `
-      <h2>Problém</h2>
-      <p>Expando stálo před výzvou více rozvíjet trhy mimo Amazon. Chtěli pomoct klientům růst i jinde, ale zároveň cítili, že uvnitř firmy to nefunguje jak by mělo – lidé ztráceli chuť do práce, přibývalo stížností na chaos a chyběl impuls, který by vrátil směr.</p>
-      <p>Přestože tým vynakládal úsilí na identifikaci příčin problému, jejich interní analýzy byly příliš časově náročné, založené na subjektivních dojmech a často vedly k chybným závěrům.</p>
+      <h2>Cíl</h2>
+      <p>Cílem první fáze spolupráce s Behaverou bylo získat strukturovanou a otevřenou zpětnou vazbu od zaměstnanců a ověřit, jaký přínos může mít systematický sběr dat pro další rozvoj employer brandu. Zároveň chtělo vedení posoudit, jak může tento přístup zapadnout do jejich dlouhodobé HR a komunikační strategie.</p>
 
       <h2>Řešení</h2>
-      <p>Díky společnosti Behavera získala společnost Expando poprvé objektivní představu o výzvách, kterým čelí. Analýza pomocí cíleného dotazníku Echo Pulse odhalila, že mezi klíčové problémy patří nejen neefektivní komunikaci uvnitř týmů i mezi nimi a nedostatek uznání, ale také nízká motivace zaměstnanců a omezené příležitosti k růstu.</p>
-      <p>U zaměstnanců, kteří se cítili zaseknutí a demotivovaní, protože nemohli naplno využít svůj potenciál, identifikovali expertní role. Například v týmu Account Management posunuli zaměstnankyni do expertní role Key Account Manager pro nový marketplace Kaufland.</p>
+      <p>S cílem zapojit zaměstnance napříč celou organizací se v Průša Research rozhodli využít Echo Pulse od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition).</p>
+      <p>Krátký, konverzační formát dotazníku a jeho integrace do interních nástrojů umožnily oslovit lidi napříč týmy během několika dní a získat jejich pohled na to, za čím firma skutečně stojí.</p>
+      <p>Do průzkumu se zapojilo 60,1 % zaměstnanců, což je v kontextu velkých výrobních organizací nadprůměrný výsledek a potvrzuje vysokou míru zapojení i důvěry v celý proces.</p>
+      <p>V týmech se často objevovala zpětná vazba – "Je super, že se někdo ptá, co si opravdu myslíme" a že vyplnění dotazníku bylo rychlejší a jednodušší, než čekali.</p>
 
-      <h2>Výsledek</h2>
-      <p>Do tří měsíců se zlepšila vnitrofiremní spolupráce díky pravidelné výměně informací, jasným cílům a definování sady procesů. Jedním z klíčových úspěchů byl výrazný rozvoj marketplace Kaufland – zaměstnankyně aktivovala o 18 % více klientů a navýšila celkový objem prodejů o 14,5 % za 8 měsíců.</p>
-      <p>HR navíc ušetřilo 40 hodin měsíčně díky automatizaci zpětné vazby.</p>
+      <h2>Výsledky</h2>
+      <p>Výsledky průzkumu potvrdily silné hodnoty, na kterých Průša Research dlouhodobě staví svou firemní kulturu:</p>
+      <ul>
+        <li>Spolupráci a vzájemnou podporu mezi týmy</li>
+        <li>Hrdost na produkty a globální dopad firmy</li>
+        <li>Vysokou míru autonomie a férového přístupu</li>
+      </ul>
+      <p>Získaná data zároveň pomohla tyto hodnoty přesněji pojmenovat a převést je do konkrétních sdělení využitelných v employer brandingu, náborové komunikaci i interním rozvoji.</p>
+      <p>Na základě výstupů má dnes HR a vedení k dispozici ověřené argumenty, příklady a autentické citace zaměstnanců, které podporují jednotnou a důvěryhodnou komunikaci značky zaměstnavatele.</p>
+      <p>Průzkum také poskytl detailnější pohled na fungování firmy napříč různými týmy a rolemi a stal se dalším podkladem pro cílený rozvoj leadershipu, spolupráce a pracovního prostředí.</p>
+      <p>A proč to funguje? Za pouhé tři minuty času každého zaměstnance získali v Průša Research data, která jim umožňují dlouhodobě posilovat svou reputaci atraktivního zaměstnavatele a přitahovat správné talenty na základě reálných zkušeností lidí uvnitř firmy.</p>
+    `,
+    coverImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Employer Branding', 'Culture', 'EVP'],
+    publishedAt: new Date('2024-04-01').toISOString(),
+    status: 'published'
+  },
+  {
+    id: '1',
+    title: 'Discovered Potential Led to New Business Opportunities',
+    slug: 'discovered-potential-led-to-new-business-opportunities',
+    clientName: 'Expando',
+    industry: 'E-Commerce',
+    challenge: 'Expando wanted to grow beyond Amazon, but internally, things were chaotic. Motivation was low, and teams were wasting time on in-depth interviews that produced biased results — leading to poor decisions.',
+    solution: 'Thanks to specific Playbook recommendations, they introduced regular 1:1 meetings, improved communication, and created expert roles with greater responsibility. Collecting regular feedback is now relevant and 80% faster.',
+    results: [
+      { label: 'Increase in client\'s sales', value: '37%' },
+      { label: 'Saved annually', value: '€11,000' },
+      { label: 'Higher response rate', value: '25%' }
+    ],
+    content: `
+      <h2>Problem</h2>
+      <p>Expando faced the challenge of expanding beyond Amazon. They wanted to help clients grow also elsewhere but felt that internally, things weren't working as they should — employee motivation was declining, complaints about chaos were rising, and there was a lack of direction.</p>
+      <p>Although the team put effort into identifying the root causes, their internal analyses were time-consuming, based on subjective impressions. Employee surveys and in-depth interviews took up to 7 working days per cycle, with only a 59% response rate despite repeated reminders. Poorly formulated questions and evaluator bias distorted the results.</p>
+
+      <h2>Solution</h2>
+      <p>Thanks to Behavera, Expando gained an objective understanding of the challenges they face for the first time. Analysis using the targeted Echo Pulse survey revealed key issues: not only ineffective communication within and between teams and a lack of recognition, but also low employee motivation and limited growth opportunities.</p>
+      <p>For employees who felt stuck and demotivated — unable to fully use their potential and lacking a challenge to grow — Expando introduced expert roles. These roles gave them more responsibility, autonomy, and, most importantly, a sense of purpose. For example, in the Account Management team, one employee moved from a Support Specialist role with routine tasks to a Key Account Manager position for a new marketplace, Kaufland.</p>
+
+      <h2>Result</h2>
+      <p>Within three months of launching the first Echo Pulse, internal collaboration improved thanks to regular information sharing, clear goals, and a newly defined set of processes. One key achievement was the strong growth on the Kaufland marketplace, driven by an employee who, after stepping into her new role as Key Account Manager, activated 18% more clients on the platform and increased overall sales there by 14.5% in just 8 months. She even helped one of Expando's top clients boost their sales volume by 37%.</p>
+      <p>Regular surveys now take employees just three minutes to complete and reach 84% participation — 25% more than with previous in-house questionnaires. HR can now complete the entire feedback cycle, including creation of a presentation, in one day instead of the original seven.</p>
     `,
     coverImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Engagement', 'Promotion', 'Communication'],
     publishedAt: new Date('2024-01-15').toISOString(),
     status: 'published'
   },
   {
     id: '2',
-    title: 'Jak Vodafone zvýšil performance a udržel si své talenty díky datům',
+    title: 'How Vodafone Boosted Performance and Retention Through Data-Driven Talent Management',
     slug: 'from-data-to-action-how-vodafone-increased-sales-by-80-and-cut-attrition-by-40',
     clientName: 'Vodafone Czech Republic',
     industry: 'Telecommunications',
-    challenge: 'Vodafone Czech Republic čelil vysoké fluktuaci a kolísajícím výsledkům prodeje i zákaznické péče.',
-    solution: 'Implementovali behaviorální assessmenty od Behavery k odhalení potřeb a potenciálu zaměstnanců.',
+    challenge: 'Vodafone faced high employee turnover, inconsistent sales and customer care performance, unclear success profiles, and uncertainty about which skills and competencies to invest in to maximize employee success and retention.',
+    solution: 'Key performance blockers such as low motivation and ineffective coaching revealed themselves. Vodafone responded by identifying ideal profiles for sales and customer care roles and implementing tailored hiring, coaching, and development plans to better support and retain employees.',
     results: [
-      { label: 'Snížení fluktuace', value: '40%' },
-      { label: 'Nárůst příjmů za hovor', value: '70-80%' },
-      { label: 'Zlepšení FCR', value: '5%' },
-      { label: 'Účast na assessmentech', value: '96%' }
+      { label: 'Improvement in first call resolution', value: '5%' },
+      { label: 'Increase in revenue per call', value: '70-80%' },
+      { label: 'Increase in employee retention', value: '40%' }
     ],
     content: `
-      <h2>Problém</h2>
-      <p>Společnost Vodafone Czech Republic se potýkala s významným problémem: vysokou fluktuací zaměstnanců a nekonzistentním výkonem prodejců a pracovníků péče o zákazníky. Potřebovali identifikovat ideální profil pro pozici odborníka na péči o zákazníky a pochopit, čím se vyznačují nejlepší pracovníci.</p>
+      <h2>Problem</h2>
+      <p>Vodafone Czech Republic, a leader in telecommunications, faced a significant challenge: high employee turnover and inconsistent performance among its sales and customer care staff. Despite being known for excellent customer service, Vodafone struggled to align workforce potential with business needs. The company needed to identify the ideal profile for its Customer Care Expert role, understand what distinguished top performers, and improve employee retention.</p>
 
-      <h2>Řešení</h2>
-      <p>Vodafone navázal spolupráci s platformou Behavera, která využívá pokročilé behaviorální assessmenty. Byla shromážděna a analyzována data od 120 zaměstnanců maloobchodu. Zjištění odhalila významné překážky výkonu, včetně nedostatků v motivaci a neúčinných strategií koučování.</p>
-      <p>Na základě těchto poznatků Vodafone identifikoval ideální profily pracovní kultury pro pozice v oblasti prodeje i péče o zákazníky a vytvořil na míru šité plány rozvoje kompetencí.</p>
+      <h2>Solution</h2>
+      <p>To tackle these challenges, Vodafone partnered with Behavera, a people-first platform that leverages advanced behavioral assessments to uncover employee needs and potential. The collaboration began with a simulation game designed to evaluate employees' natural work styles and competencies, alongside chatbot-driven test that assessed engagement, motivation, and work-culture preferences. Data from 120 retail employees was collected and analyzed, providing valuable insights against Vodafone's key performance indicators (KPIs).</p>
+      <p>The findings revealed significant performance blockers, including gaps in motivation and ineffective coaching strategies. Based on these insights, Vodafone identified ideal work-culture profiles for both sales and customer care roles. This allowed them to create tailored competency development plans, ensuring that employees received the support they needed to excel.</p>
 
-      <h2>Výsledky</h2>
-      <p>Přístup založený na datech přinesl působivé výsledky:</p>
+      <h2>Results</h2>
+      <p>Vodafone's data-driven approach delivered impressive results:</p>
       <ul>
-        <li>Snížení fluktuace zaměstnanců o 40 %</li>
-        <li>70-80% nárůst příjmů za hovor</li>
-        <li>5 % zlepšení vyřešení problému během prvního hovoru (FCR)</li>
-        <li>96 % účast na assessmentech well-being</li>
-        <li>Zvýšení skóre angažovanosti zaměstnanců o 8 bodů</li>
+        <li>40% Reduction in Employee Turnover</li>
+        <li>70-80% Increase in Revenue per Call</li>
+        <li>5% Improvement in First Call Resolution (FCR)</li>
+        <li>96% Participation in Well-Being Assessments</li>
+        <li>8-Point Increase in Employee Engagement Scores</li>
       </ul>
     `,
     coverImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Retention', 'Productivity', 'Development'],
     publishedAt: new Date('2024-02-10').toISOString(),
     status: 'published'
   },
   {
     id: '3',
-    title: 'Jak data společnosti Behavera pomohla 365.bank dosáhnout úspěšné digitální transformace',
+    title: "How Behavera's Data Helped 365.bank Achieve a Successful Digital Transformation",
     slug: 'how-behaveras-data-helped-365-bank-achieve-a-successful-digital-transformation',
     clientName: '365.bank',
     industry: 'Banking',
-    challenge: 'Při rebrandingu z Poštová banka na 365.bank bylo třeba vybudovat stabilní týmy, vybrat správné vedoucí a zajistit kulturní soulad s novou digitální strategií.',
-    solution: 'Implementovali assessmenty od Behavery pro nábor a výběr vedoucích pracovníků založený na datech.',
+    challenge: "Bank's transformation into a fully digital organization demanded a complete cultural and leadership shift — yet traditional hiring and promotion methods couldn't reliably identify the right people to drive that change.",
+    solution: "365.bank data-driven approach revealed how people actually work, helping them identify the right talent, support leadership development, and align teams with the new company culture.",
     results: [
-      { label: 'Nábor založený na datech', value: '100%' },
-      { label: 'Vedení v souladu s transformací', value: '✓' },
-      { label: 'Rychlejší kulturní adaptace', value: '✓' },
-      { label: 'Snížení rizik při náboru', value: '✓' }
+      { label: 'Reduced employee turnover', value: '14%' },
+      { label: 'Faster hiring process', value: '36%' },
+      { label: 'Higher employee productivity', value: '20%' }
     ],
     content: `
-      <h2>Problém</h2>
-      <p>Přechod z Post Bank na plně digitální 365.bank vyžadoval zásadní změnu myšlení, kultury a vedení. Banka čelila několika klíčovým rizikům včetně najímání nesprávných lidí, nejasných schopností vedení a nesouladu týmu s novou kulturou.</p>
+      <h2>Problem</h2>
+      <p>The transition from Post Bank to the fully digital 365.bank was not just a rebranding — it required a fundamental shift in mindset, culture, and leadership. The bank faced several key risks: hiring the wrong people, unclear leadership capabilities, misalignment of the team with the new culture, and increased hiring risks due to remote selection.</p>
 
-      <h2>Řešení</h2>
-      <p>365.bank implementovala hodnotící nástroje společnosti Behavera - simulační hru The Office Day pro posouzení kompetencí a chatbot pro měření kulturní shody. Místo spoléhání na to, co kandidáti říkají, měli nyní k dispozici objektivní údaje o skutečném chování na pracovišti.</p>
+      <h2>Solution</h2>
+      <p>To enable clear, data-driven hiring and promotion decisions, 365.bank implemented Behavera's assessment tools. Instead of relying on what candidates and managers said about themselves, the bank now had objective data on actual workplace behavior.</p>
+      <p>The results gave the HR department and leadership a clear overview of which employees were the best fit for their roles, ready to lead through the transformation, and a cultural fit for the new bank. Where gaps were identified, the bank adjusted onboarding, training, and internal mobility programs to address them.</p>
 
-      <h2>Výsledek</h2>
-      <p>Přechodem na najímání a výběr vedoucích pracovníků na základě chování zaznamenali okamžité zlepšení:</p>
+      <h2>Result</h2>
+      <p>By shifting to behavior-based hiring and leadership selection, 365.bank saw immediate improvements:</p>
       <ul>
-        <li>100% rozhodování o přijetí a povýšení na základě dat</li>
-        <li>Vedení v souladu s transformací - povýšeni pouze schopní řídit změny</li>
-        <li>Rychlejší kulturní adaptace díky včasné identifikaci bodů odporu</li>
-        <li>Výrazné snížení rizik při náboru</li>
+        <li>100% data-driven hiring and promotions — Stronger hiring decisions based on proven skills and cultural fit</li>
+        <li>Leadership aligned with transformation — Only leaders with the ability to drive change were promoted</li>
+        <li>Faster cultural adaptation — Early identification of resistance points enabled proactive support</li>
+        <li>Significantly reduced hiring risks — Better role fit, smoother onboarding, and lower turnover</li>
       </ul>
     `,
     coverImage: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Culture', 'Turnover', 'Leadership'],
     publishedAt: new Date('2024-03-05').toISOString(),
     status: 'published'
   },
   {
     id: '4',
-    title: 'Více než peníze: Jak Valxon podpořil lidi i business v době změn',
+    title: 'More Than Money: What Truly Drives Engagement in Times of Change',
     slug: 'more-than-money-what-truly-drives-engagement-in-times-of-change',
     clientName: 'Valxon',
-    industry: 'B2B',
-    challenge: 'Nový leadership Valxonu čelil vlně stížností a chaosu. Zaměstnanci se cítili přepracovaní, frustrovaní a nedostatečně placení.',
-    solution: 'Využili Engagement nástroj Echo Pulse od Behavery k diagnostice skutečných příčin nespokojenosti.',
+    industry: 'Promotional Merchandise',
+    challenge: 'New leadership faced a flood of complaints on workload and pay, along with a stressful atmosphere, distrust, chaos and insecurity in teams.',
+    solution: "People hadn't lost interest — the issue wasn't money, but poor conditions, solved through flexibility, clear processes, and greater transparency.",
     results: [
-      { label: 'Engagement Score', value: '9/10' },
-      { label: 'Úspora času automatizací', value: '200+ hodin' },
-      { label: 'Spokojenost s odměňováním', value: '9/10' },
-      { label: 'Snížení fluktuace', value: '✓' }
+      { label: 'Increase in employee satisfaction', value: '25%' },
+      { label: 'Hours saved thanks to automation', value: '200+' },
+      { label: 'Prevented from burnout and quitting', value: '1 person' }
     ],
     content: `
-      <h2>Problém</h2>
-      <p>Valxon, rostoucí B2B společnost, čelila po změně vedení významným interním problémům. Zaměstnanci vyjadřovali rostoucí nespokojenost, cítili se přepracovaní a frustrovaní. Nejasné priority, vysoká úroveň stresu a nedostatek strukturované komunikace vedly k poklesu důvěry ve vedení.</p>
+      <h2>Problem</h2>
+      <p>Valxon, growing B2B company specializing in customized merchandise, faced significant internal challenges following a change in leadership. Employees expressed growing dissatisfaction, feeling overworked, frustrated and underpaid due to an increasingly chaotic work environment. Unclear priorities, high stress levels, and a lack of structured communication led to declining trust in management.</p>
 
-      <h2>Řešení</h2>
-      <p>Karel Poplstein, nový CEO, sáhl po Engagement nástroji Echo Pulse od Behavery. Výsledky potvrdily obavy – ale zároveň přinesly zásadní poznání: lidé byli stále zapojení, jen neměli podmínky, aby mohli dobře pracovat.</p>
-      <p>Valxon zavedl:</p>
+      <h2>Solution</h2>
+      <p>When Valxon's new CEO, Karel Poplstein stepped in, he wanted to address internal challenges at their core. So Karel turned to Behavera Engagement. The results not only confirmed his concerns but also revealed that employees weren't disengaged — response rate of the first round was 100% — but they lacked the right conditions to work effectively.</p>
+      <p>Seeing these insights, Valxon's leadership took structured actions:</p>
       <ul>
-        <li>Jasně definované role a očekávání</li>
-        <li>Strukturované procesy a automatizaci rutinních prací</li>
-        <li>OKRs a KPIs pro sladění cílů</li>
-        <li>Pravidelné check-ins a stand-upy</li>
-        <li>Sdílení výsledků Echo Pulsů napříč firmou</li>
+        <li>Clarified roles and responsibilities</li>
+        <li>Designed structured sales processes</li>
+        <li>Automated manual workflows</li>
+        <li>Established OKRs linked to individual KPIs</li>
+        <li>Regular check-ins and stand-ups</li>
+        <li>Shared engagement results transparently</li>
       </ul>
 
-      <h2>Výsledek</h2>
-      <p>Valxon si dal za cíl zlepšit Engagement Score z 6,5 na 8,2. Na konci Q2 dosáhli 9/10!</p>
+      <h2>Result</h2>
+      <p>Valxon committed to improving employee working conditions, setting a goal to raise their well-being index score from 6.5 to 8.2 by the end of Q1. By the end of Q2, the score had reached 9/10 points!</p>
       <ul>
-        <li>Automatizace procesů ušetřila více než 200 hodin práce</li>
-        <li>Spokojenost s odměňováním vzrostla z 4,4/10 na 9/10</li>
-        <li>Zaměstnankyně na pokraji vyhoření (2,8/10) se zlepšila na 8,8/10 a zůstala</li>
-        <li>Vybudování důvěry mezi zaměstnanci a vedením</li>
+        <li>Automation of routine tasks saved over 200 hours of work</li>
+        <li>Employee dissatisfaction with pay improved — satisfaction with recognition rose from 4.4/10 to 9/10</li>
+        <li>An employee showing signs of burnout (2.8/10) improved to 8.8/10 and decided to stay</li>
+        <li>Trust rebuilt between employees and leadership through transparent communication</li>
       </ul>
     `,
     coverImage: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1000',
+    tags: ['Engagement', 'Compensation', 'Retention'],
     publishedAt: new Date('2024-01-20').toISOString(),
-    status: 'published'
-  },
-  {
-    id: '5',
-    title: '20% úspora času: Jak Expando zlepšilo zákaznický servis s Behaverou',
-    slug: '20-time-saved-how-expando-improved-customer-service-with-behavera',
-    clientName: 'Expando',
-    industry: 'E-commerce',
-    challenge: 'Expando se potýkala s nízkou produktivitou a pomalým zákaznickým servisem. Zákazníci čekali na odpovědi i několik dní.',
-    solution: 'Implementovali Echo Pulse, který odhalil klíčové problémy v komunikaci a motivaci.',
-    results: [
-      { label: 'Účast na průzkumech', value: '84%' },
-      { label: 'Úspora času HR', value: '85%' },
-      { label: 'Zlepšení komunikace', value: '3 měsíce' },
-      { label: 'Úspora času týmu', value: '20%' }
-    ],
-    content: `
-      <h2>Problém</h2>
-      <p>Společnost Expando se potýkala s nízkou produktivitou a pomalým zákaznickým servisem. Snahy o diagnostiku problému byly neefektivní, subjektivní a vedly k chybným řešením. Průzkumy zabíraly celých 7 pracovních dní, ale přinesly jen 59% míru odpovědí a omezené poznatky.</p>
-
-      <h2>Řešení</h2>
-      <p>Díky Behaveře získala společnost Expando objektivní představu o svých výzvách. Test spokojenosti odhalil neefektivní komunikaci a nízkou motivaci zaměstnanců.</p>
-      <p>Expando provedla klíčové změny:</p>
-      <ul>
-        <li>Týdenní aktualizace OKR pro přehlednost cílů</li>
-        <li>Pravidelné schůzky 1:1 zaměřené na rozvoj</li>
-        <li>Reorganizované kanály Slack</li>
-        <li>Fin AI Bot pro automatizaci - zkrácení doby odezvy ze 7 na 2 minuty</li>
-        <li>Systém nepeněžního ocenění</li>
-      </ul>
-
-      <h2>Výsledky</h2>
-      <ul>
-        <li>96% účast na čtvrtletním testování (nárůst 37%)</li>
-        <li>O 85% méně času stráveného přípravou a analýzou - HR dokončí proces za jeden den místo sedmi</li>
-        <li>Viditelné zlepšení spolupráce do 3 měsíců</li>
-        <li>20% úspora času díky zkrácení doby vyhledávání informací</li>
-      </ul>
-    `,
-    coverImage: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1000',
-    publishedAt: new Date('2024-02-28').toISOString(),
-    status: 'published'
-  },
-  {
-    id: '6',
-    title: 'Aktivace pasivních kandidátů',
-    slug: 'activation-of-passive-candidates',
-    clientName: 'Confidential Client',
-    industry: 'Various',
-    challenge: 'Organizace měla velkou návštěvnost kariérní stránky, ale konverzi nižší než 2 %. Věděli, že více než 70 % potenciálních uchazečů je pasivních.',
-    solution: 'Na kariérní stránku přidali simulační hru The Office Day, která uchazečům umožňuje přihlásit se nepřímo.',
-    results: [
-      { label: 'Konverzní poměr', value: '8%' },
-      { label: 'Nárůst konverze', value: '4x' },
-      { label: 'Přihlášení po hře', value: '75%' }
-    ],
-    content: `
-      <h2>Výzva</h2>
-      <p>Organizace měla velkou návštěvnost kariérní stránky, ale konverzi nižší než 2 %. Věděli, že více než 70 % potenciálních uchazečů o zaměstnání je pasivních, a proto se o práci i v případě zájmu ihned neuchází.</p>
-
-      <h2>Řešení</h2>
-      <p>Na kariérní stránku jsme přidali simulační hru The Office Day, která uchazečům umožňuje přihlásit se nepřímo. Hraním získali informace o svých kompetencích, a pokud jejich profil odpovídal požadavkům, mohli přeskočit dvě kola přijímacího pohovoru a ušetřit spoustu času.</p>
-
-      <h2>Výsledek</h2>
-      <p>Zvýšili jsme konverzní poměr návštěvníků kariérní stránky z 2 % na 8 %. Navíc 75 % uchazečů, kteří si simulační hru zahráli, se rozhodli rovnou ucházet o pozici.</p>
-    `,
-    coverImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000',
-    publishedAt: new Date('2023-11-15').toISOString(),
-    status: 'published'
-  },
-  {
-    id: '7',
-    title: 'Zvýšení výkonu lídrů',
-    slug: 'boosting-performance-of-leaders',
-    clientName: 'Confidential Client',
-    industry: 'Various',
-    challenge: 'Současní leadeři byli orientovaní na vztahy a dynamické prostředí, ale firma tlačila na výkon a stabilitu.',
-    solution: 'Použili assessmenty Culture Fit a Game Changer na odhalení kompetencí a pracovního chování.',
-    results: [
-      { label: 'Přeorientování chování', value: '✓' },
-      { label: 'Zvýšení výkonu', value: '✓' },
-      { label: 'Stabilita', value: '✓' }
-    ],
-    content: `
-      <h2>Výzva</h2>
-      <p>Současní leadeři byli orientovaní na vztahy a dynamické prostředí, které podporuje inovace, kreativitu a experimentování. Avšak firma tlačila na výkon a vytvářela stabilní prostředí zaměřené na jistoty, na které se lidé mohou spolehnout.</p>
-
-      <h2>Řešení</h2>
-      <p>Použili jsme assessment Culture Fit na zjištění preferencí ohledně pracovního prostředí a Game Changer na odhalení kompetencí a pracovního chování. Porovnáním výsledků jsme byli schopni identifikovat, kde se potřeby a preference firmy a zaměstnanců rozcházejí. Navrhli jsme konkrétní kroky pro jednotlivé manažery, abychom zvýšili jejich výkon a naplnili potřeby firmy.</p>
-
-      <h2>Výsledek</h2>
-      <p>Pomohli jsme přeorientovat pracovní chování u vedoucích pracovníků, aby podporovalo výkon a stabilita ho udržovala na vysoké úrovni.</p>
-    `,
-    coverImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000',
-    publishedAt: new Date('2023-12-10').toISOString(),
-    status: 'published'
-  },
-  {
-    id: '8',
-    title: 'Vybudování vlastního talent poolu během 1 měsíce',
-    slug: 'build-own-talent-pool-in-1-month',
-    clientName: 'Confidential Client',
-    industry: 'Various',
-    challenge: 'Klient potřeboval novou, dlouhodobou strategii pro získávání talentů podle benchmarků svých zaměstnanců.',
-    solution: 'Vytvořili fond talentů s otevřenými pozicemi, inspirativním obsahem a simulačními hrami.',
-    results: [
-      { label: 'Nové profily (7 dní)', value: '167' },
-      { label: 'Celkový růst fondu', value: '2,500' },
-      { label: 'Kvalitní kandidáti', value: '✓' }
-    ],
-    content: `
-      <h2>Výzva</h2>
-      <p>Klient potřeboval novou, dlouhodobou strategii pro získávání talentů podle benchmarků svých zaměstnanců a týmů. Cíl byl jasný: použít stávající data a rychle vyhodnotit vhodnost kandidáta na kteroukoliv z mnoha otevřených pozic.</p>
-
-      <h2>Řešení</h2>
-      <p>Fond talentů je jedna z funkcí Behavery, kde jsme přímo pro klienta vytvořili stránku s otevřenými pozicemi, inspirativním obsahem o firmě a dalšími informacemi. Odkaz na stránku jsme propagovali prostřednictvím sociálních sítí a dali lidem možnost si zahrát naše simulační hry.</p>
-      <p>Lidé se tak mohli připojit do fondu talentů, podle výsledků zjistit, na jaké pozice by se podle nich hodili a do jaké firmy by kulturně zapadli. Měli možnost se jednoduše přihlásit na dané pozice nebo začít sledovat obsah firem či dorazit na jejich akce.</p>
-
-      <h2>Výsledek</h2>
-      <p>167 nových profilů s velkým potenciálem ve fondu talentů během prvních 7 dní propagace na sociálních sítích. Nové profily přibývají každým dnem a fond se rozrostl o 2 500 lidí.</p>
-    `,
-    coverImage: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=1000',
-    publishedAt: new Date('2023-10-20').toISOString(),
     status: 'published'
   }
 ];

@@ -104,7 +104,7 @@ export function CtaSectionV2() {
           >
             {c.headline}
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-violet-400 to-brand-accent">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-accent/60">
               {c.headlineHighlight}
             </span>
           </motion.h2>

@@ -133,7 +133,10 @@ export function RoleSelectionV2() {
           className="text-center max-w-2xl mx-auto mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
-            {t.roleSelection?.title || "Who are you?"}
+            {t.roleSelection?.title || "Everyone sees the company"}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-accent/60 bg-clip-text text-transparent">
+              {t.roleSelection?.titleHighlight || " from a different angle."}
+            </span>
           </h2>
           <p className="text-brand-text-on-dark text-lg leading-relaxed">
             {t.roleSelection?.subtitle || "Select your role to see how Echo Pulse helps you specifically."}

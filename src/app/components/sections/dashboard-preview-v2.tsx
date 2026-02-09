@@ -103,7 +103,7 @@ export function DashboardPreviewV2() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-[-0.015em] leading-[1.15]">
               {t.dashboard?.title}
-              <span className="block text-brand-primary mt-3">{t.dashboard?.titleHighlight}</span>
+              <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-3">{t.dashboard?.titleHighlight}</span>
             </h2>
           </motion.div>
           

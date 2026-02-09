@@ -138,6 +138,9 @@ export function LeadCaptureSection() {
           >
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-text-primary mb-3 leading-snug">
               {txt.title}
+              <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+                {txt.titleHighlight}
+              </span>
             </h2>
             <p className="text-[15px] text-brand-text-muted leading-relaxed mb-6">
               {txt.subtitle}
