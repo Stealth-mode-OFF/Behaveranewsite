@@ -28,7 +28,7 @@ const ResearchPage = lazy(() =>
   import("./pages/public/research").then((module) => ({ default: module.ResearchPage }))
 );
 const NotFoundPage = lazy(() =>
-  import("./pages/public/NotFoundPage").then((module) => ({ default: module.NotFoundPage }))
+  import("./pages/public/not-found").then((module) => ({ default: module.NotFoundPage }))
 );
 const ChangelogPage = lazy(() =>
   import("./pages/public/changelog").then((module) => ({ default: module.ChangelogPage }))

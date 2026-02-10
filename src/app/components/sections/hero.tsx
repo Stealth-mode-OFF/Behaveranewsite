@@ -9,7 +9,7 @@ import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
 import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
 
 /**
- * Hero V2 - iPad Pro Level Design
+ * Hero - iPad Pro Level Design
  * 
  * Features:
  * - Device Stage with MacBook mock
@@ -18,7 +18,7 @@ import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
  * - Progressive reveal animation
  * - Outcome-focused copy
  */
-export function HeroV2() {
+export function Hero() {
   const { language } = useLanguage();
   const { openBooking } = useModal();
 

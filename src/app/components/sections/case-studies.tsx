@@ -56,12 +56,12 @@ const LOGO_MAP: Record<string, string> = {
 };
 
 /**
- * Case Studies V2 - 3D Flip Card Design
+ * Case Studies - 3D Flip Card Design
  * 
  * Front: Logo + Company name + Hero metric + Tags
  * Back: All results + Challenge + Solution + CTA
  */
-export function CaseStudiesSectionV2() {
+export function CaseStudiesSection() {
   const [studies, setStudies] = useState<CaseStudy[]>([]);
   const [loading, setLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);

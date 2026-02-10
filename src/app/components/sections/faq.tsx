@@ -5,7 +5,7 @@ import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
 
 /**
- * FAQ V2 - Luxury Accordion with Categories
+ * FAQ - Luxury Accordion with Categories
  * 
  * Features:
  * - Category tabs for organization
@@ -26,7 +26,7 @@ type FAQItem = {
   category?: string;
 };
 
-export function FAQV2() {
+export function FAQ() {
   const { t, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("all");
   const [openItem, setOpenItem] = useState<number | null>(null);
