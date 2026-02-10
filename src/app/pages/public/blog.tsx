@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 
-export const BlogPage = () => {
+export function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const { t, language } = useLanguage();
@@ -183,7 +183,7 @@ export const BlogPage = () => {
           {/* Post grid with mid-page CTA */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {remainingPosts.map((post, idx) => (
-              <React.Fragment key={post.id}>
+              <Fragment key={post.id}>
                 {/* Insert CTA after 3rd post */}
                 {idx === 3 && (
                   <div className="md:col-span-2 lg:col-span-3">
@@ -248,7 +248,7 @@ export const BlogPage = () => {
                     </div>
                   </Link>
                 </motion.div>
-              </React.Fragment>
+              </Fragment>
             ))}
           </div>
         </div>
@@ -256,4 +256,4 @@ export const BlogPage = () => {
       <Footer />
     </div>
   );
-};
+}

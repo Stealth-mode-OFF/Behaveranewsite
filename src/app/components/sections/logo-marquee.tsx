@@ -1,4 +1,3 @@
-import React from "react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion } from "framer-motion";
 import pwcLogo from "@/assets/logos/normalized/pwc.png";
@@ -33,7 +32,7 @@ export const clientLogos = [
 ];
 
 export function LogoMarquee() {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   const title = {
     cz: "Důvěřuje nám 50+ firem v Česku",

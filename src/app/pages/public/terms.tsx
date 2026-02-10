@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Link } from 'react-router-dom';

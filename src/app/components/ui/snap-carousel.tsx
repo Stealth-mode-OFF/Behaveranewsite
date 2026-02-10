@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, Pause } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/app/components/ui/utils";
@@ -82,7 +82,7 @@ export function SnapCarousel({
   const goPrev = () => goToSlide((activeIndex - 1 + slides.length) % slides.length);
 
   // Keyboard navigation
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: ReactKeyboardEvent) => {
     if (e.key === 'ArrowLeft') goPrev();
     if (e.key === 'ArrowRight') goNext();
     if (e.key === ' ') {
@@ -237,7 +237,7 @@ export function SnapCarousel({
  */
 interface FeatureGridProps {
   features: Array<{
-    icon: React.ReactNode;
+    icon: ReactNode;
     title: string;
     description: string;
   }>;

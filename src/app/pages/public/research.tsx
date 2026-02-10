@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ElementType } from 'react';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import {
@@ -441,7 +441,7 @@ const BoundaryItem = ({
   title,
   description,
 }: {
-  icon: React.ElementType;
+  icon: ElementType;
   title: string;
   description: string;
 }) => (
@@ -460,7 +460,7 @@ const BoundaryItem = ({
 /*  Main page                                                          */
 /* ------------------------------------------------------------------ */
 
-export const ResearchPage = () => {
+export function ResearchPage() {
   const { language } = useLanguage();
   const c = copy[language] || copy.en;
 
@@ -783,4 +783,4 @@ export const ResearchPage = () => {
       <Footer />
     </div>
   );
-};
+}

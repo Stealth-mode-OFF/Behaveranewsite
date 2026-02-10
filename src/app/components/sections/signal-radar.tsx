@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useCallback, useState, type ElementType, type MouseEvent as ReactMouseEvent } from "react";
 import {
   Activity, Zap, Briefcase, Heart, Shield, Award, Scale, Cpu,
   MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
@@ -6,9 +6,10 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
 
 /* ─── Icons ─── */
-const topicIcons: Record<string, React.ElementType> = {
+const topicIcons: Record<string, ElementType> = {
   quickScan: Activity, pay: Scale, perks: Heart, tools: Cpu,
   workload: Briefcase, recognition: Award, stress: Zap, values: Shield,
 };
@@ -154,9 +155,7 @@ export function SignalRadar() {
 
   const c = copy[language] || copy.en;
 
-  const tryLink = language === 'cz'
-    ? 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=cs'
-    : 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=en';
+  const tryLink = getPulseCheckUrl(language);
 
   return (
     <section className="section-spacing bg-brand-background-secondary/30 relative overflow-hidden" id="radar">
@@ -395,9 +394,9 @@ export function SignalRadar() {
                 {c.tryDesc}
               </p>
             </div>
-            <button
+              <button
               onClick={() => {
-                window.open(tryLink, 'pulseScan', 'width=480,height=820,left=200,top=80,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
+                window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
               }}
               className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
             >
@@ -484,12 +483,12 @@ const testimonials: Testimonial[] = [
 function QuickScanTestimonials({ lang }: { lang: string }) {
   const [idx, setIdx] = useState(0);
 
-  const next = useCallback((e: React.MouseEvent) => {
+  const next = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
     setIdx((i) => (i + 1) % testimonials.length);
   }, []);
 
-  const prev = useCallback((e: React.MouseEvent) => {
+  const prev = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
     setIdx((i) => (i - 1 + testimonials.length) % testimonials.length);
   }, []);

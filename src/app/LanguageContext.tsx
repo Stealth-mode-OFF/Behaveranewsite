@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { translations, Language } from './translations';
 
 type LanguageContextType = {
@@ -17,7 +17,10 @@ function detectBrowserLanguage(): Language {
   }
   
   // Detect from browser/system settings
-  const browserLang = navigator.language || (navigator as any).userLanguage || 'en';
+  const browserLang =
+    navigator.language ||
+    (navigator as Navigator & { userLanguage?: string }).userLanguage ||
+    'en';
   const langCode = browserLang.toLowerCase().split('-')[0];
   
   if (langCode === 'cs' || langCode === 'cz') return 'cz';
@@ -27,13 +30,11 @@ function detectBrowserLanguage(): Language {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('cz');
-  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     // Detect language on mount (client-side only)
     const detected = detectBrowserLanguage();
     setLanguageState(detected);
-    setInitialized(true);
   }, []);
 
   const setLanguage = (lang: Language) => {

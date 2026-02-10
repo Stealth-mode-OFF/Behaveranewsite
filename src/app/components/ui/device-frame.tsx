@@ -1,9 +1,9 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from './utils';
 
 interface DeviceFrameProps {
-  children: React.ReactNode;
+  children: ReactNode;
   type?: 'macbook' | 'ipad' | 'iphone';
   className?: string;
 }
@@ -92,7 +92,7 @@ export function IPadProFrame({
   children,
   className 
 }: { 
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (

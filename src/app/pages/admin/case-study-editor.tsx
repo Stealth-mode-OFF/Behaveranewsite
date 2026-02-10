@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useForm, Controller, useFieldArray } from 'react-hook-form';
 import ReactQuill from 'react-quill';
@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/ca
 import { toast } from 'sonner';
 import { ArrowLeft, Save, Plus, Trash, Image as ImageIcon, Briefcase } from 'lucide-react';
 
-export const CaseStudyEditor = () => {
+export function CaseStudyEditor() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -75,7 +75,7 @@ export const CaseStudyEditor = () => {
         toast.success('Case Study created');
       }
       navigate('/admin/case-studies');
-    } catch (error) {
+    } catch {
       toast.error('Failed to save');
     } finally {
       setIsLoading(false);
@@ -266,4 +266,4 @@ export const CaseStudyEditor = () => {
       </div>
     </div>
   );
-};
+}

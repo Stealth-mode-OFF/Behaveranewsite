@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense, type ComponentType, type ReactNode } from "react";
 import { pageSEO } from "@/app/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
@@ -14,8 +14,9 @@ import { StickyMobileCta } from "@/app/components/layout/sticky-mobile-cta";
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
 import { useLanguage } from "@/app/LanguageContext";
+import { SITE_ORIGIN } from "@/lib/urls";
 
-type LazyComponent<TProps = Record<string, unknown>> = React.ComponentType<TProps>;
+type LazyComponent<TProps = Record<string, unknown>> = ComponentType<TProps>;
 
 // Helper to load named exports via React.lazy without repeating boilerplate.
 function lazyNamed<TProps>(
@@ -58,13 +59,13 @@ export function LandingPage() {
   const { language } = useLanguage();
   const seo = pageSEO.home[language] || pageSEO.home.en;
   
-  useSEO({
-    title: seo.title,
-    description: seo.description,
-    keywords: seo.keywords.join(', '),
-    ogType: 'website',
-    canonicalUrl: 'https://echopulse.cz/',
-  });
+	  useSEO({
+	    title: seo.title,
+	    description: seo.description,
+	    keywords: seo.keywords.join(', '),
+	    ogType: 'website',
+	    canonicalUrl: `${SITE_ORIGIN}/`,
+	  });
   
   // Inject Schema.org JSON-LD for AI discoverability
   useSchemaOrg();
@@ -131,7 +132,7 @@ export function LandingPage() {
   );
 }
 
-function LazySection({ children }: { children: React.ReactNode }) {
+function LazySection({ children }: { children: ReactNode }) {
   return (
     <Suspense fallback={<div className="section-spacing" aria-hidden="true" />}>
       {children}

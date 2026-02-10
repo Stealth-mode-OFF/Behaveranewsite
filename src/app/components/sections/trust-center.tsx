@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type ElementType } from "react";
 import { ShieldCheck, FileText, Lock, Server, Eye, Users, CheckCircle2, Globe, Database, ChevronDown } from "lucide-react";
 import { getBehaveraItem } from "@/app/content";
 import { useLanguage } from "@/app/LanguageContext";
@@ -23,11 +23,12 @@ export function TrustCenter() {
   const { t } = useLanguage();
   const copy = t.trustCenter || {};
   const guarantees = copy.guarantees || [];
+  const [sectionOpen, setSectionOpen] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [showLegalDocs, setShowLegalDocs] = useState(false);
   const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
 
-  const iconMap: Record<string, React.ElementType> = {
+  const iconMap: Record<string, ElementType> = {
     server: Server,
     eye: Eye,
     lock: Lock,
@@ -60,9 +61,39 @@ export function TrustCenter() {
           <p className="text-lg text-brand-text-secondary leading-relaxed">
             {copy.subtitle}
           </p>
+
+          {/* Expand / Collapse toggle */}
+          <button
+            onClick={() => setSectionOpen(!sectionOpen)}
+            className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-brand-border hover:border-brand-primary/20 hover:shadow-sm transition-all cursor-pointer group"
+          >
+            <Lock className="w-4 h-4 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
+            <span className="text-sm font-semibold text-brand-text-secondary group-hover:text-brand-primary transition-colors">
+              {sectionOpen
+                ? (copy.collapseLabel || "Skrýt detaily")
+                : (copy.expandLabel || "Zobrazit detaily zabezpečení")}
+            </span>
+            <motion.div
+              animate={{ rotate: sectionOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="w-4 h-4 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
+            </motion.div>
+          </button>
         </motion.div>
 
-        {/* Compliance Bar - Always Visible */}
+        {/* Collapsible Content */}
+        <AnimatePresence initial={false}>
+          {sectionOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="overflow-hidden"
+            >
+
+        {/* Compliance Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -261,6 +292,11 @@ export function TrustCenter() {
             </p>
           </div>
         </motion.div>
+
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   );

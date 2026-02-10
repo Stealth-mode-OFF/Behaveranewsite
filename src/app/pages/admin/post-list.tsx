@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
@@ -9,9 +9,9 @@ import { format } from 'date-fns';
 import { toast } from 'sonner';
 import { Input } from '@/app/components/ui/input';
 import { Badge } from '@/app/components/ui/badge';
-import { Card, CardContent } from '@/app/components/ui/card';
+import { Card } from '@/app/components/ui/card';
 
-export const PostList = () => {
+export function PostList() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +23,7 @@ export const PostList = () => {
       const data = await CmsService.getPosts();
       setPosts(data);
       setFilteredPosts(data);
-    } catch (error) {
+    } catch {
       toast.error('Failed to load posts');
     } finally {
       setIsLoading(false);
@@ -50,10 +50,10 @@ export const PostList = () => {
           await CmsService.deletePost(id);
           toast.success("Post deleted");
           loadPosts();
-      } catch(e) {
+      } catch {
           toast.error("Failed to delete");
       }
-  }
+  };
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
@@ -165,4 +165,4 @@ export const PostList = () => {
       </Card>
     </div>
   );
-};
+}

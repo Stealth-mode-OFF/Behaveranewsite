@@ -275,6 +275,8 @@ export const translations = {
         { label: "SOC 2 Type II", sub: "Audit certification" },
         { label: "Encryption", sub: "AES-256 / TLS 1.3" }
       ],
+      expandLabel: "Show security details",
+      collapseLabel: "Hide details",
       legalDocsTitle: "Legal documents",
       dpoLabel: "Data Protection Officer:",
       privacyFallbackTitle: "Privacy policy",
@@ -788,6 +790,8 @@ export const translations = {
         { label: "SOC 2 Type II", sub: "Auditní certifikace" },
         { label: "Šifrování", sub: "AES-256 / TLS 1.3" }
       ],
+      expandLabel: "Zobrazit detaily zabezpečení",
+      collapseLabel: "Skrýt detaily",
       legalDocsTitle: "Právní dokumenty",
       dpoLabel: "Pověřenec pro ochranu osobních údajů:",
       privacyFallbackTitle: "Zásady ochrany osobních údajů",
@@ -1301,6 +1305,8 @@ export const translations = {
         { label: "SOC 2 Type II", sub: "Audit-Zertifizierung" },
         { label: "Verschlüsselung", sub: "AES-256 / TLS 1.3" }
       ],
+      expandLabel: "Sicherheitsdetails anzeigen",
+      collapseLabel: "Details ausblenden",
       legalDocsTitle: "Rechtliche Dokumente",
       dpoLabel: "Datenschutzbeauftragter:",
       privacyFallbackTitle: "Datenschutzerklärung",

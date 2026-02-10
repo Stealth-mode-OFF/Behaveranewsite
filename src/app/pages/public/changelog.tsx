@@ -1,9 +1,10 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { useSEO } from '@/app/hooks/useSEO';
+import { SITE_ORIGIN } from '@/lib/urls';
 import { 
   Sparkles, 
   Shield, 
@@ -22,7 +23,7 @@ interface ChangelogEntry {
   title: string;
   description: string;
   changes: string[];
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 const translations = {
@@ -344,7 +345,7 @@ export function ChangelogPage() {
     title: `${t.title} | Echo Pulse`,
     description: t.subtitle,
     ogType: 'website',
-    canonicalUrl: 'https://echopulse.cz/changelog',
+    canonicalUrl: `${SITE_ORIGIN}/changelog`,
   });
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { CaseStudy } from '@/lib/types';
@@ -10,7 +10,7 @@ import { Input } from '@/app/components/ui/input';
 import { Badge } from '@/app/components/ui/badge';
 import { Card } from '@/app/components/ui/card';
 
-export const CaseStudyList = () => {
+export function CaseStudyList() {
   const [studies, setStudies] = useState<CaseStudy[]>([]);
   const [filteredStudies, setFilteredStudies] = useState<CaseStudy[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ export const CaseStudyList = () => {
       const data = await CmsService.getAllCaseStudies();
       setStudies(data);
       setFilteredStudies(data);
-    } catch (error) {
+    } catch {
       toast.error('Failed to load case studies');
     } finally {
       setIsLoading(false);
@@ -159,4 +159,4 @@ export const CaseStudyList = () => {
       </Card>
     </div>
   );
-};
+}

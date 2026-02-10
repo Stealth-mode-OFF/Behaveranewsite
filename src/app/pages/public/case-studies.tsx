@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { CaseStudy } from '@/lib/types';
@@ -7,7 +7,7 @@ import { Footer } from '@/app/components/layout/footer';
 import { ArrowRight } from 'lucide-react';
 import { useSEO } from '@/app/hooks/useSEO';
 
-export const CaseStudiesPage = () => {
+export function CaseStudiesPage() {
   const [studies, setStudies] = useState<CaseStudy[]>([]);
 
   useSEO({
@@ -88,4 +88,4 @@ export const CaseStudiesPage = () => {
       <Footer />
     </div>
   );
-};
+}
