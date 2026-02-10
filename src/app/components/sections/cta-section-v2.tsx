@@ -16,7 +16,7 @@ import { useLanguage } from "@/app/LanguageContext";
  * - Premium "final word" feel
  */
 export function CtaSectionV2() {
-  const { openBooking, openVideo } = useModal();
+  const { openBooking } = useModal();
   const { t, language } = useLanguage();
 
   const copy = {
@@ -138,7 +138,12 @@ export function CtaSectionV2() {
             </Button>
             <button
               type="button"
-              onClick={openVideo}
+              onClick={() => {
+                const tryLink = language === 'cz'
+                  ? 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=cs'
+                  : 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=en';
+                window.open(tryLink, 'pulseScan', 'width=480,height=820,left=200,top=80,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
+              }}
               className="text-white/70 hover:text-white underline underline-offset-4 transition-colors"
             >
               {c.demoCta}

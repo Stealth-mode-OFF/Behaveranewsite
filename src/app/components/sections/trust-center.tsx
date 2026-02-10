@@ -1,14 +1,8 @@
-import React from "react";
-import { ShieldCheck, FileText, Lock, Server, Eye, Users, CheckCircle2, Globe, Database } from "lucide-react";
+import React, { useState } from "react";
+import { ShieldCheck, FileText, Lock, Server, Eye, Users, CheckCircle2, Globe, Database, ChevronDown } from "lucide-react";
 import { getBehaveraItem } from "@/app/content/behaveraContent";
 import { useLanguage } from "@/app/LanguageContext";
-import { motion } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from "@/app/components/ui/accordion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const privacy = getBehaveraItem("/privacy-policy");
 const terms = getBehaveraItem("/terms");
@@ -29,23 +23,35 @@ export function TrustCenter() {
   const { t } = useLanguage();
   const copy = t.trustCenter || {};
   const guarantees = copy.guarantees || [];
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [showLegalDocs, setShowLegalDocs] = useState(false);
+  const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
+
+  const iconMap: Record<string, React.ElementType> = {
+    server: Server,
+    eye: Eye,
+    lock: Lock,
+    users: Users,
+    globe: Globe,
+    database: Database,
+  };
 
   return (
     <section className="section-spacing bg-gradient-to-b from-white to-brand-background-secondary" id="legal">
       <div className="container-default max-w-[1120px] mx-auto">
         
-        {/* Header - Centered */}
+        {/* Header - Compact */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-emerald-200">
             <ShieldCheck className="w-4 h-4" />
             {copy.badge}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary tracking-tight mb-5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary tracking-tight mb-4">
             {copy.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {copy.titleHighlight}
@@ -56,52 +62,12 @@ export function TrustCenter() {
           </p>
         </motion.div>
 
-        {/* Trust Guarantee Cards - 2x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
-          {guarantees.map((g: { icon: string; title: string; desc: string; detail: string }, idx: number) => {
-            const iconMap: Record<string, React.ElementType> = {
-              server: Server,
-              eye: Eye,
-              lock: Lock,
-              users: Users,
-              globe: Globe,
-              database: Database,
-            };
-            const IconComp = iconMap[g.icon] || ShieldCheck;
-
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-                className="group relative bg-white rounded-2xl border border-brand-border p-6 md:p-8 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
-              >
-                <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200/50 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <IconComp className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold text-brand-text-primary mb-1.5 tracking-tight">{g.title}</h3>
-                    <p className="text-[15px] text-brand-text-body leading-relaxed mb-3">{g.desc}</p>
-                    <div className="flex items-start gap-2 text-sm text-emerald-700 bg-emerald-50/60 rounded-lg px-3 py-2">
-                      <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                      <span>{g.detail}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Compliance Bar */}
+        {/* Compliance Bar - Always Visible */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-16 py-6 px-8 rounded-2xl bg-white border border-brand-border"
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-10 py-5 px-6 rounded-2xl bg-white border border-brand-border"
         >
           {(copy.complianceBadges || []).map((badge: { label: string; sub: string }, i: number) => (
             <div key={i} className="flex items-center gap-3">
@@ -116,46 +82,177 @@ export function TrustCenter() {
           ))}
         </motion.div>
 
-        {/* Legal Documents Accordion */}
+        {/* Guarantee Cards - Compact with Expand */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+          {guarantees.map((g: { icon: string; title: string; desc: string; detail: string }, idx: number) => {
+            const IconComp = iconMap[g.icon] || ShieldCheck;
+            const isExpanded = expandedCard === idx;
+
+            return (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.06 }}
+              >
+                <button
+                  onClick={() => setExpandedCard(isExpanded ? null : idx)}
+                  className="w-full text-left bg-white rounded-2xl border border-brand-border p-5 hover:shadow-md hover:border-brand-primary/15 transition-all duration-300 cursor-pointer group"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-50 to-emerald-100 border border-emerald-200/50 flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <IconComp className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base font-bold text-brand-text-primary tracking-tight">{g.title}</h3>
+                      <p className="text-sm text-brand-text-body leading-relaxed line-clamp-1">{g.desc}</p>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-7 h-7 rounded-full bg-brand-background-secondary flex items-center justify-center shrink-0"
+                    >
+                      <ChevronDown className="w-4 h-4 text-brand-text-muted" />
+                    </motion.div>
+                  </div>
+
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 mt-4 border-t border-brand-border/50">
+                          <p className="text-sm text-brand-text-body leading-relaxed mb-3">{g.desc}</p>
+                          <div className="flex items-start gap-2 text-sm text-emerald-700 bg-emerald-50/60 rounded-lg px-3 py-2">
+                            <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                            <span>{g.detail}</span>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </button>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Legal Documents - Collapsed by Default */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <h3 className="text-sm font-bold uppercase tracking-widest text-brand-text-muted mb-6 text-center">
-            {copy.legalDocsTitle || "Legal Documents"}
-          </h3>
-          <div className="bg-white rounded-2xl border border-brand-border overflow-hidden">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="privacy" className="border-b border-brand-border last:border-b-0">
-                <AccordionTrigger className="text-left text-base font-semibold text-brand-text-primary hover:text-brand-primary hover:no-underline py-5 px-6 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <FileText className="w-5 h-5 text-brand-text-muted" />
-                    {privacy?.title || copy.privacyFallbackTitle}
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-brand-text-body px-6 pb-6 leading-relaxed space-y-4">
-                  {renderParagraphs(privacy?.content, copy.contentFallback)}
-                </AccordionContent>
-              </AccordionItem>
+          <button
+            onClick={() => setShowLegalDocs(!showLegalDocs)}
+            className="w-full flex items-center justify-center gap-3 py-4 px-6 rounded-2xl bg-white border border-brand-border hover:border-brand-primary/20 hover:shadow-sm transition-all cursor-pointer group"
+          >
+            <FileText className="w-4 h-4 text-brand-text-muted" />
+            <span className="text-sm font-semibold text-brand-text-secondary group-hover:text-brand-primary transition-colors">
+              {copy.legalDocsTitle || "Legal Documents"}
+            </span>
+            <motion.div
+              animate={{ rotate: showLegalDocs ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown className="w-4 h-4 text-brand-text-muted" />
+            </motion.div>
+          </button>
 
-              <AccordionItem value="terms" className="border-b border-brand-border last:border-b-0">
-                <AccordionTrigger className="text-left text-base font-semibold text-brand-text-primary hover:text-brand-primary hover:no-underline py-5 px-6 transition-colors">
-                  <div className="flex items-center gap-3">
-                    <FileText className="w-5 h-5 text-brand-text-muted" />
-                    {terms?.title || copy.termsFallbackTitle}
+          <AnimatePresence initial={false}>
+            {showLegalDocs && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="pt-4 space-y-3">
+                  {/* Privacy Policy */}
+                  <div className="bg-white rounded-xl border border-brand-border overflow-hidden">
+                    <button
+                      onClick={() => setExpandedDoc(expandedDoc === 'privacy' ? null : 'privacy')}
+                      className="w-full flex items-center justify-between py-4 px-5 text-left hover:bg-brand-background-secondary/50 transition-colors cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <FileText className="w-4 h-4 text-brand-text-muted" />
+                        <span className="text-sm font-semibold text-brand-text-primary">
+                          {privacy?.title || copy.privacyFallbackTitle}
+                        </span>
+                      </div>
+                      <motion.div
+                        animate={{ rotate: expandedDoc === 'privacy' ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className="w-4 h-4 text-brand-text-muted" />
+                      </motion.div>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {expandedDoc === 'privacy' && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 pb-5 text-sm text-brand-text-body leading-relaxed space-y-3 border-t border-brand-border/50 pt-4 max-h-[400px] overflow-y-auto">
+                            {renderParagraphs(privacy?.content, copy.contentFallback)}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-brand-text-body px-6 pb-6 leading-relaxed space-y-4">
-                  {renderParagraphs(terms?.content, copy.contentFallback)}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
+
+                  {/* Terms */}
+                  <div className="bg-white rounded-xl border border-brand-border overflow-hidden">
+                    <button
+                      onClick={() => setExpandedDoc(expandedDoc === 'terms' ? null : 'terms')}
+                      className="w-full flex items-center justify-between py-4 px-5 text-left hover:bg-brand-background-secondary/50 transition-colors cursor-pointer"
+                    >
+                      <div className="flex items-center gap-3">
+                        <FileText className="w-4 h-4 text-brand-text-muted" />
+                        <span className="text-sm font-semibold text-brand-text-primary">
+                          {terms?.title || copy.termsFallbackTitle}
+                        </span>
+                      </div>
+                      <motion.div
+                        animate={{ rotate: expandedDoc === 'terms' ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ChevronDown className="w-4 h-4 text-brand-text-muted" />
+                      </motion.div>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {expandedDoc === 'terms' && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 pb-5 text-sm text-brand-text-body leading-relaxed space-y-3 border-t border-brand-border/50 pt-4 max-h-[400px] overflow-y-auto">
+                            {renderParagraphs(terms?.content, copy.contentFallback)}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* DPO Contact */}
-          <div className="text-center mt-8">
+          <div className="text-center mt-6">
             <p className="text-sm text-brand-text-muted">
               {copy.dpoLabel}{" "}
               <a href="mailto:gdpr@behavera.com" className="text-brand-primary font-semibold hover:underline">

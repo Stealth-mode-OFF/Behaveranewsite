@@ -4,9 +4,11 @@ import { Check, ShieldCheck, Star, Users, Zap } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/LanguageContext";
+import { useModal } from "@/app/ModalContext";
 
 export function PurchaseSection() {
   const { t, language } = useLanguage();
+  const { openBooking } = useModal();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   
@@ -224,6 +226,7 @@ export function PurchaseSection() {
                     
                     <div className="mt-8 relative">
                         <Button 
+                            onClick={openBooking}
                             className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-lg" 
                             size="lg"
                         >
