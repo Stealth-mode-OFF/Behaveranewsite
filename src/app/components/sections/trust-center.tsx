@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ShieldCheck, FileText, Lock, Server, Eye, Users, CheckCircle2, Globe, Database, ChevronDown } from "lucide-react";
-import { getBehaveraItem } from "@/app/content/behaveraContent";
+import { getBehaveraItem } from "@/app/content";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
