@@ -1,71 +1,33 @@
-import React from "react";
-import { Eye, Zap, ShieldAlert, Bot, Target } from "lucide-react";
+import React, { useRef } from "react";
+import { Eye, Zap, ShieldAlert } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
-import { motion } from "framer-motion";
-import { SnapCarousel, FeatureGrid } from "@/app/components/ui/snap-carousel";
-// iPad App Screenshots - CZ version
-import screenshotBenefitsCz from "@/assets/IMG_2149.webp";
-import screenshotAICz from "@/assets/IMG_2152.webp";
-import screenshotValuesCz from "@/assets/IMG_2153.webp";
-// iPad App Screenshots - EN version
-import screenshotBenefitsEn from "@/assets/IMG_2156.webp";
-import screenshotAIEn from "@/assets/IMG_2157.webp";
-import screenshotValuesEn from "@/assets/IMG_2158.webp";
+import { motion, useInView } from "framer-motion";
+import { DeviceFrame } from "@/app/components/ui/device-frame";
+import { FeatureGrid } from "@/app/components/ui/snap-carousel";
 
 /**
- * Dashboard Preview V2 - iPad Pro Level Design
+ * Dashboard Preview V2 — Real Dashboard Video
  * 
  * Features:
- * - Snap-scroll carousel for multiple dashboard views
- * - Animated feature grid below
- * - Seamless video integration
+ * - Actual screen recording of the Echo Pulse dashboard
+ * - MacBook Pro device frame
+ * - Auto-plays on scroll (muted, looping)
+ * - Feature grid below
  */
 export function DashboardPreviewV2() {
-  const { t, language } = useLanguage();
-  const { openVideo } = useModal();
+  const { t } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-  // Select screenshots based on language (CZ gets Czech, EN/DE get English)
-  const screenshotBenefits = language === 'cz' ? screenshotBenefitsCz : screenshotBenefitsEn;
-  const screenshotAI = language === 'cz' ? screenshotAICz : screenshotAIEn;
-  const screenshotValues = language === 'cz' ? screenshotValuesCz : screenshotValuesEn;
-
-  // Three iPad screenshots for carousel
-  const slides = [
-    {
-      id: "benefits-view",
-      image: screenshotBenefits,
-      title: language === 'cz' ? "Benefity & Engagement" : language === 'de' ? "Benefits & Engagement" : "Benefits & Engagement",
-      description: language === 'cz' 
-        ? "Sledujte engagement index a rozložení napříč týmy v reálném čase."
-        : language === 'de'
-        ? "Verfolgen Sie den Engagement-Index und die Teamverteilung in Echtzeit."
-        : "Track engagement index and team distribution in real-time.",
-      badge: language === 'cz' ? "Echo Pulse" : "Echo Pulse",
-    },
-    {
-      id: "ai-assistant",
-      image: screenshotAI,
-      title: language === 'cz' ? "AI Asistent" : language === 'de' ? "KI-Assistent" : "AI Assistant",
-      description: language === 'cz' 
-        ? "Získejte okamžité insights a konkrétní akční doporučení od AI."
-        : language === 'de'
-        ? "Erhalten Sie sofortige Einblicke und konkrete Handlungsempfehlungen von KI."
-        : "Get instant insights and actionable recommendations from AI.",
-      badge: language === 'cz' ? "AI Powered" : "AI Powered",
-    },
-    {
-      id: "values-view",
-      image: screenshotValues,
-      title: language === 'cz' ? "Hodnoty & Priority" : language === 'de' ? "Werte & Prioritäten" : "Values & Priorities",
-      description: language === 'cz' 
-        ? "Analyzujte firemní hodnoty a priority s rychlými akcemi pro management."
-        : language === 'de'
-        ? "Analysieren Sie Unternehmenswerte und Prioritäten mit schnellen Aktionen für das Management."
-        : "Analyze company values and priorities with quick actions for management.",
-      badge: language === 'cz' ? "Trendy" : "Trends",
-    },
-  ];
+  // Auto-play when in view
+  React.useEffect(() => {
+    if (isInView && videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay blocked — that's fine, user can see poster
+      });
+    }
+  }, [isInView]);
 
   const icons = [Eye, ShieldAlert, Zap];
   
@@ -120,19 +82,28 @@ export function DashboardPreviewV2() {
           </motion.div>
         </div>
 
-        {/* Carousel */}
+        {/* MacBook Pro Video */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          ref={containerRef}
+          initial={{ opacity: 0, y: 40, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-16 md:mb-24"
         >
-          <SnapCarousel 
-            slides={slides}
-            onSlideClick={openVideo}
-            autoplayInterval={6000}
-          />
+          <DeviceFrame type="macbook" className="w-full max-w-[500px] sm:max-w-[640px] md:max-w-[800px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
+            <video
+              ref={videoRef}
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/dashboard-demo-poster.webp"
+              className="w-full h-auto block"
+            >
+              <source src="/dashboard-demo.mp4" type="video/mp4" />
+            </video>
+          </DeviceFrame>
         </motion.div>
 
         {/* Feature Grid */}
