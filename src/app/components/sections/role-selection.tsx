@@ -14,6 +14,7 @@ import { useLanguage } from "@/app/LanguageContext";
 import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
+import { trackRoleSelected } from "@/lib/analytics";
 
 type RoleConfig = {
   id: string;
@@ -154,7 +155,7 @@ export function RoleSelection() {
               return (
                 <button
                   key={role.id}
-                  onClick={() => setActiveRole(role.id)}
+                  onClick={() => { setActiveRole(role.id); trackRoleSelected(role.id); }}
                   className={cn(
                     "relative px-4 sm:px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2",
                     isActive 
@@ -224,7 +225,7 @@ export function RoleSelection() {
 
                 {/* CTA */}
                 <Button
-                  onClick={openBooking}
+                  onClick={() => openBooking('role_selection')}
                   size="lg"
                   className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl"
                 >

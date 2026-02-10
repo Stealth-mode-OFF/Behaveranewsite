@@ -8,6 +8,7 @@ import { Input } from '@/app/components/ui/input';
 import { useForm } from 'react-hook-form';
 import { submitLead } from '@/app/utils/lead';
 import { validationRules, autocompleteAttributes } from '@/app/utils/validation';
+import { trackLeadPopupTriggered, trackLeadPopupDismissed, trackLeadSubmitted, trackEbookDownload } from '@/lib/analytics';
 
 /**
  * LeadPopup — Premium unified design using Dialog primitive
@@ -30,12 +31,13 @@ export function LeadPopup() {
   const isMobile = typeof window !== 'undefined' &&
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-  const triggerPopup = useCallback(() => {
+  const triggerPopup = useCallback((trigger: 'exit_intent' | 'timeout' | 'scroll_depth' = 'exit_intent') => {
     if (hasTriggered) return;
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
     if (hasSeen) return;
     setIsOpen(true);
     setHasTriggered(true);
+    trackLeadPopupTriggered(trigger);
   }, [hasTriggered]);
 
   useEffect(() => {
@@ -48,18 +50,18 @@ export function LeadPopup() {
     const handleMouseLeave = (e: MouseEvent) => {
       if (isMobile) return;
       if (e.clientY <= 5 && e.relatedTarget === null) {
-        triggerPopup();
+        triggerPopup('exit_intent');
       }
     };
 
     const timeoutTimer = setTimeout(() => {
-      if (isMobile) triggerPopup();
+      if (isMobile) triggerPopup('timeout');
     }, 60000);
 
     const handleScroll = () => {
       const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
       if (scrollPercent > 70 && isMobile && !hasTriggered) {
-        triggerPopup();
+        triggerPopup('scroll_depth');
       }
     };
 
@@ -77,6 +79,7 @@ export function LeadPopup() {
     setIsOpen(false);
     setHasTriggered(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
+    trackLeadPopupDismissed();
   };
 
   const downloadEbook = () => {
@@ -93,7 +96,11 @@ export function LeadPopup() {
     setError(null);
     setIsSubmitting(true);
     submitLead({ email: data.email, source: "exit-intent-popup" });
-    setTimeout(() => { downloadEbook(); }, 100);
+    trackLeadSubmitted('exit-intent-popup');
+    setTimeout(() => {
+      downloadEbook();
+      trackEbookDownload('Lidé odcházejí i z dobrých firem', 'auto');
+    }, 100);
     setIsSubmitting(false);
     setIsSuccess(true);
     sessionStorage.setItem('leadPopupSeen', 'true');
@@ -138,7 +145,7 @@ export function LeadPopup() {
 
                 <Button
                   type="button"
-                  onClick={downloadEbook}
+                  onClick={() => { downloadEbook(); trackEbookDownload('Lidé odcházejí i z dobrých firem', 'manual'); }}
                   className="w-full h-[52px] text-[15px] rounded-xl"
                   size="lg"
                 >

@@ -9,6 +9,7 @@ import { cs, de, enUS } from 'date-fns/locale';
 import { useSEO } from '@/app/hooks/useSEO';
 import { useLanguage } from '@/app/LanguageContext';
 import { useModal } from '@/app/ModalContext';
+import { useLocalizedPosts } from '@/app/hooks/useLocalizedPost';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -46,8 +47,11 @@ export function BlogPage() {
     return posts.filter(p => p.tags?.includes(activeTag));
   }, [posts, activeTag]);
 
-  const featuredPost = filteredPosts[0];
-  const remainingPosts = filteredPosts.slice(1);
+  // Localize titles / excerpts / content to active language
+  const localizedPosts = useLocalizedPosts(filteredPosts);
+
+  const featuredPost = localizedPosts[0];
+  const remainingPosts = localizedPosts.slice(1);
 
   const midCta = {
     cz: {

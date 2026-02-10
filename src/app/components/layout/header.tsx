@@ -8,6 +8,7 @@ import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
 import { useModal } from "@/app/ModalContext";
 import { BEHAVERA_LOGIN_URL } from "@/lib/urls";
+import { trackLoginClick } from "@/lib/analytics";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -138,6 +139,7 @@ export function Header() {
             href={BEHAVERA_LOGIN_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackLoginClick('header_desktop')}
             className={cn(
                 "hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold transition-colors",
                 "text-brand-text-secondary hover:text-brand-primary"
@@ -147,7 +149,7 @@ export function Header() {
           </a>
           
           <Button 
-            onClick={openBooking}
+            onClick={() => openBooking('header_desktop')}
             className={cn(
                 "hidden lg:inline-flex rounded h-10 px-6 font-semibold transition-all text-sm",
                 "bg-brand-primary text-white hover:bg-brand-primary-hover"
@@ -236,7 +238,7 @@ export function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full h-12 px-8 border border-brand-border hover:border-brand-primary text-brand-text-primary font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => { setMobileMenuOpen(false); trackLoginClick('header_mobile'); }}
                 >
                   <LogIn className="w-4 h-4" />
                   {loginLabel}
@@ -244,7 +246,7 @@ export function Header() {
                 <Button 
                     onClick={() => {
                         setMobileMenuOpen(false);
-                        openBooking();
+                        openBooking('header_mobile');
                     }}
                     className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
                 >

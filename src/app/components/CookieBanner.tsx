@@ -4,6 +4,7 @@ import { Cookie, X, Shield, Settings2 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/app/LanguageContext';
+import { trackCookieConsent } from '@/lib/analytics';
 
 /**
  * CookieBanner - GDPR-compliant cookie consent
@@ -106,15 +107,19 @@ export function CookieBanner() {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
     setIsVisible(false);
 
-    // Trigger analytics initialization if accepted
-    if (analytics && typeof window !== 'undefined') {
-      // Here you would initialize Google Analytics, Plausible, etc.
-    }
+    // Track the consent choice (fires unconditionally since this IS the consent)
+    trackCookieConsent(
+      analytics ? 'accept_all' : 'essential_only',
+      analytics
+    );
   };
 
   const handleAcceptAll = () => saveConsent(true);
   const handleAcceptEssential = () => saveConsent(false);
-  const handleSaveSettings = () => saveConsent(analyticsEnabled);
+  const handleSaveSettings = () => {
+    saveConsent(analyticsEnabled);
+    trackCookieConsent('custom', analyticsEnabled);
+  };
 
   return (
     <AnimatePresence>

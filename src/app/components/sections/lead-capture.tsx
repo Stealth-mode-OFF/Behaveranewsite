@@ -8,6 +8,7 @@ import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/LanguageContext";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
 import { motion } from "framer-motion";
+import { trackLeadSubmitted, trackEbookDownload } from "@/lib/analytics";
 
 type LeadFormData = {
   name?: string;
@@ -113,13 +114,16 @@ export function LeadCaptureSection() {
     
     // Submit lead (don't block on it)
     submitLead({ email: data.email, name: data.name, source: "ebook" });
+    trackLeadSubmitted('ebook');
     
     // Immediately trigger downloads
     setTimeout(() => {
       downloadFile(EBOOKS[0].file, `${EBOOKS[0].title[language] || EBOOKS[0].title.en}.pdf`);
+      trackEbookDownload(EBOOKS[0].title.en, 'auto');
     }, 100);
     setTimeout(() => {
       downloadFile(EBOOKS[1].file, `${EBOOKS[1].title[language] || EBOOKS[1].title.en}.pdf`);
+      trackEbookDownload(EBOOKS[1].title.en, 'auto');
     }, 600);
     
     setIsSubmitting(false);
@@ -186,7 +190,7 @@ export function LeadCaptureSection() {
                       <button
                         key={i}
                         type="button"
-                        onClick={() => downloadFile(eb.file, `${eb.title[language] || eb.title.en}.pdf`)}
+                        onClick={() => { downloadFile(eb.file, `${eb.title[language] || eb.title.en}.pdf`); trackEbookDownload(eb.title.en, 'manual'); }}
                         className="w-full flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-[#FDFBFF] transition-all group text-left"
                       >
                         <div className="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-all">

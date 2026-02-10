@@ -7,6 +7,7 @@ import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/devic
 import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
 import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
 import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
+import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /**
  * Hero - iPad Pro Level Design
@@ -131,7 +132,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 mb-12 justify-center"
             >
               <Button
-                onClick={openBooking}
+                onClick={() => openBooking('hero')}
                 size="lg"
                 className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
               >
@@ -143,6 +144,7 @@ export function Hero() {
                 onClick={() => {
                   const tryLink = getPulseCheckUrl(language);
                   window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
+                  trackPulseCheckOpen('hero', language);
                 }}
                 variant="outline"
                 size="lg"

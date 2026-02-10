@@ -11,6 +11,12 @@ export type BlogPost = {
   slug: string;
   excerpt: string;
   content: string; // HTML content from rich text editor
+  /** Czech title (optional — falls back to `title`) */
+  title_cz?: string;
+  /** Czech excerpt */
+  excerpt_cz?: string;
+  /** Czech HTML content */
+  content_cz?: string;
   coverImage?: string;
   author: Author;
   publishedAt: string;

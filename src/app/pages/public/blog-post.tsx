@@ -11,6 +11,7 @@ import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
 import { useSEO } from '@/app/hooks/useSEO';
 import { useLanguage } from '@/app/LanguageContext';
 import { useModal } from '@/app/ModalContext';
+import { useLocalizedPost } from '@/app/hooks/useLocalizedPost';
 import { Button } from '@/app/components/ui/button';
 
 export function BlogPostPage() {
@@ -20,6 +21,9 @@ export function BlogPostPage() {
   const { t, language } = useLanguage();
   const { openBooking } = useModal();
   const locale = language === 'cz' ? cs : language === 'de' ? de : enUS;
+
+  // Localize post fields to active language
+  const localizedPost = useLocalizedPost(post);
 
   useEffect(() => {
     if (slug) {
@@ -32,8 +36,8 @@ export function BlogPostPage() {
 
   // Dynamic SEO based on post
   useSEO({
-    title: post?.title || t.blog.title,
-    description: post?.excerpt || t.blog.seoDescription,
+    title: localizedPost?.title || t.blog.title,
+    description: localizedPost?.excerpt || t.blog.seoDescription,
     keywords: post?.tags?.join(', ') || t.blog.seoKeywords,
     ogType: 'article',
   });
@@ -61,7 +65,7 @@ export function BlogPostPage() {
   const cta = ctaCopy[language] || ctaCopy.en;
 
   if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.loading}</div>;
-  if (!post) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.notFound}</div>;
+  if (!post || !localizedPost) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.notFound}</div>;
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-background-primary">
@@ -82,10 +86,10 @@ export function BlogPostPage() {
                 ))}
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-text-primary mb-6 leading-tight">
-              {post.title}
+              {localizedPost.title}
             </h1>
             <p className="text-xl md:text-2xl text-brand-text-secondary leading-relaxed max-w-2xl mx-auto mb-8">
-              {post.excerpt}
+              {localizedPost.excerpt}
             </p>
             
             <div className="flex items-center justify-center gap-4">
@@ -113,7 +117,7 @@ export function BlogPostPage() {
 
           <div 
             className="prose prose-lg prose-violet mx-auto max-w-none text-brand-text-secondary"
-            dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(localizedPost.content) }}
           />
 
           {/* Bottom CTA — premium style */}
