@@ -11,6 +11,7 @@ import {
   type LucideIcon 
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
+import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 
@@ -37,6 +38,7 @@ type RoleConfig = {
  */
 export function RoleSelectionV2() {
   const { t, language } = useLanguage();
+  const { openBooking } = useModal();
   const [activeRole, setActiveRole] = useState("ceo");
 
   const roles: RoleConfig[] = [
@@ -107,13 +109,6 @@ export function RoleSelectionV2() {
   ];
 
   const activeRoleData = roles.find(r => r.id === activeRole) || roles[1];
-
-  const scrollToPricing = () => {
-    const element = document.getElementById('pricing');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <section className="section-spacing bg-gradient-to-b from-brand-primary to-[#1a0a3e] relative overflow-hidden">
@@ -229,7 +224,7 @@ export function RoleSelectionV2() {
 
                 {/* CTA */}
                 <Button
-                  onClick={scrollToPricing}
+                  onClick={openBooking}
                   size="lg"
                   className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl"
                 >
