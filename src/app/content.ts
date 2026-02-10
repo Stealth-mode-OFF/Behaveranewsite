@@ -1,4 +1,4 @@
-import raw from "../../../behavera_cz_full_text.txt?raw";
+import raw from "../../behavera_cz_full_text.txt?raw";
 
 export type ContentItem = {
   id: string;
