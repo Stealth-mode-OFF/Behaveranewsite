@@ -28,7 +28,7 @@ type RoleConfig = {
 };
 
 /**
- * Role Selection V2 - iOS Segmented Control Style
+ * Role Selection - iOS Segmented Control Style
  * 
  * Features:
  * - Horizontal segmented control for role selection
@@ -36,7 +36,7 @@ type RoleConfig = {
  * - Reduced cognitive load (select first, see benefits)
  * - Clean iPad Pro aesthetic
  */
-export function RoleSelectionV2() {
+export function RoleSelection() {
   const { t, language } = useLanguage();
   const { openBooking } = useModal();
   const [activeRole, setActiveRole] = useState("ceo");

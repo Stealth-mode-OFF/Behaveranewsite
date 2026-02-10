@@ -7,7 +7,7 @@ import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 
 /**
- * Problem Section V2 - Bento Grid Style
+ * Problem Section - Bento Grid Style
  * 
  * Features:
  * - Apple-style Bento grid layout
@@ -15,7 +15,7 @@ import { cn } from "@/app/components/ui/utils";
  * - Animated stat counters
  * - CTA cell with gradient
  */
-export function ProblemSectionV2() {
+export function ProblemSection() {
   const { t, language } = useLanguage();
   const { openBooking } = useModal();
 

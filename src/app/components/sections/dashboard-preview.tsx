@@ -6,7 +6,7 @@ import { DeviceFrame } from "@/app/components/ui/device-frame";
 import { FeatureGrid } from "@/app/components/ui/snap-carousel";
 
 /**
- * Dashboard Preview V2 — Real Dashboard Video
+ * Dashboard Preview — Real Dashboard Video
  * 
  * Features:
  * - Actual screen recording of the Echo Pulse dashboard
@@ -14,7 +14,7 @@ import { FeatureGrid } from "@/app/components/ui/snap-carousel";
  * - Auto-plays on scroll (muted, looping)
  * - Feature grid below
  */
-export function DashboardPreviewV2() {
+export function DashboardPreview() {
   const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);

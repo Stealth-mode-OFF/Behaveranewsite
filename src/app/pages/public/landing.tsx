@@ -4,12 +4,12 @@ import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { BookingModal } from "@/app/components/layout/booking-modal";
 import { LeadPopup } from "@/app/components/layout/lead-popup";
-import { HeroV2 } from "@/app/components/sections/hero-v2";
+import { Hero } from "@/app/components/sections/hero";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
-import { ProblemSectionV2 } from "@/app/components/sections/problem-v2";
-import { DashboardPreviewV2 } from "@/app/components/sections/dashboard-preview-v2";
+import { ProblemSection } from "@/app/components/sections/problem";
+import { DashboardPreview } from "@/app/components/sections/dashboard-preview";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
-import { RoleSelectionV2 } from "@/app/components/sections/role-selection-v2";
+import { RoleSelection } from "@/app/components/sections/role-selection";
 import { StickyMobileCta } from "@/app/components/layout/sticky-mobile-cta";
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
@@ -30,12 +30,12 @@ function lazyNamed<TProps>(
 }
 
 const CaseStudiesSection = lazyNamed(
-  () => import("@/app/components/sections/case-studies-v2"),
-  "CaseStudiesSectionV2"
+  () => import("@/app/components/sections/case-studies"),
+  "CaseStudiesSection"
 );
 const FAQ = lazyNamed(
-  () => import("@/app/components/sections/faq-v2"),
-  "FAQV2"
+  () => import("@/app/components/sections/faq"),
+  "FAQ"
 );
 const PurchaseSection = lazyNamed(
   () => import("@/app/components/sections/pricing"),
@@ -46,8 +46,8 @@ const TrustCenter = lazyNamed(
   "TrustCenter"
 );
 const CtaSection = lazyNamed(
-  () => import("@/app/components/sections/cta-section-v2"),
-  "CtaSectionV2"
+  () => import("@/app/components/sections/cta-section"),
+  "CtaSection"
 );
 const LeadCaptureSection = lazyNamed(
   () => import("@/app/components/sections/lead-capture"),
@@ -74,16 +74,16 @@ export function LandingPage() {
       <Header />
       <main>
         {/* 1. HERO — Outcome promise + dual CTA */}
-        <HeroV2 />
+        <Hero />
         
         {/* 2. SOCIAL PROOF — Client logos */}
         <LogoMarquee />
         
         {/* 3. PROBLEM — Build pain awareness */}
-        <ProblemSectionV2 />
+        <ProblemSection />
 
         {/* 4. VISUAL PROOF — See the solution immediately */}
-        <DashboardPreviewV2 />
+        <DashboardPreview />
 
         {/* 5. HOW IT WORKS + WHAT WE MEASURE */}
         <SignalRadar />
@@ -94,7 +94,7 @@ export function LandingPage() {
         </LazySection>
 
         {/* 7. PERSONALIZATION — Role-based value */}
-        <RoleSelectionV2 />
+        <RoleSelection />
 
         {/* 8. INVESTMENT — Pricing calculator */}
         <LazySection>

@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 
 /**
- * CTA Section V2 - Full-width Dark Premium Design
+ * CTA Section - Full-width Dark Premium Design
  * 
  * Features:
  * - Full viewport height on desktop
@@ -15,7 +15,7 @@ import { useLanguage } from "@/app/LanguageContext";
  * - Trust indicators inline
  * - Premium "final word" feel
  */
-export function CtaSectionV2() {
+export function CtaSection() {
   const { openBooking } = useModal();
   const { t, language } = useLanguage();
 
