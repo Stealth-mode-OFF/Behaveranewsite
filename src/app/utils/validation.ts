@@ -60,7 +60,7 @@ export const validationRules = {
       value: EMAIL_PATTERN,
       message: "Zadejte platný email"
     }
-  } as RegisterOptions,
+  } satisfies RegisterOptions,
 
   /**
    * Work email validation (rejects free providers)
@@ -72,7 +72,7 @@ export const validationRules = {
       value: WORK_EMAIL_PATTERN,
       message: "Zadejte firemní email (ne gmail, seznam...)"
     }
-  } as RegisterOptions,
+  } satisfies RegisterOptions,
 
   /**
    * Czech phone number validation
@@ -84,7 +84,7 @@ export const validationRules = {
       value: CZECH_PHONE_PATTERN,
       message: "Zadejte platné číslo (např. +420 777 888 999)"
     }
-  } as RegisterOptions,
+  } satisfies RegisterOptions,
 
   /**
    * Optional name field
@@ -98,7 +98,7 @@ export const validationRules = {
       value: 100,
       message: "Jméno je příliš dlouhé"
     }
-  } as RegisterOptions,
+  } satisfies RegisterOptions,
 
   /**
    * Required text field (generic)
@@ -109,7 +109,7 @@ export const validationRules = {
       value: 1,
       message: "Pole nemůže být prázdné"
     }
-  } as RegisterOptions,
+  } satisfies RegisterOptions,
 
   /**
    * Optional company name
@@ -123,7 +123,7 @@ export const validationRules = {
       value: 200,
       message: "Název společnosti je příliš dlouhý"
     }
-  } as RegisterOptions,
+  } satisfies RegisterOptions,
 };
 
 /**
