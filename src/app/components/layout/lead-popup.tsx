@@ -208,7 +208,6 @@ export function LeadPopup() {
                     </label>
                     <Input
                       type="email"
-                      name="email"
                       autoComplete={autocompleteAttributes.email}
                       placeholder={t.leadPopup?.emailPlaceholder || "Váš pracovní e-mail"}
                       className={`h-11 rounded-xl bg-slate-50 border-slate-200 focus:bg-white transition-colors ${errors.email ? 'border-red-300 bg-red-50/30' : ''}`}

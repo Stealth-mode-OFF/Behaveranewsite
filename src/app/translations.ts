@@ -94,9 +94,11 @@ type Translations = {
     badge: string;
     title: string;
     subtitle: string;
+    ebookTitle: string;
     emailPlaceholder: string;
     inputLabel: string;
     cta: string;
+    noSpam: string;
     socialProofPre: string;
     socialProofCount: string;
     socialProofPost: string;
@@ -285,9 +287,11 @@ export const translations: Record<Language, Translations> = {
       badge: "New Study 2026",
       title: "People leave even good companies. Why?",
       subtitle: "Exclusive data from 30+ companies. Uncover the real reasons for performance drops that annual surveys miss.",
+      ebookTitle: "People leave even good companies",
       emailPlaceholder: "name@company.com",
       inputLabel: "Where should we send the E-book?",
       cta: "Get free e-book",
+      noSpam: "No spam. We respect your privacy.",
       socialProofPre: "Already downloaded by",
       socialProofCount: "500+",
       socialProofPost: "leaders",
@@ -474,9 +478,11 @@ export const translations: Record<Language, Translations> = {
       badge: "Nová studie 2026",
       title: "Lidé odcházejí i z dobrých firem. Proč?",
       subtitle: "Exkluzivní data z 30+ českých firem. Odhalte skutečné důvody poklesu výkonu, které v ročních průzkumech nenajdete.",
+      ebookTitle: "Lidé odcházejí i z dobrých firem",
       emailPlaceholder: "name@company.com",
       inputLabel: "Kam máme E-book poslat?",
       cta: "Získat e-book zdarma",
+      noSpam: "Žádný spam. Respektujeme vaše soukromí.",
       socialProofPre: "Již stáhlo",
       socialProofCount: "500+",
       socialProofPost: "lídrů",
@@ -663,9 +669,11 @@ export const translations: Record<Language, Translations> = {
       badge: "Neue Studie 2026",
       title: "Menschen verlassen auch gute Firmen. Warum?",
       subtitle: "Exklusive Daten von 30+ Unternehmen. Entdecken Sie die wahren Gründe für Leistungsabfall, die Jahresumfragen übersehen.",
+      ebookTitle: "Menschen verlassen auch gute Firmen",
       emailPlaceholder: "name@company.com",
       inputLabel: "Wohin sollen wir das E-Book senden?",
       cta: "Kostenloses E-Book erhalten",
+      noSpam: "Kein Spam. Wir respektieren Ihre Privatsphäre.",
       socialProofPre: "Bereits von",
       socialProofCount: "500+",
       socialProofPost: "Führungskräften genutzt",

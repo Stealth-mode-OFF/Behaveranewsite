@@ -48,6 +48,7 @@ export function LeadCaptureSection() {
   const copy = {
     cz: {
       title: "Stáhněte si zdarma 2 e-booky",
+      titleHighlight: "",
       subtitle: "Praktické průvodce prevencí fluktuace — s checklisty, frameworky a reálnými čísly.",
       benefits: [
         "7 varovných signálů před odchodem",
@@ -66,6 +67,7 @@ export function LeadCaptureSection() {
     },
     en: {
       title: "Download 2 free e-books",
+      titleHighlight: "",
       subtitle: "Practical guides to turnover prevention — with checklists, frameworks, and real data.",
       benefits: [
         "7 warning signs before departure",
@@ -84,6 +86,7 @@ export function LeadCaptureSection() {
     },
     de: {
       title: "Laden Sie 2 kostenlose E-Books herunter",
+      titleHighlight: "",
       subtitle: "Praktische Leitfäden zur Fluktuationsprävention — mit Checklisten, Frameworks und echten Zahlen.",
       benefits: [
         "7 Warnsignale vor dem Abgang",
