@@ -3,8 +3,6 @@ import { pageSEO } from "@/app/config/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { BookingModal } from "@/app/components/layout/booking-modal";
-import { DemoVideoModal } from "@/app/components/layout/demo-video-modal";
-import { DemoAccessModal } from "@/app/components/layout/demo-access-modal";
 import { LeadPopup } from "@/app/components/layout/lead-popup";
 import { HeroV2 } from "@/app/components/sections/hero-v2";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
@@ -128,8 +126,6 @@ export function LandingPage() {
 
       {/* Modals */}
       <BookingModal />
-      <DemoVideoModal />
-      <DemoAccessModal />
       <LeadPopup />
     </>
   );
