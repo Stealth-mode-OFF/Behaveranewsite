@@ -7,6 +7,7 @@ import {
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
+import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /* ─── Icons ─── */
 const topicIcons: Record<string, ElementType> = {
@@ -397,6 +398,7 @@ export function SignalRadar() {
               <button
               onClick={() => {
                 window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
+                trackPulseCheckOpen('signal_radar', language);
               }}
               className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
             >

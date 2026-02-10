@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { useModal } from "@/app/ModalContext";
+import { trackStickyCtaDismissed } from "@/lib/analytics";
 
 export function StickyMobileCta() {
   const { t } = useLanguage();
@@ -29,14 +30,14 @@ export function StickyMobileCta() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={openBooking}
+            onClick={() => openBooking('sticky_mobile_cta')}
             className="flex-1 h-12 rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
             {t.header.bookDemo}
           </button>
           <button
             type="button"
-            onClick={() => setIsDismissed(true)}
+            onClick={() => { setIsDismissed(true); trackStickyCtaDismissed(); }}
             className="w-10 h-10 flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors"
             aria-label="Dismiss"
           >

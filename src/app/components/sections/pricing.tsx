@@ -5,6 +5,7 @@ import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/LanguageContext";
 import { useModal } from "@/app/ModalContext";
+import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
 
 export function PurchaseSection() {
   const { t, language } = useLanguage();
@@ -73,7 +74,7 @@ export function PurchaseSection() {
                     {/* Billing Toggle */}
                     <div className="flex bg-brand-background-muted p-1.5 rounded-xl mb-8 w-fit border border-brand-border">
                         <button 
-                            onClick={() => setBillingInterval('monthly')}
+                            onClick={() => { setBillingInterval('monthly'); trackPricingBillingToggle('monthly'); }}
                             className={cn(
                                 "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200",
                                 billingInterval === 'monthly' 
@@ -84,7 +85,7 @@ export function PurchaseSection() {
                             {t.purchase.billingMonthly}
                         </button>
                         <button 
-                            onClick={() => setBillingInterval('yearly')}
+                            onClick={() => { setBillingInterval('yearly'); trackPricingBillingToggle('yearly'); }}
                             className={cn(
                                 "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200",
                                 billingInterval === 'yearly' 
@@ -116,7 +117,12 @@ export function PurchaseSection() {
                               max="350" 
                               step="5"
                               value={employeeCount}
-                              onChange={(e) => setEmployeeCount(Number(e.target.value))}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setEmployeeCount(val);
+                              }}
+                              onMouseUp={() => trackPricingSliderChanged(employeeCount)}
+                              onTouchEnd={() => trackPricingSliderChanged(employeeCount)}
                               className="relative w-full h-8 sm:h-3 appearance-none cursor-pointer bg-transparent z-10
                                 [&::-webkit-slider-thumb]:appearance-none
                                 [&::-webkit-slider-thumb]:w-10
@@ -226,7 +232,7 @@ export function PurchaseSection() {
                     
                     <div className="mt-8 relative">
                         <Button 
-                            onClick={openBooking}
+                            onClick={() => openBooking('pricing')}
                             className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-lg" 
                             size="lg"
                         >

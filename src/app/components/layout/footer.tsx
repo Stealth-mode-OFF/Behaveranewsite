@@ -2,6 +2,7 @@ import { useLanguage } from "@/app/LanguageContext";
 import { Link } from "react-router-dom";
 import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Zap } from "lucide-react";
 import { ACCOUNT_SETUP_URL, ECHO_PULSE_JOIN_URL } from "@/lib/urls";
+import { trackSocialClick, trackExternalLink } from "@/lib/analytics";
 
 export function Footer() {
   const { language } = useLanguage();
@@ -212,6 +213,7 @@ export function Footer() {
                   href="https://www.linkedin.com/company/behavera/posts/?feedView=all"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackSocialClick('linkedin')}
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="LinkedIn"
                 >
@@ -221,6 +223,7 @@ export function Footer() {
                   href="https://www.instagram.com/behavera"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackSocialClick('instagram')}
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Instagram"
                 >
@@ -230,6 +233,7 @@ export function Footer() {
                   href="https://www.facebook.com/BehaveraTDC"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackSocialClick('facebook')}
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Facebook"
                 >

@@ -4,6 +4,7 @@ import { useModal } from '@/app/ModalContext';
 import { Check, Clock, Video, Shield, Users, Sparkles, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
+import { trackBookingCalendarLoaded } from '@/lib/analytics';
 
 const SCHEDULER_EMBED_URL = 'https://behavera.pipedrive.com/scheduler/GX27Q8iw/konzultace-jak-ziskat-jasna-data-o-svem-tymu-30-minutes';
 
@@ -263,7 +264,7 @@ export function BookingModal() {
                   className="w-full h-full absolute inset-0 border-0"
                   style={{ minHeight: '540px' }}
                   loading="eager"
-                  onLoad={() => setIsIframeLoaded(true)}
+                  onLoad={() => { setIsIframeLoaded(true); trackBookingCalendarLoaded(); }}
                 />
               )}
             </div>

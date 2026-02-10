@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Mail, Shield, Zap, Users, BarChart } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
+import { trackFaqCategoryChanged, trackFaqItemToggled } from "@/lib/analytics";
 
 /**
  * FAQ - Luxury Accordion with Categories
@@ -59,6 +60,9 @@ export function FAQ() {
 
   const toggleItem = (index: number) => {
     setOpenItem(openItem === index ? null : index);
+    if (openItem !== index && filteredItems[index]) {
+      trackFaqItemToggled(filteredItems[index].q);
+    }
   };
 
   return (
@@ -100,6 +104,7 @@ export function FAQ() {
                   onClick={() => {
                     setActiveCategory(cat.id);
                     setOpenItem(null);
+                    trackFaqCategoryChanged(cat.id);
                   }}
                   className={cn(
                     "relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2",

@@ -1,6 +1,7 @@
 import { useLanguage } from '@/app/LanguageContext';
 import { Language } from '@/app/translations';
 import { Button } from '@/app/components/ui/button';
+import { trackLanguageSwitch } from '@/lib/analytics';
 
 export function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
@@ -17,6 +18,7 @@ export function LanguageSwitcher() {
   const toggleLanguage = () => {
     const nextIndex = (currentLanguageIndex + 1) % languages.length;
     setLanguage(languages[nextIndex].code);
+    trackLanguageSwitch(languages[nextIndex].code);
   };
 
   return (

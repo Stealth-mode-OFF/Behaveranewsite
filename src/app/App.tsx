@@ -8,6 +8,8 @@ import { ScrollProgress } from "./components/ui/scroll-progress";
 import { CookieBanner } from "./components/CookieBanner";
 import { LandingPage } from "./pages/public/landing";
 import { adminEnabled } from "@/lib/config";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const TermsPage = lazy(() =>
   import("./pages/public/terms").then((module) => ({ default: module.TermsPage }))
@@ -141,6 +143,8 @@ function App() {
                 </Suspense>
                 <Toaster position="top-center" richColors />
                 <CookieBanner />
+                <Analytics />
+                <SpeedInsights />
               </div>
             </AuthProvider>
           </ModalProvider>

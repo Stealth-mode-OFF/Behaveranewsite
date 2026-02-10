@@ -4,6 +4,7 @@ import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
+import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -129,7 +130,7 @@ export function CtaSection() {
             className="flex flex-col items-center justify-center gap-4 mb-12"
           >
             <Button 
-              onClick={openBooking}
+              onClick={() => openBooking('cta_section')}
               size="lg"
               className="min-w-[240px] h-14 px-8 bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
             >
@@ -141,6 +142,7 @@ export function CtaSection() {
               onClick={() => {
                 const tryLink = getPulseCheckUrl(language);
                 window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
+                trackPulseCheckOpen('cta_section', language);
               }}
               className="text-white/70 hover:text-white underline underline-offset-4 transition-colors"
             >
