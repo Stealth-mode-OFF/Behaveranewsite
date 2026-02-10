@@ -1,40 +1,118 @@
 export type Language = "en" | "cz" | "de";
 
-export const translations = {
+type Translations = {
+  header: {
+    bookDemo: string;
+  };
+  problems: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    items: Array<{ title: string; value: string; desc: string }>;
+    ctaBox: { label: string; title: string; desc: string };
+  };
+  dashboard: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    features: Array<{ title: string; desc: string }>;
+  };
+  purchase: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    configTitle: string;
+    billingMonthly: string;
+    billingYearly: string;
+    companySizeLabel: string;
+    employeesLabel: string;
+    estimatedLabel: string;
+    perMonthLabel: string;
+    priceCapped: string;
+    basePriceLabel: string;
+    vatLabel: string;
+    features: string[];
+    button: string;
+    guaranteeShort: string;
+  };
+  faq: {
+    title: string;
+    titleHighlight: string;
+    desc: string;
+    contact: string;
+    items: Array<{ q: string; a: string }>;
+  };
+  roleSelection: {
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    investor: { title: string; list: string[]; cta: string };
+    ceo: { title: string; list: string[]; cta: string };
+    hr: { title: string; list: string[]; cta: string };
+    teamLeader: { title: string; list: string[]; cta: string };
+  };
+  trustCenter: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    guarantees: Array<{ icon: string; title: string; desc: string; detail: string }>;
+    complianceBadges: Array<{ label: string; sub: string }>;
+    expandLabel: string;
+    collapseLabel: string;
+    legalDocsTitle: string;
+    dpoLabel: string;
+    privacyFallbackTitle: string;
+    termsFallbackTitle: string;
+    contentFallback: string;
+  };
+  blog: {
+    title: string;
+    pageTitle: string;
+    pageSubtitle: string;
+    defaultTag: string;
+    backToList: string;
+    loading: string;
+    notFound: string;
+    seoTitle: string;
+    seoDescription: string;
+    seoKeywords: string;
+  };
+  caseStudies: {
+    loading: string;
+    notFound: string;
+    backToList: string;
+    resultsLabel: string;
+    industryLabel: string;
+    challengeTitle: string;
+    solutionTitle: string;
+  };
+  leadPopup: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    emailPlaceholder: string;
+    inputLabel: string;
+    cta: string;
+    socialProofPre: string;
+    socialProofCount: string;
+    socialProofPost: string;
+    quote: string;
+    successTitle: string;
+    successMessage: string;
+    downloadButton: string;
+    downloadNote: string;
+    close: string;
+  };
+};
+
+export const translations: Record<Language, Translations> = {
   en: {
-    radar: {
-      badge: "Complete overview",
-      title: "8 areas,",
-      titleHighlight: "that determine team stability",
-      subtitle: "Echo Pulse continuously monitors 8 key areas of work life. No unnecessary noise - just signals that tell you where things are stuck."
-    },
     header: {
-      product: "Product",
-      solutions: "Solutions",
-      pricing: "Pricing",
-      about: "About",
-      login: "Log in",
       bookDemo: "Book a Demo",
-      nav: {
-        problem: "Problem",
-        solution: "Solution",
-        impact: "Impact"
-      },
-    },
-    hero: {
-      badge: "Feedback that actually works",
-      title: "Find out what's really",
-      titleHighlight: "happening in your company",
-      subtitle: "People don't quit overnight. They decide over months. Echo Pulse gives you a 3–8 month head start — so you know before it's too late.",
-      primaryCta: "Book a demo",
-      secondaryCta: "Try it free",
-      riskReversal: "No commitment. After 30 minutes, you'll know if it makes sense for your company.",
-      trust: {
-        security: "GDPR compliant",
-        support: "Local Support",
-        implementation: "Results in 1 hour",
-        languages: "85% completion rate"
-      },
     },
     problems: {
       badge: "Turnover cost",
@@ -61,158 +139,19 @@ export const translations = {
       ctaBox: {
         label: "System Alert",
         title: "Intuition isn't enough for this.",
-        desc: "You need continuous data from the field. Otherwise you're just guessing why people lose motivation - and by the time you notice, talent is already walking out the door."
-      }
-    },
-    howItWorks: {
-      badge: "How it works",
-      stepLabel: "Step",
-      title: "How it",
-      titleHighlight: "works",
-      subtitle: "No complicated setup. Connect Echo Pulse to the communication tool you already use, and you'll have first data within an hour.",
-      steps: {
-        step1: {
-          title: "Understands context",
-          desc: "Echo Pulse doesn't just count words. It understands what people say between the lines - and from thousands of responses picks what you really need to know."
-        },
-        step2: {
-          title: "Runs on autopilot",
-          desc: "Short questions go out automatically via Slack, Teams, or email. People respond in a minute. You don't have to send anything.",
-          highlight: "The system ensures people aren't bothered - and you get clean data."
-        },
-        step3: {
-          title: "Suggests what to do",
-          desc: "It's not just graphs. Echo Pulse tells managers specifically what to do and why."
-        },
-        step4: {
-          title: "Guaranteed anonymity",
-          desc: "People know their responses won't be linked to their name. That's why they answer honestly."
-        }
-      }
-    },
-    czechReality: {
-      title: "Most companies today fall into one of two patterns.",
-      subtitle: "Whether we talk to corporations or fast-growing startups - we hit the same problem. Leadership doesn't see what's happening in teams until it's too late.",
-      diagnosisLabel: "Result:",
-      archetypeA: {
-        title: "A) Stable, but tired",
-        point1: {
-          title: "Everything runs, but nothing moves.",
-          desc: "People are loyal but out of energy. Processes work, but initiative is missing. Changes hit silent 'but we've always done it this way'."
-        },
-        point2: {
-          title: "Leadership is far from reality.",
-          desc: "Management learns about problems only when they escalate. Missing continuous overview of what troubles people."
-        },
-        diagnosis: "Loss of competitiveness - slowly but surely."
+        desc: "You need continuous data from the field. Otherwise you're just guessing why people lose motivation - and by the time you notice, talent is already walking out the door.",
       },
-      archetypeB: {
-        title: "B) Fast, but fragile",
-        point1: {
-          title: "Everyone's going full throttle, no one's keeping up.",
-          desc: "Young team, high tempo, eternal feeling of 'I can't keep up'. No time for reflection. Problems are swept under the rug."
-        },
-        point2: {
-          title: "Success depends on a few people.",
-          desc: "Results grow, but depend on individuals on the edge of burnout. One departure and the system collapses."
-        },
-        diagnosis: "Risk that key people leave without warning."
-      },
-      synthesis: {
-        title: "In both cases the same thing is missing: continuous visibility.",
-        desc: "You don't need more motivation. You need to know what's happening - before it becomes a problem."
-      }
-    },
-    roleSelection: {
-      title: "One tool.",
-      titleHighlight: " Different answers.",
-      subtitle: "Whether you're a CEO, HR, or team lead — Echo Pulse gives you exactly what you need. No noise.",
-      benefits: [
-        "I want a productive team",
-        "I want to know what blocks performance",
-        "I want visibility without blind spots"
-      ],
-      investor: {
-        role: "Investor",
-        title: "Company health overview",
-        list: [
-          "Early warning before problems",
-          "Risks caught in time"
-        ],
-        cta: "Check portfolio health"
-      },
-      ceo: {
-        role: "CEO / Owner",
-        title: "See what no one tells you",
-        list: [
-          "Real-time visibility into every team",
-          "Spot problems 3–8 months before they escalate"
-        ],
-        cta: "Book CEO demo"
-      },
-      hr: {
-        role: "HR / People Ops",
-        title: "Data that leadership actually listens to",
-        list: [
-          "Numbers instead of gut feelings",
-          "Less firefighting, more prevention"
-        ],
-        cta: "Book HR demo"
-      },
-      teamLeader: {
-        role: "Team Leader",
-        title: "Know what your team won't say out loud",
-        list: [
-          "Anonymous, honest feedback every month",
-          "Catch burnout before it's too late"
-        ],
-        cta: "Book team lead demo"
-      }
-    },
-    valueByRole: {
-      badge: "By role",
-      title: "One tool, different benefits.",
-      subtitle: "CEO needs overview for decisions. HR needs a prevention tool. Echo Pulse gives both - without unnecessary noise.",
-      tabs: {
-        ceo: "CEO / Leadership",
-        hr: "HR / People Ops"
-      },
-      cta: {
-        ceo: "Schedule CEO demo",
-        hr: "Schedule HR demo"
-      },
-      ctaNote: "30 min • Personalized for your role",
-      ceo: {
-        title: "For company leadership",
-        desc: "End of guessing how people are doing. You see exactly which departments are overloaded, where departures threaten, and where strategy communication fails.",
-        list: [
-          { title: "Early warning", desc: "Identify people at risk of leaving with months of advance notice." },
-          { title: "Strategy reality", desc: "Find out if teams understand your priorities - or run on autopilot." },
-          { title: "Return on investment", desc: "Fewer unplanned departures = lower recruitment and training costs." }
-        ]
-      },
-      hr: {
-        title: "For HR and People Ops",
-        desc: "Stop being the ones who fix problems. With continuous data, you're a strategic partner, not a firefighter.",
-        list: [
-          { title: "Data, not impressions", desc: "When you go to leadership, you have numbers - not complaints from the kitchen." },
-          { title: "Automatic collection", desc: "No manual sending. The system runs itself, you deal with results." },
-          { title: "Growing trust", desc: "People see things happening. Willingness to share the truth grows." }
-        ]
-      },
-      bottomBadge: "Designed for companies from 30 to 350 employees"
     },
     dashboard: {
       badge: "See it in action",
       title: "One dashboard. Zero guesswork.",
       titleHighlight: "Everything your leadership needs.",
       subtitle: "Echo Pulse collects scattered signals and shows them in one place. Clear, real-time, and ready to act on.",
-      watchDemo: "Watch demo",
       features: [
         { title: "Mood by team", desc: "Instant overview of how each department feels. Broken down by location, seniority, or manager." },
         { title: "Warning before problems", desc: "The system alerts when something's off - overload, team tension, or significant energy drop." },
-        { title: "Action priorities", desc: "Don't know what to solve first? Echo ranks problems by business impact and departure risk." }
-      ]
+        { title: "Action priorities", desc: "Don't know what to solve first? Echo ranks problems by business impact and departure risk." },
+      ],
     },
     purchase: {
       badge: "Pricing",
@@ -233,106 +172,10 @@ export const translations = {
         "Continuous pulses and signal analysis",
         "Executive and HR dashboards",
         "Actionable recommendations for managers",
-        "Secure data handling (GDPR)"
+        "Secure data handling (GDPR)",
       ],
       button: "Request a tailored quote",
-      guaranteeShort: "Final scope and price are confirmed after the intro call."
-    },
-    trustCenter: {
-      badge: "Trust Center",
-      title: "Your data is safe",
-      titleHighlight: " with us",
-      subtitle: "We handle sensitive people data. That's why security isn't just a feature - it's the foundation of everything we do. Audit-ready from day one.",
-      guarantees: [
-        {
-          icon: "server",
-          title: "Data stays in the EU",
-          desc: "All data is stored exclusively on servers within the European Union. No transfers outside EU/EEA.",
-          detail: "Frankfurt (AWS eu-central-1), AES-256 encryption at rest and in transit"
-        },
-        {
-          icon: "eye",
-          title: "100% employee anonymity",
-          desc: "Managers never see individual responses. Results are shown only in aggregate form from 5+ people.",
-          detail: "Differential privacy - individuals cannot be re-identified"
-        },
-        {
-          icon: "lock",
-          title: "GDPR by design",
-          desc: "Legitimate interest under Art. 6(1)(f) GDPR. No employee consent required - processing goes via the employer.",
-          detail: "DPIA completed, DPO available, data subject rights fully covered"
-        },
-        {
-          icon: "users",
-          title: "Audit-ready compliance",
-          desc: "Complete documentation: processing records, DPIA, data processing agreements, technical measures.",
-          detail: "Full audit trail of all access, contractual SLA guarantee 99.9%"
-        }
-      ],
-      complianceBadges: [
-        { label: "GDPR", sub: "Full compliance" },
-        { label: "ISO 27001", sub: "Security standard" },
-        { label: "SOC 2 Type II", sub: "Audit certification" },
-        { label: "Encryption", sub: "AES-256 / TLS 1.3" }
-      ],
-      expandLabel: "Show security details",
-      collapseLabel: "Hide details",
-      legalDocsTitle: "Legal documents",
-      dpoLabel: "Data Protection Officer:",
-      privacyFallbackTitle: "Privacy policy",
-      termsFallbackTitle: "Terms and conditions",
-      contentFallback: "Content coming soon."
-    },
-    cta: {
-      title: "Don't wait for the next resignation.",
-      subtitle: "Every unexpected departure costs months of work and hundreds of thousands. Start having visibility — today.",
-      primary: "Book a demo",
-      demoButton: "Try the demo",
-      secondary: "or call us",
-      secondaryLink: "+420 605 839 456",
-      benefits: [
-        { title: "No Commitment", desc: "Initial consultation and demo are free. Understand system logic in 30 minutes." },
-        { title: "Privacy Guarantee", desc: "GDPR compliance with clear data-handling rules. Your data stays on EU servers." },
-        { title: "Fast Start", desc: "Implementation needs no IT department. We connect to your existing tools (M365, Slack)." }
-      ]
-    },
-    footer: {
-      rights: "Behavera s.r.o. All rights reserved.",
-      legal: ["Terms", "Privacy"],
-      links: ["Product", "Pricing", "About", "Contact"]
-    },
-    blog: {
-      title: "Blog",
-      pageTitle: "Insights & Analysis",
-      pageSubtitle: "Deep dives into organizational psychology, leadership data, and the future of work.",
-      defaultTag: "Insight",
-      backToList: "Back to Insights",
-      loading: "Loading...",
-      notFound: "Post not found",
-      seoTitle: "Blog & Insights",
-      seoDescription: "Practical articles on engagement, retention, and organizational psychology.",
-      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies"
-    },
-    caseStudies: {
-      loading: "Loading...",
-      notFound: "Case study not found",
-      backToList: "Back to Success Stories",
-      resultsLabel: "Results",
-      industryLabel: "Industry",
-      challengeTitle: "The Challenge",
-      solutionTitle: "The Solution"
-    },
-    booking: {
-        title: "Schedule Consultation",
-        desc: "Select a time that works for you. We'll show you how Echo Pulse can help your specific situation.",
-    },
-    demoVideo: {
-        title: "See Echo Pulse in Action",
-    },
-    decisionLock: {
-      title: "In both extremes (burnout and hyper-growth), the problem is the same: leadership loses visibility.",
-      subtitle: "Echo Pulse gives you continuous signals back without slowing the company.",
-      cta: "I want to see signals from our reality"
+      guaranteeShort: "Final scope and price are confirmed after the intro call.",
     },
     faq: {
       title: "Remove risks,",
@@ -344,8 +187,99 @@ export const translations = {
         { q: "Does it require complex IT implementation?", a: "No. We're a cloud service. We connect to your systems (M365/Slack) without IT intervention. No project required." },
         { q: "Is it truly anonymous?", a: "Absolutely. We guarantee a 'safety layer'. No one from leadership sees individual responses. People know this and trust it." },
         { q: "Will it add work for managers?", a: "The opposite. Echo Pulse does the analytical work for them and gives them guidance. It doesn't increase manager workload." },
-        { q: "What if the results aren't pretty?", a: "That's the point. You want to see reality so you can change it. Better to know now than deal with resignations." }
-      ]
+        { q: "What if the results aren't pretty?", a: "That's the point. You want to see reality so you can change it. Better to know now than deal with resignations." },
+      ],
+    },
+    roleSelection: {
+      title: "One tool.",
+      titleHighlight: " Different answers.",
+      subtitle: "Whether you're a CEO, HR, or team lead — Echo Pulse gives you exactly what you need. No noise.",
+      investor: {
+        title: "Company health overview",
+        list: ["Early warning before problems", "Risks caught in time"],
+        cta: "Check portfolio health",
+      },
+      ceo: {
+        title: "See what no one tells you",
+        list: ["Real-time visibility into every team", "Spot problems 3–8 months before they escalate"],
+        cta: "Book CEO demo",
+      },
+      hr: {
+        title: "Data that leadership actually listens to",
+        list: ["Numbers instead of gut feelings", "Less firefighting, more prevention"],
+        cta: "Book HR demo",
+      },
+      teamLeader: {
+        title: "Know what your team won't say out loud",
+        list: ["Anonymous, honest feedback every month", "Catch burnout before it's too late"],
+        cta: "Book team lead demo",
+      },
+    },
+    trustCenter: {
+      badge: "Trust Center",
+      title: "Your data is safe",
+      titleHighlight: " with us",
+      subtitle: "We handle sensitive people data. That's why security isn't just a feature - it's the foundation of everything we do. Audit-ready from day one.",
+      guarantees: [
+        {
+          icon: "server",
+          title: "Data stays in the EU",
+          desc: "All data is stored exclusively on servers within the European Union. No transfers outside EU/EEA.",
+          detail: "Frankfurt (AWS eu-central-1), AES-256 encryption at rest and in transit",
+        },
+        {
+          icon: "eye",
+          title: "100% employee anonymity",
+          desc: "Managers never see individual responses. Results are shown only in aggregate form from 5+ people.",
+          detail: "Differential privacy - individuals cannot be re-identified",
+        },
+        {
+          icon: "lock",
+          title: "GDPR by design",
+          desc: "Legitimate interest under Art. 6(1)(f) GDPR. No employee consent required - processing goes via the employer.",
+          detail: "DPIA completed, DPO available, data subject rights fully covered",
+        },
+        {
+          icon: "users",
+          title: "Audit-ready compliance",
+          desc: "Complete documentation: processing records, DPIA, data processing agreements, technical measures.",
+          detail: "Full audit trail of all access, contractual SLA guarantee 99.9%",
+        },
+      ],
+      complianceBadges: [
+        { label: "GDPR", sub: "Full compliance" },
+        { label: "ISO 27001", sub: "Security standard" },
+        { label: "SOC 2 Type II", sub: "Audit certification" },
+        { label: "Encryption", sub: "AES-256 / TLS 1.3" },
+      ],
+      expandLabel: "Show security details",
+      collapseLabel: "Hide details",
+      legalDocsTitle: "Legal documents",
+      dpoLabel: "Data Protection Officer:",
+      privacyFallbackTitle: "Privacy policy",
+      termsFallbackTitle: "Terms and conditions",
+      contentFallback: "Content coming soon.",
+    },
+    blog: {
+      title: "Blog",
+      pageTitle: "Insights & Analysis",
+      pageSubtitle: "Deep dives into organizational psychology, leadership data, and the future of work.",
+      defaultTag: "Insight",
+      backToList: "Back to Insights",
+      loading: "Loading...",
+      notFound: "Post not found",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Practical articles on engagement, retention, and organizational psychology.",
+      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies",
+    },
+    caseStudies: {
+      loading: "Loading...",
+      notFound: "Case study not found",
+      backToList: "Back to Success Stories",
+      resultsLabel: "Results",
+      industryLabel: "Industry",
+      challengeTitle: "The Challenge",
+      solutionTitle: "The Solution",
     },
     leadPopup: {
       badge: "New Study 2026",
@@ -362,194 +296,12 @@ export const translations = {
       successMessage: "Click the button below to download your PDF.",
       downloadButton: "Download PDF",
       downloadNote: "Direct download • PDF • 4.3 MB",
-      close: "Close"
+      close: "Close",
     },
-    demoRequest: {
-      title: "Get demo access",
-      subtitle: "We'll send you a personalized demo link",
-      emailLabel: "Work email",
-      phoneLabel: "Phone",
-      sizeLabel: "Company size",
-      roleLabel: "Your role",
-      submit: "Send me the demo",
-      successTitle: "Check your inbox!",
-      successMessage: "Demo link is on its way.",
-      errorInvalidEmail: "Please enter a valid email.",
-      errorInvalidPhone: "Please enter a valid phone number.",
-      errorRequired: "This field is required.",
-      errorGeneric: "Submission failed. Please try again.",
-      companySizePlaceholder: "Select size",
-      rolePlaceholder: "Select role",
-      roles: {
-        ceo: "CEO / Founder",
-        hr: "HR / People Ops",
-        leader: "Team Leader",
-        other: "Other"
-      },
-      sizes: {
-        xs: "10-30 employees",
-        sm: "31-50 employees",
-        md: "51-100 employees",
-        lg: "101-200 employees",
-        xl: "201-350 employees",
-        xxl: "350+ employees"
-      }
-    },
-    leadCapture: {
-      badge: "Free E-book",
-      title: "Get a practical guide to",
-      titleHighlight: " managing teams by signals.",
-      subtitle: "We'll send you an ebook with concrete tips to quickly spot what's not working. No spam.",
-      nameLabel: "Name (optional)",
-      namePlaceholder: "Your name",
-      emailLabel: "Work email",
-      emailPlaceholder: "name@company.com",
-      submit: "Get the e-book",
-      successTitle: "E-book is on the way.",
-      successMessage: "Check your inbox.",
-      consent: "By submitting, you agree to data processing for ebook delivery.",
-      errorInvalid: "Please enter a valid email.",
-      errorGeneric: "Something went wrong. Please try again."
-    },
-    demoModal: {
-      choiceTitle: "How would you like to see Echo Pulse?",
-      choiceSubtitle: "Choose what works best for you",
-      selfServe: {
-        title: "Watch demo video",
-        subtitle: "3 minutes – quick overview",
-        features: ["Instant access", "No registration", "Core features"],
-        cta: "Play now"
-      },
-      liveDemo: {
-        title: "Live demo with expert",
-        subtitle: "30 minutes – personalized",
-        features: ["Get your questions answered", "Specific use-cases", "No commitment"],
-        cta: "Book a time"
-      },
-      videoTitle: "Echo Pulse – Demo",
-      recommended: "Recommended"
-    },
-    demoChoiceModal: {
-      title: "How would you like to explore Echo Pulse?",
-      selfServe: {
-        title: "Explore on your own",
-        desc: "Access the demo app with real data, no waiting.",
-        cta: "Get access"
-      },
-      guided: {
-        title: "Consultation with expert",
-        desc: "20min video call — a walkthrough tailored to your industry.",
-        cta: "Pick a time",
-        recommended: "Recommended"
-      }
-    },
-    demoAccess: {
-      title: "Try Echo Pulse",
-      subtitle: "Enter your details to get instant access to the demo app.",
-      emailLabel: "Work email",
-      emailPlaceholder: "john.smith@company.com",
-      phoneLabel: "Phone",
-      phonePlaceholder: "+420 777 888 999",
-      companyLabel: "Company (optional)",
-      companyPlaceholder: "Your Company Ltd.",
-      submitCta: "Get access",
-      submitting: "Submitting...",
-      noSpam: "No spam. We only use your data for verification.",
-      successTitle: "Your access is ready",
-      successSubtitle: "Login credentials for the demo:",
-      credentials: {
-        urlLabel: "URL",
-        emailLabel: "Email",
-        passwordLabel: "Password"
-      },
-      copyButton: "Copy",
-      copied: "Copied",
-      openDemo: "Open demo",
-      upsellText: "Book a 30min consultation — we'll show you what Echo Pulse reveals in your company.",
-      upsellCta: "Book consultation"
-    },
-    bookingModal: {
-      title: "Book a demo",
-      subtitle: "30-minute video call. We'll show you Echo Pulse on real data — no strings attached.",
-      benefits: [
-        "Personalized demo for your industry",
-        "All your questions answered",
-        "No commitment, no hard-sell"
-      ],
-      cta: "Pick a time",
-      calendarTitle: "Choose a slot",
-      back: "Back"
-    },
-    data: {
-      trustedBy: "TRUSTED BY LEADING COMPANIES"
-    },
-    forms: {
-      firstName: "First Name",
-      lastName: "Last Name",
-      phone: "Phone Number",
-      workEmail: "Work Email",
-      submit: "Submit"
-    },
-    calculator: {
-      badge: "Hard Data",
-      title: "Calculate Your",
-      titleHighlight: "ROI",
-      subtitle: "See how much turnover is really costing you.",
-      sliders: {
-        companySize: "Company Size",
-        employees: "Employees",
-        avgAnnualCost: "Avg. Annual Cost",
-        annualTurnover: "Annual Turnover"
-      },
-      boardReport: {
-        title: "Board Report",
-        subtitle: "Get a PDF summary for your leadership team.",
-        button: "Generate Report",
-        buttonGenerating: "Generating..."
-      },
-      metrics: {
-        annualLoss: "Annual Loss from Turnover",
-        recoverableRevenue: "Recoverable with Echo Pulse"
-      },
-      cta: {
-        button: "See How It Works"
-      }
-    }
   },
   cz: {
-    radar: {
-      badge: "Kompletní přehled",
-      title: "8 oblastí,",
-      titleHighlight: "které rozhodují o stabilitě týmu",
-      subtitle: "Echo Pulse průběžně sleduje 8 klíčových oblastí pracovního života. Bez zbytečného šumu - jen signály, které vám řeknou, kde to drhne."
-    },
     header: {
-      product: "Produkt",
-      solutions: "Řešení",
-      pricing: "Ceník",
-      about: "O nás",
-      login: "Přihlásit se",
       bookDemo: "Domluvit demo",
-      nav: {
-        problem: "Problém",
-        solution: "Řešení",
-        impact: "Výsledky"
-      },
-    },
-    hero: {
-      badge: "Zpětná vazba, která funguje",
-      title: "Zjistěte, co se",
-      titleHighlight: "ve firmě doopravdy děje",
-      subtitle: "Lidé neodcházejí ze dne na den. Rozhodují se měsíce. Echo Pulse vám dá 3–8 měsíců náskok — abyste to věděli včas.",
-      primaryCta: "Domluvit demo",
-      secondaryCta: "Vyzkoušet zdarma",
-      riskReversal: "Žádné závazky. Po 30 minutách budete vědět, jestli to dává smysl pro vaši firmu.",
-      trust: {
-        security: "GDPR compliant",
-        support: "Česká podpora",
-        implementation: "Výsledky do hodiny",
-        languages: "85 % návratnost"
-      },
     },
     problems: {
       badge: "Náklady na odchody",
@@ -576,164 +328,25 @@ export const translations = {
       ctaBox: {
         label: "Co s tím?",
         title: "Na tohle intuice nestačí.",
-        desc: "Potřebujete průběžná data z terénu. Jinak jen hádáte, proč lidé ztrácejí motivaci - a než si toho všimnete, talent už je za dveřmi."
-      }
-    },
-    howItWorks: {
-      badge: "Jak to funguje",
-      stepLabel: "Krok",
-      title: "Jak to",
-      titleHighlight: "funguje",
-      subtitle: "Žádné komplikované nastavování. Propojíte Echo Pulse s komunikačním nástrojem, který už používáte, a během hodiny máte první data.",
-      steps: {
-        step1: {
-          title: "Rozumí kontextu",
-          desc: "Echo Pulse nepočítá jen slova. Chápe, co lidé říkají mezi řádky - a z tisíců odpovědí vybere to, co opravdu potřebujete vědět."
-        },
-        step2: {
-          title: "Běží na autopilota",
-          desc: "Krátké otázky chodí automaticky přes Slack, Teams nebo e-mail. Lidé odpoví za minutu. Vy nemusíte nic rozesílat.",
-          highlight: "Systém hlídá, aby to lidi neobtěžovalo - a vy dostáváte čistá data."
-        },
-        step3: {
-          title: "Navrhuje, co dělat",
-          desc: "Nejde jen o grafy. Echo Pulse řekne manažerům konkrétně, co mají udělat a proč."
-        },
-        step4: {
-          title: "Garantovaná anonymita",
-          desc: "Lidé vědí, že jejich odpovědi nikdo nespojí s jejich jménem. Proto odpovídají upřímně."
-        }
-      }
-    },
-    czechReality: {
-      title: "Většina firem dnes spadá do jednoho ze dvou vzorců.",
-      subtitle: "Ať mluvíme s korporátem, nebo s rychle rostoucím startupem - narážíme na stejný problém. Vedení nevidí, co se děje v týmech, dokud není pozdě.",
-      diagnosisLabel: "Výsledek:",
-      archetypeA: {
-        title: "A) Stabilní, ale unavená",
-        point1: {
-          title: "Všechno běží, ale nic se nehýbe.",
-          desc: "Lidé jsou loajální, ale už nemají energii. Procesy fungují, ale chybí iniciativa. Změny narážejí na tiché 'ale vždycky to tak bylo'."
-        },
-        point2: {
-          title: "Vedení je daleko od reality.",
-          desc: "Management se dozvídá o problémech, až když eskalují. Chybí průběžný přehled o tom, co lidi trápí."
-        },
-        diagnosis: "Ztráta konkurenceschopnosti - pomalu, ale jistě."
+        desc: "Potřebujete průběžná data z terénu. Jinak jen hádáte, proč lidé ztrácejí motivaci - a než si toho všimnete, talent už je za dveřmi.",
       },
-      archetypeB: {
-        title: "B) Rychlá, ale křehká",
-        point1: {
-          title: "Všichni jedou naplno, nikdo nestíhá.",
-          desc: "Mladý tým, vysoké tempo, věčný pocit 'nestíhám'. Na reflexi není čas. Problémy se zametají pod koberec."
-        },
-        point2: {
-          title: "Úspěch stojí na pár lidech.",
-          desc: "Výsledky rostou, ale závisí na jednotlivcích, kteří jsou na hranici vyhoření. Stačí jeden odchod a systém se sesype."
-        },
-        diagnosis: "Riziko, že klíčoví lidé odejdou bez varování."
-      },
-      synthesis: {
-        title: "V obou případech chybí to samé: průběžný přehled.",
-        desc: "Nepotřebujete víc motivace. Potřebujete vědět, co se děje - dřív, než to bude problém."
-      }
-    },
-    roleSelection: {
-      title: "Jeden nástroj.",
-      titleHighlight: " Různé odpovědi.",
-      subtitle: "Ať jste CEO, HR nebo team lead — Echo Pulse vám dá přesně to, co potřebujete. Bez šumu.",
-      benefits: [
-        "Chci mít produktivní tým",
-        "Chci vědět, co blokuje výkon",
-        "Chci přehled bez slepých míst"
-      ],
-      investor: {
-        role: "Investor",
-        title: "Přehled o zdraví firmy",
-        list: [
-          "Včasné varování před problémy",
-          "Rizika zachycená včas"
-        ],
-        cta: "Zkontrolovat zdraví portfolia"
-      },
-      ceo: {
-        role: "CEO / Majitel",
-        title: "Zjistěte, co vám nikdo neřekne",
-        list: [
-          "Přehled o každém týmu v reálném čase",
-          "Problémy zachytíte 3–8 měsíců předem"
-        ],
-        cta: "Demo pro CEO"
-      },
-      hr: {
-        role: "HR / People Ops",
-        title: "Data, kterým vedení uvěří",
-        list: [
-          "Čísla místo pocitů",
-          "Méně hašení, víc prevence"
-        ],
-        cta: "Demo pro HR"
-      },
-      teamLeader: {
-        role: "Team Leader",
-        title: "Zjistěte, co vám tým neřekne nahlas",
-        list: [
-          "Anonymní, upřímný feedback každý měsíc",
-          "Zachyťte vyhoření dřív, než bude pozdě"
-        ],
-        cta: "Demo pro team leadery"
-      }
-    },
-    valueByRole: {
-      title: "Jeden nástroj, různé přínosy.",
-      subtitle: "CEO potřebuje přehled pro rozhodování. HR potřebuje nástroj na prevenci. Echo Pulse dává obojí - bez zbytečného šumu.",
-      badge: "Podle role",
-      tabs: {
-        ceo: "CEO / Vedení",
-        hr: "HR / People Ops"
-      },
-      cta: {
-        ceo: "Sjednat CEO demo",
-        hr: "Sjednat HR demo"
-      },
-      ctaNote: "30 min • Přizpůsobeno vaší roli",
-      ceo: {
-        title: "Pro vedení firmy",
-        desc: "Konec domněnek o tom, jak to lidé mají. Vidíte přesně, která oddělení jsou přetížená, kde hrozí odchody a kde se nedaří komunikovat strategii.",
-        list: [
-          { title: "Včasné varování", desc: "Identifikujete lidi v riziku odchodu s měsíčním předstihem." },
-          { title: "Realita strategie", desc: "Zjistíte, jestli týmy chápou vaše priority - nebo jedou na setrvačníku." },
-          { title: "Návratnost investic", desc: "Méně neplánovaných odchodů = menší náklady na nábor a zaučení." }
-        ]
-      },
-      hr: {
-        title: "Pro HR a People Ops",
-        desc: "Přestaňte být ti, co řeší problémy. S průběžnými daty jste strategický partner, ne hasič.",
-        list: [
-          { title: "Data, ne dojmy", desc: "Když jdete za vedením, máte čísla - ne stížnosti z kuchyňky." },
-          { title: "Automatický sběr", desc: "Žádné ruční rozesílání. Systém běží sám, vy řešíte výsledky." },
-          { title: "Rostoucí důvěra", desc: "Lidé vidí, že se něco děje. Ochota sdílet pravdu roste." }
-        ]
-      },
-      bottomBadge: "Pro firmy od 30 do 350 lidí"
     },
     dashboard: {
       badge: "Pohled do praxe",
       title: "Jeden dashboard.",
       titleHighlight: "Žádné hádání.",
       subtitle: "Echo Pulse sbírá rozptýlené signály a ukazuje je na jednom místě. Jasně, v reálném čase, připravené k akci.",
-      watchDemo: "Přehrát demo",
       features: [
         { title: "Nálada podle týmů", desc: "Okamžitý přehled, jak se cítí jednotlivá oddělení. Rozděleno podle lokality, seniority nebo manažera." },
         { title: "Varování před problémy", desc: "Systém upozorní, když něco nesedí - přetížení, napětí v týmu, nebo výrazný pokles energie." },
-        { title: "Priority pro akci", desc: "Nevíte, co řešit první? Echo seřadí problémy podle dopadu na byznys a rizika odchodu." }
-      ]
+        { title: "Priority pro akci", desc: "Nevíte, co řešit první? Echo seřadí problémy podle dopadu na byznys a rizika odchodu." },
+      ],
     },
     purchase: {
+      badge: "Ceník",
       title: "Ceník podle",
       titleHighlight: " velikosti firmy",
       subtitle: "Orientační odhad se odvíjí od počtu zaměstnanců. Finální rozsah a cena se potvrdí po krátké konzultaci.",
-      badge: "Ceník",
       configTitle: "Nastavení tarifu",
       billingMonthly: "Měsíčně",
       billingYearly: "Ročně (-20%)",
@@ -748,106 +361,10 @@ export const translations = {
         "Průběžné pulzy a analýza signálů",
         "Dashboard pro vedení a HR",
         "Akční doporučení pro manažery",
-        "Bezpečné zpracování dat (GDPR)"
+        "Bezpečné zpracování dat (GDPR)",
       ],
       button: "Chci nabídku na míru",
-      guaranteeShort: "Finální rozsah a cena se potvrdí po úvodní konzultaci."
-    },
-    trustCenter: {
-      badge: "Trust Center",
-      title: "Vaše data jsou",
-      titleHighlight: " u nás v bezpečí",
-      subtitle: "Pracujeme s citlivými daty o lidech. Proto bezpečnost není jen funkce - je to základ všeho, co děláme. Připraveni na GDPR audit.",
-      guarantees: [
-        {
-          icon: "server",
-          title: "Data zůstávají v EU",
-          desc: "Veškerá data jsou uložena výhradně na serverech v Evropské unii. Žádný transfer mimo EU/EEA.",
-          detail: "Frankfurt (AWS eu-central-1), šifrování AES-256 at rest i in transit"
-        },
-        {
-          icon: "eye",
-          title: "100% anonymita zaměstnanců",
-          desc: "Manažeři nikdy nevidí individuální odpovědi. Výsledky se zobrazují pouze v agregované podobě od 5 lidí výše.",
-          detail: "Diferenciální privacita - nelze zpětně identifikovat jednotlivce"
-        },
-        {
-          icon: "lock",
-          title: "GDPR by design",
-          desc: "Oprávněný zájem dle čl. 6(1)(f) GDPR. Žádný souhlas zaměstnanců není potřeba - zpracování jde přes zaměstnavatele.",
-          detail: "DPIA zpracována, DPO k dispozici, práva subjektů plně zajištěna"
-        },
-        {
-          icon: "users",
-          title: "Připraveni na kontrolu ÚOOÚ",
-          desc: "Máme kompletní dokumentaci: záznamy o zpracování, DPIA, smlouvy o zpracování, technická opatření.",
-          detail: "Auditní trail všech přístupů, smluvní garance SLA 99.9%"
-        }
-      ],
-      complianceBadges: [
-        { label: "GDPR", sub: "Plný soulad" },
-        { label: "ISO 27001", sub: "Bezpečnostní standard" },
-        { label: "SOC 2 Type II", sub: "Auditní certifikace" },
-        { label: "Šifrování", sub: "AES-256 / TLS 1.3" }
-      ],
-      expandLabel: "Zobrazit detaily zabezpečení",
-      collapseLabel: "Skrýt detaily",
-      legalDocsTitle: "Právní dokumenty",
-      dpoLabel: "Pověřenec pro ochranu osobních údajů:",
-      privacyFallbackTitle: "Zásady ochrany osobních údajů",
-      termsFallbackTitle: "Obchodní a produktové podmínky",
-      contentFallback: "Obsah připravujeme."
-    },
-    cta: {
-      title: "Nečekejte na další výpověď.",
-      subtitle: "Každý nečekaný odchod stojí měsíce práce a statisíce korun. Začněte mít přehled - ještě dnes.",
-      primary: "Vyzkoušet demo",
-      demoButton: "Vyzkoušet demo",
-      secondary: "nebo zavolejte",
-      secondaryLink: "+420 605 839 456",
-      benefits: [
-        { title: "Bez závazků", desc: "Úvodní konzultace a demo ukázka jsou zdarma. Pochopíte logiku systému za 30 minut." },
-        { title: "Garance soukromí", desc: "Soulad s GDPR a jasná pravidla práce s daty. Vaše data zůstávají na evropských serverech." },
-        { title: "Rychlý start", desc: "Implementace nevyžaduje IT oddělení. Napojíme se na vaše stávající nástroje (M365, Slack)." }
-      ]
-    },
-    footer: {
-      rights: "Behavera s.r.o. Všechna práva vyhrazena.",
-      legal: ["Podmínky", "Soukromí"],
-      links: ["Produkt", "Ceník", "O nás", "Kontakt"]
-    },
-    blog: {
-      title: "Blog",
-      pageTitle: "Analýzy a poznatky",
-      pageSubtitle: "Praktické články o psychologii práce, vedení a datově řízeném řízení lidí.",
-      defaultTag: "Poznatky",
-      backToList: "Zpět na články",
-      loading: "Načítání...",
-      notFound: "Článek nebyl nalezen",
-      seoTitle: "Blog & Insights",
-      seoDescription: "Praktické články o engagementu, retenci a organizační psychologii.",
-      seoKeywords: "engagement, HR analytika, prevence vyhoření, organizační psychologie, retence"
-    },
-    caseStudies: {
-      loading: "Načítání...",
-      notFound: "Případová studie nebyla nalezena",
-      backToList: "Zpět na případové studie",
-      resultsLabel: "Výsledky",
-      industryLabel: "Odvětví",
-      challengeTitle: "Výzva",
-      solutionTitle: "Řešení"
-    },
-    booking: {
-        title: "Sjednat konzultaci",
-        desc: "Vyberte si čas, který vám vyhovuje. Ukážeme vám, jak Echo Pulse může pomoci vaší konkrétní situaci.",
-    },
-    demoVideo: {
-        title: "Podívejte se na Echo Pulse v akci",
-    },
-    decisionLock: {
-      title: "V obou extrémech (vyhoření i hyper-růst) je problém stejný: vedení ztrácí viditelnost.",
-      subtitle: "Echo Pulse vám vrátí průběžné signály bez toho, aby zpomalil firmu.",
-      cta: "Chci vidět signály z naší reality"
+      guaranteeShort: "Finální rozsah a cena se potvrdí po úvodní konzultaci.",
     },
     faq: {
       title: "Odstraňte rizika,",
@@ -859,8 +376,99 @@ export const translations = {
         { q: "Vyžaduje to složitou IT implementaci?", a: "Ne. Jsme cloudová služba. Napojíme se na vaše systémy (M365/Slack) bez zásahu IT. Nevyžaduje to projekt." },
         { q: "Je to skutečně anonymní?", a: "Absolutně. Garantujeme 'vrstvu bezpečí'. Nikdo z vedení neuvidí individuální odpovědi. Lidé to ví a věří tomu." },
         { q: "Přidělá to práci manažerům?", a: "Naopak. Echo Pulse za ně dělá analytickou práci a dává jim návod. Nezvyšuje to práci manažerům." },
-        { q: "Co když nebudou výsledky hezké?", a: "To je cíl. Chcete vidět realitu, abyste ji mohli změnit. Lepší vědět teď, než řešit výpovědi." }
-      ]
+        { q: "Co když nebudou výsledky hezké?", a: "To je cíl. Chcete vidět realitu, abyste ji mohli změnit. Lepší vědět teď, než řešit výpovědi." },
+      ],
+    },
+    roleSelection: {
+      title: "Jeden nástroj.",
+      titleHighlight: " Různé odpovědi.",
+      subtitle: "Ať jste CEO, HR nebo team lead — Echo Pulse vám dá přesně to, co potřebujete. Bez šumu.",
+      investor: {
+        title: "Přehled o zdraví firmy",
+        list: ["Včasné varování před problémy", "Rizika zachycená včas"],
+        cta: "Zkontrolovat zdraví portfolia",
+      },
+      ceo: {
+        title: "Zjistěte, co vám nikdo neřekne",
+        list: ["Přehled o každém týmu v reálném čase", "Problémy zachytíte 3–8 měsíců předem"],
+        cta: "Demo pro CEO",
+      },
+      hr: {
+        title: "Data, kterým vedení uvěří",
+        list: ["Čísla místo pocitů", "Méně hašení, víc prevence"],
+        cta: "Demo pro HR",
+      },
+      teamLeader: {
+        title: "Zjistěte, co vám tým neřekne nahlas",
+        list: ["Anonymní, upřímný feedback každý měsíc", "Zachyťte vyhoření dřív, než bude pozdě"],
+        cta: "Demo pro team leadery",
+      },
+    },
+    trustCenter: {
+      badge: "Trust Center",
+      title: "Vaše data jsou",
+      titleHighlight: " u nás v bezpečí",
+      subtitle: "Pracujeme s citlivými daty o lidech. Proto bezpečnost není jen funkce - je to základ všeho, co děláme. Připraveni na GDPR audit.",
+      guarantees: [
+        {
+          icon: "server",
+          title: "Data zůstávají v EU",
+          desc: "Veškerá data jsou uložena výhradně na serverech v Evropské unii. Žádný transfer mimo EU/EEA.",
+          detail: "Frankfurt (AWS eu-central-1), šifrování AES-256 at rest i in transit",
+        },
+        {
+          icon: "eye",
+          title: "100% anonymita zaměstnanců",
+          desc: "Manažeři nikdy nevidí individuální odpovědi. Výsledky se zobrazují pouze v agregované podobě od 5 lidí výše.",
+          detail: "Diferenciální privacita - nelze zpětně identifikovat jednotlivce",
+        },
+        {
+          icon: "lock",
+          title: "GDPR by design",
+          desc: "Oprávněný zájem dle čl. 6(1)(f) GDPR. Žádný souhlas zaměstnanců není potřeba - zpracování jde přes zaměstnavatele.",
+          detail: "DPIA zpracována, DPO k dispozici, práva subjektů plně zajištěna",
+        },
+        {
+          icon: "users",
+          title: "Připraveni na kontrolu ÚOOÚ",
+          desc: "Máme kompletní dokumentaci: záznamy o zpracování, DPIA, smlouvy o zpracování, technická opatření.",
+          detail: "Auditní trail všech přístupů, smluvní garance SLA 99.9%",
+        },
+      ],
+      complianceBadges: [
+        { label: "GDPR", sub: "Plný soulad" },
+        { label: "ISO 27001", sub: "Bezpečnostní standard" },
+        { label: "SOC 2 Type II", sub: "Auditní certifikace" },
+        { label: "Šifrování", sub: "AES-256 / TLS 1.3" },
+      ],
+      expandLabel: "Zobrazit detaily zabezpečení",
+      collapseLabel: "Skrýt detaily",
+      legalDocsTitle: "Právní dokumenty",
+      dpoLabel: "Pověřenec pro ochranu osobních údajů:",
+      privacyFallbackTitle: "Zásady ochrany osobních údajů",
+      termsFallbackTitle: "Obchodní a produktové podmínky",
+      contentFallback: "Obsah připravujeme.",
+    },
+    blog: {
+      title: "Blog",
+      pageTitle: "Analýzy a poznatky",
+      pageSubtitle: "Praktické články o psychologii práce, vedení a datově řízeném řízení lidí.",
+      defaultTag: "Poznatky",
+      backToList: "Zpět na články",
+      loading: "Načítání...",
+      notFound: "Článek nebyl nalezen",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Praktické články o engagementu, retenci a organizační psychologii.",
+      seoKeywords: "engagement, HR analytika, prevence vyhoření, organizační psychologie, retence",
+    },
+    caseStudies: {
+      loading: "Načítání...",
+      notFound: "Případová studie nebyla nalezena",
+      backToList: "Zpět na případové studie",
+      resultsLabel: "Výsledky",
+      industryLabel: "Odvětví",
+      challengeTitle: "Výzva",
+      solutionTitle: "Řešení",
     },
     leadPopup: {
       badge: "Nová studie 2026",
@@ -877,194 +485,12 @@ export const translations = {
       successMessage: "Klikněte na tlačítko níže a stáhněte si PDF.",
       downloadButton: "Stáhnout PDF",
       downloadNote: "Přímé stažení • PDF • 4.3 MB",
-      close: "Zavřít"
+      close: "Zavřít",
     },
-    demoRequest: {
-      title: "Získat přístup k demo",
-      subtitle: "Pošleme vám personalizovaný odkaz na demo",
-      emailLabel: "Pracovní email",
-      phoneLabel: "Telefon",
-      sizeLabel: "Velikost firmy",
-      roleLabel: "Vaše role",
-      submit: "Poslat demo",
-      successTitle: "Zkontrolujte email!",
-      successMessage: "Odkaz na demo je na cestě.",
-      errorInvalidEmail: "Zadejte prosím platný email.",
-      errorInvalidPhone: "Zadejte prosím platné české telefonní číslo.",
-      errorRequired: "Toto pole je povinné.",
-      errorGeneric: "Odeslání se nezdařilo. Zkuste to prosím znovu.",
-      companySizePlaceholder: "Vyberte velikost",
-      rolePlaceholder: "Vyberte roli",
-      roles: {
-        ceo: "CEO / Zakladatel",
-        hr: "HR / Lidé a kultura",
-        leader: "Týmový lídr",
-        other: "Jiné"
-      },
-      sizes: {
-        xs: "10–30 zaměstnanců",
-        sm: "31–50 zaměstnanců",
-        md: "51–100 zaměstnanců",
-        lg: "101–200 zaměstnanců",
-        xl: "201–350 zaměstnanců",
-        xxl: "350+ zaměstnanců"
-      }
-    },
-    leadCapture: {
-      badge: "E-book zdarma",
-      title: "Získejte praktický přehled,",
-      titleHighlight: " jak řídit tým podle signálů.",
-      subtitle: "Pošleme vám e-book s konkrétními tipy, jak rychle odhalit, co a proč ve firmě nefunguje. Bez spamu.",
-      nameLabel: "Jméno (volitelné)",
-      namePlaceholder: "Vaše jméno",
-      emailLabel: "Pracovní e-mail",
-      emailPlaceholder: "name@company.com",
-      submit: "Chci e-book",
-      successTitle: "E-book je na cestě.",
-      successMessage: "Zkontrolujte prosím e-mailovou schránku.",
-      consent: "Odesláním souhlasíte se zpracováním kontaktních údajů pro doručení e-booku.",
-      errorInvalid: "Zadejte prosím platný e-mail.",
-      errorGeneric: "Odeslání se nepodařilo."
-    },
-    demoModal: {
-      choiceTitle: "Jak chcete vidět Echo Pulse?",
-      choiceSubtitle: "Vyberte si, co vám vyhovuje",
-      selfServe: {
-        title: "Pustit demo video",
-        subtitle: "3 minuty – základní přehled",
-        features: ["Okamžitě", "Bez registrace", "Přehled funkcí"],
-        cta: "Přehrát teď"
-      },
-      liveDemo: {
-        title: "Živé demo s expertem",
-        subtitle: "30 minut – personalizované",
-        features: ["Odpovědi na dotazy", "Konkrétní use-cases", "Žádné závazky"],
-        cta: "Rezervovat termín"
-      },
-      videoTitle: "Echo Pulse – Demo",
-      recommended: "Doporučeno"
-    },
-    demoChoiceModal: {
-      title: "Jak chcete poznat Echo Pulse?",
-      selfServe: {
-        title: "Projít si demo sám",
-        desc: "Přístup k demo aplikaci s reálnými daty, bez čekání.",
-        cta: "Získat přístup"
-      },
-      guided: {
-        title: "Konzultace s expertem",
-        desc: "20min video hovor — ukázka šitá na míru vašemu oboru.",
-        cta: "Vybrat termín",
-        recommended: "Doporučujeme"
-      }
-    },
-    demoAccess: {
-      title: "Vyzkoušejte Echo Pulse",
-      subtitle: "Zadejte údaje a získejte okamžitý přístup k demo aplikaci.",
-      emailLabel: "Pracovní email",
-      emailPlaceholder: "jan.novak@firma.cz",
-      phoneLabel: "Telefon",
-      phonePlaceholder: "+420 777 888 999",
-      companyLabel: "Firma (volitelné)",
-      companyPlaceholder: "Vaše firma s.r.o.",
-      submitCta: "Získat přístup",
-      submitting: "Odesílám...",
-      noSpam: "Žádný spam. Údaje použijeme pouze pro ověření.",
-      successTitle: "Váš přístup je připraven",
-      successSubtitle: "Přihlašovací údaje do demo prostředí:",
-      credentials: {
-        urlLabel: "URL",
-        emailLabel: "Email",
-        passwordLabel: "Heslo"
-      },
-      copyButton: "Kopírovat",
-      copied: "Zkopírováno",
-      openDemo: "Otevřít demo",
-      upsellText: "Rezervujte si 30min konzultaci — ukážeme vám, co Echo Pulse odhalí ve vaší firmě.",
-      upsellCta: "Rezervovat konzultaci"
-    },
-    bookingModal: {
-      title: "Domluvte si ukázku",
-      subtitle: "30minutový video hovor. Ukážeme vám Echo Pulse na reálných datech — bez závazků.",
-      benefits: [
-        "Personalizovaná ukázka pro váš obor",
-        "Odpovědi na všechny vaše dotazy",
-        "Žádné závazky, žádný hard-sell"
-      ],
-      cta: "Vybrat termín",
-      calendarTitle: "Vyberte termín",
-      back: "Zpět"
-    },
-    data: {
-      trustedBy: "DŮVĚŘUJÍ NÁM VELKÉ FIRMY"
-    },
-    forms: {
-      firstName: "Jméno",
-      lastName: "Příjmení",
-      phone: "Telefonní číslo",
-      workEmail: "Pracovní email",
-      submit: "Odeslat"
-    },
-    calculator: {
-      badge: "Tvrdá data",
-      title: "Spočítejte si svou",
-      titleHighlight: "návratnost",
-      subtitle: "Podívejte se, kolik vás fluktuace skutečně stojí.",
-      sliders: {
-        companySize: "Velikost firmy",
-        employees: "Počet zaměstnanců",
-        avgAnnualCost: "Průměrné roční náklady",
-        annualTurnover: "Roční fluktuace"
-      },
-      boardReport: {
-        title: "Report pro vedení",
-        subtitle: "PDF shrnutí pro váš leadership tým.",
-        button: "Vygenerovat report",
-        buttonGenerating: "Generuji..."
-      },
-      metrics: {
-        annualLoss: "Roční ztráta z fluktuace",
-        recoverableRevenue: "Zachránitelné s Echo Pulse"
-      },
-      cta: {
-        button: "Jak to funguje"
-      }
-    }
   },
   de: {
-    radar: {
-      badge: "Kompletter Überblick",
-      title: "8 Bereiche,",
-      titleHighlight: "die über Team-Stabilität entscheiden",
-      subtitle: "Echo Pulse überwacht kontinuierlich 8 Schlüsselbereiche des Arbeitslebens. Kein unnötiges Rauschen - nur Signale, die zeigen, wo es hakt."
-    },
     header: {
-      product: "Produkt",
-      solutions: "Lösungen",
-      pricing: "Preise",
-      about: "Über uns",
-      login: "Einloggen",
       bookDemo: "Demo buchen",
-      nav: {
-        problem: "Problem",
-        solution: "Lösung",
-        impact: "Wirkung"
-      },
-    },
-    hero: {
-      badge: "Kontinuierliches Team-Feedback",
-      title: "Wissen Sie, was",
-      titleHighlight: "wirklich in Ihrem Unternehmen passiert",
-      subtitle: "Jährliche Umfragen erfassen Probleme zu spät. Echo Pulse gibt Ihnen kontinuierliche Signale - Sie wissen, wo es hakt, bevor Kündigungen kommen.",
-      primaryCta: "Demo buchen (30 Min)",
-      secondaryCta: "Demo erkunden",
-      riskReversal: "Keine Verpflichtung. Nach 30 Minuten wissen Sie, ob es für Ihr Unternehmen Sinn macht.",
-      trust: {
-        security: "DSGVO-konform",
-        support: "Lokaler Support",
-        implementation: "Start in 1 Stunde",
-        languages: "CZ / EN / DE"
-      },
     },
     problems: {
       badge: "Fluktuationskosten",
@@ -1091,164 +517,25 @@ export const translations = {
       ctaBox: {
         label: "Systemwarnung",
         title: "Für das reicht Intuition nicht aus.",
-        desc: "Sie brauchen kontinuierliche Daten aus dem Feld. Sonst raten Sie nur, warum Menschen die Motivation verlieren - und wenn Sie es bemerken, ist das Talent bereits zur Tür hinaus."
-      }
-    },
-    howItWorks: {
-      badge: "So funktioniert es",
-      stepLabel: "Schritt",
-      title: "So funktioniert",
-      titleHighlight: "es",
-      subtitle: "Keine komplizierte Einrichtung. Verbinden Sie Echo Pulse mit dem Kommunikationstool, das Sie bereits nutzen, und Sie haben innerhalb einer Stunde erste Daten.",
-      steps: {
-        step1: {
-          title: "Versteht den Kontext",
-          desc: "Echo Pulse zählt nicht nur Wörter. Es versteht, was Menschen zwischen den Zeilen sagen - und wählt aus tausenden Antworten aus, was Sie wirklich wissen müssen."
-        },
-        step2: {
-          title: "Läuft auf Autopilot",
-          desc: "Kurze Fragen gehen automatisch über Slack, Teams oder E-Mail raus. Menschen antworten in einer Minute. Sie müssen nichts versenden.",
-          highlight: "Das System stellt sicher, dass Menschen nicht gestört werden - und Sie saubere Daten bekommen."
-        },
-        step3: {
-          title: "Schlägt vor, was zu tun ist",
-          desc: "Es sind nicht nur Grafiken. Echo Pulse sagt Managern konkret, was zu tun ist und warum."
-        },
-        step4: {
-          title: "Garantierte Anonymität",
-          desc: "Menschen wissen, dass ihre Antworten nicht mit ihrem Namen verknüpft werden. Deshalb antworten sie ehrlich."
-        }
-      }
-    },
-    czechReality: {
-      title: "Die meisten Unternehmen fallen heute in eines von zwei Mustern.",
-      subtitle: "Ob wir mit Konzernen oder schnell wachsenden Startups sprechen - wir stoßen auf dasselbe Problem. Die Führung sieht nicht, was in den Teams passiert, bis es zu spät ist.",
-      diagnosisLabel: "Ergebnis:",
-      archetypeA: {
-        title: "A) Stabil, aber müde",
-        point1: {
-          title: "Alles läuft, aber nichts bewegt sich.",
-          desc: "Menschen sind loyal, haben aber keine Energie mehr. Prozesse funktionieren, aber Initiative fehlt. Änderungen stoßen auf stilles 'Das haben wir schon immer so gemacht'."
-        },
-        point2: {
-          title: "Die Führung ist weit von der Realität entfernt.",
-          desc: "Das Management erfährt von Problemen erst, wenn sie eskalieren. Es fehlt ein laufender Überblick darüber, was Menschen belastet."
-        },
-        diagnosis: "Verlust der Wettbewerbsfähigkeit - langsam, aber sicher."
+        desc: "Sie brauchen kontinuierliche Daten aus dem Feld. Sonst raten Sie nur, warum Menschen die Motivation verlieren - und wenn Sie es bemerken, ist das Talent bereits zur Tür hinaus.",
       },
-      archetypeB: {
-        title: "B) Schnell, aber zerbrechlich",
-        point1: {
-          title: "Alle geben Vollgas, niemand kommt hinterher.",
-          desc: "Junges Team, hohes Tempo, ewiges Gefühl von 'Ich schaffe es nicht'. Keine Zeit für Reflexion. Probleme werden unter den Teppich gekehrt."
-        },
-        point2: {
-          title: "Erfolg hängt von wenigen Menschen ab.",
-          desc: "Ergebnisse wachsen, hängen aber von Einzelpersonen ab, die am Rande des Burnouts stehen. Ein Weggang und das System bricht zusammen."
-        },
-        diagnosis: "Risiko, dass Schlüsselpersonen ohne Vorwarnung gehen."
-      },
-      synthesis: {
-        title: "In beiden Fällen fehlt dasselbe: kontinuierliche Übersicht.",
-        desc: "Sie brauchen nicht mehr Motivation. Sie müssen wissen, was passiert - bevor es zum Problem wird."
-      }
-    },
-    roleSelection: {
-      title: "Jeder sieht das Unternehmen",
-      titleHighlight: " aus einem anderen Blickwinkel.",
-      subtitle: "Wählen Sie Ihre Rolle und sehen Sie, was Echo Pulse Ihnen konkret bietet.",
-      benefits: [
-        "Ich will ein produktives Team",
-        "Ich will wissen, was die Leistung blockiert",
-        "Ich will Übersicht ohne blinde Flecken"
-      ],
-      investor: {
-        role: "Investor",
-        title: "Überblick über Unternehmensgesundheit",
-        list: [
-          "Frühwarnung vor Problemen",
-          "Risiken rechtzeitig erkannt"
-        ],
-        cta: "Portfolio-Gesundheit prüfen"
-      },
-      ceo: {
-        role: "CEO / Inhaber",
-        title: "Ungefilterter Überblick",
-        list: [
-          "Sie sehen, was in den Teams passiert",
-          "Sie lösen Probleme, bevor sie eskalieren"
-        ],
-        cta: "Wie es der Führung hilft"
-      },
-      hr: {
-        role: "HR / People Ops",
-        title: "Daten statt Vermutungen",
-        list: [
-          "Argumente, die die Führung versteht",
-          "Weniger Feuerlöschen, mehr Prävention"
-        ],
-        cta: "Wie es HR hilft"
-      },
-      teamLeader: {
-        role: "Teamleiter",
-        title: "Feedback vom Team",
-        list: [
-          "Sie wissen, was Menschen belastet",
-          "Sie erkennen Burnout früh"
-        ],
-        cta: "Wie es Managern hilft"
-      }
-    },
-    valueByRole: {
-      title: "Ein Tool, verschiedene Vorteile.",
-      subtitle: "CEO braucht Überblick für Entscheidungen. HR braucht ein Präventions-Tool. Echo Pulse bietet beides - ohne unnötiges Rauschen.",
-      badge: "Nach Rolle",
-      tabs: {
-        ceo: "CEO / Geschäftsführung",
-        hr: "HR / People Ops"
-      },
-      cta: {
-        ceo: "CEO-Demo vereinbaren",
-        hr: "HR-Demo vereinbaren"
-      },
-      ctaNote: "30 Min • Auf Ihre Rolle zugeschnitten",
-      ceo: {
-        title: "Für die Unternehmensführung",
-        desc: "Schluss mit Vermutungen darüber, wie es den Menschen geht. Sie sehen genau, welche Abteilungen überlastet sind, wo Abgänge drohen und wo die Strategiekommunikation nicht funktioniert.",
-        list: [
-          { title: "Frühwarnung", desc: "Identifizieren Sie Mitarbeiter mit Abgangsrisiko mit monatlichem Vorsprung." },
-          { title: "Strategie-Realität", desc: "Erfahren Sie, ob Ihre Teams Ihre Prioritäten verstehen — oder auf Autopilot fahren." },
-          { title: "Return on Investment", desc: "Weniger ungeplante Abgänge = geringere Recruiting- und Einarbeitungskosten." }
-        ]
-      },
-      hr: {
-        title: "Für HR und People Ops",
-        desc: "Hören Sie auf, diejenigen zu sein, die Probleme lösen. Mit kontinuierlichen Daten sind Sie strategischer Partner, kein Feuerlöscher.",
-        list: [
-          { title: "Daten, nicht Eindrücke", desc: "Wenn Sie zur Führung gehen, haben Sie Zahlen — nicht Beschwerden aus der Teeküche." },
-          { title: "Automatische Erfassung", desc: "Kein manuelles Versenden. Das System läuft von selbst, Sie kümmern sich um Ergebnisse." },
-          { title: "Wachsendes Vertrauen", desc: "Menschen sehen, dass etwas passiert. Die Bereitschaft, die Wahrheit zu teilen, wächst." }
-        ]
-      },
-      bottomBadge: "Entwickelt für Unternehmen von 30 bis 350 Mitarbeitern"
     },
     dashboard: {
       badge: "Überblick für die Führung",
       title: "Sehen Sie, was früher nur",
       titleHighlight: "beim Kaffee gesagt wurde.",
       subtitle: "Echo Pulse sammelt verstreute Signale und zeigt sie an einem Ort. Klar und ohne unnötige Grafiken.",
-      watchDemo: "Demo abspielen",
       features: [
         { title: "Stimmung nach Team", desc: "Sofortiger Überblick, wie sich jede Abteilung fühlt. Aufgeschlüsselt nach Standort, Seniorität oder Manager." },
         { title: "Warnung vor Problemen", desc: "Das System warnt, wenn etwas nicht stimmt - Überlastung, Team-Spannungen oder deutlicher Energie-Abfall." },
-        { title: "Handlungs-Prioritäten", desc: "Wissen nicht, was zuerst lösen? Echo ordnet Probleme nach Business-Impact und Abgangsrisiko." }
-      ]
+        { title: "Handlungs-Prioritäten", desc: "Wissen nicht, was zuerst lösen? Echo ordnet Probleme nach Business-Impact und Abgangsrisiko." },
+      ],
     },
     purchase: {
+      badge: "Preise",
       title: "Preis nach",
       titleHighlight: " Unternehmensgröße",
       subtitle: "Die Schätzung richtet sich nach der Mitarbeiterzahl. Endgültiger Umfang und Preis nach einem kurzen Gespräch.",
-      badge: "Preise",
       configTitle: "Plan konfigurieren",
       billingMonthly: "Monatlich",
       billingYearly: "Jährlich (-20%)",
@@ -1263,106 +550,10 @@ export const translations = {
         "Laufende Puls-Erhebungen und Signalanalyse",
         "Dashboard für Führung und HR",
         "Konkrete Handlungsempfehlungen",
-        "Sichere Datenverarbeitung (DSGVO)"
+        "Sichere Datenverarbeitung (DSGVO)",
       ],
       button: "Individuelles Angebot anfordern",
-      guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch."
-    },
-    trustCenter: {
-      badge: "Trust Center",
-      title: "Ihre Daten sind",
-      titleHighlight: " bei uns sicher",
-      subtitle: "Wir arbeiten mit sensiblen Personaldaten. Deshalb ist Sicherheit keine Funktion - sie ist das Fundament unserer Arbeit. Audit-bereit ab Tag eins.",
-      guarantees: [
-        {
-          icon: "server",
-          title: "Daten bleiben in der EU",
-          desc: "Alle Daten werden ausschließlich auf Servern in der Europäischen Union gespeichert. Kein Transfer außerhalb der EU/des EWR.",
-          detail: "Frankfurt (AWS eu-central-1), AES-256-Verschlüsselung at rest und in transit"
-        },
-        {
-          icon: "eye",
-          title: "100% Mitarbeiter-Anonymität",
-          desc: "Manager sehen niemals individuelle Antworten. Ergebnisse werden nur in aggregierter Form ab 5+ Personen angezeigt.",
-          detail: "Differentielle Privatsphäre - Einzelpersonen können nicht re-identifiziert werden"
-        },
-        {
-          icon: "lock",
-          title: "DSGVO by Design",
-          desc: "Berechtigtes Interesse gem. Art. 6(1)(f) DSGVO. Keine Mitarbeiter-Einwilligung erforderlich - Verarbeitung erfolgt über den Arbeitgeber.",
-          detail: "DSFA durchgeführt, DSB verfügbar, Betroffenenrechte vollständig gewährleistet"
-        },
-        {
-          icon: "users",
-          title: "Audit-bereite Compliance",
-          desc: "Vollständige Dokumentation: Verarbeitungsverzeichnis, DSFA, Auftragsverarbeitungsverträge, technische Maßnahmen.",
-          detail: "Vollständiger Audit-Trail aller Zugriffe, vertragliche SLA-Garantie 99,9%"
-        }
-      ],
-      complianceBadges: [
-        { label: "DSGVO", sub: "Volle Konformität" },
-        { label: "ISO 27001", sub: "Sicherheitsstandard" },
-        { label: "SOC 2 Type II", sub: "Audit-Zertifizierung" },
-        { label: "Verschlüsselung", sub: "AES-256 / TLS 1.3" }
-      ],
-      expandLabel: "Sicherheitsdetails anzeigen",
-      collapseLabel: "Details ausblenden",
-      legalDocsTitle: "Rechtliche Dokumente",
-      dpoLabel: "Datenschutzbeauftragter:",
-      privacyFallbackTitle: "Datenschutzerklärung",
-      termsFallbackTitle: "Allgemeine Geschäftsbedingungen",
-      contentFallback: "Inhalt folgt in Kürze."
-    },
-    cta: {
-      title: "Warten Sie nicht auf die nächste Kündigung.",
-      subtitle: "Jeder unerwartete Abgang kostet Monate Arbeit und hunderttausende Euro. Behalten Sie den Überblick - ab heute.",
-      primary: "Beratung vereinbaren",
-      demoButton: "Demo testen",
-      secondary: "oder rufen Sie an",
-      secondaryLink: "+420 605 839 456",
-      benefits: [
-        { title: "Keine Verpflichtung", desc: "Erstberatung und Demo sind kostenlos. Verstehen Sie die Systemlogik in 30 Minuten." },
-        { title: "Datenschutz-Garantie", desc: "DSGVO-Konformität und klare Regeln für den Datenumgang. Ihre Daten bleiben auf EU-Servern." },
-        { title: "Schnellstart", desc: "Implementierung benötigt keine IT-Abteilung. Wir verbinden uns mit Ihren bestehenden Tools (M365, Slack)." }
-      ]
-    },
-    footer: {
-      rights: "Behavera s.r.o. Alle Rechte vorbehalten.",
-      legal: ["AGB", "Datenschutz"],
-      links: ["Produkt", "Preise", "Über uns", "Kontakt"]
-    },
-    blog: {
-      title: "Blog",
-      pageTitle: "Insights & Analysen",
-      pageSubtitle: "Praxisnahe Artikel zu Organisationspsychologie, Leadership-Daten und der Zukunft der Arbeit.",
-      defaultTag: "Insight",
-      backToList: "Zurück zu Insights",
-      loading: "Wird geladen...",
-      notFound: "Beitrag nicht gefunden",
-      seoTitle: "Blog & Insights",
-      seoDescription: "Praktische Artikel zu Engagement, Retention und Organisationspsychologie.",
-      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies"
-    },
-    caseStudies: {
-      loading: "Wird geladen...",
-      notFound: "Fallstudie nicht gefunden",
-      backToList: "Zurück zu Erfolgsgeschichten",
-      resultsLabel: "Ergebnisse",
-      industryLabel: "Branche",
-      challengeTitle: "Herausforderung",
-      solutionTitle: "Lösung"
-    },
-    booking: {
-        title: "Beratung vereinbaren",
-        desc: "Wählen Sie eine Zeit, die Ihnen passt. Wir zeigen Ihnen, wie Echo Pulse in Ihrer spezifischen Situation helfen kann.",
-    },
-    demoVideo: {
-        title: "Sehen Sie Echo Pulse in Aktion",
-    },
-    decisionLock: {
-      title: "In beiden Extremen (Burnout & Hyperwachstum) ist das Problem gleich: Die Führung verliert die Sicht.",
-      subtitle: "Echo Pulse gibt Ihnen kontinuierliche Signale zurück, ohne das Unternehmen zu verlangsamen.",
-      cta: "Ich möchte Signale aus unserer Realität sehen"
+      guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch.",
     },
     faq: {
       title: "Risiken beseitigen,",
@@ -1374,8 +565,99 @@ export const translations = {
         { q: "Erfordert es komplexe IT-Implementierung?", a: "Nein. Wir sind ein Cloud-Service. Wir verbinden uns mit Ihren Systemen (M365/Slack) ohne IT-Eingriff. Kein Projekt erforderlich." },
         { q: "Ist es wirklich anonym?", a: "Absolut. Wir garantieren eine 'Sicherheitsschicht'. Niemand aus der Führung sieht einzelne Antworten. Menschen wissen das und vertrauen darauf." },
         { q: "Bedeutet es mehr Arbeit für Manager?", a: "Im Gegenteil. Echo Pulse übernimmt die analytische Arbeit und gibt Anleitungen. Es erhöht nicht die Manager-Arbeitslast." },
-        { q: "Was wenn die Ergebnisse nicht schön sind?", a: "Das ist der Punkt. Sie wollen Realität sehen, um sie ändern zu können. Besser jetzt wissen als Kündigungen lösen." }
-      ]
+        { q: "Was wenn die Ergebnisse nicht schön sind?", a: "Das ist der Punkt. Sie wollen Realität sehen, um sie ändern zu können. Besser jetzt wissen als Kündigungen lösen." },
+      ],
+    },
+    roleSelection: {
+      title: "Jeder sieht das Unternehmen",
+      titleHighlight: " aus einem anderen Blickwinkel.",
+      subtitle: "Wählen Sie Ihre Rolle und sehen Sie, was Echo Pulse Ihnen konkret bietet.",
+      investor: {
+        title: "Überblick über Unternehmensgesundheit",
+        list: ["Frühwarnung vor Problemen", "Risiken rechtzeitig erkannt"],
+        cta: "Portfolio-Gesundheit prüfen",
+      },
+      ceo: {
+        title: "Ungefilterter Überblick",
+        list: ["Sie sehen, was in den Teams passiert", "Sie lösen Probleme, bevor sie eskalieren"],
+        cta: "Wie es der Führung hilft",
+      },
+      hr: {
+        title: "Daten statt Vermutungen",
+        list: ["Argumente, die die Führung versteht", "Weniger Feuerlöschen, mehr Prävention"],
+        cta: "Wie es HR hilft",
+      },
+      teamLeader: {
+        title: "Feedback vom Team",
+        list: ["Sie wissen, was Menschen belastet", "Sie erkennen Burnout früh"],
+        cta: "Wie es Managern hilft",
+      },
+    },
+    trustCenter: {
+      badge: "Trust Center",
+      title: "Ihre Daten sind",
+      titleHighlight: " bei uns sicher",
+      subtitle: "Wir arbeiten mit sensiblen Personaldaten. Deshalb ist Sicherheit keine Funktion - sie ist das Fundament unserer Arbeit. Audit-bereit ab Tag eins.",
+      guarantees: [
+        {
+          icon: "server",
+          title: "Daten bleiben in der EU",
+          desc: "Alle Daten werden ausschließlich auf Servern in der Europäischen Union gespeichert. Kein Transfer außerhalb der EU/des EWR.",
+          detail: "Frankfurt (AWS eu-central-1), AES-256-Verschlüsselung at rest und in transit",
+        },
+        {
+          icon: "eye",
+          title: "100% Mitarbeiter-Anonymität",
+          desc: "Manager sehen niemals individuelle Antworten. Ergebnisse werden nur in aggregierter Form ab 5+ Personen angezeigt.",
+          detail: "Differentielle Privatsphäre - Einzelpersonen können nicht re-identifiziert werden",
+        },
+        {
+          icon: "lock",
+          title: "DSGVO by Design",
+          desc: "Berechtigtes Interesse gem. Art. 6(1)(f) DSGVO. Keine Mitarbeiter-Einwilligung erforderlich - Verarbeitung erfolgt über den Arbeitgeber.",
+          detail: "DSFA durchgeführt, DSB verfügbar, Betroffenenrechte vollständig gewährleistet",
+        },
+        {
+          icon: "users",
+          title: "Audit-bereite Compliance",
+          desc: "Vollständige Dokumentation: Verarbeitungsverzeichnis, DSFA, Auftragsverarbeitungsverträge, technische Maßnahmen.",
+          detail: "Vollständiger Audit-Trail aller Zugriffe, vertragliche SLA-Garantie 99,9%",
+        },
+      ],
+      complianceBadges: [
+        { label: "DSGVO", sub: "Volle Konformität" },
+        { label: "ISO 27001", sub: "Sicherheitsstandard" },
+        { label: "SOC 2 Type II", sub: "Audit-Zertifizierung" },
+        { label: "Verschlüsselung", sub: "AES-256 / TLS 1.3" },
+      ],
+      expandLabel: "Sicherheitsdetails anzeigen",
+      collapseLabel: "Details ausblenden",
+      legalDocsTitle: "Rechtliche Dokumente",
+      dpoLabel: "Datenschutzbeauftragter:",
+      privacyFallbackTitle: "Datenschutzerklärung",
+      termsFallbackTitle: "Allgemeine Geschäftsbedingungen",
+      contentFallback: "Inhalt folgt in Kürze.",
+    },
+    blog: {
+      title: "Blog",
+      pageTitle: "Insights & Analysen",
+      pageSubtitle: "Praxisnahe Artikel zu Organisationspsychologie, Leadership-Daten und der Zukunft der Arbeit.",
+      defaultTag: "Insight",
+      backToList: "Zurück zu Insights",
+      loading: "Wird geladen...",
+      notFound: "Beitrag nicht gefunden",
+      seoTitle: "Blog & Insights",
+      seoDescription: "Praktische Artikel zu Engagement, Retention und Organisationspsychologie.",
+      seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies",
+    },
+    caseStudies: {
+      loading: "Wird geladen...",
+      notFound: "Fallstudie nicht gefunden",
+      backToList: "Zurück zu Erfolgsgeschichten",
+      resultsLabel: "Ergebnisse",
+      industryLabel: "Branche",
+      challengeTitle: "Herausforderung",
+      solutionTitle: "Lösung",
     },
     leadPopup: {
       badge: "Neue Studie 2026",
@@ -1392,158 +674,7 @@ export const translations = {
       successMessage: "Klicken Sie auf die Schaltfläche unten, um Ihr PDF herunterzuladen.",
       downloadButton: "PDF herunterladen",
       downloadNote: "Direkter Download • PDF • 4.3 MB",
-      close: "Schließen"
+      close: "Schließen",
     },
-    demoRequest: {
-      title: "Demo-Zugang erhalten",
-      subtitle: "Wir senden Ihnen einen personalisierten Demo-Link",
-      emailLabel: "Geschäftliche E-Mail",
-      phoneLabel: "Telefon",
-      sizeLabel: "Unternehmensgröße",
-      roleLabel: "Ihre Rolle",
-      submit: "Demo senden",
-      successTitle: "Bitte prüfen Sie Ihren Posteingang!",
-      successMessage: "Der Demo-Link ist unterwegs.",
-      errorInvalidEmail: "Bitte geben Sie eine gültige E-Mail ein.",
-      errorInvalidPhone: "Bitte geben Sie eine gültige Telefonnummer ein.",
-      errorRequired: "Dieses Feld ist erforderlich.",
-      errorGeneric: "Senden fehlgeschlagen. Bitte versuchen Sie es erneut.",
-      companySizePlaceholder: "Größe auswählen",
-      rolePlaceholder: "Rolle auswählen",
-      roles: {
-        ceo: "CEO / Founder",
-        hr: "HR / People Ops",
-        leader: "Teamleiter",
-        other: "Andere"
-      },
-      sizes: {
-        xs: "10–30 Mitarbeitende",
-        sm: "31–50 Mitarbeitende",
-        md: "51–100 Mitarbeitende",
-        lg: "101–200 Mitarbeitende",
-        xl: "201–350 Mitarbeitende",
-        xxl: "350+ Mitarbeitende"
-      }
-    },
-    leadCapture: {
-      badge: "Kostenloses E-Book",
-      title: "Praktischer Leitfaden:",
-      titleHighlight: " Teams nach Signalen steuern.",
-      subtitle: "Wir schicken Ihnen ein E-Book mit konkreten Tipps, wie Sie schnell erkennen, was und warum etwas nicht funktioniert. Kein Spam.",
-      nameLabel: "Name (optional)",
-      namePlaceholder: "Ihr Name",
-      emailLabel: "Geschäftliche E-Mail",
-      emailPlaceholder: "name@company.com",
-      submit: "E-Book erhalten",
-      successTitle: "E-Book ist unterwegs.",
-      successMessage: "Bitte prüfen Sie Ihr Postfach.",
-      consent: "Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Kontaktdaten für die E-Book-Zustellung zu.",
-      errorInvalid: "Bitte geben Sie eine gültige E-Mail ein.",
-      errorGeneric: "Senden fehlgeschlagen."
-    },
-    demoModal: {
-      choiceTitle: "Wie möchten Sie Echo Pulse sehen?",
-      choiceSubtitle: "Wählen Sie, was am besten passt",
-      selfServe: {
-        title: "Demo-Video ansehen",
-        subtitle: "3 Minuten – Kurzüberblick",
-        features: ["Sofortiger Zugang", "Ohne Registrierung", "Kernfunktionen"],
-        cta: "Jetzt abspielen"
-      },
-      liveDemo: {
-        title: "Live-Demo mit Experten",
-        subtitle: "30 Minuten – personalisiert",
-        features: ["Ihre Fragen beantwortet", "Konkrete Use-Cases", "Keine Verpflichtung"],
-        cta: "Termin buchen"
-      },
-      videoTitle: "Echo Pulse – Demo",
-      recommended: "Empfohlen"
-    },
-    demoChoiceModal: {
-      title: "Wie möchten Sie Echo Pulse kennenlernen?",
-      selfServe: {
-        title: "Selbst erkunden",
-        desc: "Zugang zur Demo-App mit echten Daten, ohne Wartezeit.",
-        cta: "Zugang erhalten"
-      },
-      guided: {
-        title: "Beratung mit Experten",
-        desc: "20min Videoanruf — eine Führung zugeschnitten auf Ihre Branche.",
-        cta: "Termin wählen",
-        recommended: "Empfohlen"
-      }
-    },
-    demoAccess: {
-      title: "Testen Sie Echo Pulse",
-      subtitle: "Geben Sie Ihre Daten ein und erhalten Sie sofortigen Zugang zur Demo-App.",
-      emailLabel: "Geschäfts-E-Mail",
-      emailPlaceholder: "max.mustermann@firma.de",
-      phoneLabel: "Telefon",
-      phonePlaceholder: "+49 170 123 4567",
-      companyLabel: "Firma (optional)",
-      companyPlaceholder: "Ihre Firma GmbH",
-      submitCta: "Zugang erhalten",
-      submitting: "Wird gesendet...",
-      noSpam: "Kein Spam. Wir verwenden Ihre Daten nur zur Verifizierung.",
-      successTitle: "Ihr Zugang ist bereit",
-      successSubtitle: "Zugangsdaten für die Demo:",
-      credentials: {
-        urlLabel: "URL",
-        emailLabel: "E-Mail",
-        passwordLabel: "Passwort"
-      },
-      copyButton: "Kopieren",
-      copied: "Kopiert",
-      openDemo: "Demo öffnen",
-      upsellText: "Buchen Sie eine 30min Beratung — wir zeigen Ihnen, was Echo Pulse in Ihrem Unternehmen aufdeckt.",
-      upsellCta: "Beratung buchen"
-    },
-    bookingModal: {
-      title: "Demo buchen",
-      subtitle: "30-minütiger Videoanruf. Wir zeigen Ihnen Echo Pulse mit echten Daten — unverbindlich.",
-      benefits: [
-        "Personalisierte Demo für Ihre Branche",
-        "Alle Ihre Fragen beantwortet",
-        "Keine Verpflichtung, kein Hard-Sell"
-      ],
-      cta: "Termin wählen",
-      calendarTitle: "Termin wählen",
-      back: "Zurück"
-    },
-    data: {
-      trustedBy: "VON FÜHRENDEN UNTERNEHMEN GENUTZT"
-    },
-    forms: {
-      firstName: "Vorname",
-      lastName: "Nachname",
-      phone: "Telefonnummer",
-      workEmail: "Arbeits-E-Mail",
-      submit: "Absenden"
-    },
-    calculator: {
-      badge: "Harte Daten",
-      title: "Berechnen Sie Ihren",
-      titleHighlight: "ROI",
-      subtitle: "Sehen Sie, wie viel Sie die Fluktuation wirklich kostet.",
-      sliders: {
-        companySize: "Unternehmensgröße",
-        employees: "Mitarbeiter",
-        avgAnnualCost: "Durchschn. Jahreskosten",
-        annualTurnover: "Jährliche Fluktuation"
-      },
-      boardReport: {
-        title: "Vorstandsbericht",
-        subtitle: "PDF-Zusammenfassung für Ihr Leadership-Team.",
-        button: "Bericht generieren",
-        buttonGenerating: "Wird generiert..."
-      },
-      metrics: {
-        annualLoss: "Jährlicher Verlust durch Fluktuation",
-        recoverableRevenue: "Einsparbar mit Echo Pulse"
-      },
-      cta: {
-        button: "So funktioniert es"
-      }
-    }
-  }
+  },
 };
