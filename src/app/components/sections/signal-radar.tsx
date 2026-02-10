@@ -31,9 +31,9 @@ type TCopy = {
 const copy: Record<string, TCopy> = {
   cz: {
     badge: "Echo Pulse",
-    title: "Sběr dat, který lidé ",
-    titleHighlight: "opravdu vyplní",
-    subtitle: "Žádné formuláře. Zaměstnanci odpovídají v krátkém AI chatu \u2014 5\u20136 otázek, 2 minuty, anonymně. Výsledky okamžitě v dashboardu.",
+    title: "2 minuty. 85 % lidí odpoví. ",
+    titleHighlight: "Každý měsíc.",
+    subtitle: "Žádné formuláře. Zaměstnanci odpovídají v krátkém AI chatu \u2014 5\u20136 otázek, anonymně. Výsledky okamžitě v dashboardu.",
     stepsTitle: "Jak to funguje",
     steps: [
       { title: "Pulse Check se sám rozešle", desc: "Nastavíte jednou, dál běží automaticky. Slack, Teams nebo e-mail — bez práce navíc." },
@@ -70,9 +70,9 @@ const copy: Record<string, TCopy> = {
   },
   en: {
     badge: "Echo Pulse",
-    title: "Data collection people ",
-    titleHighlight: "actually complete",
-    subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 5\u20136 questions, 2 minutes, fully anonymous. Results appear instantly in your dashboard.",
+    title: "2 minutes. 85% respond. ",
+    titleHighlight: "Every month.",
+    subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 5\u20136 questions, fully anonymous. Results appear instantly in your dashboard.",
     stepsTitle: "How it works",
     steps: [
       { title: "Pulse Check sends itself", desc: "Set it up once, it runs automatically. Slack, Teams, or email — zero extra work." },
@@ -109,9 +109,9 @@ const copy: Record<string, TCopy> = {
   },
   de: {
     badge: "Echo Pulse",
-    title: "Datenerfassung, die Mitarbeiter ",
-    titleHighlight: "wirklich ausfüllen",
-    subtitle: "Keine Formulare. Mitarbeiter antworten in einem kurzen AI-Chat \u2014 5\u20136 Fragen, 2 Minuten, völlig anonym. Ergebnisse sofort im Dashboard.",
+    title: "2 Minuten. 85 % antworten. ",
+    titleHighlight: "Jeden Monat.",
+    subtitle: "Keine Formulare. Mitarbeiter antworten in einem kurzen AI-Chat \u2014 5\u20136 Fragen, v\u00f6llig anonym. Ergebnisse sofort im Dashboard.",
     stepsTitle: "So funktioniert es",
     steps: [
       { title: "Pulse Check sendet sich selbst", desc: "Einmal einrichten, läuft automatisch. Slack, Teams oder E-Mail — kein Mehraufwand." },

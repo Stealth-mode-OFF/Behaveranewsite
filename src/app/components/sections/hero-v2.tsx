@@ -24,42 +24,42 @@ export function HeroV2() {
 
   const copy = {
     cz: {
-      badge: "Pro firmy 30–350 lidí",
-      headline: <>Mějte přehled,<br className="hidden md:block" />{' '}co se ve firmě{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">skutečně děje</span></>,
+      badge: "Zpětná vazba, která funguje",
+      headline: <>Zjistěte, co se<br className="hidden md:block" />{' '}ve firmě{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">doopravdy děje</span></>,
       headlineHighlight: "",
-      subheadline: <>Roční průzkumy zachytí problém, až když je pozdě.<br className="hidden sm:block" />My vám dáme echo včas.</>,
-      primaryCta: "Konzultace zdarma",
-      secondaryCta: "Domluvit demo",
+      subheadline: <>Lidé neodcházejí ze dne na den. Rozhodují se měsíce.<br className="hidden sm:block" />Echo Pulse vám dá 3–8 měsíců náskok — abyste to věděli včas.</>,
+      primaryCta: "Domluvit demo",
+      secondaryCta: "Vyzkoušet zdarma",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
-        { icon: Clock, text: "Setup za 1 hodinu" },
-        { icon: Zap, text: "První data ihned" },
+        { icon: Clock, text: "Výsledky do hodiny" },
+        { icon: Zap, text: "85 % návratnost" },
       ],
     },
     en: {
-      badge: "For companies of 30–350 people",
-      headline: "Know what's really",
+      badge: "Feedback that actually works",
+      headline: "Find out what's really",
       headlineHighlight: "happening in your company",
-      subheadline: "Continuous pulse feedback and risk signals. Know where it's brewing — and what to do.",
-      primaryCta: "Free consultation",
-      secondaryCta: "3min demo",
+      subheadline: "People don't quit overnight. They decide over months. Echo Pulse gives you a 3–8 month head start — so you know before it's too late.",
+      primaryCta: "Book a demo",
+      secondaryCta: "Try it free",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
-        { icon: Clock, text: "1 hour setup" },
-        { icon: Zap, text: "Instant first data" },
+        { icon: Clock, text: "Results in 1 hour" },
+        { icon: Zap, text: "85% completion rate" },
       ],
     },
     de: {
-      badge: "Für Unternehmen mit 30–350 Mitarbeitern",
-      headline: "Wissen Sie, was in Ihrem",
+      badge: "Feedback, das funktioniert",
+      headline: "Erfahren Sie, was in Ihrem",
       headlineHighlight: "Unternehmen wirklich passiert",
-      subheadline: "Kontinuierliches Pulse-Feedback und Risikosignale. Wissen Sie, wo es brodelt — und was zu tun ist.",
-      primaryCta: "Kostenlose Beratung",
-      secondaryCta: "3min Demo",
+      subheadline: "Mitarbeiter kündigen nicht über Nacht. Sie entscheiden sich über Monate. Echo Pulse gibt Ihnen 3–8 Monate Vorsprung — damit Sie es rechtzeitig wissen.",
+      primaryCta: "Demo buchen",
+      secondaryCta: "Kostenlos testen",
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
-        { icon: Clock, text: "Setup in 1 Stunde" },
-        { icon: Zap, text: "Sofortige Daten" },
+        { icon: Clock, text: "Ergebnisse in 1 Stunde" },
+        { icon: Zap, text: "85 % Rücklaufquote" },
       ],
     },
   };
@@ -140,10 +140,15 @@ export function HeroV2() {
               </Button>
               
               <Button
-                onClick={openVideo}
-                variant="ghost"
+                onClick={() => {
+                  const tryLink = language === 'cz'
+                    ? 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=cs'
+                    : 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=en';
+                  window.open(tryLink, 'pulseScan', 'width=480,height=820,left=200,top=80,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
+                }}
+                variant="outline"
                 size="lg"
-                className="w-full sm:w-auto h-14 px-6 text-base font-semibold text-brand-text-secondary hover:text-brand-primary"
+                className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5"
               >
                 <Play className="w-4 h-4 mr-2 fill-current" />
                 {c.secondaryCta}

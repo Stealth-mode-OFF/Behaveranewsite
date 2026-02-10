@@ -22,25 +22,25 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Continuous team feedback",
-      title: "Have an overview of",
-      titleHighlight: "what's really happening in your company",
-      subtitle: "Annual surveys catch problems too late. Echo Pulse gives you continuous signals — you know where things are stuck before resignations start.",
-      primaryCta: "Book a demo (30 min)",
-      secondaryCta: "Explore the demo",
+      badge: "Feedback that actually works",
+      title: "Find out what's really",
+      titleHighlight: "happening in your company",
+      subtitle: "People don't quit overnight. They decide over months. Echo Pulse gives you a 3–8 month head start — so you know before it's too late.",
+      primaryCta: "Book a demo",
+      secondaryCta: "Try it free",
       riskReversal: "No commitment. After 30 minutes, you'll know if it makes sense for your company.",
       trust: {
         security: "GDPR compliant",
         support: "Local Support",
-        implementation: "Start within 1 hour",
-        languages: "CZ / EN / DE"
+        implementation: "Results in 1 hour",
+        languages: "85% completion rate"
       },
     },
     problems: {
       badge: "Turnover cost",
       title: "People don't leave",
       titleHighlight: " overnight.",
-      subtitle: "The decision to leave takes months to ripen. The problem is you usually don't know - until you get the resignation.",
+      subtitle: "The decision to leave takes months to ripen. The problem? You usually don't know — until you get the resignation.",
       items: [
         {
           title: "UNWANTED ATTRITION",
@@ -124,9 +124,9 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Everyone sees the company",
-      titleHighlight: " from a different angle.",
-      subtitle: "Select your role and see what specifically Echo Pulse gives you.",
+      title: "One tool.",
+      titleHighlight: " Different answers.",
+      subtitle: "Whether you're a CEO, HR, or team lead — Echo Pulse gives you exactly what you need. No noise.",
       benefits: [
         "I want a productive team",
         "I want to know what blocks performance",
@@ -143,30 +143,30 @@ export const translations = {
       },
       ceo: {
         role: "CEO / Owner",
-        title: "Unfiltered overview",
+        title: "See what no one tells you",
         list: [
-          "You see what's happening in teams",
-          "You solve problems before they escalate"
+          "Real-time visibility into every team",
+          "Spot problems 3–8 months before they escalate"
         ],
-        cta: "How it helps leadership"
+        cta: "Book CEO demo"
       },
       hr: {
         role: "HR / People Ops",
-        title: "Data instead of guesses",
+        title: "Data that leadership actually listens to",
         list: [
-          "Arguments leadership understands",
+          "Numbers instead of gut feelings",
           "Less firefighting, more prevention"
         ],
-        cta: "How it helps HR"
+        cta: "Book HR demo"
       },
       teamLeader: {
         role: "Team Leader",
-        title: "Feedback from team",
+        title: "Know what your team won't say out loud",
         list: [
-          "You know what troubles people",
-          "You catch burnout early"
+          "Anonymous, honest feedback every month",
+          "Catch burnout before it's too late"
         ],
-        cta: "How it helps managers"
+        cta: "Book team lead demo"
       }
     },
     valueByRole: {
@@ -203,11 +203,11 @@ export const translations = {
       bottomBadge: "Designed for companies from 30 to 350 employees"
     },
     dashboard: {
-      badge: "Overview for leadership",
-      title: "See what used to be said",
-      titleHighlight: "only at the coffee machine.",
-      subtitle: "Echo Pulse collects scattered signals and shows them in one place. Clear and without unnecessary graphs.",
-      watchDemo: "Play demo",
+      badge: "See it in action",
+      title: "One dashboard. Zero guesswork.",
+      titleHighlight: "Everything your leadership needs.",
+      subtitle: "Echo Pulse collects scattered signals and shows them in one place. Clear, real-time, and ready to act on.",
+      watchDemo: "Watch demo",
       features: [
         { title: "Mood by team", desc: "Instant overview of how each department feels. Broken down by location, seniority, or manager." },
         { title: "Warning before problems", desc: "The system alerts when something's off - overload, team tension, or significant energy drop." },
@@ -527,7 +527,7 @@ export const translations = {
       pricing: "Ceník",
       about: "O nás",
       login: "Přihlásit se",
-      bookDemo: "Vyzkoušet demo",
+      bookDemo: "Domluvit demo",
       nav: {
         problem: "Problém",
         solution: "Řešení",
@@ -535,25 +535,25 @@ export const translations = {
       },
     },
     hero: {
-      badge: "Průběžný feedback od týmu",
-      title: "Mějte přehled,",
-      titleHighlight: "co se ve firmě skutečně děje",
-      subtitle: "Roční průzkumy zachytí problém, až když je pozdě. Echo Pulse vám dává průběžné signály - víte, kde to drhne, dřív než začnou výpovědi.",
-      primaryCta: "Vyzkoušet demo (30 min)",
-      secondaryCta: "Prohlédnout demo",
+      badge: "Zpětná vazba, která funguje",
+      title: "Zjistěte, co se",
+      titleHighlight: "ve firmě doopravdy děje",
+      subtitle: "Lidé neodcházejí ze dne na den. Rozhodují se měsíce. Echo Pulse vám dá 3–8 měsíců náskok — abyste to věděli včas.",
+      primaryCta: "Domluvit demo",
+      secondaryCta: "Vyzkoušet zdarma",
       riskReversal: "Žádné závazky. Po 30 minutách budete vědět, jestli to dává smysl pro vaši firmu.",
       trust: {
         security: "GDPR compliant",
         support: "Česká podpora",
-        implementation: "Start do 1 hodiny",
-        languages: "CZ / EN / DE"
+        implementation: "Výsledky do hodiny",
+        languages: "85 % návratnost"
       },
     },
     problems: {
       badge: "Náklady na odchody",
       title: "Lidé neodcházejí",
       titleHighlight: " ze dne na den.",
-      subtitle: "Rozhodnutí odejít zraje měsíce. Problém je, že o tom většinou nevíte - dokud nedostanete výpověď.",
+      subtitle: "Rozhodnutí odejít zraje měsíce. Problém? Většinou to nevíte — dokud nedostanete výpověď.",
       items: [
         {
           title: "NECHTĚNÁ FLUKTUACE",
@@ -637,9 +637,9 @@ export const translations = {
       }
     },
     roleSelection: {
-      title: "Každý se na firmu dívá",
-      titleHighlight: " z jiného úhlu.",
-      subtitle: "Vyberte svou roli a uvidíte, co konkrétně vám Echo Pulse dá.",
+      title: "Jeden nástroj.",
+      titleHighlight: " Různé odpovědi.",
+      subtitle: "Ať jste CEO, HR nebo team lead — Echo Pulse vám dá přesně to, co potřebujete. Bez šumu.",
       benefits: [
         "Chci mít produktivní tým",
         "Chci vědět, co blokuje výkon",
@@ -656,30 +656,30 @@ export const translations = {
       },
       ceo: {
         role: "CEO / Majitel",
-        title: "Přehled bez filtru",
+        title: "Zjistěte, co vám nikdo neřekne",
         list: [
-          "Vidíte, co se děje v týmech",
-          "Řešíte problémy dřív, než eskalují"
+          "Přehled o každém týmu v reálném čase",
+          "Problémy zachytíte 3–8 měsíců předem"
         ],
-        cta: "Jak to pomůže vedení"
+        cta: "Demo pro CEO"
       },
       hr: {
         role: "HR / People Ops",
-        title: "Data místo dohadů",
+        title: "Data, kterým vedení uvěří",
         list: [
-          "Argumenty, kterým vedení rozumí",
+          "Čísla místo pocitů",
           "Méně hašení, víc prevence"
         ],
-        cta: "Jak to pomůže HR"
+        cta: "Demo pro HR"
       },
       teamLeader: {
         role: "Team Leader",
-        title: "Zpětná vazba od týmu",
+        title: "Zjistěte, co vám tým neřekne nahlas",
         list: [
-          "Víte, co lidi trápí",
-          "Zachytíte vyhoření včas"
+          "Anonymní, upřímný feedback každý měsíc",
+          "Zachyťte vyhoření dřív, než bude pozdě"
         ],
-        cta: "Jak to pomůže manažerům"
+        cta: "Demo pro team leadery"
       }
     },
     valueByRole: {
@@ -716,10 +716,10 @@ export const translations = {
       bottomBadge: "Pro firmy od 30 do 350 lidí"
     },
     dashboard: {
-      badge: "Přehled pro vedení",
-      title: "Vidíte to, co se dřív říkalo",
-      titleHighlight: "jen u kávy.",
-      subtitle: "Echo Pulse sbírá rozptýlené signály a ukazuje je na jednom místě. Jasně a bez zbytečných grafů.",
+      badge: "Pohled do praxe",
+      title: "Jeden dashboard.",
+      titleHighlight: "Žádné hádání.",
+      subtitle: "Echo Pulse sbírá rozptýlené signály a ukazuje je na jednom místě. Jasně, v reálném čase, připravené k akci.",
       watchDemo: "Přehrát demo",
       features: [
         { title: "Nálada podle týmů", desc: "Okamžitý přehled, jak se cítí jednotlivá oddělení. Rozděleno podle lokality, seniority nebo manažera." },
