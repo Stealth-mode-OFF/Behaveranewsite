@@ -383,30 +383,49 @@ export function SignalRadar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-brand-border/60 bg-white p-6 sm:p-8 md:p-10 shadow-sm"
+          className="rounded-2xl overflow-hidden shadow-lg border border-white/10"
         >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-            <div className="md:max-w-[55%]">
-              <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-2 leading-tight">
-                {c.tryTitle}
-              </h3>
-              <p className="text-sm text-brand-text-muted leading-relaxed">
-                {c.tryDesc}
-              </p>
+          {/* ── CTA Panel ── */}
+          <div className="relative bg-gradient-to-br from-[#0d0520] via-[#1a0a3e] to-[#0d0520] p-8 sm:p-10 md:p-12 overflow-hidden">
+            {/* Decorative glow */}
+            <div className="absolute top-0 right-0 w-[350px] h-[350px] bg-brand-accent/8 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[250px] h-[250px] bg-brand-primary/10 rounded-full blur-[100px] pointer-events-none" />
+
+            <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+              <div className="md:max-w-[55%]">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/10 rounded-full mb-4">
+                  <Activity className="w-3 h-3 text-brand-accent" />
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-white/80">Quick Scan</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+                  {c.tryTitle}
+                </h3>
+                <p className="text-sm sm:text-base text-white/60 leading-relaxed">
+                  {c.tryDesc}
+                </p>
+              </div>
+
+              <div className="flex flex-col items-start md:items-center gap-3 shrink-0">
+                <button
+                  onClick={() => {
+                    window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
+                  }}
+                  className="inline-flex items-center justify-center gap-2.5 h-12 px-7 rounded-xl bg-white text-brand-primary font-bold text-[15px] hover:bg-white/90 transition-all shadow-lg shadow-black/20 cursor-pointer group"
+                >
+                  {c.tryCta}
+                  <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </button>
+                <span className="text-[12px] text-white/40 font-medium tracking-wide">
+                  {c.tryNote}
+                </span>
+              </div>
             </div>
-              <button
-              onClick={() => {
-                window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
-              }}
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
-            >
-              {c.tryCta}
-              <ExternalLink className="w-3.5 h-3.5" />
-            </button>
           </div>
 
-          {/* Testimonials carousel */}
-          <QuickScanTestimonials lang={language} />
+          {/* ── Testimonial Strip ── */}
+          <div className="bg-white p-6 sm:p-8">
+            <QuickScanTestimonials lang={language} />
+          </div>
         </motion.div>
 
       </div>
@@ -494,52 +513,64 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
   }, []);
 
   const t = testimonials[idx];
+  const initials = t.name.split(' ').map(w => w[0]).join('').slice(0, 2);
 
   return (
-    <div className="border-t border-brand-border/40 pt-5">
-      <div className="relative min-h-[100px] flex items-center">
+    <div>
+      <div className="relative min-h-[120px] flex items-center">
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
           aria-label="Previous"
         >
-          <ChevronDown className="w-3.5 h-3.5 rotate-90" />
+          <ChevronDown className="w-4 h-4 rotate-90" />
         </button>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={idx}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="px-10 text-center w-full"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.25 }}
+            className="px-12 w-full"
           >
-            <p className="text-[13px] sm:text-sm text-brand-text-secondary leading-relaxed italic mb-3">
-              &ldquo;{t.quote}&rdquo;
-            </p>
-            <span className="text-xs text-brand-text-muted">
-              — {t.name}, {t.role}{t.company ? ` · ${t.company}` : ''}
-            </span>
+            <div className="max-w-2xl mx-auto text-center">
+              <p className="text-sm sm:text-[15px] text-brand-text-secondary leading-relaxed italic mb-5">
+                &ldquo;{t.quote}&rdquo;
+              </p>
+
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white text-[11px] font-bold tracking-wide">
+                  {initials}
+                </div>
+                <div className="text-left">
+                  <div className="text-sm font-bold text-brand-text-primary leading-tight">{t.name}</div>
+                  <div className="text-[12px] text-brand-text-muted">
+                    {t.role}{t.company ? ` · ${t.company}` : ''}
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </AnimatePresence>
 
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
           aria-label="Next"
         >
-          <ChevronDown className="w-3.5 h-3.5 -rotate-90" />
+          <ChevronDown className="w-4 h-4 -rotate-90" />
         </button>
       </div>
 
-      <div className="flex items-center justify-center gap-1 mt-3">
+      <div className="flex items-center justify-center gap-1.5 mt-4">
         {testimonials.map((_, i) => (
           <button
             key={i}
             onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-            className={`h-1 rounded-full transition-all cursor-pointer ${
-              i === idx ? 'bg-brand-accent w-4' : 'bg-brand-border w-1.5 hover:bg-brand-text-muted/40'
+            className={`h-1.5 rounded-full transition-all cursor-pointer ${
+              i === idx ? 'bg-brand-accent w-5' : 'bg-brand-border w-1.5 hover:bg-brand-text-muted/40'
             }`}
             aria-label={`Testimonial ${i + 1}`}
           />
