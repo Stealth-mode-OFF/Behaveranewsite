@@ -7,15 +7,18 @@ import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { format } from 'date-fns';
 import { cs, de, enUS } from 'date-fns/locale';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Sparkles } from 'lucide-react';
 import { useSEO } from '@/app/hooks/useSEO';
 import { useLanguage } from '@/app/LanguageContext';
+import { useModal } from '@/app/ModalContext';
+import { Button } from '@/app/components/ui/button';
 
 export const BlogPostPage = () => {
   const { slug } = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const { t, language } = useLanguage();
+  const { openBooking } = useModal();
   const locale = language === 'cz' ? cs : language === 'de' ? de : enUS;
 
   useEffect(() => {
@@ -34,6 +37,28 @@ export const BlogPostPage = () => {
     keywords: post?.tags?.join(', ') || t.blog.seoKeywords,
     ogType: 'article',
   });
+
+  const ctaCopy = {
+    cz: {
+      badge: 'Echo Pulse',
+      title: 'Chcete vědět, jak se váš tým cítí?',
+      desc: 'Zjistěte to za 3 minuty — anonymně, bez bias, s okamžitými výsledky a doporučeními.',
+      cta: 'Domluvit ukázku',
+    },
+    en: {
+      badge: 'Echo Pulse',
+      title: 'Want to know how your team feels?',
+      desc: 'Find out in 3 minutes — anonymous, unbiased, with instant results and recommendations.',
+      cta: 'Book a demo',
+    },
+    de: {
+      badge: 'Echo Pulse',
+      title: 'Möchten Sie wissen, wie sich Ihr Team fühlt?',
+      desc: 'Finden Sie es in 3 Minuten heraus — anonym, unvoreingenommen, mit sofortigen Ergebnissen.',
+      cta: 'Demo buchen',
+    },
+  };
+  const cta = ctaCopy[language] || ctaCopy.en;
 
   if (loading) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.loading}</div>;
   if (!post) return <div className="min-h-screen bg-brand-background-primary flex items-center justify-center">{t.blog.notFound}</div>;
@@ -90,6 +115,23 @@ export const BlogPostPage = () => {
             className="prose prose-lg prose-violet mx-auto max-w-none text-brand-text-secondary"
             dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
           />
+
+          {/* Bottom CTA — premium style */}
+          <div className="mt-16 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10 p-8 md:p-12">
+            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-accent/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="relative z-10 text-center">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/10 rounded-full mb-4">
+                <Sparkles className="w-3 h-3 text-brand-accent" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-white/80">{cta.badge}</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">{cta.title}</h3>
+              <p className="text-white/60 text-sm md:text-base mb-8 max-w-lg mx-auto">{cta.desc}</p>
+              <Button onClick={openBooking} size="lg" className="h-12 px-8 text-[15px]">
+                {cta.cta}
+                <ArrowRight className="w-4 h-4 ml-1.5" />
+              </Button>
+            </div>
+          </div>
           
         </article>
       </main>

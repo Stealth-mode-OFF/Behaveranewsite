@@ -20,7 +20,7 @@ import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
  */
 export function HeroV2() {
   const { language } = useLanguage();
-  const { openVideo, openBooking } = useModal();
+  const { openBooking } = useModal();
 
   const copy = {
     cz: {
