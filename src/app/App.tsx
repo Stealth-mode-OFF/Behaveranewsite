@@ -1,4 +1,4 @@
-import React, { Component, ErrorInfo, ReactNode, Suspense, lazy } from "react";
+import { Component, Suspense, lazy, type ErrorInfo, type ReactNode } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./LanguageContext";
 import { ModalProvider } from "./ModalContext";

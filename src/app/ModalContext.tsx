@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 
 interface ModalContextType {
   isBookingOpen: boolean;
@@ -31,11 +31,12 @@ export function useModal() {
   const context = useContext(ModalContext);
   if (context === undefined) {
     // Fallback for independent component rendering
-    return {
+    const fallback: ModalContextType = {
       isBookingOpen: false,
       openBooking: () => {},
       closeBooking: () => {},
     };
+    return fallback;
   }
   return context;
 }

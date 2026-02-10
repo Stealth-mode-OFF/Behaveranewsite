@@ -1,9 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { useSEO } from '@/app/hooks/useSEO';
+import { SITE_ORIGIN } from '@/lib/urls';
 import { Link } from 'react-router-dom';
 import { 
   ArrowLeft, 
@@ -581,7 +581,7 @@ export function TeamPage() {
     title: `${t.badge} | Echo Pulse`,
     description: t.subtitle,
     ogType: 'website',
-    canonicalUrl: 'https://echopulse.cz/team',
+    canonicalUrl: `${SITE_ORIGIN}/team`,
   });
 
   return (

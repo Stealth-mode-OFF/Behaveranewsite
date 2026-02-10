@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, type ComponentType } from 'react';
 import { CmsService } from '@/lib/cms-service';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/app/components/ui/card';
 import { FileText, Briefcase, TrendingUp, Users, ArrowUpRight } from 'lucide-react';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/app/components/ui/button';
 import { cn } from '@/app/components/ui/utils';
 
-export const Dashboard = () => {
+export function Dashboard() {
   const [stats, setStats] = useState({ posts: 0, caseStudies: 0 });
   const [loading, setLoading] = useState(true);
 
@@ -23,13 +23,13 @@ export const Dashboard = () => {
     });
   }, []);
 
-  type StatCardProps = {
-    title: string;
-    value: number | string;
-    icon: React.ComponentType<{ className?: string }>;
-    to: string;
-    colorClass: string;
-  };
+	  type StatCardProps = {
+	    title: string;
+	    value: number | string;
+	    icon: ComponentType<{ className?: string }>;
+	    to: string;
+	    colorClass: string;
+	  };
 
   const StatCard = ({ title, value, icon: Icon, to, colorClass }: StatCardProps) => (
     <Card className="card-hover border-brand-border/60 shadow-sm relative overflow-hidden group">
@@ -144,4 +144,4 @@ export const Dashboard = () => {
       </div>
     </div>
   );
-};
+}

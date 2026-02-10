@@ -1,11 +1,10 @@
-import React from "react";
 import { useLanguage } from "@/app/LanguageContext";
 import { Link } from "react-router-dom";
 import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Zap } from "lucide-react";
+import { ACCOUNT_SETUP_URL, ECHO_PULSE_JOIN_URL } from "@/lib/urls";
 
 export function Footer() {
-  const { t, language } = useLanguage();
-  const linkTargets = ["#solutions", "#pricing", "#about", "#lead-capture"];
+  const { language } = useLanguage();
   
   const texts = {
     cz: {
@@ -72,26 +71,26 @@ export function Footer() {
     },
   };
 
-  const productLinks = {
-    cz: [
-      { label: "Echo Pulse App", href: "https://app.behavera.com/echo-pulse/join", external: true },
-      { label: "Nastavení účtu", href: "https://app.behavera.com/setup/", external: true },
-      { label: "Pricing", href: "#pricing" },
-      { label: "ROI Kalkulačka", href: "#roi" },
-    ],
-    en: [
-      { label: "Echo Pulse App", href: "https://app.behavera.com/echo-pulse/join", external: true },
-      { label: "Account Setup", href: "https://app.behavera.com/setup/", external: true },
-      { label: "Pricing", href: "#pricing" },
-      { label: "ROI Calculator", href: "#roi" },
-    ],
-    de: [
-      { label: "Echo Pulse App", href: "https://app.behavera.com/echo-pulse/join", external: true },
-      { label: "Konto einrichten", href: "https://app.behavera.com/setup/", external: true },
-      { label: "Preise", href: "#pricing" },
-      { label: "ROI-Rechner", href: "#roi" },
-    ],
-  };
+	  const productLinks = {
+	    cz: [
+	      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+	      { label: "Nastavení účtu", href: ACCOUNT_SETUP_URL, external: true },
+	      { label: "Pricing", href: "#pricing" },
+	      { label: "ROI Kalkulačka", href: "#roi" },
+	    ],
+	    en: [
+	      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+	      { label: "Account Setup", href: ACCOUNT_SETUP_URL, external: true },
+	      { label: "Pricing", href: "#pricing" },
+	      { label: "ROI Calculator", href: "#roi" },
+	    ],
+	    de: [
+	      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+	      { label: "Konto einrichten", href: ACCOUNT_SETUP_URL, external: true },
+	      { label: "Preise", href: "#pricing" },
+	      { label: "ROI-Rechner", href: "#roi" },
+	    ],
+	  };
 
   const companyLinks = {
     cz: [
@@ -157,7 +156,7 @@ export function Footer() {
   const legal = legalLinks[language] || legalLinks.en;
 
   // Helper to render links properly (internal vs external vs anchor)
-  const renderLink = (item: { label: string; href: string; external?: boolean }, i: number) => {
+  const renderLink = (item: { label: string; href: string; external?: boolean }) => {
     if (item.external) {
       return (
         <a 
@@ -246,7 +245,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {products.map((item, i) => (
-                  <li key={i}>{renderLink(item, i)}</li>
+                  <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
             </div>
@@ -258,7 +257,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {company.map((item, i) => (
-                  <li key={i}>{renderLink(item, i)}</li>
+                  <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
             </div>
@@ -270,7 +269,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {resources.map((item, i) => (
-                  <li key={i}>{renderLink(item, i)}</li>
+                  <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
             </div>
@@ -282,7 +281,7 @@ export function Footer() {
               </h4>
               <ul className="space-y-2.5">
                 {legal.map((item, i) => (
-                  <li key={i}>{renderLink(item, i)}</li>
+                  <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
               

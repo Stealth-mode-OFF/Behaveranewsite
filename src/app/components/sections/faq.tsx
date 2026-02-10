@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Mail, MessageSquare, Shield, Zap, Users, BarChart } from "lucide-react";
+import { ChevronDown, Mail, Shield, Zap, Users, BarChart } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
 
@@ -17,7 +17,7 @@ import { cn } from "@/app/components/ui/utils";
 type FAQCategory = {
   id: string;
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
 };
 
 type FAQItem = {
@@ -40,9 +40,11 @@ export function FAQ() {
   ];
 
   // Map FAQ items to categories (basic heuristic based on content)
-  const faqItems: FAQItem[] = (t.faq?.items || []).map((item: any, index: number) => {
+  const sourceItems: FAQItem[] = Array.isArray(t.faq?.items) ? t.faq.items : [];
+
+  const faqItems: FAQItem[] = sourceItems.map((item) => {
     let category = "product";
-    const text = (item.q + item.a).toLowerCase();
+    const text = `${item.q} ${item.a}`.toLowerCase();
     if (text.includes("gdpr") || text.includes("data") || text.includes("security") || text.includes("bezpečnost") || text.includes("anonymní")) {
       category = "privacy";
     } else if (text.includes("implement") || text.includes("nasaz") || text.includes("čas") || text.includes("time") || text.includes("setup") || text.includes("integr")) {

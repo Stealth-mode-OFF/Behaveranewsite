@@ -1,9 +1,9 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
+import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -139,10 +139,8 @@ export function CtaSection() {
             <button
               type="button"
               onClick={() => {
-                const tryLink = language === 'cz'
-                  ? 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=cs'
-                  : 'https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=en';
-                window.open(tryLink, 'pulseScan', 'width=480,height=820,left=200,top=80,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
+                const tryLink = getPulseCheckUrl(language);
+                window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
               }}
               className="text-white/70 hover:text-white underline underline-offset-4 transition-colors"
             >

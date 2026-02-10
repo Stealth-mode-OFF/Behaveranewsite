@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
@@ -13,7 +13,7 @@ import { useLanguage } from '@/app/LanguageContext';
 import { useModal } from '@/app/ModalContext';
 import { Button } from '@/app/components/ui/button';
 
-export const BlogPostPage = () => {
+export function BlogPostPage() {
   const { slug } = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
@@ -138,4 +138,4 @@ export const BlogPostPage = () => {
       <Footer />
     </div>
   );
-};
+}

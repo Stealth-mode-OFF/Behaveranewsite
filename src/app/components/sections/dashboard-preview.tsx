@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Eye, Zap, ShieldAlert } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, useInView } from "framer-motion";
@@ -21,7 +21,7 @@ export function DashboardPreview() {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   // Auto-play when in view
-  React.useEffect(() => {
+  useEffect(() => {
     if (isInView && videoRef.current) {
       videoRef.current.play().catch(() => {
         // Autoplay blocked — that's fine, user can see poster
@@ -30,15 +30,21 @@ export function DashboardPreview() {
   }, [isInView]);
 
   const icons = [Eye, ShieldAlert, Zap];
-  
-  const features = (t.dashboard?.features || [])
+
+  type DashboardFeature = { title?: string; desc?: string };
+  const rawFeatures: DashboardFeature[] = Array.isArray(t.dashboard?.features) ? t.dashboard.features : [];
+
+  const features = rawFeatures
     .filter(Boolean)
-    .map((feature: any, index: number) => ({
-      icon: React.createElement(icons[index] || Eye, { className: "w-6 h-6" }),
-      title: feature?.title || '',
-      description: feature?.desc || '',
-    }))
-    .filter((f: any) => f.title);
+    .map((feature, index) => {
+      const Icon = icons[index] ?? Eye;
+      return {
+        icon: <Icon className="w-6 h-6" />,
+        title: feature.title ?? "",
+        description: feature.desc ?? "",
+      };
+    })
+    .filter((feature) => feature.title);
 
   return (
     <section className="section-spacing bg-white relative overflow-hidden" id="preview">

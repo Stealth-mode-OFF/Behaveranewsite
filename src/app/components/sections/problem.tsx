@@ -1,4 +1,3 @@
-import React from "react";
 import { AlertTriangle, TrendingDown, EyeOff, ZapOff, ArrowRight, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { useModal } from "@/app/ModalContext";

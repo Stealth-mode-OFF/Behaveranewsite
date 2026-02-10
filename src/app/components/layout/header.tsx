@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,6 +7,7 @@ import { LanguageSwitcher } from "./language-switcher";
 import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
 import { useModal } from "@/app/ModalContext";
+import { BEHAVERA_LOGIN_URL } from "@/lib/urls";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -134,7 +135,7 @@ export function Header() {
           </div>
 
           <a
-            href="https://app.behavera.com/login"
+            href={BEHAVERA_LOGIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -231,7 +232,7 @@ export function Header() {
               </Link>
               <div className="mt-8 pt-8 border-t border-brand-border flex flex-col gap-4">
                 <a
-                    href="https://app.behavera.com/login"
+                    href={BEHAVERA_LOGIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full h-12 px-8 border border-brand-border hover:border-brand-primary text-brand-text-primary font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors"

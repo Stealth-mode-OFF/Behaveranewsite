@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { CaseStudy } from '@/lib/types';
@@ -9,7 +9,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useLanguage } from '@/app/LanguageContext';
 import { useSEO } from '@/app/hooks/useSEO';
 
-export const CaseStudyPage = () => {
+export function CaseStudyPage() {
   const { slug } = useParams();
   const [study, setStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
@@ -113,4 +113,4 @@ export const CaseStudyPage = () => {
       <Footer />
     </div>
   );
-};
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
 import { ArrowRight, Download, Check, BookOpen, Users, Sparkles, Shield } from 'lucide-react';
@@ -23,7 +23,8 @@ export function LeadPopup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const { t } = useLanguage();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  type LeadPopupFormData = { email: string };
+  const { register, handleSubmit, formState: { errors } } = useForm<LeadPopupFormData>();
   const [error, setError] = useState<string | null>(null);
 
   const isMobile = typeof window !== 'undefined' &&
@@ -88,7 +89,7 @@ export function LeadPopup() {
     document.body.removeChild(link);
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: LeadPopupFormData) => {
     setError(null);
     setIsSubmitting(true);
     submitLead({ email: data.email, source: "exit-intent-popup" });

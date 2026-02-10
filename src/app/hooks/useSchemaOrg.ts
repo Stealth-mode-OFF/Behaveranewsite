@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLanguage } from '@/app/LanguageContext';
+import { SITE_ORIGIN } from '@/lib/urls';
 
 /**
  * Injects comprehensive Schema.org JSON-LD for AI discoverability
@@ -30,7 +31,7 @@ export function useSchemaOrg() {
 }
 
 function getSchemas(language: string) {
-  const baseUrl = 'https://echopulse.cz';
+  const baseUrl = SITE_ORIGIN;
   
   // 1. Organization Schema
   const organization = {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
 import { useModal } from '@/app/ModalContext';
 import { Check, Clock, Video, Shield, Users, Sparkles, Star } from 'lucide-react';

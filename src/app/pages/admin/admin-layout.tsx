@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
 import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2 } from 'lucide-react';
@@ -6,7 +6,7 @@ import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 import { cn } from '@/app/components/ui/utils';
 
-export const AdminLayout = () => {
+export function AdminLayout() {
   const { isAuthenticated, isLoading, user, logout } = useAuth();
   const navigate = useNavigate();
   
@@ -154,4 +154,4 @@ export const AdminLayout = () => {
       </div>
     </div>
   );
-};
+}

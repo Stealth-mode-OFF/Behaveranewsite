@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, Shield, Settings2 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -109,7 +109,6 @@ export function CookieBanner() {
     // Trigger analytics initialization if accepted
     if (analytics && typeof window !== 'undefined') {
       // Here you would initialize Google Analytics, Plausible, etc.
-      console.log('[CookieBanner] Analytics cookies accepted');
     }
   };
 
