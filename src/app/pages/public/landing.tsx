@@ -75,7 +75,7 @@ export function LandingPage() {
     <>
       <Header />
       <main>
-        {/* 1. HERO — Outcome promise + primary CTA */}
+        {/* 1. HERO — Outcome promise + dual CTA */}
         <HeroV2 />
         
         {/* 2. SOCIAL PROOF — Client logos */}
@@ -83,42 +83,42 @@ export function LandingPage() {
         
         {/* 3. PROBLEM — Build pain awareness */}
         <ProblemSectionV2 />
-        
-        {/* 4. SOCIAL PROOF — Real results */}
+
+        {/* 4. VISUAL PROOF — See the solution immediately */}
+        <DashboardPreviewV2 />
+
+        {/* 5. HOW IT WORKS + WHAT WE MEASURE */}
+        <SignalRadar />
+
+        {/* 6. SOCIAL PROOF — Real client results */}
         <LazySection>
           <CaseStudiesSection />
         </LazySection>
 
-        {/* 5. VISUAL PROOF — See it in action */}
-        <DashboardPreviewV2 />
-
-        {/* 6. HOW IT WORKS + WHAT WE MEASURE */}
-        <SignalRadar />
-
-        {/* 7. PERSONALIZATION — Role-based value proposition */}
+        {/* 7. PERSONALIZATION — Role-based value */}
         <RoleSelectionV2 />
 
-        {/* 9. INVESTMENT — Pricing with trust signals */}
+        {/* 8. INVESTMENT — Pricing calculator */}
         <LazySection>
           <PurchaseSection />
         </LazySection>
 
-        {/* 10. OBJECTION HANDLING — Address concerns */}
+        {/* 9. OBJECTION HANDLING — FAQ */}
         <LazySection>
           <FAQ />
         </LazySection>
 
-        {/* 11. COMPLIANCE — GDPR, data handling */}
+        {/* 10. COMPLIANCE — GDPR, data handling */}
         <LazySection>
           <TrustCenter />
         </LazySection>
 
-        {/* 12. FINAL CTA — Clear next step */}
+        {/* 11. FINAL CTA — Clear next step */}
         <LazySection>
           <CtaSection />
         </LazySection>
 
-        {/* 13. SOFT CAPTURE — E-book for undecided */}
+        {/* 12. SOFT CAPTURE — E-book for undecided */}
         <LazySection>
           <LeadCaptureSection />
         </LazySection>
