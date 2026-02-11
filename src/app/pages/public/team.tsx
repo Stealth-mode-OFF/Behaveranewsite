@@ -74,7 +74,7 @@ const translations = {
         role: 'CEO',
         focus: 'Growth · Sales · Leadership',
         shortBio: 'Ex-hockey. Teď skóruje v B2B.',
-        fullBio: 'Jiří kombinuje kompetitivní mentalitu profesionálního sportovce s obchodní ostrostí. Po kariéře v hokejové Extralize přešel do B2B sales, kde během 5 let vybudoval several úspěšné obchodní týmy. V Behavera vede strategii a revenue growth.',
+        fullBio: 'Jiří kombinuje kompetitivní mentalitu profesionálního sportovce s obchodní ostrostí. Po kariéře v hokejové Extralize přešel do B2B sales, kde během 5 let vybudoval několik úspěšných obchodních týmů. V Behavera vede strategii a revenue growth.',
         quote: 'Nejlepší týmy nevyhrávají, protože mají talent. Vyhrávají, protože rozumí tomu, jak spolu pracovat.',
         location: 'Praha, Česká republika',
         experience: [
@@ -96,7 +96,7 @@ const translations = {
         role: 'Head of Product',
         focus: 'HR Analytics · Digital Learning',
         shortBio: '40 knih/měsíc. Vysvětlí i multivarianty.',
-        fullBio: 'Igor je mozkem za produktovou strategií Echo Pulse. S 15+ lety zkušeností v HR tech a digital learning designu přináší unikátní pohled na to, jak transformovat abstraktní behaviorální data do actionable insights. Je posedlý tím, aby komplexní věci byly jednoduché.',
+        fullBio: 'Igor je mozkem za produktovou strategií Echo Pulse. S 15+ lety zkušeností v HR tech a digital learning designu přináší unikátní pohled na to, jak transformovat abstraktní behaviorální data do praktických poznatků pro manažery. Je posedý tím, aby komplexní věci byly jednoduché.',
         quote: 'Data bez kontextu jsou jen čísla. Náš úkol je dát jim příběh.',
         location: 'Praha, Česká republika',
         experience: [

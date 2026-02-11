@@ -66,7 +66,7 @@ function getSchemas(language: string) {
     "sameAs": [
       "https://linkedin.com/company/behavera"
     ],
-    "taxID": "19060369",
+    "taxID": "03525520",
     "areaServed": ["CZ", "SK", "DE", "AT"],
     "knowsAbout": [
       "Employee engagement",
@@ -140,7 +140,7 @@ function getSchemas(language: string) {
         "name": "Kolik stojí nahrazení zaměstnance?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Podle výzkumu Gallup a SHRM stojí nahrazení zaměstnance 6-9× jeho měsíčního platu. U seniorních pozic může náklad dosáhnout až 24× měsíčního platu. Zahrnuje to náklady na nábor, zaškolení, ztrátu produktivity a dopad na tým."
+          "text": "Podle výzkumu Gallup a SHRM stojí nahrazení zaměstnance 6-9× jeho měsíčního platu. U seniorních pozic i více. Zahrnuje to náklady na nábor, zaškolení, ztrátu produktivity a dopad na tým."
         }
       },
       {
@@ -189,7 +189,7 @@ function getSchemas(language: string) {
         "name": "How much does it cost to replace an employee?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "According to Gallup and SHRM research, replacing an employee costs 6-9× their monthly salary. For senior positions, the cost can reach up to 24× monthly salary. This includes recruitment costs, training, lost productivity, and team impact."
+          "text": "According to Gallup and SHRM research, replacing an employee costs 6-9× their monthly salary. Senior roles cost even more. This includes recruitment costs, training, lost productivity, and team impact."
         }
       },
       {

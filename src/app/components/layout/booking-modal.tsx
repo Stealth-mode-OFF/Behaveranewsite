@@ -72,15 +72,15 @@ export function BookingModal() {
       ],
       meta: '30 min · Video hovor · Zdarma',
       social: {
-        stat: '50+',
+        stat: '20+',
         label: 'firem už používá Behavera',
       },
       testimonial: {
-        quote: '"Konečně vidíme, co se v týmu opravdu děje."',
-        author: 'HR Director',
-        company: 'Enterprise klient',
+        quote: '"Překvapilo mě, kolik lidí se zapojilo. V Pulsu se ukázaly věci, které jim lidé do očí neřekli."',
+        author: 'Tereza Müllerová',
+        company: 'StartupJobs, COO',
       },
-      trust: ['GDPR & SOC 2', 'Bez kreditní karty', '30denní trial'],
+      trust: ['GDPR ready', 'Bez kreditní karty', '30denní trial'],
     },
     en: {
       title: 'Book a Demo',
@@ -92,15 +92,15 @@ export function BookingModal() {
       ],
       meta: '30 min · Video call · Free',
       social: {
-        stat: '50+',
+        stat: '20+',
         label: 'companies already use Behavera',
       },
       testimonial: {
-        quote: '"Finally, we see what\'s really happening in our team."',
-        author: 'HR Director',
-        company: 'Enterprise client',
+        quote: '"It took just a moment \u2014 and those few answers delivered exactly what we needed. Clear, actionable insights."',
+        author: 'Dominik Hegedus',
+        company: 'Expando, CEO',
       },
-      trust: ['GDPR & SOC 2', 'No credit card', '30-day trial'],
+      trust: ['GDPR ready', 'No credit card', '30-day trial'],
     },
     de: {
       title: 'Demo buchen',
@@ -112,15 +112,15 @@ export function BookingModal() {
       ],
       meta: '30 Min · Videoanruf · Kostenlos',
       social: {
-        stat: '50+',
+        stat: '20+',
         label: 'Unternehmen nutzen bereits Behavera',
       },
       testimonial: {
-        quote: '"Endlich sehen wir, was in unserem Team wirklich passiert."',
-        author: 'HR-Direktor',
-        company: 'Enterprise-Kunde',
+        quote: '"Ohne Behavera h\u00e4tten wir weiter Symptome behandelt statt die wahren Ursachen."',
+        author: 'Karel Poplstein',
+        company: 'Valxon, CEO',
       },
-      trust: ['DSGVO & SOC 2', 'Keine Kreditkarte', '30-Tage-Test'],
+      trust: ['DSGVO ready', 'Keine Kreditkarte', '30-Tage-Test'],
     },
   };
 

@@ -57,17 +57,17 @@ export function Footer() {
   const companyInfo = {
     cz: {
       name: "Behavera s.r.o.",
-      ico: "IČO: 19060369",
+      ico: "IČO: 03525520",
       address: "Křižíkova 148/34, Praha 8",
     },
     en: {
       name: "Behavera s.r.o.",
-      ico: "ID: 19060369",
+      ico: "ID: 03525520",
       address: "Křižíkova 148/34, Prague 8, CZ",
     },
     de: {
       name: "Behavera s.r.o.",
-      ico: "Reg.-Nr.: 19060369",
+      ico: "Reg.-Nr.: 03525520",
       address: "Křižíkova 148/34, Prag 8, CZ",
     },
   };

@@ -33,7 +33,7 @@ type TCopy = {
 const copy: Record<string, TCopy> = {
   cz: {
     badge: "Echo Pulse",
-    title: "2 minuty. 85 % lidí odpoví. ",
+    title: "2 minuty. Většina lidí odpoví. ",
     titleHighlight: "Každý měsíc.",
     subtitle: "Žádné formuláře. Zaměstnanci odpovídají v krátkém AI chatu \u2014 5\u20136 otázek, anonymně. Výsledky okamžitě v dashboardu.",
     stepsTitle: "Jak to funguje",
@@ -60,7 +60,7 @@ const copy: Record<string, TCopy> = {
     compSubtitle: "Sbírat zpětnou vazbu přes formuláře umí každý. Ale funguje to?",
     compTimeSaved: "Ušetříte ~6 hodin na každém kole zpětné vazby",
     advantages: [
-      { title: "85 % návratnost vs. 15 %", oldWay: "Formuláře: 15\u201330 % lidí dokončí", ourWay: "Pulse: 85 %+ díky chat formátu" },
+      { title: "80 %+ návratnost vs. 30–40 %", oldWay: "Formuláře: 30\u201340 % lidí dokončí", ourWay: "Pulse: typicky 80 %+ díky chat formátu" },
       { title: "Okamžitá analýza, ne Excel", oldWay: "Formuláře: Export \u2192 Excel \u2192 ruční grafy", ourWay: "Pulse: Real-time dashboard s AI insights" },
       { title: "Validovaná psychometrie", oldWay: "Formuláře: Otázky psané bez metodologie", ourWay: "Pulse: Navrženo behaviorálními psychology" },
       { title: "Trendy, ne snapshoty", oldWay: "Formuláře: 1\u00D7 ročně velký průzkum", ourWay: "Pulse: Průběžné měření s vizualizací trendů" },
@@ -72,7 +72,7 @@ const copy: Record<string, TCopy> = {
   },
   en: {
     badge: "Echo Pulse",
-    title: "2 minutes. 85% respond. ",
+    title: "2 minutes. Most people respond. ",
     titleHighlight: "Every month.",
     subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 5\u20136 questions, fully anonymous. Results appear instantly in your dashboard.",
     stepsTitle: "How it works",
@@ -99,7 +99,7 @@ const copy: Record<string, TCopy> = {
     compSubtitle: "Anyone can collect feedback with forms. But does it actually work?",
     compTimeSaved: "Save ~6 hours on every feedback cycle",
     advantages: [
-      { title: "85% completion vs. 15%", oldWay: "Forms: 15\u201330% of people finish it", ourWay: "Pulse: 85%+ thanks to chat format" },
+      { title: "80%+ completion vs. 30–40%", oldWay: "Forms: 30\u201340% of people finish it", ourWay: "Pulse: typically 80%+ thanks to chat format" },
       { title: "Instant analysis, not Excel", oldWay: "Forms: Export \u2192 Excel \u2192 manual charts", ourWay: "Pulse: Real-time dashboard with AI insights" },
       { title: "Validated psychometrics", oldWay: "Forms: Questions without methodology", ourWay: "Pulse: Designed by behavioral psychologists" },
       { title: "Trends, not snapshots", oldWay: "Forms: Once-a-year big survey", ourWay: "Pulse: Continuous measurement with trends" },
@@ -111,7 +111,7 @@ const copy: Record<string, TCopy> = {
   },
   de: {
     badge: "Echo Pulse",
-    title: "2 Minuten. 85 % antworten. ",
+    title: "2 Minuten. Die meisten antworten. ",
     titleHighlight: "Jeden Monat.",
     subtitle: "Keine Formulare. Mitarbeiter antworten in einem kurzen AI-Chat \u2014 5\u20136 Fragen, v\u00f6llig anonym. Ergebnisse sofort im Dashboard.",
     stepsTitle: "So funktioniert es",
@@ -138,7 +138,7 @@ const copy: Record<string, TCopy> = {
     compSubtitle: "Feedback mit Formularen sammeln kann jeder. Aber funktioniert es?",
     compTimeSaved: "Sparen Sie ~6 Stunden pro Feedback-Zyklus",
     advantages: [
-      { title: "85 % Rücklauf vs. 15 %", oldWay: "Formulare: 15\u201330 % füllen es aus", ourWay: "Pulse: 85 %+ dank Chat-Format" },
+      { title: "80 %+ Rücklauf vs. 30–40 %", oldWay: "Formulare: 30\u201340 % füllen es aus", ourWay: "Pulse: typisch 80 %+ dank Chat-Format" },
       { title: "Sofortige Analyse, kein Excel", oldWay: "Formulare: Export \u2192 Excel \u2192 manuelle Diagramme", ourWay: "Pulse: Echtzeit-Dashboard mit KI-Insights" },
       { title: "Validierte Psychometrie", oldWay: "Formulare: Fragen ohne Methodik", ourWay: "Pulse: Von Verhaltenspsychologen entwickelt" },
       { title: "Trends, keine Momentaufnahmen", oldWay: "Formulare: 1\u00D7 jährlich große Umfrage", ourWay: "Pulse: Laufende Messung mit Trends" },
@@ -435,7 +435,7 @@ const testimonials: Testimonial[] = [
   {
     name: "Jiří",
     role: "CEO",
-    company: "Logistika",
+    company: "logistická firma",
     quote: "Jsem nadšený! Jsem na pozici CEO od srpna. Mám dát do pořádku celou firmu a potřebuji rychle zjistit, co se kde děje. Tohle je pro mě nesmírně cenné!",
   },
   {
@@ -453,14 +453,8 @@ const testimonials: Testimonial[] = [
   {
     name: "Dana Kultová",
     role: "COO",
-    company: "",
+    company: "klientská firma",
     quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations. Thanks to that, we fine-tuned our processes, set clear KPIs, and improved team communication.",
-  },
-  {
-    name: "Head of HR",
-    role: "Head of HR",
-    company: "",
-    quote: "I had given up hope of finding out what the company thinks. People hated surveys and just 30 % responded. And the data was useless. Behavera gave us clear message from over two-thirds of employees, which is more than enough to act.",
   },
   {
     name: "Ema Nováková",

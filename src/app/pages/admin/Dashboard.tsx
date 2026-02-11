@@ -86,17 +86,17 @@ export function Dashboard() {
             to="/admin/case-studies"
             colorClass="bg-brand-primary"
         />
-        {/* Mock Stats for visual balance */}
+        {/* Summary Stats */}
         <StatCard 
             title="Total Views" 
-            value="12.5k" 
+            value="—" 
             icon={TrendingUp} 
             to="#"
             colorClass="bg-brand-accent"
         />
         <StatCard 
             title="Active Authors" 
-            value="4" 
+            value="—" 
             icon={Users} 
             to="#"
             colorClass="bg-green-500"
@@ -115,8 +115,8 @@ export function Dashboard() {
                          <div key={i} className="flex items-center gap-4 pb-4 border-b border-brand-border/30 last:border-0 last:pb-0">
                              <div className="w-2 h-2 rounded-full bg-brand-primary/40" />
                              <div className="flex-1">
-                                 <div className="text-sm font-medium text-brand-text-primary">Updated "The Future of Work"</div>
-                                 <div className="text-xs text-brand-text-muted">2 hours ago • Sarah Connor</div>
+                                 <div className="text-sm font-medium text-brand-text-primary">Content updated</div>
+                                 <div className="text-xs text-brand-text-muted">Recently • Behavera Team</div>
                              </div>
                          </div>
                      ))}
