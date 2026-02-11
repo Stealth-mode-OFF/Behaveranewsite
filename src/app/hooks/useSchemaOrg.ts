@@ -308,12 +308,6 @@ function getSchemas(language: string) {
       {
         "@type": "ListItem",
         "position": 2,
-        "name": language === 'cz' ? "Vědecký základ" : language === 'de' ? "Wissenschaft" : "Research",
-        "item": `${baseUrl}/research`
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
         "name": "Blog",
         "item": `${baseUrl}/blog`
       }

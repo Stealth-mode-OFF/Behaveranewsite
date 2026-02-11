@@ -26,9 +26,6 @@ const CaseStudiesPage = lazy(() =>
 const CaseStudyPage = lazy(() =>
   import("./pages/public/case-study").then((module) => ({ default: module.CaseStudyPage }))
 );
-const ResearchPage = lazy(() =>
-  import("./pages/public/research").then((module) => ({ default: module.ResearchPage }))
-);
 const NotFoundPage = lazy(() =>
   import("./pages/public/not-found").then((module) => ({ default: module.NotFoundPage }))
 );
@@ -113,7 +110,6 @@ function App() {
 
                     <Route path="/case-studies" element={<CaseStudiesPage />} />
                     <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
-                    <Route path="/research" element={<ResearchPage />} />
                     <Route path="/changelog" element={<ChangelogPage />} />
                     <Route path="/team" element={<TeamPage />} />
 

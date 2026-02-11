@@ -38,7 +38,6 @@ export function Header() {
     },
   ];
 
-  const methodologyLabel = language === 'cz' ? 'Vědecký základ' : language === 'de' ? 'Wissenschaft' : 'Research';
   const blogLabel = language === 'cz' ? 'Blog' : language === 'de' ? 'Blog' : 'Blog';
   const loginLabel = language === 'cz' ? 'Přihlásit se' : language === 'de' ? 'Anmelden' : 'Login';
 
@@ -107,16 +106,6 @@ export function Header() {
                  </Link>
              )
           ))}
-          {/* Methodology page link */}
-          <Link 
-            to="/research"
-            className={cn(
-                "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-            )}
-          >
-            {methodologyLabel}
-          </Link>
           {/* Blog link */}
           <Link 
             to="/blog"
@@ -216,14 +205,6 @@ export function Header() {
                     </Link>
                  )
               ))}
-              {/* Methodology page link */}
-              <Link 
-                to="/research"
-                className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {methodologyLabel}
-              </Link>
               {/* Blog link */}
               <Link 
                 to="/blog"
