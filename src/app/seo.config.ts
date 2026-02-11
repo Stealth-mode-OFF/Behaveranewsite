@@ -128,37 +128,6 @@ export const pageSEO: Record<string, Record<string, SEOConfig>> = {
       ],
     },
   },
-  research: {
-    cz: {
-      title: 'Vědecký základ Echo Pulse | JD-R, SDT, Equity Theory | Behavera',
-      description: 'Echo Pulse staví na třech validovaných psychologických modelech: Job Demands-Resources (JD-R), Self-Determination Theory (SDT) a Equity Theory. 50 000+ otestovaných lidí, 91% response rate.',
-      keywords: [
-        'JD-R model',
-        'Job Demands Resources',
-        'Self-Determination Theory',
-        'Equity Theory',
-        'organizační psychologie',
-        'pracovní psychologie',
-        'employee engagement výzkum',
-        'Behavera vědecký základ',
-        'Echo Pulse metodologie',
-      ],
-    },
-    en: {
-      title: 'Scientific Foundation | JD-R, SDT, Equity Theory | Echo Pulse by Behavera',
-      description: 'Echo Pulse is built on three validated psychological models: Job Demands-Resources (JD-R), Self-Determination Theory (SDT), and Equity Theory. 50,000+ people tested, 91% response rate.',
-      keywords: [
-        'JD-R model',
-        'Job Demands Resources',
-        'Self-Determination Theory',
-        'Equity Theory',
-        'organizational psychology',
-        'workplace psychology',
-        'employee engagement research',
-        'Echo Pulse methodology',
-      ],
-    },
-  },
   blog: {
     cz: {
       title: 'Blog o people analytics a retenci zaměstnanců | Echo Pulse',

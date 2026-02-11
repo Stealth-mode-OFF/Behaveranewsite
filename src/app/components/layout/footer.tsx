@@ -116,17 +116,14 @@ export function Footer() {
 
   const resourceLinks = {
     cz: [
-      { label: "Vědecký základ", href: "/research" },
       { label: "Trust Center", href: "/trust-center" },
       { label: "FAQ", href: "#faq" },
     ],
     en: [
-      { label: "Research", href: "/research" },
       { label: "Trust Center", href: "/trust-center" },
       { label: "FAQ", href: "#faq" },
     ],
     de: [
-      { label: "Wissenschaft", href: "/research" },
       { label: "Trust Center", href: "/trust-center" },
       { label: "FAQ", href: "#faq" },
     ],
