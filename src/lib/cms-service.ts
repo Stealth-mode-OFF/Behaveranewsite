@@ -41,7 +41,7 @@ type CaseStudyRow = {
 // Supabase client is imported from shared module
 
 const resolveAuthor = (row?: AuthorRow | null): Author => {
-  if (!row) return MOCK_AUTHORS[0];
+  if (!row) return DEFAULT_AUTHORS[0];
   return {
     id: row.id,
     name: row.name,
@@ -101,18 +101,18 @@ function getMergedCaseStudies(): CaseStudy[] {
   const deletedIds = new Set<string>(
     JSON.parse(localStorage.getItem('behavera_deleted_cs') || '[]')
   );
-  const fromMock = MOCK_CASE_STUDIES.filter(s => !localIds.has(s.id) && !deletedIds.has(s.id));
-  return [...local, ...fromMock].sort(
+  const fromDefault = DEFAULT_CASE_STUDIES.filter(s => !localIds.has(s.id) && !deletedIds.has(s.id));
+  return [...local, ...fromDefault].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
 }
 
-// Mock Data — authors & posts imported from blog-content.ts
-const MOCK_AUTHORS: Author[] = BLOG_AUTHORS;
+// Seed content — displayed when CMS (Supabase) is not configured
+const DEFAULT_AUTHORS: Author[] = BLOG_AUTHORS;
 
-const MOCK_POSTS: BlogPost[] = BLOG_POSTS;
+const DEFAULT_POSTS: BlogPost[] = BLOG_POSTS;
 
-const MOCK_CASE_STUDIES: CaseStudy[] = [
+const DEFAULT_CASE_STUDIES: CaseStudy[] = [
   {
     id: '0',
     title: 'Za 3 minuty jasno, jak na Employer Branding',
@@ -309,7 +309,7 @@ const MOCK_CASE_STUDIES: CaseStudy[] = [
 export const CmsService = {
   // Posts
   getPosts: async (): Promise<BlogPost[]> => {
-    if (!supabaseClient) return [...MOCK_POSTS];
+    if (!supabaseClient) return [...DEFAULT_POSTS];
     
     try {
       const { data, error } = await supabaseClient
@@ -326,12 +326,12 @@ export const CmsService = {
         .map(mapPostRow);
     } catch (err) {
       console.error('Error fetching posts:', err);
-      return [...MOCK_POSTS];
+      return [...DEFAULT_POSTS];
     }
   },
 
   getPostBySlug: async (slug: string): Promise<BlogPost | undefined> => {
-    if (!supabaseClient) return MOCK_POSTS.find(p => p.slug === slug);
+    if (!supabaseClient) return DEFAULT_POSTS.find(p => p.slug === slug);
     
     try {
       const { data, error } = await supabaseClient
@@ -346,7 +346,7 @@ export const CmsService = {
       return mapPostRow(data as PostRow);
     } catch (err) {
       console.error('Error fetching post:', err);
-      return MOCK_POSTS.find(p => p.slug === slug);
+      return DEFAULT_POSTS.find(p => p.slug === slug);
     }
   },
 
@@ -355,10 +355,10 @@ export const CmsService = {
       const newPost: BlogPost = {
         ...post,
         id: Math.random().toString(36).substr(2, 9),
-        author: MOCK_AUTHORS[0],
+        author: DEFAULT_AUTHORS[0],
         publishedAt: new Date().toISOString(),
       };
-      MOCK_POSTS.push(newPost);
+      DEFAULT_POSTS.push(newPost);
       return newPost;
     }
     
@@ -389,10 +389,10 @@ export const CmsService = {
   
   updatePost: async (id: string, updates: Partial<BlogPost>): Promise<BlogPost> => {
     if (!supabaseClient) {
-      const index = MOCK_POSTS.findIndex(p => p.id === id);
+      const index = DEFAULT_POSTS.findIndex(p => p.id === id);
       if (index === -1) throw new Error("Post not found");
-      MOCK_POSTS[index] = { ...MOCK_POSTS[index], ...updates };
-      return MOCK_POSTS[index];
+      DEFAULT_POSTS[index] = { ...DEFAULT_POSTS[index], ...updates };
+      return DEFAULT_POSTS[index];
     }
     
     try {
@@ -422,8 +422,8 @@ export const CmsService = {
   
   deletePost: async (id: string): Promise<void> => {
     if (!supabaseClient) {
-      const index = MOCK_POSTS.findIndex(p => p.id === id);
-      if (index !== -1) MOCK_POSTS.splice(index, 1);
+      const index = DEFAULT_POSTS.findIndex(p => p.id === id);
+      if (index !== -1) DEFAULT_POSTS.splice(index, 1);
       return;
     }
     
@@ -582,7 +582,7 @@ export const CmsService = {
         return local[localIdx];
       }
       // If it's a mock item, copy to localStorage with updates
-      const mock = MOCK_CASE_STUDIES.find(s => s.id === id);
+      const mock = DEFAULT_CASE_STUDIES.find(s => s.id === id);
       if (mock) {
         const updated = { ...mock, ...updates };
         local.push(updated);
@@ -627,8 +627,8 @@ export const CmsService = {
       saveLocalCaseStudies(filtered);
       // Note: mock entries reappear on reload unless overridden.
       // Add a "deleted" marker for mock items.
-      const isMock = MOCK_CASE_STUDIES.some(s => s.id === id);
-      if (isMock) {
+      const isDefault = DEFAULT_CASE_STUDIES.some(s => s.id === id);
+      if (isDefault) {
         const deleted = JSON.parse(localStorage.getItem('behavera_deleted_cs') || '[]') as string[];
         if (!deleted.includes(id)) {
           deleted.push(id);

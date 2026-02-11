@@ -87,7 +87,7 @@ export function TermsPage() {
             <section>
                 <h2 className="text-xl font-bold mb-4">Obchodní podmínky společnosti Behavera s.r.o.</h2>
                 <p className="mb-4">
-                    Sídlo: Křižíkova 148/34, Karlín, Praha 8, Česká republika, IČO: 03525520, spisová značka C 233138 vedená u Městského soudu v Praze.
+                    Sídlo: Křižíkova 148/34, Karlín, Praha 8, Česká republika, IČO: 03525520.
                 </p>
             </section>
 

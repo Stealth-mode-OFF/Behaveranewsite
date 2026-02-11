@@ -74,7 +74,7 @@ const copy: Record<string, ResearchCopy> = {
   cz: {
     seo: {
       title: 'Vědecký základ | Echo Pulse by Behavera',
-      description: 'Echo Pulse stojí na třech vědecky ověřených modelech: JD-R, Self-Determination Theory a Equity Theory. 50 000+ otestovaných, 91% návratnost.',
+      description: 'Echo Pulse stojí na třech vědecky ověřených modelech: JD-R, Self-Determination Theory a Equity Theory. Validováno v prostředí českých firem.',
       keywords: 'JD-R model, Self-Determination Theory, Equity Theory, organizační psychologie, engagement, burnout detekce, Behavera',
     },
     badge: 'VĚDECKÝ ZÁKLAD',
@@ -83,11 +83,11 @@ const copy: Record<string, ResearchCopy> = {
     heroSubtitle: 'Náš systém stojí na desetiletích validovaného výzkumu v organizační psychologii. Žádné buzzwordy — modely, které prokazatelně předpovídají chování lidí ve firmách.',
     heroStats: [
       { value: '3', label: 'Vědecké modely' },
-      { value: '50k+', label: 'Otestovaných lidí' },
-      { value: '91%', label: 'Návratnost' },
+      { value: 'Tisíce', label: 'Otestovaných lidí' },
+      { value: '80%+', label: 'Typická návratnost' },
     ],
     evidenceStats: [
-      { value: '€50k', label: 'Úspora na udržení 1 klíčového zaměstnance', source: 'SHRM Benchmarking' },
+      { value: '6–9×', label: 'Úspory při udržení 1 zaměstnance (vůči měs. mzdě)', source: 'SHRM Benchmarking' },
       { value: '59%', label: 'Méně odchodů u engagovaných týmů', source: 'Gallup Q12' },
       { value: '20%', label: 'Vyšší produktivita engagovaných lidí', source: 'Gallup 2023' },
       { value: '70%', label: 'Vlivu na engagement má přímý manažer', source: 'Manager Impact Study' },
@@ -174,7 +174,7 @@ const copy: Record<string, ResearchCopy> = {
   en: {
     seo: {
       title: 'Scientific Foundation | Echo Pulse by Behavera',
-      description: 'Echo Pulse is built on three validated models: JD-R, Self-Determination Theory, and Equity Theory. 50,000+ tested, 91% response rate.',
+      description: 'Echo Pulse is built on three validated models: JD-R, Self-Determination Theory, and Equity Theory. Validated in real company environments.',
       keywords: 'JD-R model, Self-Determination Theory, Equity Theory, organizational psychology, engagement, burnout detection, Behavera',
     },
     badge: 'SCIENTIFIC FOUNDATION',
@@ -183,11 +183,11 @@ const copy: Record<string, ResearchCopy> = {
     heroSubtitle: 'Our system is built on decades of validated research in organizational psychology. No buzzwords — models that demonstrably predict behavior in organizations.',
     heroStats: [
       { value: '3', label: 'Scientific models' },
-      { value: '50k+', label: 'People tested' },
-      { value: '91%', label: 'Response rate' },
+      { value: '1000s', label: 'People tested' },
+      { value: '80%+', label: 'Typical response rate' },
     ],
     evidenceStats: [
-      { value: '€50k', label: 'Saved by retaining 1 key employee', source: 'SHRM Benchmarking' },
+      { value: '6–9×', label: 'Cost of replacing 1 employee (vs. monthly salary)', source: 'SHRM Benchmarking' },
       { value: '59%', label: 'Fewer departures in engaged teams', source: 'Gallup Q12' },
       { value: '20%', label: 'Higher productivity from engaged people', source: 'Gallup 2023' },
       { value: '70%', label: 'Of engagement impact comes from direct manager', source: 'Manager Impact Study' },
@@ -274,7 +274,7 @@ const copy: Record<string, ResearchCopy> = {
   de: {
     seo: {
       title: 'Wissenschaftliche Grundlage | Echo Pulse by Behavera',
-      description: 'Echo Pulse basiert auf drei validierten Modellen: JD-R, Self-Determination Theory und Equity Theory. 50.000+ getestet, 91% Antwortrate.',
+      description: 'Echo Pulse basiert auf drei validierten Modellen: JD-R, Self-Determination Theory und Equity Theory. Validiert in realen Unternehmensumgebungen.',
       keywords: 'JD-R Modell, Self-Determination Theory, Equity Theory, Organisationspsychologie, Engagement, Burnout-Erkennung, Behavera',
     },
     badge: 'WISSENSCHAFTLICHE GRUNDLAGE',
@@ -283,11 +283,11 @@ const copy: Record<string, ResearchCopy> = {
     heroSubtitle: 'Unser System basiert auf Jahrzehnten validierter Forschung in der Organisationspsychologie. Keine Buzzwords — Modelle, die nachweislich Verhalten in Organisationen vorhersagen.',
     heroStats: [
       { value: '3', label: 'Wissenschaftliche Modelle' },
-      { value: '50k+', label: 'Getestete Personen' },
-      { value: '91%', label: 'Antwortrate' },
+      { value: '1000+', label: 'Getestete Personen' },
+      { value: '80%+', label: 'Typische Antwortrate' },
     ],
     evidenceStats: [
-      { value: '€50k', label: 'Ersparnis durch Bindung eines Schlüsselmitarbeiters', source: 'SHRM Benchmarking' },
+      { value: '6–9×', label: 'Kosten für den Ersatz eines Mitarbeiters (vs. Monatsgehalt)', source: 'SHRM Benchmarking' },
       { value: '59%', label: 'Weniger Abgänge bei engagierten Teams', source: 'Gallup Q12' },
       { value: '20%', label: 'Höhere Produktivität engagierter Mitarbeiter', source: 'Gallup 2023' },
       { value: '70%', label: 'Des Engagement-Einflusses kommt vom direkten Vorgesetzten', source: 'Manager Impact Study' },

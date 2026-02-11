@@ -55,9 +55,9 @@ const translations = {
         date: 'Květen 2025',
         type: 'major',
         title: 'Prediktivní Attrition Model',
-        description: 'Predikujte odchod klíčových zaměstnanců 90 dní dopředu s 87% přesností.',
+        description: 'Predikujte riziko odchodu klíčových zaměstnanců na základě dlouhodobých trendů v datech.',
         changes: [
-          'Risk score pro každého zaměstnance',
+          'Risk score pro každý tým',
           'Faktory ovlivňující retenci',
           'Automatické alerty pro HR',
           'Integrace s Slack/Teams',
@@ -85,7 +85,7 @@ const translations = {
         title: 'Enhanced Security & GDPR',
         description: 'Rozšířené bezpečnostní funkce a plná shoda s GDPR.',
         changes: [
-          'SOC 2 Type II certifikace',
+          'Rozšířené šifrování a bezpečnostní audit',
           'Šifrování end-to-end',
           'Automatická anonymizace dat',
           'Right to be forgotten workflow',
@@ -150,9 +150,9 @@ const translations = {
         date: 'May 2025',
         type: 'major',
         title: 'Predictive Attrition Model',
-        description: 'Predict key employee departures 90 days ahead with 87% accuracy.',
+        description: 'Predict key employee departure risk based on long-term data trends.',
         changes: [
-          'Risk score for each employee',
+          'Risk score for each team',
           'Factors affecting retention',
           'Automatic alerts for HR',
           'Slack/Teams integration',
@@ -180,7 +180,7 @@ const translations = {
         title: 'Enhanced Security & GDPR',
         description: 'Extended security features and full GDPR compliance.',
         changes: [
-          'SOC 2 Type II certification',
+          'Extended encryption and security audit',
           'End-to-end encryption',
           'Automatic data anonymization',
           'Right to be forgotten workflow',
@@ -245,9 +245,9 @@ const translations = {
         date: 'Mai 2025',
         type: 'major',
         title: 'Prädiktives Attrition-Modell',
-        description: 'Vorhersage von Mitarbeiterabgängen 90 Tage im Voraus mit 87% Genauigkeit.',
+        description: 'Vorhersage des Abgangsrisikos von Schlüsselmitarbeitern basierend auf langfristigen Datentrends.',
         changes: [
-          'Risiko-Score für jeden Mitarbeiter',
+          'Risiko-Score für jedes Team',
           'Faktoren, die die Bindung beeinflussen',
           'Automatische Benachrichtigungen für HR',
           'Slack/Teams-Integration',
@@ -275,7 +275,7 @@ const translations = {
         title: 'Erweiterte Sicherheit & DSGVO',
         description: 'Erweiterte Sicherheitsfunktionen und vollständige DSGVO-Konformität.',
         changes: [
-          'SOC 2 Type II-Zertifizierung',
+          'Erweitertes Sicherheitsaudit und Verschlüsselung',
           'Ende-zu-Ende-Verschlüsselung',
           'Automatische Datenanonymisierung',
           'Recht auf Vergessenwerden Workflow',

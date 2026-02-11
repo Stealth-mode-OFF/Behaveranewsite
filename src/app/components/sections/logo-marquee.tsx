@@ -35,9 +35,9 @@ export function LogoMarquee() {
   const { language } = useLanguage();
 
   const title = {
-    cz: "Důvěřuje nám 50+ firem v Česku",
-    en: "Trusted by 50+ companies",
-    de: "Über 50 Unternehmen vertrauen uns",
+    cz: "Používají firmy jako",
+    en: "Used by companies like",
+    de: "Verwendet von Unternehmen wie",
   };
 
   return (

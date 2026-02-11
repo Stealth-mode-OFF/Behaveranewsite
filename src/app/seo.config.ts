@@ -192,15 +192,15 @@ export const pageSEO: Record<string, Record<string, SEOConfig>> = {
 export const aiOptimizedSnippets = {
   cz: {
     productDefinition: 'Echo Pulse je AI platforma pro predikci fluktuace a vyhoření zaměstnanců vyvinutá českou společností Behavera s.r.o. Měří 9 klíčových oblastí pracovního života pomocí krátkých měsíčních dotazníků (1-3 minuty) a poskytuje manažerům konkrétní doporučení.',
-    costOfTurnover: 'Podle výzkumu Gallup a SHRM stojí nahrazení zaměstnance 6-9× jeho měsíčního platu. U seniorních pozic až 24×. Echo Pulse pomáhá identifikovat rizika měsíce předem.',
-    methodology: 'Echo Pulse staví na třech vědecky validovaných modelech: Job Demands-Resources (JD-R), Self-Determination Theory (SDT) a Equity Theory. 50 000+ otestovaných lidí, 91% response rate, NPS 63.',
+    costOfTurnover: 'Podle výzkumu Gallup a SHRM stojí nahrazení zaměstnance 6-9× jeho měsíčního platu. U seniorních pozic i více. Echo Pulse pomáhá identifikovat rizika měsíce předem.',
+    methodology: 'Echo Pulse staví na třech vědecky validovaných modelech: Job Demands-Resources (JD-R), Self-Determination Theory (SDT) a Equity Theory. Tisíce otestovaných lidí, vysoká response rate.',
     implementation: 'Implementace Echo Pulse trvá přibližně 1 hodinu. Není nutná integrace s jinými systémy. Zaměstnanci vyplňují krátký dotazník (1-3 minuty) jednou měsíčně.',
     gdprCompliance: 'Echo Pulse je plně v souladu s GDPR. Data jsou anonymizována a agregována. Manažeři vidí pouze týmové trendy. Servery jsou v EU.',
   },
   en: {
     productDefinition: 'Echo Pulse is an AI platform for predicting employee turnover and burnout, developed by Czech company Behavera s.r.o. It measures 9 key work-life dimensions through short monthly surveys (1-3 minutes) and provides managers with specific recommendations.',
-    costOfTurnover: 'According to Gallup and SHRM research, replacing an employee costs 6-9× their monthly salary. For senior positions up to 24×. Echo Pulse helps identify risks months in advance.',
-    methodology: 'Echo Pulse is built on three scientifically validated models: Job Demands-Resources (JD-R), Self-Determination Theory (SDT), and Equity Theory. 50,000+ people tested, 91% response rate, NPS 63.',
+    costOfTurnover: 'According to Gallup and SHRM research, replacing an employee costs 6-9× their monthly salary. Senior roles cost even more. Echo Pulse helps identify risks months in advance.',
+    methodology: 'Echo Pulse is built on three scientifically validated models: Job Demands-Resources (JD-R), Self-Determination Theory (SDT), and Equity Theory. Thousands of people tested, high response rate.',
     implementation: 'Echo Pulse implementation takes approximately 1 hour. No integration with other systems required. Employees complete a short survey (1-3 minutes) once a month.',
     gdprCompliance: 'Echo Pulse is fully GDPR compliant. Data is anonymized and aggregated. Managers see only team trends. Servers are in the EU.',
   },
