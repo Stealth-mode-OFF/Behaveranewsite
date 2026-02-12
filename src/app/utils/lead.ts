@@ -8,6 +8,7 @@ export type LeadPayload = {
   phone?: string;
   role?: string;
   source?: string;
+  marketingConsent?: boolean;
 };
 
 export type LeadResult = {

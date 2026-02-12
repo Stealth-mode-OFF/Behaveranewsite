@@ -24,8 +24,10 @@ export function LeadPopup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const { t } = useLanguage();
-  type LeadPopupFormData = { email: string };
-  const { register, handleSubmit, formState: { errors } } = useForm<LeadPopupFormData>();
+  type LeadPopupFormData = { email: string; marketingConsent: boolean };
+  const { register, handleSubmit, formState: { errors } } = useForm<LeadPopupFormData>({
+    defaultValues: { marketingConsent: false }
+  });
   const [error, setError] = useState<string | null>(null);
 
   const isMobile = typeof window !== 'undefined' &&
@@ -95,7 +97,7 @@ export function LeadPopup() {
   const onSubmit = async (data: LeadPopupFormData) => {
     setError(null);
     setIsSubmitting(true);
-    submitLead({ email: data.email, source: "exit-intent-popup" });
+    submitLead({ email: data.email, source: "exit-intent-popup", marketingConsent: data.marketingConsent });
     trackLeadSubmitted('exit-intent-popup');
     setTimeout(() => {
       downloadEbook();
@@ -211,7 +213,7 @@ export function LeadPopup() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
                   <div>
                     <label className="text-[13px] font-medium text-brand-text-secondary mb-1.5 block">
-                      {t.leadPopup?.inputLabel || "Kam máme e-book poslat?"}
+                      {t.leadPopup?.inputLabel || "Váš e-mail"}
                     </label>
                     <Input
                       type="email"
@@ -232,6 +234,17 @@ export function LeadPopup() {
                       {error}
                     </p>
                   )}
+
+                  <label className="flex items-start gap-2.5 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
+                      {...register("marketingConsent")}
+                    />
+                    <span className="text-[12px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">
+                      {t.leadPopup?.marketingConsent || "Souhlasím se zasíláním občasných tipů a novinek. Odhlásit se můžete kdykoliv."}
+                    </span>
+                  </label>
 
                   <Button
                     type="submit"

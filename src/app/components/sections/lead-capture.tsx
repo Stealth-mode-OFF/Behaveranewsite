@@ -13,6 +13,7 @@ import { trackLeadSubmitted, trackEbookDownload } from "@/lib/analytics";
 type LeadFormData = {
   name?: string;
   email: string;
+  marketingConsent: boolean;
 };
 
 const EBOOKS = [
@@ -44,7 +45,9 @@ export function LeadCaptureSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<LeadFormData>();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<LeadFormData>({
+    defaultValues: { marketingConsent: false }
+  });
 
   const copy = {
     cz: {
@@ -61,7 +64,8 @@ export function LeadCaptureSection() {
       emailLabel: "Pracovní email",
       emailPlaceholder: "jan.novak@firma.cz",
       submit: "Stáhnout e-booky zdarma",
-      consent: "Odesláním souhlasíte se zpracováním osobních údajů. Žádný spam.",
+      consent: "Souhlasím se zasíláním občasných tipů a novinek. Odhlásit se můžete kdykoliv.",
+      consentPrivacy: "Odesláním souhlasíte se zpracováním osobních údajů.",
       successTitle: "Hotovo! Stahování začalo.",
       successSubtitle: "Pokud se stahování nespustilo, klikněte na tlačítka níže:",
       errorGeneric: "Něco se pokazilo. Zkuste to prosím znovu.",
@@ -80,7 +84,8 @@ export function LeadCaptureSection() {
       emailLabel: "Work email",
       emailPlaceholder: "john.smith@company.com",
       submit: "Download free e-books",
-      consent: "By submitting you agree to our privacy policy. No spam.",
+      consent: "I agree to receive occasional tips and product news. You can unsubscribe anytime.",
+      consentPrivacy: "By submitting you agree to our privacy policy.",
       successTitle: "Done! Download started.",
       successSubtitle: "If download didn't start, click buttons below:",
       errorGeneric: "Something went wrong. Please try again.",
@@ -99,7 +104,8 @@ export function LeadCaptureSection() {
       emailLabel: "Geschäftliche E-Mail",
       emailPlaceholder: "max.mustermann@firma.de",
       submit: "Kostenlose E-Books herunterladen",
-      consent: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu. Kein Spam.",
+      consent: "Ich stimme dem gelegentlichen Erhalt von Tipps und Produktneuigkeiten zu. Abmeldung jederzeit möglich.",
+      consentPrivacy: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.",
       successTitle: "Fertig! Download gestartet.",
       successSubtitle: "Falls der Download nicht gestartet ist, klicken Sie auf die Schaltflächen unten:",
       errorGeneric: "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.",
@@ -113,7 +119,7 @@ export function LeadCaptureSection() {
     setError(null);
     
     // Submit lead (don't block on it)
-    submitLead({ email: data.email, name: data.name, source: "ebook" });
+    submitLead({ email: data.email, name: data.name, source: "ebook", marketingConsent: data.marketingConsent });
     trackLeadSubmitted('ebook');
     
     // Immediately trigger downloads
@@ -254,8 +260,19 @@ export function LeadCaptureSection() {
                     )}
                   </Button>
 
+                  <label className="flex items-start gap-2.5 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
+                      {...register("marketingConsent")}
+                    />
+                    <span className="text-[12px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">
+                      {txt.consent}
+                    </span>
+                  </label>
+
                   <p className="text-xs text-brand-text-muted text-center">
-                    {txt.consent}
+                    {txt.consentPrivacy}
                   </p>
                 </form>
               )}
