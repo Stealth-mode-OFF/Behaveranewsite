@@ -156,8 +156,8 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: '1',
-    title: 'Discovered Potential Led to New Business Opportunities',
-    slug: 'discovered-potential-led-to-new-business-opportunities',
+    title: 'Jak Expando objevilo skrytý talent a otevřelo nové obchodní příležitosti.',
+    slug: 'jak-expando-objevilo-skryty-talent',
     clientName: 'Expando',
     industry: 'E-Commerce',
     challenge: 'Expando wanted to grow beyond Amazon, but internally, things were chaotic. Motivation was low, and teams were wasting time on in-depth interviews that produced biased results — leading to poor decisions.',
@@ -261,8 +261,8 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: '4',
-    title: 'More Than Money: What Truly Drives Engagement in Times of Change',
-    slug: 'more-than-money-what-truly-drives-engagement-in-times-of-change',
+    title: 'Nové vedení a stížnosti na peníze. Behavera odhalila skutečný problém.',
+    slug: 'nove-vedeni-a-stiznosti-na-penize',
     clientName: 'Valxon',
     industry: 'Promotional Merchandise',
     challenge: 'New leadership faced a flood of complaints on workload and pay, along with a stressful atmosphere, distrust, chaos and insecurity in teams.',
