@@ -58,7 +58,7 @@ export function LeadPopup() {
 
     const timeoutTimer = setTimeout(() => {
       if (isMobile) triggerPopup('timeout');
-    }, 60000);
+    }, 90000);
 
     const handleScroll = () => {
       const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;

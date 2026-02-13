@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Briefcase, 
   Users, 
-  TrendingUp, 
   Target, 
   BarChart, 
   ShieldCheck, 
@@ -43,22 +42,6 @@ export function RoleSelection() {
   const [activeRole, setActiveRole] = useState("ceo");
 
   const roles: RoleConfig[] = [
-    {
-      id: "investor",
-      icon: TrendingUp,
-      label: language === 'cz' ? 'Investor' : language === 'de' ? 'Investor' : 'Investor',
-      shortLabel: language === 'cz' ? 'Investor' : language === 'de' ? 'Investor' : 'Investor',
-      title: t.roleSelection?.investor?.title || "Predict portfolio risk",
-      subtitle: language === 'cz' 
-        ? "Identifikujte lidská rizika ve vašich portfoliových společnostech dříve, než ovlivní valuaci."
-        : "Identify people risks in your portfolio companies before they impact valuation.",
-      benefits: t.roleSelection?.investor?.list || [
-        "Portfolio-wide risk visibility",
-        "Early warning on key person risk"
-      ],
-      cta: t.roleSelection?.investor?.cta || "Learn more",
-      color: "bg-emerald-500",
-    },
     {
       id: "ceo",
       icon: Briefcase,

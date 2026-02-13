@@ -35,11 +35,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // Detect language on mount (client-side only)
     const detected = detectBrowserLanguage();
     setLanguageState(detected);
+    document.documentElement.lang = detected === 'cz' ? 'cs' : detected;
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('preferredLanguage', lang);
+    document.documentElement.lang = lang === 'cz' ? 'cs' : lang;
   };
 
   const value = {
