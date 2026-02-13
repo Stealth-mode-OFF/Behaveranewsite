@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
 import { useModal } from '@/app/ModalContext';
-import { Check, Clock, Video, Shield, Users, Sparkles, Star } from 'lucide-react';
+import { Check, Clock, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/app/LanguageContext';
 import { trackBookingCalendarLoaded } from '@/lib/analytics';
@@ -66,61 +66,34 @@ export function BookingModal() {
       title: 'Domluvte si ukázku',
       subtitle: '30 minut, které změní váš pohled na tým.',
       benefits: [
-        { icon: Video, text: 'Živá ukázka na reálných datech' },
-        { icon: Users, text: 'Personalizováno pro váš obor' },
-        { icon: Shield, text: 'Žádný závazek, žádný hard-sell' },
+        'Živá ukázka na reálných datech',
+        'Personalizováno pro váš obor',
+        'Žádný závazek, žádný hard-sell',
       ],
       meta: '30 min · Video hovor · Zdarma',
-      social: {
-        stat: '20+',
-        label: 'firem už používá Behavera',
-      },
-      testimonial: {
-        quote: '"Překvapilo mě, kolik lidí se zapojilo. V Pulsu se ukázaly věci, které jim lidé do očí neřekli."',
-        author: 'Tereza Müllerová',
-        company: 'StartupJobs, COO',
-      },
-      trust: ['GDPR ready', 'Bez kreditní karty', '30denní trial'],
+      trust: ['GDPR ready', 'Bez kreditní karty'],
     },
     en: {
       title: 'Book a Demo',
       subtitle: '30 minutes that will change how you see your team.',
       benefits: [
-        { icon: Video, text: 'Live demo on real data' },
-        { icon: Users, text: 'Personalized for your industry' },
-        { icon: Shield, text: 'No strings attached, no hard-sell' },
+        'Live demo on real data',
+        'Personalized for your industry',
+        'No strings attached, no hard-sell',
       ],
       meta: '30 min · Video call · Free',
-      social: {
-        stat: '20+',
-        label: 'companies already use Behavera',
-      },
-      testimonial: {
-        quote: '"It took just a moment \u2014 and those few answers delivered exactly what we needed. Clear, actionable insights."',
-        author: 'Dominik Hegedus',
-        company: 'Expando, CEO',
-      },
-      trust: ['GDPR ready', 'No credit card', '30-day trial'],
+      trust: ['GDPR ready', 'No credit card'],
     },
     de: {
       title: 'Demo buchen',
       subtitle: '30 Minuten, die Ihren Blick auf Ihr Team verändern.',
       benefits: [
-        { icon: Video, text: 'Live-Demo mit echten Daten' },
-        { icon: Users, text: 'Personalisiert für Ihre Branche' },
-        { icon: Shield, text: 'Keine Verpflichtung, kein Hard-Sell' },
+        'Live-Demo mit echten Daten',
+        'Personalisiert für Ihre Branche',
+        'Keine Verpflichtung, kein Hard-Sell',
       ],
       meta: '30 Min · Videoanruf · Kostenlos',
-      social: {
-        stat: '20+',
-        label: 'Unternehmen nutzen bereits Behavera',
-      },
-      testimonial: {
-        quote: '"Ohne Behavera h\u00e4tten wir weiter Symptome behandelt statt die wahren Ursachen."',
-        author: 'Karel Poplstein',
-        company: 'Valxon, CEO',
-      },
-      trust: ['DSGVO ready', 'Keine Kreditkarte', '30-Tage-Test'],
+      trust: ['DSGVO ready', 'Keine Kreditkarte'],
     },
   };
 
@@ -128,91 +101,53 @@ export function BookingModal() {
 
   return (
     <Dialog open={isBookingOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[1040px] p-0 overflow-hidden border-0 max-h-[100dvh] sm:max-h-[92vh] flex flex-col">
+      <DialogContent className="sm:max-w-[960px] p-0 overflow-hidden border-0 max-h-[100dvh] sm:max-h-[92vh] flex flex-col">
         <DialogTitle className="sr-only">{c.title}</DialogTitle>
         <DialogDescription className="sr-only">{c.subtitle}</DialogDescription>
 
         <div className="flex flex-col lg:flex-row min-h-0 flex-1">
 
           {/* ─── LEFT: VALUE PANEL (hidden on mobile to keep focus on calendar) ─── */}
-          <div className="hidden lg:flex lg:w-[340px] xl:w-[380px] shrink-0 flex-col bg-gradient-to-br from-brand-primary via-[#1e0a4e] to-[#0d0520] text-white p-8 xl:p-10 relative overflow-hidden">
-            {/* Background glow */}
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-accent/15 rounded-full blur-[100px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-violet-500/10 rounded-full blur-[80px] pointer-events-none" />
+          <div className="hidden lg:flex lg:w-[300px] shrink-0 flex-col bg-brand-primary text-white p-8 relative overflow-hidden">
             
             <div className="relative z-10 flex flex-col h-full">
               {/* Header */}
               <div className="mb-8">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/10 mb-5">
-                  <Clock className="w-3.5 h-3.5 text-brand-accent" />
-                  <span className="text-[12px] font-semibold text-white/90">{c.meta}</span>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/10 rounded-full text-[11px] font-medium text-white/80 mb-5">
+                  <Clock className="w-3 h-3" />
+                  {c.meta}
                 </div>
-                <h2 className="text-2xl xl:text-[28px] font-bold tracking-tight leading-[1.15] mb-3">
+                <h2 className="text-xl font-bold tracking-tight leading-tight mb-2">
                   {c.title}
                 </h2>
-                <p className="text-[14px] text-white/70 leading-relaxed">
+                <p className="text-[13px] text-white/60 leading-relaxed">
                   {c.subtitle}
                 </p>
               </div>
 
-              {/* Benefits */}
-              <ul className="space-y-4 mb-8">
-                {c.benefits.map((item, idx) => (
-                  <motion.li
-                    key={idx}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + idx * 0.08 }}
-                    className="flex items-start gap-3"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <item.icon className="w-4 h-4 text-brand-accent" />
-                    </div>
-                    <span className="text-[14px] text-white/85 leading-snug pt-1">
-                      {item.text}
-                    </span>
-                  </motion.li>
+              {/* Benefits — simple checklist */}
+              <ul className="space-y-3 mb-8">
+                {c.benefits.map((text, idx) => (
+                  <li key={idx} className="flex items-center gap-2.5 text-[13px] text-white/80">
+                    <Check className="w-3.5 h-3.5 text-brand-accent shrink-0" strokeWidth={2.5} />
+                    {text}
+                  </li>
                 ))}
               </ul>
 
               {/* Spacer */}
               <div className="flex-1" />
 
-              {/* Social Proof */}
-              <div className="space-y-5">
-                {/* Stat */}
-                <div className="flex items-center gap-3">
-                  <div className="text-3xl font-extrabold text-brand-accent tracking-tight">{c.social.stat}</div>
-                  <p className="text-[13px] text-white/60 leading-snug">{c.social.label}</p>
-                </div>
-
-                {/* Testimonial */}
-                <div className="bg-white/[0.06] backdrop-blur-sm rounded-xl p-4 border border-white/[0.08]">
-                  <div className="flex gap-0.5 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 fill-brand-accent text-brand-accent" />
-                    ))}
-                  </div>
-                  <p className="text-[13px] text-white/80 leading-relaxed italic mb-2.5">
-                    {c.testimonial.quote}
-                  </p>
-                  <p className="text-[11px] text-white/50">
-                    — {c.testimonial.author}, {c.testimonial.company}
-                  </p>
-                </div>
-
-                {/* Trust badges */}
-                <div className="flex flex-wrap gap-2">
-                  {c.trust.map((badge, idx) => (
-                    <span
-                      key={idx}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 bg-white/[0.06] border border-white/[0.08] rounded-full text-[11px] text-white/60"
-                    >
-                      <Check className="w-3 h-3 text-brand-accent" strokeWidth={2.5} />
-                      {badge}
-                    </span>
-                  ))}
-                </div>
+              {/* Trust badges */}
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                {c.trust.map((badge, idx) => (
+                  <span
+                    key={idx}
+                    className="text-[11px] text-white/50"
+                  >
+                    {badge}{idx < c.trust.length - 1 ? ' ·' : ''}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
