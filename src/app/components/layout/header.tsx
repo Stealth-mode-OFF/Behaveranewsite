@@ -26,15 +26,19 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Simplified navigation - only 3 essential links + CTA
+  // Conversion-optimized navigation: How it works → Social proof → Price → Content
   const navItems = [
     { 
-      id: 'how-it-works', 
+      id: 'radar', 
       label: language === 'cz' ? 'Jak to funguje' : language === 'de' ? 'So funktioniert es' : 'How it works'
     },
     { 
       id: 'case-studies', 
       label: language === 'cz' ? 'Případové studie' : language === 'de' ? 'Fallstudien' : 'Case Studies'
+    },
+    { 
+      id: 'pricing', 
+      label: language === 'cz' ? 'Ceník' : language === 'de' ? 'Preise' : 'Pricing'
     },
   ];
 
