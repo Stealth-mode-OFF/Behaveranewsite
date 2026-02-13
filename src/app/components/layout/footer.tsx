@@ -1,23 +1,27 @@
 import { useLanguage } from "@/app/LanguageContext";
-import { Link } from "react-router-dom";
-import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Zap } from "lucide-react";
-import { ACCOUNT_SETUP_URL, ECHO_PULSE_JOIN_URL } from "@/lib/urls";
-import { trackSocialClick, trackExternalLink } from "@/lib/analytics";
+import { Link, useLocation } from "react-router-dom";
+import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Zap, Calendar } from "lucide-react";
+import { ECHO_PULSE_JOIN_URL } from "@/lib/urls";
+import { trackSocialClick } from "@/lib/analytics";
+import { useModal } from "@/app/ModalContext";
+import { Button } from "@/app/components/ui/button";
 
 export function Footer() {
   const { language } = useLanguage();
+  const { openBooking } = useModal();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  // Helper: anchor links must use /#anchor from non-home pages
+  const anchor = (hash: string) => isHome ? hash : `/${hash}`;
   
   const texts = {
     cz: {
       tagline: "Lidé jsou to nejcennější. My vám pomůžeme je udržet.",
       product: "Produkt",
       company: "Společnost",
-      resources: "Zdroje",
-      legal: "Právní",
-      newsletter: "Newsletter",
-      newsletterDesc: "Tipy pro HR a people analytics přímo do schránky.",
-      emailPlaceholder: "váš@email.cz",
-      subscribe: "Odebírat",
+      support: "Podpora & právní",
+      bookDemo: "Rezervovat demo",
       copyright: `© ${new Date().getFullYear()} Behavera s.r.o. Všechna práva vyhrazena.`,
       madeWith: "Vytvořeno s",
       inPrague: "v Praze",
@@ -26,12 +30,8 @@ export function Footer() {
       tagline: "People are your greatest asset. We help you keep them.",
       product: "Product",
       company: "Company",
-      resources: "Resources",
-      legal: "Legal",
-      newsletter: "Newsletter",
-      newsletterDesc: "HR tips and people analytics insights to your inbox.",
-      emailPlaceholder: "your@email.com",
-      subscribe: "Subscribe",
+      support: "Support & Legal",
+      bookDemo: "Book a Demo",
       copyright: `© ${new Date().getFullYear()} Behavera s.r.o. All rights reserved.`,
       madeWith: "Made with",
       inPrague: "in Prague",
@@ -40,12 +40,8 @@ export function Footer() {
       tagline: "Menschen sind Ihr wertvollstes Gut. Wir helfen Ihnen, sie zu halten.",
       product: "Produkt",
       company: "Unternehmen",
-      resources: "Ressourcen",
-      legal: "Rechtliches",
-      newsletter: "Newsletter",
-      newsletterDesc: "HR-Tipps und People-Analytics-Insights in Ihrem Posteingang.",
-      emailPlaceholder: "ihre@email.de",
-      subscribe: "Abonnieren",
+      support: "Support & Rechtliches",
+      bookDemo: "Demo buchen",
       copyright: `© ${new Date().getFullYear()} Behavera s.r.o. Alle Rechte vorbehalten.`,
       madeWith: "Erstellt mit",
       inPrague: "in Prag",
@@ -72,75 +68,63 @@ export function Footer() {
     },
   };
 
-	  const productLinks = {
-	    cz: [
-	      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
-	      { label: "Nastavení účtu", href: ACCOUNT_SETUP_URL, external: true },
-	      { label: "Pricing", href: "#pricing" },
-	      { label: "ROI Kalkulačka", href: "#roi" },
-	    ],
-	    en: [
-	      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
-	      { label: "Account Setup", href: ACCOUNT_SETUP_URL, external: true },
-	      { label: "Pricing", href: "#pricing" },
-	      { label: "ROI Calculator", href: "#roi" },
-	    ],
-	    de: [
-	      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
-	      { label: "Konto einrichten", href: ACCOUNT_SETUP_URL, external: true },
-	      { label: "Preise", href: "#pricing" },
-	      { label: "ROI-Rechner", href: "#roi" },
-	    ],
-	  };
+  const productLinks = {
+    cz: [
+      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+      { label: "Jak to funguje", href: anchor("#radar") },
+      { label: "Ceník", href: anchor("#pricing") },
+      { label: "FAQ", href: anchor("#faq") },
+    ],
+    en: [
+      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+      { label: "How it works", href: anchor("#radar") },
+      { label: "Pricing", href: anchor("#pricing") },
+      { label: "FAQ", href: anchor("#faq") },
+    ],
+    de: [
+      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+      { label: "So funktioniert es", href: anchor("#radar") },
+      { label: "Preise", href: anchor("#pricing") },
+      { label: "FAQ", href: anchor("#faq") },
+    ],
+  };
 
   const companyLinks = {
     cz: [
       { label: "O nás", href: "/team" },
-      { label: "Case Studies", href: "#case-studies" },
+      { label: "Případové studie", href: "/case-studies" },
       { label: "Blog", href: "/blog" },
       { label: "Changelog", href: "/changelog" },
     ],
     en: [
       { label: "About", href: "/team" },
-      { label: "Case Studies", href: "#case-studies" },
+      { label: "Case Studies", href: "/case-studies" },
       { label: "Blog", href: "/blog" },
       { label: "Changelog", href: "/changelog" },
     ],
     de: [
       { label: "Über uns", href: "/team" },
-      { label: "Fallstudien", href: "#case-studies" },
+      { label: "Fallstudien", href: "/case-studies" },
       { label: "Blog", href: "/blog" },
       { label: "Changelog", href: "/changelog" },
     ],
   };
 
-  const resourceLinks = {
+  const supportLegalLinks = {
     cz: [
-      { label: "Trust Center", href: "/trust-center" },
-      { label: "FAQ", href: "#faq" },
-    ],
-    en: [
-      { label: "Trust Center", href: "/trust-center" },
-      { label: "FAQ", href: "#faq" },
-    ],
-    de: [
-      { label: "Trust Center", href: "/trust-center" },
-      { label: "FAQ", href: "#faq" },
-    ],
-  };
-
-  const legalLinks = {
-    cz: [
+      { label: "Trust Center", href: anchor("#legal") },
       { label: "Obchodní podmínky", href: "/terms" },
       { label: "Ochrana osobních údajů", href: "/terms#privacy" },
       { label: "Cookies", href: "/terms#cookies" },
     ],
     en: [
+      { label: "Trust Center", href: anchor("#legal") },
       { label: "Terms of Service", href: "/terms" },
       { label: "Privacy Policy", href: "/terms#privacy" },
       { label: "Cookie Policy", href: "/terms#cookies" },
     ],
     de: [
+      { label: "Trust Center", href: anchor("#legal") },
       { label: "AGB", href: "/terms" },
       { label: "Datenschutz", href: "/terms#privacy" },
       { label: "Cookie-Richtlinie", href: "/terms#cookies" },
@@ -150,8 +134,7 @@ export function Footer() {
   const info = companyInfo[language] || companyInfo.en;
   const products = productLinks[language] || productLinks.en;
   const company = companyLinks[language] || companyLinks.en;
-  const resources = resourceLinks[language] || resourceLinks.en;
-  const legal = legalLinks[language] || legalLinks.en;
+  const supportLegal = supportLegalLinks[language] || supportLegalLinks.en;
 
   // Helper to render links properly (internal vs external vs anchor)
   const renderLink = (item: { label: string; href: string; external?: boolean }) => {
@@ -168,7 +151,7 @@ export function Footer() {
         </a>
       );
     }
-    if (item.href.startsWith('#')) {
+    if (item.href.startsWith('#') || item.href.startsWith('/#')) {
       return (
         <a href={item.href} className="text-sm text-white/70 hover:text-white transition-colors">
           {item.label}
@@ -187,7 +170,7 @@ export function Footer() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {/* Main Footer Content */}
         <div className="py-12 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
             
             {/* Brand Column */}
             <div className="lg:col-span-2">
@@ -203,11 +186,20 @@ export function Footer() {
               <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
                 {txt.tagline}
               </p>
+
+              {/* CTA */}
+              <Button 
+                onClick={() => openBooking('footer_cta')}
+                className="mb-6 rounded h-10 px-6 font-semibold text-sm bg-white text-brand-primary hover:bg-white/90 transition-colors inline-flex items-center gap-2"
+              >
+                <Calendar className="w-4 h-4" />
+                {txt.bookDemo}
+              </Button>
               
               {/* Social Links */}
               <div className="flex items-center gap-2">
                 <a
-                  href="https://www.linkedin.com/company/behavera/posts/?feedView=all"
+                  href="https://www.linkedin.com/company/behavera/"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackSocialClick('linkedin')}
@@ -263,30 +255,18 @@ export function Footer() {
               </ul>
             </div>
             
-            {/* Resources */}
+            {/* Support & Legal + Contact */}
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-                {txt.resources}
+                {txt.support}
               </h4>
               <ul className="space-y-2.5">
-                {resources.map((item, i) => (
-                  <li key={i}>{renderLink(item)}</li>
-                ))}
-              </ul>
-            </div>
-            
-            {/* Contact */}
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-                {txt.legal}
-              </h4>
-              <ul className="space-y-2.5">
-                {legal.map((item, i) => (
+                {supportLegal.map((item, i) => (
                   <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
               
-              {/* Contact info under legal */}
+              {/* Contact info */}
               <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
                 <a 
                   href="mailto:hello@behavera.com" 
