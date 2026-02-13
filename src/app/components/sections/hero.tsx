@@ -32,7 +32,7 @@ export function Hero() {
       primaryCta: "Domluvit demo",
       ctaMicro: "30 min · Zdarma · Bez závazků",
       secondaryCta: "Vyzkoušet zdarma",
-      socialProof: "50 000+ otestovaných lidí",
+      socialProof: "50 000+ nasbíraných odpovědí",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Výsledky do hodiny" },
@@ -47,7 +47,7 @@ export function Hero() {
       primaryCta: "Book a demo",
       ctaMicro: "30 min · Free · No commitment",
       secondaryCta: "Try it free",
-      socialProof: "50,000+ people tested",
+      socialProof: "50,000+ responses collected",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Results in 1 hour" },
@@ -62,7 +62,7 @@ export function Hero() {
       primaryCta: "Demo buchen",
       ctaMicro: "30 Min · Kostenlos · Unverbindlich",
       secondaryCta: "Kostenlos testen",
-      socialProof: "50.000+ getestete Personen",
+      socialProof: "50.000+ gesammelte Antworten",
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
         { icon: Clock, text: "Ergebnisse in 1 Stunde" },
