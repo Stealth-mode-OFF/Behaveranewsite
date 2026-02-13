@@ -13,7 +13,7 @@ export function CaseStudyPage() {
   const { slug } = useParams();
   const [study, setStudy] = useState<CaseStudy | null>(null);
   const [loading, setLoading] = useState(true);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const seoTitle = study?.title || 'Case Study';
   const seoDescription = study?.challenge || 'Customer story from Echo Pulse.';
 
@@ -56,7 +56,7 @@ export function CaseStudyPage() {
                             {study.clientName}
                         </div>
                         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                            {study.title}
+                            {language === 'cz' && study.title_cz ? study.title_cz : study.title}
                         </h1>
                     </div>
                 </div>
@@ -70,7 +70,7 @@ export function CaseStudyPage() {
                              <div>
                                 <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-4">{t.caseStudies.resultsLabel}</h3>
                                 <div className="space-y-6">
-                                    {study.results.map((res, i) => (
+                                    {(language === 'cz' && study.results_cz ? study.results_cz : study.results).map((res, i) => (
                                         <div key={i}>
                                             <div className="text-4xl font-bold text-brand-primary mb-1">{res.value}</div>
                                             <div className="text-sm text-brand-text-secondary">{res.label}</div>
@@ -80,7 +80,7 @@ export function CaseStudyPage() {
                              </div>
                              <div>
                                 <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-wider mb-2">{t.caseStudies.industryLabel}</h3>
-                                <div className="text-lg font-medium text-brand-text-primary">{study.industry}</div>
+                                <div className="text-lg font-medium text-brand-text-primary">{language === 'cz' && study.industry_cz ? study.industry_cz : study.industry}</div>
                              </div>
                         </div>
 
@@ -89,20 +89,20 @@ export function CaseStudyPage() {
                             <div>
                                 <h2 className="text-2xl font-bold text-brand-text-primary mb-4">{t.caseStudies.challengeTitle}</h2>
                                 <p className="text-lg text-brand-text-secondary leading-relaxed">
-                                    {study.challenge}
+                                    {language === 'cz' && study.challenge_cz ? study.challenge_cz : study.challenge}
                                 </p>
                             </div>
                             
                             <div>
                                 <h2 className="text-2xl font-bold text-brand-text-primary mb-4">{t.caseStudies.solutionTitle}</h2>
                                 <p className="text-lg text-brand-text-secondary leading-relaxed">
-                                    {study.solution}
+                                    {language === 'cz' && study.solution_cz ? study.solution_cz : study.solution}
                                 </p>
                             </div>
 
                             <div 
-                                className="prose prose-lg prose-violet max-w-none text-brand-text-secondary border-t border-brand-border pt-8"
-                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(study.content) }}
+                                className="case-study-content prose prose-lg prose-violet max-w-none text-brand-text-secondary border-t border-brand-border pt-8"
+                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(language === 'cz' && study.content_cz ? study.content_cz : study.content) }}
                             />
                         </div>
                     </div>

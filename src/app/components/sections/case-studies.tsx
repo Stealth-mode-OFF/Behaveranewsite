@@ -28,7 +28,7 @@ import valxonLogo from "@/assets/logos/normalized/valxon.png";
 import vodafoneLogo from "@/assets/logos/normalized/vodafone.png";
 import websupportLogo from "@/assets/logos/normalized/websupport.png";
 import logo365 from "@/assets/logos/normalized/365.svg";
-import expandoLogo from "@/assets/logos/normalized/expando.svg";
+import expandoLogo from "@/assets/logos/normalized/expando.png";
 
 // Map clientName → logo
 const LOGO_MAP: Record<string, string> = {
@@ -45,7 +45,7 @@ const LOGO_MAP: Record<string, string> = {
   'Notino': notinoLogo,
   'O2': o2Logo,
   'Optimio': optimioLogo,
-  'Prusa': prusaLogo,
+  'Prusa Research': prusaLogo,
   'PwC': pwcLogo,
   'Raynet': raynetLogo,
   'Socialmind': socialmindLogo,
@@ -405,7 +405,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                 {study.clientName}
               </h3>
               <span className="text-sm text-white/70 font-medium">
-                {study.industry || "Enterprise"}
+                {language === 'cz' && study.industry_cz ? study.industry_cz : study.industry || "Enterprise"}
               </span>
 
               {/* Tags */}
@@ -456,13 +456,13 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
               )}
               <div className="min-w-0">
                 <span className="text-sm font-bold text-brand-text-primary block truncate">{study.clientName}</span>
-                <span className="text-[11px] text-brand-text-muted">{study.industry || "Enterprise"}</span>
+                <span className="text-[11px] text-brand-text-muted">{language === 'cz' && study.industry_cz ? study.industry_cz : study.industry || "Enterprise"}</span>
               </div>
             </div>
 
             {/* All results */}
             <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-2.5 mb-4">
-              {study.results.map((r, i) => (
+              {(language === 'cz' && study.results_cz ? study.results_cz : study.results).map((r, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <div className={cn("w-1.5 h-1.5 rounded-full mt-1.5 shrink-0", accentDot)} />
                   <div>
@@ -473,26 +473,14 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
               ))}
             </div>
 
-            {/* Challenge quote */}
+            {/* Narrative summary */}
             <div className="relative z-10 flex-1 flex flex-col min-h-0">
               <div className="flex items-start gap-2 mb-2">
                 <Quote className="w-3.5 h-3.5 text-brand-accent shrink-0 mt-0.5" />
-                <p className="text-[12px] text-brand-text-secondary leading-relaxed line-clamp-3">
-                  {study.challenge}
+                <p className="text-[12px] text-brand-text-secondary leading-relaxed line-clamp-4">
+                  {language === 'cz' && study.cardSummary_cz ? study.cardSummary_cz : study.cardSummary ? study.cardSummary : study.challenge}
                 </p>
               </div>
-
-              {/* Solution preview */}
-              {study.solution && (
-                <div className="mt-auto">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-1">
-                    {language === 'cz' ? 'Řešení' : language === 'de' ? 'Lösung' : 'Solution'}
-                  </span>
-                  <p className="text-[11px] text-brand-text-body leading-relaxed line-clamp-2">
-                    {study.solution}
-                  </p>
-                </div>
-              )}
             </div>
 
             {/* CTA */}
