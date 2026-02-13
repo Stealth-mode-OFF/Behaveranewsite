@@ -321,9 +321,11 @@ export const CmsService = {
       if (error) throw error;
       
       const rows = (data as PostRow[] | null) || [];
-      return rows
+      const posts = rows
         .filter((post) => post && post.title && post.slug)
         .map(mapPostRow);
+      // Fall back to hardcoded posts when Supabase returns empty
+      return posts.length > 0 ? posts : [...DEFAULT_POSTS];
     } catch (err) {
       console.error('Error fetching posts:', err);
       return [...DEFAULT_POSTS];
@@ -458,9 +460,11 @@ export const CmsService = {
       if (error) throw error;
       
       const rows = (data as CaseStudyRow[] | null) || [];
-      return rows
+      const studies = rows
         .filter((study) => study && study.title && study.slug)
         .map(mapCaseStudyRow);
+      // Fall back to hardcoded case studies when Supabase returns empty
+      return studies.length > 0 ? studies : getMergedCaseStudies().filter(s => s.status === 'published');
     } catch (err) {
       console.error('Error fetching case studies:', err);
       return getMergedCaseStudies().filter(s => s.status === 'published');
@@ -482,9 +486,10 @@ export const CmsService = {
       if (error) throw error;
 
       const rows = (data as CaseStudyRow[] | null) || [];
-      return rows
+      const studies = rows
         .filter((study) => study && study.title && study.slug)
         .map(mapCaseStudyRow);
+      return studies.length > 0 ? studies : getMergedCaseStudies();
     } catch (err) {
       console.error('Error fetching all case studies:', err);
       return getMergedCaseStudies();
