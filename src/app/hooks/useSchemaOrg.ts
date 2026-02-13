@@ -45,7 +45,7 @@ function getSchemas(language: string) {
     "description": language === 'cz' 
       ? "Echo Pulse je AI platforma pro predikci fluktuace a vyhoření zaměstnanců. Pomáháme HR a manažerům identifikovat rizika dříve, než se projeví v odchodech."
       : "Echo Pulse is an AI-powered platform for predicting employee turnover and burnout. We help HR and managers identify risks before they result in resignations.",
-    "foundingDate": "2019",
+    "foundingDate": "2018",
     "founders": [{
       "@type": "Person",
       "name": "Behavera Team"
@@ -59,7 +59,7 @@ function getSchemas(language: string) {
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+420-605-839-456",
+      "telephone": "+420-724-256-447",
       "contactType": "sales",
       "availableLanguage": ["Czech", "English", "German"]
     },
