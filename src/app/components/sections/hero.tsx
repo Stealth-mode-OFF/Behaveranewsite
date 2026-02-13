@@ -1,5 +1,5 @@
 import { Button } from "@/app/components/ui/button";
-import { ArrowRight, Play, Shield, Clock, Zap } from "lucide-react";
+import { ArrowRight, Play, Shield, Clock, Zap, Users } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion } from "framer-motion";
@@ -30,7 +30,9 @@ export function Hero() {
       headlineHighlight: "",
       subheadline: <>Lidé neodcházejí ze dne na den. Rozhodují se měsíce.<br className="hidden sm:block" />Echo Pulse vám dá čas reagovat — abyste to věděli včas.</>,
       primaryCta: "Domluvit demo",
+      ctaMicro: "30 min · Zdarma · Bez závazků",
       secondaryCta: "Vyzkoušet zdarma",
+      socialProof: "50 000+ otestovaných lidí",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Výsledky do hodiny" },
@@ -43,7 +45,9 @@ export function Hero() {
       headlineHighlight: "happening in your company",
       subheadline: "People don't quit overnight. They decide over months. Echo Pulse gives you time to react — so you know before it's too late.",
       primaryCta: "Book a demo",
+      ctaMicro: "30 min · Free · No commitment",
       secondaryCta: "Try it free",
+      socialProof: "50,000+ people tested",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Results in 1 hour" },
@@ -56,7 +60,9 @@ export function Hero() {
       headlineHighlight: "Unternehmen wirklich passiert",
       subheadline: "Mitarbeiter kündigen nicht über Nacht. Sie entscheiden sich über Monate. Echo Pulse gibt Ihnen Zeit zu reagieren — damit Sie es rechtzeitig wissen.",
       primaryCta: "Demo buchen",
+      ctaMicro: "30 Min · Kostenlos · Unverbindlich",
       secondaryCta: "Kostenlos testen",
+      socialProof: "50.000+ getestete Personen",
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
         { icon: Clock, text: "Ergebnisse in 1 Stunde" },
@@ -155,6 +161,9 @@ export function Hero() {
               </Button>
             </motion.div>
 
+            {/* Micro-copy under CTA */}
+            <p className="text-xs text-brand-text-muted mb-8">{c.ctaMicro}</p>
+
             {/* Trust indicators */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -162,6 +171,12 @@ export function Hero() {
               transition={{ duration: 0.3, delay: 0.2 }}
               className="flex flex-wrap items-center gap-6 justify-center"
             >
+              {/* Social proof stat */}
+              <div className="flex items-center gap-2 text-sm font-semibold text-brand-primary">
+                <Users className="w-4 h-4" />
+                <span>{c.socialProof}</span>
+              </div>
+              <span className="hidden sm:inline text-brand-border">|</span>
               {c.trust.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-sm text-brand-text-muted">
                   <item.icon className="w-4 h-4 text-brand-primary/70" />
