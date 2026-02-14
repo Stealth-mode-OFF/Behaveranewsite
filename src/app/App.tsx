@@ -41,6 +41,9 @@ const ComparisonGoogleFormsPage = lazy(() =>
 const SolutionPage = lazy(() =>
   import("./pages/public/solution").then((module) => ({ default: module.SolutionPage }))
 );
+const OnboardingPage = lazy(() =>
+  import("./pages/public/onboarding").then((module) => ({ default: module.OnboardingPage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -126,6 +129,9 @@ function App() {
                     <Route path="/for-ceos" element={<SolutionPage />} />
                     <Route path="/for-hr" element={<SolutionPage />} />
                     <Route path="/for-team-leads" element={<SolutionPage />} />
+
+                    {/* Onboarding / Sign Up */}
+                    <Route path="/start" element={<OnboardingPage />} />
 
                     {/* Admin Routes */}
                     {adminEnabled ? (
