@@ -1,140 +1,68 @@
-import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/app/components/ui/button";
-import { ArrowRight, Play, Shield, Clock, Zap, Users, Eye, ShieldAlert, TrendingUp } from "lucide-react";
+import { ArrowRight, Play, Shield, Clock, Zap, Users } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";
 import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
 import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
-import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
-import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /**
- * Hero — Fathom-inspired with tabbed value pillars
- * 
- * Features:
- * - Tabbed value pillars (Visibility / Prevention / Action) — auto-rotating
- * - Device Stage with MacBook mock
- * - Progressive reveal animation
- * - Consistent CTA language
+ * Hero — Sharp, conversion-focused.
+ *
+ * One painful headline → one concrete subtitle → dual CTA → trust line.
+ * No rotating tabs. Minimal cognitive load. CEO lands and decides.
  */
-
-type ValuePillar = {
-  id: string;
-  label: string;
-  description: string;
-  icon: typeof Eye;
-};
 
 export function Hero() {
   const { language } = useLanguage();
-  const { openBooking } = useModal();
-  const [activePillar, setActivePillar] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const { openBooking, openDemo } = useModal();
 
   const copy = {
     cz: {
-      badge: "Zpětná vazba, která funguje",
-      headline: <>Zjistěte, co se<br className="hidden md:block" />{' '}ve firmě{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">doopravdy děje</span></>,
+      badge: "Pro CEO a HR, kteří nechtějí hádat",
+      headline: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-[#A78BFA]">Vy to nevíte.</span></>,
       headlineHighlight: "",
-      primaryCta: "Domluvit demo",
-      ctaMicro: "30 min · Zdarma · Bez závazků",
-      secondaryCta: "Vyzkoušet zdarma",
+      subtitle: "Echo Pulse sbírá zpětnou vazbu přes krátký AI chat jednou měsíčně. Výsledky vidíte okamžitě v dashboardu — podle týmů, témat i rizik. Přestaňte hádat. Začněte vědět.",
+      primaryCta: "Vyzkouším sám",
+      ctaMicro: "2 minuty · Zdarma · Bez závazků",
+      secondaryCta: "Rezervovat demo",
       socialProof: "50 000+ otestovaných lidí",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
-        { icon: Clock, text: "Výsledky do hodiny" },
-        { icon: Zap, text: "Typicky 80 %+ návratnost" },
+        { icon: Clock, text: "Výsledky okamžitě v dashboardu" },
+        { icon: Zap, text: "80 %+ návratnost · firmy 50–300 lidí" },
       ],
-      pillars: [
-        {
-          id: "visibility",
-          label: "Viditelnost",
-          description: "Okamžitý přehled o náladě v každém týmu. Sledujte trendy, identifikujte problémy dříve než eskalují.",
-          icon: Eye,
-        },
-        {
-          id: "prevention",
-          label: "Prevence",
-          description: "Systém vás upozorní, když něco nesedí — přetížení, napětí v týmu nebo pokles energie. Reagujte včas.",
-          icon: ShieldAlert,
-        },
-        {
-          id: "action",
-          label: "Akce",
-          description: "Nevíte, co řešit první? Echo Pulse řadí problémy podle dopadu na business a rizika odchodu klíčových lidí.",
-          icon: TrendingUp,
-        },
-      ] as ValuePillar[],
     },
     en: {
-      badge: "Feedback that actually works",
-      headline: "Find out what's really",
-      headlineHighlight: "happening in your company",
-      primaryCta: "Book a demo",
-      ctaMicro: "30 min · Free · No commitment",
-      secondaryCta: "Try it free",
+      badge: "For CEOs and HR who refuse to guess",
+      headline: "Your best people are",
+      headlineHighlight: "thinking about leaving.",
+      subtitle: "Echo Pulse collects feedback through a short AI chat once a month. Results appear instantly in your dashboard — by team, topic, and risk. Stop guessing. Start knowing.",
+      primaryCta: "Try it yourself",
+      ctaMicro: "2 minutes · Free · No commitment",
+      secondaryCta: "Book a demo",
       socialProof: "50,000+ people assessed",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
-        { icon: Clock, text: "Results in 1 hour" },
-        { icon: Zap, text: "Typically 80%+ completion" },
+        { icon: Clock, text: "Instant results in dashboard" },
+        { icon: Zap, text: "80%+ completion · companies 50–300 people" },
       ],
-      pillars: [
-        {
-          id: "visibility",
-          label: "Visibility",
-          description: "Instant overview of how every team feels. Track trends, spot issues before they escalate.",
-          icon: Eye,
-        },
-        {
-          id: "prevention",
-          label: "Prevention",
-          description: "The system alerts you when something's off — overload, team tension, or a significant energy drop. React in time.",
-          icon: ShieldAlert,
-        },
-        {
-          id: "action",
-          label: "Action",
-          description: "Don't know what to solve first? Echo Pulse ranks problems by business impact and departure risk.",
-          icon: TrendingUp,
-        },
-      ] as ValuePillar[],
     },
     de: {
-      badge: "Feedback, das funktioniert",
-      headline: "Erfahren Sie, was in Ihrem",
-      headlineHighlight: "Unternehmen wirklich passiert",
-      primaryCta: "Demo buchen",
-      ctaMicro: "30 Min · Kostenlos · Unverbindlich",
-      secondaryCta: "Kostenlos testen",
+      badge: "Für CEOs und HR, die nicht raten wollen",
+      headline: "Ihre besten Leute denken",
+      headlineHighlight: "über einen Wechsel nach.",
+      subtitle: "Echo Pulse sammelt Feedback über einen kurzen AI-Chat einmal im Monat. Ergebnisse erscheinen sofort in Ihrem Dashboard — nach Team, Thema und Risiko. Hören Sie auf zu raten.",
+      primaryCta: "Selbst testen",
+      ctaMicro: "2 Min · Kostenlos · Unverbindlich",
+      secondaryCta: "Demo buchen",
       socialProof: "50.000+ getestete Personen",
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
-        { icon: Clock, text: "Ergebnisse in 1 Stunde" },
-        { icon: Zap, text: "Typisch 80 %+ Rücklaufquote" },
+        { icon: Clock, text: "Ergebnisse sofort im Dashboard" },
+        { icon: Zap, text: "80 %+ Rücklaufquote · Firmen 50–300 MA" },
       ],
-      pillars: [
-        {
-          id: "visibility",
-          label: "Sichtbarkeit",
-          description: "Sofortiger Überblick über die Stimmung in jedem Team. Trends verfolgen, Probleme frühzeitig erkennen.",
-          icon: Eye,
-        },
-        {
-          id: "prevention",
-          label: "Prävention",
-          description: "Das System warnt Sie, wenn etwas nicht stimmt — Überlastung, Teamspannungen oder Energieabfall.",
-          icon: ShieldAlert,
-        },
-        {
-          id: "action",
-          label: "Aktion",
-          description: "Wissen Sie nicht, was Sie zuerst lösen sollen? Echo Pulse priorisiert nach Geschäftsauswirkung und Abgangsrisiko.",
-          icon: TrendingUp,
-        },
-      ] as ValuePillar[],
     },
   };
 
@@ -142,17 +70,6 @@ export function Hero() {
   const heroImage = language === 'cz'
     ? { src: heroDashboardCz, width: 2400, height: 1456 }
     : { src: heroDashboardEn, width: 2400, height: 1453 };
-
-  // Auto-rotate pillars every 5 seconds
-  const nextPillar = useCallback(() => {
-    setActivePillar((prev) => (prev + 1) % c.pillars.length);
-  }, [c.pillars.length]);
-
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(nextPillar, 5000);
-    return () => clearInterval(timer);
-  }, [isPaused, nextPillar]);
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center pt-24 pb-8 md:pt-32 md:pb-16 overflow-hidden">
@@ -196,64 +113,15 @@ export function Hero() {
               )}
             </motion.h1>
 
-            {/* ── Value Pillars — Fathom-style tabs ── */}
-            <motion.div
+            {/* Subtitle — one concrete paragraph, no tabs */}
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="mb-10"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
+              className="text-lg md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-10"
             >
-              {/* Pillar tabs */}
-              <div className="flex items-center justify-center gap-1 mb-5">
-                {c.pillars.map((pillar, idx) => {
-                  const Icon = pillar.icon;
-                  const isActive = activePillar === idx;
-                  return (
-                    <button
-                      key={pillar.id}
-                      type="button"
-                      onClick={() => setActivePillar(idx)}
-                      className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer ${
-                        isActive 
-                          ? "bg-brand-primary text-white shadow-md shadow-brand-primary/20" 
-                          : "text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5"
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span>{pillar.label}</span>
-                      {/* Progress bar for auto-rotation */}
-                      {isActive && !isPaused && (
-                        <motion.div
-                          className="absolute bottom-0 left-2 right-2 h-0.5 bg-white/40 rounded-full origin-left"
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          transition={{ duration: 5, ease: "linear" }}
-                          key={`progress-${activePillar}`}
-                        />
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Pillar description */}
-              <div className="h-[60px] flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.p
-                    key={activePillar}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
-                    className="text-lg md:text-xl text-brand-text-body leading-relaxed max-w-xl mx-auto font-normal"
-                  >
-                    {c.pillars[activePillar].description}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
-            </motion.div>
+              {c.subtitle}
+            </motion.p>
 
             {/* CTAs */}
             <motion.div
@@ -263,26 +131,22 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
               <Button
-                onClick={() => openBooking('hero')}
+                onClick={() => openDemo('hero')}
                 size="lg"
                 className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
               >
+                <Play className="w-4 h-4 mr-2 fill-current" />
                 {c.primaryCta}
-                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
               
               <Button
-                onClick={() => {
-                  const tryLink = getPulseCheckUrl(language);
-                  window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
-                  trackPulseCheckOpen('hero', language);
-                }}
+                onClick={() => openBooking('hero')}
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 rounded-2xl"
               >
-                <Play className="w-4 h-4 mr-2 fill-current" />
                 {c.secondaryCta}
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
 

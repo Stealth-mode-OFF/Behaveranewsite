@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/app/LanguageContext";
-import { Users, TrendingUp, Zap } from "lucide-react";
+import { Users, TrendingUp, Zap, MessageSquare, Mail } from "lucide-react";
 
 /**
  * Stats Bar — Fathom-inspired key metrics section
@@ -13,18 +13,22 @@ import { Users, TrendingUp, Zap } from "lucide-react";
 function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: { 
   end: number; suffix?: string; prefix?: string; duration?: number 
 }) {
-  const [count, setCount] = useState(0);
+  // Start with the real value so crawlers / slow renders never show "0"
+  const [count, setCount] = useState(end);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    // Reset to 0 while parent opacity is still ~0, then animate up
+    setCount(0);
     const startTime = performance.now();
     const animate = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.round(end * eased));
       if (progress < 1) requestAnimationFrame(animate);
@@ -59,15 +63,15 @@ export function StatsBar() {
         prefix: "",
         suffix: "+",
         label: "otestovaných lidí",
-        description: "věří Echo Pulse se zpětnou vazbou",
+        description: "ve firmách od 30 do 500 zaměstnanců",
       },
       {
         icon: TrendingUp,
         value: 80,
         prefix: "",
         suffix: "%+",
-        label: "návratnost dotazníků",
-        description: "díky AI chat formátu místo formulářů",
+        label: "návratnost",
+        description: "u firem 50–300 lidí, první měsíc",
       },
       {
         icon: Zap,
@@ -85,7 +89,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "+",
         label: "people assessed",
-        description: "trust Echo Pulse with their feedback",
+        description: "in companies from 30 to 500 employees",
       },
       {
         icon: TrendingUp,
@@ -93,7 +97,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "%+",
         label: "completion rate",
-        description: "thanks to AI chat format over forms",
+        description: "companies 50–300 people, first month",
       },
       {
         icon: Zap,
@@ -111,7 +115,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "+",
         label: "getestete Personen",
-        description: "vertrauen Echo Pulse mit ihrem Feedback",
+        description: "in Unternehmen von 30 bis 500 Mitarbeitenden",
       },
       {
         icon: TrendingUp,
@@ -119,7 +123,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "%+",
         label: "Rücklaufquote",
-        description: "dank AI-Chat-Format statt Formularen",
+        description: "Firmen 50–300 MA, erster Monat",
       },
       {
         icon: Zap,
@@ -130,6 +134,12 @@ export function StatsBar() {
         description: "mit sofortigen Ergebnissen im Dashboard",
       },
     ],
+  };
+
+  const integrationsCopy = {
+    cz: "Funguje přes Slack, MS Teams nebo e-mail. Žádný nový software.",
+    en: "Works via Slack, MS Teams, or email. No new software.",
+    de: "Funktioniert über Slack, MS Teams oder E-Mail. Keine neue Software.",
   };
 
   const items = stats[language] || stats.en;
@@ -173,6 +183,32 @@ export function StatsBar() {
             );
           })}
         </div>
+
+        {/* Integration strip — early "no new software" proof */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.3 }}
+          className="mt-12 pt-8 border-t border-brand-border/50 flex flex-wrap items-center justify-center gap-4 text-sm text-brand-text-muted"
+        >
+          <div className="flex items-center gap-2">
+            <MessageSquare className="w-4 h-4 text-brand-primary/60" />
+            <span className="font-medium">Slack</span>
+          </div>
+          <span className="text-brand-border">·</span>
+          <div className="flex items-center gap-2">
+            <Users className="w-4 h-4 text-brand-primary/60" />
+            <span className="font-medium">MS Teams</span>
+          </div>
+          <span className="text-brand-border">·</span>
+          <div className="flex items-center gap-2">
+            <Mail className="w-4 h-4 text-brand-primary/60" />
+            <span className="font-medium">E-mail</span>
+          </div>
+          <span className="hidden sm:inline text-brand-border">|</span>
+          <span>{integrationsCopy[language] || integrationsCopy.en}</span>
+        </motion.div>
       </div>
     </section>
   );

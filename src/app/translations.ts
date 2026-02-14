@@ -140,9 +140,9 @@ export const translations: Record<Language, Translations> = {
         },
       ],
       ctaBox: {
-        label: "System Alert",
-        title: "Intuition isn't enough for this.",
-        desc: "You need continuous data from the field. Otherwise you're just guessing why people lose motivation - and by the time you notice, talent is already walking out the door.",
+        label: "Before → After",
+        title: "Today you guess. Tomorrow you'll know.",
+        desc: "Without Echo Pulse: you react to resignations. With Echo Pulse: you see risks in your dashboard months ahead and know where to act.",
       },
     },
     dashboard: {
@@ -160,7 +160,7 @@ export const translations: Record<Language, Translations> = {
       badge: "Pricing",
       title: "Pricing based on",
       titleHighlight: " company size",
-      subtitle: "Estimate is driven by employee count. Final scope and price are confirmed after a short consultation.",
+      subtitle: "From €4 / employee / month on yearly plan. Estimate is driven by employee count.",
       configTitle: "Configure plan",
       billingMonthly: "Monthly",
       billingYearly: "Yearly (-20%)",
@@ -177,7 +177,7 @@ export const translations: Record<Language, Translations> = {
         "Actionable recommendations for managers",
         "Secure data handling (GDPR)",
       ],
-      button: "Request a tailored quote",
+      button: "Book a demo",
       guaranteeShort: "Final scope and price are confirmed after the intro call.",
     },
     faq: {
@@ -332,9 +332,9 @@ export const translations: Record<Language, Translations> = {
         },
       ],
       ctaBox: {
-        label: "Co s tím?",
-        title: "Na tohle intuice nestačí.",
-        desc: "Potřebujete průběžná data z terénu. Jinak jen hádáte, proč lidé ztrácejí motivaci - a než si toho všimnete, talent už je za dveřmi.",
+        label: "Před → Po",
+        title: "Dnes hádáte. Zítra budete vědět.",
+        desc: "Bez Echo Pulse: reagujete na výpovědi. S Echo Pulse: vidíte rizika v dashboardu měsíce předem a víte, kam jít.",
       },
     },
     dashboard: {
@@ -352,7 +352,7 @@ export const translations: Record<Language, Translations> = {
       badge: "Ceník",
       title: "Ceník podle",
       titleHighlight: " velikosti firmy",
-      subtitle: "Orientační odhad se odvíjí od počtu zaměstnanců. Finální rozsah a cena se potvrdí po krátké konzultaci.",
+      subtitle: "Od 99 Kč / zaměstnanec / měsíc při ročním tarifu. Orientační odhad se odvíjí od počtu zaměstnanců.",
       configTitle: "Nastavení tarifu",
       billingMonthly: "Měsíčně",
       billingYearly: "Ročně (-20%)",
@@ -369,7 +369,7 @@ export const translations: Record<Language, Translations> = {
         "Akční doporučení pro manažery",
         "Bezpečné zpracování dat (GDPR)",
       ],
-      button: "Chci nabídku na míru",
+      button: "Domluvit demo",
       guaranteeShort: "Finální rozsah a cena se potvrdí po úvodní konzultaci.",
     },
     faq: {
@@ -524,9 +524,9 @@ export const translations: Record<Language, Translations> = {
         },
       ],
       ctaBox: {
-        label: "Systemwarnung",
-        title: "Für das reicht Intuition nicht aus.",
-        desc: "Sie brauchen kontinuierliche Daten aus dem Feld. Sonst raten Sie nur, warum Menschen die Motivation verlieren - und wenn Sie es bemerken, ist das Talent bereits zur Tür hinaus.",
+        label: "Vorher → Nachher",
+        title: "Heute raten Sie. Morgen werden Sie wissen.",
+        desc: "Ohne Echo Pulse: Sie reagieren auf Kündigungen. Mit Echo Pulse: Sie sehen Risiken im Dashboard Monate vorher und wissen, wo Sie handeln müssen.",
       },
     },
     dashboard: {
@@ -544,7 +544,7 @@ export const translations: Record<Language, Translations> = {
       badge: "Preise",
       title: "Preis nach",
       titleHighlight: " Unternehmensgröße",
-      subtitle: "Die Schätzung richtet sich nach der Mitarbeiterzahl. Endgültiger Umfang und Preis nach einem kurzen Gespräch.",
+      subtitle: "Ab €4 / Mitarbeitende / Monat im Jahrestarif. Die Schätzung richtet sich nach der Mitarbeiterzahl.",
       configTitle: "Plan konfigurieren",
       billingMonthly: "Monatlich",
       billingYearly: "Jährlich (-20%)",
@@ -561,7 +561,7 @@ export const translations: Record<Language, Translations> = {
         "Konkrete Handlungsempfehlungen",
         "Sichere Datenverarbeitung (DSGVO)",
       ],
-      button: "Individuelles Angebot anfordern",
+      button: "Demo buchen",
       guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch.",
     },
     faq: {

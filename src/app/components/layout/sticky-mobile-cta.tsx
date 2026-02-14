@@ -5,8 +5,8 @@ import { useModal } from "@/app/ModalContext";
 import { trackStickyCtaDismissed } from "@/lib/analytics";
 
 export function StickyMobileCta() {
-  const { t } = useLanguage();
-  const { openBooking } = useModal();
+  const { t, language } = useLanguage();
+  const { openDemo } = useModal();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -30,10 +30,10 @@ export function StickyMobileCta() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => openBooking('sticky_mobile_cta')}
+            onClick={() => openDemo('sticky_mobile_cta')}
             className="flex-1 h-12 rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
-            {t.header.bookDemo}
+            {language === 'cz' ? 'Vyzkoušet sám' : language === 'de' ? 'Selbst testen' : 'Try it yourself'}
           </button>
           <button
             type="button"

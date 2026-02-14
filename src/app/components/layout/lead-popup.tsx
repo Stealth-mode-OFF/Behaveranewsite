@@ -33,6 +33,10 @@ export function LeadPopup() {
   const isMobile = typeof window !== 'undefined' &&
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+  /* Minimum seconds on page before any trigger is allowed */
+  const MIN_TIME_ON_PAGE_MS = 45_000;
+  const [canTrigger, setCanTrigger] = useState(false);
+
   const triggerPopup = useCallback((trigger: 'exit_intent' | 'timeout' | 'scroll_depth' = 'exit_intent') => {
     if (hasTriggered) return;
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
@@ -42,6 +46,12 @@ export function LeadPopup() {
     trackLeadPopupTriggered(trigger);
   }, [hasTriggered]);
 
+  /* Gate: enable triggers only after MIN_TIME_ON_PAGE_MS */
+  useEffect(() => {
+    const gateTimer = setTimeout(() => setCanTrigger(true), MIN_TIME_ON_PAGE_MS);
+    return () => clearTimeout(gateTimer);
+  }, []);
+
   useEffect(() => {
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
     if (hasSeen) {
@@ -50,7 +60,7 @@ export function LeadPopup() {
     }
 
     const handleMouseLeave = (e: MouseEvent) => {
-      if (isMobile) return;
+      if (isMobile || !canTrigger) return;
       if (e.clientY <= 5 && e.relatedTarget === null) {
         triggerPopup('exit_intent');
       }
@@ -58,11 +68,11 @@ export function LeadPopup() {
 
     const timeoutTimer = setTimeout(() => {
       if (isMobile) triggerPopup('timeout');
-    }, 90000);
+    }, 120_000);
 
     const handleScroll = () => {
       const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-      if (scrollPercent > 70 && isMobile && !hasTriggered) {
+      if (scrollPercent > 70 && isMobile && canTrigger && !hasTriggered) {
         triggerPopup('scroll_depth');
       }
     };
@@ -75,7 +85,7 @@ export function LeadPopup() {
       document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [hasTriggered, isMobile, triggerPopup]);
+  }, [hasTriggered, isMobile, canTrigger, triggerPopup]);
 
   const closePopup = () => {
     setIsOpen(false);

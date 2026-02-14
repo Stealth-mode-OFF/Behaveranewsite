@@ -1,10 +1,11 @@
-import { lazy, Suspense, type ComponentType, type ReactNode } from "react";
+import { lazy, Suspense, useState, useCallback, type ComponentType, type ReactNode } from "react";
 import { pageSEO } from "@/app/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { BookingModal } from "@/app/components/layout/booking-modal";
+import { DemoAccessModal } from "@/app/components/layout/demo-access-modal";
 import { LeadPopup } from "@/app/components/layout/lead-popup";
-import { AnnouncementBar } from "@/app/components/layout/announcement-bar";
+import { AnnouncementBar, ANNOUNCEMENT_BAR_HEIGHT } from "@/app/components/layout/announcement-bar";
 import { Hero } from "@/app/components/sections/hero";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
 import { StatsBar } from "@/app/components/sections/stats-bar";
@@ -56,10 +57,6 @@ const LeadCaptureSection = lazyNamed(
   () => import("@/app/components/sections/lead-capture"),
   "LeadCaptureSection"
 );
-const TestimonialsCarousel = lazyNamed(
-  () => import("@/app/components/sections/testimonials-carousel"),
-  "TestimonialsCarousel"
-);
 const IntegrationsShowcase = lazyNamed(
   () => import("@/app/components/sections/integrations-showcase"),
   "IntegrationsShowcase"
@@ -68,6 +65,11 @@ const IntegrationsShowcase = lazyNamed(
 export function LandingPage() {
   const { language } = useLanguage();
   const seo = pageSEO.home[language] || pageSEO.home.en;
+  const [bannerVisible, setBannerVisible] = useState(() => {
+    try { return sessionStorage.getItem("announcement_dismissed") !== "1"; } catch { return true; }
+  });
+  const handleBannerVisibility = useCallback((v: boolean) => setBannerVisible(v), []);
+  const topOffset = bannerVisible ? ANNOUNCEMENT_BAR_HEIGHT : 0;
   
 	  useSEO({
 	    title: seo.title,
@@ -82,9 +84,9 @@ export function LandingPage() {
 
   return (
     <>
-      <AnnouncementBar />
-      <Header />
-      <main>
+      <AnnouncementBar onVisibilityChange={handleBannerVisibility} />
+      <Header topOffset={topOffset} />
+      <main style={{ paddingTop: topOffset }}>
         {/* 1. HERO — Outcome promise + dual CTA */}
         <Hero />
         
@@ -103,11 +105,6 @@ export function LandingPage() {
         {/* 5. HOW IT WORKS + WHAT WE MEASURE */}
         <SignalRadar />
 
-        {/* 5b. SOCIAL PROOF — G2-style testimonial quotes */}
-        <LazySection>
-          <TestimonialsCarousel />
-        </LazySection>
-
         {/* 6. SOCIAL PROOF — Real client results */}
         <LazySection>
           <CaseStudiesSection />
@@ -121,6 +118,11 @@ export function LandingPage() {
           <PurchaseSection />
         </LazySection>
 
+        {/* 8b. INTEGRATIONS — Works wherever you work */}
+        <LazySection>
+          <IntegrationsShowcase />
+        </LazySection>
+
         {/* 9. OBJECTION HANDLING — FAQ */}
         <LazySection>
           <FAQ />
@@ -129,11 +131,6 @@ export function LandingPage() {
         {/* 10. COMPLIANCE — GDPR, data handling */}
         <LazySection>
           <TrustCenter />
-        </LazySection>
-
-        {/* 10b. INTEGRATIONS — Works wherever you work */}
-        <LazySection>
-          <IntegrationsShowcase />
         </LazySection>
 
         {/* 11. FINAL CTA — Clear next step */}
@@ -151,6 +148,7 @@ export function LandingPage() {
 
       {/* Modals */}
       <BookingModal />
+      <DemoAccessModal />
       <LeadPopup />
     </>
   );
