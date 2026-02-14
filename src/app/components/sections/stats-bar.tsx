@@ -74,7 +74,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "+",
         label: "otestovaných lidí",
-        description: "ve firmách od 30 do 500 zaměstnanců",
+        description: "ve firmách od 50 do 500 zaměstnanců",
       },
       {
         icon: TrendingUp,
@@ -82,7 +82,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "%+",
         label: "návratnost",
-        description: "u firem 50–300 lidí, první měsíc",
+        description: "u firem 50–500 lidí, první měsíc",
       },
       {
         icon: Zap,
@@ -100,7 +100,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "+",
         label: "people assessed",
-        description: "in companies from 30 to 500 employees",
+        description: "in companies from 50 to 500 employees",
       },
       {
         icon: TrendingUp,
@@ -108,7 +108,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "%+",
         label: "completion rate",
-        description: "companies 50–300 people, first month",
+        description: "companies 50–500 people, first month",
       },
       {
         icon: Zap,
@@ -126,7 +126,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "+",
         label: "getestete Personen",
-        description: "in Unternehmen von 30 bis 500 Mitarbeitenden",
+        description: "in Unternehmen von 50 bis 500 Mitarbeitenden",
       },
       {
         icon: TrendingUp,
@@ -134,7 +134,7 @@ export function StatsBar() {
         prefix: "",
         suffix: "%+",
         label: "Rücklaufquote",
-        description: "Firmen 50–300 MA, erster Monat",
+        description: "Firmen 50–500 MA, erster Monat",
       },
       {
         icon: Zap,
@@ -148,9 +148,9 @@ export function StatsBar() {
   };
 
   const integrationsCopy = {
-    cz: "Funguje přes Slack, MS Teams nebo e-mail. Žádný nový software.",
-    en: "Works via Slack, MS Teams, or email. No new software.",
-    de: "Funktioniert über Slack, MS Teams oder E-Mail. Keine neue Software.",
+    cz: "Funguje přes Slack nebo e-mail. Žádný nový software.",
+    en: "Works via Slack or email. No new software.",
+    de: "Funktioniert über Slack oder E-Mail. Keine neue Software.",
   };
 
   const items = stats[language] || stats.en;
@@ -206,11 +206,6 @@ export function StatsBar() {
           <div className="flex items-center gap-2">
             <MessageSquare className="w-4 h-4 text-brand-primary/60" />
             <span className="font-medium">Slack</span>
-          </div>
-          <span className="text-brand-border">·</span>
-          <div className="flex items-center gap-2">
-            <Users className="w-4 h-4 text-brand-primary/60" />
-            <span className="font-medium">MS Teams</span>
           </div>
           <span className="text-brand-border">·</span>
           <div className="flex items-center gap-2">
