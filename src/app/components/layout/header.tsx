@@ -10,11 +10,11 @@ import { useModal } from "@/app/ModalContext";
 import { BEHAVERA_LOGIN_URL } from "@/lib/urls";
 import { trackLoginClick } from "@/lib/analytics";
 
-export function Header() {
+export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t, language } = useLanguage();
-  const { openBooking } = useModal();
+  const { openBooking, openDemo } = useModal();
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -50,8 +50,9 @@ export function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      style={{ top: topOffset }}
       className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed left-0 right-0 z-50 transition-all duration-300",
           isScrolled ? "bg-white/95 backdrop-blur-md border-b border-brand-border py-3" : "bg-transparent py-6"
       )}
     >
@@ -152,10 +153,19 @@ export function Header() {
                   transition={{ duration: 0.25 }}
                   className="text-[11px] font-medium text-brand-text-muted whitespace-nowrap"
                 >
-                  {language === 'cz' ? '30 min · Zdarma' : language === 'de' ? '30 Min · Kostenlos' : '30 min · Free'}
+                  {language === 'cz' ? '2 min · Zdarma' : language === 'de' ? '2 Min · Kostenlos' : '2 min · Free'}
                 </motion.span>
               )}
             </AnimatePresence>
+            <Button
+              onClick={() => openDemo('header_desktop')}
+              variant="outline"
+              className={cn(
+                "rounded h-10 px-5 font-semibold transition-all text-sm border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5"
+              )}
+            >
+              {language === 'cz' ? 'Vyzkoušet' : language === 'de' ? 'Testen' : 'Try it'}
+            </Button>
             <Button 
               onClick={() => openBooking('header_desktop')}
               className={cn(
@@ -245,6 +255,16 @@ export function Header() {
                   <LogIn className="w-4 h-4" />
                   {loginLabel}
                 </a>
+                <Button
+                    onClick={() => {
+                        setMobileMenuOpen(false);
+                        openDemo('header_mobile');
+                    }}
+                    variant="outline"
+                    className="w-full h-12 px-8 border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 font-semibold rounded-lg"
+                >
+                  {language === 'cz' ? 'Vyzkoušet sám' : language === 'de' ? 'Selbst testen' : 'Try it yourself'}
+                </Button>
                 <Button 
                     onClick={() => {
                         setMobileMenuOpen(false);

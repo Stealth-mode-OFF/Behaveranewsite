@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
+/** Height of the announcement bar in px — used to offset the header */
+export const ANNOUNCEMENT_BAR_HEIGHT = 48;
+
 /**
  * Announcement Bar — Fathom-inspired top banner
  * 
- * Sits above the header with a rotating/static promotional message.
+ * Fixed at the very top of the viewport (z-60).
+ * The Header should offset itself by ANNOUNCEMENT_BAR_HEIGHT when visible.
  * Dismissible, stored in sessionStorage so it doesn't reappear.
  */
-export function AnnouncementBar() {
+export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (visible: boolean) => void }) {
   const { language } = useLanguage();
   const [dismissed, setDismissed] = useState(() => {
     try {
@@ -18,6 +22,12 @@ export function AnnouncementBar() {
       return false;
     }
   });
+
+  const visible = !dismissed;
+
+  useEffect(() => {
+    onVisibilityChange?.(visible);
+  }, [visible, onVisibilityChange]);
 
   const copy = {
     cz: {
@@ -62,13 +72,14 @@ export function AnnouncementBar() {
       {!dismissed && (
         <motion.div
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
+          animate={{ height: ANNOUNCEMENT_BAR_HEIGHT, opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-brand-primary text-white relative z-[60] overflow-hidden"
+          className="fixed top-0 left-0 right-0 bg-brand-primary text-white z-[60] overflow-hidden"
+          style={{ height: ANNOUNCEMENT_BAR_HEIGHT }}
         >
-          <div className="container-default flex items-center justify-center gap-3 py-2.5 text-sm relative">
-            <Sparkles className="w-3.5 h-3.5 text-brand-accent flex-shrink-0 hidden sm:block" />
+          <div className="container-default flex items-center justify-center gap-3 h-full text-sm relative">
+            <Sparkles className="w-4 h-4 text-brand-accent flex-shrink-0 hidden sm:block" />
             <span className="font-medium text-white/90">
               {c.message}
             </span>

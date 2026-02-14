@@ -9,7 +9,7 @@ import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/anal
 
 export function PurchaseSection() {
   const { t, language } = useLanguage();
-  const { openBooking } = useModal();
+  const { openBooking, openDemo } = useModal();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   
@@ -238,7 +238,14 @@ export function PurchaseSection() {
                         >
                             {t.purchase.button}
                         </Button>
-                        <p className="text-center text-xs text-white/60 mt-4">
+                        <button
+                            type="button"
+                            onClick={() => openDemo('pricing')}
+                            className="block w-full text-center text-xs text-white/60 hover:text-white transition-colors mt-3 underline underline-offset-2"
+                        >
+                            {language === 'cz' ? 'Nebo si to vyzkoušejte sami →' : language === 'de' ? 'Oder testen Sie es selbst →' : 'Or try it yourself →'}
+                        </button>
+                        <p className="text-center text-xs text-white/60 mt-3">
                             {t.purchase.guaranteeShort}
                         </p>
                         

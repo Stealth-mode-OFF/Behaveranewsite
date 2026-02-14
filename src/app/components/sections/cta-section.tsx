@@ -3,8 +3,6 @@ import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
-import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -17,7 +15,7 @@ import { trackPulseCheckOpen } from "@/lib/analytics";
  * - Premium "final word" feel
  */
 export function CtaSection() {
-  const { openBooking } = useModal();
+  const { openBooking, openDemo } = useModal();
   const { t, language } = useLanguage();
 
   const copy = {
@@ -25,27 +23,27 @@ export function CtaSection() {
       badge: "Připraveni?",
       headline: "Vaši lidé vám chtějí něco říct.",
       headlineHighlight: "Slyšíte je?",
-      subheadline: "30 minut stačí, abyste zjistili, jestli Echo Pulse dává smysl pro vaši firmu.",
-      primaryCta: "Domluvit demo",
-      demoCta: "Nebo si nejdřív vyzkoušejte Pulse Check zdarma →",
-      trust: ["Bez kreditky", "GDPR ready", "Výsledky do hodiny"],
+      subheadline: "Za 30 minut zjistíte, jestli Echo Pulse dává smysl. Za měsíc budete vědět, co se ve firmě děje — a přestanete hádat.",
+      primaryCta: "Vyzkouším sám",
+      secondaryCta: "Nebo si raději domluvte osobní demo →",
+      trust: ["Bez kreditky", "GDPR ready", "Výsledky okamžitě"],
     },
     en: {
       badge: "Ready?",
       headline: "Your people want to tell you something.",
       headlineHighlight: "Are you listening?",
       subheadline: "30 minutes is all it takes to find out if Echo Pulse makes sense for your company.",
-      primaryCta: "Book a demo",
-      demoCta: "Or try a free Pulse Check first →",
-      trust: ["No credit card", "GDPR ready", "Results in 1 hour"],
+      primaryCta: "Try it yourself",
+      secondaryCta: "Or book a personal demo →",
+      trust: ["No credit card", "GDPR ready", "Instant results"],
     },
     de: {
       badge: "Bereit zu starten?",
       headline: "Ihre Mitarbeiter sprechen.",
       headlineHighlight: "Hören Sie zu?",
       subheadline: "Erhalten Sie klare Signale von Ihrem Team. Ohne anonyme Umfragen, die niemand liest.",
-      primaryCta: "Demo buchen",
-      demoCta: "Oder sehen Sie sich zuerst die 3-Min-Demo an →",
+      primaryCta: "Selbst testen",
+      secondaryCta: "Oder buchen Sie eine persönliche Demo →",
       trust: ["30 Tage Test", "Keine Kreditkarte", "DSGVO-konform"],
     },
   };
@@ -130,7 +128,7 @@ export function CtaSection() {
             className="flex flex-col items-center justify-center gap-4 mb-12"
           >
             <Button 
-              onClick={() => openBooking('cta_section')}
+              onClick={() => openDemo('cta_section')}
               size="lg"
               className="min-w-[240px] h-14 px-8 bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
             >
@@ -139,14 +137,10 @@ export function CtaSection() {
             </Button>
             <button
               type="button"
-              onClick={() => {
-                const tryLink = getPulseCheckUrl(language);
-                window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
-                trackPulseCheckOpen('cta_section', language);
-              }}
+              onClick={() => openBooking('cta_section')}
               className="text-white/70 hover:text-white underline underline-offset-4 transition-colors"
             >
-              {c.demoCta}
+              {c.secondaryCta}
             </button>
           </motion.div>
 
