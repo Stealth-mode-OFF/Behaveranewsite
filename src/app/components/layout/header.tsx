@@ -141,15 +141,32 @@ export function Header() {
             {loginLabel}
           </a>
           
-          <Button 
-            onClick={() => openBooking('header_desktop')}
-            className={cn(
-                "hidden lg:inline-flex rounded h-10 px-6 font-semibold transition-all text-sm",
-                "bg-brand-primary text-white hover:bg-brand-primary-hover"
-            )}
-          >
-            {t.header.bookDemo}
-          </Button>
+          <div className="hidden lg:flex items-center gap-2">
+            {/* Micro-copy that appears on scroll — Fathom-inspired urgency nudge */}
+            <AnimatePresence>
+              {isScrolled && (
+                <motion.span
+                  initial={{ opacity: 0, x: 8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 8 }}
+                  transition={{ duration: 0.25 }}
+                  className="text-[11px] font-medium text-brand-text-muted whitespace-nowrap"
+                >
+                  {language === 'cz' ? '30 min · Zdarma' : language === 'de' ? '30 Min · Kostenlos' : '30 min · Free'}
+                </motion.span>
+              )}
+            </AnimatePresence>
+            <Button 
+              onClick={() => openBooking('header_desktop')}
+              className={cn(
+                  "rounded h-10 px-6 font-semibold transition-all text-sm",
+                  "bg-brand-primary text-white hover:bg-brand-primary-hover",
+                  isScrolled && "shadow-md"
+              )}
+            >
+              {t.header.bookDemo}
+            </Button>
+          </div>
 
           <button
             type="button"

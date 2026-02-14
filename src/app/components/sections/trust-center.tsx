@@ -23,7 +23,7 @@ export function TrustCenter() {
   const { t } = useLanguage();
   const copy = t.trustCenter || {};
   const guarantees = copy.guarantees || [];
-  const [sectionOpen, setSectionOpen] = useState(false);
+  const [sectionOpen, setSectionOpen] = useState(true);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [showLegalDocs, setShowLegalDocs] = useState(false);
   const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
@@ -38,7 +38,7 @@ export function TrustCenter() {
   };
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-white to-brand-background-secondary" id="legal">
+    <section className="section-spacing bg-white" id="legal">
       <div className="container-default max-w-[1120px] mx-auto">
         
         {/* Header - Compact */}
@@ -62,7 +62,7 @@ export function TrustCenter() {
             {copy.subtitle}
           </p>
 
-          {/* Expand / Collapse toggle */}
+          {/* Show/Hide details toggle — defaults to open */}
           <button
             onClick={() => setSectionOpen(!sectionOpen)}
             className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-brand-border hover:border-brand-primary/20 hover:shadow-sm transition-all cursor-pointer group"
@@ -125,7 +125,7 @@ export function TrustCenter() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.06 }}
+                transition={{ delay: idx * 0.03 }}
               >
                 <button
                   onClick={() => setExpandedCard(isExpanded ? null : idx)}

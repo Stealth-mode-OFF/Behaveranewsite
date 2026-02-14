@@ -21,7 +21,7 @@ export function Footer() {
       product: "Produkt",
       company: "Společnost",
       support: "Podpora & právní",
-      bookDemo: "Rezervovat demo",
+      bookDemo: "Domluvit demo",
       copyright: `© ${new Date().getFullYear()} Behavera s.r.o. Všechna práva vyhrazena.`,
       madeWith: "Vytvořeno s",
       inPrague: "v Praze",

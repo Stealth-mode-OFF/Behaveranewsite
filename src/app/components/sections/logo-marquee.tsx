@@ -41,7 +41,7 @@ export function LogoMarquee() {
   };
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-b from-white to-brand-background-secondary border-b border-brand-border relative z-20 overflow-hidden">
+    <section className="py-12 md:py-16 bg-white border-b border-brand-border relative z-20 overflow-hidden">
       <div className="container-default">
         {/* Title */}
         <motion.div 
