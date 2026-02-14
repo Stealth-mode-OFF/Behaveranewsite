@@ -178,9 +178,9 @@ type BentoCellProps = {
 function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProps) {
   return (
     <div className={cn(
-      "h-full rounded-3xl p-6 md:p-8 flex flex-col justify-start border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
+      "h-full rounded-3xl p-4 md:p-6 flex flex-col justify-start border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
       accent || "bg-brand-background-secondary",
-      size === "large" ? "min-h-[240px] lg:min-h-[280px]" : "min-h-[180px]"
+      size === "large" ? "min-h-[180px] lg:min-h-[200px]" : "min-h-[140px]"
     )}>
       <div className="mb-4 flex justify-center">
         <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
