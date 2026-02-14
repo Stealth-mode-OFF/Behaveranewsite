@@ -260,7 +260,7 @@ export function SignalRadar() {
             </div>
           </div>
 
-          <TopicGrid cards={c.topicCards} topicChip={c.topicChip} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} />
+          <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} />
         </div>
 
         {/* ═══════════ WHY NOT GOOGLE FORMS ═══════════ */}
@@ -456,10 +456,6 @@ function SignalDetailPanel({
             </div>
             <div>
               <h3 className="text-lg font-bold text-brand-text-primary leading-tight">{card.name}</h3>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <Clock className="w-3 h-3 text-brand-text-muted" />
-                <span className="text-xs text-brand-text-muted font-medium">{topicChip}</span>
-              </div>
             </div>
           </div>
 
@@ -551,41 +547,33 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-[500px] h-[min(85vh,860px)] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        className="relative w-full max-w-[500px] h-[min(90vh,900px)] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
       >
-        {/* Top bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-brand-border/30 bg-brand-background-secondary/30">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-primary to-brand-primary/80 flex items-center justify-center">
-              <Activity className="w-3.5 h-3.5 text-white" />
-            </div>
-            <span className="text-sm font-semibold text-brand-text-primary">Echo Pulse</span>
-          </div>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors cursor-pointer"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
+        {/* Close button only - no branding */}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-white shadow-lg border border-brand-border/40 flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors cursor-pointer"
+        >
+          <X className="w-4 h-4" />
+        </button>
 
         {/* Loading state */}
         {loading && (
-          <div className="absolute inset-0 top-[52px] flex items-center justify-center bg-white z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
             <div className="flex flex-col items-center gap-3">
               <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
-              <span className="text-sm text-brand-text-muted">Loading questionnaire…</span>
+              <span className="text-sm text-brand-text-muted">Loading…</span>
             </div>
           </div>
         )}
 
-        {/* Iframe */}
+        {/* Iframe - full height */}
         <iframe
           src={url}
-          className="flex-1 w-full border-0"
+          className="w-full h-full border-0"
           onLoad={() => setLoading(false)}
           allow="clipboard-write"
-          title="Behavera Echo Pulse"
+          title="Echo Pulse"
         />
       </motion.div>
     </motion.div>
@@ -593,96 +581,124 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
 }
 
 
-/* ─── Topic Grid — full-size cards in responsive grid ─── */
+/* ─── Topic Carousel — horizontal scroll with big beautiful cards ─── */
 
-function TopicGrid({
+function TopicCarousel({
   cards,
-  topicChip,
   chatLabel,
   ceoLabel,
   onOpenPulse,
 }: {
   cards: TopicCard[];
-  topicChip: string;
   chatLabel: string;
   ceoLabel: string;
   onOpenPulse: (url: string) => void;
 }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [selectedCard, setSelectedCard] = useState<{ card: TopicCard; num: number } | null>(null);
 
   const handleCardBodyClick = (card: TopicCard, num: number) => {
     setSelectedCard({ card, num });
   };
 
+  const scrollBy = (dir: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 380, behavior: 'smooth' });
+  };
+
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cards.map((card, i) => {
-          const TopicIcon = topicIcons[card.key] || Activity;
-          const cardNum = i + 1;
-          return (
-            <motion.div
-              key={card.key}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="rounded-2xl bg-white border border-brand-primary/6 shadow-sm hover:shadow-xl hover:border-brand-primary/15 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col group/card"
-            >
-              {/* Top accent line */}
-              <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent group-hover/card:via-brand-primary/60 transition-all" />
+      <div className="relative group/carousel">
+        {/* Nav arrows */}
+        <button
+          onClick={() => scrollBy(-1)}
+          className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-brand-border shadow-xl flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
+          aria-label="Previous"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button
+          onClick={() => scrollBy(1)}
+          className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-brand-border shadow-xl flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
+          aria-label="Next"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
 
-              {/* Clickable body — opens detail panel */}
-              <div
-                className="flex-1 flex flex-col cursor-pointer"
-                onClick={() => handleCardBodyClick(card, cardNum)}
+        {/* Edge fades */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-r from-brand-background-secondary/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-gradient-to-l from-brand-background-secondary/80 to-transparent z-10 pointer-events-none" />
+
+        {/* Scrolling track */}
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto scroll-smooth px-2 py-4 -mx-2"
+          style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+        >
+          {cards.map((card, i) => {
+            const TopicIcon = topicIcons[card.key] || Activity;
+            const cardNum = i + 1;
+            return (
+              <motion.div
+                key={card.key}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="shrink-0 w-[340px] sm:w-[380px] rounded-2xl bg-white border border-brand-primary/8 shadow-lg hover:shadow-2xl hover:border-brand-primary/20 hover:-translate-y-2 transition-all duration-300 overflow-hidden flex flex-col group/card"
               >
-                {/* Card header */}
-                <div className="flex items-center gap-3 px-4 pt-4 pb-0">
-                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 flex items-center justify-center shrink-0 relative group-hover/card:from-brand-primary/15 group-hover/card:to-brand-primary/10 transition-colors">
-                    <TopicIcon className="w-4.5 h-4.5 text-brand-primary" />
-                    <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brand-primary text-white text-[9px] font-bold flex items-center justify-center">{cardNum}</span>
+                {/* Top accent line */}
+                <div className="h-1 w-full bg-gradient-to-r from-brand-primary/40 via-brand-accent/60 to-brand-primary/40 group-hover/card:from-brand-primary/60 group-hover/card:via-brand-accent group-hover/card:to-brand-primary/60 transition-all" />
+
+                {/* Clickable body — opens detail panel */}
+                <div
+                  className="flex-1 flex flex-col cursor-pointer p-5"
+                  onClick={() => handleCardBodyClick(card, cardNum)}
+                >
+                  {/* Card header */}
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary to-brand-primary/80 flex items-center justify-center shrink-0 relative shadow-lg shadow-brand-primary/20 group-hover/card:scale-105 transition-transform">
+                      <TopicIcon className="w-6 h-6 text-white" />
+                      <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-accent text-white text-[10px] font-bold flex items-center justify-center shadow-sm">{cardNum}</span>
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-lg text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <h4 className="font-bold text-[14px] text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <Clock className="w-2.5 h-2.5 text-brand-text-muted" />
-                      <span className="text-[10px] text-brand-text-muted font-medium">{topicChip}</span>
+
+                  {/* Description */}
+                  <p className="text-sm text-brand-text-body leading-relaxed mb-4 line-clamp-3">
+                    {card.desc}
+                  </p>
+
+                  {/* CEO insight */}
+                  <div className="mt-auto">
+                    <div className="bg-gradient-to-br from-amber-50 to-orange-50/60 rounded-xl p-4 border border-amber-200/40">
+                      <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-amber-700 mb-2 flex items-center gap-1.5">
+                        <Briefcase className="w-3 h-3" />
+                        {ceoLabel}
+                      </div>
+                      <p className="text-[13px] text-amber-900/80 leading-relaxed font-medium line-clamp-2">
+                        {card.ceoInsight}
+                      </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-[12px] text-brand-text-body leading-relaxed px-4 pt-2.5 line-clamp-3">
-                  {card.desc}
-                </p>
-
-                {/* CEO insight */}
-                <div className="px-4 pt-3 pb-3 mt-auto">
-                  <div className="bg-gradient-to-br from-amber-50/80 to-orange-50/40 rounded-lg px-3 py-2.5 border border-amber-200/30">
-                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-amber-600/80 mb-1 flex items-center gap-1">
-                      <Briefcase className="w-2.5 h-2.5" />
-                      {ceoLabel}
-                    </div>
-                    <p className="text-[11px] text-amber-900/70 leading-relaxed line-clamp-2 font-medium">
-                      {card.ceoInsight}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom CTA — opens pulse questionnaire in embed */}
-              <button
-                onClick={() => onOpenPulse(card.link)}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-border/30 text-[12px] font-semibold text-brand-primary/70 group-hover/card:text-brand-primary group-hover/card:bg-brand-primary/[0.03] transition-all cursor-pointer w-full"
-              >
-                <Play className="w-3 h-3" />
-                <span>{card.name}</span>
-                <ArrowRight className="w-3 h-3 group-hover/card:translate-x-0.5 transition-transform" />
-              </button>
-            </motion.div>
-          );
-        })}
+                {/* Bottom CTA — opens pulse questionnaire in embed */}
+                <button
+                  onClick={() => onOpenPulse(card.link)}
+                  className="flex items-center justify-center gap-2.5 px-5 py-4 border-t border-brand-border/30 text-sm font-semibold text-brand-primary bg-brand-primary/[0.02] hover:bg-brand-primary/[0.06] transition-all cursor-pointer w-full group/cta"
+                >
+                  <Play className="w-4 h-4" />
+                  <span>Vyzkoušet {card.name}</span>
+                  <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
+                </button>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Signal Detail Panel */}
@@ -693,7 +709,7 @@ function TopicGrid({
             cardNum={selectedCard.num}
             chatLabel={chatLabel}
             ceoLabel={ceoLabel}
-            topicChip={topicChip}
+            topicChip=""
             onClose={() => setSelectedCard(null)}
             onOpenPulse={onOpenPulse}
           />
