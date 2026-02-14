@@ -480,7 +480,6 @@ function TopicCarousel({
                   <TopicIcon className="w-5 h-5 text-brand-primary" />
                   <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-primary text-white text-[10px] font-bold flex items-center justify-center shadow-sm">{cardNum}</span>
                 </div>
-                </div>
                 <div className="min-w-0">
                   <h4 className="font-bold text-[15px] text-brand-primary leading-tight">{card.name}</h4>
                   <div className="flex items-center gap-1.5 mt-0.5">
