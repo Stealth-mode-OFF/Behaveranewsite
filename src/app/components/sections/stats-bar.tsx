@@ -15,6 +15,7 @@ function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: {
 }) {
   // Start with the real value so crawlers / slow renders never show "0"
   const [count, setCount] = useState(end);
+  const [blur, setBlur] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const hasAnimated = useRef(false);
@@ -23,21 +24,31 @@ function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: {
     if (!inView || hasAnimated.current) return;
     hasAnimated.current = true;
 
-    // Reset to 0 while parent opacity is still ~0, then animate up
-    setCount(0);
+    // Start from ~85% of target — subtle roll-up, never a frantic race from 0
+    const startFrom = Math.round(end * 0.85);
+    setCount(startFrom);
+    setBlur(3); // start slightly blurred
+
     const startTime = performance.now();
     const animate = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(end * eased));
+      // Gentle ease-out: fast initial movement, long soft settling
+      const eased = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.round(startFrom + (end - startFrom) * eased));
+      // Blur goes from 3px -> 0 in the first 60% of animation
+      setBlur(Math.max(0, 3 * (1 - progress / 0.6)));
       if (progress < 1) requestAnimationFrame(animate);
     };
-    requestAnimationFrame(animate);
+    // Small delay so the fade-in starts before counting
+    setTimeout(() => requestAnimationFrame(animate), 120);
   }, [inView, end, duration]);
 
   return (
-    <span ref={ref}>
+    <span 
+      ref={ref}
+      style={{ filter: blur > 0.1 ? `blur(${blur}px)` : undefined, transition: 'filter 0.1s' }}
+    >
       {prefix}{count.toLocaleString()}{suffix}
     </span>
   );
@@ -159,7 +170,7 @@ export function StatsBar() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="text-center px-6 md:px-10"
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/5 mb-4">
@@ -170,7 +181,7 @@ export function StatsBar() {
                     end={stat.value} 
                     suffix={stat.suffix} 
                     prefix={stat.prefix}
-                    duration={stat.value > 100 ? 2500 : 1500} 
+                    duration={stat.value > 100 ? 3000 : 1800} 
                   />
                 </div>
                 <div className="text-sm font-bold text-brand-primary uppercase tracking-widest mb-1">
