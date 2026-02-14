@@ -3,11 +3,11 @@ import {
   Activity, Zap, Briefcase, Heart, Shield, Award, Scale, Cpu,
   MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
   Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
-  ChevronLeft, ChevronRight, X, Play, ArrowRight
+  ChevronLeft, ChevronRight, X, Play, ArrowRight, Loader2
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { getPulseCheckUrl, PULSE_SCAN_WINDOW_FEATURES, PULSE_SCAN_WINDOW_NAME } from "@/lib/urls";
+import { getPulseCheckUrl } from "@/lib/urls";
 import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /* ─── Icons ─── */
@@ -159,10 +159,16 @@ const copy: Record<string, TCopy> = {
 export function SignalRadar() {
   const { language } = useLanguage();
   const [compOpen, setCompOpen] = useState(false);
+  const [pulseEmbedUrl, setPulseEmbedUrl] = useState<string | null>(null);
 
   const c = copy[language] || copy.en;
 
   const tryLink = getPulseCheckUrl(language);
+
+  const openPulseEmbed = (url: string) => {
+    setPulseEmbedUrl(url);
+    trackPulseCheckOpen('signal_radar_card', language);
+  };
 
   return (
     <section className="section-spacing bg-brand-background-secondary/30 relative overflow-hidden" id="radar">
@@ -233,7 +239,7 @@ export function SignalRadar() {
           </div>
         </div>
 
-        {/* ═══════════ 8 TOPIC CARDS — Infinite Carousel ═══════════ */}
+        {/* ═══════════ 8 TOPIC CARDS — Responsive Grid ═══════════ */}
         <div className="mb-16">
           <div className="text-center mb-10">
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-brand-text-primary mb-4">
@@ -254,7 +260,7 @@ export function SignalRadar() {
             </div>
           </div>
 
-          <TopicCarousel cards={c.topicCards} topicChip={c.topicChip} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} />
+          <TopicGrid cards={c.topicCards} topicChip={c.topicChip} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} />
         </div>
 
         {/* ═══════════ WHY NOT GOOGLE FORMS ═══════════ */}
@@ -355,14 +361,11 @@ export function SignalRadar() {
               </p>
             </div>
               <button
-              onClick={() => {
-                window.open(tryLink, PULSE_SCAN_WINDOW_NAME, PULSE_SCAN_WINDOW_FEATURES);
-                trackPulseCheckOpen('signal_radar', language);
-              }}
+              onClick={() => openPulseEmbed(tryLink)}
               className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
             >
               {c.tryCta}
-              <ExternalLink className="w-3.5 h-3.5" />
+              <Play className="w-3.5 h-3.5" />
             </button>
           </div>
 
@@ -371,41 +374,80 @@ export function SignalRadar() {
         </motion.div>
 
       </div>
+
+      {/* ═══════════ PULSE EMBED DIALOG ═══════════ */}
+      <PulseEmbedDialog url={pulseEmbedUrl} onClose={() => setPulseEmbedUrl(null)} />
     </section>
   );
 }
 
-/* ─── Infinite Topic Carousel ─── */
+/* ─── Types ─── */
 
 type TopicCard = TCopy['topicCards'][number];
 
 /* ─── Signal Detail Side Panel ─── */
 function SignalDetailPanel({
-  card, cardNum, chatLabel, ceoLabel, topicChip, onClose,
+  card,
+  cardNum,
+  chatLabel,
+  ceoLabel,
+  topicChip,
+  onClose,
+  onOpenPulse,
 }: {
-  card: TopicCard; cardNum: number; chatLabel: string; ceoLabel: string; topicChip: string; onClose: () => void;
+  card: TopicCard;
+  cardNum: number;
+  chatLabel: string;
+  ceoLabel: string;
+  topicChip: string;
+  onClose: () => void;
+  onOpenPulse?: (url: string) => void;
 }) {
   const TopicIcon = topicIcons[card.key] || Activity;
+
+  // Close on Escape
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [onClose]);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6" onClick={onClose}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+      onClick={onClose}
+    >
+      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
-      <motion.div initial={{ opacity: 0, y: 24, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 16, scale: 0.97 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+
+      {/* Panel */}
+      <motion.div
+        initial={{ opacity: 0, y: 24, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 16, scale: 0.97 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-[420px] max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-brand-border/40"
-        style={{ scrollbarWidth: 'none' }}>
+        style={{ scrollbarWidth: 'none' }}
+      >
+        {/* Top accent */}
         <div className="h-1 w-full bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary rounded-t-2xl" />
-        <button onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors z-10 cursor-pointer">
+
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors z-10 cursor-pointer"
+        >
           <X className="w-4 h-4" />
         </button>
+
+        {/* Header */}
         <div className="px-6 pt-6 pb-4">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary to-brand-primary/80 flex items-center justify-center shadow-lg shadow-brand-primary/20 relative">
@@ -420,96 +462,182 @@ function SignalDetailPanel({
               </div>
             </div>
           </div>
-          <p className="text-sm text-brand-text-body leading-relaxed">{card.desc}</p>
+
+          <p className="text-sm text-brand-text-body leading-relaxed">
+            {card.desc}
+          </p>
         </div>
+
+        {/* Sample question */}
         <div className="px-6 pb-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-2 flex items-center gap-1.5">
-            <MessageCircle className="w-3 h-3" />{chatLabel}
+            <MessageCircle className="w-3 h-3" />
+            {chatLabel}
           </div>
           <div className="bg-gradient-to-br from-brand-background-secondary to-brand-background-secondary/60 rounded-xl rounded-tl-sm px-4 py-3.5 text-sm text-brand-text-secondary leading-relaxed italic border border-brand-border/30">
             {card.sampleQ}
           </div>
         </div>
+
+        {/* CEO insight */}
         <div className="px-6 pb-5">
           <div className="bg-gradient-to-br from-amber-50 to-orange-50/60 rounded-xl p-4 border border-amber-200/40">
             <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-amber-700 mb-2 flex items-center gap-1.5">
-              <Briefcase className="w-3 h-3" />{ceoLabel}
+              <Briefcase className="w-3 h-3" />
+              {ceoLabel}
             </div>
-            <p className="text-[13px] text-amber-900/80 leading-relaxed font-medium">{card.ceoInsight}</p>
+            <p className="text-[13px] text-amber-900/80 leading-relaxed font-medium">
+              {card.ceoInsight}
+            </p>
           </div>
         </div>
+
+        {/* CTA */}
         <div className="px-6 pb-6">
-          <a href={card.link} target="_blank" rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2.5 w-full h-12 rounded-xl bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-primary/25 hover:-translate-y-0.5 transition-all cursor-pointer">
-            <Play className="w-4 h-4" />{card.name}<ArrowRight className="w-4 h-4" />
-          </a>
+          <button
+            onClick={() => {
+              onClose();
+              onOpenPulse?.(card.link);
+            }}
+            className="flex items-center justify-center gap-2.5 w-full h-12 rounded-xl bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-primary/25 hover:-translate-y-0.5 transition-all cursor-pointer"
+          >
+            <Play className="w-4 h-4" />
+            {card.name}
+            <ArrowRight className="w-4 h-4" />
+          </button>
         </div>
       </motion.div>
     </motion.div>
   );
 }
 
-function TopicCarousel({ cards, topicChip, chatLabel, ceoLabel }: { cards: TopicCard[]; topicChip: string; chatLabel: string; ceoLabel: string; }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<{ card: TopicCard; num: number } | null>(null);
-  const animationRef = useRef<number>();
-  const scrollPos = useRef(0);
-  const CARD_WIDTH = 320;
-  const SPEED = 0.4;
-  const tripled = [...cards, ...cards, ...cards];
-  const setWidth = cards.length * CARD_WIDTH;
+/* ─── Pulse Embed Dialog — clean iframe popup ─── */
+
+function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () => void }) {
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    scrollPos.current = setWidth;
-    el.scrollLeft = setWidth;
-    const tick = () => {
-      if (!isPaused && el) {
-        scrollPos.current += SPEED;
-        if (scrollPos.current >= setWidth * 2) scrollPos.current -= setWidth;
-        el.scrollLeft = scrollPos.current;
-      }
-      animationRef.current = requestAnimationFrame(tick);
+    if (!url) return;
+    setLoading(true);
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
     };
-    animationRef.current = requestAnimationFrame(tick);
-    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
-  }, [isPaused, setWidth]);
+    document.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [url, onClose]);
 
-  const scrollBy = (dir: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    scrollPos.current += dir * CARD_WIDTH;
-    el.scrollTo({ left: scrollPos.current, behavior: 'smooth' });
-  };
+  if (!url) return null;
 
-  const handleCardClick = (card: TopicCard, idx: number) => {
-    setSelectedCard({ card, num: (idx % cards.length) + 1 });
-    setIsPaused(true);
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
+      onClick={onClose}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+
+      {/* Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 32, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.97 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-[500px] h-[min(85vh,860px)] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+      >
+        {/* Top bar */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-brand-border/30 bg-brand-background-secondary/30">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-primary to-brand-primary/80 flex items-center justify-center">
+              <Activity className="w-3.5 h-3.5 text-white" />
+            </div>
+            <span className="text-sm font-semibold text-brand-text-primary">Echo Pulse</span>
+          </div>
+          <button
+            onClick={onClose}
+            className="w-8 h-8 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors cursor-pointer"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Loading state */}
+        {loading && (
+          <div className="absolute inset-0 top-[52px] flex items-center justify-center bg-white z-10">
+            <div className="flex flex-col items-center gap-3">
+              <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
+              <span className="text-sm text-brand-text-muted">Loading questionnaire…</span>
+            </div>
+          </div>
+        )}
+
+        {/* Iframe */}
+        <iframe
+          src={url}
+          className="flex-1 w-full border-0"
+          onLoad={() => setLoading(false)}
+          allow="clipboard-write"
+          title="Behavera Echo Pulse"
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+
+/* ─── Topic Grid — full-size cards in responsive grid ─── */
+
+function TopicGrid({
+  cards,
+  topicChip,
+  chatLabel,
+  ceoLabel,
+  onOpenPulse,
+}: {
+  cards: TopicCard[];
+  topicChip: string;
+  chatLabel: string;
+  ceoLabel: string;
+  onOpenPulse: (url: string) => void;
+}) {
+  const [selectedCard, setSelectedCard] = useState<{ card: TopicCard; num: number } | null>(null);
+
+  const handleCardBodyClick = (card: TopicCard, num: number) => {
+    setSelectedCard({ card, num });
   };
 
   return (
     <>
-      <div className="relative group/carousel" onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => { if (!selectedCard) setIsPaused(false); }}>
-        <button onClick={() => scrollBy(-1)}
-          className="absolute -left-3 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-brand-border shadow-lg flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
-          aria-label="Previous"><ChevronLeft className="w-5 h-5" /></button>
-        <button onClick={() => scrollBy(1)}
-          className="absolute -right-3 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-brand-border shadow-lg flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
-          aria-label="Next"><ChevronRight className="w-5 h-5" /></button>
-        <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-brand-background-secondary/30 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-brand-background-secondary/30 to-transparent z-10 pointer-events-none" />
-        <div ref={scrollRef} className="flex gap-4 overflow-x-hidden scroll-smooth"
-          style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
-          {tripled.map((card, i) => {
-            const TopicIcon = topicIcons[card.key] || Activity;
-            const cardNum = (i % cards.length) + 1;
-            return (
-              <div key={`${card.key}-${i}`} onClick={() => handleCardClick(card, i)}
-                className="shrink-0 w-[300px] rounded-2xl bg-white border border-brand-primary/6 shadow-sm hover:shadow-xl hover:border-brand-primary/15 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col cursor-pointer group/card">
-                <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent group-hover/card:via-brand-primary/60 transition-all" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {cards.map((card, i) => {
+          const TopicIcon = topicIcons[card.key] || Activity;
+          const cardNum = i + 1;
+          return (
+            <motion.div
+              key={card.key}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="rounded-2xl bg-white border border-brand-primary/6 shadow-sm hover:shadow-xl hover:border-brand-primary/15 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col group/card"
+            >
+              {/* Top accent line */}
+              <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent group-hover/card:via-brand-primary/60 transition-all" />
+
+              {/* Clickable body — opens detail panel */}
+              <div
+                className="flex-1 flex flex-col cursor-pointer"
+                onClick={() => handleCardBodyClick(card, cardNum)}
+              >
+                {/* Card header */}
                 <div className="flex items-center gap-3 px-4 pt-4 pb-0">
                   <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 flex items-center justify-center shrink-0 relative group-hover/card:from-brand-primary/15 group-hover/card:to-brand-primary/10 transition-colors">
                     <TopicIcon className="w-4.5 h-4.5 text-brand-primary" />
@@ -523,29 +651,52 @@ function TopicCarousel({ cards, topicChip, chatLabel, ceoLabel }: { cards: Topic
                     </div>
                   </div>
                 </div>
-                <p className="text-[12px] text-brand-text-body leading-relaxed px-4 pt-2.5 line-clamp-2">{card.desc}</p>
+
+                {/* Description */}
+                <p className="text-[12px] text-brand-text-body leading-relaxed px-4 pt-2.5 line-clamp-3">
+                  {card.desc}
+                </p>
+
+                {/* CEO insight */}
                 <div className="px-4 pt-3 pb-3 mt-auto">
                   <div className="bg-gradient-to-br from-amber-50/80 to-orange-50/40 rounded-lg px-3 py-2.5 border border-amber-200/30">
                     <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-amber-600/80 mb-1 flex items-center gap-1">
-                      <Briefcase className="w-2.5 h-2.5" />{ceoLabel}
+                      <Briefcase className="w-2.5 h-2.5" />
+                      {ceoLabel}
                     </div>
-                    <p className="text-[11px] text-amber-900/70 leading-relaxed line-clamp-2 font-medium">{card.ceoInsight}</p>
+                    <p className="text-[11px] text-amber-900/70 leading-relaxed line-clamp-2 font-medium">
+                      {card.ceoInsight}
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-border/30 text-[12px] font-semibold text-brand-primary/70 group-hover/card:text-brand-primary group-hover/card:bg-brand-primary/[0.02] transition-all">
-                  <span>{card.name}</span>
-                  <ArrowRight className="w-3 h-3 group-hover/card:translate-x-0.5 transition-transform" />
-                </div>
               </div>
-            );
-          })}
-        </div>
+
+              {/* Bottom CTA — opens pulse questionnaire in embed */}
+              <button
+                onClick={() => onOpenPulse(card.link)}
+                className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-border/30 text-[12px] font-semibold text-brand-primary/70 group-hover/card:text-brand-primary group-hover/card:bg-brand-primary/[0.03] transition-all cursor-pointer w-full"
+              >
+                <Play className="w-3 h-3" />
+                <span>{card.name}</span>
+                <ArrowRight className="w-3 h-3 group-hover/card:translate-x-0.5 transition-transform" />
+              </button>
+            </motion.div>
+          );
+        })}
       </div>
+
+      {/* Signal Detail Panel */}
       <AnimatePresence>
         {selectedCard && (
-          <SignalDetailPanel card={selectedCard.card} cardNum={selectedCard.num}
-            chatLabel={chatLabel} ceoLabel={ceoLabel} topicChip={topicChip}
-            onClose={() => { setSelectedCard(null); setIsPaused(false); }} />
+          <SignalDetailPanel
+            card={selectedCard.card}
+            cardNum={selectedCard.num}
+            chatLabel={chatLabel}
+            ceoLabel={ceoLabel}
+            topicChip={topicChip}
+            onClose={() => setSelectedCard(null)}
+            onOpenPulse={onOpenPulse}
+          />
         )}
       </AnimatePresence>
     </>
