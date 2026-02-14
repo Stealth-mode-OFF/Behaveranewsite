@@ -1,137 +1,124 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useLanguage } from "@/app/LanguageContext";
-import { Mail, MessageSquare, Video, Calendar, BarChart3, Users, Zap, ArrowRight } from "lucide-react";
+import { Mail, MessageSquare, Globe, Send, MousePointerClick, LayoutDashboard, Monitor, Tablet, Smartphone, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 
 /* ───────────────────────────────────────────────────
- *  Integrations Showcase — Fathom-inspired
- *  "Works wherever your people already work"
+ *  How It Works — browser-only, zero-install flow
+ *  Employee gets link → answers → Leader sees dashboard
  * ─────────────────────────────────────────────────── */
 
 const copy = {
   cz: {
-    badge: "Integrace",
-    title: "Funguje tam,",
-    titleHighlight: " kde váš tým už pracuje",
+    badge: "Jak to funguje",
+    title: "Celé to běží",
+    titleHighlight: " v prohlížeči. Žádná instalace.",
     subtitle:
-      "Echo Pulse se napojí na nástroje, které denně používáte. Žádný nový software, žádné přihlašování navíc.",
+      "Zaměstnanec dostane unikátní odkaz, klikne, odpoví — hotovo. Leader se přihlásí do dashboardu a vše vidí. Z počítače, tabletu i mobilu.",
     cta: "Domluvit demo",
-    categories: [
+    steps: [
       {
-        name: "Komunikace",
-        items: [
-          { icon: "slack", label: "Slack" },
-          { icon: "email", label: "E-mail" },
-        ],
+        icon: "send",
+        title: "Odeslání odkazu",
+        description: "Zaměstnanec obdrží unikátní odkaz přes e-mail nebo Slack.",
+        color: "#4A154B",
       },
       {
-        name: "HR systémy",
-        items: [
-          { icon: "users", label: "BambooHR" },
-          { icon: "users", label: "Personio" },
-          { icon: "users", label: "SAP HR" },
-        ],
+        icon: "click",
+        title: "Odpověď v prohlížeči",
+        description: "Klikne, odpoví na krátký AI chat za 2 minuty a odešle zpětnou vazbu.",
+        color: "#2D1B69",
       },
       {
-        name: "Produktivita",
-        items: [
-          { icon: "calendar", label: "Google Calendar" },
-          { icon: "video", label: "Zoom / Meet" },
-          { icon: "chart", label: "Power BI" },
-        ],
+        icon: "dashboard",
+        title: "Výsledky v dashboardu",
+        description: "Leader se přihlásí a okamžitě vidí výsledky — podle týmů, témat i rizik.",
+        color: "#059669",
       },
+    ],
+    features: [
+      "Funguje na jakémkoliv zařízení s prohlížečem",
+      "Žádná instalace, žádná nová aplikace",
+      "Odkaz přes Slack nebo e-mail — zaměstnanec si vybere",
+      "Dashboard dostupný odkudkoliv — PC, tablet, mobil",
     ],
   },
   en: {
-    badge: "Integrations",
-    title: "Works wherever",
-    titleHighlight: " your team already works",
+    badge: "How it works",
+    title: "Everything runs",
+    titleHighlight: " in the browser. Zero installation.",
     subtitle:
-      "Echo Pulse plugs into the tools you use every day. No new software to learn, no extra logins.",
+      "Employee receives a unique link, clicks, answers — done. Leader logs into the dashboard and sees everything. From desktop, tablet, or phone.",
     cta: "Book a demo",
-    categories: [
+    steps: [
       {
-        name: "Communication",
-        items: [
-          { icon: "slack", label: "Slack" },
-          { icon: "email", label: "Email" },
-        ],
+        icon: "send",
+        title: "Link delivery",
+        description: "Employee receives a unique link via email or Slack.",
+        color: "#4A154B",
       },
       {
-        name: "HR Systems",
-        items: [
-          { icon: "users", label: "BambooHR" },
-          { icon: "users", label: "Personio" },
-          { icon: "users", label: "SAP HR" },
-        ],
+        icon: "click",
+        title: "Answer in browser",
+        description: "They click, answer a short AI chat in 2 minutes, and submit feedback.",
+        color: "#2D1B69",
       },
       {
-        name: "Productivity",
-        items: [
-          { icon: "calendar", label: "Google Calendar" },
-          { icon: "video", label: "Zoom / Meet" },
-          { icon: "chart", label: "Power BI" },
-        ],
+        icon: "dashboard",
+        title: "Results in dashboard",
+        description: "Leader logs in and instantly sees results — by team, topic, and risk.",
+        color: "#059669",
       },
+    ],
+    features: [
+      "Works on any device with a browser",
+      "No installation, no new software",
+      "Link via Slack or email — employee chooses",
+      "Dashboard accessible anywhere — PC, tablet, phone",
     ],
   },
   de: {
-    badge: "Integrationen",
-    title: "Funktioniert dort,",
-    titleHighlight: " wo Ihr Team bereits arbeitet",
+    badge: "So funktioniert's",
+    title: "Alles läuft",
+    titleHighlight: " im Browser. Keine Installation.",
     subtitle:
-      "Echo Pulse integriert sich in die Tools, die Sie täglich nutzen. Keine neue Software, keine zusätzlichen Logins.",
+      "Mitarbeiter erhalten einen einzigartigen Link, klicken, antworten — fertig. Der Leader meldet sich im Dashboard an und sieht alles. Vom PC, Tablet oder Handy.",
     cta: "Demo buchen",
-    categories: [
+    steps: [
       {
-        name: "Kommunikation",
-        items: [
-          { icon: "slack", label: "Slack" },
-          { icon: "email", label: "E-Mail" },
-        ],
+        icon: "send",
+        title: "Link-Versand",
+        description: "Mitarbeiter erhalten einen einzigartigen Link per E-Mail oder Slack.",
+        color: "#4A154B",
       },
       {
-        name: "HR-Systeme",
-        items: [
-          { icon: "users", label: "BambooHR" },
-          { icon: "users", label: "Personio" },
-          { icon: "users", label: "SAP HR" },
-        ],
+        icon: "click",
+        title: "Antwort im Browser",
+        description: "Sie klicken, beantworten einen kurzen AI-Chat in 2 Minuten und senden Feedback.",
+        color: "#2D1B69",
       },
       {
-        name: "Produktivität",
-        items: [
-          { icon: "calendar", label: "Google Calendar" },
-          { icon: "video", label: "Zoom / Meet" },
-          { icon: "chart", label: "Power BI" },
-        ],
+        icon: "dashboard",
+        title: "Ergebnisse im Dashboard",
+        description: "Der Leader meldet sich an und sieht sofort Ergebnisse — nach Team, Thema und Risiko.",
+        color: "#059669",
       },
+    ],
+    features: [
+      "Funktioniert auf jedem Gerät mit Browser",
+      "Keine Installation, keine neue Software",
+      "Link per Slack oder E-Mail — Mitarbeiter wählt",
+      "Dashboard von überall — PC, Tablet, Handy",
     ],
   },
 } as const;
 
-const iconMap: Record<string, React.ElementType> = {
-  slack: MessageSquare,
-  email: Mail,
-  users: Users,
-  calendar: Calendar,
-  video: Video,
-  chart: BarChart3,
-};
-
-const brandColors: Record<string, string> = {
-  Slack: "#4A154B",
-  "E-mail": "#EA4335",
-  Email: "#EA4335",
-  "E-Mail": "#EA4335",
-  BambooHR: "#73C41D",
-  Personio: "#0F1740",
-  "SAP HR": "#0070F2",
-  "Google Calendar": "#4285F4",
-  "Zoom / Meet": "#2D8CFF",
-  "Power BI": "#F2C811",
+const stepIconMap: Record<string, React.ElementType> = {
+  send: Send,
+  click: MousePointerClick,
+  dashboard: LayoutDashboard,
 };
 
 export function IntegrationsShowcase() {
@@ -142,7 +129,7 @@ export function IntegrationsShowcase() {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="section-spacing bg-brand-background-secondary" id="integrations">
+    <section className="section-spacing bg-brand-background-secondary" id="how-it-works">
       <div className="container-default max-w-[1120px] mx-auto" ref={ref}>
         {/* Header */}
         <motion.div
@@ -152,7 +139,7 @@ export function IntegrationsShowcase() {
           className="text-center max-w-2xl mx-auto mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
-            <Zap className="w-3.5 h-3.5 text-brand-accent" />
+            <Globe className="w-3.5 h-3.5 text-brand-accent" />
             {t.badge}
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-[44px] font-bold tracking-tight leading-[1.1] mb-4">
@@ -166,57 +153,101 @@ export function IntegrationsShowcase() {
           </p>
         </motion.div>
 
-        {/* Integration grid — 3 categories */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {t.categories.map((category, catIdx) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-              className="bg-white rounded-2xl border border-brand-border p-6"
-            >
-              <h3 className="text-sm font-bold text-brand-text-muted uppercase tracking-widest mb-5">
-                {category.name}
-              </h3>
-              <div className="space-y-4">
-                {category.items.map((item) => {
-                  const Icon = iconMap[item.icon] || Zap;
-                  const color = brandColors[item.label] || "#6D28D9";
-                  return (
-                    <div
-                      key={item.label}
-                      className="flex items-center gap-3 group"
-                    >
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105"
-                        style={{ backgroundColor: `${color}15` }}
-                      >
-                        <Icon
-                          className="w-5 h-5"
-                          style={{ color }}
-                        />
-                      </div>
-                      <span className="text-sm font-semibold text-brand-text-primary">
-                        {item.label}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ))}
+        {/* 3-step flow */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
+          {t.steps.map((step, idx) => {
+            const Icon = stepIconMap[step.icon] || Zap;
+            return (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: idx * 0.12 }}
+                className="bg-white rounded-2xl border border-brand-border p-6 relative group"
+              >
+                {/* Step number */}
+                <div className="absolute -top-3 -left-1 md:left-4 w-7 h-7 rounded-full bg-brand-primary text-white text-xs font-bold flex items-center justify-center shadow-md">
+                  {idx + 1}
+                </div>
+                
+                {/* Icon */}
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-105"
+                  style={{ backgroundColor: `${step.color}12` }}
+                >
+                  <Icon className="w-6 h-6" style={{ color: step.color }} />
+                </div>
+
+                <h3 className="text-base font-bold text-brand-text-primary mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-brand-text-body leading-relaxed">
+                  {step.description}
+                </p>
+
+                {/* Arrow connector (visible on md+, except last) */}
+                {idx < 2 && (
+                  <div className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10">
+                    <ArrowRight className="w-5 h-5 text-brand-border-strong" />
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Device strip + features */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="bg-white rounded-2xl border border-brand-border p-6 md:p-8 mb-10"
+        >
+          {/* Device icons */}
+          <div className="flex items-center justify-center gap-6 mb-6">
+            <div className="flex items-center gap-2 text-brand-text-muted">
+              <Monitor className="w-5 h-5" />
+              <span className="text-xs font-medium hidden sm:inline">Desktop</span>
+            </div>
+            <div className="flex items-center gap-2 text-brand-text-muted">
+              <Tablet className="w-5 h-5" />
+              <span className="text-xs font-medium hidden sm:inline">Tablet</span>
+            </div>
+            <div className="flex items-center gap-2 text-brand-text-muted">
+              <Smartphone className="w-5 h-5" />
+              <span className="text-xs font-medium hidden sm:inline">Mobile</span>
+            </div>
+            <span className="text-brand-border">·</span>
+            <div className="flex items-center gap-2 text-brand-text-muted">
+              <MessageSquare className="w-5 h-5" />
+              <span className="text-xs font-medium hidden sm:inline">Slack</span>
+            </div>
+            <div className="flex items-center gap-2 text-brand-text-muted">
+              <Mail className="w-5 h-5" />
+              <span className="text-xs font-medium hidden sm:inline">E-mail</span>
+            </div>
+          </div>
+
+          {/* Feature checklist */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {t.features.map((feature) => (
+              <div key={feature} className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
+                <span className="text-sm text-brand-text-body">{feature}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
           className="text-center"
         >
           <Button
-            onClick={() => openBooking("integrations_cta")}
+            onClick={() => openBooking("how_it_works_cta")}
             className="rounded-2xl h-12 px-8 font-semibold text-sm bg-brand-primary text-white hover:bg-brand-primary-hover transition-all inline-flex items-center gap-2"
           >
             {t.cta}
