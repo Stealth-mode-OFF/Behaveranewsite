@@ -7,7 +7,7 @@ import { useLanguage } from '@/app/LanguageContext';
 import { trackBookingCalendarLoaded } from '@/lib/analytics';
 
 // Calendly embed with clean inline params
-const SCHEDULER_EMBED_URL = 'https://calendly.com/josef-hofman-behavera?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=1C1237&primary_color=2D1B69';
+const SCHEDULER_EMBED_URL = 'https://calendly.com/josef-hofman-behavera?hide_landing_page_details=1&hide_gdpr_banner=1&hide_event_type_details=1&background_color=ffffff&text_color=1C1237&primary_color=2D1B69';
 
 // Skeleton shimmer for loading state
 function CalendarSkeleton() {
@@ -224,15 +224,17 @@ export function BookingModal() {
               </AnimatePresence>
 
               {shouldLoadIframe && (
-                <iframe
-                  src={SCHEDULER_EMBED_URL}
-                  title={c.title}
-                  className="w-full h-full absolute inset-0 border-0"
-                  style={{ minHeight: '540px' }}
-                  allow="payment"
-                  loading="eager"
-                  onLoad={() => { setIsIframeLoaded(true); trackBookingCalendarLoaded(); }}
-                />
+                <div className="w-full h-full absolute inset-0 overflow-hidden">
+                  <iframe
+                    src={SCHEDULER_EMBED_URL}
+                    title={c.title}
+                    className="w-full border-0"
+                    style={{ minHeight: '640px', height: 'calc(100% + 80px)' }}
+                    allow="payment"
+                    loading="eager"
+                    onLoad={() => { setIsIframeLoaded(true); trackBookingCalendarLoaded(); }}
+                  />
+                </div>
               )}
             </div>
           </div>
