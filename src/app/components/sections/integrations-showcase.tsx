@@ -23,7 +23,6 @@ const copy = {
         name: "Komunikace",
         items: [
           { icon: "slack", label: "Slack" },
-          { icon: "teams", label: "MS Teams" },
           { icon: "email", label: "E-mail" },
         ],
       },
@@ -57,7 +56,6 @@ const copy = {
         name: "Communication",
         items: [
           { icon: "slack", label: "Slack" },
-          { icon: "teams", label: "MS Teams" },
           { icon: "email", label: "Email" },
         ],
       },
@@ -91,7 +89,6 @@ const copy = {
         name: "Kommunikation",
         items: [
           { icon: "slack", label: "Slack" },
-          { icon: "teams", label: "MS Teams" },
           { icon: "email", label: "E-Mail" },
         ],
       },
@@ -117,7 +114,6 @@ const copy = {
 
 const iconMap: Record<string, React.ElementType> = {
   slack: MessageSquare,
-  teams: Users,
   email: Mail,
   users: Users,
   calendar: Calendar,
@@ -127,7 +123,6 @@ const iconMap: Record<string, React.ElementType> = {
 
 const brandColors: Record<string, string> = {
   Slack: "#4A154B",
-  "MS Teams": "#6264A7",
   "E-mail": "#EA4335",
   Email: "#EA4335",
   "E-Mail": "#EA4335",
