@@ -23,7 +23,7 @@ export function TrustCenter() {
   const { t } = useLanguage();
   const copy = t.trustCenter || {};
   const guarantees = copy.guarantees || [];
-  const [sectionOpen, setSectionOpen] = useState(true);
+  const [sectionOpen, setSectionOpen] = useState(false);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [showLegalDocs, setShowLegalDocs] = useState(false);
   const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
@@ -62,7 +62,7 @@ export function TrustCenter() {
             {copy.subtitle}
           </p>
 
-          {/* Show/Hide details toggle — defaults to open */}
+          {/* Show/Hide details toggle — defaults to collapsed */}
           <button
             onClick={() => setSectionOpen(!sectionOpen)}
             className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-brand-border hover:border-brand-primary/20 hover:shadow-sm transition-all cursor-pointer group"
