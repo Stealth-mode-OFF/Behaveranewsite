@@ -31,7 +31,7 @@ export function Hero() {
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Výsledky okamžitě v dashboardu" },
-        { icon: Zap, text: "80 %+ návratnost · firmy 50–300 lidí" },
+        { icon: Zap, text: "80 %+ návratnost · firmy 50–500 lidí" },
       ],
     },
     en: {
@@ -46,7 +46,7 @@ export function Hero() {
       trust: [
         { icon: Shield, text: "GDPR compliant" },
         { icon: Clock, text: "Instant results in dashboard" },
-        { icon: Zap, text: "80%+ completion · companies 50–300 people" },
+        { icon: Zap, text: "80%+ completion · companies 50–500 people" },
       ],
     },
     de: {
@@ -61,7 +61,7 @@ export function Hero() {
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
         { icon: Clock, text: "Ergebnisse sofort im Dashboard" },
-        { icon: Zap, text: "80 %+ Rücklaufquote · Firmen 50–300 MA" },
+        { icon: Zap, text: "80 %+ Rücklaufquote · Firmen 50–500 MA" },
       ],
     },
   };
