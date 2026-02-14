@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { FormField } from "@/app/components/ui/form-field";
-import { CheckCircle2, Loader2, ArrowRight, Check, Download } from "lucide-react";
+import { CheckCircle2, Loader2, ArrowRight, Check, Download, BookOpen } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/LanguageContext";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
@@ -20,11 +20,21 @@ const EBOOKS = [
   {
     file: "/ebooks/lide-odchazeji-z-dobrych-firem.pdf",
     title: { cz: "Lidé odcházejí i z dobrých firem", en: "People Leave Good Companies Too", de: "Mitarbeiter verlassen auch gute Firmen" },
+    desc: {
+      cz: "Proč odcházejí i spokojení lidé a jak tomu předejít.",
+      en: "Why even satisfied employees leave and how to prevent it.",
+      de: "Warum auch zufriedene Mitarbeiter gehen und wie man es verhindert.",
+    },
     size: "4.3 MB",
   },
   {
     file: "/ebooks/motivovani-jen-2-z-10.pdf",
     title: { cz: "Opravdu motivovaní jsou jen 2 z 10", en: "Only 2 in 10 Are Truly Motivated", de: "Nur 2 von 10 sind wirklich motiviert" },
+    desc: {
+      cz: "Co stojí za nízkou angažovaností a jak ji měřit.",
+      en: "What's behind low engagement and how to measure it.",
+      de: "Was hinter geringem Engagement steckt und wie man es misst.",
+    },
     size: "4.1 MB",
   },
 ];
@@ -45,15 +55,30 @@ export function LeadCaptureSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedEbooks, setSelectedEbooks] = useState<Set<number>>(new Set([0, 1]));
   const { register, handleSubmit, formState: { errors }, reset } = useForm<LeadFormData>({
     defaultValues: { marketingConsent: false }
   });
 
+  const toggleEbook = (index: number) => {
+    setSelectedEbooks(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        // Don't allow deselecting the last one
+        if (next.size > 1) next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
   const copy = {
     cz: {
-      title: "Stáhněte si zdarma 2 e-booky",
+      title: "Stáhněte si zdarma e-booky",
       titleHighlight: "",
       subtitle: "Praktické průvodce prevencí fluktuace — s checklisty, frameworky a reálnými čísly.",
+      selectLabel: "Vyberte si e-booky ke stažení:",
       benefits: [
         "7 varovných signálů před odchodem",
         "ROI kalkulačka prevence",
@@ -63,7 +88,8 @@ export function LeadCaptureSection() {
       namePlaceholder: "Jan Novák",
       emailLabel: "Pracovní email",
       emailPlaceholder: "jan.novak@firma.cz",
-      submit: "Stáhnout e-booky zdarma",
+      submitOne: "Stáhnout e-book zdarma",
+      submitBoth: "Stáhnout oba e-booky zdarma",
       consent: "Souhlasím se zasíláním občasných tipů a novinek. Odhlásit se můžete kdykoliv.",
       consentPrivacy: "Odesláním souhlasíte se zpracováním osobních údajů.",
       successTitle: "Hotovo! Stahování začalo.",
@@ -71,9 +97,10 @@ export function LeadCaptureSection() {
       errorGeneric: "Něco se pokazilo. Zkuste to prosím znovu.",
     },
     en: {
-      title: "Download 2 free e-books",
+      title: "Download free e-books",
       titleHighlight: "",
       subtitle: "Practical guides to turnover prevention — with checklists, frameworks, and real data.",
+      selectLabel: "Choose e-books to download:",
       benefits: [
         "7 warning signs before departure",
         "Prevention ROI calculator",
@@ -83,7 +110,8 @@ export function LeadCaptureSection() {
       namePlaceholder: "John Smith",
       emailLabel: "Work email",
       emailPlaceholder: "john.smith@company.com",
-      submit: "Download free e-books",
+      submitOne: "Download free e-book",
+      submitBoth: "Download both e-books free",
       consent: "I agree to receive occasional tips and product news. You can unsubscribe anytime.",
       consentPrivacy: "By submitting you agree to our privacy policy.",
       successTitle: "Done! Download started.",
@@ -91,9 +119,10 @@ export function LeadCaptureSection() {
       errorGeneric: "Something went wrong. Please try again.",
     },
     de: {
-      title: "Laden Sie 2 kostenlose E-Books herunter",
+      title: "Kostenlose E-Books herunterladen",
       titleHighlight: "",
       subtitle: "Praktische Leitfäden zur Fluktuationsprävention — mit Checklisten, Frameworks und echten Zahlen.",
+      selectLabel: "Wählen Sie E-Books zum Herunterladen:",
       benefits: [
         "7 Warnsignale vor dem Abgang",
         "ROI-Rechner für Prävention",
@@ -103,7 +132,8 @@ export function LeadCaptureSection() {
       namePlaceholder: "Max Mustermann",
       emailLabel: "Geschäftliche E-Mail",
       emailPlaceholder: "max.mustermann@firma.de",
-      submit: "Kostenlose E-Books herunterladen",
+      submitOne: "Kostenloses E-Book herunterladen",
+      submitBoth: "Beide E-Books kostenlos herunterladen",
       consent: "Ich stimme dem gelegentlichen Erhalt von Tipps und Produktneuigkeiten zu. Abmeldung jederzeit möglich.",
       consentPrivacy: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.",
       successTitle: "Fertig! Download gestartet.",
@@ -119,18 +149,18 @@ export function LeadCaptureSection() {
     setError(null);
     
     // Submit lead (don't block on it)
-    submitLead({ email: data.email, name: data.name, source: "ebook", marketingConsent: data.marketingConsent });
+    const ebookTitles = Array.from(selectedEbooks).map(i => EBOOKS[i].title.en).join(', ');
+    submitLead({ email: data.email, name: data.name, source: `ebook:${ebookTitles}`, marketingConsent: data.marketingConsent });
     trackLeadSubmitted('ebook');
     
-    // Immediately trigger downloads
-    setTimeout(() => {
-      downloadFile(EBOOKS[0].file, `${EBOOKS[0].title[language] || EBOOKS[0].title.en}.pdf`);
-      trackEbookDownload(EBOOKS[0].title.en, 'auto');
-    }, 100);
-    setTimeout(() => {
-      downloadFile(EBOOKS[1].file, `${EBOOKS[1].title[language] || EBOOKS[1].title.en}.pdf`);
-      trackEbookDownload(EBOOKS[1].title.en, 'auto');
-    }, 600);
+    // Download only selected ebooks
+    const selected = Array.from(selectedEbooks).sort();
+    selected.forEach((idx, i) => {
+      setTimeout(() => {
+        downloadFile(EBOOKS[idx].file, `${EBOOKS[idx].title[language] || EBOOKS[idx].title.en}.pdf`);
+        trackEbookDownload(EBOOKS[idx].title.en, 'auto');
+      }, 100 + i * 500);
+    });
     
     setIsSubmitting(false);
     setIsSuccess(true);
@@ -190,9 +220,9 @@ export function LeadCaptureSection() {
                   </div>
                   <p className="text-[13px] text-brand-text-muted mb-5">{txt.successSubtitle}</p>
 
-                  {/* Ebook download buttons */}
+                  {/* Ebook download buttons — only selected */}
                   <div className="space-y-3">
-                    {EBOOKS.map((eb, i) => (
+                    {EBOOKS.map((eb, i) => selectedEbooks.has(i) && (
                       <button
                         key={i}
                         type="button"
@@ -218,6 +248,53 @@ export function LeadCaptureSection() {
               ) : (
                 /* ─── Form ─── */
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+
+                  {/* ─── Ebook selection cards ─── */}
+                  <div>
+                    <p className="text-[13px] font-semibold text-brand-text-primary mb-2.5">{txt.selectLabel}</p>
+                    <div className="space-y-2">
+                      {EBOOKS.map((eb, i) => {
+                        const isSelected = selectedEbooks.has(i);
+                        return (
+                          <button
+                            key={i}
+                            type="button"
+                            onClick={() => toggleEbook(i)}
+                            className={`w-full flex items-start gap-3 p-3.5 rounded-xl border text-left transition-all ${
+                              isSelected
+                                ? "border-brand-primary/40 bg-brand-background-secondary ring-1 ring-brand-primary/10"
+                                : "border-brand-border hover:border-brand-border-strong bg-white"
+                            }`}
+                          >
+                            {/* Checkbox indicator */}
+                            <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all ${
+                              isSelected
+                                ? "bg-brand-primary border-brand-primary text-white"
+                                : "border-slate-300 bg-white"
+                            }`}>
+                              {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
+                            </div>
+
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2">
+                                <BookOpen className={`w-3.5 h-3.5 shrink-0 ${isSelected ? "text-brand-primary" : "text-brand-text-muted"}`} />
+                                <p className={`text-[13px] font-semibold leading-tight ${isSelected ? "text-brand-text-primary" : "text-brand-text-secondary"}`}>
+                                  {eb.title[language] || eb.title.en}
+                                </p>
+                              </div>
+                              <p className="text-[11px] text-brand-text-muted mt-1 leading-relaxed">
+                                {eb.desc[language] || eb.desc.en}
+                              </p>
+                              <p className="text-[11px] text-brand-text-muted/70 mt-0.5">
+                                PDF · {eb.size}
+                              </p>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
                   <FormField label={txt.nameLabel} error={errors.name?.message}>
                     <Input
                       type="text"
@@ -254,7 +331,7 @@ export function LeadCaptureSection() {
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        {txt.submit}
+                        {selectedEbooks.size === 2 ? txt.submitBoth : txt.submitOne}
                         <ArrowRight className="w-4 h-4 ml-1.5" />
                       </>
                     )}
