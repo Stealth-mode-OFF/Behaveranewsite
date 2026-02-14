@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, LogIn } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/app/components/ui/button";
 import { LanguageSwitcher } from "./language-switcher";
@@ -13,267 +13,234 @@ import { trackLoginClick } from "@/lib/analytics";
 export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t, language } = useLanguage();
-  const { openBooking, openDemo } = useModal();
+  const { language } = useLanguage();
+  const { openDemo } = useModal();
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Conversion-optimized navigation: How it works → Social proof → Price → Content
   const navItems = [
-    { 
-      id: 'radar', 
-      label: language === 'cz' ? 'Jak to funguje' : language === 'de' ? 'So funktioniert es' : 'How it works'
+    {
+      id: "radar",
+      label:
+        language === "cz"
+          ? "Jak to funguje"
+          : language === "de"
+          ? "So funktioniert's"
+          : "How it works",
     },
-    { 
-      id: 'case-studies', 
-      label: language === 'cz' ? 'Případové studie' : language === 'de' ? 'Fallstudien' : 'Case Studies'
+    {
+      id: "case-studies",
+      label:
+        language === "cz"
+          ? "Případové studie"
+          : language === "de"
+          ? "Fallstudien"
+          : "Case studies",
     },
-    { 
-      id: 'pricing', 
-      label: language === 'cz' ? 'Ceník' : language === 'de' ? 'Preise' : 'Pricing'
+    {
+      id: "pricing",
+      label:
+        language === "cz" ? "Ceník" : language === "de" ? "Preise" : "Pricing",
     },
   ];
 
-  const blogLabel = language === 'cz' ? 'Blog' : language === 'de' ? 'Blog' : 'Blog';
-  const loginLabel = language === 'cz' ? 'Přihlásit se' : language === 'de' ? 'Anmelden' : 'Login';
+  const blogLabel = "Blog";
+  const loginLabel =
+    language === "cz"
+      ? "Přihlásit se"
+      : language === "de"
+      ? "Anmelden"
+      : "Log in";
+  const ctaLabel =
+    language === "cz"
+      ? "Začít zdarma"
+      : language === "de"
+      ? "Kostenlos starten"
+      : "Get started";
+
+  /* ─── Shared nav-link class ─── */
+  const navLinkClass = cn(
+    "text-[13px] font-medium transition-colors",
+    isScrolled
+      ? "text-brand-text-secondary hover:text-brand-primary"
+      : "text-brand-text-secondary/80 hover:text-brand-text-primary"
+  );
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{ top: topOffset }}
       className={cn(
-          "fixed left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "bg-white/95 backdrop-blur-md border-b border-brand-border py-3" : "bg-transparent py-6"
+        "fixed left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-white/80 backdrop-blur-xl border-b border-brand-border/40 py-3"
+          : "bg-transparent py-5"
       )}
     >
       <div className="container-default flex items-center justify-between">
-        
-        {/* Logo - Text Only, Strong */}
-        <Link 
-            to="/"
-            className="flex items-center gap-2 cursor-pointer group" 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        {/* ── Logo ── */}
+        <Link
+          to="/"
+          className="flex items-center gap-2 group"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-            <span className={cn(
-                "text-xl font-bold tracking-tighter transition-colors text-brand-text-primary"
-            )}>
-              Echo Pulse
-            </span>
-            <div className={cn(
-                "w-1.5 h-1.5 rounded-full bg-brand-primary group-hover:animate-pulse opacity-100"
-            )} />
+          <span className="text-[18px] font-bold tracking-tight text-brand-text-primary transition-colors">
+            Echo Pulse
+          </span>
+          <div className="w-1.5 h-1.5 rounded-full bg-brand-primary group-hover:animate-pulse" />
         </Link>
 
-        {/* Desktop Nav - Minimal & Clean */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {/* Scroll links */}
-          {navItems.map((item) => (
-             isHome ? (
-                 <a 
-                    key={item.id}
-                    href={`#${item.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const el = document.getElementById(item.id);
-                      if (el) {
-                        const offset = 80;
-                        const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                        window.scrollTo({ top: y, behavior: 'smooth' });
-                      }
-                    }}
-                    className={cn(
-                        "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-                    )}
-                >
-                    {item.label}
-                 </a>
-             ) : (
-                 <Link
-                    key={item.id}
-                    to={`/#${item.id}`}
-                    className={cn(
-                        "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                        isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-                    )}
-                 >
-                     {item.label}
-                 </Link>
-             )
-          ))}
-          {/* Blog link */}
-          <Link 
-            to="/blog"
-            className={cn(
-                "text-xs font-bold transition-colors hover:text-brand-primary uppercase tracking-widest",
-                isScrolled ? "text-brand-text-secondary" : "text-brand-text-secondary/80 hover:text-brand-primary"
-            )}
-          >
+        {/* ── Desktop nav ── */}
+        <nav className="hidden lg:flex items-center gap-7">
+          {navItems.map((item) =>
+            isHome ? (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(item.id);
+                }}
+                className={navLinkClass}
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.id}
+                to={`/#${item.id}`}
+                className={navLinkClass}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
+          <Link to="/blog" className={navLinkClass}>
             {blogLabel}
           </Link>
         </nav>
 
-        {/* Actions */}
-        <div className="flex items-center gap-4">
-          <div className="text-brand-text-primary">
-             <LanguageSwitcher />
-          </div>
+        {/* ── Right actions ── */}
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
 
           <a
             href={BEHAVERA_LOGIN_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackLoginClick('header_desktop')}
-            className={cn(
-                "hidden lg:inline-flex items-center gap-1.5 text-sm font-semibold transition-colors",
-                "text-brand-text-secondary hover:text-brand-primary"
-            )}
+            onClick={() => trackLoginClick("header_desktop")}
+            className="hidden lg:inline-flex text-[13px] font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors"
           >
             {loginLabel}
           </a>
-          
-          <div className="hidden lg:flex items-center gap-2">
-            {/* Micro-copy that appears on scroll — Fathom-inspired urgency nudge */}
-            <AnimatePresence>
-              {isScrolled && (
-                <motion.span
-                  initial={{ opacity: 0, x: 8 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 8 }}
-                  transition={{ duration: 0.25 }}
-                  className="text-[11px] font-medium text-brand-text-muted whitespace-nowrap"
-                >
-                  {language === 'cz' ? '2 min · Zdarma' : language === 'de' ? '2 Min · Kostenlos' : '2 min · Free'}
-                </motion.span>
-              )}
-            </AnimatePresence>
-            <Button
-              onClick={() => openDemo('header_desktop')}
-              variant="outline"
-              className={cn(
-                "rounded h-10 px-5 font-semibold transition-all text-sm border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5"
-              )}
-            >
-              {language === 'cz' ? 'Vyzkoušet' : language === 'de' ? 'Testen' : 'Try it'}
-            </Button>
-            <Button 
-              onClick={() => openBooking('header_desktop')}
-              className={cn(
-                  "rounded h-10 px-6 font-semibold transition-all text-sm",
-                  "bg-brand-primary text-white hover:bg-brand-primary-hover",
-                  isScrolled && "shadow-md"
-              )}
-            >
-              {t.header.bookDemo}
-            </Button>
-          </div>
+
+          <Button
+            onClick={() => openDemo("header_desktop")}
+            className={cn(
+              "hidden lg:inline-flex h-9 px-5 text-[13px] font-semibold rounded-full transition-all",
+              "bg-brand-primary text-white hover:bg-brand-primary-hover",
+              isScrolled && "shadow-sm"
+            )}
+          >
+            {ctaLabel}
+          </Button>
 
           <button
             type="button"
-            className="lg:hidden p-2 transition-colors text-brand-text-primary"
+            className="lg:hidden p-2 text-brand-text-primary transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
           >
-            {mobileMenuOpen ? <X /> : <Menu />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu - Full Screen Overlay */}
+      {/* ── Mobile menu ── */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-white z-40 flex flex-col pt-32 px-6"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 flex flex-col pt-28 px-6"
             id="mobile-navigation"
           >
-            <div className="flex flex-col gap-6">
-               {/* Scroll links */}
-               {navItems.map((item) => (
-                 isHome ? (
-                    <a 
-                        key={item.id}
-                        href={`#${item.id}`} 
-                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setMobileMenuOpen(false);
-                          setTimeout(() => {
-                            const el = document.getElementById(item.id);
-                            if (el) {
-                              const offset = 80;
-                              const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                              window.scrollTo({ top: y, behavior: 'smooth' });
-                            }
-                          }, 400);
-                        }}
-                    >
-                        {item.label}
-                    </a>
-                 ) : (
-                    <Link
-                        key={item.id}
-                        to={`/#${item.id}`}
-                        className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
-                        {item.label}
-                    </Link>
-                 )
-              ))}
-              {/* Blog link */}
-              <Link 
+            <div className="flex flex-col gap-1">
+              {navItems.map((item) =>
+                isHome ? (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      setTimeout(() => scrollTo(item.id), 350);
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.id}
+                    to={`/#${item.id}`}
+                    className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
+              <Link
                 to="/blog"
-                className="text-4xl font-bold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors" 
+                className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {blogLabel}
               </Link>
-              <div className="mt-8 pt-8 border-t border-brand-border flex flex-col gap-4">
-                <a
-                    href={BEHAVERA_LOGIN_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full h-12 px-8 border border-brand-border hover:border-brand-primary text-brand-text-primary font-semibold rounded-lg flex items-center justify-center gap-2 transition-colors"
-                    onClick={() => { setMobileMenuOpen(false); trackLoginClick('header_mobile'); }}
+
+              <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
+                <Button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    openDemo("header_mobile");
+                  }}
+                  className="w-full h-12 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-[15px]"
                 >
-                  <LogIn className="w-4 h-4" />
+                  {ctaLabel}
+                </Button>
+                <a
+                  href={BEHAVERA_LOGIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-12 flex items-center justify-center text-[14px] font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    trackLoginClick("header_mobile");
+                  }}
+                >
                   {loginLabel}
                 </a>
-                <Button
-                    onClick={() => {
-                        setMobileMenuOpen(false);
-                        openDemo('header_mobile');
-                    }}
-                    variant="outline"
-                    className="w-full h-12 px-8 border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 font-semibold rounded-lg"
-                >
-                  {language === 'cz' ? 'Vyzkoušet sám' : language === 'de' ? 'Selbst testen' : 'Try it yourself'}
-                </Button>
-                <Button 
-                    onClick={() => {
-                        setMobileMenuOpen(false);
-                        openBooking('header_mobile');
-                    }}
-                    className="w-full h-12 px-8 bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold rounded-lg"
-                >
-                  {t.header.bookDemo}
-                </Button>
               </div>
             </div>
           </motion.div>
