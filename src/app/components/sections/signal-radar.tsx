@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { getPulseCheckUrl } from "@/lib/urls";
 import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /* ─── Icons ─── */
@@ -27,7 +26,6 @@ type TCopy = {
   chatLabel: string; ceoLabel: string; cardCta: string;
   compTitle: string; compSubtitle: string; compTimeSaved: string;
   advantages: { title: string; oldWay: string; ourWay: string }[];
-  tryTitle: string; tryDesc: string; tryCta: string; tryNote: string;
 };
 
 const PULSE_BASE = "https://bibi.behavera.com/free/behiro/pulse-showcase-";
@@ -67,10 +65,6 @@ const copy: Record<string, TCopy> = {
       { title: "Validovan\u00e1 psychometrie", oldWay: "Formul\u00e1\u0159e: Ot\u00e1zky psan\u00e9 bez metodologie", ourWay: "Pulse: Navr\u017eeno behavior\u00e1ln\u00edmi psychology" },
       { title: "Trendy, ne snapshoty", oldWay: "Formul\u00e1\u0159e: 1\u00d7 ro\u010dn\u011b velk\u00fd pr\u016fzkum", ourWay: "Pulse: Pr\u016fb\u011b\u017en\u00e9 m\u011b\u0159en\u00ed s vizualizac\u00ed trend\u016f" },
     ],
-    tryTitle: "Vyzkou\u0161ejte si to na vlastn\u00ed k\u016f\u017ei",
-    tryDesc: "Proj\u010f\u011bte si uk\u00e1zkov\u00fd Quick Scan p\u0159esn\u011b tak, jak ho vypl\u0148uj\u00ed va\u0161i zam\u011bstnanci.",
-    tryCta: "Spustit uk\u00e1zkov\u00fd Pulse Check",
-    tryNote: "Bez registrace \u00b7 Anonymn\u00ed \u00b7 2 minuty",
   },
   en: {
     badge: "Echo Pulse",
@@ -106,10 +100,6 @@ const copy: Record<string, TCopy> = {
       { title: "Validated psychometrics", oldWay: "Forms: Questions without methodology", ourWay: "Pulse: Designed by behavioral psychologists" },
       { title: "Trends, not snapshots", oldWay: "Forms: Once-a-year big survey", ourWay: "Pulse: Continuous measurement with trends" },
     ],
-    tryTitle: "Try it yourself",
-    tryDesc: "Walk through a sample Quick Scan exactly as your employees would.",
-    tryCta: "Launch sample Pulse Check",
-    tryNote: "No signup \u00b7 Anonymous \u00b7 2 minutes",
   },
   de: {
     badge: "Echo Pulse",
@@ -145,10 +135,6 @@ const copy: Record<string, TCopy> = {
       { title: "Validierte Psychometrie", oldWay: "Formulare: Fragen ohne Methodik", ourWay: "Pulse: Von Verhaltenspsychologen entwickelt" },
       { title: "Trends, keine Momentaufnahmen", oldWay: "Formulare: 1\u00d7 j\u00e4hrlich gro\u00dfe Umfrage", ourWay: "Pulse: Laufende Messung mit Trends" },
     ],
-    tryTitle: "Testen Sie es selbst",
-    tryDesc: "Durchlaufen Sie einen Quick Scan genau so, wie ihn Ihre Mitarbeiter ausf\u00fcllen w\u00fcrden.",
-    tryCta: "Beispiel Pulse Check starten",
-    tryNote: "Ohne Registrierung \u00b7 Anonym \u00b7 2 Minuten",
   },
 };
 
@@ -158,8 +144,6 @@ export function SignalRadar() {
   const [pulseEmbedUrl, setPulseEmbedUrl] = useState<string | null>(null);
 
   const c = copy[language] || copy.en;
-
-  const tryLink = getPulseCheckUrl(language);
 
   const openPulseEmbed = (url: string) => {
     setPulseEmbedUrl(url);
@@ -236,6 +220,11 @@ export function SignalRadar() {
           </div>
 
           <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} cardCta={c.cardCta} onOpenPulse={openPulseEmbed} />
+
+          {/* Social proof strip under cards */}
+          <div className="mt-8 pt-6 border-t border-brand-border/30">
+            <QuickScanTestimonials lang={language} />
+          </div>
         </div>
 
         {/* ═══════════ WHY NOT GOOGLE FORMS ═══════════ */}
@@ -316,33 +305,7 @@ export function SignalRadar() {
           </motion.div>
         </div>
 
-        {/* ═══════════ QUICK SCAN CTA + TESTIMONIALS ═══════════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-brand-border/60 bg-white p-6 sm:p-8 md:p-10 shadow-sm"
-        >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-            <div className="md:max-w-[55%]">
-              <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-2 leading-tight">
-                {c.tryTitle}
-              </h3>
-              <p className="text-sm text-brand-text-muted leading-relaxed">
-                {c.tryDesc}
-              </p>
-            </div>
-            <button
-              onClick={() => openPulseEmbed(tryLink)}
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
-            >
-              {c.tryCta}
-              <Play className="w-3.5 h-3.5" />
-            </button>
-          </div>
-          <QuickScanTestimonials lang={language} />
-        </motion.div>
+
 
       </div>
 
