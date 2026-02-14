@@ -35,6 +35,12 @@ const ChangelogPage = lazy(() =>
 const TeamPage = lazy(() =>
   import("./pages/public/team").then((module) => ({ default: module.TeamPage }))
 );
+const ComparisonGoogleFormsPage = lazy(() =>
+  import("./pages/public/comparison-google-forms").then((module) => ({ default: module.ComparisonGoogleFormsPage }))
+);
+const SolutionPage = lazy(() =>
+  import("./pages/public/solution").then((module) => ({ default: module.SolutionPage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -112,6 +118,14 @@ function App() {
                     <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
                     <Route path="/changelog" element={<ChangelogPage />} />
                     <Route path="/team" element={<TeamPage />} />
+
+                    {/* Comparison SEO landing pages */}
+                    <Route path="/echo-pulse-vs-google-forms" element={<ComparisonGoogleFormsPage />} />
+
+                    {/* Role-specific solution pages */}
+                    <Route path="/for-ceos" element={<SolutionPage />} />
+                    <Route path="/for-hr" element={<SolutionPage />} />
+                    <Route path="/for-team-leads" element={<SolutionPage />} />
 
                     {/* Admin Routes */}
                     {adminEnabled ? (

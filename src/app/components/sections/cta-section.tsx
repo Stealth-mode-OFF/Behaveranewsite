@@ -100,7 +100,7 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.05 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
           >
             {c.headline}
@@ -115,7 +115,7 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
             className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
             {c.subheadline}
@@ -126,7 +126,7 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.15 }}
             className="flex flex-col items-center justify-center gap-4 mb-12"
           >
             <Button 
@@ -155,7 +155,7 @@ export function CtaSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.2 }}
             className="flex flex-wrap items-center justify-center gap-6 text-white/60"
           >
             {c.trust.map((item, idx) => (

@@ -4,8 +4,10 @@ import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { BookingModal } from "@/app/components/layout/booking-modal";
 import { LeadPopup } from "@/app/components/layout/lead-popup";
+import { AnnouncementBar } from "@/app/components/layout/announcement-bar";
 import { Hero } from "@/app/components/sections/hero";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
+import { StatsBar } from "@/app/components/sections/stats-bar";
 import { ProblemSection } from "@/app/components/sections/problem";
 import { DashboardPreview } from "@/app/components/sections/dashboard-preview";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
@@ -54,6 +56,14 @@ const LeadCaptureSection = lazyNamed(
   () => import("@/app/components/sections/lead-capture"),
   "LeadCaptureSection"
 );
+const TestimonialsCarousel = lazyNamed(
+  () => import("@/app/components/sections/testimonials-carousel"),
+  "TestimonialsCarousel"
+);
+const IntegrationsShowcase = lazyNamed(
+  () => import("@/app/components/sections/integrations-showcase"),
+  "IntegrationsShowcase"
+);
 
 export function LandingPage() {
   const { language } = useLanguage();
@@ -72,6 +82,7 @@ export function LandingPage() {
 
   return (
     <>
+      <AnnouncementBar />
       <Header />
       <main>
         {/* 1. HERO — Outcome promise + dual CTA */}
@@ -79,6 +90,9 @@ export function LandingPage() {
         
         {/* 2. SOCIAL PROOF — Client logos */}
         <LogoMarquee />
+
+        {/* 2b. CREDIBILITY — Animated stat counters */}
+        <StatsBar />
         
         {/* 3. PROBLEM — Build pain awareness */}
         <ProblemSection />
@@ -88,6 +102,11 @@ export function LandingPage() {
 
         {/* 5. HOW IT WORKS + WHAT WE MEASURE */}
         <SignalRadar />
+
+        {/* 5b. SOCIAL PROOF — G2-style testimonial quotes */}
+        <LazySection>
+          <TestimonialsCarousel />
+        </LazySection>
 
         {/* 6. SOCIAL PROOF — Real client results */}
         <LazySection>
@@ -110,6 +129,11 @@ export function LandingPage() {
         {/* 10. COMPLIANCE — GDPR, data handling */}
         <LazySection>
           <TrustCenter />
+        </LazySection>
+
+        {/* 10b. INTEGRATIONS — Works wherever you work */}
+        <LazySection>
+          <IntegrationsShowcase />
         </LazySection>
 
         {/* 11. FINAL CTA — Clear next step */}

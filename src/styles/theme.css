@@ -72,12 +72,12 @@
   --space-7: 96px;
   --space-8: 128px;
   
-  /* Section spacing tokens */
-  --section-padding-y: 120px;
-  --section-padding-y-md: 96px;
-  --section-padding-y-sm: 64px;
-  --section-padding-y-compact: 64px;
-  --section-padding-y-compact-md: 96px;
+  /* Section spacing tokens — generous Fathom-style breathing room */
+  --section-padding-y: 148px;
+  --section-padding-y-md: 112px;
+  --section-padding-y-sm: 80px;
+  --section-padding-y-compact: 80px;
+  --section-padding-y-compact-md: 112px;
   --section-max-width: 1120px;
 
   /* RADIUS SYSTEM */
@@ -110,7 +110,7 @@
   --button-height: 48px;
   --button-height-lg: 52px;
   --button-height-sm: 40px;
-  --button-radius: 6px;               /* Controlled, not pill-shaped */
+  --button-radius: 14px;              /* Modern premium radius — Fathom-inspired */
   --button-padding-x: 24px;
   --button-padding-x-lg: 32px;
   --button-font-weight: 600;

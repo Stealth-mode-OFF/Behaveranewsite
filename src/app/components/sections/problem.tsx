@@ -91,7 +91,7 @@ export function ProblemSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.5 }}
             className="lg:col-span-2"
           >
             <BentoCell
@@ -109,7 +109,7 @@ export function ProblemSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 + idx * 0.1 }}
+              transition={{ delay: idx * 0.05 }}
             >
               <BentoCell
                 item={items[cell.index]}
@@ -126,7 +126,7 @@ export function ProblemSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.1 }}
           >
             <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
@@ -151,7 +151,7 @@ export function ProblemSection() {
                   variant="ghost"
                   className="text-white hover:text-brand-accent hover:bg-white/10 px-0 h-auto font-semibold group/btn"
                 >
-                  {language === 'cz' ? 'Získat demo' : language === 'de' ? 'Demo erhalten' : 'Get a demo'}
+                  {language === 'cz' ? 'Domluvit demo' : language === 'de' ? 'Demo buchen' : 'Book a demo'}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
                 </Button>
               </div>

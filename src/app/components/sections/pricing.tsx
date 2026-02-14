@@ -32,7 +32,7 @@ export function PurchaseSection() {
   const yearlySavings = billingInterval === 'yearly' ? (monthlyPrice - yearlyPrice) * billableEmployees * 12 : 0;
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-white to-brand-background-secondary" id="pricing">
+    <section className="section-spacing bg-white" id="pricing">
       <div className="container-default">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
