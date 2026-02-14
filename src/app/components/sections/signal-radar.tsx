@@ -3,7 +3,7 @@ import {
   Activity, Zap, Briefcase, Heart, Shield, Award, Scale, Cpu,
   MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
   Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
-  ChevronLeft, ChevronRight
+  ChevronLeft, ChevronRight, X, Play, ArrowRight
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -379,52 +379,102 @@ export function SignalRadar() {
 
 type TopicCard = TCopy['topicCards'][number];
 
-function TopicCarousel({
-  cards,
-  topicChip,
-  chatLabel,
-  ceoLabel,
+/* ─── Signal Detail Side Panel ─── */
+function SignalDetailPanel({
+  card, cardNum, chatLabel, ceoLabel, topicChip, onClose,
 }: {
-  cards: TopicCard[];
-  topicChip: string;
-  chatLabel: string;
-  ceoLabel: string;
+  card: TopicCard; cardNum: number; chatLabel: string; ceoLabel: string; topicChip: string; onClose: () => void;
 }) {
+  const TopicIcon = topicIcons[card.key] || Activity;
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  return (
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+      <motion.div initial={{ opacity: 0, y: 24, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 16, scale: 0.97 }} transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-[420px] max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-brand-border/40"
+        style={{ scrollbarWidth: 'none' }}>
+        <div className="h-1 w-full bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary rounded-t-2xl" />
+        <button onClick={onClose}
+          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors z-10 cursor-pointer">
+          <X className="w-4 h-4" />
+        </button>
+        <div className="px-6 pt-6 pb-4">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary to-brand-primary/80 flex items-center justify-center shadow-lg shadow-brand-primary/20 relative">
+              <TopicIcon className="w-6 h-6 text-white" />
+              <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-accent text-white text-[10px] font-bold flex items-center justify-center shadow-sm">{cardNum}</span>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-brand-text-primary leading-tight">{card.name}</h3>
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <Clock className="w-3 h-3 text-brand-text-muted" />
+                <span className="text-xs text-brand-text-muted font-medium">{topicChip}</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-sm text-brand-text-body leading-relaxed">{card.desc}</p>
+        </div>
+        <div className="px-6 pb-4">
+          <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-2 flex items-center gap-1.5">
+            <MessageCircle className="w-3 h-3" />{chatLabel}
+          </div>
+          <div className="bg-gradient-to-br from-brand-background-secondary to-brand-background-secondary/60 rounded-xl rounded-tl-sm px-4 py-3.5 text-sm text-brand-text-secondary leading-relaxed italic border border-brand-border/30">
+            {card.sampleQ}
+          </div>
+        </div>
+        <div className="px-6 pb-5">
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50/60 rounded-xl p-4 border border-amber-200/40">
+            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-amber-700 mb-2 flex items-center gap-1.5">
+              <Briefcase className="w-3 h-3" />{ceoLabel}
+            </div>
+            <p className="text-[13px] text-amber-900/80 leading-relaxed font-medium">{card.ceoInsight}</p>
+          </div>
+        </div>
+        <div className="px-6 pb-6">
+          <a href={card.link} target="_blank" rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2.5 w-full h-12 rounded-xl bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-primary/25 hover:-translate-y-0.5 transition-all cursor-pointer">
+            <Play className="w-4 h-4" />{card.name}<ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function TopicCarousel({ cards, topicChip, chatLabel, ceoLabel }: { cards: TopicCard[]; topicChip: string; chatLabel: string; ceoLabel: string; }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<{ card: TopicCard; num: number } | null>(null);
   const animationRef = useRef<number>();
   const scrollPos = useRef(0);
-  const CARD_WIDTH = 360; // card width + gap
-  const SPEED = 0.5; // px per frame
-
-  // Duplicate cards 3x for seamless infinite scroll
+  const CARD_WIDTH = 320;
+  const SPEED = 0.4;
   const tripled = [...cards, ...cards, ...cards];
   const setWidth = cards.length * CARD_WIDTH;
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-
-    // Start in the middle set
     scrollPos.current = setWidth;
     el.scrollLeft = setWidth;
-
     const tick = () => {
       if (!isPaused && el) {
         scrollPos.current += SPEED;
-        // If we've scrolled past the middle + full set, jump back to middle
-        if (scrollPos.current >= setWidth * 2) {
-          scrollPos.current -= setWidth;
-        }
+        if (scrollPos.current >= setWidth * 2) scrollPos.current -= setWidth;
         el.scrollLeft = scrollPos.current;
       }
       animationRef.current = requestAnimationFrame(tick);
     };
-
     animationRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (animationRef.current) cancelAnimationFrame(animationRef.current);
-    };
+    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
   }, [isPaused, setWidth]);
 
   const scrollBy = (dir: number) => {
@@ -434,103 +484,71 @@ function TopicCarousel({
     el.scrollTo({ left: scrollPos.current, behavior: 'smooth' });
   };
 
+  const handleCardClick = (card: TopicCard, idx: number) => {
+    setSelectedCard({ card, num: (idx % cards.length) + 1 });
+    setIsPaused(true);
+  };
+
   return (
-    <div
-      className="relative group/carousel"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      {/* Nav arrows */}
-      <button
-        onClick={() => scrollBy(-1)}
-        className="absolute -left-3 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-brand-border shadow-lg flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
-        aria-label="Previous"
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
-      <button
-        onClick={() => scrollBy(1)}
-        className="absolute -right-3 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-brand-border shadow-lg flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
-        aria-label="Next"
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
-
-      {/* Edge fades */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-brand-background-secondary/30 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-brand-background-secondary/30 to-transparent z-10 pointer-events-none" />
-
-      {/* Scrolling track */}
-      <div
-        ref={scrollRef}
-        className="flex gap-5 overflow-x-hidden scroll-smooth"
-        style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-      >
-        {tripled.map((card, i) => {
-          const TopicIcon = topicIcons[card.key] || Activity;
-          const cardNum = (i % cards.length) + 1;
-          return (
-            <div
-              key={`${card.key}-${i}`}
-              className="shrink-0 w-[340px] rounded-2xl bg-white border border-brand-primary/8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col"
-            >
-              {/* Card header */}
-              <div className="flex items-center gap-3 p-5 pb-0">
-                <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0 relative">
-                  <TopicIcon className="w-5 h-5 text-brand-primary" />
-                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-brand-primary text-white text-[10px] font-bold flex items-center justify-center shadow-sm">{cardNum}</span>
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-bold text-[15px] text-brand-primary leading-tight">{card.name}</h4>
-                  <div className="flex items-center gap-1.5 mt-0.5">
-                    <Clock className="w-3 h-3 text-brand-text-muted" />
-                    <span className="text-[11px] text-brand-text-muted font-medium">{topicChip}</span>
+    <>
+      <div className="relative group/carousel" onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => { if (!selectedCard) setIsPaused(false); }}>
+        <button onClick={() => scrollBy(-1)}
+          className="absolute -left-3 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-brand-border shadow-lg flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
+          aria-label="Previous"><ChevronLeft className="w-5 h-5" /></button>
+        <button onClick={() => scrollBy(1)}
+          className="absolute -right-3 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-brand-border shadow-lg flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
+          aria-label="Next"><ChevronRight className="w-5 h-5" /></button>
+        <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-brand-background-secondary/30 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-brand-background-secondary/30 to-transparent z-10 pointer-events-none" />
+        <div ref={scrollRef} className="flex gap-4 overflow-x-hidden scroll-smooth"
+          style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          {tripled.map((card, i) => {
+            const TopicIcon = topicIcons[card.key] || Activity;
+            const cardNum = (i % cards.length) + 1;
+            return (
+              <div key={`${card.key}-${i}`} onClick={() => handleCardClick(card, i)}
+                className="shrink-0 w-[300px] rounded-2xl bg-white border border-brand-primary/6 shadow-sm hover:shadow-xl hover:border-brand-primary/15 hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col cursor-pointer group/card">
+                <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent group-hover/card:via-brand-primary/60 transition-all" />
+                <div className="flex items-center gap-3 px-4 pt-4 pb-0">
+                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 flex items-center justify-center shrink-0 relative group-hover/card:from-brand-primary/15 group-hover/card:to-brand-primary/10 transition-colors">
+                    <TopicIcon className="w-4.5 h-4.5 text-brand-primary" />
+                    <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-brand-primary text-white text-[9px] font-bold flex items-center justify-center">{cardNum}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-[14px] text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
+                    <div className="flex items-center gap-1 mt-0.5">
+                      <Clock className="w-2.5 h-2.5 text-brand-text-muted" />
+                      <span className="text-[10px] text-brand-text-muted font-medium">{topicChip}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Description */}
-              <p className="text-[13px] text-brand-text-body leading-relaxed px-5 pt-3">
-                {card.desc}
-              </p>
-
-              {/* Sample AI chat bubble */}
-              <div className="px-5 pt-4">
-                <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-2 flex items-center gap-1.5">
-                  <MessageCircle className="w-3 h-3" />
-                  {chatLabel}
+                <p className="text-[12px] text-brand-text-body leading-relaxed px-4 pt-2.5 line-clamp-2">{card.desc}</p>
+                <div className="px-4 pt-3 pb-3 mt-auto">
+                  <div className="bg-gradient-to-br from-amber-50/80 to-orange-50/40 rounded-lg px-3 py-2.5 border border-amber-200/30">
+                    <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-amber-600/80 mb-1 flex items-center gap-1">
+                      <Briefcase className="w-2.5 h-2.5" />{ceoLabel}
+                    </div>
+                    <p className="text-[11px] text-amber-900/70 leading-relaxed line-clamp-2 font-medium">{card.ceoInsight}</p>
+                  </div>
                 </div>
-                <div className="bg-brand-background-secondary rounded-xl rounded-tl-sm px-4 py-3 text-[13px] text-brand-text-secondary leading-relaxed italic border border-brand-border/40">
-                  {card.sampleQ}
+                <div className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-border/30 text-[12px] font-semibold text-brand-primary/70 group-hover/card:text-brand-primary group-hover/card:bg-brand-primary/[0.02] transition-all">
+                  <span>{card.name}</span>
+                  <ArrowRight className="w-3 h-3 group-hover/card:translate-x-0.5 transition-transform" />
                 </div>
               </div>
-
-              {/* CEO insight */}
-              <div className="px-5 pt-4 pb-5 mt-auto">
-                <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-accent mb-2 flex items-center gap-1.5">
-                  <Briefcase className="w-3 h-3" />
-                  {ceoLabel}
-                </div>
-                <p className="text-[12px] text-brand-text-body leading-relaxed">
-                  {card.ceoInsight}
-                </p>
-              </div>
-
-              {/* Try it link */}
-              <a
-                href={card.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-5 py-3 border-t border-brand-border/40 text-[13px] font-semibold text-brand-primary hover:bg-brand-background-secondary transition-colors cursor-pointer"
-              >
-                <ExternalLink className="w-3.5 h-3.5" />
-                {card.name}
-              </a>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+      <AnimatePresence>
+        {selectedCard && (
+          <SignalDetailPanel card={selectedCard.card} cardNum={selectedCard.num}
+            chatLabel={chatLabel} ceoLabel={ceoLabel} topicChip={topicChip}
+            onClose={() => { setSelectedCard(null); setIsPaused(false); }} />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
