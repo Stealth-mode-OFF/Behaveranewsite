@@ -100,7 +100,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           className="flex items-center gap-2 group"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="text-[18px] font-bold tracking-tight text-brand-text-primary transition-colors">
+          <span className="text-lg font-bold tracking-tight text-brand-text-primary transition-colors">
             Echo Pulse
           </span>
           <div className="w-1.5 h-1.5 rounded-full bg-brand-primary group-hover:animate-pulse" />
@@ -225,7 +225,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                     setMobileMenuOpen(false);
                     openDemo("header_mobile");
                   }}
-                  className="w-full h-12 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-[15px]"
+                  className="w-full h-12 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base"
                 >
                   {ctaLabel}
                 </Button>
@@ -233,7 +233,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   href={BEHAVERA_LOGIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 flex items-center justify-center text-[14px] font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                  className="w-full h-12 flex items-center justify-center text-sm font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     trackLoginClick("header_mobile");

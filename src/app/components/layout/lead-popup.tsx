@@ -208,7 +208,7 @@ export function LeadPopup() {
                 </div>
 
                 {/* E-book preview card */}
-                <div className="flex items-center gap-3.5 p-3.5 bg-gradient-to-r from-slate-50 to-slate-50/50 rounded-xl border border-slate-100 mb-5">
+                <div className="flex items-center gap-3.5 p-3.5 bg-gradient-to-r from-brand-background-secondary to-brand-background-secondary/50 rounded-xl border border-brand-border/40 mb-5">
                   <div className="flex-shrink-0 w-11 h-14 bg-gradient-to-br from-brand-primary to-brand-primary-hover rounded-lg flex items-center justify-center shadow-sm">
                     <BookOpen className="w-5 h-5 text-white" />
                   </div>
@@ -229,7 +229,7 @@ export function LeadPopup() {
                       type="email"
                       autoComplete={autocompleteAttributes.email}
                       placeholder={t.leadPopup?.emailPlaceholder || "Váš pracovní e-mail"}
-                      className={`h-11 rounded-xl bg-slate-50 border-slate-200 focus:bg-white transition-colors ${errors.email ? 'border-red-300 bg-red-50/30' : ''}`}
+                      className={`h-11 rounded-xl bg-brand-background-secondary border-brand-border focus:bg-white transition-colors ${errors.email ? 'border-brand-error/40 bg-brand-error/5' : ''}`}
                       {...register("email", validationRules.email)}
                     />
                   </div>
@@ -248,7 +248,7 @@ export function LeadPopup() {
                   <label className="flex items-start gap-2.5 cursor-pointer group">
                     <input
                       type="checkbox"
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
+                      className="mt-0.5 h-4 w-4 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
                       {...register("marketingConsent")}
                     />
                     <span className="text-[12px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">
