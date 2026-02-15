@@ -3,7 +3,8 @@
  *
  * Microsoft redirects here after consent. We:
  *  1. Exchange the code for an access_token
- *  2. Fetch contacts from Microsoft Graph (People + Contacts)
+ *  2. Fetch ALL contacts from Microsoft Graph with pagination
+ *     (People + Contacts)
  *  3. Return an HTML page that posts results to the opener window
  *
  * Security: access_token is SHORT-LIVED, never stored server-side.
@@ -17,6 +18,8 @@ interface MicrosoftContact {
   email: string;
   photo?: string;
 }
+
+const MAX_PAGES = 20; // Safety cap: 20 × 200 = 4 000 contacts max
 
 export default async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
@@ -59,13 +62,18 @@ export default async function handler(request: Request): Promise<Response> {
 
     const contacts: MicrosoftContact[] = [];
 
-    // 2a. People API — frequent contacts & org directory
+    // 2a. People API — frequent contacts & org directory — paginated
     try {
-      const peopleRes = await fetch(
-        'https://graph.microsoft.com/v1.0/me/people?$top=200&$select=displayName,scoredEmailAddresses',
-        { headers: { Authorization: `Bearer ${access_token}` } }
-      );
-      if (peopleRes.ok) {
+      let nextLink: string | undefined =
+        'https://graph.microsoft.com/v1.0/me/people?$top=200&$select=displayName,scoredEmailAddresses';
+      let page = 0;
+
+      while (nextLink && page < MAX_PAGES) {
+        const peopleRes = await fetch(nextLink, {
+          headers: { Authorization: `Bearer ${access_token}` },
+        });
+        if (!peopleRes.ok) break;
+
         const data = await peopleRes.json();
         for (const person of data.value || []) {
           const email = person.scoredEmailAddresses?.[0]?.address;
@@ -76,18 +84,26 @@ export default async function handler(request: Request): Promise<Response> {
             });
           }
         }
+
+        nextLink = data['@odata.nextLink'];
+        page++;
       }
     } catch (e) {
       console.warn('Failed to fetch People:', e);
     }
 
-    // 2b. Contacts API — personal contacts
+    // 2b. Contacts API — personal contacts — paginated
     try {
-      const contactsRes = await fetch(
-        'https://graph.microsoft.com/v1.0/me/contacts?$top=200&$select=displayName,emailAddresses',
-        { headers: { Authorization: `Bearer ${access_token}` } }
-      );
-      if (contactsRes.ok) {
+      let nextLink: string | undefined =
+        'https://graph.microsoft.com/v1.0/me/contacts?$top=200&$select=displayName,emailAddresses';
+      let page = 0;
+
+      while (nextLink && page < MAX_PAGES) {
+        const contactsRes = await fetch(nextLink, {
+          headers: { Authorization: `Bearer ${access_token}` },
+        });
+        if (!contactsRes.ok) break;
+
         const data = await contactsRes.json();
         for (const contact of data.value || []) {
           const email = contact.emailAddresses?.[0]?.address;
@@ -98,6 +114,9 @@ export default async function handler(request: Request): Promise<Response> {
             });
           }
         }
+
+        nextLink = data['@odata.nextLink'];
+        page++;
       }
     } catch (e) {
       console.warn('Failed to fetch Contacts:', e);
