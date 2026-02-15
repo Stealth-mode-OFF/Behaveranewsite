@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/app/components/ui/button";
@@ -14,8 +14,9 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
-  const { openDemo, openSignup } = useModal();
+  const { openDemo } = useModal();
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -151,7 +152,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           </a>
 
           <Button
-            onClick={() => openSignup("header_desktop")}
+            onClick={() => navigate('/start')}
             className={cn(
               "hidden lg:inline-flex h-9 px-5 text-[13px] font-semibold rounded-full transition-all",
               "bg-brand-primary text-white hover:bg-brand-primary-hover",
@@ -223,7 +224,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                 <Button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    openSignup("header_mobile");
+                    navigate('/start');
                   }}
                   className="w-full h-12 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base"
                 >

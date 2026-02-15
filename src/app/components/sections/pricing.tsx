@@ -5,11 +5,13 @@ import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/LanguageContext";
 import { useModal } from "@/app/ModalContext";
+import { useNavigate } from "react-router-dom";
 import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
 
 export function PurchaseSection() {
   const { t, language } = useLanguage();
-  const { openBooking, openDemo, openSignup } = useModal();
+  const { openBooking, openDemo } = useModal();
+  const navigate = useNavigate();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   
@@ -232,7 +234,7 @@ export function PurchaseSection() {
                     
                     <div className="mt-8 relative">
                         <Button 
-                            onClick={() => openSignup('pricing')}
+                            onClick={() => navigate('/start')}
                             className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-lg" 
                             size="lg"
                         >
