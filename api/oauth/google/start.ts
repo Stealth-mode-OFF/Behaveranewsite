@@ -11,6 +11,26 @@
 
 export const config = { runtime: 'edge' };
 
+/** Returns an HTML page that posts an error to window.opener and closes */
+function postErrorToOpener(type: string, error: string, state: string): Response {
+  const payload = JSON.stringify({ error, contacts: [], state });
+  const html = `<!DOCTYPE html>
+<html><head><title>Error</title></head>
+<body>
+<script>
+  if (window.opener) {
+    window.opener.postMessage({ type: '${type}', payload: ${payload} }, window.location.origin);
+  }
+  window.close();
+</script>
+<p>OAuth is not configured. You can close this window.</p>
+</body></html>`;
+  return new Response(html, {
+    status: 200,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  });
+}
+
 export default async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const state = url.searchParams.get('state') || '';
@@ -19,10 +39,7 @@ export default async function handler(request: Request): Promise<Response> {
   const redirectUri = `${url.origin}/api/oauth/google/callback`;
 
   if (!clientId) {
-    return new Response(JSON.stringify({ error: 'Google OAuth not configured' }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return postErrorToOpener('GOOGLE_CONTACTS', 'oauth_not_configured', state);
   }
 
   // Scopes — directory + contacts only, NEVER email content

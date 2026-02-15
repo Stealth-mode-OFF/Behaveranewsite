@@ -139,6 +139,7 @@ const copy = {
     skipConnectNote: "Budete moci přidat zaměstnance ručně v dalším kroku.",
     loadingContacts: "Načítám adresář…",
     errorOAuth: "Nepodařilo se propojit. Zkuste to znovu.",
+    errorOAuthNotConfigured: "Přihlášení přes Google/Microsoft ještě není aktivní. Přeskočte a přidejte zaměstnance ručně.",
     s2Title: "Sestavte týmy",
     s2Subtitle: "Přetáhněte zaměstnance do týmů. Nezapomeňte přiřadit team leadera.",
     s3Title: "Potvrzení & spuštění",
@@ -212,6 +213,7 @@ const copy = {
     skipConnectNote: "You can add employees manually in the next step.",
     loadingContacts: "Importing directory…",
     errorOAuth: "Connection failed. Please try again.",
+    errorOAuthNotConfigured: "Google/Microsoft sign-in is not yet active. Skip and add employees manually.",
     s2Title: "Build teams",
     s2Subtitle: "Drag employees into teams. Don't forget to assign a team leader.",
     s3Title: "Confirm & launch",
@@ -285,6 +287,7 @@ const copy = {
     skipConnectNote: "Sie können Mitarbeiter im nächsten Schritt manuell hinzufügen.",
     loadingContacts: "Verzeichnis wird importiert…",
     errorOAuth: "Verbindung fehlgeschlagen. Bitte erneut versuchen.",
+    errorOAuthNotConfigured: "Google/Microsoft-Anmeldung ist noch nicht aktiv. Überspringen Sie und fügen Sie Mitarbeiter manuell hinzu.",
     s2Title: "Teams aufbauen",
     s2Subtitle: "Ziehen Sie Mitarbeiter in Teams. Vergessen Sie nicht, einen Teamleiter zuzuweisen.",
     s3Title: "Bestätigen & starten",
@@ -1037,7 +1040,11 @@ export function OnboardingPage() {
                           {oauthError && (
                             <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-200">
                               <AlertCircle className="w-4 h-4 text-brand-error shrink-0" />
-                              <p className="text-[12px] text-brand-error">{txt.errorOAuth}</p>
+                              <p className="text-[12px] text-brand-error">
+                                {oauthError === 'oauth_not_configured'
+                                  ? txt.errorOAuthNotConfigured
+                                  : txt.errorOAuth}
+                              </p>
                             </div>
                           )}
 
