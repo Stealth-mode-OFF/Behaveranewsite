@@ -152,7 +152,7 @@ export function SignalRadar() {
 
   return (
     <section className="section-spacing bg-brand-background-secondary/30 relative overflow-hidden" id="radar">
-      <div className="container-default max-w-[1120px] mx-auto relative z-10">
+      <div className="container-default relative z-10">
 
         {/* ═══════════ MERGED HEADER + HOW IT WORKS ═══════════ */}
         <motion.div

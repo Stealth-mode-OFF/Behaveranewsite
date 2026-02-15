@@ -46,7 +46,7 @@ export function ProblemSection() {
 
   return (
     <section className="section-spacing bg-white text-brand-text-primary" id="problem">
-      <div className="container-default max-w-[1120px] mx-auto">
+      <div className="container-default">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20">

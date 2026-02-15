@@ -39,7 +39,7 @@ export function TrustCenter() {
 
   return (
     <section className="section-spacing bg-white" id="legal">
-      <div className="container-default max-w-[1120px] mx-auto">
+      <div className="container-default">
         
         {/* Header - Compact */}
         <motion.div
@@ -52,7 +52,7 @@ export function TrustCenter() {
             <ShieldCheck className="w-4 h-4" />
             {copy.badge}
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary tracking-tight mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight mb-4">
             {copy.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {copy.titleHighlight}

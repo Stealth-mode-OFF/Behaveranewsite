@@ -168,8 +168,8 @@ export function LeadCaptureSection() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-[#FDFBFF]" id="lead-capture">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+    <section className="section-spacing bg-brand-background-secondary" id="lead-capture">
+      <div className="container-default max-w-5xl">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
 
           {/* Left — Copy */}
@@ -179,13 +179,13 @@ export function LeadCaptureSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-text-primary mb-3 leading-snug">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
               {txt.title}
               <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
                 {txt.titleHighlight}
               </span>
             </h2>
-            <p className="text-[15px] text-brand-text-muted leading-relaxed mb-6">
+            <p className="text-base text-brand-text-body leading-relaxed mb-6">
               {txt.subtitle}
             </p>
 
@@ -227,7 +227,7 @@ export function LeadCaptureSection() {
                         key={i}
                         type="button"
                         onClick={() => { downloadFile(eb.file, `${eb.title[language] || eb.title.en}.pdf`); trackEbookDownload(eb.title.en, 'manual'); }}
-                        className="w-full flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-[#FDFBFF] transition-all group text-left"
+                        className="w-full flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-brand-background-secondary transition-all group text-left"
                       >
                         <div className="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-all">
                           <Download className="w-[18px] h-[18px]" />
@@ -270,7 +270,7 @@ export function LeadCaptureSection() {
                             <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all ${
                               isSelected
                                 ? "bg-brand-primary border-brand-primary text-white"
-                                : "border-slate-300 bg-white"
+                                : "border-brand-border bg-white"
                             }`}>
                               {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
                             </div>
@@ -316,7 +316,7 @@ export function LeadCaptureSection() {
                   </FormField>
 
                   {error && (
-                    <p className="text-[13px] text-red-600 bg-red-50 rounded-lg px-3.5 py-2.5">
+                    <p className="text-[13px] text-brand-error bg-brand-error/5 rounded-lg px-3.5 py-2.5">
                       {error}
                     </p>
                   )}
@@ -340,7 +340,7 @@ export function LeadCaptureSection() {
                   <label className="flex items-start gap-2.5 cursor-pointer group">
                     <input
                       type="checkbox"
-                      className="mt-0.5 h-4 w-4 rounded border-slate-300 text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
+                      className="mt-0.5 h-4 w-4 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
                       {...register("marketingConsent")}
                     />
                     <span className="text-[12px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">

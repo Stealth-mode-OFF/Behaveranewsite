@@ -130,7 +130,7 @@ export function IntegrationsShowcase() {
 
   return (
     <section className="section-spacing bg-brand-background-secondary" id="how-it-works">
-      <div className="container-default max-w-[1120px] mx-auto" ref={ref}>
+      <div className="container-default" ref={ref}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
