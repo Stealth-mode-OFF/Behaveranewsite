@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo, useEffect, useRef } from "react";
+import { useCallback, useState, useMemo, useEffect, useRef, forwardRef } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/app/components/ui/dialog";
 import { useModal } from "@/app/ModalContext";
@@ -424,10 +424,8 @@ function ValuePropCarousel({ items }: { items: string[] }) {
 /* ═══════════════════════════════════════════════════
    Animated Input (premium glow focus)
    ═══════════════════════════════════════════════════ */
-function GlowInput({
-  className,
-  ...props
-}: React.InputHTMLAttributes<HTMLInputElement> & { className?: string }) {
+const GlowInput = forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement> & { className?: string }>(
+  function GlowInput({ className, ...props }, ref) {
   const [focused, setFocused] = useState(false);
   return (
     <div className="relative group">
@@ -443,6 +441,7 @@ function GlowInput({
       />
       <input
         {...props}
+        ref={ref}
         onFocus={(e) => {
           setFocused(true);
           props.onFocus?.(e);
@@ -463,7 +462,8 @@ function GlowInput({
       />
     </div>
   );
-}
+  }
+);
 
 /* ═══════════════════════════════════════════════════
    Step slide variants
@@ -486,7 +486,7 @@ export function SignupModal() {
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [sameAsMe, setSameAsMe] = useState(false);
+  const [sameAsMe, setSameAsMe] = useState(true);
 
   const isEur = language === "en" || language === "de";
   const monthlyPrice = isEur ? 5 : 129;
@@ -530,25 +530,52 @@ export function SignupModal() {
   const billable = Math.min(employeeCount, 200);
   const total = pricePerPerson * billable;
 
+  /* Sync admin fields when sameAsMe is on and contact fields change */
+  const contactName = watch("contactName");
+  const contactEmail = watch("contactEmail");
+  useEffect(() => {
+    if (sameAsMe) {
+      setValue("adminName", contactName, { shouldValidate: false });
+      setValue("adminEmail", contactEmail, { shouldValidate: false });
+    }
+  }, [sameAsMe, contactName, contactEmail, setValue]);
+
   /* Validation fields per step */
   const fieldsByStep: Record<number, (keyof SignupFormData)[]> = useMemo(
     () => ({
-      0: ["companyName", "contactName", "contactEmail", "adminName", "adminEmail"],
+      0: sameAsMe
+        ? ["companyName", "contactName", "contactEmail"]
+        : ["companyName", "contactName", "contactEmail", "adminName", "adminEmail"],
       1: [],
       2: ["agreedToTerms"],
     }),
-    []
+    [sameAsMe]
   );
 
+
+  const formRef = useRef<HTMLFormElement>(null);
   const goNext = useCallback(async () => {
+    /* If sameAsMe, ensure admin values are synced before validation */
+    if (sameAsMe && step === 0) {
+      setValue("adminName", getValues("contactName"), { shouldValidate: false });
+      setValue("adminEmail", getValues("contactEmail"), { shouldValidate: false });
+    }
     const fields = fieldsByStep[step];
     if (fields.length > 0) {
       const valid = await trigger(fields);
-      if (!valid) return;
+      if (!valid) {
+        /* Scroll to first visible error */
+        requestAnimationFrame(() => {
+          const el = formRef.current?.querySelector('[aria-invalid="true"], .text-brand-error, .text-destructive');
+          el?.scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+        return;
+      }
     }
     setDirection(1);
     setStep((s) => Math.min(s + 1, STEPS.length - 1));
-  }, [step, trigger, fieldsByStep]);
+  }, [step, trigger, fieldsByStep, sameAsMe, setValue, getValues]);
+
 
   const goBack = useCallback(() => {
     setDirection(-1);
@@ -596,7 +623,7 @@ export function SignupModal() {
       setDirection(0);
       setIsSuccess(false);
       setIsSubmitting(false);
-      setSameAsMe(false);
+      setSameAsMe(true);
       reset();
     }, 400);
   }, [closeSignup, reset]);
@@ -809,6 +836,7 @@ export function SignupModal() {
                 {/* Form content */}
                 <form
                   onSubmit={handleSubmit(onSubmit)}
+                  ref={formRef}
                   className="flex-1 flex flex-col overflow-y-auto px-6 sm:px-10 lg:px-14 pb-6"
                 >
                   {/* Step title */}
