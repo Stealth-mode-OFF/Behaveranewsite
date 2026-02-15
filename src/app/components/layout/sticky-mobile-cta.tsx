@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
+import { useNavigate } from "react-router-dom";
 import { trackStickyCtaDismissed } from "@/lib/analytics";
 
 export function StickyMobileCta() {
   const { t, language } = useLanguage();
-  const { openSignup } = useModal();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -30,7 +30,7 @@ export function StickyMobileCta() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => openSignup('sticky_mobile_cta')}
+            onClick={() => navigate('/start')}
             className="flex-1 h-12 rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
             {language === 'cz' ? 'Začít zdarma' : language === 'de' ? 'Kostenlos starten' : 'Get started free'}

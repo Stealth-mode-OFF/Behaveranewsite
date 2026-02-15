@@ -2,6 +2,7 @@ import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Play, Shield, Clock, Zap, Users } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";
 import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
@@ -16,7 +17,8 @@ import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
 
 export function Hero() {
   const { language } = useLanguage();
-  const { openBooking, openDemo, openSignup } = useModal();
+  const { openBooking } = useModal();
+  const navigate = useNavigate();
 
   const copy = {
     cz: {
@@ -131,7 +133,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
               <Button
-                onClick={() => openSignup('hero')}
+                onClick={() => navigate('/start')}
                 size="lg"
                 className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
               >

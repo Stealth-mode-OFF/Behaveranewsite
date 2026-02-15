@@ -3,6 +3,7 @@ import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
+import { useNavigate } from "react-router-dom";
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -15,8 +16,9 @@ import { useLanguage } from "@/app/LanguageContext";
  * - Premium "final word" feel
  */
 export function CtaSection() {
-  const { openBooking, openDemo, openSignup } = useModal();
+  const { openBooking } = useModal();
   const { t, language } = useLanguage();
+  const navigate = useNavigate();
 
   const copy = {
     cz: {
@@ -128,7 +130,7 @@ export function CtaSection() {
             className="flex flex-col items-center justify-center gap-4 mb-12"
           >
             <Button 
-              onClick={() => openSignup('cta_section')}
+              onClick={() => navigate('/start')}
               size="lg"
               className="min-w-[240px] h-14 px-8 bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
             >
