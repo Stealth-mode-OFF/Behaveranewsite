@@ -52,7 +52,7 @@ export function DashboardPreview() {
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-20" />
       
-      <div className="container-default max-w-[1120px] mx-auto relative z-10">
+      <div className="container-default relative z-10">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20">
