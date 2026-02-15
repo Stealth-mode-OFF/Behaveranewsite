@@ -1,11 +1,6 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect, useRef } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/app/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/app/components/ui/dialog";
 import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
 import { Input } from "@/app/components/ui/input";
@@ -14,280 +9,473 @@ import { FormField } from "@/app/components/ui/form-field";
 import { submitLead } from "@/app/utils/lead";
 import { trackLeadSubmitted } from "@/lib/analytics";
 import { cn } from "@/app/components/ui/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
 import {
-  Building2,
-  User,
-  Users,
-  CreditCard,
-  Check,
-  ChevronRight,
-  ChevronLeft,
-  Plus,
-  Trash2,
-  ArrowRight,
-  Loader2,
-  ShieldCheck,
-  Rocket,
-  Crown,
-  LayoutDashboard,
-  AlertCircle,
-  Sparkles,
-  X,
+  Building2, Users, CreditCard, Check, ChevronRight, ChevronLeft,
+  Plus, Trash2, ArrowRight, Loader2, ShieldCheck, Rocket, Crown,
+  LayoutDashboard, AlertCircle, Sparkles, X, Zap, Globe, Lock,
+  BarChart3, TrendingUp, Timer, Star,
 } from "lucide-react";
 
-/* ─── Form types ─── */
+/* ═══════════════════════════════════════════════════
+   Types
+   ═══════════════════════════════════════════════════ */
 type TeamMember = { email: string };
 type TeamEntry = { name: string; leaderEmail: string; members: TeamMember[] };
 
 type SignupFormData = {
-  /* Step 1 */
   companyName: string;
   companyId: string;
   contactName: string;
   contactEmail: string;
   adminName: string;
   adminEmail: string;
-  /* Step 2 */
   teams: TeamEntry[];
-  /* Step 3 */
   employeeCount: number;
   billingInterval: "monthly" | "yearly";
   agreedToTerms: boolean;
 };
 
-/* ─── Step meta ─── */
+/* ═══════════════════════════════════════════════════
+   Steps
+   ═══════════════════════════════════════════════════ */
 const STEPS = [
-  { id: "company", icon: Building2 },
-  { id: "team", icon: Users },
-  { id: "confirm", icon: CreditCard },
+  { id: "company", icon: Building2, color: "#9F7AEA" },
+  { id: "team", icon: Users, color: "#6366F1" },
+  { id: "confirm", icon: CreditCard, color: "#2D1B69" },
 ] as const;
 
-/* ─── Translations ─── */
+/* ═══════════════════════════════════════════════════
+   Translations
+   ═══════════════════════════════════════════════════ */
 const copy = {
   cz: {
+    /* Brand panel */
+    brandLine: "Echo Pulse",
+    brandTagline: "Poznejte svůj tým za 2 minuty",
+    socialProof: "Důvěřuje přes 500 firem",
+    valueProp1: "AI analýza nálady týmu v reálném čase",
+    valueProp2: "Automatické pulse check-iny za 2 minuty",
+    valueProp3: "Okamžité výsledky bez čekání",
+    valueProp4: "GDPR-ready s ISO certifikací",
+    /* Header */
     modalTitle: "Vytvořte si účet",
     modalSubtitle: "Zabere to méně než 2 minuty",
     steps: ["Společnost", "Týmy", "Potvrzení"],
     /* Step 1 */
-    s1Title: "Vaše firma & kontakt",
-    s1Subtitle: "Základní údaje pro nastavení účtu.",
+    s1Title: "Začněme",
+    s1Subtitle: "Řekněte nám o vaší firmě a o vás.",
     companyName: "Název společnosti",
     companyNamePh: "Acme s.r.o.",
     companyId: "IČO",
     companyIdPh: "12345678",
     companyIdHelper: "8místné identifikační číslo",
-    repSection: "Zástupce společnosti",
-    repSectionDesc: "Osoba, která řeší smlouvu a fakturaci.",
     contactName: "Vaše jméno",
     contactNamePh: "Jan Novák",
     contactEmail: "Firemní e-mail",
     contactEmailPh: "jan.novak@firma.cz",
-    contactEmailHelper: "Sem posíláme smlouvu a důležité aktualizace.",
-    adminSection: "Budoucí administrátor",
-    adminSectionDesc: "Kdo bude Echo Pulse denně používat.",
+    adminSection: "Kdo bude platformu spravovat?",
+    adminSectionDesc: "Pošleme pozvánku a instrukce k nastavení.",
     adminName: "Jméno administrátora",
     adminNamePh: "Jana Smolíková",
     adminEmail: "Email administrátora",
     adminEmailPh: "jana.smolikova@firma.cz",
-    adminEmailHelper: "Pošleme pozvánku a instrukce k nastavení.",
-    sameAsContact: "Stejný jako kontakt",
+    sameAsMe: "Jsem to já",
     /* Step 2 */
-    s2Title: "Nastavte týmy",
-    s2Subtitle: "Vytvořte týmy a přidejte členy pro Echo Pulse.",
+    s2Title: "Nastavte svůj první tým",
+    s2Subtitle: "Tohle můžete kdykoliv změnit.",
     teamName: "Název týmu",
     teamNamePh: "Marketing",
     teamLeader: "Email team leadera",
     teamLeaderPh: "leader@firma.cz",
-    teamLeaderHelper: "Team leader vidí pouze výsledky svého týmu.",
-    teamMembers: "Členové týmu",
+    teamMembers: "Členové",
     memberPh: "zamestnanec@firma.cz",
-    memberHelper: "Zaměstnanci, kteří budou vyplňovat Echo Pulse.",
     addMember: "Přidat člena",
     addTeam: "Přidat další tým",
-    removeTeam: "Odebrat tým",
+    removeTeam: "Odebrat",
     skipTeams: "Přeskočit — nastavím později",
     /* Step 3 */
-    s3Title: "Potvrzení & spuštění",
-    s3Subtitle: "Zkontrolujte údaje a zvolte svůj plán.",
-    summaryCompany: "Společnost",
-    summaryContact: "Kontakt",
-    summaryAdmin: "Administrátor",
-    summaryTeams: "Týmy",
-    summaryMembers: "členů",
-    employeeCount: "Počet zaměstnanců",
+    s3Title: "Zvolte si plán",
+    s3Subtitle: "Žádné překvapení. Průhledné ceny.",
+    employeeCount: "Velikost týmu",
     employeeCountHelper: "Kolik lidí bude Echo Pulse používat?",
-    plan: "Ceník",
+    plan: "Váš plán",
     monthly: "Měsíčně",
     yearly: "Ročně",
-    saveTag: "Ušetřete 20 %",
-    perPerson: "za osobu / měsíc",
+    saveTag: "-20 %",
+    perPerson: "/ osoba / měsíc",
     termsAgree: "Souhlasím s",
-    termsLink: "Obchodními podmínkami",
+    termsLink: "podmínkami",
     termsAnd: "a",
-    privacyLink: "Ochranou osobních údajů",
+    privacyLink: "ochranou údajů",
     guarantee: "30denní garance vrácení peněz",
-    submit: "Vytvořit účet",
-    submitting: "Vytváření…",
+    submit: "Spustit Echo Pulse",
+    submitting: "Vytváříme váš účet…",
     /* Success */
-    successTitle: "Účet vytvořen! 🎉",
-    successBody: "Na e-mail administrátora jsme odeslali pozvánku a instrukce. Do hodiny se ozveme a provedeme vás úvodním nastavením.",
-    successCta: "Zavřít",
+    successTitle: "Vítejte v Echo Pulse!",
+    successBody: "Na e-mail administrátora jsme odeslali pozvánku. Do hodiny se ozveme a provedeme vás nastavením.",
+    successCta: "Hotovo",
     /* Nav */
     next: "Pokračovat",
     back: "Zpět",
     required: "Povinné pole",
     invalidEmail: "Zadejte platný e-mail",
+    people: "lidí",
   },
   en: {
+    brandLine: "Echo Pulse",
+    brandTagline: "Understand your team in 2 minutes",
+    socialProof: "Trusted by 500+ companies",
+    valueProp1: "Real-time AI team mood analysis",
+    valueProp2: "Automated 2-minute pulse check-ins",
+    valueProp3: "Instant results — no waiting",
+    valueProp4: "GDPR-ready with ISO certification",
     modalTitle: "Create your account",
     modalSubtitle: "Takes less than 2 minutes",
-    steps: ["Company", "Teams", "Confirm"],
-    s1Title: "Your company & contact",
-    s1Subtitle: "Basic details to set up your account.",
+    steps: ["Company", "Teams", "Plan"],
+    s1Title: "Let's get started",
+    s1Subtitle: "Tell us about your company and yourself.",
     companyName: "Company name",
     companyNamePh: "Acme Inc.",
     companyId: "Company ID",
     companyIdPh: "12345678",
     companyIdHelper: "Official registration number",
-    repSection: "Company representative",
-    repSectionDesc: "Handles the contract and billing on your side.",
     contactName: "Your name",
     contactNamePh: "John Smith",
     contactEmail: "Work email",
     contactEmailPh: "john@company.com",
-    contactEmailHelper: "We'll send the contract and key updates here.",
-    adminSection: "Future account admin",
-    adminSectionDesc: "Who will use Echo Pulse day to day.",
+    adminSection: "Who will manage the platform?",
+    adminSectionDesc: "We'll send an invite and setup instructions.",
     adminName: "Admin name",
     adminNamePh: "Jane Doe",
     adminEmail: "Admin email",
     adminEmailPh: "jane@company.com",
-    adminEmailHelper: "We'll send an invite and getting-started instructions.",
-    sameAsContact: "Same as contact",
-    s2Title: "Set up teams",
-    s2Subtitle: "Create teams and add members for Echo Pulse.",
+    sameAsMe: "That's me",
+    s2Title: "Set up your first team",
+    s2Subtitle: "You can always change this later.",
     teamName: "Team name",
     teamNamePh: "Marketing",
     teamLeader: "Team leader email",
     teamLeaderPh: "leader@company.com",
-    teamLeaderHelper: "Team leader only sees their team's results.",
-    teamMembers: "Team members",
+    teamMembers: "Members",
     memberPh: "employee@company.com",
-    memberHelper: "Employees who will complete Echo Pulses.",
     addMember: "Add member",
     addTeam: "Add another team",
-    removeTeam: "Remove team",
+    removeTeam: "Remove",
     skipTeams: "Skip — I'll set up teams later",
-    s3Title: "Confirm & launch",
-    s3Subtitle: "Review the details and choose your plan.",
-    summaryCompany: "Company",
-    summaryContact: "Contact",
-    summaryAdmin: "Admin",
-    summaryTeams: "Teams",
-    summaryMembers: "members",
-    employeeCount: "Number of employees",
+    s3Title: "Choose your plan",
+    s3Subtitle: "No surprises. Transparent pricing.",
+    employeeCount: "Team size",
     employeeCountHelper: "How many people will use Echo Pulse?",
-    plan: "Pricing",
+    plan: "Your plan",
     monthly: "Monthly",
     yearly: "Yearly",
-    saveTag: "Save 20%",
-    perPerson: "per person / month",
+    saveTag: "-20%",
+    perPerson: "/ person / month",
     termsAgree: "I agree to the",
-    termsLink: "Terms of Service",
+    termsLink: "terms",
     termsAnd: "and",
-    privacyLink: "Privacy Policy",
+    privacyLink: "privacy policy",
     guarantee: "30-day money-back guarantee",
-    submit: "Create account",
-    submitting: "Creating…",
-    successTitle: "Account created! 🎉",
-    successBody: "We've sent an invite and instructions to the admin email. We'll reach out within an hour to walk you through setup.",
-    successCta: "Close",
+    submit: "Launch Echo Pulse",
+    submitting: "Creating your account…",
+    successTitle: "Welcome to Echo Pulse!",
+    successBody: "We've sent an invite to the admin email. We'll reach out within an hour to walk you through setup.",
+    successCta: "Done",
     next: "Continue",
     back: "Back",
     required: "Required",
     invalidEmail: "Enter a valid email",
+    people: "people",
   },
   de: {
+    brandLine: "Echo Pulse",
+    brandTagline: "Verstehen Sie Ihr Team in 2 Minuten",
+    socialProof: "Über 500 Unternehmen vertrauen uns",
+    valueProp1: "KI-Teamstimmungsanalyse in Echtzeit",
+    valueProp2: "Automatische 2-Minuten-Pulse-Check-ins",
+    valueProp3: "Sofortige Ergebnisse — kein Warten",
+    valueProp4: "DSGVO-konform mit ISO-Zertifizierung",
     modalTitle: "Konto erstellen",
     modalSubtitle: "Dauert weniger als 2 Minuten",
-    steps: ["Unternehmen", "Teams", "Bestätigung"],
-    s1Title: "Ihr Unternehmen & Kontakt",
-    s1Subtitle: "Grunddaten für die Kontoeinrichtung.",
+    steps: ["Unternehmen", "Teams", "Plan"],
+    s1Title: "Los geht's",
+    s1Subtitle: "Erzählen Sie uns von Ihrem Unternehmen.",
     companyName: "Firmenname",
     companyNamePh: "Acme GmbH",
     companyId: "Handelsregister-Nr.",
     companyIdPh: "HRB 12345",
     companyIdHelper: "Offizielle Registrierungsnummer",
-    repSection: "Unternehmensvertreter",
-    repSectionDesc: "Zuständig für Vertrag und Abrechnung.",
     contactName: "Ihr Name",
     contactNamePh: "Max Mustermann",
     contactEmail: "Geschäftliche E-Mail",
     contactEmailPh: "max@firma.de",
-    contactEmailHelper: "Hier senden wir Vertrag und wichtige Updates.",
-    adminSection: "Zukünftiger Account-Admin",
-    adminSectionDesc: "Wer Echo Pulse täglich nutzen wird.",
+    adminSection: "Wer verwaltet die Plattform?",
+    adminSectionDesc: "Wir senden Einladung und Einrichtungs-Anleitung.",
     adminName: "Admin-Name",
     adminNamePh: "Erika Musterfrau",
     adminEmail: "Admin-E-Mail",
     adminEmailPh: "erika@firma.de",
-    adminEmailHelper: "Wir senden eine Einladung und Einrichtungsanleitung.",
-    sameAsContact: "Gleich wie Kontakt",
-    s2Title: "Teams einrichten",
-    s2Subtitle: "Erstellen Sie Teams und fügen Sie Mitglieder hinzu.",
+    sameAsMe: "Das bin ich",
+    s2Title: "Richten Sie Ihr erstes Team ein",
+    s2Subtitle: "Sie können das jederzeit ändern.",
     teamName: "Teamname",
     teamNamePh: "Marketing",
     teamLeader: "Teamleiter-E-Mail",
     teamLeaderPh: "leiter@firma.de",
-    teamLeaderHelper: "Der Teamleiter sieht nur die Ergebnisse seines Teams.",
-    teamMembers: "Teammitglieder",
+    teamMembers: "Mitglieder",
     memberPh: "mitarbeiter@firma.de",
-    memberHelper: "Mitarbeiter, die Echo Pulse ausfüllen werden.",
-    addMember: "Mitglied hinzufügen",
-    addTeam: "Weiteres Team hinzufügen",
-    removeTeam: "Team entfernen",
+    addMember: "Hinzufügen",
+    addTeam: "Weiteres Team",
+    removeTeam: "Entfernen",
     skipTeams: "Überspringen — richte ich später ein",
-    s3Title: "Bestätigen & starten",
-    s3Subtitle: "Überprüfen Sie die Details und wählen Sie Ihren Plan.",
-    summaryCompany: "Unternehmen",
-    summaryContact: "Kontakt",
-    summaryAdmin: "Admin",
-    summaryTeams: "Teams",
-    summaryMembers: "Mitglieder",
-    employeeCount: "Anzahl der Mitarbeiter",
+    s3Title: "Wählen Sie Ihren Plan",
+    s3Subtitle: "Keine Überraschungen. Transparente Preise.",
+    employeeCount: "Teamgröße",
     employeeCountHelper: "Wie viele Personen werden Echo Pulse nutzen?",
-    plan: "Preise",
+    plan: "Ihr Plan",
     monthly: "Monatlich",
     yearly: "Jährlich",
-    saveTag: "20 % sparen",
-    perPerson: "pro Person / Monat",
+    saveTag: "-20%",
+    perPerson: "/ Person / Monat",
     termsAgree: "Ich stimme den",
     termsLink: "Nutzungsbedingungen",
     termsAnd: "und der",
     privacyLink: "Datenschutzerklärung",
     guarantee: "30 Tage Geld-zurück-Garantie",
-    submit: "Konto erstellen",
-    submitting: "Wird erstellt…",
-    successTitle: "Konto erstellt! 🎉",
-    successBody: "Wir haben eine Einladung und Anleitung an die Admin-E-Mail gesendet. Innerhalb einer Stunde melden wir uns für das Erst-Setup.",
-    successCta: "Schließen",
+    submit: "Echo Pulse starten",
+    submitting: "Konto wird erstellt…",
+    successTitle: "Willkommen bei Echo Pulse!",
+    successBody: "Wir haben eine Einladung an die Admin-E-Mail gesendet. Innerhalb einer Stunde melden wir uns.",
+    successCta: "Fertig",
     next: "Weiter",
     back: "Zurück",
     required: "Pflichtfeld",
     invalidEmail: "Geben Sie eine gültige E-Mail ein",
+    people: "Personen",
   },
 };
 
-/* ─── Slide animation ─── */
+/* ═══════════════════════════════════════════════════
+   Floating Orb — decorative animated blobs
+   ═══════════════════════════════════════════════════ */
+function FloatingOrb({ delay = 0, size = 120, x = 0, y = 0, color = "#9F7AEA" }: {
+  delay?: number; size?: number; x?: number; y?: number; color?: string;
+}) {
+  return (
+    <motion.div
+      className="absolute rounded-full pointer-events-none"
+      style={{
+        width: size,
+        height: size,
+        left: x,
+        top: y,
+        background: `radial-gradient(circle, ${color}40 0%, ${color}00 70%)`,
+        filter: "blur(40px)",
+      }}
+      animate={{
+        x: [0, 30, -20, 10, 0],
+        y: [0, -20, 15, -10, 0],
+        scale: [1, 1.2, 0.9, 1.1, 1],
+      }}
+      transition={{
+        duration: 12 + delay * 2,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay,
+      }}
+    />
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Celebration Particles — confetti on success
+   ═══════════════════════════════════════════════════ */
+function CelebrationParticles() {
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 50 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        delay: Math.random() * 0.5,
+        duration: 1.5 + Math.random() * 1.5,
+        size: 4 + Math.random() * 8,
+        color: ["#9F7AEA", "#6366F1", "#2D1B69", "#F59E0B", "#10B981", "#EC4899"][
+          Math.floor(Math.random() * 6)
+        ],
+        rotation: Math.random() * 360,
+      })),
+    []
+  );
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute"
+          style={{
+            left: `${p.x}%`,
+            top: "-5%",
+            width: p.size,
+            height: p.size,
+            borderRadius: p.size > 8 ? "2px" : "50%",
+            backgroundColor: p.color,
+          }}
+          initial={{ y: 0, opacity: 1, rotate: 0 }}
+          animate={{
+            y: [0, window.innerHeight * 1.2],
+            opacity: [1, 1, 0.8, 0],
+            rotate: [0, p.rotation + 360],
+            x: [0, (Math.random() - 0.5) * 200],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Animated Progress Bar
+   ═══════════════════════════════════════════════════ */
+function ProgressBar({ step, total }: { step: number; total: number }) {
+  const progress = ((step + 1) / total) * 100;
+  return (
+    <div className="relative h-1 bg-white/10 rounded-full overflow-hidden">
+      <motion.div
+        className="absolute inset-y-0 left-0 rounded-full"
+        style={{
+          background: "linear-gradient(90deg, #9F7AEA, #6366F1, #2D1B69)",
+          backgroundSize: "200% 100%",
+        }}
+        animate={{
+          width: `${progress}%`,
+          backgroundPosition: ["0% 0%", "100% 0%"],
+        }}
+        transition={{
+          width: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+          backgroundPosition: { duration: 3, repeat: Infinity, ease: "linear" },
+        }}
+      />
+      {/* Glow effect */}
+      <motion.div
+        className="absolute inset-y-0 left-0 rounded-full"
+        style={{
+          background: "linear-gradient(90deg, #9F7AEA80 0%, #6366F180 100%)",
+          filter: "blur(4px)",
+        }}
+        animate={{ width: `${progress}%` }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Value Prop Carousel (left panel)
+   ═══════════════════════════════════════════════════ */
+function ValuePropCarousel({ items }: { items: string[] }) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % items.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [items.length]);
+
+  const icons = [Zap, Timer, BarChart3, Lock];
+
+  return (
+    <div className="relative h-24 overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute inset-0 flex items-center gap-4"
+        >
+          {(() => {
+            const Icon = icons[current % icons.length];
+            return (
+              <>
+                <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center shrink-0 border border-white/10">
+                  <Icon className="w-6 h-6 text-white/90" />
+                </div>
+                <p className="text-white/80 text-[15px] leading-relaxed font-medium">
+                  {items[current]}
+                </p>
+              </>
+            );
+          })()}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Animated Input (premium glow focus)
+   ═══════════════════════════════════════════════════ */
+function GlowInput({
+  className,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & { className?: string }) {
+  const [focused, setFocused] = useState(false);
+  return (
+    <div className="relative group">
+      {/* Focus glow ring */}
+      <motion.div
+        className="absolute -inset-[2px] rounded-xl pointer-events-none"
+        style={{
+          background: "linear-gradient(135deg, #9F7AEA, #6366F1)",
+          opacity: 0,
+        }}
+        animate={{ opacity: focused ? 0.3 : 0 }}
+        transition={{ duration: 0.2 }}
+      />
+      <input
+        {...props}
+        onFocus={(e) => {
+          setFocused(true);
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          setFocused(false);
+          props.onBlur?.(e);
+        }}
+        className={cn(
+          "relative w-full h-12 px-4 rounded-xl border bg-white text-brand-text-primary text-[14px]",
+          "placeholder:text-brand-text-muted/50",
+          "transition-all duration-200",
+          "border-brand-border/60 hover:border-brand-primary/30",
+          "focus:outline-none focus:border-brand-primary/50 focus:ring-2 focus:ring-brand-primary/10",
+          "disabled:opacity-50 disabled:cursor-not-allowed",
+          className
+        )}
+      />
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   Step slide variants
+   ═══════════════════════════════════════════════════ */
 const slideVariants = {
-  enter: (d: number) => ({ x: d > 0 ? 50 : -50, opacity: 0 }),
-  center: { x: 0, opacity: 1 },
-  exit: (d: number) => ({ x: d < 0 ? 50 : -50, opacity: 0 }),
+  enter: (d: number) => ({ x: d > 0 ? 80 : -80, opacity: 0, filter: "blur(4px)" }),
+  center: { x: 0, opacity: 1, filter: "blur(0px)" },
+  exit: (d: number) => ({ x: d < 0 ? 80 : -80, opacity: 0, filter: "blur(4px)" }),
 };
 
 /* ═══════════════════════════════════════════════════
-   SignupModal
+   MAIN: SignupModal
    ═══════════════════════════════════════════════════ */
 export function SignupModal() {
   const { isSignupOpen, closeSignup } = useModal();
@@ -298,7 +486,7 @@ export function SignupModal() {
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [sameAsContact, setSameAsContact] = useState(false);
+  const [sameAsMe, setSameAsMe] = useState(false);
 
   const isEur = language === "en" || language === "de";
   const monthlyPrice = isEur ? 5 : 129;
@@ -333,7 +521,7 @@ export function SignupModal() {
   const {
     fields: teamFields,
     append: appendTeam,
-    remove: removeTeam,
+    remove: removeTeamField,
   } = useFieldArray({ control, name: "teams" });
 
   const billingInterval = watch("billingInterval");
@@ -342,11 +530,11 @@ export function SignupModal() {
   const billable = Math.min(employeeCount, 200);
   const total = pricePerPerson * billable;
 
-  /* ─── Validation ─── */
+  /* Validation fields per step */
   const fieldsByStep: Record<number, (keyof SignupFormData)[]> = useMemo(
     () => ({
-      0: ["companyName", "companyId", "contactName", "contactEmail", "adminName", "adminEmail"],
-      1: [],      // teams step is optional
+      0: ["companyName", "contactName", "contactEmail", "adminName", "adminEmail"],
+      1: [],
       2: ["agreedToTerms"],
     }),
     []
@@ -367,48 +555,40 @@ export function SignupModal() {
     setStep((s) => Math.max(s - 1, 0));
   }, []);
 
-  /* ─── Submit ─── */
+  /* Submit */
   const onSubmit = async (data: SignupFormData) => {
     setIsSubmitting(true);
-    try {
-      const totalMembers = data.teams.reduce(
-        (sum, t) => sum + t.members.filter((m) => m.email.trim()).length,
-        0
-      );
-      // Fire and forget — don't block UX
-      submitLead({
-        email: data.contactEmail,
-        name: data.contactName,
-        company: data.companyName,
-        companySize: String(data.employeeCount),
-        source: `signup_modal:${data.billingInterval}:${totalMembers}members:${data.teams.length}teams`,
-      }).catch(() => {});
-      trackLeadSubmitted("signup_modal");
-    } catch {
-      // noop
-    }
-    // Always show success
+    const totalMembers = data.teams.reduce(
+      (sum, t) => sum + t.members.filter((m) => m.email.trim()).length,
+      0
+    );
+    submitLead({
+      email: data.contactEmail,
+      name: data.contactName,
+      company: data.companyName,
+      companySize: String(data.employeeCount),
+      source: `signup_modal:${data.billingInterval}:${totalMembers}m:${data.teams.length}t`,
+    }).catch(() => {});
+    trackLeadSubmitted("signup_modal");
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-    }, 800);
+    }, 1200);
   };
 
-  /* ─── Handle "same as contact" checkbox ─── */
-  const handleSameAsContact = useCallback(
+  /* Same-as-me toggle */
+  const handleSameAsMe = useCallback(
     (checked: boolean) => {
-      setSameAsContact(checked);
+      setSameAsMe(checked);
       if (checked) {
-        const name = getValues("contactName");
-        const email = getValues("contactEmail");
-        setValue("adminName", name);
-        setValue("adminEmail", email);
+        setValue("adminName", getValues("contactName"));
+        setValue("adminEmail", getValues("contactEmail"));
       }
     },
     [getValues, setValue]
   );
 
-  /* ─── Reset on close ─── */
+  /* Reset on close */
   const handleClose = useCallback(() => {
     closeSignup();
     setTimeout(() => {
@@ -416,125 +596,201 @@ export function SignupModal() {
       setDirection(0);
       setIsSuccess(false);
       setIsSubmitting(false);
-      setSameAsContact(false);
+      setSameAsMe(false);
       reset();
-    }, 300);
+    }, 400);
   }, [closeSignup, reset]);
 
-  /* ─── Computed ─── */
-  const StepIcon = STEPS[step].icon;
+  const valuePropItems = [txt.valueProp1, txt.valueProp2, txt.valueProp3, txt.valueProp4];
 
   return (
     <Dialog open={isSignupOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogContent
         className={cn(
-          "sm:max-w-[600px] max-h-[92vh] overflow-y-auto p-0 gap-0 rounded-3xl border-brand-border/50",
-          "bg-gradient-to-b from-white to-[#FDFBFF]",
-          "shadow-2xl shadow-brand-primary/[0.08]"
+          "!max-w-none !w-screen !h-[100dvh] !rounded-none !p-0 !m-0 !gap-0 !border-none !translate-x-0 !translate-y-0 !top-0 !left-0",
+          "bg-white overflow-hidden",
+          "[&>button]:hidden" // hide default close
         )}
+        style={{ position: "fixed", inset: 0, transform: "none" }}
         aria-describedby="signup-desc"
       >
-        {/* Hidden accessibility */}
         <DialogTitle className="sr-only">{txt.modalTitle}</DialogTitle>
-        <DialogDescription id="signup-desc" className="sr-only">
-          {txt.modalSubtitle}
-        </DialogDescription>
-
-        {/* ─── Custom close button ─── */}
-        <button
-          type="button"
-          onClick={handleClose}
-          className="absolute top-4 right-4 z-50 w-8 h-8 rounded-full bg-brand-background-muted/80 hover:bg-brand-background-muted flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-all"
-        >
-          <X className="w-4 h-4" />
-        </button>
+        <DialogDescription id="signup-desc" className="sr-only">{txt.modalSubtitle}</DialogDescription>
 
         <AnimatePresence mode="wait">
           {isSuccess ? (
-            /* ═══ SUCCESS SCREEN ═══ */
-            <motion.div
-              key="success"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="px-8 py-14 text-center"
-            >
-              <div className="w-20 h-20 mx-auto mb-6 bg-brand-success/10 rounded-full flex items-center justify-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                >
-                  <Rocket className="w-10 h-10 text-brand-success" />
-                </motion.div>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-text-primary mb-3 font-[var(--font-display)]">
-                {txt.successTitle}
-              </h2>
-              <p className="text-brand-text-muted text-[14px] leading-relaxed mb-8 max-w-sm mx-auto">
-                {txt.successBody}
-              </p>
-              <Button
-                size="lg"
-                onClick={handleClose}
-                className="h-12 px-10 text-[15px] font-semibold rounded-2xl"
-              >
-                {txt.successCta}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </motion.div>
+            <SuccessScreen key="success" txt={txt} onClose={handleClose} />
           ) : (
-            /* ═══ FORM FLOW ═══ */
-            <form onSubmit={handleSubmit(onSubmit)} key="form">
-              {/* ─── Header ─── */}
-              <div className="px-6 sm:px-8 pt-7 pb-4">
-                <h2 className="text-xl font-bold text-brand-text-primary font-[var(--font-display)] mb-0.5">
-                  {txt.modalTitle}
-                </h2>
-                <p className="text-[13px] text-brand-text-muted flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-brand-warning" />
-                  {txt.modalSubtitle}
-                </p>
+            <motion.div
+              key="form"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.3 }}
+              className="flex h-full"
+            >
+              {/* ═══════════ LEFT PANEL — Brand & Social Proof (desktop) ═══════════ */}
+              <div className="hidden lg:flex w-[440px] xl:w-[480px] shrink-0 flex-col relative overflow-hidden">
+                {/* Animated gradient background */}
+                <div
+                  className="absolute inset-0 animate-gradient-shift"
+                  style={{
+                    background: "linear-gradient(135deg, #2D1B69 0%, #1E0F4D 25%, #4C1D95 50%, #2D1B69 75%, #1E0F4D 100%)",
+                    backgroundSize: "400% 400%",
+                  }}
+                />
+
+                {/* Floating orbs */}
+                <FloatingOrb x={-40} y={100} size={200} color="#9F7AEA" delay={0} />
+                <FloatingOrb x={250} y={300} size={160} color="#6366F1" delay={2} />
+                <FloatingOrb x={100} y={500} size={180} color="#A78BFA" delay={4} />
+                <FloatingOrb x={300} y={150} size={100} color="#818CF8" delay={1} />
+
+                {/* Grain overlay */}
+                <div className="absolute inset-0 opacity-[0.03]" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                }} />
+
+                <div className="relative z-10 flex flex-col h-full p-8 xl:p-10">
+                  {/* Logo */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="flex items-center gap-3 mb-auto"
+                  >
+                    <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/10">
+                      <Sparkles className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-white font-bold text-xl tracking-tight font-[var(--font-display)]">
+                      {txt.brandLine}
+                    </span>
+                  </motion.div>
+
+                  {/* Hero text */}
+                  <div className="mt-auto mb-8">
+                    <motion.h2
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                      className="text-white text-3xl xl:text-4xl font-bold leading-tight font-[var(--font-display)] mb-6"
+                    >
+                      {txt.brandTagline}
+                    </motion.h2>
+
+                    <ValuePropCarousel items={valuePropItems} />
+                  </div>
+
+                  {/* Social proof strip */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
+                    className="mt-auto"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex -space-x-2">
+                        {[...Array(5)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="w-8 h-8 rounded-full border-2 border-white/20 bg-gradient-to-br from-brand-accent/60 to-brand-primary/60 flex items-center justify-center"
+                          >
+                            <Star className="w-3 h-3 text-white/80" />
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 text-yellow-400 fill-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-white/60 text-[13px] font-medium">
+                      {txt.socialProof}
+                    </p>
+
+                    {/* Trust badges */}
+                    <div className="flex items-center gap-4 mt-6 pt-6 border-t border-white/10">
+                      {[
+                        { icon: ShieldCheck, label: "GDPR" },
+                        { icon: Lock, label: "SSL" },
+                        { icon: Globe, label: "ISO" },
+                      ].map(({ icon: Icon, label }) => (
+                        <div key={label} className="flex items-center gap-1.5 text-white/40 text-[11px] font-medium">
+                          <Icon className="w-3.5 h-3.5" />
+                          <span>{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
               </div>
 
-              {/* ─── Step indicator ─── */}
-              <nav className="px-6 sm:px-8 pb-5">
-                <div className="flex items-center justify-center gap-0">
-                  {STEPS.map((s, i) => {
-                    const Icon = s.icon;
-                    const done = i < step;
-                    const current = i === step;
-                    return (
-                      <div key={s.id} className="flex items-center">
-                        {i > 0 && (
-                          <div
-                            className={cn(
-                              "w-12 sm:w-16 h-[2px] transition-colors duration-300",
-                              done ? "bg-brand-primary" : "bg-brand-border"
-                            )}
-                          />
-                        )}
+              {/* ═══════════ RIGHT PANEL — Form ═══════════ */}
+              <div className="flex-1 flex flex-col min-w-0 relative">
+                {/* Mobile gradient header */}
+                <div
+                  className="lg:hidden h-16 relative overflow-hidden shrink-0"
+                  style={{
+                    background: "linear-gradient(135deg, #2D1B69 0%, #4C1D95 100%)",
+                  }}
+                >
+                  <FloatingOrb x={-20} y={-20} size={80} color="#9F7AEA" delay={0} />
+                  <div className="relative z-10 h-full flex items-center justify-between px-5">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-white/80" />
+                      <span className="text-white font-bold text-sm tracking-tight">{txt.brandLine}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleClose}
+                      className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Desktop close button */}
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  className="hidden lg:flex absolute top-5 right-5 z-50 w-10 h-10 rounded-full bg-brand-background-muted/80 hover:bg-brand-background-muted items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-all"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                {/* Progress bar + step labels */}
+                <div className="px-6 sm:px-10 lg:px-14 pt-6 lg:pt-10 shrink-0">
+                  <ProgressBar step={step} total={STEPS.length} />
+
+                  <div className="flex items-center justify-between mt-4 mb-2">
+                    {STEPS.map((s, i) => {
+                      const Icon = s.icon;
+                      const done = i < step;
+                      const active = i === step;
+                      return (
                         <button
+                          key={s.id}
                           type="button"
-                          onClick={() => {
-                            if (i < step) {
-                              setDirection(-1);
-                              setStep(i);
-                            }
-                          }}
+                          onClick={() => { if (i < step) { setDirection(-1); setStep(i); } }}
                           className={cn(
-                            "flex flex-col items-center gap-1.5 transition-all duration-300",
-                            i <= step ? "cursor-pointer" : "cursor-default"
+                            "flex items-center gap-2 text-[12px] font-semibold transition-all duration-300",
+                            active
+                              ? "text-brand-primary"
+                              : done
+                              ? "text-brand-text-secondary cursor-pointer hover:text-brand-primary"
+                              : "text-brand-text-muted/50 cursor-default"
                           )}
                         >
                           <div
                             className={cn(
-                              "w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 border-2",
-                              done
-                                ? "bg-brand-primary border-brand-primary text-white"
-                                : current
-                                ? "bg-white border-brand-primary text-brand-primary shadow-md shadow-brand-primary/20"
-                                : "bg-white border-brand-border text-brand-text-muted"
+                              "w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300",
+                              active
+                                ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30"
+                                : done
+                                ? "bg-brand-success/10 text-brand-success"
+                                : "bg-brand-background-muted text-brand-text-muted/50"
                             )}
                           >
                             {done ? (
@@ -543,387 +799,153 @@ export function SignupModal() {
                               <Icon className="w-3.5 h-3.5" />
                             )}
                           </div>
-                          <span
-                            className={cn(
-                              "text-[10px] font-semibold tracking-wide transition-colors",
-                              current
-                                ? "text-brand-primary"
-                                : done
-                                ? "text-brand-text-secondary"
-                                : "text-brand-text-muted"
-                            )}
-                          >
-                            {txt.steps[i]}
-                          </span>
+                          <span className="hidden sm:block">{txt.steps[i]}</span>
                         </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </nav>
-
-              {/* ─── Step content card ─── */}
-              <div className="mx-4 sm:mx-6 rounded-2xl border border-brand-border/40 bg-white overflow-hidden mb-4">
-                {/* Step header */}
-                <div className="px-5 sm:px-6 pt-5 pb-4 border-b border-brand-border/30 bg-gradient-to-r from-brand-background-secondary/40 to-transparent">
-                  <div className="flex items-center gap-2.5 mb-0.5">
-                    <div className="w-7 h-7 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center">
-                      <StepIcon className="w-3.5 h-3.5" />
-                    </div>
-                    <h3 className="text-[15px] font-bold text-brand-text-primary">
-                      {step === 0 ? txt.s1Title : step === 1 ? txt.s2Title : txt.s3Title}
-                    </h3>
+                      );
+                    })}
                   </div>
-                  <p className="text-[12px] text-brand-text-muted ml-[38px]">
-                    {step === 0 ? txt.s1Subtitle : step === 1 ? txt.s2Subtitle : txt.s3Subtitle}
-                  </p>
                 </div>
 
-                {/* Step body */}
-                <div className="px-5 sm:px-6 py-5 min-h-[240px] relative">
-                  <AnimatePresence mode="wait" custom={direction}>
-                    <motion.div
-                      key={step}
-                      custom={direction}
-                      variants={slideVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    >
-                      {/* ═══ STEP 0 — Company & Contact ═══ */}
-                      {step === 0 && (
-                        <div className="space-y-6">
-                          {/* Company fields */}
-                          <div className="grid sm:grid-cols-2 gap-4">
-                            <FormField
-                              label={txt.companyName}
-                              error={errors.companyName?.message}
-                              required
-                            >
-                              <Input
-                                type="text"
-                                autoComplete="organization"
-                                placeholder={txt.companyNamePh}
-                                className="h-11"
-                                {...register("companyName", {
-                                  required: txt.required,
-                                  minLength: { value: 2, message: txt.required },
-                                })}
-                              />
-                            </FormField>
-                            <FormField
-                              label={txt.companyId}
-                              error={errors.companyId?.message}
-                              helperText={txt.companyIdHelper}
-                              required
-                            >
-                              <Input
-                                type="text"
-                                placeholder={txt.companyIdPh}
-                                className="h-11"
-                                {...register("companyId", { required: txt.required })}
-                              />
-                            </FormField>
-                          </div>
-
-                          {/* Rep */}
-                          <div>
-                            <div className="flex items-center gap-2 mb-1">
-                              <Crown className="w-3.5 h-3.5 text-brand-warning" />
-                              <h4 className="text-[13px] font-bold text-brand-text-primary">
-                                {txt.repSection}
-                              </h4>
-                            </div>
-                            <p className="text-[11px] text-brand-text-muted mb-3 ml-[22px]">
-                              {txt.repSectionDesc}
-                            </p>
-                            <div className="grid sm:grid-cols-2 gap-3 ml-0">
-                              <FormField
-                                label={txt.contactName}
-                                error={errors.contactName?.message}
-                                required
-                              >
-                                <Input
-                                  type="text"
-                                  autoComplete="name"
-                                  placeholder={txt.contactNamePh}
-                                  className="h-11"
-                                  {...register("contactName", {
-                                    required: txt.required,
-                                    minLength: { value: 2, message: txt.required },
-                                  })}
-                                />
-                              </FormField>
-                              <FormField
-                                label={txt.contactEmail}
-                                error={errors.contactEmail?.message}
-                                helperText={txt.contactEmailHelper}
-                                required
-                              >
-                                <Input
-                                  type="email"
-                                  autoComplete="email"
-                                  placeholder={txt.contactEmailPh}
-                                  className="h-11"
-                                  {...register("contactEmail", {
-                                    required: txt.required,
-                                    pattern: {
-                                      value: /^\S+@\S+\.\S+$/,
-                                      message: txt.invalidEmail,
-                                    },
-                                  })}
-                                />
-                              </FormField>
-                            </div>
-                          </div>
-
-                          {/* Divider */}
-                          <div className="border-t border-brand-border/30" />
-
-                          {/* Admin */}
-                          <div>
-                            <div className="flex items-center justify-between mb-1">
-                              <div className="flex items-center gap-2">
-                                <LayoutDashboard className="w-3.5 h-3.5 text-brand-primary" />
-                                <h4 className="text-[13px] font-bold text-brand-text-primary">
-                                  {txt.adminSection}
-                                </h4>
-                              </div>
-                              <label className="flex items-center gap-1.5 cursor-pointer text-[11px] text-brand-text-muted hover:text-brand-primary transition-colors">
-                                <input
-                                  type="checkbox"
-                                  checked={sameAsContact}
-                                  onChange={(e) => handleSameAsContact(e.target.checked)}
-                                  className="h-3.5 w-3.5 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
-                                />
-                                {txt.sameAsContact}
-                              </label>
-                            </div>
-                            <p className="text-[11px] text-brand-text-muted mb-3 ml-[22px]">
-                              {txt.adminSectionDesc}
-                            </p>
-                            <div className="grid sm:grid-cols-2 gap-3">
-                              <FormField
-                                label={txt.adminName}
-                                error={errors.adminName?.message}
-                                required
-                              >
-                                <Input
-                                  type="text"
-                                  placeholder={txt.adminNamePh}
-                                  className="h-11"
-                                  disabled={sameAsContact}
-                                  {...register("adminName", {
-                                    required: txt.required,
-                                    minLength: { value: 2, message: txt.required },
-                                  })}
-                                />
-                              </FormField>
-                              <FormField
-                                label={txt.adminEmail}
-                                error={errors.adminEmail?.message}
-                                helperText={txt.adminEmailHelper}
-                                required
-                              >
-                                <Input
-                                  type="email"
-                                  placeholder={txt.adminEmailPh}
-                                  className="h-11"
-                                  disabled={sameAsContact}
-                                  {...register("adminEmail", {
-                                    required: txt.required,
-                                    pattern: {
-                                      value: /^\S+@\S+\.\S+$/,
-                                      message: txt.invalidEmail,
-                                    },
-                                  })}
-                                />
-                              </FormField>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* ═══ STEP 1 — Teams ═══ */}
-                      {step === 1 && (
-                        <div className="space-y-5">
-                          {teamFields.map((team, ti) => (
-                            <div
-                              key={team.id}
-                              className="rounded-xl border border-brand-border/50 bg-brand-background-secondary/20 p-4 relative"
-                            >
-                              <div className="flex items-center justify-between mb-3">
-                                <span className="text-[12px] font-bold text-brand-text-secondary uppercase tracking-wider">
-                                  Team {ti + 1}
-                                </span>
-                                {teamFields.length > 1 && (
-                                  <button
-                                    type="button"
-                                    onClick={() => removeTeam(ti)}
-                                    className="text-[11px] text-brand-text-muted hover:text-brand-error flex items-center gap-1 transition-colors"
-                                  >
-                                    <Trash2 className="w-3 h-3" />
-                                    {txt.removeTeam}
-                                  </button>
-                                )}
-                              </div>
-
-                              <div className="space-y-3">
-                                <div className="grid sm:grid-cols-2 gap-3">
-                                  <FormField
-                                    label={txt.teamName}
-                                    error={errors.teams?.[ti]?.name?.message}
-                                  >
-                                    <Input
-                                      type="text"
-                                      placeholder={txt.teamNamePh}
-                                      className="h-10 text-[13px]"
-                                      {...register(`teams.${ti}.name`)}
-                                    />
-                                  </FormField>
-                                  <FormField
-                                    label={txt.teamLeader}
-                                    error={errors.teams?.[ti]?.leaderEmail?.message}
-                                    helperText={txt.teamLeaderHelper}
-                                  >
-                                    <Input
-                                      type="email"
-                                      placeholder={txt.teamLeaderPh}
-                                      className="h-10 text-[13px]"
-                                      {...register(`teams.${ti}.leaderEmail`)}
-                                    />
-                                  </FormField>
-                                </div>
-
-                                {/* Members */}
-                                <div>
-                                  <label className="block text-[12px] font-semibold text-brand-text-primary mb-1.5">
-                                    {txt.teamMembers}
-                                  </label>
-                                  <p className="text-[10px] text-brand-text-muted mb-2">
-                                    {txt.memberHelper}
-                                  </p>
-                                  <InlineMembers
-                                    teamIndex={ti}
-                                    control={control}
-                                    register={register}
-                                    txt={txt}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-
-                          <button
-                            type="button"
-                            onClick={() =>
-                              appendTeam({
-                                name: "",
-                                leaderEmail: "",
-                                members: [{ email: "" }],
-                              })
-                            }
-                            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-dashed border-brand-border hover:border-brand-primary/40 text-[12px] font-semibold text-brand-text-muted hover:text-brand-primary transition-all"
-                          >
-                            <Plus className="w-3.5 h-3.5" />
-                            {txt.addTeam}
-                          </button>
-                        </div>
-                      )}
-
-                      {/* ═══ STEP 2 — Confirm ═══ */}
-                      {step === 2 && (
-                        <ConfirmPane
-                          txt={txt}
-                          isEur={isEur}
-                          monthlyPrice={monthlyPrice}
-                          yearlyPrice={yearlyPrice}
-                          pricePerPerson={pricePerPerson}
-                          billable={billable}
-                          total={total}
-                          register={register}
-                          watch={watch}
-                          getValues={getValues}
-                          errors={errors}
-                        />
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              {/* ─── Footer navigation ─── */}
-              <div className="px-6 sm:px-8 py-4 flex items-center justify-between">
-                {step > 0 ? (
-                  <button
-                    type="button"
-                    onClick={goBack}
-                    className="flex items-center gap-1 text-[13px] font-semibold text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                {/* Form content */}
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="flex-1 flex flex-col overflow-y-auto px-6 sm:px-10 lg:px-14 pb-6"
+                >
+                  {/* Step title */}
+                  <motion.div
+                    key={`title-${step}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mb-8 mt-2"
                   >
-                    <ChevronLeft className="w-4 h-4" />
-                    {txt.back}
-                  </button>
-                ) : (
-                  <div />
-                )}
+                    <h2 className="text-2xl sm:text-3xl font-bold text-brand-text-primary font-[var(--font-display)] mb-1">
+                      {step === 0 ? txt.s1Title : step === 1 ? txt.s2Title : txt.s3Title}
+                    </h2>
+                    <p className="text-brand-text-muted text-[14px]">
+                      {step === 0 ? txt.s1Subtitle : step === 1 ? txt.s2Subtitle : txt.s3Subtitle}
+                    </p>
+                  </motion.div>
 
-                {step < STEPS.length - 1 ? (
-                  <div className="flex items-center gap-3">
-                    {step === 1 && (
+                  {/* Animated step content */}
+                  <div className="flex-1 min-h-0">
+                    <AnimatePresence mode="wait" custom={direction}>
+                      <motion.div
+                        key={step}
+                        custom={direction}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        {step === 0 && (
+                          <Step1Company
+                            register={register}
+                            errors={errors}
+                            txt={txt}
+                            sameAsMe={sameAsMe}
+                            onSameAsMe={handleSameAsMe}
+                          />
+                        )}
+                        {step === 1 && (
+                          <Step2Teams
+                            teamFields={teamFields}
+                            appendTeam={appendTeam}
+                            removeTeam={removeTeamField}
+                            control={control}
+                            register={register}
+                            errors={errors}
+                            txt={txt}
+                          />
+                        )}
+                        {step === 2 && (
+                          <Step3Plan
+                            txt={txt}
+                            isEur={isEur}
+                            monthlyPrice={monthlyPrice}
+                            yearlyPrice={yearlyPrice}
+                            register={register}
+                            watch={watch}
+                            getValues={getValues}
+                            errors={errors}
+                          />
+                        )}
+                      </motion.div>
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Footer navigation */}
+                  <div className="flex items-center justify-between pt-6 mt-auto border-t border-brand-border/30">
+                    {step > 0 ? (
                       <button
                         type="button"
-                        onClick={() => {
-                          setDirection(1);
-                          setStep(2);
-                        }}
-                        className="text-[12px] text-brand-text-muted hover:text-brand-primary transition-colors underline underline-offset-2"
+                        onClick={goBack}
+                        className="flex items-center gap-1.5 text-[13px] font-semibold text-brand-text-muted hover:text-brand-text-primary transition-colors"
                       >
-                        {txt.skipTeams}
+                        <ChevronLeft className="w-4 h-4" />
+                        {txt.back}
                       </button>
-                    )}
-                    <Button
-                      type="button"
-                      onClick={goNext}
-                      className="h-10 px-6 text-[13px] font-semibold rounded-xl"
-                    >
-                      {txt.next}
-                      <ChevronRight className="w-3.5 h-3.5 ml-1" />
-                    </Button>
-                  </div>
-                ) : (
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="h-10 px-8 text-[13px] font-semibold rounded-xl"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin mr-1.5" />
-                        {txt.submitting}
-                      </>
                     ) : (
-                      <>
-                        {txt.submit}
-                        <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                      </>
+                      <div />
                     )}
-                  </Button>
-                )}
-              </div>
 
-              {/* ─── Bottom trust strip ─── */}
-              <div className="px-6 sm:px-8 pb-5 flex items-center justify-center gap-5 text-[11px] text-brand-text-muted">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-brand-success" />
-                  GDPR
-                </span>
-                <span className="flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-brand-warning" />
-                  {txt.guarantee}
-                </span>
+                    <div className="flex items-center gap-4">
+                      {step === 1 && (
+                        <button
+                          type="button"
+                          onClick={() => { setDirection(1); setStep(2); }}
+                          className="text-[12px] text-brand-text-muted hover:text-brand-primary transition-colors font-medium"
+                        >
+                          {txt.skipTeams}
+                        </button>
+                      )}
+
+                      {step < STEPS.length - 1 ? (
+                        <Button
+                          type="button"
+                          onClick={goNext}
+                          className="h-12 px-8 text-[14px] font-semibold rounded-xl shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
+                        >
+                          {txt.next}
+                          <ChevronRight className="w-4 h-4 ml-1" />
+                        </Button>
+                      ) : (
+                        <Button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={cn(
+                            "h-12 px-10 text-[14px] font-semibold rounded-xl transition-all",
+                            isSubmitting
+                              ? "opacity-80"
+                              : "shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30"
+                          )}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                              {txt.submitting}
+                            </>
+                          ) : (
+                            <>
+                              <Rocket className="w-4 h-4 mr-2" />
+                              {txt.submit}
+                            </>
+                          )}
+                        </Button>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Trust strip */}
+                  <div className="flex items-center justify-center gap-6 mt-4 text-[11px] text-brand-text-muted/60">
+                    <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3" /> GDPR</span>
+                    <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> SSL</span>
+                    <span className="flex items-center gap-1"><Sparkles className="w-3 h-3" /> {txt.guarantee}</span>
+                  </div>
+                </form>
               </div>
-            </form>
+            </motion.div>
           )}
         </AnimatePresence>
       </DialogContent>
@@ -931,8 +953,534 @@ export function SignupModal() {
   );
 }
 
-/* ═══════ Sub-components ═══════ */
+/* ═══════════════════════════════════════════════════
+   STEP 1 — Company & Contact
+   ═══════════════════════════════════════════════════ */
+function Step1Company({
+  register,
+  errors,
+  txt,
+  sameAsMe,
+  onSameAsMe,
+}: {
+  register: any;
+  errors: any;
+  txt: any;
+  sameAsMe: boolean;
+  onSameAsMe: (v: boolean) => void;
+}) {
+  return (
+    <div className="space-y-8 max-w-lg">
+      {/* Company */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="space-y-4"
+      >
+        <div className="grid sm:grid-cols-2 gap-4">
+          <FormField label={txt.companyName} error={errors.companyName?.message} required>
+            <GlowInput
+              type="text"
+              autoComplete="organization"
+              placeholder={txt.companyNamePh}
+              {...register("companyName", { required: txt.required, minLength: { value: 2, message: txt.required } })}
+            />
+          </FormField>
+          <FormField label={txt.companyId} error={errors.companyId?.message} helperText={txt.companyIdHelper}>
+            <GlowInput
+              type="text"
+              placeholder={txt.companyIdPh}
+              {...register("companyId")}
+            />
+          </FormField>
+        </div>
+      </motion.div>
 
+      {/* Your details */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="space-y-4"
+      >
+        <div className="grid sm:grid-cols-2 gap-4">
+          <FormField label={txt.contactName} error={errors.contactName?.message} required>
+            <GlowInput
+              type="text"
+              autoComplete="name"
+              placeholder={txt.contactNamePh}
+              {...register("contactName", { required: txt.required, minLength: { value: 2, message: txt.required } })}
+            />
+          </FormField>
+          <FormField label={txt.contactEmail} error={errors.contactEmail?.message} required>
+            <GlowInput
+              type="email"
+              autoComplete="email"
+              placeholder={txt.contactEmailPh}
+              {...register("contactEmail", {
+                required: txt.required,
+                pattern: { value: /^\S+@\S+\.\S+$/, message: txt.invalidEmail },
+              })}
+            />
+          </FormField>
+        </div>
+      </motion.div>
+
+      {/* Admin section */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+      >
+        <div className="rounded-2xl border border-brand-border/40 bg-brand-background-secondary/30 p-5">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2">
+              <LayoutDashboard className="w-4 h-4 text-brand-primary" />
+              <h4 className="text-[14px] font-bold text-brand-text-primary">
+                {txt.adminSection}
+              </h4>
+            </div>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <div
+                className={cn(
+                  "relative w-10 h-6 rounded-full transition-colors duration-200 cursor-pointer",
+                  sameAsMe ? "bg-brand-primary" : "bg-brand-border"
+                )}
+                onClick={() => onSameAsMe(!sameAsMe)}
+              >
+                <motion.div
+                  className="absolute top-1 w-4 h-4 rounded-full bg-white shadow-sm"
+                  animate={{ left: sameAsMe ? 22 : 4 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              </div>
+              <span className="text-[12px] font-medium text-brand-text-muted">{txt.sameAsMe}</span>
+            </label>
+          </div>
+          <p className="text-[12px] text-brand-text-muted mb-4 ml-6">{txt.adminSectionDesc}</p>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            <FormField label={txt.adminName} error={errors.adminName?.message} required>
+              <GlowInput
+                type="text"
+                placeholder={txt.adminNamePh}
+                disabled={sameAsMe}
+                {...register("adminName", { required: txt.required, minLength: { value: 2, message: txt.required } })}
+              />
+            </FormField>
+            <FormField label={txt.adminEmail} error={errors.adminEmail?.message} required>
+              <GlowInput
+                type="email"
+                placeholder={txt.adminEmailPh}
+                disabled={sameAsMe}
+                {...register("adminEmail", {
+                  required: txt.required,
+                  pattern: { value: /^\S+@\S+\.\S+$/, message: txt.invalidEmail },
+                })}
+              />
+            </FormField>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   STEP 2 — Teams
+   ═══════════════════════════════════════════════════ */
+function Step2Teams({
+  teamFields,
+  appendTeam,
+  removeTeam,
+  control,
+  register,
+  errors,
+  txt,
+}: {
+  teamFields: any[];
+  appendTeam: any;
+  removeTeam: any;
+  control: any;
+  register: any;
+  errors: any;
+  txt: any;
+}) {
+  return (
+    <div className="space-y-5 max-w-lg">
+      {teamFields.map((team: any, ti: number) => (
+        <motion.div
+          key={team.id}
+          initial={{ opacity: 0, y: 15, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.98 }}
+          transition={{ duration: 0.3 }}
+          className="rounded-2xl border border-brand-border/40 bg-white p-5 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-lg bg-brand-primary/10 flex items-center justify-center">
+                <Users className="w-3.5 h-3.5 text-brand-primary" />
+              </div>
+              <span className="text-[13px] font-bold text-brand-text-primary">
+                Team {ti + 1}
+              </span>
+            </div>
+            {teamFields.length > 1 && (
+              <button
+                type="button"
+                onClick={() => removeTeam(ti)}
+                className="text-[11px] text-brand-text-muted hover:text-brand-error flex items-center gap-1 transition-colors"
+              >
+                <Trash2 className="w-3 h-3" />
+                {txt.removeTeam}
+              </button>
+            )}
+          </div>
+
+          <div className="space-y-3">
+            <div className="grid sm:grid-cols-2 gap-3">
+              <FormField label={txt.teamName} error={errors.teams?.[ti]?.name?.message}>
+                <GlowInput
+                  type="text"
+                  placeholder={txt.teamNamePh}
+                  {...register(`teams.${ti}.name`)}
+                />
+              </FormField>
+              <FormField label={txt.teamLeader} error={errors.teams?.[ti]?.leaderEmail?.message}>
+                <GlowInput
+                  type="email"
+                  placeholder={txt.teamLeaderPh}
+                  {...register(`teams.${ti}.leaderEmail`)}
+                />
+              </FormField>
+            </div>
+
+            <InlineMembers teamIndex={ti} control={control} register={register} txt={txt} />
+          </div>
+        </motion.div>
+      ))}
+
+      <motion.button
+        type="button"
+        onClick={() => appendTeam({ name: "", leaderEmail: "", members: [{ email: "" }] })}
+        className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl border-2 border-dashed border-brand-border/60 hover:border-brand-primary/40 text-[13px] font-semibold text-brand-text-muted hover:text-brand-primary transition-all hover:bg-brand-primary/[0.02]"
+        whileHover={{ scale: 1.01 }}
+        whileTap={{ scale: 0.99 }}
+      >
+        <Plus className="w-4 h-4" />
+        {txt.addTeam}
+      </motion.button>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   STEP 3 — Plan & Confirm
+   ═══════════════════════════════════════════════════ */
+function Step3Plan({
+  txt,
+  isEur,
+  monthlyPrice,
+  yearlyPrice,
+  register,
+  watch,
+  getValues,
+  errors,
+}: {
+  txt: any;
+  isEur: boolean;
+  monthlyPrice: number;
+  yearlyPrice: number;
+  register: any;
+  watch: any;
+  getValues: any;
+  errors: any;
+}) {
+  const interval = watch("billingInterval");
+  const count = watch("employeeCount");
+  const price = interval === "monthly" ? monthlyPrice : yearlyPrice;
+  const bill = Math.min(count, 200);
+  const base = price * bill;
+
+  const vals = getValues();
+  const totalMembers = vals.teams.reduce(
+    (sum: number, t: TeamEntry) => sum + t.members.filter((m: TeamMember) => m.email.trim()).length,
+    0
+  );
+
+  return (
+    <div className="space-y-6 max-w-lg">
+      {/* Quick summary */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-wrap gap-3"
+      >
+        {[
+          { icon: Building2, value: vals.companyName || "—", color: "text-brand-primary" },
+          { icon: Users, value: `${vals.teams.length} team${vals.teams.length > 1 ? "s" : ""} · ${totalMembers} ${txt.people}`, color: "text-indigo-500" },
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-2 px-3 py-2 rounded-xl bg-brand-background-secondary/50 border border-brand-border/30"
+          >
+            <item.icon className={cn("w-3.5 h-3.5", item.color)} />
+            <span className="text-[13px] font-medium text-brand-text-primary">{item.value}</span>
+          </div>
+        ))}
+      </motion.div>
+
+      {/* Employee slider */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.05 }}
+        className="rounded-2xl border border-brand-border/40 bg-white p-5"
+      >
+        <div className="flex items-center justify-between mb-4">
+          <label className="text-[14px] font-bold text-brand-text-primary">{txt.employeeCount}</label>
+          <motion.div
+            key={count}
+            initial={{ scale: 1.3, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="text-2xl font-bold font-mono text-brand-primary"
+          >
+            {count}
+          </motion.div>
+        </div>
+        <p className="text-[12px] text-brand-text-muted mb-4">{txt.employeeCountHelper}</p>
+        <div className="relative">
+          <input
+            type="range"
+            min="10"
+            max="350"
+            step="5"
+            {...register("employeeCount", { valueAsNumber: true })}
+            className="w-full h-2 appearance-none cursor-pointer rounded-full bg-brand-border/50
+              [&::-webkit-slider-thumb]:appearance-none
+              [&::-webkit-slider-thumb]:w-6
+              [&::-webkit-slider-thumb]:h-6
+              [&::-webkit-slider-thumb]:rounded-full
+              [&::-webkit-slider-thumb]:bg-white
+              [&::-webkit-slider-thumb]:border-[3px]
+              [&::-webkit-slider-thumb]:border-brand-primary
+              [&::-webkit-slider-thumb]:shadow-lg
+              [&::-webkit-slider-thumb]:shadow-brand-primary/20
+              [&::-webkit-slider-thumb]:cursor-grab
+              [&::-webkit-slider-thumb]:transition-shadow
+              [&::-webkit-slider-thumb]:hover:shadow-xl
+              [&::-webkit-slider-thumb]:hover:shadow-brand-primary/30
+              [&::-moz-range-thumb]:w-6
+              [&::-moz-range-thumb]:h-6
+              [&::-moz-range-thumb]:rounded-full
+              [&::-moz-range-thumb]:bg-white
+              [&::-moz-range-thumb]:border-[3px]
+              [&::-moz-range-thumb]:border-brand-primary
+              [&::-moz-range-thumb]:cursor-grab"
+          />
+          <div className="flex justify-between text-[10px] text-brand-text-muted/50 mt-1 px-0.5">
+            <span>10</span>
+            <span>100</span>
+            <span>200</span>
+            <span>350+</span>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Billing card */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="rounded-2xl border border-brand-border/40 bg-gradient-to-br from-brand-background-secondary/30 via-white to-brand-background-secondary/20 p-5 relative overflow-hidden"
+      >
+        {/* Subtle gradient accent */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-brand-primary/5 to-transparent rounded-bl-[60px]" />
+
+        <div className="relative">
+          <div className="flex items-center justify-between mb-5">
+            <h4 className="text-[14px] font-bold text-brand-text-primary">{txt.plan}</h4>
+
+            {/* Billing toggle */}
+            <div className="flex bg-brand-background-muted rounded-xl p-1 border border-brand-border/50">
+              <label
+                className={cn(
+                  "px-3 py-1.5 rounded-lg text-[12px] font-bold cursor-pointer transition-all duration-200",
+                  interval === "monthly"
+                    ? "bg-white text-brand-primary shadow-sm"
+                    : "text-brand-text-muted hover:text-brand-primary"
+                )}
+              >
+                <input type="radio" value="monthly" className="sr-only" {...register("billingInterval")} />
+                {txt.monthly}
+              </label>
+              <label
+                className={cn(
+                  "px-3 py-1.5 rounded-lg text-[12px] font-bold cursor-pointer transition-all duration-200 flex items-center gap-1.5",
+                  interval === "yearly"
+                    ? "bg-white text-brand-primary shadow-sm"
+                    : "text-brand-text-muted hover:text-brand-primary"
+                )}
+              >
+                <input type="radio" value="yearly" className="sr-only" {...register("billingInterval")} />
+                {txt.yearly}
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-brand-success/10 text-brand-success font-bold">
+                  {txt.saveTag}
+                </span>
+              </label>
+            </div>
+          </div>
+
+          {/* Price display */}
+          <div className="flex items-baseline gap-2">
+            <motion.span
+              key={base}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl font-bold text-brand-text-primary font-mono tracking-tight"
+            >
+              {isEur ? `€${base.toLocaleString()}` : `${base.toLocaleString()} Kč`}
+            </motion.span>
+            <span className="text-[13px] text-brand-text-muted">/ {txt.monthly.toLowerCase()}</span>
+          </div>
+          <p className="text-[12px] text-brand-text-muted mt-1">
+            {isEur ? `€${price}` : `${price} Kč`} {txt.perPerson} × {bill}
+          </p>
+        </div>
+      </motion.div>
+
+      {/* Terms */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.15 }}
+      >
+        <label className="flex items-start gap-3 cursor-pointer group">
+          <div className="mt-0.5 relative">
+            <input
+              type="checkbox"
+              className="peer sr-only"
+              {...register("agreedToTerms", { required: txt.required })}
+            />
+            <div className="w-5 h-5 rounded-md border-2 border-brand-border peer-checked:border-brand-primary peer-checked:bg-brand-primary transition-all duration-200 flex items-center justify-center">
+              <Check className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity" />
+            </div>
+          </div>
+          <span className="text-[13px] text-brand-text-secondary leading-relaxed group-hover:text-brand-text-primary transition-colors">
+            {txt.termsAgree}{" "}
+            <a href="https://www.behavera.com/podminky-pouzivani-sluzby" target="_blank" rel="noopener noreferrer" className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover">{txt.termsLink}</a>{" "}
+            {txt.termsAnd}{" "}
+            <a href="https://www.behavera.com/ochrana-osobnich-udaju" target="_blank" rel="noopener noreferrer" className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover">{txt.privacyLink}</a>
+          </span>
+        </label>
+        {errors.agreedToTerms && (
+          <motion.p
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[12px] text-brand-error flex items-center gap-1 mt-2 ml-8"
+          >
+            <AlertCircle className="w-3 h-3" />
+            {errors.agreedToTerms.message}
+          </motion.p>
+        )}
+      </motion.div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   SUCCESS SCREEN — Celebration
+   ═══════════════════════════════════════════════════ */
+function SuccessScreen({ txt, onClose }: { txt: any; onClose: () => void }) {
+  return (
+    <motion.div
+      key="success"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="relative flex items-center justify-center h-full"
+      style={{
+        background: "linear-gradient(135deg, #2D1B69 0%, #1E0F4D 30%, #4C1D95 60%, #2D1B69 100%)",
+      }}
+    >
+      {/* Confetti */}
+      <CelebrationParticles />
+
+      {/* Floating orbs */}
+      <FloatingOrb x={100} y={100} size={200} color="#9F7AEA" delay={0} />
+      <FloatingOrb x={600} y={300} size={180} color="#6366F1" delay={1} />
+
+      {/* Content */}
+      <div className="relative z-20 text-center px-6 max-w-lg">
+        {/* Animated checkmark */}
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+          className="w-24 h-24 mx-auto mb-8 rounded-full bg-brand-success/20 flex items-center justify-center"
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+          >
+            <Check className="w-12 h-12 text-brand-success" strokeWidth={3} />
+          </motion.div>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-3xl md:text-5xl font-bold text-white font-[var(--font-display)] mb-4"
+        >
+          {txt.successTitle}
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-white/70 text-[16px] leading-relaxed mb-10 max-w-md mx-auto"
+        >
+          {txt.successBody}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <Button
+            size="lg"
+            onClick={onClose}
+            className="h-14 px-12 text-[16px] font-semibold rounded-2xl bg-white text-brand-primary hover:bg-white/90 shadow-2xl shadow-brand-primary/30"
+          >
+            {txt.successCta}
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Button>
+        </motion.div>
+
+        {/* Trust badges */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="flex items-center justify-center gap-6 mt-8 text-white/30 text-[11px]"
+        >
+          <span className="flex items-center gap-1"><ShieldCheck className="w-3 h-3" /> GDPR</span>
+          <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> SSL</span>
+          <span className="flex items-center gap-1"><Globe className="w-3 h-3" /> ISO</span>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════
+   INLINE MEMBERS sub-component
+   ═══════════════════════════════════════════════════ */
 function InlineMembers({
   teamIndex,
   control,
@@ -950,264 +1498,38 @@ function InlineMembers({
   });
 
   return (
-    <div className="space-y-2">
-      {fields.map((member, mi) => (
-        <div key={member.id} className="flex items-center gap-2">
-          <Input
-            type="email"
-            placeholder={txt.memberPh}
-            className="h-9 flex-1 text-[12px]"
-            {...register(`teams.${teamIndex}.members.${mi}.email`)}
-          />
-          {fields.length > 1 && (
-            <button
-              type="button"
-              onClick={() => remove(mi)}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-brand-text-muted hover:text-brand-error hover:bg-brand-error/5 transition-all shrink-0"
-            >
-              <Trash2 className="w-3 h-3" />
-            </button>
-          )}
-        </div>
-      ))}
-      <button
-        type="button"
-        onClick={() => append({ email: "" })}
-        className="flex items-center gap-1.5 text-[11px] font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors mt-1"
-      >
-        <Plus className="w-3 h-3" />
-        {txt.addMember}
-      </button>
-    </div>
-  );
-}
-
-function ConfirmPane({
-  txt,
-  isEur,
-  monthlyPrice,
-  yearlyPrice,
-  pricePerPerson,
-  billable,
-  total,
-  register,
-  watch,
-  getValues,
-  errors,
-}: {
-  txt: any;
-  isEur: boolean;
-  monthlyPrice: number;
-  yearlyPrice: number;
-  pricePerPerson: number;
-  billable: number;
-  total: number;
-  register: any;
-  watch: any;
-  getValues: any;
-  errors: any;
-}) {
-  const vals = getValues();
-  const interval = watch("billingInterval");
-  const count = watch("employeeCount");
-  const price = interval === "monthly" ? monthlyPrice : yearlyPrice;
-  const bill = Math.min(count, 200);
-  const base = price * bill;
-  const totalMembers = vals.teams.reduce(
-    (sum: number, t: TeamEntry) =>
-      sum + t.members.filter((m: TeamMember) => m.email.trim()).length,
-    0
-  );
-
-  return (
-    <div className="space-y-5">
-      {/* Summary grid */}
-      <div className="grid grid-cols-2 gap-2.5">
-        <MiniCard
-          icon={<Building2 className="w-3.5 h-3.5" />}
-          label={txt.summaryCompany}
-          value={vals.companyName || "—"}
-          sub={vals.companyId || "—"}
-        />
-        <MiniCard
-          icon={<Crown className="w-3.5 h-3.5" />}
-          label={txt.summaryContact}
-          value={vals.contactName || "—"}
-          sub={vals.contactEmail || "—"}
-        />
-        <MiniCard
-          icon={<LayoutDashboard className="w-3.5 h-3.5" />}
-          label={txt.summaryAdmin}
-          value={vals.adminName || "—"}
-          sub={vals.adminEmail || "—"}
-        />
-        <MiniCard
-          icon={<Users className="w-3.5 h-3.5" />}
-          label={txt.summaryTeams}
-          value={`${vals.teams.length} ${vals.teams.length === 1 ? "team" : "teams"}`}
-          sub={`${totalMembers} ${txt.summaryMembers}`}
-        />
-      </div>
-
-      {/* Employee count */}
-      <div>
-        <label className="block text-[12px] font-semibold text-brand-text-primary mb-1">
-          {txt.employeeCount}
-        </label>
-        <p className="text-[10px] text-brand-text-muted mb-2">{txt.employeeCountHelper}</p>
-        <div className="flex items-center gap-3">
-          <input
-            type="range"
-            min="10"
-            max="350"
-            step="5"
-            {...register("employeeCount", { valueAsNumber: true })}
-            className="flex-1 h-1.5 appearance-none cursor-pointer bg-brand-border rounded-full
-              [&::-webkit-slider-thumb]:appearance-none
-              [&::-webkit-slider-thumb]:w-5
-              [&::-webkit-slider-thumb]:h-5
-              [&::-webkit-slider-thumb]:rounded-full
-              [&::-webkit-slider-thumb]:bg-white
-              [&::-webkit-slider-thumb]:border-[2.5px]
-              [&::-webkit-slider-thumb]:border-brand-primary
-              [&::-webkit-slider-thumb]:shadow-md
-              [&::-webkit-slider-thumb]:cursor-grab
-              [&::-moz-range-thumb]:w-5
-              [&::-moz-range-thumb]:h-5
-              [&::-moz-range-thumb]:rounded-full
-              [&::-moz-range-thumb]:bg-white
-              [&::-moz-range-thumb]:border-[2.5px]
-              [&::-moz-range-thumb]:border-brand-primary
-              [&::-moz-range-thumb]:cursor-grab"
-          />
-          <div className="text-lg font-bold font-mono text-brand-primary min-w-[48px] text-right">
-            {count}
-          </div>
-        </div>
-      </div>
-
-      {/* Billing toggle + price */}
-      <div className="rounded-xl border border-brand-border/50 p-4 bg-gradient-to-r from-brand-background-secondary/40 to-transparent">
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="text-[13px] font-bold text-brand-text-primary">{txt.plan}</h4>
-          <div className="flex bg-brand-background-muted p-0.5 rounded-lg border border-brand-border">
-            <label
-              className={cn(
-                "px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer transition-all",
-                interval === "monthly"
-                  ? "bg-brand-primary text-white shadow-sm"
-                  : "text-brand-text-muted hover:text-brand-primary"
-              )}
-            >
-              <input
-                type="radio"
-                value="monthly"
-                className="sr-only"
-                {...register("billingInterval")}
-              />
-              {txt.monthly}
-            </label>
-            <label
-              className={cn(
-                "px-2.5 py-1 rounded-md text-[11px] font-bold cursor-pointer transition-all flex items-center gap-1",
-                interval === "yearly"
-                  ? "bg-brand-primary text-white shadow-sm"
-                  : "text-brand-text-muted hover:text-brand-primary"
-              )}
-            >
-              <input
-                type="radio"
-                value="yearly"
-                className="sr-only"
-                {...register("billingInterval")}
-              />
-              {txt.yearly}
-              <span
-                className={cn(
-                  "text-[9px] px-1.5 py-0.5 rounded-full font-bold",
-                  interval === "yearly"
-                    ? "bg-white/20 text-white"
-                    : "bg-brand-success/10 text-brand-success"
-                )}
-              >
-                {txt.saveTag}
-              </span>
-            </label>
-          </div>
-        </div>
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-2xl font-bold text-brand-text-primary font-mono">
-            {isEur
-              ? `€${base.toLocaleString()}`
-              : `${base.toLocaleString()} Kč`}
-          </span>
-          <span className="text-[12px] text-brand-text-muted">/ {txt.monthly.toLowerCase()}</span>
-        </div>
-        <p className="text-[11px] text-brand-text-muted mt-0.5">
-          {isEur ? `€${price}` : `${price} Kč`} {txt.perPerson} × {bill}
-        </p>
-      </div>
-
-      {/* Terms */}
-      <label className="flex items-start gap-2.5 cursor-pointer group">
-        <input
-          type="checkbox"
-          className="mt-0.5 h-4 w-4 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
-          {...register("agreedToTerms", { required: txt.required })}
-        />
-        <span className="text-[12px] text-brand-text-secondary leading-relaxed group-hover:text-brand-text-primary transition-colors">
-          {txt.termsAgree}{" "}
-          <a
-            href="https://www.behavera.com/podminky-pouzivani-sluzby"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover"
-          >
-            {txt.termsLink}
-          </a>{" "}
-          {txt.termsAnd}{" "}
-          <a
-            href="https://www.behavera.com/ochrana-osobnich-udaju"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover"
-          >
-            {txt.privacyLink}
-          </a>
-        </span>
+    <div>
+      <label className="block text-[12px] font-semibold text-brand-text-primary mb-2">
+        {txt.teamMembers}
       </label>
-      {errors.agreedToTerms && (
-        <p className="text-[11px] text-brand-error flex items-center gap-1 ml-7">
-          <AlertCircle className="w-3 h-3" />
-          {errors.agreedToTerms.message}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function MiniCard({
-  icon,
-  label,
-  value,
-  sub,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  sub: string;
-}) {
-  return (
-    <div className="rounded-lg border border-brand-border/40 bg-white p-3 flex items-start gap-2.5">
-      <div className="w-6 h-6 rounded-md bg-brand-primary/8 text-brand-primary flex items-center justify-center shrink-0 mt-0.5">
-        {icon}
-      </div>
-      <div className="min-w-0">
-        <p className="text-[10px] font-semibold text-brand-text-muted uppercase tracking-wider">
-          {label}
-        </p>
-        <p className="text-[13px] font-bold text-brand-text-primary truncate">{value}</p>
-        <p className="text-[11px] text-brand-text-muted truncate">{sub}</p>
+      <div className="space-y-2">
+        {fields.map((member: any, mi: number) => (
+          <div key={member.id} className="flex items-center gap-2">
+            <GlowInput
+              type="email"
+              placeholder={txt.memberPh}
+              className="!h-10 text-[13px]"
+              {...register(`teams.${teamIndex}.members.${mi}.email`)}
+            />
+            {fields.length > 1 && (
+              <button
+                type="button"
+                onClick={() => remove(mi)}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-text-muted hover:text-brand-error hover:bg-brand-error/5 transition-all shrink-0"
+              >
+                <Trash2 className="w-3 h-3" />
+              </button>
+            )}
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => append({ email: "" })}
+          className="flex items-center gap-1.5 text-[12px] font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors mt-1"
+        >
+          <Plus className="w-3.5 h-3.5" />
+          {txt.addMember}
+        </button>
       </div>
     </div>
   );
