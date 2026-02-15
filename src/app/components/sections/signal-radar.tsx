@@ -26,6 +26,7 @@ type TCopy = {
   chatLabel: string; ceoLabel: string; cardCta: string;
   compTitle: string; compSubtitle: string; compTimeSaved: string;
   advantages: { title: string; oldWay: string; ourWay: string }[];
+  loadingText: string;
 };
 
 const PULSE_BASE = "https://bibi.behavera.com/free/behiro/pulse-showcase-";
@@ -56,6 +57,7 @@ const copy: Record<string, TCopy> = {
     chatLabel: "Uk\u00e1zka ot\u00e1zky",
     ceoLabel: "Pro\u010d to pot\u0159ebujete v\u011bd\u011bt",
     cardCta: "Vyzkou\u0161et",
+    loadingText: "Na\u010d\u00edt\u00e1n\u00ed\u2026",
     compTitle: "Pro\u010d ne Google Forms?",
     compSubtitle: "Sb\u00edrat zp\u011btnou vazbu p\u0159es formul\u00e1\u0159e um\u00ed ka\u017ed\u00fd. Ale funguje to?",
     compTimeSaved: "U\u0161et\u0159\u00edte ~6 hodin na ka\u017ed\u00e9m kole zp\u011btn\u00e9 vazby",
@@ -91,6 +93,7 @@ const copy: Record<string, TCopy> = {
     chatLabel: "Sample question",
     ceoLabel: "Why you need to know this",
     cardCta: "Try",
+    loadingText: "Loading\u2026",
     compTitle: "Why not Google Forms?",
     compSubtitle: "Anyone can collect feedback with forms. But does it actually work?",
     compTimeSaved: "Save ~6 hours on every feedback cycle",
@@ -126,6 +129,7 @@ const copy: Record<string, TCopy> = {
     chatLabel: "Beispielfrage",
     ceoLabel: "Warum Sie das wissen m\u00fcssen",
     cardCta: "Ausprobieren",
+    loadingText: "Laden\u2026",
     compTitle: "Warum nicht Google Forms?",
     compSubtitle: "Feedback mit Formularen sammeln kann jeder. Aber funktioniert es?",
     compTimeSaved: "Sparen Sie ~6 Stunden pro Feedback-Zyklus",
@@ -286,15 +290,15 @@ export function SignalRadar() {
                       <AdvIcon className="w-[18px] h-[18px] text-brand-primary group-hover:text-white transition-colors" />
                     </div>
                   </div>
-                  <h4 className="font-bold text-[15px] text-brand-primary mb-3">{adv.title}</h4>
+                  <h4 className="font-bold text-base text-brand-primary mb-3">{adv.title}</h4>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <XCircle className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
-                      <span className="text-[13px] text-brand-text-muted leading-relaxed">{adv.oldWay}</span>
+                      <span className="text-sm text-brand-text-muted leading-relaxed">{adv.oldWay}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
-                      <span className="text-[13px] text-brand-primary font-semibold leading-relaxed">{adv.ourWay}</span>
+                      <span className="text-sm text-brand-primary font-semibold leading-relaxed">{adv.ourWay}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -310,7 +314,7 @@ export function SignalRadar() {
       </div>
 
       {/* ═══════════ PULSE EMBED DIALOG ═══════════ */}
-      <PulseEmbedDialog url={pulseEmbedUrl} onClose={() => setPulseEmbedUrl(null)} />
+      <PulseEmbedDialog url={pulseEmbedUrl} onClose={() => setPulseEmbedUrl(null)} loadingText={c.loadingText} />
     </section>
   );
 }
@@ -396,7 +400,7 @@ function SignalDetailPanel({
               <Briefcase className="w-3 h-3" />
               {ceoLabel}
             </div>
-            <p className="text-[13px] text-amber-900/80 leading-relaxed font-medium">{card.ceoInsight}</p>
+            <p className="text-sm text-amber-900/80 leading-relaxed font-medium">{card.ceoInsight}</p>
           </div>
         </div>
         <div className="px-6 pb-6">
@@ -416,7 +420,7 @@ function SignalDetailPanel({
 
 /* ─── Pulse Embed Dialog ─── */
 
-function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () => void }) {
+function PulseEmbedDialog({ url, onClose, loadingText = "Loading\u2026" }: { url: string | null; onClose: () => void; loadingText?: string }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -458,7 +462,7 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
           <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
             <div className="flex flex-col items-center gap-3">
               <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
-              <span className="text-sm text-brand-text-muted">Loading\u2026</span>
+              <span className="text-sm text-brand-text-muted">{loadingText}</span>
             </div>
           </div>
         )}
@@ -572,7 +576,7 @@ function TopicCarousel({
                       <MessageCircle className="w-3 h-3" />
                       {chatLabel}
                     </div>
-                    <div className="bg-gradient-to-br from-brand-primary/[0.04] to-brand-primary/[0.08] rounded-xl rounded-tl-sm px-4 py-3 text-[13px] text-brand-text-secondary leading-relaxed italic border border-brand-primary/10">
+                    <div className="bg-gradient-to-br from-brand-primary/[0.04] to-brand-primary/[0.08] rounded-xl rounded-tl-sm px-4 py-3 text-sm text-brand-text-secondary leading-relaxed italic border border-brand-primary/10">
                       {card.sampleQ}
                     </div>
                   </div>

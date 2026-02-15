@@ -199,7 +199,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProp
           {item?.value || ""}
         </div>
         
-        <p className="text-[15px] text-brand-text-secondary leading-[1.6]">
+        <p className="text-base text-brand-text-secondary leading-relaxed">
           {item?.desc || ""}
         </p>
       </div>
