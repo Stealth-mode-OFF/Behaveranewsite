@@ -191,7 +191,7 @@ export function LeadCaptureSection() {
 
             <ul className="space-y-2.5">
               {txt.benefits.map((b, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-[14px] text-brand-text-secondary">
+                <li key={i} className="flex items-start gap-2.5 text-sm text-brand-text-secondary">
                   <CheckCircle2 className="w-4 h-4 mt-0.5 text-brand-success shrink-0" />
                   {b}
                 </li>
@@ -214,7 +214,7 @@ export function LeadCaptureSection() {
                     <div className="w-8 h-8 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center shrink-0">
                       <Check className="w-4 h-4" strokeWidth={2.5} />
                     </div>
-                    <h3 className="text-[16px] font-bold text-brand-text-primary">
+                    <h3 className="text-base font-bold text-brand-text-primary">
                       {txt.successTitle}
                     </h3>
                   </div>
@@ -233,7 +233,7 @@ export function LeadCaptureSection() {
                           <Download className="w-[18px] h-[18px]" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[14px] font-semibold text-brand-text-primary truncate">
+                          <p className="text-sm font-semibold text-brand-text-primary truncate">
                             {eb.title[language] || eb.title.en}
                           </p>
                           <p className="text-[12px] text-brand-text-muted">

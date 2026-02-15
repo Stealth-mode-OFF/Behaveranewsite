@@ -262,7 +262,7 @@ export function FeatureGrid({ features }: FeatureGridProps) {
             <h3 className="font-bold text-brand-text-primary mb-3 text-lg group-hover:text-brand-primary transition-colors">
               {feature.title}
             </h3>
-            <p className="text-[15px] text-brand-text-secondary leading-[1.7]">
+            <p className="text-base text-brand-text-secondary leading-relaxed">
               {feature.description}
             </p>
           </div>

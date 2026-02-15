@@ -177,7 +177,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
           className={cn(
             "flex items-center w-full rounded-xl border bg-white transition-all duration-200",
             error 
-              ? "border-red-300 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/20" 
+              ? "border-brand-error/40 focus-within:border-brand-error focus-within:ring-2 focus-within:ring-brand-error/20" 
               : "border-brand-border focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20",
             className
           )}
