@@ -330,7 +330,7 @@ function getTypeBadge(type: string, t: typeof translations.cz) {
       );
     default:
       return (
-        <span className="px-2 py-0.5 text-xs font-bold bg-gray-500/20 text-gray-400 rounded">
+        <span className="px-2 py-0.5 text-xs font-bold bg-brand-text-muted/20 text-brand-text-muted rounded">
           {t.fixBadge}
         </span>
       );

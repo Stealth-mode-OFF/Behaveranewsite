@@ -169,7 +169,7 @@ export function SnapCarousel({
 
       {/* Navigation Arrows */}
       <button
-        onClick={goPrev}
+        type="button" aria-label="Previous" onClick={goPrev}
         className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-brand-border/30 flex items-center justify-center text-brand-text-secondary hover:text-brand-primary hover:bg-white transition-all opacity-0 group-hover:opacity-100"
         aria-label="Previous slide"
       >
@@ -177,7 +177,7 @@ export function SnapCarousel({
       </button>
 
       <button
-        onClick={goNext}
+        type="button" aria-label="Next" onClick={goNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-brand-border/30 flex items-center justify-center text-brand-text-secondary hover:text-brand-primary hover:bg-white transition-all opacity-0 group-hover:opacity-100"
         aria-label="Next slide"
       >
@@ -191,7 +191,7 @@ export function SnapCarousel({
           {slides.map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index)}
+              type="button" aria-label={`Go to slide ${index + 1}`} onClick={() => goToSlide(index)}
               className={cn(
                 "relative w-2 h-2 rounded-full transition-all duration-300",
                 activeIndex === index
@@ -217,7 +217,7 @@ export function SnapCarousel({
 
         {/* Play/Pause button */}
         <button
-          onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+          type="button" aria-label={isAutoPlaying ? "Pause" : "Play"} onClick={() => setIsAutoPlaying(!isAutoPlaying)}
           className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary transition-all"
           aria-label={isAutoPlaying ? "Pause autoplay" : "Resume autoplay"}
         >
