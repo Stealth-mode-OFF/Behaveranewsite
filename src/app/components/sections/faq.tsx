@@ -66,7 +66,7 @@ export function FAQ() {
   };
 
   return (
-    <section className="section-spacing bg-brand-background-secondary" id="faq">
+    <section className="section-spacing bg-white" id="faq">
       <div className="container-default max-w-[900px]">
         
         {/* Header */}

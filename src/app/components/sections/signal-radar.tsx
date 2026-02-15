@@ -214,7 +214,7 @@ export function SignalRadar() {
             <h3 className="text-xl sm:text-2xl md:text-[28px] font-bold text-brand-text-primary mb-3 leading-tight">
               {c.topicsTitle}
             </h3>
-            <p className="text-[15px] text-brand-text-body max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base text-brand-text-secondary max-w-2xl mx-auto leading-relaxed">
               {c.topicsSubtitle}
             </p>
           </div>
@@ -266,7 +266,7 @@ export function SignalRadar() {
             className="overflow-hidden"
           >
             <div className="pt-6">
-              <p className="text-sm text-brand-text-body text-center max-w-2xl mx-auto leading-relaxed mb-6">
+              <p className="text-sm text-brand-text-secondary text-center max-w-2xl mx-auto leading-relaxed mb-6">
                 {c.compSubtitle}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -379,7 +379,7 @@ function SignalDetailPanel({
             </div>
             <h3 className="text-lg font-bold text-brand-text-primary leading-tight">{card.name}</h3>
           </div>
-          <p className="text-sm text-brand-text-body leading-relaxed">{card.desc}</p>
+          <p className="text-sm text-brand-text-secondary leading-relaxed">{card.desc}</p>
         </div>
         <div className="px-6 pb-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-2 flex items-center gap-1.5">
