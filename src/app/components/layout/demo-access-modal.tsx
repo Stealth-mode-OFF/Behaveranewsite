@@ -160,26 +160,21 @@ export function DemoAccessModal() {
     if (!validate()) return;
 
     setStatus('submitting');
-    try {
-      const result = await submitLead({
-        email,
-        phone,
-        source: 'self_service_demo',
-      });
 
-      if (result.ok) {
-        setStatus('success');
-        trackLeadSubmitted('self_service_demo');
-      } else {
-        setStatus('error');
-        setErrorMsg(result.error || c.errorGeneric);
-        trackLeadFailed('self_service_demo');
-      }
-    } catch {
-      setStatus('error');
-      setErrorMsg(c.errorGeneric);
+    // Show the demo immediately — lead capture runs in background
+    setTimeout(() => {
+      setStatus('success');
+      trackLeadSubmitted('self_service_demo');
+    }, 600);
+
+    // Fire-and-forget: capture the lead but don't block the demo
+    submitLead({
+      email,
+      phone,
+      source: 'self_service_demo',
+    }).catch(() => {
       trackLeadFailed('self_service_demo');
-    }
+    });
   };
 
   const copyToClipboard = (text: string, field: string) => {
