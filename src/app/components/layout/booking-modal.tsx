@@ -10,7 +10,7 @@ import { trackBookingCalendarLoaded } from '@/lib/analytics';
 const SCHEDULER_EMBED_URL = 'https://calendly.com/josef-hofman-behavera?hide_landing_page_details=1&hide_gdpr_banner=1&hide_event_type_details=1&background_color=ffffff&text_color=1C1237&primary_color=2D1B69';
 
 // Skeleton shimmer for loading state
-function CalendarSkeleton() {
+function CalendarSkeleton({ label = "Loading calendar\u2026" }: { label?: string }) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center bg-white z-10 p-6">
       <motion.div
@@ -31,7 +31,7 @@ function CalendarSkeleton() {
           </div>
         ))}
       </div>
-      <p className="text-[11px] text-brand-text-muted mt-5 animate-pulse font-medium">Loading calendar…</p>
+      <p className="text-[11px] text-brand-text-muted mt-5 animate-pulse font-medium">{label}</p>
     </div>
   );
 }
@@ -73,6 +73,7 @@ export function BookingModal() {
         { icon: Shield, text: 'Žádný závazek, žádný hard-sell' },
       ],
       meta: '30 min · Video hovor · Zdarma',
+      loadingCalendar: 'Načítání kalendáře…',
       trust: ['GDPR ready', 'Bez kreditní karty'],
       switchCta: 'Nebo si to vyzkoušejte sám →',
     },
@@ -85,6 +86,7 @@ export function BookingModal() {
         { icon: Shield, text: 'No strings attached, no hard-sell' },
       ],
       meta: '30 min · Video call · Free',
+      loadingCalendar: 'Loading calendar…',
       trust: ['GDPR ready', 'No credit card'],
       switchCta: 'Or try it yourself →',
     },
@@ -97,6 +99,7 @@ export function BookingModal() {
         { icon: Shield, text: 'Keine Verpflichtung, kein Hard-Sell' },
       ],
       meta: '30 Min · Videoanruf · Kostenlos',
+      loadingCalendar: 'Kalender wird geladen…',
       trust: ['DSGVO ready', 'Keine Kreditkarte'],
       switchCta: 'Oder testen Sie es selbst →',
     },
@@ -218,7 +221,7 @@ export function BookingModal() {
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0, transition: { duration: 0.3 } }}
                   >
-                    <CalendarSkeleton />
+                    <CalendarSkeleton label={c.loadingCalendar} />
                   </motion.div>
                 )}
               </AnimatePresence>
