@@ -132,7 +132,7 @@ export function BookingModal() {
                 <h2 className="text-2xl font-bold tracking-tight leading-tight mb-3">
                   {c.title}
                 </h2>
-                <p className="text-[14px] text-white/60 leading-relaxed">
+                <p className="text-sm text-white/60 leading-relaxed">
                   {c.subtitle}
                 </p>
               </div>

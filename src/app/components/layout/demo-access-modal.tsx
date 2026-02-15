@@ -234,7 +234,7 @@ export function DemoAccessModal() {
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="demo-email" className="flex items-center gap-1.5 text-[13px] font-semibold text-brand-text-primary mb-1.5">
+                  <label htmlFor="demo-email" className="flex items-center gap-1.5 text-sm font-semibold text-brand-text-primary mb-1.5">
                     <Mail className="w-3.5 h-3.5 text-brand-primary/70" />
                     {c.emailLabel} <span className="text-brand-error text-[11px]">*</span>
                   </label>
@@ -247,7 +247,7 @@ export function DemoAccessModal() {
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); if (emailError) setEmailError(''); }}
                     aria-invalid={!!emailError}
-                    className={emailError ? 'border-red-400 ring-2 ring-red-100' : ''}
+                    className={emailError ? 'border-brand-error ring-2 ring-brand-error/10' : ''}
                   />
                   <AnimatePresence>
                     {emailError && (
@@ -265,7 +265,7 @@ export function DemoAccessModal() {
                 </div>
 
                 <div>
-                  <label htmlFor="demo-phone" className="flex items-center gap-1.5 text-[13px] font-semibold text-brand-text-primary mb-1.5">
+                  <label htmlFor="demo-phone" className="flex items-center gap-1.5 text-sm font-semibold text-brand-text-primary mb-1.5">
                     <Phone className="w-3.5 h-3.5 text-brand-primary/70" />
                     {c.phoneLabel} <span className="text-brand-error text-[11px]">*</span>
                   </label>
@@ -296,7 +296,7 @@ export function DemoAccessModal() {
                       initial={{ opacity: 0, y: -4 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -4 }}
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-red-50 border border-red-200 text-sm text-red-700"
+                      className="flex items-center gap-2.5 p-3 rounded-xl bg-brand-error/5 border border-brand-error/20 text-sm text-brand-error"
                     >
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       {errorMsg}

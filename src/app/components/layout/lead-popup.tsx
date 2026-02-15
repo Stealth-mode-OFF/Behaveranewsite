@@ -151,7 +151,7 @@ export function LeadPopup() {
                 <h3 className="text-xl sm:text-2xl font-bold text-brand-text-primary mb-1.5 tracking-tight">
                   {t.leadPopup?.successTitle || "Stahování začalo!"}
                 </h3>
-                <p className="text-[14px] text-brand-text-muted mb-6">
+                <p className="text-sm text-brand-text-muted mb-6">
                   {t.leadPopup?.successMessage || "Pokud se stahování nespustilo, klikněte níže:"}
                 </p>
 
@@ -201,7 +201,7 @@ export function LeadPopup() {
                     <h2 className="text-xl sm:text-2xl font-bold text-brand-text-primary tracking-tight leading-tight mb-1">
                       {t.leadPopup?.title || "Stáhněte si zdarma e-book"}
                     </h2>
-                    <p className="text-[14px] text-brand-text-muted leading-relaxed">
+                    <p className="text-sm text-brand-text-muted leading-relaxed">
                       {t.leadPopup?.subtitle || "Zjistěte, proč lidé odcházejí i z dobrých firem."}
                     </p>
                   </div>
