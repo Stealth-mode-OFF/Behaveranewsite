@@ -69,7 +69,7 @@ export function LogoMarquee() {
                     <img
                       src={logo.src}
                       alt={`${logo.name} logo`}
-                      className="max-w-full max-h-full w-auto h-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      className="max-w-full max-h-full w-auto h-auto object-contain transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
@@ -83,7 +83,7 @@ export function LogoMarquee() {
                     <img
                       src={logo.src}
                       alt=""
-                      className="max-w-full max-h-full w-auto h-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                      className="max-w-full max-h-full w-auto h-auto object-contain transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
