@@ -69,12 +69,12 @@ export default async function handler(request: Request): Promise<Response> {
       let page = 0;
 
       while (nextLink && page < MAX_PAGES) {
-        const peopleRes = await fetch(nextLink, {
+        const peopleRes: Response = await fetch(nextLink, {
           headers: { Authorization: `Bearer ${access_token}` },
         });
         if (!peopleRes.ok) break;
 
-        const data = await peopleRes.json();
+        const data: { value?: Array<{ displayName?: string; scoredEmailAddresses?: Array<{ address?: string }> }>; '@odata.nextLink'?: string } = await peopleRes.json();
         for (const person of data.value || []) {
           const email = person.scoredEmailAddresses?.[0]?.address;
           if (email) {
@@ -99,12 +99,12 @@ export default async function handler(request: Request): Promise<Response> {
       let page = 0;
 
       while (nextLink && page < MAX_PAGES) {
-        const contactsRes = await fetch(nextLink, {
+        const contactsRes: Response = await fetch(nextLink, {
           headers: { Authorization: `Bearer ${access_token}` },
         });
         if (!contactsRes.ok) break;
 
-        const data = await contactsRes.json();
+        const data: { value?: Array<{ displayName?: string; emailAddresses?: Array<{ address?: string }> }>; '@odata.nextLink'?: string } = await contactsRes.json();
         for (const contact of data.value || []) {
           const email = contact.emailAddresses?.[0]?.address;
           if (email) {
