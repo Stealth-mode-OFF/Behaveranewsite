@@ -425,7 +425,7 @@ export function OnboardingPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 font-[var(--font-display)]">
             {txt.successTitle}
           </h1>
-          <p className="text-brand-text-muted text-[16px] leading-relaxed mb-10 max-w-md mx-auto">
+          <p className="text-brand-text-muted text-base leading-relaxed mb-10 max-w-md mx-auto">
             {txt.successSubtitle}
           </p>
           <Link to="/">
@@ -948,7 +948,7 @@ function TeamMembersField({
             <button
               type="button"
               onClick={() => remove(memberIndex)}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-text-muted hover:text-brand-error hover:bg-red-50 transition-all shrink-0"
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-brand-text-muted hover:text-brand-error hover:bg-brand-error/5 transition-all shrink-0"
             >
               <Trash2 className="w-3.5 h-3.5" />
             </button>
