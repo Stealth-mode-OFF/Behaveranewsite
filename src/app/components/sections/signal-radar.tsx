@@ -2,7 +2,7 @@ import { useCallback, useState, useRef, useEffect, type ElementType, type MouseE
 import {
   Activity, Zap, Briefcase, Heart, Shield, Award, Scale, Cpu,
   MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
-  Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
+  CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
   ChevronLeft, ChevronRight, X, Play, ArrowRight, Loader2
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
@@ -14,13 +14,11 @@ const topicIcons: Record<string, ElementType> = {
   quickScan: Activity, pay: Scale, perks: Heart, tools: Cpu,
   workload: Briefcase, recognition: Award, stress: Zap, values: Shield,
 };
-const stepIcons = [Send, MessageCircle, BarChart3];
 const advantageIcons = [TrendingUp, BarChart3, Brain, Activity];
 
 /* ─── Copy ─── */
 type TCopy = {
   badge: string; title: string; titleHighlight: string; subtitle: string;
-  steps: { label: string; desc: string }[];
   topicsTitle: string; topicsSubtitle: string;
   topicCards: { key: string; name: string; desc: string; sampleQ: string; ceoInsight: string; link: string }[];
   chatLabel: string; ceoLabel: string; cardCta: string;
@@ -37,11 +35,6 @@ const copy: Record<string, TCopy> = {
     title: "2 minuty. V\u011bt\u0161ina lid\u00ed odpov\u00ed. ",
     titleHighlight: "Ka\u017ed\u00fd m\u011bs\u00edc.",
     subtitle: "\u017d\u00e1dn\u00e9 formul\u00e1\u0159e. Zam\u011bstnanci odpov\u00eddaj\u00ed v kr\u00e1tk\u00e9m AI chatu \u2014 ov\u011b\u0159en\u00e9 ot\u00e1zky, kter\u00e9 mluv\u00ed lidsky. 80\u00a0%+ lid\u00ed re\u00e1ln\u011b a r\u00e1do odpov\u00edd\u00e1.",
-    steps: [
-      { label: "Automatick\u00e9 rozesl\u00e1n\u00ed", desc: "Slack, Teams nebo e-mail" },
-      { label: "2min AI rozhovor", desc: "Ov\u011b\u0159en\u00e9 ot\u00e1zky od psycholog\u016f" },
-      { label: "V\u00fdsledky ihned", desc: "Dashboard s AI doporu\u010den\u00edmi" },
-    ],
     topicsTitle: "8 rozhovor\u016f, kter\u00e9 odhal\u00ed, co lid\u00e9 ne\u0159eknou nahlas",
     topicsSubtitle: "Ka\u017ed\u00fd set je kr\u00e1tk\u00e1 AI konverzace na jedno t\u00e9ma. Ot\u00e1zky jsou ov\u011b\u0159eny behavior\u00e1ln\u00edmi psychology a lid\u00e9 na n\u011b re\u00e1ln\u011b a r\u00e1di odpov\u00eddaj\u00ed.",
     topicCards: [
@@ -73,11 +66,6 @@ const copy: Record<string, TCopy> = {
     title: "2 minutes. Most people respond. ",
     titleHighlight: "Every month.",
     subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 tested questions that feel human. 80%+ actually enjoy answering.",
-    steps: [
-      { label: "Auto-sends itself", desc: "Slack, Teams, or email" },
-      { label: "2-min AI chat", desc: "Psychologist-designed questions" },
-      { label: "Instant results", desc: "Dashboard with AI insights" },
-    ],
     topicsTitle: "8 conversations that reveal what people won\u2019t say out loud",
     topicsSubtitle: "Each set is a short AI conversation on one topic. Questions are validated by behavioral psychologists \u2014 and people genuinely enjoy answering them.",
     topicCards: [
@@ -158,7 +146,7 @@ export function SignalRadar() {
     <section className="section-spacing bg-brand-background-secondary/30 relative overflow-hidden" id="radar">
       <div className="container-default relative z-10">
 
-        {/* ═══════════ MERGED HEADER + HOW IT WORKS ═══════════ */}
+        {/* ═══════════ SECTION HEADER ═══════════ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -183,33 +171,11 @@ export function SignalRadar() {
             </span>
           </h2>
 
-          <p className="text-lg text-brand-text-secondary leading-relaxed max-w-2xl mx-auto mb-10">
+          <p className="text-lg text-brand-text-secondary leading-relaxed max-w-2xl mx-auto">
             {c.subtitle}
           </p>
 
-          {/* Inline 3-step flow */}
-          <div className="flex items-start justify-center gap-3 sm:gap-4">
-            {c.steps.map((step, i) => {
-              const StepIcon = stepIcons[i];
-              return (
-                <div key={i} className="flex items-start gap-3 sm:gap-4">
-                  <div className="flex flex-col items-center text-center w-[100px] sm:w-[130px]">
-                    <div className="w-11 h-11 rounded-xl bg-brand-primary flex items-center justify-center shadow-md shadow-brand-primary/20 mb-2.5">
-                      <StepIcon className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-[12px] sm:text-[13px] font-semibold text-brand-text-primary leading-tight">{step.label}</span>
-                    <span className="text-[11px] text-brand-text-muted leading-tight mt-0.5">{step.desc}</span>
-                  </div>
-                  {i < c.steps.length - 1 && (
-                    <div className="flex items-center pt-5">
-                      <div className="w-6 sm:w-10 h-[2px] bg-gradient-to-r from-brand-primary/30 to-brand-accent/30 rounded-full" />
-                      <ArrowRight className="w-3.5 h-3.5 text-brand-accent/50 -ml-1" />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+
         </motion.div>
 
         {/* ═══════════ 8 TOPIC CARDS — Premium Carousel ═══════════ */}
