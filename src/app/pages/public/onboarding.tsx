@@ -507,18 +507,52 @@ export function OnboardingPage() {
   const onSubmit = async (data: OnboardingFormData) => {
     setIsSubmitting(true);
     try {
-      const totalMembers = teams.reduce(
-        (sum, t) => sum + t.members.length,
-        0
-      );
+      // Send COMPLETE onboarding data (company, teams, members, OAuth info)
+      const fullPayload = {
+        companyName: data.companyName,
+        companyId: data.companyId || undefined,
+        repName: data.repName,
+        repEmail: data.repEmail,
+        billingEmail: data.billingEmail || undefined,
+        adminName: data.adminName || undefined,
+        adminEmail: data.adminEmail || undefined,
+        employeeCount: data.employeeCount,
+        billingInterval: data.billingInterval,
+        agreedToTerms: data.agreedToTerms,
+        oauthProvider: oauthProvider || undefined,
+        teams: teams.map((t) => ({
+          id: t.id,
+          name: t.name,
+          leaderEmail: t.leaderEmail,
+          members: t.members.map((m) => ({
+            name: m.name,
+            email: m.email,
+            photo: m.photo,
+          })),
+        })),
+      };
 
-      await submitLead({
-        email: data.repEmail,
-        name: data.repName,
-        company: data.companyName,
-        companySize: String(data.employeeCount),
-        source: `onboarding:${data.billingInterval}:${totalMembers}members:${teams.length}teams:${oauthProvider || "manual"}`,
+      const res = await fetch("/api/submit-onboarding", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fullPayload),
       });
+
+      if (!res.ok) {
+        console.warn("Onboarding API failed, falling back to basic lead");
+        // Fallback: at least save basic lead to Pipedrive
+        const totalMembers = teams.reduce(
+          (sum, t) => sum + t.members.length,
+          0
+        );
+        await submitLead({
+          email: data.repEmail,
+          name: data.repName,
+          company: data.companyName,
+          companySize: String(data.employeeCount),
+          source: `onboarding:${data.billingInterval}:${totalMembers}members:${teams.length}teams:${oauthProvider || "manual"}`,
+        });
+      }
 
       trackLeadSubmitted("onboarding");
       setIsSuccess(true);
