@@ -9,7 +9,7 @@ import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/anal
 
 export function PurchaseSection() {
   const { t, language } = useLanguage();
-  const { openBooking, openDemo } = useModal();
+  const { openBooking, openDemo, openSignup } = useModal();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   
@@ -232,7 +232,7 @@ export function PurchaseSection() {
                     
                     <div className="mt-8 relative">
                         <Button 
-                            onClick={() => openBooking('pricing')}
+                            onClick={() => openSignup('pricing')}
                             className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-lg" 
                             size="lg"
                         >

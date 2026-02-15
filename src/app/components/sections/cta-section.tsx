@@ -15,7 +15,7 @@ import { useLanguage } from "@/app/LanguageContext";
  * - Premium "final word" feel
  */
 export function CtaSection() {
-  const { openBooking, openDemo } = useModal();
+  const { openBooking, openDemo, openSignup } = useModal();
   const { t, language } = useLanguage();
 
   const copy = {
@@ -128,7 +128,7 @@ export function CtaSection() {
             className="flex flex-col items-center justify-center gap-4 mb-12"
           >
             <Button 
-              onClick={() => openDemo('cta_section')}
+              onClick={() => openSignup('cta_section')}
               size="lg"
               className="min-w-[240px] h-14 px-8 bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
             >

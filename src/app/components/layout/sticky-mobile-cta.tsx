@@ -6,7 +6,7 @@ import { trackStickyCtaDismissed } from "@/lib/analytics";
 
 export function StickyMobileCta() {
   const { t, language } = useLanguage();
-  const { openDemo } = useModal();
+  const { openSignup } = useModal();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
@@ -30,10 +30,10 @@ export function StickyMobileCta() {
         <div className="flex items-center gap-3">
           <button
             type="button"
-            onClick={() => openDemo('sticky_mobile_cta')}
+            onClick={() => openSignup('sticky_mobile_cta')}
             className="flex-1 h-12 rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
-            {language === 'cz' ? 'Vyzkoušet sám' : language === 'de' ? 'Selbst testen' : 'Try it yourself'}
+            {language === 'cz' ? 'Začít zdarma' : language === 'de' ? 'Kostenlos starten' : 'Get started free'}
           </button>
           <button
             type="button"

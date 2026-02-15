@@ -14,7 +14,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
-  const { openDemo } = useModal();
+  const { openDemo, openSignup } = useModal();
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -151,7 +151,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           </a>
 
           <Button
-            onClick={() => openDemo("header_desktop")}
+            onClick={() => openSignup("header_desktop")}
             className={cn(
               "hidden lg:inline-flex h-9 px-5 text-[13px] font-semibold rounded-full transition-all",
               "bg-brand-primary text-white hover:bg-brand-primary-hover",
@@ -223,7 +223,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                 <Button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    openDemo("header_mobile");
+                    openSignup("header_mobile");
                   }}
                   className="w-full h-12 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base"
                 >

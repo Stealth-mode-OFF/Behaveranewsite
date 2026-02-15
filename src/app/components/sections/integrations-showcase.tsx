@@ -105,7 +105,7 @@ const stepIconMap: Record<string, React.ElementType> = {
 
 export function IntegrationsShowcase() {
   const { language } = useLanguage();
-  const { openBooking } = useModal();
+  const { openSignup } = useModal();
   const t = copy[language] || copy.en;
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -186,7 +186,7 @@ export function IntegrationsShowcase() {
           className="text-center"
         >
           <Button
-            onClick={() => openBooking("how_it_works_cta")}
+            onClick={() => openSignup("how_it_works_cta")}
             className="rounded-2xl h-12 px-8 font-semibold text-sm bg-brand-primary text-white hover:bg-brand-primary-hover transition-all inline-flex items-center gap-2"
           >
             {t.cta}
