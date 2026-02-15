@@ -646,7 +646,7 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
               &ldquo;{t.quote}&rdquo;
             </p>
             <span className="text-xs text-brand-text-muted">
-              \u2014 {t.name}, {t.role}{t.company ? ` \u00b7 ${t.company}` : ''}
+              {t.name}, {t.role}{t.company ? ` \u00b7 ${t.company}` : ''}
             </span>
           </motion.div>
         </AnimatePresence>
