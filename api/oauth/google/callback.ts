@@ -3,13 +3,13 @@
  *
  * Google redirects here after consent. We:
  *  1. Exchange the code for an access_token
- *  2. Fetch contacts from People API (otherContacts + directory)
+ *  2. Fetch ALL contacts from People API with pagination
+ *     (otherContacts + directory)
  *  3. Return an HTML page that posts results to the opener window
  *
  * Security: access_token is SHORT-LIVED, never stored server-side.
  * GDPR: We only return name + email from contacts. The full address-book
- *        is NOT persisted — the frontend lets the user pick which emails
- *        to invite.
+ *        is NOT persisted.
  */
 
 export const config = { runtime: 'edge' };
@@ -19,6 +19,8 @@ interface GoogleContact {
   email: string;
   photo?: string;
 }
+
+const MAX_PAGES = 20; // Safety cap: 20 × 200 = 4 000 contacts max
 
 export default async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
@@ -56,16 +58,25 @@ export default async function handler(request: Request): Promise<Response> {
 
     const { access_token } = (await tokenRes.json()) as { access_token: string };
 
-    // 2. Fetch contacts — combine "other contacts" + directory
     const contacts: GoogleContact[] = [];
 
-    // 2a. Other Contacts (personal address book)
+    // 2a. Other Contacts (personal address book) — paginated
     try {
-      const otherRes = await fetch(
-        'https://people.googleapis.com/v1/otherContacts?readMask=names,emailAddresses,photos&pageSize=200',
-        { headers: { Authorization: `Bearer ${access_token}` } }
-      );
-      if (otherRes.ok) {
+      let pageToken: string | undefined;
+      let page = 0;
+      do {
+        const params = new URLSearchParams({
+          readMask: 'names,emailAddresses,photos',
+          pageSize: '200',
+        });
+        if (pageToken) params.set('pageToken', pageToken);
+
+        const otherRes = await fetch(
+          `https://people.googleapis.com/v1/otherContacts?${params}`,
+          { headers: { Authorization: `Bearer ${access_token}` } }
+        );
+        if (!otherRes.ok) break;
+
         const data = await otherRes.json();
         for (const person of data.otherContacts || []) {
           const email = person.emailAddresses?.[0]?.value;
@@ -77,18 +88,31 @@ export default async function handler(request: Request): Promise<Response> {
             });
           }
         }
-      }
+        pageToken = data.nextPageToken;
+        page++;
+      } while (pageToken && page < MAX_PAGES);
     } catch (e) {
       console.warn('Failed to fetch otherContacts:', e);
     }
 
-    // 2b. Directory (Google Workspace org directory)
+    // 2b. Directory (Google Workspace org directory) — paginated
     try {
-      const dirRes = await fetch(
-        'https://people.googleapis.com/v1/people:listDirectoryPeople?readMask=names,emailAddresses,photos&sources=DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE&pageSize=200',
-        { headers: { Authorization: `Bearer ${access_token}` } }
-      );
-      if (dirRes.ok) {
+      let pageToken: string | undefined;
+      let page = 0;
+      do {
+        const params = new URLSearchParams({
+          readMask: 'names,emailAddresses,photos',
+          sources: 'DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE',
+          pageSize: '200',
+        });
+        if (pageToken) params.set('pageToken', pageToken);
+
+        const dirRes = await fetch(
+          `https://people.googleapis.com/v1/people:listDirectoryPeople?${params}`,
+          { headers: { Authorization: `Bearer ${access_token}` } }
+        );
+        if (!dirRes.ok) break;
+
         const data = await dirRes.json();
         for (const person of data.people || []) {
           const email = person.emailAddresses?.[0]?.value;
@@ -100,7 +124,9 @@ export default async function handler(request: Request): Promise<Response> {
             });
           }
         }
-      }
+        pageToken = data.nextPageToken;
+        page++;
+      } while (pageToken && page < MAX_PAGES);
     } catch (e) {
       console.warn('Failed to fetch directory:', e);
     }
