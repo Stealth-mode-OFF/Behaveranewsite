@@ -16,7 +16,7 @@ import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
 
 export function Hero() {
   const { language } = useLanguage();
-  const { openBooking, openDemo } = useModal();
+  const { openBooking, openDemo, openSignup } = useModal();
 
   const copy = {
     cz: {
@@ -131,7 +131,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
               <Button
-                onClick={() => openDemo('hero')}
+                onClick={() => openSignup('hero')}
                 size="lg"
                 className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all"
               >

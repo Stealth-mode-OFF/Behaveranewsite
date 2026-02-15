@@ -1,9 +1,10 @@
-import { lazy, Suspense, useState, useCallback, type ComponentType, type ReactNode } from "react";
+import { lazy, Suspense, useState, useCallback, useEffect, type ComponentType, type ReactNode } from "react";
 import { pageSEO } from "@/app/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { BookingModal } from "@/app/components/layout/booking-modal";
 import { DemoAccessModal } from "@/app/components/layout/demo-access-modal";
+import { SignupModal } from "@/app/components/layout/signup-modal";
 import { LeadPopup } from "@/app/components/layout/lead-popup";
 import { AnnouncementBar, ANNOUNCEMENT_BAR_HEIGHT } from "@/app/components/layout/announcement-bar";
 import { Hero } from "@/app/components/sections/hero";
@@ -14,6 +15,7 @@ import { DashboardPreview } from "@/app/components/sections/dashboard-preview";
 import { SignalRadar } from "@/app/components/sections/signal-radar";
 import { RoleSelection } from "@/app/components/sections/role-selection";
 import { StickyMobileCta } from "@/app/components/layout/sticky-mobile-cta";
+import { useModal } from "@/app/ModalContext";
 import { useSEO } from "@/app/hooks/useSEO";
 import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
 import { useLanguage } from "@/app/LanguageContext";
@@ -64,6 +66,17 @@ const IntegrationsShowcase = lazyNamed(
 
 export function LandingPage() {
   const { language } = useLanguage();
+  const { openSignup } = useModal();
+
+  // Auto-open signup modal if ?signup=1 or came from /signup
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('signup') === '1') {
+      openSignup('direct_link');
+      // Clean up URL
+      window.history.replaceState({}, '', '/');
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const seo = pageSEO.home[language] || pageSEO.home.en;
   const [bannerVisible, setBannerVisible] = useState(() => {
     try { return sessionStorage.getItem("announcement_dismissed") !== "1"; } catch { return true; }
@@ -149,6 +162,7 @@ export function LandingPage() {
       {/* Modals */}
       <BookingModal />
       <DemoAccessModal />
+      <SignupModal />
       <LeadPopup />
     </>
   );

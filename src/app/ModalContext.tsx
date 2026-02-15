@@ -8,6 +8,9 @@ interface ModalContextType {
   isDemoOpen: boolean;
   openDemo: (locationOrEvent?: string | unknown) => void;
   closeDemo: () => void;
+  isSignupOpen: boolean;
+  openSignup: (locationOrEvent?: string | unknown) => void;
+  closeSignup: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -15,6 +18,7 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined);
 export function ModalProvider({ children }: { children: ReactNode }) {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
 
   const openBooking = (locationOrEvent?: string | unknown) => {
     setIsBookingOpen(true);
@@ -36,6 +40,16 @@ export function ModalProvider({ children }: { children: ReactNode }) {
     trackBookingClose();
   };
 
+  const openSignup = (locationOrEvent?: string | unknown) => {
+    setIsSignupOpen(true);
+    const location = typeof locationOrEvent === 'string' ? locationOrEvent : 'unknown';
+    trackBookingOpen(`signup_${location}`);
+  };
+  const closeSignup = () => {
+    setIsSignupOpen(false);
+    trackBookingClose();
+  };
+
   return (
     <ModalContext.Provider
       value={{
@@ -45,6 +59,9 @@ export function ModalProvider({ children }: { children: ReactNode }) {
         isDemoOpen,
         openDemo,
         closeDemo,
+        isSignupOpen,
+        openSignup,
+        closeSignup,
       }}
     >
       {children}
@@ -62,6 +79,9 @@ export function useModal() {
       isDemoOpen: false,
       openDemo: () => {},
       closeDemo: () => {},
+      isSignupOpen: false,
+      openSignup: () => {},
+      closeSignup: () => {},
     };
     return fallback;
   }

@@ -130,8 +130,9 @@ function App() {
                     <Route path="/for-hr" element={<SolutionPage />} />
                     <Route path="/for-team-leads" element={<SolutionPage />} />
 
-                    {/* Onboarding / Sign Up */}
+                    {/* Self-service Sign Up */}
                     <Route path="/start" element={<OnboardingPage />} />
+                    <Route path="/signup" element={<Navigate to="/?signup=1" replace />} />
 
                     {/* Admin Routes */}
                     {adminEnabled ? (
