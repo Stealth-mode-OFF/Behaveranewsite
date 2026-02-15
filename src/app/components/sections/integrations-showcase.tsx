@@ -148,7 +148,7 @@ export function IntegrationsShowcase() {
               {t.titleHighlight}
             </span>
           </h2>
-          <p className="text-base md:text-lg text-brand-text-body leading-relaxed">
+          <p className="text-base md:text-lg text-brand-text-secondary leading-relaxed">
             {t.subtitle}
           </p>
         </motion.div>
