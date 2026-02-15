@@ -42,9 +42,9 @@ export function CaseStudyPage() {
         <article>
             {/* Hero Section */}
             <div className="bg-brand-primary text-white py-20 md:py-32 relative overflow-hidden">
-                <div className="absolute inset-0 bg-brand-primary mix-blend-multiply opacity-90 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/60 via-brand-primary/40 to-brand-primary/80 z-10" />
                 {study.coverImage && (
-                    <img src={study.coverImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
+                    <img src={study.coverImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
                 )}
                 <div className="container mx-auto px-4 max-w-6xl relative z-20">
                      <Link to="/case-studies" className="inline-flex items-center text-sm font-medium text-white hover:text-white/90 mb-8 transition-colors">
