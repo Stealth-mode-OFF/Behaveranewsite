@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { useLanguage } from "@/app/LanguageContext";
-import { Mail, MessageSquare, Globe, Send, MousePointerClick, LayoutDashboard, Monitor, Tablet, Smartphone, ArrowRight, Zap, CheckCircle2 } from "lucide-react";
+import { Globe, Send, MousePointerClick, LayoutDashboard, ArrowRight, Zap } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { Button } from "@/app/components/ui/button";
 
@@ -38,12 +38,6 @@ const copy = {
         color: "#059669",
       },
     ],
-    features: [
-      "Funguje na jakémkoliv zařízení s prohlížečem",
-      "Žádná instalace, žádná nová aplikace",
-      "Odkaz přes Slack nebo e-mail — zaměstnanec si vybere",
-      "Dashboard dostupný odkudkoliv — PC, tablet, mobil",
-    ],
   },
   en: {
     badge: "How it works",
@@ -72,12 +66,6 @@ const copy = {
         color: "#059669",
       },
     ],
-    features: [
-      "Works on any device with a browser",
-      "No installation, no new software",
-      "Link via Slack or email — employee chooses",
-      "Dashboard accessible anywhere — PC, tablet, phone",
-    ],
   },
   de: {
     badge: "So funktioniert's",
@@ -105,12 +93,6 @@ const copy = {
         description: "Der Leader meldet sich an und sieht sofort Ergebnisse — nach Team, Thema und Risiko.",
         color: "#059669",
       },
-    ],
-    features: [
-      "Funktioniert auf jedem Gerät mit Browser",
-      "Keine Installation, keine neue Software",
-      "Link per Slack oder E-Mail — Mitarbeiter wählt",
-      "Dashboard von überall — PC, Tablet, Handy",
     ],
   },
 } as const;
@@ -195,49 +177,6 @@ export function IntegrationsShowcase() {
             );
           })}
         </div>
-
-        {/* Device strip + features */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.35 }}
-          className="bg-white rounded-2xl border border-brand-border p-6 md:p-8 mb-10"
-        >
-          {/* Device icons */}
-          <div className="flex items-center justify-center gap-6 mb-6">
-            <div className="flex items-center gap-2 text-brand-text-muted">
-              <Monitor className="w-5 h-5" />
-              <span className="text-xs font-medium hidden sm:inline">Desktop</span>
-            </div>
-            <div className="flex items-center gap-2 text-brand-text-muted">
-              <Tablet className="w-5 h-5" />
-              <span className="text-xs font-medium hidden sm:inline">Tablet</span>
-            </div>
-            <div className="flex items-center gap-2 text-brand-text-muted">
-              <Smartphone className="w-5 h-5" />
-              <span className="text-xs font-medium hidden sm:inline">Mobile</span>
-            </div>
-            <span className="text-brand-border">·</span>
-            <div className="flex items-center gap-2 text-brand-text-muted">
-              <MessageSquare className="w-5 h-5" />
-              <span className="text-xs font-medium hidden sm:inline">Slack</span>
-            </div>
-            <div className="flex items-center gap-2 text-brand-text-muted">
-              <Mail className="w-5 h-5" />
-              <span className="text-xs font-medium hidden sm:inline">E-mail</span>
-            </div>
-          </div>
-
-          {/* Feature checklist */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {t.features.map((feature) => (
-              <div key={feature} className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-0.5 shrink-0" />
-                <span className="text-sm text-brand-text-body">{feature}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
         {/* CTA */}
         <motion.div
