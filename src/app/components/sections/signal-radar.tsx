@@ -192,7 +192,7 @@ export function SignalRadar() {
           <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} cardCta={c.cardCta} onOpenPulse={openPulseEmbed} />
 
           {/* Social proof strip under cards */}
-          <div className="mt-8 pt-6 border-t border-brand-border/30">
+          <div className="mt-8 pt-6">
             <QuickScanTestimonials lang={language} />
           </div>
         </div>
@@ -624,7 +624,7 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
   const t = testimonials[idx];
 
   return (
-    <div className="border-t border-brand-border/40 pt-5">
+    <div className="pt-5">
       <div className="relative min-h-[100px] flex items-center">
         <button
           onClick={prev}
