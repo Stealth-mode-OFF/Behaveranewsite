@@ -360,6 +360,42 @@ export function SignalRadar() {
           <QuickScanTestimonials lang={language} />
         </motion.div>
 
+        {/* ═══════════ READY TO BUY CTA ═══════════ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl bg-gradient-to-br from-brand-primary via-[#3b2375] to-brand-background-dark p-8 sm:p-10 md:p-12 text-center shadow-lg"
+        >
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
+            {language === 'cz' ? 'Jsem ready. Chci to mít.' : language === 'de' ? 'Ich bin bereit. Jetzt kaufen.' : "I'm ready. Let's go."}
+          </h3>
+          <p className="text-sm sm:text-base text-white/80 max-w-xl mx-auto mb-6 leading-relaxed">
+            {language === 'cz'
+              ? 'Žádné další dema, žádné čekání. Objednejte Echo Pulse a začněte měřit ještě dnes.'
+              : language === 'de'
+              ? 'Keine weiteren Demos, kein Warten. Bestellen Sie Echo Pulse und starten Sie noch heute.'
+              : 'No more demos, no waiting. Order Echo Pulse and start measuring today.'}
+          </p>
+          <a
+            href="https://www.echopulse.cz/start"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2.5 h-14 px-10 rounded-xl bg-white text-brand-primary font-bold text-base sm:text-lg hover:bg-gray-50 transition-colors shadow-md hover:shadow-lg cursor-pointer"
+          >
+            {language === 'cz' ? 'Objednat a zaplatit' : language === 'de' ? 'Jetzt bestellen & bezahlen' : 'Order & pay now'}
+            <ArrowRight className="w-5 h-5" />
+          </a>
+          <p className="text-xs text-white/50 mt-4">
+            {language === 'cz'
+              ? 'Platba kartou · Aktivace do 24 h · Garance vrácení peněz 30 dní'
+              : language === 'de'
+              ? 'Kartenzahlung · Aktivierung in 24 Std. · 30 Tage Geld-zurück-Garantie'
+              : 'Card payment · Active within 24h · 30-day money-back guarantee'}
+          </p>
+        </motion.div>
+
       </div>
 
       {/* ═══════════ PULSE EMBED DIALOG ═══════════ */}
