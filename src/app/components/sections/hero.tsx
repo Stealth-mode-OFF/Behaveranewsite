@@ -26,8 +26,8 @@ export function Hero() {
       headline: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
       headlineHighlight: "",
       subtitle: "Echo Pulse sbírá zpětnou vazbu přes krátký AI chat jednou měsíčně. Výsledky vidíte okamžitě v dashboardu — podle týmů, témat i rizik. Přestaňte hádat. Začněte vědět.",
-      primaryCta: "Vyzkouším sám",
-      ctaMicro: "2 minuty · Zdarma · Bez závazků",
+      primaryCta: "Chci to",
+      ctaMicro: "2 minuty · Bez závazků",
       secondaryCta: "Rezervovat demo",
       socialProof: "50 000+ otestovaných lidí",
       trust: [
@@ -41,8 +41,8 @@ export function Hero() {
       headline: "Your best people are",
       headlineHighlight: "thinking about leaving.",
       subtitle: "Echo Pulse collects feedback through a short AI chat once a month. Results appear instantly in your dashboard — by team, topic, and risk. Stop guessing. Start knowing.",
-      primaryCta: "Try it yourself",
-      ctaMicro: "2 minutes · Free · No commitment",
+      primaryCta: "I want this",
+      ctaMicro: "2 minutes · No commitment",
       secondaryCta: "Book a demo",
       socialProof: "50,000+ people assessed",
       trust: [
@@ -56,8 +56,8 @@ export function Hero() {
       headline: "Ihre besten Leute denken",
       headlineHighlight: "über einen Wechsel nach.",
       subtitle: "Echo Pulse sammelt Feedback über einen kurzen AI-Chat einmal im Monat. Ergebnisse erscheinen sofort in Ihrem Dashboard — nach Team, Thema und Risiko. Hören Sie auf zu raten.",
-      primaryCta: "Selbst testen",
-      ctaMicro: "2 Min · Kostenlos · Unverbindlich",
+      primaryCta: "Das will ich",
+      ctaMicro: "2 Min · Unverbindlich",
       secondaryCta: "Demo buchen",
       socialProof: "50.000+ getestete Personen",
       trust: [
