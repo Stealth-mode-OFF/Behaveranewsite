@@ -537,7 +537,6 @@ export function OnboardingPage() {
     setValue,
     formState: { errors },
     getValues,
-    setValue,
   } = useForm<OnboardingFormData>({
     defaultValues: {
       companyName: draft?.form?.companyName ?? "",
