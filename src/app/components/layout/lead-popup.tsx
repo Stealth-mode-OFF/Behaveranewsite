@@ -23,7 +23,7 @@ export function LeadPopup() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   type LeadPopupFormData = { email: string; marketingConsent: boolean };
   const { register, handleSubmit, formState: { errors } } = useForm<LeadPopupFormData>({
     defaultValues: { marketingConsent: false }
@@ -97,7 +97,12 @@ export function LeadPopup() {
   const downloadEbook = () => {
     const link = document.createElement('a');
     link.href = '/ebooks/lide-odchazeji-z-dobrych-firem.pdf';
-    link.download = 'Lidé odcházejí i z dobrých firem.pdf';
+    const fileNames: Record<string, string> = {
+      cz: 'Lidé odcházejí i z dobrých firem.pdf',
+      en: 'People Leave Good Companies Too.pdf',
+      de: 'Menschen verlassen auch gute Firmen.pdf',
+    };
+    link.download = fileNames[language] || fileNames.en;
     link.style.display = 'none';
     document.body.appendChild(link);
     link.click();

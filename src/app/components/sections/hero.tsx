@@ -185,7 +185,7 @@ export function Hero() {
             <DeviceFrame type="macbook" className="w-full max-w-[500px] sm:max-w-[640px] md:max-w-[800px] lg:max-w-[960px] xl:max-w-[1100px] 2xl:max-w-[1200px] mx-auto">
               <AnimatedDashboardContent 
                 imageSrc={heroImage.src} 
-                imageAlt="Echo Pulse Dashboard - Risk signály a team analytics"
+                imageAlt={language === 'cz' ? "Echo Pulse Dashboard - Rizikové signály a týmová analytika" : language === 'de' ? "Echo Pulse Dashboard - Risikosignale und Team-Analytics" : "Echo Pulse Dashboard - Risk signals and team analytics"}
                 width={heroImage.width}
                 height={heroImage.height}
                 fetchPriority="high"

@@ -105,14 +105,14 @@ const copy: Record<string, TCopy> = {
     topicsTitle: "Themen, die aufdecken, was Mitarbeiter nicht laut sagen",
     topicsSubtitle: "Verg\u00fctung, Belastung, Kultur, Burnout-Risiko und mehr. Jedes Thema einzeln startbar.",
     topicCards: [
-      { key: "quickScan", name: "Team-Gesamtpuls", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht \u2014 auf einen Blick.", sampleQ: "\u201eWie zufrieden f\u00fchlst du dich aktuell bei der Arbeit?\u201c", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert \u2014 ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=en" },
-      { key: "pay", name: "Verg\u00fctungsfairness", desc: "Fairness, Motivation und Marktvergleich. 6 Fragen, die zeigen, ob Mitarbeiter wegen Geld gehen.", sampleQ: "\u201eEmpfandest du deine Verg\u00fctung als fair f\u00fcr die Arbeit, die du geleistet hast?\u201c", ceoInsight: "Erfahren Sie, ob Mitarbeiter wegen des Geldes gehen \u2014 oder wegen etwas, das g\u00fcnstiger zu l\u00f6sen ist.", link: PULSE_BASE + "pay?x_lang=en" },
-      { key: "perks", name: "Benefits-Zufriedenheit", desc: "Relevanz, tats\u00e4chliche Nutzung und was fehlt. 6 Fragen inkl. Verbesserungsvorschl\u00e4ge.", sampleQ: "\u201eHaben dir deine Benefits im letzten Monat zus\u00e4tzliche Energie gegeben?\u201c", ceoInsight: "H\u00f6ren Sie auf, f\u00fcr Benefits auszugeben, die niemand nutzt. Investieren Sie in das, was Mitarbeiter wirklich wollen.", link: PULSE_BASE + "perks?x_lang=en" },
-      { key: "tools", name: "Arbeitsbedingungen", desc: "Haben Mitarbeiter alles, was sie brauchen? Ausstattung, Support & Manager-Feedback. 6 Fragen.", sampleQ: "\u201eIch habe alles \u2014 Werkzeuge, Ausstattung und Unterst\u00fctzung \u2014 um meine Arbeit bestm\u00f6glich zu erledigen.\u201c", ceoInsight: "Oft reicht es, eine Kleinigkeit zu reparieren, um die Produktivit\u00e4t des ganzen Teams zu steigern.", link: PULSE_BASE + "tools?x_lang=en" },
-      { key: "workload", name: "Belastung & Kapazit\u00e4t", desc: "Balance zwischen Anforderungen, Kapazit\u00e4t und Priorit\u00e4ten. 6 Fragen, die \u00dcberlastung fr\u00fch erkennen.", sampleQ: "\u201eAuch bei unerwarteten \u00c4nderungen und Unterbrechungen schaffe ich meine t\u00e4glichen Aufgaben und Projekte.\u201c", ceoInsight: "\u00dcberlastete Mitarbeiter brennen nicht \u00fcber Nacht aus \u2014 aber die Signale zeigen sich Monate vorher.", link: PULSE_BASE + "workload?x_lang=en" },
-      { key: "recognition", name: "Anerkennung & Feedback", desc: "Wird gute Arbeit gesehen? Feedback, Wertsch\u00e4tzung und bevorzugte Formen. 6 Fragen.", sampleQ: "\u201eHat im letzten Monat jemand bemerkt, wenn dir etwas gelungen ist, und es anerkannt?\u201c", ceoInsight: "80\u00a0% der Mitarbeiter, die gehen, f\u00fchlten sich nicht genug wertgesch\u00e4tzt. Hier sehen Sie, wo es brennt.", link: PULSE_BASE + "recognition?x_lang=en" },
-      { key: "stress", name: "Stress & Burnout-Risiko", desc: "Chronischer Stress, Erholung und Burnout-Risiko. 6 Fragen zu Arbeitsdruck & Regeneration.", sampleQ: "\u201eWie oft belastet dich der Arbeitsdruck auch in deiner Freizeit?\u201c", ceoInsight: "Burnout kostet 2\u20133 Jahresgeh\u00e4lter pro Person. Wir zeigen die Signale, bevor es zu sp\u00e4t ist.", link: PULSE_BASE + "stress?x_lang=en" },
-      { key: "values", name: "Kultur & Werte", desc: "\u00dcbereinstimmung zwischen erkl\u00e4rten und gelebten Werten. 6 Fragen inkl. \u201eWas w\u00fcrden Sie einem Freund sagen?\u201c", sampleQ: "\u201eWenn ein Freund fragt, warum er bei uns arbeiten sollte \u2014 was sagst du ihm?\u201c", ceoInsight: "Erfahren Sie, ob Ihre Werte in der Praxis leben \u2014 oder nur am Poster in der K\u00fcche h\u00e4ngen.", link: PULSE_BASE + "values?x_lang=en" },
+      { key: "quickScan", name: "Team-Gesamtpuls", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht \u2014 auf einen Blick.", sampleQ: "\u201eWie zufrieden f\u00fchlst du dich aktuell bei der Arbeit?\u201c", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert \u2014 ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=de" },
+      { key: "pay", name: "Verg\u00fctungsfairness", desc: "Fairness, Motivation und Marktvergleich. 6 Fragen, die zeigen, ob Mitarbeiter wegen Geld gehen.", sampleQ: "\u201eEmpfandest du deine Verg\u00fctung als fair f\u00fcr die Arbeit, die du geleistet hast?\u201c", ceoInsight: "Erfahren Sie, ob Mitarbeiter wegen des Geldes gehen \u2014 oder wegen etwas, das g\u00fcnstiger zu l\u00f6sen ist.", link: PULSE_BASE + "pay?x_lang=de" },
+      { key: "perks", name: "Benefits-Zufriedenheit", desc: "Relevanz, tats\u00e4chliche Nutzung und was fehlt. 6 Fragen inkl. Verbesserungsvorschl\u00e4ge.", sampleQ: "\u201eHaben dir deine Benefits im letzten Monat zus\u00e4tzliche Energie gegeben?\u201c", ceoInsight: "H\u00f6ren Sie auf, f\u00fcr Benefits auszugeben, die niemand nutzt. Investieren Sie in das, was Mitarbeiter wirklich wollen.", link: PULSE_BASE + "perks?x_lang=de" },
+      { key: "tools", name: "Arbeitsbedingungen", desc: "Haben Mitarbeiter alles, was sie brauchen? Ausstattung, Support & Manager-Feedback. 6 Fragen.", sampleQ: "\u201eIch habe alles \u2014 Werkzeuge, Ausstattung und Unterst\u00fctzung \u2014 um meine Arbeit bestm\u00f6glich zu erledigen.\u201c", ceoInsight: "Oft reicht es, eine Kleinigkeit zu reparieren, um die Produktivit\u00e4t des ganzen Teams zu steigern.", link: PULSE_BASE + "tools?x_lang=de" },
+      { key: "workload", name: "Belastung & Kapazit\u00e4t", desc: "Balance zwischen Anforderungen, Kapazit\u00e4t und Priorit\u00e4ten. 6 Fragen, die \u00dcberlastung fr\u00fch erkennen.", sampleQ: "\u201eAuch bei unerwarteten \u00c4nderungen und Unterbrechungen schaffe ich meine t\u00e4glichen Aufgaben und Projekte.\u201c", ceoInsight: "\u00dcberlastete Mitarbeiter brennen nicht \u00fcber Nacht aus \u2014 aber die Signale zeigen sich Monate vorher.", link: PULSE_BASE + "workload?x_lang=de" },
+      { key: "recognition", name: "Anerkennung & Feedback", desc: "Wird gute Arbeit gesehen? Feedback, Wertsch\u00e4tzung und bevorzugte Formen. 6 Fragen.", sampleQ: "\u201eHat im letzten Monat jemand bemerkt, wenn dir etwas gelungen ist, und es anerkannt?\u201c", ceoInsight: "80\u00a0% der Mitarbeiter, die gehen, f\u00fchlten sich nicht genug wertgesch\u00e4tzt. Hier sehen Sie, wo es brennt.", link: PULSE_BASE + "recognition?x_lang=de" },
+      { key: "stress", name: "Stress & Burnout-Risiko", desc: "Chronischer Stress, Erholung und Burnout-Risiko. 6 Fragen zu Arbeitsdruck & Regeneration.", sampleQ: "\u201eWie oft belastet dich der Arbeitsdruck auch in deiner Freizeit?\u201c", ceoInsight: "Burnout kostet 2\u20133 Jahresgeh\u00e4lter pro Person. Wir zeigen die Signale, bevor es zu sp\u00e4t ist.", link: PULSE_BASE + "stress?x_lang=de" },
+      { key: "values", name: "Kultur & Werte", desc: "\u00dcbereinstimmung zwischen erkl\u00e4rten und gelebten Werten. 6 Fragen inkl. \u201eWas w\u00fcrden Sie einem Freund sagen?\u201c", sampleQ: "\u201eWenn ein Freund fragt, warum er bei uns arbeiten sollte \u2014 was sagst du ihm?\u201c", ceoInsight: "Erfahren Sie, ob Ihre Werte in der Praxis leben \u2014 oder nur am Poster in der K\u00fcche h\u00e4ngen.", link: PULSE_BASE + "values?x_lang=de" },
     ],
     chatLabel: "Beispielfrage",
     ceoLabel: "Warum Sie das wissen m\u00fcssen",
@@ -641,31 +641,45 @@ function TopicCarousel({
 
 type Testimonial = { name: string; role: string; company: string; quote: string };
 
-const testimonials: Testimonial[] = [
-  { name: "Dominik Hegedus", role: "CEO", company: "Expando", quote: "It took just a moment \u2014 and those few answers delivered exactly what we needed. No complicated reports, no endless spreadsheets \u2014 just clear, actionable insights." },
-  { name: "Ji\u0159\u00ed", role: "CEO", company: "logistick\u00e1 firma", quote: "Jsem nad\u0161en\u00fd! Jsem na pozici CEO od srpna. M\u00e1m d\u00e1t do po\u0159\u00e1dku celou firmu a pot\u0159ebuji rychle zjistit, co se kde d\u011bje. Tohle je pro m\u011b nesm\u00edrn\u011b cenn\u00e9!" },
-  { name: "Tereza M\u00fcllerov\u00e1", role: "COO", company: "StartupJobs", quote: "P\u0159ekvapilo m\u011b, kolik lid\u00ed se zapojilo. A i kdy\u017e na\u0161i l\u00edd\u0159i se sv\u00fdmi t\u00fdmy pravideln\u011b mluv\u00ed, v Pulsu se uk\u00e1zaly v\u011bci, kter\u00e9 jim lid\u00e9 do o\u010d\u00ed ne\u0159ekli." },
-  { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "I thought people are no longer engaged and gave up on us. I was surprised when I saw how engaged and invested our employees are. Moreover, without Behavera, we would\u2019ve kept treating symptoms instead of the real causes." },
-  { name: "Dana Kultov\u00e1", role: "COO", company: "klientsk\u00e1 firma", quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations." },
-  { name: "Ema Nov\u00e1kov\u00e1", role: "HR Manager", company: "Expando", quote: "D\u00edky Behave\u0159e l\u00edd\u0159i dostanou v\u00fdstupy z pr\u016fzkumu automaticky a to i s ak\u010dn\u00edmi doporu\u010den\u00edmi okam\u017eit\u011b a j\u00e1 tak u\u0161et\u0159\u00edm cel\u00fd t\u00fdden." },
-  { name: "Martina", role: "Mana\u017eerka telesales t\u00fdmu", company: "Teya", quote: "D\u00edky Echo Pulse m\u00e1m pravideln\u00fd feedback o tom, jestli je m\u016fj t\u00fdm v pohod\u011b. Hned vid\u00edm, kdy je t\u0159eba urgentn\u011b \u0159e\u0161it n\u011bjak\u00fd probl\u00e9m." },
-  { name: "J\u00e1n Pavl\u00edk", role: "Project Manager", company: "Expando", quote: "Behavera n\u00e1m uk\u00e1zala, \u017ee krom\u011b \u0161patn\u00e9 intern\u00ed komunikace m\u00e1me tak\u00e9 probl\u00e9my s efektivn\u00ed motivac\u00ed lid\u00ed. Hodn\u011b m\u011b to p\u0159ekvapilo." },
-];
+const testimonialsByLang: Record<string, Testimonial[]> = {
+  cz: [
+    { name: "Jiří", role: "CEO", company: "logistická firma", quote: "Jsem nadšený! Jsem na pozici CEO od srpna. Mám dát do pořádku celou firmu a potřebuji rychle zjistit, co se kde děje. Tohle je pro mě nesmírně cenné!" },
+    { name: "Tereza Müllerová", role: "COO", company: "StartupJobs", quote: "Překvapilo mě, kolik lidí se zapojilo. A i když naši lídři se svými týmy pravidelně mluví, v Pulsu se ukázaly věci, které jim lidé do očí neřekli." },
+    { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Díky Behaveře lídři dostanou výstupy z průzkumu automaticky a to i s akčními doporučeními okamžitě a já tak ušetřím celý týden." },
+    { name: "Martina", role: "Manažerka telesales týmu", company: "Teya", quote: "Díky Echo Pulse mám pravidelný feedback o tom, jestli je můj tým v pohodě. Hned vidím, kdy je třeba urgentně řešit nějaký problém." },
+    { name: "Ján Pavlík", role: "Project Manager", company: "Expando", quote: "Behavera nám ukázala, že kromě špatné interní komunikace máme také problémy s efektivní motivací lidí. Hodně mě to překvapilo." },
+  ],
+  en: [
+    { name: "Dominik Hegedus", role: "CEO", company: "Expando", quote: "It took just a moment — and those few answers delivered exactly what we needed. No complicated reports, no endless spreadsheets — just clear, actionable insights." },
+    { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "I thought people are no longer engaged and gave up on us. I was surprised when I saw how engaged and invested our employees are. Moreover, without Behavera, we would’ve kept treating symptoms instead of the real causes." },
+    { name: "Dana Kultová", role: "COO", company: "client company", quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations." },
+    { name: "Tereza Müllerová", role: "COO", company: "StartupJobs", quote: "I was surprised how many people participated. Even though our leaders talk to their teams regularly, Pulse revealed things people wouldn’t say to their face." },
+    { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Thanks to Behavera, leaders get survey results automatically — complete with actionable recommendations — and I save an entire week." },
+  ],
+  de: [
+    { name: "Dominik Hegedus", role: "CEO", company: "Expando", quote: "Es dauerte nur einen Moment — und diese wenigen Antworten lieferten genau das, was wir brauchten. Keine komplizierten Berichte, keine endlosen Tabellen — nur klare, umsetzbare Erkenntnisse." },
+    { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "Ich dachte, die Leute sind nicht mehr engagiert und haben uns aufgegeben. Ich war überrascht, wie engagiert und investiert unsere Mitarbeiter tatsächlich sind. Ohne Behavera hätten wir weiter Symptome behandelt statt die wahren Ursachen." },
+    { name: "Dana Kultová", role: "COO", company: "Kundenunternehmen", quote: "Die Ergebnisse bestätigten im Wesentlichen, was ich vermutet hatte. Was mich wirklich umgehauen hat, war das Playbook voller praktischer Schritt-für-Schritt-Empfehlungen." },
+    { name: "Tereza Müllerová", role: "COO", company: "StartupJobs", quote: "Ich war überrascht, wie viele Mitarbeiter teilgenommen haben. Obwohl unsere Führungskräfte regelmäßig mit ihren Teams sprechen, hat Pulse Dinge aufgedeckt, die man ihnen nicht ins Gesicht sagt." },
+    { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Dank Behavera erhalten Führungskräfte die Umfrageergebnisse automatisch — inklusive sofort umsetzbarer Empfehlungen — und ich spare eine ganze Woche." },
+  ],
+};
 
 function QuickScanTestimonials({ lang }: { lang: string }) {
+  const items = testimonialsByLang[lang] || testimonialsByLang.en;
   const [idx, setIdx] = useState(0);
 
   const next = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
-    setIdx((i) => (i + 1) % testimonials.length);
+    setIdx((i) => (i + 1) % items.length);
   }, []);
 
   const prev = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
-    setIdx((i) => (i - 1 + testimonials.length) % testimonials.length);
+    setIdx((i) => (i - 1 + items.length) % items.length);
   }, []);
 
-  const t = testimonials[idx];
+  const t = items[idx];
 
   return (
     <div className="pt-5">
@@ -703,7 +717,7 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
         </button>
       </div>
       <div className="flex items-center justify-center gap-1 mt-3">
-        {testimonials.map((_, i) => (
+        {items.map((_, i) => (
           <button
             key={i}
             onClick={(e) => { e.stopPropagation(); setIdx(i); }}
