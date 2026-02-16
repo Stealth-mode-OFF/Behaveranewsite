@@ -12,7 +12,8 @@ import {
   Brain, 
   BarChart3, 
   Users,
-  ArrowLeft 
+  ArrowLeft,
+  MessageSquare 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -36,6 +37,22 @@ const translations = {
     improvementBadge: 'Vylepšení',
     fixBadge: 'Opravy',
     entries: [
+      {
+        version: '3.0.0',
+        date: 'Leden 2026',
+        type: 'major',
+        title: 'AI Chatbot — konverzační zpětná vazba',
+        description: 'Zaměstnanci už nevyplňují formuláře. Místo toho si povídají s AI chatbotem, který rozumí kontextu jejich týmu, přizpůsobuje otázky v reálném čase a vytěží hlubší a upřímnější odpovědi než jakýkoli dotazník.',
+        changes: [
+          'Konverzační AI místo statických formulářů — 80 %+ návratnost',
+          'Kontextově adaptivní otázky navržené behaviorálními psychology',
+          'Real-time analýza sentimentu a automatická detekce rizikových signálů',
+          'Každý zaměstnanec komunikuje ve svém jazyce — CZ, EN, DE',
+          'Odpovědi zpracovány anonymně s end-to-end šifrováním',
+          'Výsledky okamžitě v dashboardu s AI-generovanými doporučeními',
+        ],
+        icon: <MessageSquare className="w-5 h-5" />,
+      },
       {
         version: '2.4.0',
         date: 'Červen 2025',
@@ -132,6 +149,22 @@ const translations = {
     fixBadge: 'Fixes',
     entries: [
       {
+        version: '3.0.0',
+        date: 'January 2026',
+        type: 'major',
+        title: 'AI Chatbot — Conversational Feedback',
+        description: 'Employees no longer fill out forms. Instead, they talk to an AI chatbot that understands their team context, adapts questions in real time, and extracts deeper, more honest answers than any survey ever could.',
+        changes: [
+          'Conversational AI replaces static forms — 80%+ completion rate',
+          'Context-adaptive questions designed by behavioral psychologists',
+          'Real-time sentiment analysis and automatic risk signal detection',
+          'Each employee communicates in their language — CZ, EN, DE',
+          'Responses processed anonymously with end-to-end encryption',
+          'Results instantly in dashboard with AI-generated action recommendations',
+        ],
+        icon: <MessageSquare className="w-5 h-5" />,
+      },
+      {
         version: '2.4.0',
         date: 'June 2025',
         type: 'major',
@@ -227,8 +260,24 @@ const translations = {
     fixBadge: 'Korrekturen',
     entries: [
       {
+        version: '3.0.0',
+        date: 'Januar 2026',
+        type: 'major',
+        title: 'AI Chatbot — Konversationelles Feedback',
+        description: 'Mitarbeiter füllen keine Formulare mehr aus. Stattdessen sprechen sie mit einem KI-Chatbot, der den Kontext ihres Teams versteht, Fragen in Echtzeit anpasst und tiefere, ehrlichere Antworten liefert als jede Umfrage.',
+        changes: [
+          'Konversationelle KI ersetzt statische Formulare — 80 %+ Rücklaufquote',
+          'Kontextadaptive Fragen, entwickelt von Verhaltenspsychologen',
+          'Echtzeit-Sentimentanalyse und automatische Risikosignal-Erkennung',
+          'Jeder Mitarbeiter kommuniziert in seiner Sprache — CZ, EN, DE',
+          'Antworten anonym verarbeitet mit Ende-zu-Ende-Verschlüsselung',
+          'Ergebnisse sofort im Dashboard mit KI-generierten Handlungsempfehlungen',
+        ],
+        icon: <MessageSquare className="w-5 h-5" />,
+      },
+      {
         version: '2.4.0',
-        date: 'Juni 2025',
+        date: 'Januar 2025',
         type: 'major',
         title: 'AI Coaching Companion',
         description: 'Neuer KI-Assistent für personalisiertes Manager-Coaching basierend auf Verhaltensdaten.',

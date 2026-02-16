@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-02-16
+- Removed content redundancy across landing page sections (IntegrationsShowcase, StatsBar strip).
+- Unified all CTAs to consistent trial/order external links.
+- Reordered sections for optimal conversion flow (DashboardPreview moved after SignalRadar).
+- Comparison + Testimonials now displayed side-by-side on desktop.
+
 ## 2026-02-05
 - Standardized project structure into `layout/`, `sections/`, and `ui/` for clearer ownership.
 - Removed duplicate controls and normalized section spacing with shared tokens.
