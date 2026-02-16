@@ -1,20 +1,20 @@
 :root {
-  /* BRAND COLOR SYSTEM (Logic: Bold Tech Indigo) */
+  /* BRAND COLOR SYSTEM (Logic: Vivid Purple / Violet) */
   
-  /* Primary: Deep confident indigo — authority, not mysticism */
-  --brand-primary: #3B28CC;       /* Bold saturated indigo */
-  --brand-primary-hover: #2E1FA3; /* Darker for interactions */
-  --brand-primary-active: #221780;
+  /* Primary: Confident vibrant purple */
+  --brand-primary: #7C3AED;       /* Tailwind violet-600 */
+  --brand-primary-hover: #6D28D9; /* violet-700 for interactions */
+  --brand-primary-active: #5B21B6;
 
-  /* Accent: Bright electric blue-violet — energy, not ethereal */
-  --brand-accent: #635BFF;        /* Stripe-inspired vivid indigo */
-  --brand-accent-hover: #524AE8;  /* Saturated hover */
+  /* Accent: Bright lighter violet — energy, approachable */
+  --brand-accent: #A78BFA;        /* Violet-400 — lighter complement */
+  --brand-accent-hover: #8B5CF6;  /* Violet-500 hover */
 
-  /* Backgrounds — ZERO purple fog, clean neutral */
+  /* Backgrounds — subtle purple warmth */
   --brand-background-primary: #FFFFFF;
-  --brand-background-secondary: #F7F7F8; /* Pure neutral light grey */
-  --brand-background-muted: #EEEFF2;     /* Clean cool grey */
-  --brand-background-dark: #0F0F1A;      /* Near-black, barely tinted */
+  --brand-background-secondary: #FAF8FF; /* Faintest purple tint */
+  --brand-background-muted: #F0EDFF;     /* Light purple grey */
+  --brand-background-dark: #0F0A1E;      /* Deep purple-black */
 
   /* Text Colors — near-black, minimal tinting */
   --brand-text-primary: #111118;   /* Near-black for headings */
@@ -31,10 +31,10 @@
   --brand-text-on-dark: #FFFFFF;   /* White - Body text on dark (14.1:1) - FIXED for readability */
   --brand-text-muted-on-dark: rgba(255, 255, 255, 0.85); /* White/85 - Metadata on dark (12:1) - FIXED */
 
-  /* Borders — clean, no purple tint */
-  --brand-border: #E2E2E8;         /* Neutral grey border */
-  --brand-border-strong: #CCCCD4;  /* Medium grey border */
-  --brand-border-dark: #2A2A4A;    /* Border on dark backgrounds */
+  /* Borders — subtle purple warmth */
+  --brand-border: #E4E0F0;         /* Light purple-grey border */
+  --brand-border-strong: #D0CBE0;  /* Medium purple-grey border */
+  --brand-border-dark: #2E2650;    /* Border on dark backgrounds */
 
   /* Functional */
   --brand-success: #059669;        /* Emerald 600 */
@@ -90,7 +90,7 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 20, 0.06);
   --shadow-md: 0 4px 12px rgba(0, 0, 20, 0.08);
   --shadow-lg: 0 10px 25px rgba(0, 0, 20, 0.12);
-  --shadow-glow: 0 0 20px rgba(99, 91, 255, 0.45); /* Glow for accents */
+  --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.45); /* Glow for accents */
 
   /* MOTION SYSTEM - Apple-style Spring Animations */
   --motion-fast: 150ms ease-out;
@@ -118,14 +118,14 @@
   
   /* Button Colors - System Command Palette */
   --button-primary-bg: var(--brand-primary);
-  --button-primary-bg-hover: #3020B0;  /* Subtle lift */
-  --button-primary-border: rgba(99, 91, 255, 0.2);
+  --button-primary-bg-hover: #6D28D9;  /* Subtle lift */
+  --button-primary-border: rgba(124, 58, 237, 0.2);
   
   --button-secondary-bg: transparent;
-  --button-secondary-border: rgba(59, 40, 204, 0.25);
-  --button-secondary-border-hover: rgba(59, 40, 204, 0.45);
+  --button-secondary-border: rgba(124, 58, 237, 0.25);
+  --button-secondary-border-hover: rgba(124, 58, 237, 0.45);
   
-  --button-ghost-bg-hover: rgba(59, 40, 204, 0.06);
+  --button-ghost-bg-hover: rgba(124, 58, 237, 0.06);
   
   /* Button Shadows */
   --button-shadow: 0 1px 2px rgba(0, 0, 20, 0.08);
@@ -175,7 +175,7 @@
   --form-field-ring-width: 3px;
   --form-field-ring-color: var(--brand-primary);
   --form-field-ring-opacity: 0.15;    /* Subtle but visible */
-  --form-field-ring: 0 0 0 var(--form-field-ring-width) rgba(59, 40, 204, var(--form-field-ring-opacity));
+  --form-field-ring: 0 0 0 var(--form-field-ring-width) rgba(124, 58, 237, var(--form-field-ring-opacity));
   
   /* Form Typography - Consistent Hierarchy */
   --form-label-size: 14px;
@@ -575,10 +575,10 @@
 /* Glow Pulse for focus states */
 @keyframes glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(99, 91, 255, 0.3);
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
   }
   50% {
-    box-shadow: 0 0 35px rgba(99, 91, 255, 0.5);
+    box-shadow: 0 0 35px rgba(124, 58, 237, 0.5);
   }
 }
 
@@ -676,7 +676,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(99, 91, 255, 0) 0%, rgba(99, 91, 255, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0) 0%, rgba(124, 58, 237, 0.08) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -686,7 +686,7 @@
   transform: translateY(-6px) scale(1.01);
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 20, 0.15),
-    0 0 0 1px rgba(99, 91, 255, 0.15);
+    0 0 0 1px rgba(124, 58, 237, 0.15);
 }
 
 .card-premium:hover::before {
@@ -705,7 +705,7 @@
   background: rgba(15, 15, 26, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(99, 91, 255, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.15);
 }
 
 /* Scroll Progress Indicator */

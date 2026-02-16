@@ -62,7 +62,7 @@ export function CtaSection() {
   const c = copy[language] || copy.en;
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#1a1540] to-[#0a0a14]">
+    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#2D1B69] to-[#120B25]">
       
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
