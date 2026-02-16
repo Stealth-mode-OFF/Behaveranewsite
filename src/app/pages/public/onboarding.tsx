@@ -21,6 +21,13 @@ import {
   LayoutDashboard,
   Lock,
   MapPin,
+  PartyPopper,
+  Gift,
+  Clock,
+  Phone,
+  Star,
+  Heart,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -61,6 +68,80 @@ const STEPS = [
   { id: "teams", icon: Users },
   { id: "confirm", icon: CreditCard },
 ] as const;
+
+/* ─── Motivational step micro-copy ─── */
+const stepMotivation = {
+  cz: [
+    "Skvělý start! 🎯",
+    "Jste na dobré cestě! 🚀",
+    "Skoro hotovo! 💪",
+    "Poslední krok! 🎉",
+  ],
+  en: [
+    "Great start! 🎯",
+    "You're on track! 🚀",
+    "Almost done! 💪",
+    "Final step! 🎉",
+  ],
+  de: [
+    "Toller Start! 🎯",
+    "Sie sind auf Kurs! 🚀",
+    "Fast fertig! 💪",
+    "Letzter Schritt! 🎉",
+  ],
+};
+
+/* ─── Confetti component ─── */
+function Confetti() {
+  const colors = ['#7C3AED', '#F59E0B', '#10B981', '#3B82F6', '#EC4899', '#8B5CF6', '#F97316'];
+  const particles = useMemo(() => 
+    Array.from({ length: 60 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      delay: Math.random() * 0.8,
+      duration: 2 + Math.random() * 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      size: 4 + Math.random() * 8,
+      shape: Math.random() > 0.5 ? 'circle' : 'rect',
+    })),
+  []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          initial={{ 
+            x: `${p.x}vw`, 
+            y: -20, 
+            rotate: 0, 
+            opacity: 1,
+            scale: 0,
+          }}
+          animate={{ 
+            y: '110vh', 
+            rotate: p.rotation + 720, 
+            opacity: [1, 1, 0.8, 0],
+            scale: [0, 1.2, 1, 0.5],
+          }}
+          transition={{ 
+            duration: p.duration, 
+            delay: p.delay,
+            ease: 'easeOut',
+          }}
+          style={{ 
+            position: 'absolute',
+            width: p.size,
+            height: p.shape === 'circle' ? p.size : p.size * 0.6,
+            backgroundColor: p.color,
+            borderRadius: p.shape === 'circle' ? '50%' : '2px',
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 /* ─── Google / Microsoft SVG logos ─── */
 const GoogleLogo = () => (
@@ -162,9 +243,17 @@ const copy = {
     privacyLink: "Ochranou osobních údajů",
     guarantee: "30denní garance vrácení peněz. Bez otázek.",
     submit: "Vytvořit účet",
-    successTitle: "Účet vytvořen!",
-    successSubtitle: "Pozvánku a instrukce jsme odeslali na email administrátora. Do hodiny se ozveme a provedeme vás úvodním nastavením.",
+    successTitle: "Máte to! 🎉",
+    successSubtitle: "Váš Echo Pulse účet je připravený. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
+    successTimeline: [
+      { icon: "mail", title: "Pozvánka odeslána", desc: "Admin obdrží email s přístupovými údaji." },
+      { icon: "phone", title: "Ozveme se do 1h", desc: "Provedeme vás úvodním nastavením." },
+      { icon: "rocket", title: "Spuštění do 24h", desc: "První pulz poběží ještě dnes nebo zítra." },
+      { icon: "sparkles", title: "Data do 7 dní", desc: "První insights a doporučení pro váš tým." },
+    ],
+    successQuote: "\"Nejlepší rozhodnutí za posledních 12 měsíců.\"",
+    successQuoteAuthor: "— HR ředitelka, 200+ zaměstnanců",
     next: "Pokračovat",
     back: "Zpět",
     required: "Povinné pole",
@@ -236,9 +325,17 @@ const copy = {
     privacyLink: "Privacy Policy",
     guarantee: "30-day money-back guarantee. No questions asked.",
     submit: "Create account",
-    successTitle: "Account created!",
-    successSubtitle: "We've sent an invite and instructions to the admin email. We'll reach out within an hour to walk you through initial setup.",
+    successTitle: "You're in! 🎉",
+    successSubtitle: "Your Echo Pulse account is ready. Here's what happens next:",
     successCta: "Back to homepage",
+    successTimeline: [
+      { icon: "mail", title: "Invite sent", desc: "Admin will receive an email with access credentials." },
+      { icon: "phone", title: "We'll call within 1h", desc: "We'll walk you through the initial setup." },
+      { icon: "rocket", title: "Live within 24h", desc: "First pulse goes out today or tomorrow." },
+      { icon: "sparkles", title: "Insights in 7 days", desc: "First recommendations for your team." },
+    ],
+    successQuote: "\"Best decision we made in the last 12 months.\"",
+    successQuoteAuthor: "— HR Director, 200+ employees",
     next: "Continue",
     back: "Back",
     required: "Required",
@@ -310,9 +407,17 @@ const copy = {
     privacyLink: "Datenschutzerklärung",
     guarantee: "30 Tage Geld-zurück-Garantie. Ohne Fragen.",
     submit: "Konto erstellen",
-    successTitle: "Konto erstellt!",
-    successSubtitle: "Wir haben eine Einladung und Anleitung an die Admin-E-Mail gesendet. Innerhalb einer Stunde melden wir uns.",
+    successTitle: "Geschafft! 🎉",
+    successSubtitle: "Ihr Echo Pulse Konto ist bereit. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
+    successTimeline: [
+      { icon: "mail", title: "Einladung versendet", desc: "Admin erhält eine E-Mail mit Zugangsdaten." },
+      { icon: "phone", title: "Anruf innerhalb 1h", desc: "Wir führen Sie durch die Ersteinrichtung." },
+      { icon: "rocket", title: "Live in 24h", desc: "Erste Pulsmessung läuft heute oder morgen." },
+      { icon: "sparkles", title: "Insights in 7 Tagen", desc: "Erste Empfehlungen für Ihr Team." },
+    ],
+    successQuote: "\"Die beste Entscheidung der letzten 12 Monate.\"",
+    successQuoteAuthor: "— HR-Direktorin, 200+ Mitarbeitende",
     next: "Weiter",
     back: "Zurück",
     required: "Pflichtfeld",
@@ -565,41 +670,149 @@ export function OnboardingPage() {
 
   /* ─── Success screen ─── */
   if (isSuccess) {
+    const timelineIcons: Record<string, React.ReactNode> = {
+      mail: <Mail className="w-4 h-4" />,
+      phone: <Phone className="w-4 h-4" />,
+      rocket: <Rocket className="w-4 h-4" />,
+      sparkles: <Sparkles className="w-4 h-4" />,
+    };
+    
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#F8F6FF] via-white to-[#F0EBFF] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-[#F8F6FF] via-white to-[#F0EBFF] flex items-center justify-center p-4 relative">
+        <Confetti />
+        
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-lg w-full text-center"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-lg w-full"
         >
-          <div className="w-20 h-20 mx-auto mb-8 bg-brand-success/10 rounded-full flex items-center justify-center">
+          {/* Celebration header */}
+          <div className="text-center mb-8">
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+              initial={{ scale: 0, rotate: -20 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 12 }}
+              className="w-24 h-24 mx-auto mb-6 relative"
             >
-              <Rocket className="w-10 h-10 text-brand-success" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-success/20 to-brand-primary/10 rounded-3xl rotate-6" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-success/10 to-brand-accent/10 rounded-3xl -rotate-3" />
+              <div className="relative w-full h-full bg-white rounded-3xl shadow-xl shadow-brand-success/20 flex items-center justify-center border border-brand-success/20">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: [0, 1.3, 1] }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
+                  <PartyPopper className="w-10 h-10 text-brand-success" />
+                </motion.div>
+              </div>
+             {/* Floating sparkles */}
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: [0, 1, 0], scale: [0, 1, 0], y: [-10, -30], x: [0, (i - 1) * 30] }}
+                  transition={{ delay: 0.8 + i * 0.15, duration: 1.2, repeat: Infinity, repeatDelay: 2 }}
+                  className="absolute top-0"
+                  style={{ left: `${30 + i * 20}%` }}
+                >
+                  <Star className="w-4 h-4 text-brand-warning fill-brand-warning" />
+                </motion.div>
+              ))}
             </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-3 font-[var(--font-display)]"
+            >
+              {txt.successTitle}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-brand-text-muted text-[15px] leading-relaxed"
+            >
+              {txt.successSubtitle}
+            </motion.p>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 font-[var(--font-display)]">
-            {txt.successTitle}
-          </h1>
-          <p className="text-brand-text-muted text-[16px] leading-relaxed mb-10 max-w-md mx-auto">
-            {txt.successSubtitle}
-          </p>
-          <Link to="/">
-            <Button size="lg" className="h-12 px-8 text-[15px] font-semibold">
-              {txt.successCta}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+
+          {/* Timeline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="bg-white rounded-2xl shadow-xl shadow-brand-primary/[0.05] border border-brand-border/50 p-6 mb-6 space-y-0"
+          >
+            {(txt.successTimeline || []).map((step: { icon: string; title: string; desc: string }, i: number) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6 + i * 0.12 }}
+                className="flex items-start gap-4 relative"
+              >
+                {/* Vertical line */}
+                {i < (txt.successTimeline?.length || 4) - 1 && (
+                  <div className="absolute left-[19px] top-10 bottom-0 w-[2px] bg-gradient-to-b from-brand-primary/20 to-brand-primary/5" />
+                )}
+                {/* Icon dot */}
+                <div className={cn(
+                  "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 relative z-10",
+                  i === 0 ? "bg-brand-success/10 text-brand-success" :
+                  i === 1 ? "bg-brand-primary/10 text-brand-primary" :
+                  i === 2 ? "bg-brand-warning/10 text-brand-warning" :
+                  "bg-brand-accent/10 text-brand-accent"
+                )}>
+                  {timelineIcons[step.icon] || <Check className="w-4 h-4" />}
+                </div>
+                <div className={cn("pb-5", i === (txt.successTimeline?.length || 4) - 1 && "pb-0")}>
+                  <p className="text-[14px] font-bold text-brand-text-primary">{step.title}</p>
+                  <p className="text-[12px] text-brand-text-muted mt-0.5">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          {/* Social proof quote */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.0 }}
+            className="text-center mb-8 px-4"
+          >
+            <p className="text-[14px] italic text-brand-text-secondary">
+              {txt.successQuote}
+            </p>
+            <p className="text-[12px] text-brand-text-muted mt-1">
+              {txt.successQuoteAuthor}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1 }}
+            className="text-center"
+          >
+            <Link to="/">
+              <Button size="lg" className="h-13 px-10 text-[15px] font-bold shadow-lg shadow-brand-primary/20 group">
+                <Heart className="w-4 h-4 mr-2 group-hover:animate-pulse" />
+                {txt.successCta}
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     );
   }
 
   const StepIcon = STEPS[currentStep].icon;
+  const motivation = (stepMotivation[language as keyof typeof stepMotivation] || stepMotivation.en);
+  const progressPercent = Math.round(((currentStep + 1) / STEPS.length) * 100);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F8F6FF] via-white to-[#F0EBFF]">
@@ -612,10 +825,24 @@ export function OnboardingPage() {
           >
             Echo Pulse
           </Link>
-          <div className="flex items-center gap-2 text-[12px] text-brand-text-muted">
-            <ShieldCheck className="w-3.5 h-3.5 text-brand-success" />
-            <span>SSL · GDPR · ISO ready</span>
+          <div className="flex items-center gap-3">
+            <span className="text-[12px] font-bold text-brand-primary bg-brand-primary/[0.08] px-2.5 py-1 rounded-full">
+              {progressPercent}%
+            </span>
+            <div className="flex items-center gap-2 text-[12px] text-brand-text-muted">
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-success" />
+              <span className="hidden sm:inline">SSL · GDPR · ISO ready</span>
+            </div>
           </div>
+        </div>
+        {/* Progress bar */}
+        <div className="h-1 bg-brand-border/30">
+          <motion.div
+            className="h-full bg-gradient-to-r from-brand-primary to-brand-accent"
+            initial={{ width: 0 }}
+            animate={{ width: `${progressPercent}%` }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          />
         </div>
       </header>
 
@@ -625,9 +852,21 @@ export function OnboardingPage() {
           <h1 className="text-2xl md:text-3xl font-bold text-brand-text-primary tracking-tight font-[var(--font-display)] mb-2">
             {txt.pageTitle}
           </h1>
-          <p className="text-brand-text-muted text-[14px]">
+          <p className="text-brand-text-muted text-[14px] mb-3">
             {txt.pageSubtitle}
           </p>
+          {/* Motivational micro-copy */}
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={currentStep}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              className="inline-block text-[13px] font-semibold text-brand-primary"
+            >
+              {motivation[currentStep]}
+            </motion.span>
+          </AnimatePresence>
         </div>
 
         {/* ─── Step indicator ─── */}
@@ -662,7 +901,7 @@ export function OnboardingPage() {
                   >
                     <div
                       className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2",
+                        "w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border-2 relative",
                         isCompleted
                           ? "bg-brand-primary border-brand-primary text-white"
                           : isCurrent
@@ -670,8 +909,22 @@ export function OnboardingPage() {
                             : "bg-white border-brand-border text-brand-text-muted"
                       )}
                     >
+                      {/* Pulse ring on current step */}
+                      {isCurrent && (
+                        <motion.div
+                          className="absolute inset-0 rounded-full border-2 border-brand-primary/40"
+                          animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                      )}
                       {isCompleted ? (
-                        <Check className="w-4 h-4" strokeWidth={3} />
+                        <motion.div
+                          initial={{ scale: 0, rotate: -45 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                        >
+                          <Check className="w-4 h-4" strokeWidth={3} />
+                        </motion.div>
                       ) : (
                         <Icon className="w-4 h-4" />
                       )}
@@ -699,12 +952,23 @@ export function OnboardingPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="bg-white rounded-2xl shadow-xl shadow-brand-primary/[0.04] border border-brand-border/50 overflow-hidden">
             {/* Step header */}
-            <div className="px-6 sm:px-8 pt-7 pb-5 border-b border-brand-border/40 bg-gradient-to-r from-brand-background-secondary/50 to-transparent">
+            <div className="px-6 sm:px-8 pt-7 pb-5 border-b border-brand-border/40 bg-gradient-to-r from-brand-background-secondary/50 via-transparent to-brand-primary/[0.02]">
               <div className="flex items-center gap-3 mb-1">
-                <div className="w-8 h-8 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center">
+                <motion.div
+                  key={currentStep}
+                  initial={{ scale: 0.5, rotate: -15, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-primary/15 to-brand-primary/5 text-brand-primary flex items-center justify-center"
+                >
                   <StepIcon className="w-4 h-4" />
-                </div>
-                <h2 className="text-lg font-bold text-brand-text-primary">
+                </motion.div>
+                <motion.h2
+                  key={`title-${currentStep}`}
+                  initial={{ opacity: 0, x: 10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-lg font-bold text-brand-text-primary"
+                >
                   {currentStep === 0
                     ? txt.s0Title
                     : currentStep === 1
@@ -712,9 +976,9 @@ export function OnboardingPage() {
                       : currentStep === 2
                         ? txt.s2Title
                         : txt.s3Title}
-                </h2>
+                </motion.h2>
               </div>
-              <p className="text-[13px] text-brand-text-muted ml-11">
+              <p className="text-[13px] text-brand-text-muted ml-12">
                 {currentStep === 0
                   ? txt.s0Subtitle
                   : currentStep === 1
@@ -1168,62 +1432,84 @@ export function OnboardingPage() {
             {/* ─── Footer / Navigation ─── */}
             <div className="px-6 sm:px-8 py-5 border-t border-brand-border/40 bg-brand-background-secondary/30 flex items-center justify-between">
               {currentStep > 0 ? (
-                <button
+                <motion.button
                   type="button"
                   onClick={goBack}
-                  className="flex items-center gap-1.5 text-[13px] font-semibold text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                  whileHover={{ x: -3 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center gap-2 text-[13px] font-semibold text-brand-text-muted hover:text-brand-text-primary transition-colors px-4 py-2.5 rounded-xl hover:bg-brand-background-muted"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   {txt.back}
-                </button>
+                </motion.button>
               ) : (
                 <div />
               )}
 
               {currentStep < STEPS.length - 1 ? (
-                <Button
-                  type="button"
-                  onClick={goNext}
-                  className="h-11 px-6 text-[14px] font-semibold"
-                >
-                  {txt.next}
-                  <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    type="button"
+                    onClick={goNext}
+                    className="h-12 px-8 text-[14px] font-bold shadow-lg shadow-brand-primary/20 hover:shadow-xl hover:shadow-brand-primary/30 transition-shadow group"
+                  >
+                    {txt.next}
+                    <motion.span
+                      className="inline-flex ml-1.5"
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </motion.span>
+                  </Button>
+                </motion.div>
               ) : (
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="h-11 px-8 text-[14px] font-semibold"
-                >
-                  {isSubmitting ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <>
-                      {txt.submit}
-                      <ArrowRight className="w-4 h-4 ml-1.5" />
-                    </>
-                  )}
-                </Button>
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="h-12 px-10 text-[15px] font-bold shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/35 transition-shadow bg-gradient-to-r from-brand-primary to-brand-primary-hover"
+                  >
+                    {isSubmitting ? (
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                    ) : (
+                      <>
+                        <Rocket className="w-4 h-4 mr-2" />
+                        {txt.submit}
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
               )}
             </div>
           </div>
         </form>
 
         {/* ─── Bottom trust strip ─── */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-[12px] text-brand-text-muted">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-6 text-[12px] text-brand-text-muted"
+        >
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-brand-success" />
             <span>GDPR compliant</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-brand-warning" />
+            <Gift className="w-3.5 h-3.5 text-brand-warning" />
             <span>{txt.guarantee}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Lock className="w-3.5 h-3.5 text-brand-primary" />
+            <span>256-bit SSL</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Mail className="w-3.5 h-3.5 text-brand-primary" />
             <span>hello@behavera.com</span>
           </div>
-        </div>
+        </motion.div>
       </main>
     </div>
   );
@@ -1449,8 +1735,12 @@ function SummaryCard({
   sub: string;
 }) {
   return (
-    <div className="rounded-xl border border-brand-border/50 bg-white p-4 flex items-start gap-3">
-      <div className="w-8 h-8 rounded-lg bg-brand-primary/[0.08] text-brand-primary flex items-center justify-center shrink-0">
+    <motion.div
+      whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}
+      transition={{ duration: 0.2 }}
+      className="rounded-xl border border-brand-border/50 bg-white p-4 flex items-start gap-3 cursor-default"
+    >
+      <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 text-brand-primary flex items-center justify-center shrink-0">
         {icon}
       </div>
       <div className="min-w-0">
@@ -1462,6 +1752,6 @@ function SummaryCard({
         </p>
         <p className="text-[12px] text-brand-text-muted truncate">{sub}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
