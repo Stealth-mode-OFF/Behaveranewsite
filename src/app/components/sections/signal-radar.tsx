@@ -61,8 +61,8 @@ const copy: Record<string, TCopy> = {
       { title: "2min AI konverzace", desc: "Chatbot pokládá ověřené otázky navrženými psychology. Přirozeně, jako rozhovor s kolegou." },
       { title: "Výsledky v dashboardu", desc: "Okamžitý přehled, trendy v čase, AI doporučení k akci." },
     ],
-    topicsTitle: "8 rozhovorů, které odhalí, co lidé neřeknou nahlas",
-    topicsSubtitle: "Každý set je krátká AI konverzace na jedno téma. Otázky jsou ověřeny behaviorálními psychology a lidé na ně reálně a rádi odpovídají.",
+    topicsTitle: "Pokrýváme všechny klíčové oblasti — a stále přidáváme další",
+    topicsSubtitle: "Každé téma je krátká AI konverzace ověřená behaviorálními psychology na 50 000+ respondentech. Neustále vylepšujeme a rozšiřujeme — aby vám nic podstatného neuniklo.",
     topicCards: [
       { key: "quickScan", name: "Celkový pulse týmu", desc: "Celkový pulse vašeho týmu v 5 otázkách. Spokojenost, bariéry i to, co lidi baví — rázem máte obrázek, kde začít.", sampleQ: "\"Jak spokojeně se v poslední době cítíš v práci?\"", ceoInsight: "Okamžitě vidíte, jestli se nálada ve firmě zlepšuje nebo zhoršuje — bez čekání na kvartální report.", link: PULSE_BASE + "initial?x_lang=cs" },
       { key: "pay", name: "Férovost odměn", desc: "Férovost odměn, motivace a srovnání s trhem. 6 otázek, které odhalí, jestli vám lidé odcházejí kvůli penězům.", sampleQ: "\"Přišla ti tvá odměna férová vzhledem k práci, kterou odvádíš?\"", ceoInsight: "Zjistíte, jestli vám lidé odcházejí kvůli penězům — nebo kvůli něčemu, co se dá vyřešit levněji.", link: PULSE_BASE + "pay?x_lang=cs" },
@@ -101,8 +101,8 @@ const copy: Record<string, TCopy> = {
       { title: "2-min AI conversation", desc: "A chatbot asks psychologist-designed questions. Natural, like talking to a colleague." },
       { title: "Results in dashboard", desc: "Instant overview, trends over time, AI-powered action recommendations." },
     ],
-    topicsTitle: "8 conversations that reveal what people won't say out loud",
-    topicsSubtitle: "Each set is a short AI conversation on one topic. Questions are validated by behavioral psychologists — and people genuinely enjoy answering them.",
+    topicsTitle: "We cover every key area — and keep adding more",
+    topicsSubtitle: "Each topic is a short AI conversation validated by behavioral psychologists on 50,000+ respondents. We continuously improve and expand — so nothing important slips through.",
     topicCards: [
       { key: "quickScan", name: "Overall team pulse", desc: "Your team's overall pulse in 5 questions. Satisfaction, barriers, and what brings joy — you get the full picture of where to start.", sampleQ: "\"How happy have you felt at work recently?\"", ceoInsight: "Instantly see whether company morale is improving or declining — no waiting for quarterly reports.", link: PULSE_BASE + "initial?x_lang=en" },
       { key: "pay", name: "Pay fairness", desc: "Pay fairness, motivation, and market comparison. 6 questions that reveal whether people leave over money — or something else.", sampleQ: "\"Did your compensation feel fair given the work you put in?\"", ceoInsight: "Find out if people leave over money — or something cheaper to fix.", link: PULSE_BASE + "pay?x_lang=en" },
@@ -141,8 +141,8 @@ const copy: Record<string, TCopy> = {
       { title: "2-Min AI-Gespräch", desc: "Ein Chatbot stellt von Psychologen validierte Fragen. Natürlich, wie ein Gespräch mit einem Kollegen." },
       { title: "Ergebnisse im Dashboard", desc: "Sofortiger Überblick, Trends und KI-gestützte Handlungsempfehlungen." },
     ],
-    topicsTitle: "8 Gespräche, die zeigen, was Mitarbeiter nicht laut sagen",
-    topicsSubtitle: "Jedes Set ist ein kurzes AI-Gespräch zu einem Thema. Fragen sind von Verhaltenspsychologen validiert — und Mitarbeiter beantworten sie gerne.",
+    topicsTitle: "Wir decken alle wichtigen Bereiche ab — und erweitern ständig",
+    topicsSubtitle: "Jedes Thema ist ein kurzes KI-Gespräch, validiert von Verhaltenspsychologen an 50.000+ Befragten. Wir verbessern und erweitern kontinuierlich — damit Ihnen nichts Wichtiges entgeht.",
     topicCards: [
       { key: "quickScan", name: "Team-Gesamtpuls", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht — auf einen Blick.", sampleQ: "\"Wie zufrieden fühlst du dich aktuell bei der Arbeit?\"", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert — ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=en" },
       { key: "pay", name: "Vergütungsfairness", desc: "Fairness, Motivation und Marktvergleich. 6 Fragen, die zeigen, ob Mitarbeiter wegen Geld gehen.", sampleQ: "\"Empfandest du deine Vergütung als fair für die Arbeit, die du geleistet hast?\"", ceoInsight: "Erfahren Sie, ob Mitarbeiter wegen des Geldes gehen — oder wegen etwas, das günstiger zu lösen ist.", link: PULSE_BASE + "pay?x_lang=en" },
