@@ -661,6 +661,22 @@ export function OnboardingPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  /* ─── Auto-set employee count from actual team members ─── */
+  const computedFromTeams = useMemo(() => {
+    let total = 0;
+    for (const team of teams) {
+      if (team.leaderEmail?.trim()) total++;
+      total += team.members.length;
+    }
+    return Math.max(total, 10);
+  }, [teams]);
+
+  useEffect(() => {
+    if (currentStep === 3) {
+      setValue("employeeCount", computedFromTeams);
+    }
+  }, [currentStep, computedFromTeams, setValue]);
+
   /* ─── Step validation ─── */
   const validateStep = useCallback(
     async (step: number) => {

@@ -28,7 +28,7 @@ import valxonLogo from "@/assets/logos/normalized/valxon.png";
 import vodafoneLogo from "@/assets/logos/normalized/vodafone.png";
 import websupportLogo from "@/assets/logos/normalized/websupport.png";
 import logo365 from "@/assets/logos/normalized/365.svg";
-import expandoLogo from "@/assets/logos/normalized/expando.png";
+import expandoLogo from "@/assets/logos/normalized/expando.svg";
 
 // Map clientName → logo
 const LOGO_MAP: Record<string, string> = {

@@ -478,10 +478,7 @@
   backface-visibility: hidden;
 }
 
-/* Pause animation when hovering anywhere in the marquee container */
-.marquee-container:hover .animate-infinite-scroll {
-  animation-play-state: paused;
-}
+/* Marquee scrolls continuously — no pause on hover */
 
 /* ============================================
    PREMIUM ANIMATION SYSTEM
