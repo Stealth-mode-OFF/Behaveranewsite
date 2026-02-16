@@ -619,7 +619,7 @@ function TopicCarousel({
   const scrollBy = (dir: number) => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir * 320, behavior: 'smooth' });
+    el.scrollBy({ left: dir * 260, behavior: 'smooth' });
   };
 
   return (
@@ -655,7 +655,6 @@ function TopicCarousel({
             const TopicIcon = topicIcons[card.key] || Activity;
             const cardNum = i + 1;
             const hasPulse = pulseCardKeys.has(card.key);
-            const gradient = cardGradients[card.key] || 'from-gray-50/40 to-white';
             return (
               <motion.div
                 key={card.key}
@@ -663,49 +662,51 @@ function TopicCarousel({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
-                className={`shrink-0 w-[280px] sm:w-[300px] rounded-xl bg-gradient-to-br ${gradient} border border-brand-border/50 shadow-sm hover:shadow-md hover:border-brand-primary/15 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card`}
+                className="shrink-0 w-[220px] sm:w-[240px] rounded-xl bg-brand-primary/[0.06] border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card"
               >
                 {/* Clickable body — opens detail panel */}
                 <div
-                  className="flex-1 flex flex-col cursor-pointer px-4 pt-4 pb-3"
+                  className="flex-1 flex flex-col cursor-pointer px-4 pt-5 pb-4"
                   onClick={() => handleCardBodyClick(card, cardNum)}
                 >
                   {/* Card header */}
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-brand-primary/8 flex items-center justify-center shrink-0">
-                      <TopicIcon className="w-4 h-4 text-brand-primary" />
+                  <div className="flex flex-col items-center text-center gap-2 mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0">
+                      <TopicIcon className="w-5 h-5 text-brand-primary" />
                     </div>
                     <h4 className="font-semibold text-sm text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
                   </div>
 
                   {/* Description */}
-                  <p className="text-[13px] text-brand-text-body leading-relaxed mb-3 line-clamp-3">
-                    {card.desc}
-                  </p>
+                  <div className="bg-white rounded-lg p-3 mb-3 border border-brand-border/30">
+                    <p className="text-[12px] text-brand-text-body leading-relaxed line-clamp-4">
+                      {card.desc}
+                    </p>
+                  </div>
 
-                  {/* CEO insight — compact */}
+                  {/* CEO insight */}
                   <div className="mt-auto">
-                    <div className="bg-white/70 rounded-lg p-2.5 border border-brand-border/30">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1 flex items-center gap-1">
+                    <div className="bg-white rounded-lg p-3 border border-brand-border/30">
+                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center gap-1">
                         <Sparkles className="w-2.5 h-2.5" />
                         {ceoLabel}
                       </div>
-                      <p className="text-[12px] text-brand-text-secondary leading-relaxed font-medium line-clamp-2">
+                      <p className="text-[11px] text-brand-text-secondary leading-relaxed font-medium line-clamp-3">
                         {card.ceoInsight}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom CTA — only for pulse cards (quickScan, stress, values) */}
+                {/* Bottom CTA — only for pulse cards */}
                 {hasPulse && (
                   <button
                     onClick={() => onOpenPulse(card.link)}
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-border/30 text-[13px] font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-primary/10 text-[12px] font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
                   >
-                    <Play className="w-3.5 h-3.5" />
+                    <Play className="w-3 h-3" />
                     <span>Vyzkoušet</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover/cta:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3 h-3 group-hover/cta:translate-x-1 transition-transform" />
                   </button>
                 )}
               </motion.div>
