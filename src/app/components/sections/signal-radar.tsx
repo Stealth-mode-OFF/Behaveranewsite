@@ -20,9 +20,6 @@ const topicKeys = ['quickScan', 'pay', 'perks', 'tools', 'workload', 'recognitio
 const stepIcons = [Send, MessageCircle, BarChart3];
 const advantageIcons = [TrendingUp, BarChart3, Brain, Activity];
 
-/* Cards with a live Pulse demo */
-const pulseCardKeys = new Set(['quickScan', 'stress', 'values']);
-
 /* Subtle per-card gradient tints */
 const cardGradients: Record<string, string> = {
   quickScan: 'from-blue-50/60 to-white',
@@ -633,7 +630,6 @@ function TopicCarousel({
           {cards.map((card, i) => {
             const TopicIcon = topicIcons[card.key] || Activity;
             const cardNum = i + 1;
-            const hasPulse = pulseCardKeys.has(card.key);
             const gradient = cardGradients[card.key] || 'from-white to-white';
             return (
               <motion.div
@@ -658,7 +654,7 @@ function TopicCarousel({
                   </div>
 
                   {/* Description */}
-                  <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30 text-center">
+                  <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30 text-center min-h-[88px] flex items-center justify-center">
                     <p className="text-[12px] text-brand-text-body leading-relaxed line-clamp-4">
                       {card.desc}
                     </p>
@@ -678,17 +674,15 @@ function TopicCarousel({
                   </div>
                 </div>
 
-                {/* Bottom CTA — only for pulse cards */}
-                {hasPulse && (
-                  <button
-                    onClick={() => onOpenPulse(card.link)}
-                    className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-primary/10 text-[12px] font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
-                  >
-                    <Play className="w-3 h-3" />
-                    <span>Vyzkoušet</span>
-                    <ArrowRight className="w-3 h-3 group-hover/cta:translate-x-1 transition-transform" />
-                  </button>
-                )}
+                {/* Bottom CTA — all cards */}
+                <button
+                  onClick={() => onOpenPulse(card.link)}
+                  className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-primary/10 text-[12px] font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
+                >
+                  <Play className="w-3 h-3" />
+                  <span>Vyzkoušet</span>
+                  <ArrowRight className="w-3 h-3 group-hover/cta:translate-x-1 transition-transform" />
+                </button>
               </motion.div>
             );
           })}
