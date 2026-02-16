@@ -151,16 +151,18 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
             {loginLabel}
           </a>
 
-          <Button
-            onClick={() => navigate('/start')}
+          <a
+            href="https://app.behavera.com/echo-pulse/try"
+            target="_blank"
+            rel="noopener noreferrer"
             className={cn(
-              "hidden lg:inline-flex h-9 px-5 text-[13px] font-semibold rounded-full transition-all",
+              "hidden lg:inline-flex items-center justify-center h-9 px-5 text-[13px] font-semibold rounded-full transition-all",
               "bg-brand-primary text-white hover:bg-brand-primary-hover",
               isScrolled && "shadow-sm"
             )}
           >
             {ctaLabel}
-          </Button>
+          </a>
 
           <button
             type="button"
@@ -221,15 +223,15 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               </Link>
 
               <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
-                <Button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    navigate('/start');
-                  }}
-                  className="w-full h-12 rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base"
+                <a
+                  href="https://app.behavera.com/echo-pulse/try"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full h-12 flex items-center justify-center rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base"
                 >
                   {ctaLabel}
-                </Button>
+                </a>
                 <a
                   href={BEHAVERA_LOGIN_URL}
                   target="_blank"
