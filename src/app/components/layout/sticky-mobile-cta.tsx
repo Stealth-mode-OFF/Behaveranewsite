@@ -28,13 +28,14 @@ export function StickyMobileCta() {
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
       <div className="bg-white border-t border-brand-border shadow-[0_-8px_24px_rgba(0,0,0,0.08)] px-4 py-3 pb-[calc(12px+env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => navigate('/start')}
-            className="flex-1 h-12 rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
+          <a
+            href="https://app.behavera.com/echo-pulse/try"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 h-12 flex items-center justify-center rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
             {language === 'cz' ? 'Otestovat na 1 týmu zdarma' : language === 'de' ? '1 Team kostenlos testen' : 'Test 1 team for free'}
-          </button>
+          </a>
           <button
             type="button"
             onClick={() => { setIsDismissed(true); trackStickyCtaDismissed(); }}
