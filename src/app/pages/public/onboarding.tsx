@@ -245,7 +245,7 @@ const copy = {
     privacyLink: "Ochranou osobních údajů",
     guarantee: "30denní garance vrácení peněz. Bez otázek.",
     submit: "Vytvořit účet",
-    submitting: ["Vytvářím účet…", "Ukládám týmy…", "Připravuji vše…"],
+    submitting: ["Vytvářím účet…", "Ukládám týmy…", "Nastavuji fakturaci…", "Připravuji vše…", "Hotovo ✓"],
     successTitle: "Máte to! 🎉",
     successSubtitle: "Váš Echo Pulse účet je připravený. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
@@ -330,7 +330,7 @@ const copy = {
     privacyLink: "Privacy Policy",
     guarantee: "30-day money-back guarantee. No questions asked.",
     submit: "Create account",
-    submitting: ["Creating account…", "Saving teams…", "Preparing everything…"],
+    submitting: ["Creating account…", "Saving teams…", "Setting up billing…", "Preparing everything…", "Done ✓"],
     successTitle: "You're in! 🎉",
     successSubtitle: "Your Echo Pulse account is ready. Here's what happens next:",
     successCta: "Back to homepage",
@@ -415,7 +415,7 @@ const copy = {
     privacyLink: "Datenschutzerklärung",
     guarantee: "30 Tage Geld-zurück-Garantie. Ohne Fragen.",
     submit: "Konto erstellen",
-    submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Alles wird vorbereitet…"],
+    submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Abrechnung wird eingerichtet…", "Alles wird vorbereitet…", "Fertig ✓"],
     successTitle: "Geschafft! 🎉",
     successSubtitle: "Ihr Echo Pulse Konto ist bereit. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
@@ -626,12 +626,13 @@ export function OnboardingPage() {
     setIsSubmitting(true);
     setSubmitPhase(0);
 
-    // Progress through visual phases
-    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 800);
-    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 1600);
+    // Progress through visual phases — slow enough for a financial transaction
+    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 1200);
+    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 2400);
+    const phaseTimer3 = setTimeout(() => setSubmitPhase(3), 3600);
 
-    // Minimum visual processing time so users feel the action is "real"
-    const minDelay = new Promise((r) => setTimeout(r, 2200));
+    // Minimum visual processing time — money is involved, don't rush
+    const minDelay = new Promise((r) => setTimeout(r, 4500));
 
     try {
       // Send COMPLETE onboarding data (company, teams, members, OAuth info)
@@ -687,15 +688,22 @@ export function OnboardingPage() {
       trackLeadSubmitted("onboarding");
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
+      clearTimeout(phaseTimer3);
+      // Show "Done ✓" phase briefly before transitioning
+      setSubmitPhase(4);
+      await new Promise((r) => setTimeout(r, 1000));
       setIsSubmitting(false);
-      // Brief pause before showing success so the button state change is visible
-      await new Promise((r) => setTimeout(r, 400));
+      // Pause before celebration so the completed state registers
+      await new Promise((r) => setTimeout(r, 600));
       setIsSuccess(true);
     } catch {
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
+      clearTimeout(phaseTimer3);
+      setSubmitPhase(4);
+      await new Promise((r) => setTimeout(r, 1000));
       setIsSubmitting(false);
-      await new Promise((r) => setTimeout(r, 400));
+      await new Promise((r) => setTimeout(r, 600));
       setIsSuccess(true);
     }
   };
