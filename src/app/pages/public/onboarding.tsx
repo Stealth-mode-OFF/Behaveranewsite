@@ -1415,11 +1415,6 @@ export function OnboardingPage() {
                                 <span className="font-semibold text-brand-primary">
                                   {companyDomain ? `@${companyDomain}` : ""}
                                 </span>
-                                {companyDomain && otherContacts.length > 0 && (
-                                  <span className="text-brand-text-muted/60 ml-1">
-                                    · {otherContacts.length} {txt.connectOther}
-                                  </span>
-                                )}
                               </p>
                             </div>
                           </div>
