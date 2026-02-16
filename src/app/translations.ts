@@ -177,8 +177,8 @@ export const translations: Record<Language, Translations> = {
         "Actionable recommendations for managers",
         "Secure data handling (GDPR)",
       ],
-      button: "Book a demo",
-      guaranteeShort: "Final scope and price are confirmed after the intro call.",
+      button: "Start now",
+      guaranteeShort: "30-day money-back guarantee.",
     },
     faq: {
       title: "Remove risks,",
@@ -369,8 +369,8 @@ export const translations: Record<Language, Translations> = {
         "Akční doporučení pro manažery",
         "Bezpečné zpracování dat (GDPR)",
       ],
-      button: "Domluvit demo",
-      guaranteeShort: "Finální rozsah a cena se potvrdí po úvodní konzultaci.",
+      button: "Začít teď",
+      guaranteeShort: "30denní garance vrácení peněz.",
     },
     faq: {
       title: "Odstraňte rizika,",
@@ -561,8 +561,8 @@ export const translations: Record<Language, Translations> = {
         "Konkrete Handlungsempfehlungen",
         "Sichere Datenverarbeitung (DSGVO)",
       ],
-      button: "Demo buchen",
-      guaranteeShort: "Finaler Umfang und Preis nach dem Erstgespräch.",
+      button: "Jetzt starten",
+      guaranteeShort: "30 Tage Geld-zurück-Garantie.",
     },
     faq: {
       title: "Risiken beseitigen,",
