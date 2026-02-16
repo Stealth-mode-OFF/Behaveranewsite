@@ -399,7 +399,7 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
         <li>8bodový nárůst skóre engagementu zaměstnanců</li>
       </ul>
     `,
-    coverImage: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80&w=1200',
+    coverImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
     tags: ['Retention', 'Productivity', 'Development'],
     employeeCount: '1,500+',
     publishedAt: new Date('2024-03-10').toISOString(),

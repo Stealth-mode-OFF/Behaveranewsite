@@ -35,7 +35,7 @@ const copy: Record<string, TCopy> = {
     title: "2 minuty. V\u011bt\u0161ina lid\u00ed odpov\u00ed. ",
     titleHighlight: "Ka\u017ed\u00fd m\u011bs\u00edc.",
     subtitle: "\u017d\u00e1dn\u00e9 formul\u00e1\u0159e. Zam\u011bstnanci odpov\u00eddaj\u00ed v kr\u00e1tk\u00e9m AI chatu \u2014 ov\u011b\u0159en\u00e9 ot\u00e1zky, kter\u00e9 mluv\u00ed lidsky. 80\u00a0%+ lid\u00ed re\u00e1ln\u011b a r\u00e1do odpov\u00edd\u00e1.",
-    topicsTitle: "8 t\u00e9mat, kter\u00e1 odhal\u00ed to, co lid\u00e9 ne\u0159eknou nahlas",
+    topicsTitle: "T\u00e9mata, kter\u00e1 odhal\u00ed to, co lid\u00e9 ne\u0159eknou nahlas",
     topicsSubtitle: "Ka\u017ed\u00e9 t\u00e9ma = kr\u00e1tk\u00fd AI rozhovor do 2 minut. Ot\u00e1zky navr\u017eeny behavior\u00e1ln\u00edmi psychology. Lid\u00e9 odpov\u00eddaj\u00ed r\u00e1di a upř\u00edmn\u011b.",
     topicCards: [
       { key: "quickScan", name: "Celkov\u00fd pulse t\u00fdmu", desc: "Celkov\u00fd pulse va\u0161eho t\u00fdmu v 5 ot\u00e1zk\u00e1ch. Spokojenost, bari\u00e9ry i to, co lidi bav\u00ed \u2014 r\u00e1zem m\u00e1te obr\u00e1zek, kde za\u010d\u00edt.", sampleQ: "\u201eJak spokojen\u011b se v posledn\u00ed dob\u011b c\u00edt\u00ed\u0161 v pr\u00e1ci?\u201c", ceoInsight: "Okam\u017eit\u011b vid\u00edte, jestli se n\u00e1lada ve firm\u011b zlep\u0161uje nebo zhor\u0161uje \u2014 bez \u010dek\u00e1n\u00ed na kvart\u00e1ln\u00ed report.", link: PULSE_BASE + "initial?x_lang=cs" },
@@ -66,7 +66,7 @@ const copy: Record<string, TCopy> = {
     title: "2 minutes. Most people respond. ",
     titleHighlight: "Every month.",
     subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 tested questions that feel human. 80%+ actually enjoy answering.",
-    topicsTitle: "8 topics that uncover what people won\u2019t say out loud",
+    topicsTitle: "Topics that uncover what people won\u2019t say out loud",
     topicsSubtitle: "Each topic is a 2-minute AI conversation. Questions designed by behavioral psychologists. People answer honestly \u2014 and actually enjoy it.",
     topicCards: [
       { key: "quickScan", name: "Overall team pulse", desc: "Your team\u2019s overall pulse in 5 questions. Satisfaction, barriers, and what brings joy \u2014 you get the full picture of where to start.", sampleQ: "\u201cHow happy have you felt at work recently?\u201d", ceoInsight: "Instantly see whether company morale is improving or declining \u2014 no waiting for quarterly reports.", link: PULSE_BASE + "initial?x_lang=en" },
@@ -102,7 +102,7 @@ const copy: Record<string, TCopy> = {
       { label: "2-Min AI-Gespr\u00e4ch", desc: "Von Psychologen validierte Fragen" },
       { label: "Sofortige Ergebnisse", desc: "Dashboard mit KI-Empfehlungen" },
     ],
-    topicsTitle: "8 Themen, die aufdecken, was Mitarbeiter nicht laut sagen",
+    topicsTitle: "Themen, die aufdecken, was Mitarbeiter nicht laut sagen",
     topicsSubtitle: "Jedes Thema ist ein 2-Minuten-AI-Gespr\u00e4ch. Fragen von Verhaltenspsychologen entwickelt. Mitarbeiter antworten ehrlich \u2014 und gerne.",
     topicCards: [
       { key: "quickScan", name: "Team-Gesamtpuls", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht \u2014 auf einen Blick.", sampleQ: "\u201eWie zufrieden f\u00fchlst du dich aktuell bei der Arbeit?\u201c", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert \u2014 ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=en" },
