@@ -147,8 +147,8 @@ export const translations: Record<Language, Translations> = {
     },
     dashboard: {
       badge: "See it in action",
-      title: "One dashboard. Zero guesswork.",
-      titleHighlight: "Everything your leadership needs.",
+      title: "One dashboard.",
+      titleHighlight: "Zero guesswork.",
       subtitle: "Echo Pulse collects scattered signals and shows them in one place. Clear, real-time, and ready to act on.",
       features: [
         { title: "Mood by team", desc: "Instant overview of how each department feels. Broken down by location, seniority, or manager." },
@@ -531,9 +531,9 @@ export const translations: Record<Language, Translations> = {
     },
     dashboard: {
       badge: "Überblick für die Führung",
-      title: "Sehen Sie, was früher nur",
-      titleHighlight: "beim Kaffee gesagt wurde.",
-      subtitle: "Echo Pulse sammelt verstreute Signale und zeigt sie an einem Ort. Klar und ohne unnötige Grafiken.",
+      title: "Ein Dashboard.",
+      titleHighlight: "Kein Raten.",
+      subtitle: "Echo Pulse sammelt verstreute Signale und zeigt sie an einem Ort. Klar, in Echtzeit, bereit zum Handeln.",
       features: [
         { title: "Stimmung nach Team", desc: "Sofortiger Überblick, wie sich jede Abteilung fühlt. Aufgeschlüsselt nach Standort, Seniorität oder Manager." },
         { title: "Warnung vor Problemen", desc: "Das System warnt, wenn etwas nicht stimmt - Überlastung, Team-Spannungen oder deutlicher Energie-Abfall." },
