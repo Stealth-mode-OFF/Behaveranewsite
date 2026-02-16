@@ -253,7 +253,7 @@ export function ComparisonGoogleFormsPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="section-spacing bg-gradient-to-b from-brand-primary via-[#2D1B69] to-[#120B25] text-white text-center">
+        <section className="section-spacing bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520] text-white text-center">
           <div className="container-default max-w-[700px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -101,7 +101,7 @@ export function RoleSelection() {
   const activeRoleData = roles.find(r => r.id === activeRole) || roles[1];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-brand-primary to-[#2D1B69] relative overflow-hidden">
+    <section className="section-spacing bg-gradient-to-b from-brand-primary to-[#1a0a3e] relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[150px]" />

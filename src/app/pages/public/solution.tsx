@@ -42,7 +42,7 @@ type LangCopy = Record<RoleSlug, RolePage>;
 const cz: LangCopy = {
   ceos: {
     icon: Briefcase,
-    color: "#2D1B69",
+    color: "#1a0a3e",
     meta: {
       title: "Echo Pulse pro CEO & Founders — Viditelnost, ne intuice",
       description: "Přestaňte hádat, jak se vaši lidé cítí. Real-time engagement data pro strategická rozhodnutí.",
@@ -123,7 +123,7 @@ const cz: LangCopy = {
 const en: LangCopy = {
   ceos: {
     icon: Briefcase,
-    color: "#2D1B69",
+    color: "#1a0a3e",
     meta: {
       title: "Echo Pulse for CEOs & Founders — Visibility, not guesswork",
       description: "Stop guessing how your people feel. Real-time engagement data for strategic people decisions.",
@@ -204,7 +204,7 @@ const en: LangCopy = {
 const de: LangCopy = {
   ceos: {
     icon: Briefcase,
-    color: "#2D1B69",
+    color: "#1a0a3e",
     meta: {
       title: "Echo Pulse für CEOs & Gründer — Sichtbarkeit statt Bauchgefühl",
       description: "Hören Sie auf zu raten. Echtzeit-Engagement-Daten für strategische Personalentscheidungen.",
@@ -389,7 +389,7 @@ export function SolutionPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="section-spacing bg-gradient-to-b from-brand-primary via-[#2D1B69] to-[#120B25] text-white text-center">
+        <section className="section-spacing bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520] text-white text-center">
           <div className="container-default max-w-[700px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -126,7 +126,7 @@ export function ProblemSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#2D1B69] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
+            <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
               
