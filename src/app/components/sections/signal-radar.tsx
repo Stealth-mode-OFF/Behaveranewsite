@@ -655,6 +655,7 @@ function TopicCarousel({
             const TopicIcon = topicIcons[card.key] || Activity;
             const cardNum = i + 1;
             const hasPulse = pulseCardKeys.has(card.key);
+            const gradient = cardGradients[card.key] || 'from-white to-white';
             return (
               <motion.div
                 key={card.key}
@@ -662,7 +663,7 @@ function TopicCarousel({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
-                className="shrink-0 w-[220px] sm:w-[240px] rounded-xl bg-brand-primary/[0.06] border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card"
+                className={`shrink-0 w-[220px] sm:w-[240px] rounded-xl bg-gradient-to-br ${gradient} border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card`}
               >
                 {/* Clickable body — opens detail panel */}
                 <div
@@ -678,7 +679,7 @@ function TopicCarousel({
                   </div>
 
                   {/* Description */}
-                  <div className="bg-white rounded-lg p-3 mb-3 border border-brand-border/30">
+                  <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30">
                     <p className="text-[12px] text-brand-text-body leading-relaxed line-clamp-4">
                       {card.desc}
                     </p>
@@ -686,7 +687,7 @@ function TopicCarousel({
 
                   {/* CEO insight */}
                   <div className="mt-auto">
-                    <div className="bg-white rounded-lg p-3 border border-brand-border/30">
+                    <div className="bg-white/80 rounded-lg p-3 border border-brand-border/30">
                       <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center gap-1">
                         <Sparkles className="w-2.5 h-2.5" />
                         {ceoLabel}
