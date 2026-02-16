@@ -33,7 +33,7 @@ export function StickyMobileCta() {
             onClick={() => navigate('/start')}
             className="flex-1 h-12 rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
-            {language === 'cz' ? 'Chci to' : language === 'de' ? 'Das will ich' : 'I want this'}
+            {language === 'cz' ? 'Otestovat na 1 týmu zdarma' : language === 'de' ? '1 Team kostenlos testen' : 'Test 1 team for free'}
           </button>
           <button
             type="button"

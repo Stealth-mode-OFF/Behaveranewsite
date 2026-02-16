@@ -369,14 +369,14 @@ export function SignalRadar() {
           className="rounded-2xl bg-gradient-to-br from-brand-primary via-[#3b2375] to-brand-background-dark p-8 sm:p-10 md:p-12 text-center shadow-lg"
         >
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
-            {language === 'cz' ? 'Jsem ready. Chci to mít.' : language === 'de' ? 'Ich bin bereit. Jetzt kaufen.' : "I'm ready. Let's go."}
+            {language === 'cz' ? 'Jsem ready. Chci to mít.' : language === 'de' ? 'Ich bin bereit. Jetzt starten.' : "I'm ready. Let's go."}
           </h3>
           <p className="text-sm sm:text-base text-white/80 max-w-xl mx-auto mb-6 leading-relaxed">
             {language === 'cz'
-              ? 'Žádné další dema, žádné čekání. Objednejte Echo Pulse a začněte měřit ještě dnes.'
+              ? 'Bez závazku. Výsledky jsou vidět okamžitě.'
               : language === 'de'
-              ? 'Keine weiteren Demos, kein Warten. Bestellen Sie Echo Pulse und starten Sie noch heute.'
-              : 'No more demos, no waiting. Order Echo Pulse and start measuring today.'}
+              ? 'Unverbindlich. Ergebnisse sofort sichtbar.'
+              : 'No commitment. Results are instant.'}
           </p>
           <a
             href="https://www.echopulse.cz/start"
@@ -384,7 +384,7 @@ export function SignalRadar() {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2.5 h-14 px-10 rounded-xl bg-white text-brand-primary font-bold text-base sm:text-lg hover:bg-gray-50 transition-colors shadow-md hover:shadow-lg cursor-pointer"
           >
-            {language === 'cz' ? 'Objednat a zaplatit' : language === 'de' ? 'Jetzt bestellen & bezahlen' : 'Order & pay now'}
+            {language === 'cz' ? 'Otestovat na 1 týmu zdarma' : language === 'de' ? '1 Team kostenlos testen' : 'Test 1 team for free'}
             <ArrowRight className="w-5 h-5" />
           </a>
         </motion.div>
