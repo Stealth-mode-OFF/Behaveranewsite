@@ -387,13 +387,6 @@ export function SignalRadar() {
             {language === 'cz' ? 'Objednat a zaplatit' : language === 'de' ? 'Jetzt bestellen & bezahlen' : 'Order & pay now'}
             <ArrowRight className="w-5 h-5" />
           </a>
-          <p className="text-xs text-white/50 mt-4">
-            {language === 'cz'
-              ? 'Platba kartou · Aktivace do 24 h · Garance vrácení peněz 30 dní'
-              : language === 'de'
-              ? 'Kartenzahlung · Aktivierung in 24 Std. · 30 Tage Geld-zurück-Garantie'
-              : 'Card payment · Active within 24h · 30-day money-back guarantee'}
-          </p>
         </motion.div>
 
       </div>
