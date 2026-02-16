@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useMemo } from "react";
+import { useState, useCallback, useRef, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Users,
@@ -166,8 +166,19 @@ export function TeamBuilder({
   const [dragOverTeamId, setDragOverTeamId] = useState<string | null>(null);
   const [manualEmail, setManualEmail] = useState("");
   const [showManualInput, setShowManualInput] = useState(false);
-  const [manualContacts, setManualContacts] = useState<TeamContact[]>([]);
+  const [manualContacts, setManualContacts] = useState<TeamContact[]>(() => {
+    try {
+      const raw = localStorage.getItem("behavera_manual_contacts");
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  });
   const newTeamInputRef = useRef<HTMLInputElement>(null);
+
+  // Persist manual contacts
+  useEffect(() => {
+    try { localStorage.setItem("behavera_manual_contacts", JSON.stringify(manualContacts)); }
+    catch { /* */ }
+  }, [manualContacts]);
 
   const allContacts = useMemo(
     () => [...contacts, ...manualContacts],

@@ -458,17 +458,50 @@ const slideVariants = {
 /* ═══════════════════════════════════════════════════════════
    Main Page Component
    ═══════════════════════════════════════════════════════════ */
+const ONBOARDING_STORAGE_KEY = "behavera_onboarding_draft";
+
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(ONBOARDING_STORAGE_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    // Expire after 7 days
+    if (data._ts && Date.now() - data._ts > 7 * 24 * 60 * 60 * 1000) {
+      localStorage.removeItem(ONBOARDING_STORAGE_KEY);
+      return null;
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+function saveDraft(patch: Record<string, unknown>) {
+  try {
+    const existing = loadDraft() || {};
+    localStorage.setItem(
+      ONBOARDING_STORAGE_KEY,
+      JSON.stringify({ ...existing, ...patch, _ts: Date.now() })
+    );
+  } catch { /* quota exceeded — ignore */ }
+}
+
+function clearDraft() {
+  try { localStorage.removeItem(ONBOARDING_STORAGE_KEY); } catch { /* */ }
+}
+
 export function OnboardingPage() {
   const { language } = useLanguage();
   const txt = copy[language] || copy.en;
+  const draft = useMemo(() => loadDraft(), []);
 
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(draft?.currentStep ?? 0);
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitPhase, setSubmitPhase] = useState(0);
-  const [teams, setTeams] = useState<Team[]>([]);
+  const [teams, setTeams] = useState<Team[]>(draft?.teams ?? []);
 
   // OAuth contacts
   const {
@@ -479,7 +512,7 @@ export function OnboardingPage() {
     fetchContacts,
     clearContacts,
   } = useOAuthContacts();
-  const [skippedConnect, setSkippedConnect] = useState(false);
+  const [skippedConnect, setSkippedConnect] = useState(draft?.skippedConnect ?? false);
 
   // ARES lookup
   const {
@@ -505,19 +538,50 @@ export function OnboardingPage() {
     getValues,
   } = useForm<OnboardingFormData>({
     defaultValues: {
-      companyName: "",
-      companyId: "",
-      repName: "",
-      repEmail: "",
-      billingEmail: "",
-      adminName: "",
-      adminEmail: "",
-      employeeCount: 50,
-      billingInterval: "yearly",
+      companyName: draft?.form?.companyName ?? "",
+      companyId: draft?.form?.companyId ?? "",
+      repName: draft?.form?.repName ?? "",
+      repEmail: draft?.form?.repEmail ?? "",
+      billingEmail: draft?.form?.billingEmail ?? "",
+      adminName: draft?.form?.adminName ?? "",
+      adminEmail: draft?.form?.adminEmail ?? "",
+      employeeCount: draft?.form?.employeeCount ?? 50,
+      billingInterval: draft?.form?.billingInterval ?? "yearly",
       agreedToTerms: false,
     },
     mode: "onBlur",
   });
+
+  // ─── Auto-save draft to localStorage ───
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isSuccess || isDone) return;
+      const formValues = getValues();
+      saveDraft({
+        currentStep,
+        skippedConnect,
+        teams,
+        form: {
+          companyName: formValues.companyName,
+          companyId: formValues.companyId,
+          repName: formValues.repName,
+          repEmail: formValues.repEmail,
+          billingEmail: formValues.billingEmail,
+          adminName: formValues.adminName,
+          adminEmail: formValues.adminEmail,
+          employeeCount: formValues.employeeCount,
+          billingInterval: formValues.billingInterval,
+        },
+      });
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [currentStep, teams, skippedConnect, isSuccess, isDone, getValues]);
+
+  // Save on step change immediately
+  useEffect(() => {
+    if (isSuccess || isDone) return;
+    saveDraft({ currentStep });
+  }, [currentStep, isSuccess, isDone]);
 
   const billingInterval = watch("billingInterval");
   const employeeCount = watch("employeeCount");
@@ -701,6 +765,7 @@ export function OnboardingPage() {
       clearTimeout(phaseTimer3);
       setSubmitPhase(4);
       await new Promise((r) => setTimeout(r, 1000));
+      clearDraft();
       setIsSubmitting(false);
       setIsDone(true);
     } catch {
@@ -709,6 +774,7 @@ export function OnboardingPage() {
       clearTimeout(phaseTimer3);
       setSubmitPhase(4);
       await new Promise((r) => setTimeout(r, 1000));
+      clearDraft();
       setIsSubmitting(false);
       setIsDone(true);
     }
@@ -1522,7 +1588,7 @@ export function OnboardingPage() {
                     <TeamBuilder
                       contacts={teamBuilderContacts}
                       language={language as "cz" | "en" | "de"}
-                      onTeamsChanged={setTeams}
+                      onTeamsChanged={(t) => { setTeams(t); saveDraft({ teams: t }); }}
                       initialTeams={teams}
                     />
                   )}
