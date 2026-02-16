@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
-import { FormField } from "@/app/components/ui/form-field";
-import { CheckCircle2, Loader2, ArrowRight, Check, Download } from "lucide-react";
+
+import { Loader2, ArrowRight, Check, Download } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/LanguageContext";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
@@ -122,122 +122,135 @@ export function LeadCaptureSection() {
 
   return (
     <section className="section-spacing bg-brand-background-secondary" id="lead-capture">
-      <div className="container-default max-w-5xl">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <div className="container-default max-w-2xl text-center">
 
-          {/* Left — Copy */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
-              {txt.title}
-              <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
-                {txt.titleHighlight}
-              </span>
-            </h2>
-            <p className="text-base text-brand-text-body leading-relaxed mb-6">
-              {txt.subtitle}
-            </p>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-brand-text-primary mb-2">
+            {txt.title}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+              {txt.titleHighlight}
+            </span>
+          </h2>
+          <p className="text-sm text-brand-text-body leading-relaxed mb-8 max-w-lg mx-auto">
+            {txt.subtitle}
+          </p>
+        </motion.div>
 
-            <ul className="space-y-2.5">
-              {txt.benefits.map((b, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-sm text-brand-text-secondary">
-                  <CheckCircle2 className="w-4 h-4 mt-0.5 text-brand-success shrink-0" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Right — Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            <div className="bg-white rounded-2xl p-7 sm:p-8 shadow-lg shadow-black/[0.03] border border-brand-border/60">
-              {isSuccess ? (
-                <div>
-                  <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-8 h-8 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center shrink-0">
-                      <Check className="w-4 h-4" strokeWidth={2.5} />
-                    </div>
-                    <h3 className="text-base font-bold text-brand-text-primary">{txt.successTitle}</h3>
-                  </div>
-                  <p className="text-[13px] text-brand-text-muted mb-5">{txt.successSub}</p>
-                  <div className="space-y-3">
-                    {EBOOKS.map((eb, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        onClick={() => { downloadFile(eb.file, `${eb.title}.pdf`); trackEbookDownload(eb.title, 'manual'); }}
-                        className="w-full flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-brand-background-secondary transition-all group text-left"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-all">
-                          <Download className="w-[18px] h-[18px]" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-semibold text-brand-text-primary truncate">{eb.title}</p>
-                          <p className="text-[12px] text-brand-text-muted">PDF · {eb.size}</p>
-                        </div>
-                        <span className="text-xs font-medium text-brand-primary shrink-0">{txt.dl}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  <FormField label={txt.emailLabel} error={errors.email?.message} required>
-                    <Input
-                      type="email"
-                      autoComplete={autocompleteAttributes.email}
-                      placeholder={txt.emailPlaceholder}
-                      className="h-11"
-                      {...register("email", validationRules.workEmail)}
-                    />
-                  </FormField>
-
-                  {error && (
-                    <p className="text-[13px] text-brand-error bg-brand-error/5 rounded-lg px-3.5 py-2.5">{txt.error}</p>
-                  )}
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting || isSuccess}
-                    className="w-full h-12 text-[15px] font-semibold"
-                    size="lg"
-                  >
-                    {isSubmitting ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <>
-                        {txt.submit}
-                        <ArrowRight className="w-4 h-4 ml-1.5" />
-                      </>
-                    )}
-                  </Button>
-
-                  <label className="flex items-start gap-2.5 cursor-pointer group">
-                    <input
-                      type="checkbox"
-                      className="mt-0.5 h-4 w-4 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
-                      {...register("marketingConsent")}
-                    />
-                    <span className="text-[12px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">
-                      {txt.consent}
-                    </span>
-                  </label>
-
-                  <p className="text-xs text-brand-text-muted text-center">{txt.privacy}</p>
-                </form>
-              )}
-            </div>
-          </motion.div>
+        {/* E-book cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          {EBOOKS.map((eb, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: i * 0.1 }}
+              className="bg-white rounded-xl p-5 border border-brand-border/60 shadow-sm text-left flex items-start gap-4"
+            >
+              <div className="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
+                <Download className="w-5 h-5" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-brand-text-primary mb-0.5">{eb.title}</p>
+                <p className="text-[12px] text-brand-text-muted">PDF · {eb.size}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Form / Success */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          className="max-w-md mx-auto"
+        >
+          {isSuccess ? (
+            <div className="bg-white rounded-2xl p-6 shadow-sm border border-brand-border/60">
+              <div className="flex items-center justify-center gap-2.5 mb-3">
+                <div className="w-8 h-8 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center shrink-0">
+                  <Check className="w-4 h-4" strokeWidth={2.5} />
+                </div>
+                <h3 className="text-base font-bold text-brand-text-primary">{txt.successTitle}</h3>
+              </div>
+              <p className="text-[13px] text-brand-text-muted mb-4">{txt.successSub}</p>
+              <div className="space-y-2.5">
+                {EBOOKS.map((eb, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => { downloadFile(eb.file, `${eb.title}.pdf`); trackEbookDownload(eb.title, 'manual'); }}
+                    className="w-full flex items-center gap-3 p-3 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-brand-background-secondary transition-all group text-left"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-all">
+                      <Download className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-brand-text-primary truncate">{eb.title}</p>
+                      <p className="text-[11px] text-brand-text-muted">PDF · {eb.size}</p>
+                    </div>
+                    <span className="text-xs font-medium text-brand-primary shrink-0">{txt.dl}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <Input
+                    type="email"
+                    autoComplete={autocompleteAttributes.email}
+                    placeholder={txt.emailPlaceholder}
+                    className="h-12"
+                    {...register("email", validationRules.workEmail)}
+                  />
+                  {errors.email?.message && (
+                    <p className="text-[12px] text-brand-error mt-1 text-left">{errors.email.message}</p>
+                  )}
+                </div>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || isSuccess}
+                  className="h-12 px-6 text-sm font-semibold shrink-0"
+                  size="lg"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      {txt.submit}
+                      <ArrowRight className="w-4 h-4 ml-1.5" />
+                    </>
+                  )}
+                </Button>
+              </div>
+
+              {error && (
+                <p className="text-[13px] text-brand-error bg-brand-error/5 rounded-lg px-3 py-2">{txt.error}</p>
+              )}
+
+              <label className="flex items-center justify-center gap-2 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  className="h-3.5 w-3.5 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
+                  {...register("marketingConsent")}
+                />
+                <span className="text-[11px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">
+                  {txt.consent}
+                </span>
+              </label>
+
+              <p className="text-[11px] text-brand-text-muted">{txt.privacy}</p>
+            </form>
+          )}
+        </motion.div>
       </div>
     </section>
   );
