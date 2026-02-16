@@ -60,10 +60,10 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
       : "Sign in";
   const ctaLabel =
     language === "cz"
-      ? "Chci to"
+      ? "Objednat"
       : language === "de"
-      ? "Das will ich"
-      : "I want this";
+      ? "Jetzt bestellen"
+      : "Get started";
 
   /* ─── Shared nav-link class ─── */
   const navLinkClass = cn(
