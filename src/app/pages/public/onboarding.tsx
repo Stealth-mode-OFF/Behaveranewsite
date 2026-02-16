@@ -212,6 +212,8 @@ const copy = {
     connectGoogle: "Pokračovat přes Google",
     connectMicrosoft: "Pokračovat přes Microsoft",
     privacyNote: "Čteme pouze jména a e-maily. Nikdy nepřistupujeme k vašim e-mailům, souborům ani kalendářům.",
+    termsNote: "Pokračováním souhlasíte s",
+    termsLinkLabel: "obchodními podmínkami",
     connectSuccess: "Načteno kontaktů",
     connectDomain: "z firemní domény",
     connectOther: "ostatní kontakty",
@@ -294,6 +296,8 @@ const copy = {
     connectGoogle: "Continue with Google",
     connectMicrosoft: "Continue with Microsoft",
     privacyNote: "We only read names and emails. We never access your email content, files, or calendars.",
+    termsNote: "By continuing you agree to the",
+    termsLinkLabel: "Terms & Conditions",
     connectSuccess: "contacts imported",
     connectDomain: "from company domain",
     connectOther: "other contacts",
@@ -376,6 +380,8 @@ const copy = {
     connectGoogle: "Weiter mit Google",
     connectMicrosoft: "Weiter mit Microsoft",
     privacyNote: "Wir lesen nur Namen und E-Mails. Wir greifen nie auf Ihre E-Mail-Inhalte, Dateien oder Kalender zu.",
+    termsNote: "Mit der Fortsetzung stimmen Sie den",
+    termsLinkLabel: "Nutzungsbedingungen",
     connectSuccess: "Kontakte importiert",
     connectDomain: "aus der Firmendomäne",
     connectOther: "andere Kontakte",
@@ -1371,11 +1377,20 @@ export function OnboardingPage() {
                             </button>
                           </div>
 
-                          {/* Privacy note */}
+                          {/* Privacy note + terms */}
                           <div className="flex items-start gap-2 p-3 rounded-xl bg-brand-background-secondary/50 max-w-sm mx-auto">
                             <Lock className="w-3.5 h-3.5 text-brand-success mt-0.5 shrink-0" />
                             <p className="text-[11px] text-brand-text-muted leading-relaxed">
-                              {txt.privacyNote}
+                              {txt.privacyNote}{" "}
+                              {txt.termsNote}{" "}
+                              <a
+                                href="https://www.echopulse.cz/terms"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover transition-colors"
+                              >
+                                {txt.termsLinkLabel}
+                              </a>.
                             </p>
                           </div>
 
