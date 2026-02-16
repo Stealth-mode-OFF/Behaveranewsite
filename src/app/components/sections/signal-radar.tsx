@@ -271,8 +271,11 @@ export function SignalRadar() {
           <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} />
         </div>
 
-        {/* ═══════════ WHY NOT GOOGLE FORMS ═══════════ */}
-        <div className="mb-16">
+        {/* ═══════════ COMPARISON + TESTIMONIALS — side by side ═══════════ */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+
+        {/* WHY NOT GOOGLE FORMS */}
+        <div>
           <button
             onClick={() => setCompOpen(!compOpen)}
             className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-white border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 transition-all group cursor-pointer"
@@ -351,6 +354,7 @@ export function SignalRadar() {
             </div>
           </motion.div>
         </div>
+
         {/* ═══════════ TESTIMONIALS ═══════════ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -361,6 +365,8 @@ export function SignalRadar() {
         >
           <QuickScanTestimonials lang={language} />
         </motion.div>
+
+        </div> {/* end grid */}
 
       </div>
 
