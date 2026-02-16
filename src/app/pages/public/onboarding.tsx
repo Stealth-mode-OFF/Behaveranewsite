@@ -214,9 +214,9 @@ const copy = {
     privacyNote: "Čteme pouze jména a e-maily. Nikdy nepřistupujeme k vašim e-mailům, souborům ani kalendářům.",
     termsNote: "Pokračováním souhlasíte s",
     termsLinkLabel: "obchodními podmínkami",
-    connectSuccess: "Načteno kontaktů",
+    connectSuccess: "kontaktů z firemní domény",
     connectDomain: "z firemní domény",
-    connectOther: "ostatní kontakty",
+    connectOther: "ostatní odfiltrováno",
     connectChange: "Připojit jiný účet",
     skipConnect: "Přeskočit — přidám ručně",
     skipConnectNote: "Budete moci přidat zaměstnance ručně v dalším kroku.",
@@ -298,9 +298,9 @@ const copy = {
     privacyNote: "We only read names and emails. We never access your email content, files, or calendars.",
     termsNote: "By continuing you agree to the",
     termsLinkLabel: "Terms & Conditions",
-    connectSuccess: "contacts imported",
+    connectSuccess: "company domain contacts loaded",
     connectDomain: "from company domain",
-    connectOther: "other contacts",
+    connectOther: "others filtered out",
     connectChange: "Connect different account",
     skipConnect: "Skip — I'll add manually",
     skipConnectNote: "You can add employees manually in the next step.",
@@ -382,9 +382,9 @@ const copy = {
     privacyNote: "Wir lesen nur Namen und E-Mails. Wir greifen nie auf Ihre E-Mail-Inhalte, Dateien oder Kalender zu.",
     termsNote: "Mit der Fortsetzung stimmen Sie den",
     termsLinkLabel: "Nutzungsbedingungen",
-    connectSuccess: "Kontakte importiert",
+    connectSuccess: "Firmenkontakte geladen",
     connectDomain: "aus der Firmendomäne",
-    connectOther: "andere Kontakte",
+    connectOther: "andere herausgefiltert",
     connectChange: "Anderes Konto verbinden",
     skipConnect: "Überspringen — manuell hinzufügen",
     skipConnectNote: "Sie können Mitarbeiter im nächsten Schritt manuell hinzufügen.",
@@ -535,7 +535,7 @@ export function OnboardingPage() {
     [oauthContacts, companyDomain]
   );
 
-  // Contacts for TeamBuilder
+  // Contacts for TeamBuilder — only company domain contacts
   const teamBuilderContacts: TeamContact[] = useMemo(() => {
     const pool = companyDomain ? domainContacts : oauthContacts;
     return pool.map((c) => ({
@@ -544,6 +544,9 @@ export function OnboardingPage() {
       photo: c.photo,
     }));
   }, [domainContacts, oauthContacts, companyDomain]);
+
+  // Filtered contacts = only company domain (what we actually use everywhere)
+  const filteredContacts = companyDomain ? domainContacts : oauthContacts;
 
   // ─── ARES: handle company name input ───
   const handleCompanyNameChange = useCallback(
@@ -1238,18 +1241,15 @@ export function OnboardingPage() {
                             </div>
                             <div>
                               <p className="text-[15px] font-bold text-brand-text-primary">
-                                {oauthContacts.length} {txt.connectSuccess}
+                                {filteredContacts.length} {txt.connectSuccess}
                               </p>
                               <p className="text-[12px] text-brand-text-muted">
-                                {domainContacts.length > 0 && (
-                                  <span className="font-semibold text-brand-primary">
-                                    {domainContacts.length} {txt.connectDomain}
-                                  </span>
-                                )}
-                                {domainContacts.length > 0 && otherContacts.length > 0 && " · "}
-                                {otherContacts.length > 0 && (
-                                  <span>
-                                    {otherContacts.length} {txt.connectOther}
+                                <span className="font-semibold text-brand-primary">
+                                  {companyDomain ? `@${companyDomain}` : ""}
+                                </span>
+                                {companyDomain && otherContacts.length > 0 && (
+                                  <span className="text-brand-text-muted/60 ml-1">
+                                    · {otherContacts.length} {txt.connectOther}
                                   </span>
                                 )}
                               </p>
@@ -1264,7 +1264,7 @@ export function OnboardingPage() {
                               </span>
                             </div>
                             <div className="max-h-[200px] overflow-y-auto">
-                              {(companyDomain ? domainContacts : oauthContacts)
+                              {filteredContacts
                                 .slice(0, 20)
                                 .map((c) => (
                                   <div
@@ -1301,9 +1301,9 @@ export function OnboardingPage() {
                                     </div>
                                   </div>
                                 ))}
-                              {(companyDomain ? domainContacts : oauthContacts).length > 20 && (
+                              {filteredContacts.length > 20 && (
                                 <div className="px-4 py-2 text-center text-[11px] text-brand-text-muted bg-brand-background-secondary/30">
-                                  + {(companyDomain ? domainContacts : oauthContacts).length - 20} more…
+                                  + {filteredContacts.length - 20} more…
                                 </div>
                               )}
                             </div>
