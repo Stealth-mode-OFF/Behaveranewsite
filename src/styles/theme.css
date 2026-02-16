@@ -1,26 +1,26 @@
 :root {
-  /* BRAND COLOR SYSTEM (Logic: Deep Premium Purple) */
+  /* BRAND COLOR SYSTEM (Logic: Bold Tech Indigo) */
   
-  /* Primary: The core "Black replacement" and main action color (#2E1065) */
-  --brand-primary: #2D1B69;       /* Deep Purple - Main Brand Color */
-  --brand-primary-hover: #1E0F4D; /* Darker shade for interactions */
-  --brand-primary-active: #120833;
+  /* Primary: Deep confident indigo — authority, not mysticism */
+  --brand-primary: #3B28CC;       /* Bold saturated indigo */
+  --brand-primary-hover: #2E1FA3; /* Darker for interactions */
+  --brand-primary-active: #221780;
 
-  /* Accent: Used for highlights, icons on dark backgrounds, and gradients */
-  --brand-accent: #9F7AEA;        /* Softer violet - refined highlight */
-  --brand-accent-hover: #805AD5;  /* Violet 500 */
+  /* Accent: Bright electric blue-violet — energy, not ethereal */
+  --brand-accent: #635BFF;        /* Stripe-inspired vivid indigo */
+  --brand-accent-hover: #524AE8;  /* Saturated hover */
 
-  /* Backgrounds */
+  /* Backgrounds — ZERO purple fog, clean neutral */
   --brand-background-primary: #FFFFFF;
-  --brand-background-secondary: #F8F6FF; /* Subtle cool lavender */
-  --brand-background-muted: #F0EBFF;     /* Light lavender */
-  --brand-background-dark: #1A0F3C;      /* Deeper, richer dark */
+  --brand-background-secondary: #F7F7F8; /* Pure neutral light grey */
+  --brand-background-muted: #EEEFF2;     /* Clean cool grey */
+  --brand-background-dark: #0F0F1A;      /* Near-black, barely tinted */
 
-  /* Text Colors - REFINED FOR MODERN READABILITY */
-  --brand-text-primary: #1C1237;   /* Warm deep purple-black for headings */
-  --brand-text-secondary: #3B2D5E; /* Rich secondary text */
-  --brand-text-body: #4D3D6B;      /* Body text - warmer purple-grey */
-  --brand-text-muted: #8A7DA0;     /* Softer muted text */
+  /* Text Colors — near-black, minimal tinting */
+  --brand-text-primary: #111118;   /* Near-black for headings */
+  --brand-text-secondary: #2D2D3A; /* Dark grey secondary */
+  --brand-text-body: #4B4B5C;      /* Proper neutral grey body */
+  --brand-text-muted: #82829A;     /* Neutral muted */
 
   /* Font Families */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -31,10 +31,10 @@
   --brand-text-on-dark: #FFFFFF;   /* White - Body text on dark (14.1:1) - FIXED for readability */
   --brand-text-muted-on-dark: rgba(255, 255, 255, 0.85); /* White/85 - Metadata on dark (12:1) - FIXED */
 
-  /* Borders */
-  --brand-border: #E8E0F5;         /* Softer purple border */
-  --brand-border-strong: #D4C5F0;  /* Medium purple border */
-  --brand-border-dark: #3D2175;    /* Border on dark backgrounds */
+  /* Borders — clean, no purple tint */
+  --brand-border: #E2E2E8;         /* Neutral grey border */
+  --brand-border-strong: #CCCCD4;  /* Medium grey border */
+  --brand-border-dark: #2A2A4A;    /* Border on dark backgrounds */
 
   /* Functional */
   --brand-success: #059669;        /* Emerald 600 */
@@ -87,10 +87,10 @@
   --radius-xl: 24px;
 
   /* SHADOW SYSTEM */
-  --shadow-sm: 0 1px 2px rgba(46, 16, 101, 0.05);
-  --shadow-md: 0 4px 12px rgba(46, 16, 101, 0.08);
-  --shadow-lg: 0 10px 25px rgba(46, 16, 101, 0.12);
-  --shadow-glow: 0 0 20px rgba(167, 139, 250, 0.5); /* Glow for accents */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 20, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 20, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 20, 0.12);
+  --shadow-glow: 0 0 20px rgba(99, 91, 255, 0.45); /* Glow for accents */
 
   /* MOTION SYSTEM - Apple-style Spring Animations */
   --motion-fast: 150ms ease-out;
@@ -118,19 +118,19 @@
   
   /* Button Colors - System Command Palette */
   --button-primary-bg: var(--brand-primary);
-  --button-primary-bg-hover: #3B2375;  /* Subtle lift, not dramatic */
-  --button-primary-border: rgba(167, 139, 250, 0.15);
+  --button-primary-bg-hover: #3020B0;  /* Subtle lift */
+  --button-primary-border: rgba(99, 91, 255, 0.2);
   
   --button-secondary-bg: transparent;
-  --button-secondary-border: rgba(46, 16, 101, 0.25);
-  --button-secondary-border-hover: rgba(46, 16, 101, 0.45);
+  --button-secondary-border: rgba(59, 40, 204, 0.25);
+  --button-secondary-border-hover: rgba(59, 40, 204, 0.45);
   
-  --button-ghost-bg-hover: rgba(46, 16, 101, 0.06);
+  --button-ghost-bg-hover: rgba(59, 40, 204, 0.06);
   
-  /* Button Shadows - Understated depth */
-  --button-shadow: 0 1px 2px rgba(46, 16, 101, 0.08);
-  --button-shadow-hover: 0 2px 4px rgba(46, 16, 101, 0.12);
-  --button-shadow-active: 0 0 0 rgba(46, 16, 101, 0);
+  /* Button Shadows */
+  --button-shadow: 0 1px 2px rgba(0, 0, 20, 0.08);
+  --button-shadow-hover: 0 2px 4px rgba(0, 0, 20, 0.12);
+  --button-shadow-active: 0 0 0 rgba(0, 0, 20, 0);
 
   /* Input Tokens */
   --input-height: 48px;
@@ -175,7 +175,7 @@
   --form-field-ring-width: 3px;
   --form-field-ring-color: var(--brand-primary);
   --form-field-ring-opacity: 0.15;    /* Subtle but visible */
-  --form-field-ring: 0 0 0 var(--form-field-ring-width) rgba(46, 16, 101, var(--form-field-ring-opacity));
+  --form-field-ring: 0 0 0 var(--form-field-ring-width) rgba(59, 40, 204, var(--form-field-ring-opacity));
   
   /* Form Typography - Consistent Hierarchy */
   --form-label-size: 14px;
@@ -575,10 +575,10 @@
 /* Glow Pulse for focus states */
 @keyframes glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.3);
+    box-shadow: 0 0 20px rgba(99, 91, 255, 0.3);
   }
   50% {
-    box-shadow: 0 0 35px rgba(167, 139, 250, 0.5);
+    box-shadow: 0 0 35px rgba(99, 91, 255, 0.5);
   }
 }
 
@@ -676,7 +676,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(167, 139, 250, 0) 0%, rgba(167, 139, 250, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(99, 91, 255, 0) 0%, rgba(99, 91, 255, 0.08) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -685,8 +685,8 @@
 .card-premium:hover {
   transform: translateY(-6px) scale(1.01);
   box-shadow: 
-    0 25px 50px -12px rgba(46, 16, 101, 0.15),
-    0 0 0 1px rgba(167, 139, 250, 0.2);
+    0 25px 50px -12px rgba(0, 0, 20, 0.15),
+    0 0 0 1px rgba(99, 91, 255, 0.15);
 }
 
 .card-premium:hover::before {
@@ -702,10 +702,10 @@
 }
 
 .glass-dark {
-  background: rgba(46, 16, 101, 0.8);
+  background: rgba(15, 15, 26, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(167, 139, 250, 0.2);
+  border: 1px solid rgba(99, 91, 255, 0.15);
 }
 
 /* Scroll Progress Indicator */

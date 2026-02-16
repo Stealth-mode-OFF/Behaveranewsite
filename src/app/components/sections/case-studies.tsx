@@ -142,7 +142,7 @@ export function CaseStudiesSection() {
             <div className="h-6 bg-brand-border rounded w-96 mb-12 mx-auto" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-brand-background-secondary border border-brand-border rounded-3xl h-[420px]" />
+                <div key={i} className="bg-brand-background-secondary border border-brand-border rounded-3xl h-[380px] sm:h-[420px]" />
               ))}
             </div>
           </div>
@@ -340,7 +340,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
 
   return (
     <div
-      className="flip-card-container h-[420px] w-full cursor-pointer"
+      className="flip-card-container h-[380px] sm:h-[420px] w-full cursor-pointer"
       style={{ perspective: "1200px" }}
       onMouseEnter={() => !isMobile && setFlipped(true)}
       onMouseLeave={() => !isMobile && setFlipped(false)}

@@ -90,7 +90,7 @@ export function ProblemSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="lg:col-span-2"
+            className="md:col-span-2 lg:col-span-2"
           >
             <BentoCell
               item={items[0]}
@@ -126,7 +126,7 @@ export function ProblemSection() {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
+            <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a1540] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
               
@@ -192,7 +192,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProp
         {/* Animated Counter */}
         <div className={cn(
           "font-bold tracking-tight mb-2 transition-colors",
-          size === "large" ? "text-5xl md:text-6xl lg:text-7xl" : "text-4xl md:text-5xl",
+          size === "large" ? "text-4xl sm:text-5xl md:text-6xl lg:text-7xl" : "text-3xl sm:text-4xl md:text-5xl",
           valueColor || "text-brand-text-primary"
         )}>
           {item?.value || ""}

@@ -24,7 +24,7 @@ export function Hero() {
       headline: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
       headlineHighlight: "",
       subtitle: "Echo Pulse sbírá zpětnou vazbu přes krátký AI chat jednou měsíčně. Výsledky vidíte okamžitě v dashboardu — podle týmů, témat i rizik. Přestaňte hádat. Začněte vědět.",
-      primaryCta: "Otestovat na 1 týmu zdarma",
+      primaryCta: "Otestovat 1 tým zdarma",
       ctaMicro: "Bez závazku. Výsledky jsou vidět okamžitě.",
       secondaryCta: "Rezervovat demo",
       socialProof: "50 000+ otestovaných lidí",
@@ -118,7 +118,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-lg md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-10"
+              className="text-base md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10"
             >
               {c.subtitle}
             </motion.p>
@@ -155,7 +155,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-6 justify-center"
+              className="flex flex-wrap items-center gap-3 sm:gap-6 justify-center"
             >
               <div className="flex items-center gap-2 text-sm font-semibold text-brand-primary">
                 <Users className="w-4 h-4" />

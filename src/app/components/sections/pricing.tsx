@@ -165,7 +165,7 @@ export function PurchaseSection() {
               <button 
                 onClick={() => { setBillingInterval('monthly'); setJustSwitched(true); trackPricingBillingToggle('monthly'); }}
                 className={cn(
-                  "px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10",
+                  "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10",
                   billingInterval === 'monthly' 
                     ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30" 
                     : "text-brand-text-secondary hover:text-brand-primary"
@@ -176,26 +176,24 @@ export function PurchaseSection() {
               <button 
                 onClick={() => { setBillingInterval('yearly'); setJustSwitched(true); trackPricingBillingToggle('yearly'); }}
                 className={cn(
-                  "px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 flex items-center gap-2",
+                  "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 flex items-center gap-2",
                   billingInterval === 'yearly' 
                     ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30" 
                     : "text-brand-text-secondary hover:text-brand-primary"
                 )}
               >
                 {t.purchase.billingYearly}
-              </button>
-              {billingInterval === 'yearly' && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="absolute -top-3 -right-3 z-20"
-                >
-                  <div className="px-2.5 py-1 text-[10px] font-bold text-white bg-gradient-to-r from-brand-success to-emerald-500 rounded-full shadow-md shadow-brand-success/30 flex items-center gap-1">
+                {billingInterval === 'yearly' && (
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold text-white bg-gradient-to-r from-brand-success to-emerald-500 rounded-full shadow-md shadow-brand-success/30 ml-1"
+                  >
                     <Gift className="w-3 h-3" />
                     -20%
-                  </div>
-                </motion.div>
-              )}
+                  </motion.span>
+                )}
+              </button>
             </div>
           </div>
 
