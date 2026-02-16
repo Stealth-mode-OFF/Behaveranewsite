@@ -23,30 +23,39 @@ export function CtaSection() {
   const copy = {
     cz: {
       badge: "Připraveni?",
-      headline: "Vaši lidé vám chtějí něco říct.",
-      headlineHighlight: "Slyšíte je?",
-      subheadline: "Za 30 minut zjistíte, jestli Echo Pulse dává smysl. Za měsíc budete vědět, co se ve firmě děje — a přestanete hádat.",
-      primaryCta: "Chci to",
-      secondaryCta: "Nebo si raději domluvte osobní demo →",
+      headline: "Spusťte Echo Pulse.",
+      headlineHighlight: "A přestaňte hádat, co se ve firmě děje.",
+      subheadline: "Buď si to bezpečně otestujete na jednom týmu, nebo to rovnou spustíte ve firmě.",
+      primaryCta: "Otestovat na 1 týmu zdarma",
+      primaryMicro: "Bez závazku. Výsledky jsou vidět okamžitě.",
+      secondaryCta: "Objednat pro firmu",
+      secondaryMicro: "Karta nebo faktura. Bez smlouvy.",
+      demoLink: "Chci si to nejdřív projít na demu",
       trust: ["Bez kreditky", "GDPR ready", "Výsledky okamžitě"],
     },
     en: {
       badge: "Ready?",
-      headline: "Your people want to tell you something.",
-      headlineHighlight: "Are you listening?",
-      subheadline: "30 minutes is all it takes to find out if Echo Pulse makes sense for your company.",
-      primaryCta: "I want this",
-      secondaryCta: "Or book a personal demo →",
+      headline: "Launch Echo Pulse.",
+      headlineHighlight: "And stop guessing what's happening in your company.",
+      subheadline: "Either safely test it with one team, or launch it across your company right away.",
+      primaryCta: "Test 1 team for free",
+      primaryMicro: "No commitment. Results are instant.",
+      secondaryCta: "Order for company",
+      secondaryMicro: "Card or invoice. No contract.",
+      demoLink: "I'd like to see a demo first",
       trust: ["No credit card", "GDPR ready", "Instant results"],
     },
     de: {
-      badge: "Bereit zu starten?",
-      headline: "Ihre Mitarbeiter sprechen.",
-      headlineHighlight: "Hören Sie zu?",
-      subheadline: "Erhalten Sie klare Signale von Ihrem Team. Ohne anonyme Umfragen, die niemand liest.",
-      primaryCta: "Das will ich",
-      secondaryCta: "Oder buchen Sie eine persönliche Demo →",
-      trust: ["30 Tage Test", "Keine Kreditkarte", "DSGVO-konform"],
+      badge: "Bereit?",
+      headline: "Starten Sie Echo Pulse.",
+      headlineHighlight: "Und hören Sie auf zu raten, was im Unternehmen passiert.",
+      subheadline: "Testen Sie es sicher mit einem Team oder starten Sie direkt im ganzen Unternehmen.",
+      primaryCta: "1 Team kostenlos testen",
+      primaryMicro: "Unverbindlich. Ergebnisse sofort sichtbar.",
+      secondaryCta: "Für das Unternehmen bestellen",
+      secondaryMicro: "Karte oder Rechnung. Ohne Vertrag.",
+      demoLink: "Ich möchte zuerst eine Demo sehen",
+      trust: ["Keine Kreditkarte", "DSGVO-konform", "Sofortige Ergebnisse"],
     },
   };
 
@@ -121,28 +130,52 @@ export function CtaSection() {
             {c.subheadline}
           </motion.p>
 
-          {/* CTA */}
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="flex flex-col items-center justify-center gap-4 mb-12"
+            className="flex flex-col items-center justify-center gap-6 mb-12"
           >
-            <Button 
-              onClick={() => navigate('/start')}
-              size="lg"
-              className="min-w-[240px] h-14 px-8 bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20"
-            >
-              {c.primaryCta}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            {/* Two buttons row */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {/* Primary CTA */}
+              <a
+                href="https://app.behavera.com/echo-pulse/try"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 min-w-[240px] h-14 px-8 rounded-[var(--button-radius)] bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20 w-full sm:w-auto"
+              >
+                {c.primaryCta}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              {/* Secondary CTA */}
+              <a
+                href="https://www.echopulse.cz/start"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 min-w-[220px] h-14 px-8 rounded-[var(--button-radius)] bg-white/10 border border-white/30 text-white font-semibold text-base hover:bg-white/20 transition-all w-full sm:w-auto"
+              >
+                {c.secondaryCta}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Microcopy row */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
+              <span className="text-xs text-white/50">{c.primaryMicro}</span>
+              <span className="text-xs text-white/50">{c.secondaryMicro}</span>
+            </div>
+
+            {/* Demo link */}
             <button
               type="button"
               onClick={() => openBooking('cta_section')}
-              className="text-white/70 hover:text-white underline underline-offset-4 transition-colors"
+              className="text-sm text-white/60 underline underline-offset-4 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors cursor-pointer"
             >
-              {c.secondaryCta}
+              {c.demoLink}
             </button>
           </motion.div>
 
