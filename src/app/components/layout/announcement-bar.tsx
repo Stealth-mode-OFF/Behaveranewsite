@@ -33,17 +33,17 @@ export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (
     cz: {
       message: "Stále používáte Google Forms pro zpětnou vazbu?",
       cta: "Přejděte na Echo Pulse →",
-      link: "#radar",
+      link: "https://app.behavera.com/echo-pulse/try",
     },
     en: {
       message: "Still using Google Forms for employee feedback?",
       cta: "Switch to Echo Pulse →",
-      link: "#radar",
+      link: "https://app.behavera.com/echo-pulse/try",
     },
     de: {
       message: "Nutzen Sie noch Google Forms für Mitarbeiter-Feedback?",
       cta: "Wechseln Sie zu Echo Pulse →",
-      link: "#radar",
+      link: "https://app.behavera.com/echo-pulse/try",
     },
   };
 
@@ -58,14 +58,7 @@ export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (
     }
   };
 
-  const handleClick = () => {
-    const el = document.getElementById("radar");
-    if (el) {
-      const offset = 80;
-      const y = el.getBoundingClientRect().top + window.pageYOffset - offset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
+
 
   return (
     <AnimatePresence>
@@ -83,13 +76,14 @@ export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (
             <span className="font-medium text-white/90">
               {c.message}
             </span>
-            <button
-              type="button"
-              onClick={handleClick}
-              className="font-bold text-white hover:text-brand-accent transition-colors inline-flex items-center gap-1 underline underline-offset-2 cursor-pointer"
+            <a
+              href={c.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-white hover:text-brand-accent transition-colors inline-flex items-center gap-1 underline underline-offset-2"
             >
               {c.cta}
-            </button>
+            </a>
             <button
               type="button"
               onClick={handleDismiss}

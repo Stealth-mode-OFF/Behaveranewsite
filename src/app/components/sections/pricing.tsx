@@ -4,8 +4,6 @@ import { Check, ShieldCheck, Star, Users, Zap, Sparkles, ArrowRight, Gift, Clock
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
-import { useNavigate } from "react-router-dom";
 import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
 
 /* ─── Animated counter hook ─── */
@@ -40,13 +38,12 @@ const pricingCopy = {
       "Neomezené pulzy a signály",
       "Dashboard pro CEO, HR i manažery",
       "Akční doporučení na míru",
-      "Anonymní a GDPR bezpečné",
       "Onboarding a podpora zdarma",
       "Integrace s M365, Slack, Teams",
       "Export reportů a dat",
     ],
-    ctaPrimary: "Chci to",
-    ctaSecondary: "Nebo si to nejdřív vyzkoušejte →",
+    ctaPrimary: "Objednat pro celou firmu",
+    ctaSecondary: "Otestovat 1 tým zdarma →",
     trustLine: "Už přes 50 firem důvěřuje Echo Pulse",
     roiTitle: " ROI za 30 dní",
     roiDesc: "Průměrná firma ušetří 3× investici díky nižší fluktuaci.",
@@ -63,13 +60,12 @@ const pricingCopy = {
       "Unlimited pulses & signals",
       "Dashboards for CEO, HR & managers",
       "Tailored action recommendations",
-      "Anonymous & GDPR-safe",
       "Free onboarding & support",
       "M365, Slack, Teams integrations",
       "Export reports & raw data",
     ],
-    ctaPrimary: "I want this",
-    ctaSecondary: "Or try it yourself first →",
+    ctaPrimary: "Order for your company",
+    ctaSecondary: "Test 1 team for free →",
     trustLine: "Already trusted by 50+ companies",
     roiTitle: " ROI in 30 days",
     roiDesc: "Average company saves 3× their investment through lower turnover.",
@@ -86,13 +82,12 @@ const pricingCopy = {
       "Unbegrenzte Pulsmessungen & Signale",
       "Dashboards für CEO, HR & Manager",
       "Maßgeschneiderte Handlungsempfehlungen",
-      "Anonym & DSGVO-konform",
       "Kostenloses Onboarding & Support",
       "M365, Slack, Teams Integrationen",
       "Datenexport & Berichte",
     ],
-    ctaPrimary: "Das will ich",
-    ctaSecondary: "Oder testen Sie es selbst →",
+    ctaPrimary: "Für Ihr Unternehmen bestellen",
+    ctaSecondary: "1 Team kostenlos testen →",
     trustLine: "Über 50 Unternehmen vertrauen Echo Pulse",
     roiTitle: " ROI in 30 Tagen",
     roiDesc: "Durchschnittliches Unternehmen spart das 3-fache der Investition durch geringere Fluktuation.",
@@ -101,8 +96,6 @@ const pricingCopy = {
 
 export function PurchaseSection() {
   const { t, language } = useLanguage();
-  const { openBooking, openDemo } = useModal();
-  const navigate = useNavigate();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
   const [justSwitched, setJustSwitched] = useState(false);
@@ -410,23 +403,22 @@ export function PurchaseSection() {
                 </div>
                 
                 <div className="mt-8 relative space-y-3">
-                  <Button 
-                    onClick={() => navigate('/start')}
-                    className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 text-[16px] group" 
-                    size="lg"
-                  >
-                    <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-                    {pc.ctaPrimary}
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 text-[16px] group" size="lg">
+                    <a href="https://www.echopulse.cz/start" target="_blank" rel="noopener noreferrer">
+                      <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                      {pc.ctaPrimary}
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </a>
                   </Button>
                   
-                  <button
-                    type="button"
-                    onClick={() => openDemo('pricing')}
+                  <a
+                    href="https://app.behavera.com/echo-pulse/try"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block w-full text-center text-[12px] text-white/50 hover:text-white transition-colors underline underline-offset-2"
                   >
                     {pc.ctaSecondary}
-                  </button>
+                  </a>
                   
                   {/* Bottom trust */}
                   <div className="pt-5 border-t border-white/10">
