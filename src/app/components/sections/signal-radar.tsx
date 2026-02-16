@@ -263,16 +263,7 @@ export function SignalRadar() {
             <p className="text-base text-brand-text-body max-w-2xl mx-auto leading-relaxed mb-5">
               {c.topicsSubtitle}
             </p>
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-brand-primary/5 border border-brand-primary/10">
-              <div className="flex -space-x-1">
-                {c.topicCards.map((_, i) => (
-                  <div key={i} className="w-4 h-4 rounded-full bg-brand-primary/20 border-2 border-white flex items-center justify-center">
-                    <span className="text-[7px] font-bold text-brand-primary">{i + 1}</span>
-                  </div>
-                ))}
-              </div>
-              <span className="text-[12px] font-semibold text-brand-primary">{c.topicCards.length} {language === 'cz' ? 'oblastí' : language === 'de' ? 'Bereiche' : 'areas'} · {language === 'cz' ? '~47 otázek celkem' : language === 'de' ? '~47 Fragen gesamt' : '~47 questions total'}</span>
-            </div>
+
           </div>
 
           <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} />
@@ -358,7 +349,7 @@ export function SignalRadar() {
             </div>
           </motion.div>
         </div>
-        {/* ═══════════ QUICK SCAN CTA + TESTIMONIALS ═══════════ */}
+        {/* ═══════════ TESTIMONIALS ═══════════ */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -366,25 +357,6 @@ export function SignalRadar() {
           transition={{ duration: 0.5 }}
           className="rounded-2xl border border-brand-border/60 bg-white p-6 sm:p-8 md:p-10 shadow-sm"
         >
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
-            <div className="md:max-w-[55%]">
-              <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary mb-2 leading-tight">
-                {c.tryTitle}
-              </h3>
-              <p className="text-sm text-brand-text-muted leading-relaxed">
-                {c.tryDesc}
-              </p>
-            </div>
-              <button
-              onClick={() => openPulseEmbed(tryLink)}
-              className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-lg bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors cursor-pointer shrink-0"
-            >
-              {c.tryCta}
-              <Play className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Testimonials carousel */}
           <QuickScanTestimonials lang={language} />
         </motion.div>
 
@@ -740,71 +712,54 @@ type Testimonial = {
   quote: string;
 };
 
-const testimonials: Testimonial[] = [
-  {
-    name: "Dominik Hegedus",
-    role: "CEO",
-    company: "Expando",
-    quote: "It took just a moment — and those few answers delivered exactly what we needed. No complicated reports, no endless spreadsheets — just clear, actionable insights.",
-  },
-  {
-    name: "Jiří",
-    role: "CEO",
-    company: "logistická firma",
-    quote: "Jsem nadšený! Jsem na pozici CEO od srpna. Mám dát do pořádku celou firmu a potřebuji rychle zjistit, co se kde děje. Tohle je pro mě nesmírně cenné!",
-  },
-  {
-    name: "Tereza Müllerová",
-    role: "COO",
-    company: "StartupJobs",
-    quote: "Překvapilo mě, kolik lidí se zapojilo. A i když naši lídři se svými týmy pravidelně mluví, v Pulsu se ukázaly věci, které jim lidé do očí neřekli.",
-  },
-  {
-    name: "Karel Poplstein",
-    role: "CEO",
-    company: "Valxon",
-    quote: "I thought people are no longer engaged and gave up on us. I was surprised when I saw how engaged and invested our employees are. Moreover, without Behavera, we would've kept treating symptoms instead of the real causes. It helped us see what we would've otherwise missed.",
-  },
-  {
-    name: "Dana Kultová",
-    role: "COO",
-    company: "klientská firma",
-    quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations. Thanks to that, we fine-tuned our processes, set clear KPIs, and improved team communication.",
-  },
-  {
-    name: "Ema Nováková",
-    role: "HR Manager",
-    company: "Expando",
-    quote: "Díky Behaveře lídři dostanou výstupy z průzkumu automaticky a to i s akčními doporučeními okamžitě a já tak ušetřím celý týden, který nyní mohu investovat do zlepšování procesů a rozvoje zaměstnanců.",
-  },
-  {
-    name: "Martina",
-    role: "Manažerka telesales týmu",
-    company: "Teya",
-    quote: "Díky Echo Pulse mám pravidelný feedback o tom, jestli je můj tým v pohodě. Hned vidím, kdy je třeba urgentně řešit nějaký problém i co moje lidi pálí nejvíc. Jsem v roli lídra čerstvě a Behavera mi pomáhá si správně definovat priority.",
-  },
-  {
-    name: "Ján Pavlík",
-    role: "Project Manager",
-    company: "Expando",
-    quote: "Behavera nám ukázala, že kromě špatné interní komunikace máme také problémy s efektivní motivací lidí. Hodně mě to překvapilo. Nikdy předtím jsem to nepovažoval za problém.",
-  },
-];
+const testimonialsByLang: Record<string, Testimonial[]> = {
+  cz: [
+    { name: "Dominik Hegedus", role: "CEO", company: "Expando", quote: "Stačil okamžik — a těch pár odpovědí nám přineslo přesně to, co jsme potřebovali. Žádné složité reporty, žádné nekonečné Excel tabulky — jen jasné a použitelné poznatky." },
+    { name: "Jiří", role: "CEO", company: "logistická firma", quote: "Jsem nadšený! Jsem na pozici CEO od srpna. Mám dát do pořádku celou firmu a potřebuji rychle zjistit, co se kde děje. Tohle je pro mě nesmírně cenné!" },
+    { name: "Tereza Müllerová", role: "COO", company: "StartupJobs", quote: "Překvapilo mě, kolik lidí se zapojilo. A i když naši lídři se svými týmy pravidelně mluví, v Pulsu se ukázaly věci, které jim lidé do očí neřekli." },
+    { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "Myslel jsem, že už lidi nemají zájem a rezignovali. Překvapilo mě, jak zapojení a investovaní naši zaměstnanci jsou. Bez Behavery bychom dál léčili symptomy místo skutečných příčin. Pomohla nám vidět to, co bychom jinak přehlédli." },
+    { name: "Dana Kultová", role: "COO", company: "klientská firma", quote: "Výsledky víceméně potvrdily, co jsem tušila. Ale co mě úplně nadchlo, byl playbook plný praktických doporučení krok za krokem. Díky tomu jsme vyladili procesy, nastavili jasné KPI a zlepšili komunikaci v týmu." },
+    { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Díky Behaveře lídři dostanou výstupy z průzkumu automaticky a to i s akčními doporučeními okamžitě a já tak ušetřím celý týden, který nyní mohu investovat do zlepšování procesů a rozvoje zaměstnanců." },
+    { name: "Martina", role: "Manažerka telesales týmu", company: "Teya", quote: "Díky Echo Pulse mám pravidelný feedback o tom, jestli je můj tým v pohodě. Hned vidím, kdy je třeba urgentně řešit nějaký problém i co moje lidi pálí nejvíc. Jsem v roli lídra čerstvě a Behavera mi pomáhá si správně definovat priority." },
+    { name: "Ján Pavlík", role: "Project Manager", company: "Expando", quote: "Behavera nám ukázala, že kromě špatné interní komunikace máme také problémy s efektivní motivací lidí. Hodně mě to překvapilo. Nikdy předtím jsem to nepovažoval za problém." },
+  ],
+  en: [
+    { name: "Dominik Hegedus", role: "CEO", company: "Expando", quote: "It took just a moment — and those few answers delivered exactly what we needed. No complicated reports, no endless spreadsheets — just clear, actionable insights." },
+    { name: "Jiří", role: "CEO", company: "logistics company", quote: "I'm thrilled! I've been CEO since August. I need to get the whole company in order and quickly figure out what's happening where. This is incredibly valuable for me!" },
+    { name: "Tereza Müllerová", role: "COO", company: "StartupJobs", quote: "I was surprised by how many people participated. Even though our leaders talk to their teams regularly, Pulse revealed things people hadn't said to their faces." },
+    { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "I thought people are no longer engaged and gave up on us. I was surprised when I saw how engaged and invested our employees are. Without Behavera, we would've kept treating symptoms instead of the real causes." },
+    { name: "Dana Kultová", role: "COO", company: "client company", quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations. Thanks to that, we fine-tuned our processes, set clear KPIs, and improved team communication." },
+    { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Thanks to Behavera, leaders get survey results automatically — complete with actionable recommendations — and I save an entire week that I can now invest in improving processes and employee development." },
+    { name: "Martina", role: "Telesales Team Manager", company: "Teya", quote: "With Echo Pulse I get regular feedback on whether my team is doing okay. I can immediately see when something needs urgent attention and what bothers people the most. I'm new in a leadership role and Behavera helps me set the right priorities." },
+    { name: "Ján Pavlík", role: "Project Manager", company: "Expando", quote: "Behavera showed us that besides poor internal communication, we also had problems with effectively motivating people. That really surprised me. I'd never considered it an issue before." },
+  ],
+  de: [
+    { name: "Dominik Hegedus", role: "CEO", company: "Expando", quote: "Es dauerte nur einen Moment — und diese wenigen Antworten lieferten genau das, was wir brauchten. Keine komplizierten Berichte, keine endlosen Tabellen — nur klare, umsetzbare Erkenntnisse." },
+    { name: "Jiří", role: "CEO", company: "Logistikunternehmen", quote: "Ich bin begeistert! Seit August bin ich CEO. Ich muss das ganze Unternehmen in Ordnung bringen und schnell herausfinden, was wo passiert. Das ist für mich unglaublich wertvoll!" },
+    { name: "Tereza Müllerová", role: "COO", company: "StartupJobs", quote: "Es hat mich überrascht, wie viele Mitarbeiter teilgenommen haben. Obwohl unsere Führungskräfte regelmäßig mit ihren Teams sprechen, hat Pulse Dinge aufgedeckt, die die Leute nicht offen gesagt haben." },
+    { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "Ich dachte, die Leute sind nicht mehr engagiert und haben aufgegeben. Ich war überrascht, wie engagiert und investiert unsere Mitarbeiter tatsächlich sind. Ohne Behavera hätten wir weiter Symptome behandelt statt die wahren Ursachen." },
+    { name: "Dana Kultová", role: "COO", company: "Kundenunternehmen", quote: "Die Ergebnisse bestätigten mehr oder weniger, was ich vermutet hatte. Aber was mich wirklich beeindruckt hat, war das Playbook voller praktischer Schritt-für-Schritt-Empfehlungen. Dadurch haben wir unsere Prozesse optimiert, klare KPIs gesetzt und die Teamkommunikation verbessert." },
+    { name: "Ema Nováková", role: "HR-Managerin", company: "Expando", quote: "Dank Behavera erhalten Führungskräfte die Umfrageergebnisse automatisch — inklusive sofortiger Handlungsempfehlungen — und ich spare eine ganze Woche, die ich jetzt in die Verbesserung von Prozessen und Mitarbeiterentwicklung investieren kann." },
+    { name: "Martina", role: "Telesales-Teamleiterin", company: "Teya", quote: "Mit Echo Pulse bekomme ich regelmäßiges Feedback, ob mein Team zufrieden ist. Ich sehe sofort, wenn etwas dringend gelöst werden muss und was die Leute am meisten beschäftigt. Ich bin neu in der Führungsrolle und Behavera hilft mir, die richtigen Prioritäten zu setzen." },
+    { name: "Ján Pavlík", role: "Projektmanager", company: "Expando", quote: "Behavera hat uns gezeigt, dass wir neben schlechter interner Kommunikation auch Probleme mit der effektiven Motivation unserer Mitarbeiter haben. Das hat mich sehr überrascht. Vorher hatte ich das nie als Problem gesehen." },
+  ],
+};
 
 function QuickScanTestimonials({ lang }: { lang: string }) {
+  const items = testimonialsByLang[lang] || testimonialsByLang.en;
   const [idx, setIdx] = useState(0);
 
   const next = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
-    setIdx((i) => (i + 1) % testimonials.length);
-  }, []);
+    setIdx((i) => (i + 1) % items.length);
+  }, [items.length]);
 
   const prev = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
-    setIdx((i) => (i - 1 + testimonials.length) % testimonials.length);
-  }, []);
+    setIdx((i) => (i - 1 + items.length) % items.length);
+  }, [items.length]);
 
-  const t = testimonials[idx];
+  const t = items[idx];
 
   return (
     <div className="border-t border-brand-border/40 pt-5">
@@ -845,7 +800,7 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
       </div>
 
       <div className="flex items-center justify-center gap-1 mt-3">
-        {testimonials.map((_, i) => (
+        {items.map((_, i) => (
           <button
             key={i}
             onClick={(e) => { e.stopPropagation(); setIdx(i); }}
