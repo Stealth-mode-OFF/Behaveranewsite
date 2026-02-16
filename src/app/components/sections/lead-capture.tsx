@@ -16,8 +16,8 @@ type LeadFormData = {
 };
 
 const EBOOKS = [
-  { file: "/ebooks/lide-odchazeji-z-dobrych-firem.pdf", title: "People Leave Good Companies Too", size: "4.3 MB" },
-  { file: "/ebooks/motivovani-jen-2-z-10.pdf", title: "Only 2 in 10 Are Truly Motivated", size: "4.1 MB" },
+  { file: "/ebooks/lide-odchazeji-z-dobrych-firem.pdf", title: "Lidé odcházejí z dobrých firem", size: "4.3 MB" },
+  { file: "/ebooks/motivovani-jen-2-z-10.pdf", title: "Motivováni jen 2 z 10", size: "4.1 MB" },
 ];
 
 const downloadFile = (url: string, filename: string) => {
@@ -41,17 +41,17 @@ export function LeadCaptureSection() {
 
   const copy = {
     cz: {
-      title: "Zjistěte, co vaše lidi ",
-      titleHighlight: "skutečně trápí",
-      subtitle: "Nechte AI analyzovat náladu v týmu a získejte konkrétní doporučení dřív, než bude pozdě.",
+      title: "Než začnete měřit, ",
+      titleHighlight: "pochopte proč lidé odcházejí",
+      subtitle: "Stáhněte si 2 e-booky plné dat a konkrétních strategií z českých firem. Zjistěte, co stojí za fluktuací — a jak ji zastavit dřív, než přijdete o klíčové lidi.",
       benefits: [
-        "2 e-booky o prevenci fluktuace zdarma",
-        "Praktické checklisty a frameworky",
-        "Reálná čísla z českých firem",
+        "Proč odcházejí i z dobrých firem — a co s tím",
+        "Tvrdá čísla: jen 2 z 10 zaměstnanců jsou skutečně motivovaní",
+        "Konkrétní kroky, které můžete zavést tento měsíc",
       ],
       emailLabel: "Pracovní email",
       emailPlaceholder: "jan.novak@firma.cz",
-      submit: "Stáhnout zdarma",
+      submit: "Stáhnout e-booky zdarma",
       consent: "Souhlasím se zasíláním tipů a novinek. Odhlásit se můžete kdykoliv.",
       privacy: "Odesláním souhlasíte se zpracováním osobních údajů.",
       successTitle: "Hotovo! Stahování začalo.",
@@ -60,17 +60,17 @@ export function LeadCaptureSection() {
       dl: "Stáhnout",
     },
     en: {
-      title: "Find out what's really ",
-      titleHighlight: "bothering your team",
-      subtitle: "Let AI analyse team sentiment and get actionable recommendations before it's too late.",
+      title: "Before you start measuring, ",
+      titleHighlight: "understand why people leave",
+      subtitle: "Download 2 e-books packed with data and proven retention strategies. Learn what really drives turnover — and how to stop it before you lose your best people.",
       benefits: [
-        "2 free e-books on turnover prevention",
-        "Practical checklists & frameworks",
-        "Real data from real companies",
+        "Why people leave even good companies — and what to do",
+        "Hard data: only 2 in 10 employees are truly motivated",
+        "Actionable steps you can implement this month",
       ],
       emailLabel: "Work email",
       emailPlaceholder: "john.smith@company.com",
-      submit: "Download free",
+      submit: "Download e-books free",
       consent: "I agree to receive occasional tips and product news. Unsubscribe anytime.",
       privacy: "By submitting you agree to our privacy policy.",
       successTitle: "Done! Download started.",
@@ -79,17 +79,17 @@ export function LeadCaptureSection() {
       dl: "Download",
     },
     de: {
-      title: "Finden Sie heraus, was Ihr Team ",
-      titleHighlight: "wirklich bewegt",
-      subtitle: "Lassen Sie KI die Teamstimmung analysieren und erhalten Sie Empfehlungen, bevor es zu spät ist.",
+      title: "Bevor Sie messen, ",
+      titleHighlight: "verstehen Sie warum Mitarbeiter gehen",
+      subtitle: "Laden Sie 2 E-Books voller Daten und bewährter Retentionsstrategien herunter. Erfahren Sie, was Fluktuation wirklich antreibt — und wie Sie sie stoppen, bevor Sie Ihre besten Leute verlieren.",
       benefits: [
-        "2 kostenlose E-Books zur Fluktuationsprävention",
-        "Praktische Checklisten & Frameworks",
-        "Echte Zahlen aus echten Unternehmen",
+        "Warum Mitarbeiter selbst gute Unternehmen verlassen — und was hilft",
+        "Harte Zahlen: Nur 2 von 10 Mitarbeitern sind wirklich motiviert",
+        "Konkrete Schritte, die Sie noch diesen Monat umsetzen können",
       ],
       emailLabel: "Geschäftliche E-Mail",
       emailPlaceholder: "max.mustermann@firma.de",
-      submit: "Kostenlos herunterladen",
+      submit: "E-Books kostenlos herunterladen",
       consent: "Ich stimme dem Erhalt von Tipps und Neuigkeiten zu. Abmeldung jederzeit möglich.",
       privacy: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.",
       successTitle: "Fertig! Download gestartet.",
