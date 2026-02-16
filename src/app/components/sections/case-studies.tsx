@@ -7,9 +7,6 @@ import { CaseStudy } from "@/lib/types";
 import { useLanguage } from "@/app/LanguageContext";
 import { cn } from "@/app/components/ui/utils";
 
-// Cover photo imports
-import vodafonePhoto from "@/assets/vodafone.png";
-
 // Logo imports
 import effectixLogo from "@/assets/logos/normalized/effectix.png";
 import growRangersLogo from "@/assets/logos/normalized/grow-rangers.png";
@@ -35,12 +32,6 @@ import expandoLogo from "@/assets/logos/normalized/expando.png";
 
 // Map clientName → logo
 const LOGO_MAP: Record<string, string> = {
-
-// Map clientName → cover photo override (local asset takes priority over CMS coverImage)
-const COVER_MAP: Record<string, string> = {
-  'Vodafone Czech Republic': vodafonePhoto,
-};
-
 
   'Vodafone Czech Republic': vodafoneLogo,
   'Valxon': valxonLogo,
@@ -369,7 +360,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
         >
           {/* Full-bleed photo */}
           <img
-            src={COVER_MAP[study.clientName] || study.coverImage || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200'}
+            src={study.coverImage || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200'}
             alt={study.clientName}
             className="absolute inset-0 w-full h-full object-cover"
           />
