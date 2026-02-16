@@ -36,7 +36,7 @@ const copy: Record<string, TCopy> = {
     titleHighlight: "Ka\u017ed\u00fd m\u011bs\u00edc.",
     subtitle: "Kr\u00e1tk\u00fd AI chat m\u00edsto formul\u00e1\u0159\u016f. Ov\u011b\u0159en\u00e9 ot\u00e1zky od behavior\u00e1ln\u00edch psycholog\u016f, kter\u00e9 mluv\u00ed lidsky. 80\u00a0%+ lid\u00ed re\u00e1ln\u011b odpov\u00edd\u00e1.",
     topicsTitle: "T\u00e9mata, kter\u00e1 odhal\u00ed to, co lid\u00e9 ne\u0159eknou nahlas",
-    topicsSubtitle: "8 oblast\u00ed pokr\u00fdvaj\u00edc\u00edch odm\u011bny, z\u00e1t\u011b\u017e, kulturu i riziko vyho\u0159en\u00ed. Ka\u017edou m\u016f\u017eete spustit nez\u00e1visle.",
+    topicsSubtitle: "Odm\u011bny, z\u00e1t\u011b\u017e, kultura, vyho\u0159en\u00ed a dal\u0161\u00ed. Ka\u017ed\u00e9 t\u00e9ma m\u016f\u017eete spustit nez\u00e1visle.",
     topicCards: [
       { key: "quickScan", name: "Celkov\u00fd pulse t\u00fdmu", desc: "Celkov\u00fd pulse va\u0161eho t\u00fdmu v 5 ot\u00e1zk\u00e1ch. Spokojenost, bari\u00e9ry i to, co lidi bav\u00ed \u2014 r\u00e1zem m\u00e1te obr\u00e1zek, kde za\u010d\u00edt.", sampleQ: "\u201eJak spokojen\u011b se v posledn\u00ed dob\u011b c\u00edt\u00ed\u0161 v pr\u00e1ci?\u201c", ceoInsight: "Okam\u017eit\u011b vid\u00edte, jestli se n\u00e1lada ve firm\u011b zlep\u0161uje nebo zhor\u0161uje \u2014 bez \u010dek\u00e1n\u00ed na kvart\u00e1ln\u00ed report.", link: PULSE_BASE + "initial?x_lang=cs" },
       { key: "pay", name: "F\u00e9rovost odm\u011bn", desc: "F\u00e9rovost odm\u011bn, motivace a srovn\u00e1n\u00ed s trhem. 6 ot\u00e1zek, kter\u00e9 odhal\u00ed, jestli v\u00e1m lid\u00e9 odch\u00e1zej\u00ed kv\u016fli pen\u011bz\u016fm.", sampleQ: "\u201eP\u0159i\u0161la ti tv\u00e1 odm\u011bna f\u00e9rov\u00e1 vzhledem k pr\u00e1ci, kterou odv\u00e1d\u00ed\u0161?\u201c", ceoInsight: "Zjist\u00edte, jestli v\u00e1m lid\u00e9 odch\u00e1zej\u00ed kv\u016fli pen\u011bz\u016fm \u2014 nebo kv\u016fli n\u011b\u010demu, co se d\u00e1 vy\u0159e\u0161it levn\u011bji.", link: PULSE_BASE + "pay?x_lang=cs" },
@@ -67,7 +67,7 @@ const copy: Record<string, TCopy> = {
     titleHighlight: "Every month.",
     subtitle: "A short AI chat instead of forms. Validated questions by behavioral psychologists that feel human. 80%+ of people actually respond.",
     topicsTitle: "Topics that uncover what people won\u2019t say out loud",
-    topicsSubtitle: "8 areas covering pay, workload, culture, and burnout risk. Each can be launched independently.",
+    topicsSubtitle: "Pay, workload, culture, burnout risk, and more. Each topic can be launched independently.",
     topicCards: [
       { key: "quickScan", name: "Overall team pulse", desc: "Your team\u2019s overall pulse in 5 questions. Satisfaction, barriers, and what brings joy \u2014 you get the full picture of where to start.", sampleQ: "\u201cHow happy have you felt at work recently?\u201d", ceoInsight: "Instantly see whether company morale is improving or declining \u2014 no waiting for quarterly reports.", link: PULSE_BASE + "initial?x_lang=en" },
       { key: "pay", name: "Pay fairness", desc: "Pay fairness, motivation, and market comparison. 6 questions that reveal whether people leave over money \u2014 or something else.", sampleQ: "\u201cDid your compensation feel fair given the work you put in?\u201d", ceoInsight: "Find out if people leave over money \u2014 or something cheaper to fix.", link: PULSE_BASE + "pay?x_lang=en" },
@@ -103,7 +103,7 @@ const copy: Record<string, TCopy> = {
       { label: "Sofortige Ergebnisse", desc: "Dashboard mit KI-Empfehlungen" },
     ],
     topicsTitle: "Themen, die aufdecken, was Mitarbeiter nicht laut sagen",
-    topicsSubtitle: "8 Bereiche zu Verg\u00fctung, Belastung, Kultur und Burnout-Risiko. Jeder einzeln startbar.",
+    topicsSubtitle: "Verg\u00fctung, Belastung, Kultur, Burnout-Risiko und mehr. Jedes Thema einzeln startbar.",
     topicCards: [
       { key: "quickScan", name: "Team-Gesamtpuls", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht \u2014 auf einen Blick.", sampleQ: "\u201eWie zufrieden f\u00fchlst du dich aktuell bei der Arbeit?\u201c", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert \u2014 ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=en" },
       { key: "pay", name: "Verg\u00fctungsfairness", desc: "Fairness, Motivation und Marktvergleich. 6 Fragen, die zeigen, ob Mitarbeiter wegen Geld gehen.", sampleQ: "\u201eEmpfandest du deine Verg\u00fctung als fair f\u00fcr die Arbeit, die du geleistet hast?\u201c", ceoInsight: "Erfahren Sie, ob Mitarbeiter wegen des Geldes gehen \u2014 oder wegen etwas, das g\u00fcnstiger zu l\u00f6sen ist.", link: PULSE_BASE + "pay?x_lang=en" },
