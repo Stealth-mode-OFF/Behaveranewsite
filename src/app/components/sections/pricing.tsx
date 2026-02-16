@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Check, ShieldCheck, Star, Users, Zap } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
+import { Check, ShieldCheck, Star, Users, Zap, Sparkles, ArrowRight, Gift, Clock, Rocket, Heart } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/LanguageContext";
@@ -8,13 +8,106 @@ import { useModal } from "@/app/ModalContext";
 import { useNavigate } from "react-router-dom";
 import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
 
+/* ─── Animated counter hook ─── */
+function useAnimatedNumber(value: number, duration = 0.5) {
+  const motionVal = useMotionValue(value);
+  const rounded = useTransform(motionVal, (v) => Math.round(v).toLocaleString());
+  const [display, setDisplay] = useState(value.toLocaleString());
+  
+  useEffect(() => {
+    const controls = animate(motionVal, value, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setDisplay(Math.round(v).toLocaleString()),
+    });
+    return controls.stop;
+  }, [value, motionVal, duration]);
+  
+  return display;
+}
+
+/* ─── Pricing-specific translations ─── */
+const pricingCopy = {
+  cz: {
+    popularBadge: "Nejoblíbenější",
+    perPerson: "za osobu",
+    perMonth: "/ měsíc",
+    noCard: "Bez platební karty · Bez závazků",
+    startIn: "Start do 1 hodiny",
+    allInclusive: "Vše v jednom balíčku:",
+    extraFeatures: [
+      "AI-analýza 24/7 v reálném čase",
+      "Neomezené pulzy a signály",
+      "Dashboard pro CEO, HR i manažery",
+      "Akční doporučení na míru",
+      "Anonymní a GDPR bezpečné",
+      "Onboarding a podpora zdarma",
+      "Integrace s M365, Slack, Teams",
+      "Export reportů a dat",
+    ],
+    ctaPrimary: "Chci to",
+    ctaSecondary: "Nebo si to nejdřív vyzkoušejte →",
+    trustLine: "Už přes 50 firem důvěřuje Echo Pulse",
+    roiTitle: " ROI za 30 dní",
+    roiDesc: "Průměrná firma ušetří 3× investici díky nižší fluktuaci.",
+  },
+  en: {
+    popularBadge: "Most popular",
+    perPerson: "per person",
+    perMonth: "/ month",
+    noCard: "No credit card · No commitment",
+    startIn: "Live in under 1 hour",
+    allInclusive: "Everything included:",
+    extraFeatures: [
+      "24/7 real-time AI analysis",
+      "Unlimited pulses & signals",
+      "Dashboards for CEO, HR & managers",
+      "Tailored action recommendations",
+      "Anonymous & GDPR-safe",
+      "Free onboarding & support",
+      "M365, Slack, Teams integrations",
+      "Export reports & raw data",
+    ],
+    ctaPrimary: "I want this",
+    ctaSecondary: "Or try it yourself first →",
+    trustLine: "Already trusted by 50+ companies",
+    roiTitle: " ROI in 30 days",
+    roiDesc: "Average company saves 3× their investment through lower turnover.",
+  },
+  de: {
+    popularBadge: "Beliebteste",
+    perPerson: "pro Person",
+    perMonth: "/ Monat",
+    noCard: "Keine Kreditkarte · Keine Verpflichtung",
+    startIn: "In unter 1 Stunde live",
+    allInclusive: "Alles inklusive:",
+    extraFeatures: [
+      "24/7 KI-Analyse in Echtzeit",
+      "Unbegrenzte Pulsmessungen & Signale",
+      "Dashboards für CEO, HR & Manager",
+      "Maßgeschneiderte Handlungsempfehlungen",
+      "Anonym & DSGVO-konform",
+      "Kostenloses Onboarding & Support",
+      "M365, Slack, Teams Integrationen",
+      "Datenexport & Berichte",
+    ],
+    ctaPrimary: "Das will ich",
+    ctaSecondary: "Oder testen Sie es selbst →",
+    trustLine: "Über 50 Unternehmen vertrauen Echo Pulse",
+    roiTitle: " ROI in 30 Tagen",
+    roiDesc: "Durchschnittliches Unternehmen spart das 3-fache der Investition durch geringere Fluktuation.",
+  },
+};
+
 export function PurchaseSection() {
   const { t, language } = useLanguage();
   const { openBooking, openDemo } = useModal();
   const navigate = useNavigate();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
+  const [justSwitched, setJustSwitched] = useState(false);
   
+  const pc = pricingCopy[language] || pricingCopy.en;
   const isEur = language === 'en' || language === 'de';
   
   const BILLABLE_EMPLOYEE_CAP = 200;
@@ -32,10 +125,18 @@ export function PurchaseSection() {
   
   // Calculate savings
   const yearlySavings = billingInterval === 'yearly' ? (monthlyPrice - yearlyPrice) * billableEmployees * 12 : 0;
+  
+  // Animated price display
+  const animatedBase = useAnimatedNumber(basePrice);
+  const animatedSavings = useAnimatedNumber(yearlySavings);
 
   return (
-    <section className="section-spacing bg-white" id="pricing">
-      <div className="container-default">
+    <section className="section-spacing bg-gradient-to-b from-white via-brand-background-secondary/30 to-white relative overflow-hidden" id="pricing">
+      {/* Decorative background orbs */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/[0.03] rounded-full blur-3xl -translate-y-1/2" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-accent/[0.03] rounded-full blur-3xl translate-y-1/2" />
+      
+      <div className="container-default relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,214 +164,307 @@ export function PurchaseSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-4xl mx-auto bg-white rounded-2xl p-8 md:p-12 shadow-2xl shadow-brand-primary/10 border border-brand-border"
+          className="max-w-5xl mx-auto"
         >
-            <div className="grid md:grid-cols-2 gap-12">
-                {/* Configuration */}
-                <div>
-                    <h3 className="text-xl font-bold text-brand-text-primary mb-6 flex items-center gap-2">
-                        <Users className="w-5 h-5 text-brand-primary" />
-                        {t.purchase.configTitle}
-                    </h3>
-                    
-                    {/* Billing Toggle */}
-                    <div className="flex bg-brand-background-muted p-1.5 rounded-xl mb-8 w-fit border border-brand-border">
-                        <button 
-                            onClick={() => { setBillingInterval('monthly'); trackPricingBillingToggle('monthly'); }}
-                            className={cn(
-                                "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200",
-                                billingInterval === 'monthly' 
-                                  ? "bg-brand-primary text-white shadow-md" 
-                                  : "text-brand-text-secondary hover:text-brand-primary hover:bg-white/50"
-                            )}
-                        >
-                            {t.purchase.billingMonthly}
-                        </button>
-                        <button 
-                            onClick={() => { setBillingInterval('yearly'); trackPricingBillingToggle('yearly'); }}
-                            className={cn(
-                                "px-5 py-2.5 rounded-lg text-sm font-bold transition-all duration-200",
-                                billingInterval === 'yearly' 
-                                  ? "bg-brand-primary text-white shadow-md" 
-                                  : "text-brand-text-secondary hover:text-brand-primary hover:bg-white/50"
-                            )}
-                        >
-                            {t.purchase.billingYearly}
-                        </button>
-                    </div>
-
-                    {/* Slider */}
-                    <div className="mb-8">
-                         <div className="flex justify-between items-end mb-4">
-                            <label className="text-caption font-bold text-brand-text-secondary uppercase tracking-wider">{t.purchase.companySizeLabel}</label>
-                            <div className="text-2xl font-bold font-mono text-brand-primary">{employeeCount} <span className="text-sm font-sans text-brand-text-muted font-medium">{t.purchase.employeesLabel}</span></div>
-                         </div>
-                         
-                         {/* Custom Slider Track */}
-                         <div className="relative pt-2 pb-4">
-                           <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-3 bg-gradient-to-r from-brand-background-muted via-brand-border to-brand-background-muted rounded-full" />
-                           <div 
-                             className="absolute top-1/2 -translate-y-1/2 left-0 h-3 bg-gradient-to-r from-brand-primary to-brand-accent rounded-full transition-all duration-150"
-                             style={{ width: `${((employeeCount - 10) / (350 - 10)) * 100}%` }}
-                           />
-                           <input 
-                              type="range" 
-                              min="10" 
-                              max="350" 
-                              step="5"
-                              value={employeeCount}
-                              onChange={(e) => {
-                                const val = Number(e.target.value);
-                                setEmployeeCount(val);
-                              }}
-                              onMouseUp={() => trackPricingSliderChanged(employeeCount)}
-                              onTouchEnd={() => trackPricingSliderChanged(employeeCount)}
-                              className="relative w-full h-8 sm:h-3 appearance-none cursor-pointer bg-transparent z-10
-                                [&::-webkit-slider-thumb]:appearance-none
-                                [&::-webkit-slider-thumb]:w-10
-                                [&::-webkit-slider-thumb]:h-10
-                                [&::-webkit-slider-thumb]:sm:w-6
-                                [&::-webkit-slider-thumb]:sm:h-6
-                                [&::-webkit-slider-thumb]:rounded-full
-                                [&::-webkit-slider-thumb]:bg-white
-                                [&::-webkit-slider-thumb]:border-4
-                                [&::-webkit-slider-thumb]:border-brand-primary
-                                [&::-webkit-slider-thumb]:shadow-lg
-                                [&::-webkit-slider-thumb]:shadow-brand-primary/30
-                                [&::-webkit-slider-thumb]:cursor-grab
-                                [&::-webkit-slider-thumb]:active:cursor-grabbing
-                                [&::-webkit-slider-thumb]:hover:scale-110
-                                [&::-webkit-slider-thumb]:transition-transform
-                                [&::-moz-range-thumb]:w-10
-                                [&::-moz-range-thumb]:h-10
-                                [&::-moz-range-thumb]:sm:w-6
-                                [&::-moz-range-thumb]:sm:h-6
-                                [&::-moz-range-thumb]:rounded-full
-                                [&::-moz-range-thumb]:bg-white
-                                [&::-moz-range-thumb]:border-4
-                                [&::-moz-range-thumb]:border-brand-primary
-                                [&::-moz-range-thumb]:shadow-lg
-                                [&::-moz-range-thumb]:cursor-grab
-                              "
-                           />
-                         </div>
-                         
-                         {/* Scale Labels */}
-                         <div className="flex justify-between text-xs text-brand-text-muted font-medium mt-1">
-                           <span>10</span>
-                           <span>100</span>
-                           <span>200</span>
-                           <span>350+</span>
-                         </div>
-                    </div>
-
-                    <div className="space-y-3 pt-6 border-t border-brand-border">
-                        {t.purchase.features.slice(0, 4).map((feature: string, i: number) => (
-                            <div key={i} className="flex items-start gap-3">
-                                <div className="w-5 h-5 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
-                                    <Check className="w-3 h-3 text-brand-primary" />
-                                </div>
-                                <span className="text-sm text-brand-text-secondary">{feature}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Summary Box */}
-                <div className="bg-gradient-to-br from-brand-primary to-brand-primary-hover rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden">
-                    {/* Decorative elements */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
-                    
-                    <div className="relative">
-                        <div className="flex items-center gap-2 mb-6">
-                            <Zap className="w-4 h-4 text-brand-accent" />
-                            <span className="text-xs font-bold text-white/70 uppercase tracking-widest">{t.purchase.estimatedLabel}</span>
-                        </div>
-                        
-                        {/* Price per person */}
-                        <div className="mb-2">
-                            <span className="text-sm text-white/60">
-                                {isEur ? `€${pricePerPerson}` : `${pricePerPerson} CZK`} × {billableEmployees} {t.purchase.employeesLabel}
-                            </span>
-                        </div>
-                        
-                        <div className="flex items-baseline gap-2 mb-3">
-                            <span className="text-5xl md:text-6xl font-bold text-white tracking-tight transition-all duration-300">
-                                {isEur ? `€${basePrice.toLocaleString()}` : basePrice.toLocaleString()}
-                            </span>
-                            <span className="text-lg font-medium text-white/70">{t.purchase.perMonthLabel}</span>
-                        </div>
-                        
-                        {billingInterval === 'yearly' && yearlySavings > 0 && (
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/20 text-white rounded-full text-sm font-bold mb-4 border border-white/30">
-                                <Check className="w-4 h-4" />
-                                {language === 'de'
-                                  ? `Sparen Sie €${yearlySavings.toLocaleString()}/Jahr`
-                                  : language === 'en'
-                                  ? `Save €${yearlySavings.toLocaleString()}/year`
-                                  : `Ušetříte ${yearlySavings.toLocaleString()} CZK/rok`}
-                            </div>
-                        )}
-                        
-                        {isCapped && (
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 text-white rounded-full text-sm font-bold mb-4 border border-white/20">
-                                <ShieldCheck className="w-4 h-4" />
-                                {t.purchase.priceCapped.replace("{cap}", String(BILLABLE_EMPLOYEE_CAP))}
-                            </div>
-                        )}
-                        
-                        <div className="pt-4 border-t border-white/10 space-y-2">
-                             <div className="flex justify-between text-sm">
-                                <span className="text-white/60">{t.purchase.basePriceLabel}</span>
-                                <span className="font-medium text-white">{isEur ? `€${basePrice.toLocaleString()}` : `${basePrice.toLocaleString()} CZK`}</span>
-                             </div>
-                             <div className="flex justify-between text-sm">
-                                <span className="text-white/60">{t.purchase.vatLabel}</span>
-                                <span className="font-medium text-white">{isEur ? `€${vat.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `${vat.toLocaleString(undefined, { maximumFractionDigits: 0 })} CZK`}</span>
-                             </div>
-                        </div>
-                    </div>
-                    
-                    <div className="mt-8 relative">
-                        <Button 
-                            onClick={() => navigate('/start')}
-                            className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-lg" 
-                            size="lg"
-                        >
-                            {t.purchase.button}
-                        </Button>
-                        <button
-                            type="button"
-                            onClick={() => openDemo('pricing')}
-                            className="block w-full text-center text-xs text-white/60 hover:text-white transition-colors mt-3 underline underline-offset-2"
-                        >
-                            {language === 'cz' ? 'Nebo si to vyzkoušejte sami →' : language === 'de' ? 'Oder testen Sie es selbst →' : 'Or try it yourself →'}
-                        </button>
-                        <p className="text-center text-xs text-white/60 mt-3">
-                            {t.purchase.guaranteeShort}
-                        </p>
-                        
-                        {/* Trust Signals */}
-                        <div className="mt-6 pt-6 border-t border-white/10">
-                            <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-white/70">
-                                <div className="flex items-center gap-1.5">
-                                    <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" />
-                                    <span>GDPR</span>
-                                </div>
-                                <div className="flex items-center gap-1.5">
-                                    <Check className="w-3.5 h-3.5 text-brand-success" />
-                                    <span>Bez závazků</span>
-                                </div>
-                                <div className="flex items-center gap-1.5">
-                                    <Zap className="w-3.5 h-3.5 text-brand-warning" />
-                                    <span>Start do 1h</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          {/* Billing Toggle — centered above the card */}
+          <div className="flex justify-center mb-8">
+            <div className="relative flex bg-white p-1.5 rounded-2xl shadow-lg shadow-brand-primary/[0.06] border border-brand-border">
+              <button 
+                onClick={() => { setBillingInterval('monthly'); setJustSwitched(true); trackPricingBillingToggle('monthly'); }}
+                className={cn(
+                  "px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10",
+                  billingInterval === 'monthly' 
+                    ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30" 
+                    : "text-brand-text-secondary hover:text-brand-primary"
+                )}
+              >
+                {t.purchase.billingMonthly}
+              </button>
+              <button 
+                onClick={() => { setBillingInterval('yearly'); setJustSwitched(true); trackPricingBillingToggle('yearly'); }}
+                className={cn(
+                  "px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 flex items-center gap-2",
+                  billingInterval === 'yearly' 
+                    ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30" 
+                    : "text-brand-text-secondary hover:text-brand-primary"
+                )}
+              >
+                {t.purchase.billingYearly}
+              </button>
+              {billingInterval === 'yearly' && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="absolute -top-3 -right-3 z-20"
+                >
+                  <div className="px-2.5 py-1 text-[10px] font-bold text-white bg-gradient-to-r from-brand-success to-emerald-500 rounded-full shadow-md shadow-brand-success/30 flex items-center gap-1">
+                    <Gift className="w-3 h-3" />
+                    -20%
+                  </div>
+                </motion.div>
+              )}
             </div>
+          </div>
+
+          {/* Main pricing card */}
+          <div className="bg-white rounded-3xl shadow-2xl shadow-brand-primary/[0.08] border border-brand-border/50 overflow-hidden">
+            <div className="grid lg:grid-cols-5 gap-0">
+              
+              {/* LEFT: Configuration (3 cols) */}
+              <div className="lg:col-span-3 p-8 md:p-10">
+                <h3 className="text-xl font-bold text-brand-text-primary mb-2 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-brand-primary" />
+                  {t.purchase.configTitle}
+                </h3>
+                <p className="text-[13px] text-brand-text-muted mb-8">
+                  {pc.noCard}
+                </p>
+                
+                {/* Slider */}
+                <div className="mb-10">
+                  <div className="flex justify-between items-end mb-4">
+                    <label className="text-caption font-bold text-brand-text-secondary uppercase tracking-wider">{t.purchase.companySizeLabel}</label>
+                    <motion.div 
+                      key={employeeCount}
+                      initial={{ scale: 1.2, color: 'var(--color-brand-accent)' }}
+                      animate={{ scale: 1, color: 'var(--color-brand-primary)' }}
+                      className="text-2xl font-bold font-mono"
+                    >
+                      {employeeCount} <span className="text-sm font-sans text-brand-text-muted font-medium">{t.purchase.employeesLabel}</span>
+                    </motion.div>
+                  </div>
+                  
+                  {/* Custom Slider Track */}
+                  <div className="relative pt-2 pb-4">
+                    <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 h-3 bg-gradient-to-r from-brand-background-muted via-brand-border to-brand-background-muted rounded-full" />
+                    <div 
+                      className="absolute top-1/2 -translate-y-1/2 left-0 h-3 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary rounded-full transition-all duration-150"
+                      style={{ width: `${((employeeCount - 10) / (350 - 10)) * 100}%` }}
+                    />
+                    <input 
+                      type="range" 
+                      min="10" 
+                      max="350" 
+                      step="5"
+                      value={employeeCount}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        setEmployeeCount(val);
+                      }}
+                      onMouseUp={() => trackPricingSliderChanged(employeeCount)}
+                      onTouchEnd={() => trackPricingSliderChanged(employeeCount)}
+                      className="relative w-full h-8 sm:h-3 appearance-none cursor-pointer bg-transparent z-10
+                        [&::-webkit-slider-thumb]:appearance-none
+                        [&::-webkit-slider-thumb]:w-10
+                        [&::-webkit-slider-thumb]:h-10
+                        [&::-webkit-slider-thumb]:sm:w-7
+                        [&::-webkit-slider-thumb]:sm:h-7
+                        [&::-webkit-slider-thumb]:rounded-full
+                        [&::-webkit-slider-thumb]:bg-white
+                        [&::-webkit-slider-thumb]:border-4
+                        [&::-webkit-slider-thumb]:border-brand-primary
+                        [&::-webkit-slider-thumb]:shadow-lg
+                        [&::-webkit-slider-thumb]:shadow-brand-primary/30
+                        [&::-webkit-slider-thumb]:cursor-grab
+                        [&::-webkit-slider-thumb]:active:cursor-grabbing
+                        [&::-webkit-slider-thumb]:hover:scale-110
+                        [&::-webkit-slider-thumb]:transition-transform
+                        [&::-moz-range-thumb]:w-10
+                        [&::-moz-range-thumb]:h-10
+                        [&::-moz-range-thumb]:sm:w-7
+                        [&::-moz-range-thumb]:sm:h-7
+                        [&::-moz-range-thumb]:rounded-full
+                        [&::-moz-range-thumb]:bg-white
+                        [&::-moz-range-thumb]:border-4
+                        [&::-moz-range-thumb]:border-brand-primary
+                        [&::-moz-range-thumb]:shadow-lg
+                        [&::-moz-range-thumb]:cursor-grab
+                      "
+                    />
+                  </div>
+                  
+                  {/* Scale Labels */}
+                  <div className="flex justify-between text-xs text-brand-text-muted font-medium mt-1">
+                    <span>10</span>
+                    <span>100</span>
+                    <span>200</span>
+                    <span>350+</span>
+                  </div>
+                </div>
+
+                {/* All-inclusive features */}
+                <div>
+                  <h4 className="text-[13px] font-bold text-brand-text-primary mb-4 flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-brand-warning" />
+                    {pc.allInclusive}
+                  </h4>
+                  <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                    {pc.extraFeatures.map((feature: string, i: number) => (
+                      <motion.div 
+                        key={i} 
+                        className="flex items-start gap-2.5"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.05 * i, duration: 0.3 }}
+                      >
+                        <div className="w-4.5 h-4.5 rounded-full bg-brand-success/10 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-brand-success" />
+                        </div>
+                        <span className="text-[13px] text-brand-text-secondary leading-snug">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT: Summary (2 cols) */}
+              <div className="lg:col-span-2 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-primary-hover p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.04] rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-20 left-0 w-32 h-32 bg-white/[0.03] rounded-full -translate-x-1/2" />
+                <div className="absolute top-1/2 right-1/4 w-20 h-20 bg-brand-accent/10 rounded-full blur-xl" />
+                
+                <div className="relative">
+                  {/* Popular badge */}
+                  {billingInterval === 'yearly' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-accent/20 border border-brand-accent/30 text-brand-accent rounded-full text-[11px] font-bold mb-5"
+                    >
+                      <Star className="w-3 h-3 fill-current" />
+                      {pc.popularBadge}
+                    </motion.div>
+                  )}
+                  
+                  <div className="flex items-center gap-2 mb-6">
+                    <Zap className="w-4 h-4 text-brand-accent" />
+                    <span className="text-xs font-bold text-white/70 uppercase tracking-widest">{t.purchase.estimatedLabel}</span>
+                  </div>
+                  
+                  {/* Per-person price */}
+                  <div className="mb-1">
+                    <span className="text-[15px] text-white/50">
+                      {isEur ? `€${pricePerPerson}` : `${pricePerPerson} Kč`} {pc.perPerson} {pc.perMonth}
+                    </span>
+                  </div>
+                  
+                  {/* Animated total price */}
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <motion.span 
+                      key={`price-${basePrice}`}
+                      initial={{ opacity: 0.5, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-5xl md:text-6xl font-bold text-white tracking-tight"
+                    >
+                      {isEur ? `€${animatedBase}` : animatedBase}
+                    </motion.span>
+                    <span className="text-lg font-medium text-white/60">{isEur ? '' : 'Kč'} {t.purchase.perMonthLabel}</span>
+                  </div>
+                  
+                  {/* Price per person detail */}
+                  <p className="text-[12px] text-white/40 mb-4">
+                    × {billableEmployees} {t.purchase.employeesLabel}
+                  </p>
+                  
+                  {/* Savings badge */}
+                  <AnimatePresence>
+                    {billingInterval === 'yearly' && yearlySavings > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9, height: 0 }}
+                        animate={{ opacity: 1, scale: 1, height: 'auto' }}
+                        exit={{ opacity: 0, scale: 0.9, height: 0 }}
+                        className="mb-5"
+                      >
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-white/20 to-white/10 text-white rounded-xl text-sm font-bold border border-white/20 backdrop-blur-sm">
+                          <Gift className="w-4 h-4 text-brand-accent" />
+                          {language === 'de'
+                            ? `Sparen Sie €${animatedSavings}/Jahr`
+                            : language === 'en'
+                            ? `Save €${animatedSavings}/year`
+                            : `Ušetříte ${animatedSavings} Kč/rok`}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  
+                  {isCapped && (
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 text-white rounded-full text-sm font-bold mb-4 border border-white/20">
+                      <ShieldCheck className="w-4 h-4" />
+                      {t.purchase.priceCapped.replace("{cap}", String(BILLABLE_EMPLOYEE_CAP))}
+                    </div>
+                  )}
+                  
+                  {/* Price breakdown */}
+                  <div className="pt-4 border-t border-white/10 space-y-2 mb-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/50">{t.purchase.basePriceLabel}</span>
+                      <span className="font-medium text-white">{isEur ? `€${animatedBase}` : `${animatedBase} Kč`}</span>
+                    </div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-white/50">{t.purchase.vatLabel}</span>
+                      <span className="font-medium text-white">{isEur ? `€${vat.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : `${vat.toLocaleString(undefined, { maximumFractionDigits: 0 })} Kč`}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="mt-8 relative space-y-3">
+                  <Button 
+                    onClick={() => navigate('/start')}
+                    className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 text-[16px] group" 
+                    size="lg"
+                  >
+                    <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+                    {pc.ctaPrimary}
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  
+                  <button
+                    type="button"
+                    onClick={() => openDemo('pricing')}
+                    className="block w-full text-center text-[12px] text-white/50 hover:text-white transition-colors underline underline-offset-2"
+                  >
+                    {pc.ctaSecondary}
+                  </button>
+                  
+                  {/* Bottom trust */}
+                  <div className="pt-5 border-t border-white/10">
+                    <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-white/60">
+                      <div className="flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" />
+                        <span>GDPR</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Check className="w-3.5 h-3.5 text-brand-success" />
+                        <span>{pc.noCard.split('·')[1]?.trim()}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-brand-warning" />
+                        <span>{pc.startIn}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* ROI callout below card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="mt-8 text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-brand-success/[0.06] border border-brand-success/15">
+              <Heart className="w-5 h-5 text-brand-success" />
+              <p className="text-[13px] text-brand-text-secondary">
+                <span className="font-bold text-brand-success">3×{pc.roiTitle}</span> — {pc.roiDesc}
+              </p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
