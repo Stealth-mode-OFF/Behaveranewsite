@@ -507,63 +507,108 @@ function TopicCarousel({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.45, delay: i * 0.05 }}
-                className="shrink-0 w-[360px] sm:w-[400px] rounded-2xl bg-white border border-brand-primary/8 shadow-lg hover:shadow-2xl hover:border-brand-primary/20 hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col group/card"
+                className="shrink-0 w-[360px] sm:w-[400px] rounded-2xl overflow-hidden flex flex-col group/card relative isolate"
+                style={{
+                  background: "linear-gradient(165deg, #ffffff 0%, #f8f6ff 35%, #f0ecff 65%, #ebe5ff 100%)",
+                  boxShadow: "0 4px 24px rgba(99,102,241,0.08), 0 1px 3px rgba(0,0,0,0.04)",
+                }}
               >
-                {/* Gradient accent bar */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary opacity-60 group-hover/card:opacity-100 transition-opacity" />
+                {/* Shimmer overlay on hover */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
+                  style={{
+                    background: "linear-gradient(135deg, transparent 20%, rgba(255,255,255,0.6) 45%, rgba(159,122,234,0.06) 55%, transparent 80%)",
+                  }}
+                />
+
+                {/* Top gradient accent — thicker, more vibrant */}
+                <div
+                  className="h-2 w-full relative z-10"
+                  style={{ background: "linear-gradient(90deg, #9F7AEA 0%, #6366F1 40%, #818CF8 70%, #C4B5FD 100%)" }}
+                />
+
+                {/* Border ring effect */}
+                <div className="absolute inset-0 rounded-2xl border border-brand-primary/10 group-hover/card:border-brand-primary/25 transition-all duration-300 pointer-events-none z-10" />
 
                 {/* Card header */}
-                <div className="px-6 pt-5 pb-0">
-                  <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary to-brand-primary/80 flex items-center justify-center shrink-0 relative shadow-lg shadow-brand-primary/20 group-hover/card:scale-105 group-hover/card:shadow-brand-primary/30 transition-all">
-                      <TopicIcon className="w-6 h-6 text-white" />
-
+                <div className="px-6 pt-6 pb-0 relative z-10">
+                  <div className="flex items-center gap-4 mb-5">
+                    {/* Icon — glass pill */}
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 relative group-hover/card:scale-110 transition-all duration-300"
+                      style={{
+                        background: "linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #818CF8 100%)",
+                        boxShadow: "0 8px 24px rgba(99,102,241,0.30), inset 0 1px 0 rgba(255,255,255,0.15)",
+                      }}
+                    >
+                      <TopicIcon className="w-6 h-6 text-white drop-shadow-sm" />
+                      {/* Glow ring */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/card:opacity-100 transition-opacity duration-300" style={{ boxShadow: "0 0 20px rgba(99,102,241,0.35)" }} />
                     </div>
                     <div className="min-w-0">
-                      <h4 className="font-bold text-[17px] text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
+                      <h4 className="font-bold text-[18px] text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors duration-200">{card.name}</h4>
                     </div>
                   </div>
                 </div>
 
                 {/* Clickable body */}
                 <div
-                  className="flex-1 flex flex-col cursor-pointer px-6 pb-4"
+                  className="flex-1 flex flex-col cursor-pointer px-6 pb-5 relative z-10"
                   onClick={() => setSelectedCard({ card, num: cardNum })}
                 >
                   {/* Description */}
-                  <p className="text-[13.5px] text-brand-text-body leading-relaxed mb-4">
+                  <p className="text-[14px] text-brand-text-body leading-relaxed mb-5">
                     {card.desc}
                   </p>
 
-                  {/* Sample question — chat bubble preview */}
-                  <div className="mb-4">
-                    <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-brand-text-muted/70 mb-1.5 flex items-center gap-1.5">
+                  {/* Sample question — glass chat bubble */}
+                  <div className="mb-5">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-primary/50 mb-2 flex items-center gap-1.5">
                       <MessageCircle className="w-3 h-3" />
                       {chatLabel}
                     </div>
-                    <div className="bg-gradient-to-br from-brand-primary/[0.04] to-brand-primary/[0.08] rounded-xl rounded-tl-sm px-4 py-3 text-sm text-brand-text-secondary leading-relaxed italic border border-brand-primary/10">
+                    <div
+                      className="rounded-2xl rounded-tl-md px-5 py-4 text-[13.5px] text-brand-text-secondary leading-relaxed italic backdrop-blur-sm"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(243,240,255,0.6) 100%)",
+                        border: "1px solid rgba(139,92,246,0.12)",
+                        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.5)",
+                      }}
+                    >
                       {card.sampleQ}
                     </div>
                   </div>
 
-                  {/* CEO insight — compact */}
+                  {/* CEO insight — warm glass */}
                   <div className="mt-auto">
-                    <div className="bg-gradient-to-br from-amber-50/80 to-orange-50/40 rounded-lg px-3.5 py-3 border border-amber-200/30">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-amber-700/80 mb-1 flex items-center gap-1.5">
+                    <div
+                      className="rounded-xl px-4 py-3.5"
+                      style={{
+                        background: "linear-gradient(135deg, rgba(255,251,235,0.9) 0%, rgba(254,243,199,0.5) 100%)",
+                        border: "1px solid rgba(217,169,57,0.15)",
+                      }}
+                    >
+                      <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-amber-700/70 mb-1.5 flex items-center gap-1.5">
                         <Briefcase className="w-3 h-3" />
                         {ceoLabel}
                       </div>
-                      <p className="text-[12.5px] text-amber-900/70 leading-relaxed font-medium line-clamp-2">
+                      <p className="text-[13px] text-amber-900/70 leading-relaxed font-medium line-clamp-2">
                         {card.ceoInsight}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom CTA */}
+                {/* Bottom CTA — gradient purple */}
                 <button
                   onClick={() => onOpenPulse(card.link)}
-                  className="flex items-center justify-center gap-2.5 px-5 py-3.5 border-t border-brand-border/30 text-sm font-semibold text-white bg-brand-primary hover:bg-brand-primary-hover transition-all cursor-pointer w-full group/cta"
+                  className="flex items-center justify-center gap-2.5 px-5 py-4 text-sm font-bold text-white transition-all cursor-pointer w-full group/cta relative z-10"
+                  style={{
+                    background: "linear-gradient(90deg, #7C3AED 0%, #6366F1 50%, #818CF8 100%)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1)",
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(90deg, #6D28D9 0%, #4F46E5 50%, #6366F1 100%)"; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "linear-gradient(90deg, #7C3AED 0%, #6366F1 50%, #818CF8 100%)"; }}
                 >
                   <Play className="w-4 h-4" />
                   <span>{cardCta} {card.name}</span>
