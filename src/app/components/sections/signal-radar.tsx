@@ -678,8 +678,8 @@ function TopicCarousel({
                   </div>
                 </div>
 
-                {/* Bottom CTA — only pulse cards */}
-                {hasPulse && (
+                {/* Bottom CTA — only pulse cards; spacer on others to keep alignment */}
+                {hasPulse ? (
                   <button
                     onClick={() => onOpenPulse(card.link)}
                     className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-primary/10 text-[12px] font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
@@ -688,6 +688,8 @@ function TopicCarousel({
                     <span>Vyzkoušet</span>
                     <ArrowRight className="w-3 h-3 group-hover/cta:translate-x-1 transition-transform" />
                   </button>
+                ) : (
+                  <div className="h-[37px]" />
                 )}
               </motion.div>
             );
