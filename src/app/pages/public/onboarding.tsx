@@ -626,13 +626,13 @@ export function OnboardingPage() {
     setIsSubmitting(true);
     setSubmitPhase(0);
 
-    // Progress through visual phases — slow enough for a financial transaction
-    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 1200);
-    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 2400);
-    const phaseTimer3 = setTimeout(() => setSubmitPhase(3), 3600);
+    // Progress through visual phases — realistic for hundreds of employees
+    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 2500);
+    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 5500);
+    const phaseTimer3 = setTimeout(() => setSubmitPhase(3), 8000);
 
     // Minimum visual processing time — money is involved, don't rush
-    const minDelay = new Promise((r) => setTimeout(r, 4500));
+    const minDelay = new Promise((r) => setTimeout(r, 10000));
 
     try {
       // Send COMPLETE onboarding data (company, teams, members, OAuth info)
