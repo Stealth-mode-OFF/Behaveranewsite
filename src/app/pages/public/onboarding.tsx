@@ -245,6 +245,7 @@ const copy = {
     privacyLink: "Ochranou osobních údajů",
     guarantee: "30denní garance vrácení peněz. Bez otázek.",
     submit: "Vytvořit účet",
+    submitting: ["Vytvářím účet…", "Ukládám týmy…", "Připravuji vše…"],
     successTitle: "Máte to! 🎉",
     successSubtitle: "Váš Echo Pulse účet je připravený. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
@@ -329,6 +330,7 @@ const copy = {
     privacyLink: "Privacy Policy",
     guarantee: "30-day money-back guarantee. No questions asked.",
     submit: "Create account",
+    submitting: ["Creating account…", "Saving teams…", "Preparing everything…"],
     successTitle: "You're in! 🎉",
     successSubtitle: "Your Echo Pulse account is ready. Here's what happens next:",
     successCta: "Back to homepage",
@@ -413,6 +415,7 @@ const copy = {
     privacyLink: "Datenschutzerklärung",
     guarantee: "30 Tage Geld-zurück-Garantie. Ohne Fragen.",
     submit: "Konto erstellen",
+    submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Alles wird vorbereitet…"],
     successTitle: "Geschafft! 🎉",
     successSubtitle: "Ihr Echo Pulse Konto ist bereit. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
@@ -454,6 +457,7 @@ export function OnboardingPage() {
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitPhase, setSubmitPhase] = useState(0);
   const [teams, setTeams] = useState<Team[]>([]);
 
   // OAuth contacts
@@ -620,6 +624,15 @@ export function OnboardingPage() {
   /* ─── Submit ─── */
   const onSubmit = async (data: OnboardingFormData) => {
     setIsSubmitting(true);
+    setSubmitPhase(0);
+
+    // Progress through visual phases
+    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 800);
+    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 1600);
+
+    // Minimum visual processing time so users feel the action is "real"
+    const minDelay = new Promise((r) => setTimeout(r, 2200));
+
     try {
       // Send COMPLETE onboarding data (company, teams, members, OAuth info)
       const fullPayload = {
@@ -646,11 +659,14 @@ export function OnboardingPage() {
         })),
       };
 
-      const res = await fetch("/api/submit-onboarding", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fullPayload),
-      });
+      const [res] = await Promise.all([
+        fetch("/api/submit-onboarding", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(fullPayload),
+        }),
+        minDelay,
+      ]);
 
       if (!res.ok) {
         console.warn("Onboarding API failed, falling back to basic lead");
@@ -669,11 +685,18 @@ export function OnboardingPage() {
       }
 
       trackLeadSubmitted("onboarding");
+      clearTimeout(phaseTimer1);
+      clearTimeout(phaseTimer2);
+      setIsSubmitting(false);
+      // Brief pause before showing success so the button state change is visible
+      await new Promise((r) => setTimeout(r, 400));
       setIsSuccess(true);
     } catch {
-      setIsSuccess(true);
-    } finally {
+      clearTimeout(phaseTimer1);
+      clearTimeout(phaseTimer2);
       setIsSubmitting(false);
+      await new Promise((r) => setTimeout(r, 400));
+      setIsSuccess(true);
     }
   };
 
@@ -1486,7 +1509,20 @@ export function OnboardingPage() {
                     className="h-12 px-10 text-[15px] font-bold shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/35 transition-shadow bg-gradient-to-r from-brand-primary to-brand-primary-hover"
                   >
                     {isSubmitting ? (
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span className="flex items-center gap-2">
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <AnimatePresence mode="wait">
+                          <motion.span
+                            key={submitPhase}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -8 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {(txt.submitting as string[])[submitPhase] || (txt.submitting as string[])[0]}
+                          </motion.span>
+                        </AnimatePresence>
+                      </span>
                     ) : (
                       <>
                         <Rocket className="w-4 h-4 mr-2" />
