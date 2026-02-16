@@ -382,25 +382,6 @@ const copy = {
     adminEmail: "Admin-E-Mail",
     adminEmailPlaceholder: "erika@firma.de",
     adminEmailHelper: "Wir senden eine Einladung und Einrichtungsanleitung.",
-<<<<<<< HEAD
-    s3Title: "Teams einrichten",
-    s3Subtitle: "Erstellen Sie Teams und fügen Sie Mitglieder hinzu.",
-    teamName: "Teamname",
-    teamNamePlaceholder: "Marketing",
-    teamLeader: "Teamleiter-E-Mail",
-    teamLeaderPlaceholder: "leiter@firma.de",
-    teamLeaderHelper: "Der Teamleiter sieht nur die Ergebnisse seines Teams.",
-    teamMembers: "Teammitglieder",
-    teamMemberPlaceholder: "mitarbeiter@firma.de",
-    teamMemberHelper: "Mitarbeiter, die Echo Pulse ausfüllen werden.",
-    addMember: "Mitglied hinzufügen",
-    addTeam: "Weiteres Team hinzufügen",
-    removeTeam: "Team entfernen",
-    s4Title: "Kollegen einladen",
-    s4Subtitle: "Fügen Sie Kollegen hinzu, die mit Echo Pulse arbeiten werden.",
-    s5Title: "Bestätigen & starten",
-    s5Subtitle: "Überprüfen Sie die Details und bestätigen Sie die Kontoerstellung.",
-=======
     s1Title: "Mitarbeiter importieren",
     s1Subtitle: "Verbinden Sie Ihr Firmenverzeichnis — E-Mails werden automatisch importiert.",
     connectTitle: "Kontakte mit einem Klick importieren",
@@ -423,7 +404,6 @@ const copy = {
     s2Subtitle: "Ziehen Sie Mitarbeiter in Teams. Vergessen Sie nicht, einen Teamleiter zuzuweisen.",
     s3Title: "Bestätigen & starten",
     s3Subtitle: "Überprüfen Sie die Details und bestätigen Sie die Kontoerstellung.",
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
     summaryCompany: "Unternehmen",
     summaryRep: "Vertreter",
     summaryAdmin: "Admin",
@@ -608,27 +588,6 @@ export function OnboardingPage() {
   const billingInterval = watch("billingInterval");
   const employeeCount = watch("employeeCount");
 
-<<<<<<< HEAD
-  /* ─── Auto-set employee count from actual team members ─── */
-  const watchedTeams = watch("teams");
-  const computedFromTeams = useMemo(() => {
-    let total = 0;
-    for (const team of watchedTeams) {
-      if (team.leaderEmail?.trim()) total++;
-      for (const m of team.members) {
-        if (m.email?.trim()) total++;
-      }
-    }
-    return Math.max(total, 10);
-  }, [watchedTeams]);
-
-  useEffect(() => {
-    if (currentStep === 4) {
-      setValue("employeeCount", computedFromTeams);
-    }
-  }, [currentStep, computedFromTeams, setValue]);
-
-=======
   // Derive domain from rep email
   const repEmail = watch("repEmail");
   const companyDomain = useMemo(() => {
@@ -720,22 +679,7 @@ export function OnboardingPage() {
     }
   }, [currentStep, computedFromTeams, setValue]);
 
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
   /* ─── Step validation ─── */
-<<<<<<< HEAD
-  const validateStep = useCallback(async (step: number) => {
-    const fieldsByStep: Record<number, (keyof OnboardingFormData)[]> = {
-      0: ["companyName", "companyId"],
-      1: ["repName", "repEmail", "adminName", "adminEmail"],
-      2: ["teams"],
-      3: [], // Invite step — optional, always valid
-      4: ["employeeCount", "agreedToTerms"],
-    };
-    if (!fieldsByStep[step] || fieldsByStep[step].length === 0) return true;
-    const result = await trigger(fieldsByStep[step]);
-    return result;
-  }, [trigger]);
-=======
   const validateStep = useCallback(
     async (step: number) => {
       const fieldsByStep: Record<number, (keyof OnboardingFormData)[]> = {
@@ -756,7 +700,6 @@ export function OnboardingPage() {
     },
     [trigger]
   );
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
 
   const goNext = async () => {
     const isValid = await validateStep(currentStep);
@@ -809,15 +752,6 @@ export function OnboardingPage() {
         })),
       };
 
-<<<<<<< HEAD
-      await submitLead({
-        email: data.repEmail,
-        name: data.repName,
-        company: data.companyName,
-        companySize: String(data.employeeCount),
-        source: `onboarding:${data.billingInterval}:${totalMembers}members:${data.teams.length}teams:${invitedTeammates.length}invited`,
-      });
-=======
       const [res] = await Promise.all([
         fetch("/api/submit-onboarding", {
           method: "POST",
@@ -826,7 +760,6 @@ export function OnboardingPage() {
         }),
         minDelay,
       ]);
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
 
       if (!res.ok) {
         console.warn("Onboarding API failed, falling back to basic lead");
@@ -1234,39 +1167,20 @@ export function OnboardingPage() {
                   {currentStep === 0
                     ? txt.s0Title
                     : currentStep === 1
-<<<<<<< HEAD
-                    ? txt.s2Title
-                    : currentStep === 2
-                    ? txt.s3Title
-                    : currentStep === 3
-                    ? txt.s4Title
-                    : txt.s5Title}
-                </h2>
-=======
                       ? txt.s1Title
                       : currentStep === 2
                         ? txt.s2Title
                         : txt.s3Title}
                 </motion.h2>
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
               </div>
               <p className="text-[13px] text-brand-text-muted ml-12">
                 {currentStep === 0
                   ? txt.s0Subtitle
                   : currentStep === 1
-<<<<<<< HEAD
-                  ? txt.s2Subtitle
-                  : currentStep === 2
-                  ? txt.s3Subtitle
-                  : currentStep === 3
-                  ? txt.s4Subtitle
-                  : txt.s5Subtitle}
-=======
                     ? txt.s1Subtitle
                     : currentStep === 2
                       ? txt.s2Subtitle
                       : txt.s3Subtitle}
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
               </p>
             </div>
 
@@ -1682,9 +1596,6 @@ export function OnboardingPage() {
                     </div>
                   )}
 
-<<<<<<< HEAD
-                  {/* ═════════ STEP 3 — Invite Teammates ═════════ */}
-=======
                   {/* ═════════ STEP 2 — Team Builder ═════════ */}
                   {currentStep === 2 && (
                     <TeamBuilder
@@ -1696,7 +1607,6 @@ export function OnboardingPage() {
                   )}
 
                   {/* ═════════ STEP 3 — Confirm ═════════ */}
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
                   {currentStep === 3 && (
                     <InviteTeammates
                       adminEmail={watch("adminEmail") || watch("repEmail") || ""}
@@ -1725,11 +1635,7 @@ export function OnboardingPage() {
                       watch={watch}
                       getValues={getValues}
                       errors={errors}
-<<<<<<< HEAD
-                      invitedCount={invitedTeammates.length}
-=======
                       teams={teams}
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
                     />
                   )}
                 </motion.div>
@@ -1846,11 +1752,7 @@ function ConfirmStep({
   watch,
   getValues,
   errors,
-<<<<<<< HEAD
-  invitedCount = 0,
-=======
   teams,
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
 }: {
   txt: any;
   language: string;
@@ -1861,11 +1763,7 @@ function ConfirmStep({
   watch: any;
   getValues: any;
   errors: any;
-<<<<<<< HEAD
-  invitedCount?: number;
-=======
   teams: Team[];
->>>>>>> f15ab895701a9e33188f5458de14c8240ec4666a
 }) {
   const vals = getValues();
   const currentInterval = watch("billingInterval");
