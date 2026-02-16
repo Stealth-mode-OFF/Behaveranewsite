@@ -1,6 +1,6 @@
 import { useCallback, useState, useRef, useEffect, type ElementType, type MouseEvent as ReactMouseEvent } from "react";
 import {
-  Activity, Zap, Shield,
+  Activity, Zap, Shield, Scale, Heart, Cpu, Briefcase, Award,
   MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
   Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
   ChevronLeft, ChevronRight, X, Play, ArrowRight, Loader2
@@ -12,11 +12,27 @@ import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /* ─── Icons ─── */
 const topicIcons: Record<string, ElementType> = {
-  quickScan: Activity, stress: Zap, values: Shield,
+  quickScan: Activity, pay: Scale, perks: Heart, tools: Cpu,
+  workload: Briefcase, recognition: Award, stress: Zap, values: Shield,
 };
-const topicKeys = ['quickScan', 'stress', 'values'] as const;
+const topicKeys = ['quickScan', 'pay', 'perks', 'tools', 'workload', 'recognition', 'stress', 'values'] as const;
 const stepIcons = [Send, MessageCircle, BarChart3];
 const advantageIcons = [TrendingUp, BarChart3, Brain, Activity];
+
+/* Cards with a live Pulse demo */
+const pulseCardKeys = new Set(['quickScan', 'stress', 'values']);
+
+/* Subtle per-card gradient tints */
+const cardGradients: Record<string, string> = {
+  quickScan: 'from-blue-50/60 to-white',
+  pay:       'from-emerald-50/60 to-white',
+  perks:     'from-pink-50/60 to-white',
+  tools:     'from-slate-50/60 to-white',
+  workload:  'from-amber-50/50 to-white',
+  recognition: 'from-violet-50/60 to-white',
+  stress:    'from-orange-50/50 to-white',
+  values:    'from-indigo-50/60 to-white',
+};
 
 /* ─── Copy ─── */
 type TCopy = {
@@ -44,12 +60,17 @@ const copy: Record<string, TCopy> = {
       { title: "2min AI konverzace", desc: "Chatbot pokládá ověřené otázky navrženými psychology. Přirozeně, jako rozhovor s kolegou." },
       { title: "Výsledky v dashboardu", desc: "Okamžitý přehled, trendy v čase, AI doporučení k akci." },
     ],
-    topicsTitle: "3 rozhovory, které odhalí, co lidé neřeknou nahlas",
+    topicsTitle: "8 rozhovorů, které odhalí, co lidé neřeknou nahlas",
     topicsSubtitle: "Každý set je krátká AI konverzace na jedno téma. Otázky jsou ověřeny behaviorálními psychology a lidé na ně reálně a rádi odpovídají.",
     topicCards: [
-      { key: "quickScan", name: "Quick Scan", desc: "Celkový pulse vašeho týmu v 5 otázkách. Spokojenost, bariéry i to, co lidi baví — rázem máte obrázek, kde začít.", sampleQ: "\"Jak spokojeně se v poslední době cítíš v práci?\"", ceoInsight: "Okamžitě vidíte, jestli se nálada ve firmě zlepšuje nebo zhoršuje — bez čekání na kvartální report.", link: PULSE_BASE + "initial?x_lang=cs" },
-      { key: "stress", name: "Stres & wellbeing", desc: "Chronický stres, regenerace a riziko vyhoření. 6 otázek, které měří pracovní tlak i schopnost odpočívat.", sampleQ: "\"Jak často tě pracovní nápor tíží, i když máš volno?\"", ceoInsight: "Burnout stojí firmu 2–3 roční platy na každém člověku. Signály zobrazujeme, než je pozdě.", link: PULSE_BASE + "stress?x_lang=cs" },
-      { key: "values", name: "Hodnoty & kultura", desc: "Soulad mezi deklarovanými a žitými hodnotami. 6 otázek včetně: \"Co byste řekli kamarádovi o práci u nás?\"", sampleQ: "\"Když se tě kamarád zeptá, proč by měl jít pracovat k nám — co mu řekneš?\"", ceoInsight: "Zjistíte, jestli vaše hodnoty žijí v praxi — nebo jestli jsou jen na zdi v kuchyňce.", link: PULSE_BASE + "values?x_lang=cs" },
+      { key: "quickScan", name: "Celkový pulse týmu", desc: "Celkový pulse vašeho týmu v 5 otázkách. Spokojenost, bariéry i to, co lidi baví — rázem máte obrázek, kde začít.", sampleQ: "\"Jak spokojeně se v poslední době cítíš v práci?\"", ceoInsight: "Okamžitě vidíte, jestli se nálada ve firmě zlepšuje nebo zhoršuje — bez čekání na kvartální report.", link: PULSE_BASE + "initial?x_lang=cs" },
+      { key: "pay", name: "Férovost odměn", desc: "Férovost odměn, motivace a srovnání s trhem. 6 otázek, které odhalí, jestli vám lidé odcházejí kvůli penězům.", sampleQ: "\"Přišla ti tvá odměna férová vzhledem k práci, kterou odvádíš?\"", ceoInsight: "Zjistíte, jestli vám lidé odcházejí kvůli penězům — nebo kvůli něčemu, co se dá vyřešit levněji.", link: PULSE_BASE + "pay?x_lang=cs" },
+      { key: "perks", name: "Spokojenost s benefity", desc: "Relevance benefitů, jejich skutečné využívání a co lidem chybí. 6 otázek včetně návrhů na zlepšení.", sampleQ: "\"Dodaly ti tvé benefity za poslední měsíc energii navíc, kterou jsi mohl/a využít?\"", ceoInsight: "Přestaňte utrácet za benefity, které nikdo nepoužívá. Investujte do toho, co lidé skutečně chtějí.", link: PULSE_BASE + "perks?x_lang=cs" },
+      { key: "tools", name: "Pracovní podmínky", desc: "Mají lidé k dispozici vše, co potřebují? Vybavení, podpora i zpětná vazba od manažera. 6 otázek.", sampleQ: "\"Mám k dispozici vše, co potřebuji — nástroje, vybavení i podporu — abych mohl/a dělat svou práci naplno.\"", ceoInsight: "Často stačí opravit jednu blbost — špatný nástroj, pomalý notebook — a produktivita celého týmu skočí.", link: PULSE_BASE + "tools?x_lang=cs" },
+      { key: "workload", name: "Zátěž a kapacita", desc: "Rovnováha mezi nároky, kapacitou a prioritami. 6 otázek, které odhalí, kdo je přetížený dříve, než vyhoří.", sampleQ: "\"I přes neplánované změny a vyrušení zvládám svoje denní úkoly a projekty.\"", ceoInsight: "Přetížení lidé nevyhoří za den — ale signály jsou vidět měsíce předem. Pokud víte, kam se dívat.", link: PULSE_BASE + "workload?x_lang=cs" },
+      { key: "recognition", name: "Ocenění a feedback", desc: "Je dobrá práce vidět? Zpětná vazba, ocenění, formy uznání, které lidem vyhovují. 6 otázek.", sampleQ: "\"Přišlo ti v uplynulém měsíci, že si někdo všiml, když se ti něco povedlo, a ocenil to?\"", ceoInsight: "80 % lidí, kteří odcházejí, říká, že se necítili dost oceněni. Tohle měření vám ukáže, kde to hoří.", link: PULSE_BASE + "recognition?x_lang=cs" },
+      { key: "stress", name: "Stres a vyhoření", desc: "Chronický stres, regenerace a riziko vyhoření. 6 otázek, které měří pracovní tlak i schopnost odpočívat.", sampleQ: "\"Jak často tě pracovní nápor tíží, i když máš volno?\"", ceoInsight: "Burnout stojí firmu 2–3 roční platy na každém člověku. Signály zobrazujeme, než je pozdě.", link: PULSE_BASE + "stress?x_lang=cs" },
+      { key: "values", name: "Kultura a hodnoty", desc: "Soulad mezi deklarovanými a žitými hodnotami. 6 otázek včetně: \"Co byste řekli kamarádovi o práci u nás?\"", sampleQ: "\"Když se tě kamarád zeptá, proč by měl jít pracovat k nám — co mu řekneš?\"", ceoInsight: "Zjistíte, jestli vaše hodnoty žijí v praxi — nebo jestli jsou jen na zdi v kuchyňce.", link: PULSE_BASE + "values?x_lang=cs" },
     ],
     topicChip: "5\u20136 otázek \u00B7 2 min",
     chatLabel: "Ukázka otázky",
@@ -79,12 +100,17 @@ const copy: Record<string, TCopy> = {
       { title: "2-min AI conversation", desc: "A chatbot asks psychologist-designed questions. Natural, like talking to a colleague." },
       { title: "Results in dashboard", desc: "Instant overview, trends over time, AI-powered action recommendations." },
     ],
-    topicsTitle: "3 conversations that reveal what people won't say out loud",
+    topicsTitle: "8 conversations that reveal what people won't say out loud",
     topicsSubtitle: "Each set is a short AI conversation on one topic. Questions are validated by behavioral psychologists — and people genuinely enjoy answering them.",
     topicCards: [
-      { key: "quickScan", name: "Quick Scan", desc: "Your team's overall pulse in 5 questions. Satisfaction, barriers, and what brings joy — you get the full picture of where to start.", sampleQ: "\"How happy have you felt at work recently?\"", ceoInsight: "Instantly see whether company morale is improving or declining — no waiting for quarterly reports.", link: PULSE_BASE + "initial?x_lang=en" },
-      { key: "stress", name: "Stress & Wellbeing", desc: "Chronic stress, recovery, and burnout risk. 6 questions measuring work pressure and the ability to recharge.", sampleQ: "\"How often does work pressure weigh on you even when you're off?\"", ceoInsight: "Burnout costs 2–3 annual salaries per person. We surface the signals before it's too late.", link: PULSE_BASE + "stress?x_lang=en" },
-      { key: "values", name: "Values & Culture", desc: "Alignment between declared and lived values. 6 questions including: \"What would you tell a friend about working here?\"", sampleQ: "\"When a friend asks why they should come work for us — what do you tell them?\"", ceoInsight: "Discover whether your values live in practice — or just on the kitchen wall poster.", link: PULSE_BASE + "values?x_lang=en" },
+      { key: "quickScan", name: "Overall team pulse", desc: "Your team's overall pulse in 5 questions. Satisfaction, barriers, and what brings joy — you get the full picture of where to start.", sampleQ: "\"How happy have you felt at work recently?\"", ceoInsight: "Instantly see whether company morale is improving or declining — no waiting for quarterly reports.", link: PULSE_BASE + "initial?x_lang=en" },
+      { key: "pay", name: "Pay fairness", desc: "Pay fairness, motivation, and market comparison. 6 questions that reveal whether people leave over money — or something else.", sampleQ: "\"Did your compensation feel fair given the work you put in?\"", ceoInsight: "Find out if people leave over money — or something cheaper to fix.", link: PULSE_BASE + "pay?x_lang=en" },
+      { key: "perks", name: "Benefits satisfaction", desc: "Benefit relevance, actual usage, and what's missing. 6 questions including suggestions for improvement.", sampleQ: "\"Did your benefits give you extra energy you could actually use?\"", ceoInsight: "Stop spending on perks nobody uses. Invest in what people actually want.", link: PULSE_BASE + "perks?x_lang=en" },
+      { key: "tools", name: "Working conditions", desc: "Do people have everything they need? Equipment, support, and manager feedback. 6 questions.", sampleQ: "\"I have everything I need — tools, equipment, and support — to do my best work.\"", ceoInsight: "Often fixing one thing — a bad tool, a slow laptop — boosts the entire team's productivity.", link: PULSE_BASE + "tools?x_lang=en" },
+      { key: "workload", name: "Workload & capacity", desc: "Balance between demands, capacity, and priorities. 6 questions that spot overload before people burn out.", sampleQ: "\"Even with unexpected changes and interruptions, I manage my daily tasks and projects.\"", ceoInsight: "Overloaded people don't burn out overnight — but the signals show months in advance. If you know where to look.", link: PULSE_BASE + "workload?x_lang=en" },
+      { key: "recognition", name: "Recognition & feedback", desc: "Is good work visible? Feedback, appreciation, and preferred forms of recognition. 6 questions.", sampleQ: "\"In the past month, did someone notice when you did something well and appreciate it?\"", ceoInsight: "80% of people who leave say they didn't feel appreciated enough. This shows you where it's burning.", link: PULSE_BASE + "recognition?x_lang=en" },
+      { key: "stress", name: "Stress & burnout risk", desc: "Chronic stress, recovery, and burnout risk. 6 questions measuring work pressure and the ability to recharge.", sampleQ: "\"How often does work pressure weigh on you even when you're off?\"", ceoInsight: "Burnout costs 2–3 annual salaries per person. We surface the signals before it's too late.", link: PULSE_BASE + "stress?x_lang=en" },
+      { key: "values", name: "Culture & values", desc: "Alignment between declared and lived values. 6 questions including: \"What would you tell a friend about working here?\"", sampleQ: "\"When a friend asks why they should come work for us — what do you tell them?\"", ceoInsight: "Discover whether your values live in practice — or just on the kitchen wall poster.", link: PULSE_BASE + "values?x_lang=en" },
     ],
     topicChip: "5\u20136 questions \u00B7 2 min",
     chatLabel: "Sample question",
@@ -114,12 +140,17 @@ const copy: Record<string, TCopy> = {
       { title: "2-Min AI-Gespräch", desc: "Ein Chatbot stellt von Psychologen validierte Fragen. Natürlich, wie ein Gespräch mit einem Kollegen." },
       { title: "Ergebnisse im Dashboard", desc: "Sofortiger Überblick, Trends und KI-gestützte Handlungsempfehlungen." },
     ],
-    topicsTitle: "3 Gespräche, die zeigen, was Mitarbeiter nicht laut sagen",
+    topicsTitle: "8 Gespräche, die zeigen, was Mitarbeiter nicht laut sagen",
     topicsSubtitle: "Jedes Set ist ein kurzes AI-Gespräch zu einem Thema. Fragen sind von Verhaltenspsychologen validiert — und Mitarbeiter beantworten sie gerne.",
     topicCards: [
-      { key: "quickScan", name: "Quick Scan", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht — auf einen Blick.", sampleQ: "\"Wie zufrieden fühlst du dich aktuell bei der Arbeit?\"", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert — ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=en" },
-      { key: "stress", name: "Stress & Wellbeing", desc: "Chronischer Stress, Erholung und Burnout-Risiko. 6 Fragen zu Arbeitsdruck & Regeneration.", sampleQ: "\"Wie oft belastet dich der Arbeitsdruck auch in deiner Freizeit?\"", ceoInsight: "Burnout kostet 2–3 Jahresgehälter pro Person. Wir zeigen die Signale, bevor es zu spät ist.", link: PULSE_BASE + "stress?x_lang=en" },
-      { key: "values", name: "Werte & Kultur", desc: "Übereinstimmung zwischen erklärten und gelebten Werten. 6 Fragen inkl. \"Was würden Sie einem Freund sagen?\"", sampleQ: "\"Wenn ein Freund fragt, warum er bei uns arbeiten sollte — was sagst du ihm?\"", ceoInsight: "Erfahren Sie, ob Ihre Werte in der Praxis leben — oder nur am Poster in der Küche hängen.", link: PULSE_BASE + "values?x_lang=en" },
+      { key: "quickScan", name: "Team-Gesamtpuls", desc: "Der Gesamtpuls Ihres Teams in 5 Fragen. Zufriedenheit, Hindernisse & was Freude macht — auf einen Blick.", sampleQ: "\"Wie zufrieden fühlst du dich aktuell bei der Arbeit?\"", ceoInsight: "Sofort sehen, ob sich die Stimmung verbessert oder verschlechtert — ohne auf den Quartalsbericht zu warten.", link: PULSE_BASE + "initial?x_lang=en" },
+      { key: "pay", name: "Vergütungsfairness", desc: "Fairness, Motivation und Marktvergleich. 6 Fragen, die zeigen, ob Mitarbeiter wegen Geld gehen.", sampleQ: "\"Empfandest du deine Vergütung als fair für die Arbeit, die du geleistet hast?\"", ceoInsight: "Erfahren Sie, ob Mitarbeiter wegen des Geldes gehen — oder wegen etwas, das günstiger zu lösen ist.", link: PULSE_BASE + "pay?x_lang=en" },
+      { key: "perks", name: "Benefits-Zufriedenheit", desc: "Relevanz, tatsächliche Nutzung und was fehlt. 6 Fragen inkl. Verbesserungsvorschläge.", sampleQ: "\"Haben dir deine Benefits im letzten Monat zusätzliche Energie gegeben?\"", ceoInsight: "Hören Sie auf, für Benefits auszugeben, die niemand nutzt. Investieren Sie in das, was Mitarbeiter wirklich wollen.", link: PULSE_BASE + "perks?x_lang=en" },
+      { key: "tools", name: "Arbeitsbedingungen", desc: "Haben Mitarbeiter alles, was sie brauchen? Ausstattung, Support & Manager-Feedback. 6 Fragen.", sampleQ: "\"Ich habe alles — Werkzeuge, Ausstattung und Unterstützung — um meine Arbeit bestmöglich zu erledigen.\"", ceoInsight: "Oft reicht es, eine Kleinigkeit zu reparieren, um die Produktivität des ganzen Teams zu steigern.", link: PULSE_BASE + "tools?x_lang=en" },
+      { key: "workload", name: "Belastung & Kapazität", desc: "Balance zwischen Anforderungen, Kapazität und Prioritäten. 6 Fragen, die Überlastung früh erkennen.", sampleQ: "\"Auch bei unerwarteten Änderungen und Unterbrechungen schaffe ich meine täglichen Aufgaben und Projekte.\"", ceoInsight: "Überlastete Mitarbeiter brennen nicht über Nacht aus — aber die Signale zeigen sich Monate vorher.", link: PULSE_BASE + "workload?x_lang=en" },
+      { key: "recognition", name: "Anerkennung & Feedback", desc: "Wird gute Arbeit gesehen? Feedback, Wertschätzung und bevorzugte Formen. 6 Fragen.", sampleQ: "\"Hat im letzten Monat jemand bemerkt, wenn dir etwas gelungen ist, und es anerkannt?\"", ceoInsight: "80 % der Mitarbeiter, die gehen, fühlten sich nicht genug wertgeschätzt. Hier sehen Sie, wo es brennt.", link: PULSE_BASE + "recognition?x_lang=en" },
+      { key: "stress", name: "Stress & Burnout-Risiko", desc: "Chronischer Stress, Erholung und Burnout-Risiko. 6 Fragen zu Arbeitsdruck & Regeneration.", sampleQ: "\"Wie oft belastet dich der Arbeitsdruck auch in deiner Freizeit?\"", ceoInsight: "Burnout kostet 2–3 Jahresgehälter pro Person. Wir zeigen die Signale, bevor es zu spät ist.", link: PULSE_BASE + "stress?x_lang=en" },
+      { key: "values", name: "Kultur & Werte", desc: "Übereinstimmung zwischen erklärten und gelebten Werten. 6 Fragen inkl. \"Was würden Sie einem Freund sagen?\"", sampleQ: "\"Wenn ein Freund fragt, warum er bei uns arbeiten sollte — was sagst du ihm?\"", ceoInsight: "Erfahren Sie, ob Ihre Werte in der Praxis leben — oder nur am Poster in der Küche hängen.", link: PULSE_BASE + "values?x_lang=en" },
     ],
     topicChip: "5\u20136 Fragen \u00B7 2 Min",
     chatLabel: "Beispielfrage",
@@ -240,7 +271,7 @@ export function SignalRadar() {
                   </div>
                 ))}
               </div>
-              <span className="text-[12px] font-semibold text-brand-primary">{c.topicCards.length} {language === 'cz' ? 'oblastí' : language === 'de' ? 'Bereiche' : 'areas'} · {language === 'cz' ? '~16 otázek celkem' : language === 'de' ? '~16 Fragen gesamt' : '~16 questions total'}</span>
+              <span className="text-[12px] font-semibold text-brand-primary">{c.topicCards.length} {language === 'cz' ? 'oblastí' : language === 'de' ? 'Bereiche' : 'areas'} · {language === 'cz' ? '~47 otázek celkem' : language === 'de' ? '~47 Fragen gesamt' : '~47 questions total'}</span>
             </div>
           </div>
 
@@ -587,7 +618,7 @@ function TopicCarousel({
   const scrollBy = (dir: number) => {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollBy({ left: dir * 380, behavior: 'smooth' });
+    el.scrollBy({ left: dir * 320, behavior: 'smooth' });
   };
 
   return (
@@ -616,64 +647,66 @@ function TopicCarousel({
         {/* Scrolling track */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth px-2 py-4 -mx-2"
+          className="flex gap-4 overflow-x-auto scroll-smooth px-2 py-3 -mx-2"
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
         >
           {cards.map((card, i) => {
             const TopicIcon = topicIcons[card.key] || Activity;
             const cardNum = i + 1;
+            const hasPulse = pulseCardKeys.has(card.key);
+            const gradient = cardGradients[card.key] || 'from-gray-50/40 to-white';
             return (
               <motion.div
                 key={card.key}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="shrink-0 w-[340px] sm:w-[380px] rounded-2xl bg-white border border-brand-border/60 shadow-sm hover:shadow-md hover:border-brand-primary/15 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card"
+                transition={{ duration: 0.35, delay: i * 0.05 }}
+                className={`shrink-0 w-[280px] sm:w-[300px] rounded-xl bg-gradient-to-br ${gradient} border border-brand-border/50 shadow-sm hover:shadow-md hover:border-brand-primary/15 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card`}
               >
                 {/* Clickable body — opens detail panel */}
                 <div
-                  className="flex-1 flex flex-col cursor-pointer p-5"
+                  className="flex-1 flex flex-col cursor-pointer px-4 pt-4 pb-3"
                   onClick={() => handleCardBodyClick(card, cardNum)}
                 >
                   {/* Card header */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-brand-primary/8 flex items-center justify-center shrink-0">
-                      <TopicIcon className="w-5 h-5 text-brand-primary" />
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <div className="w-8 h-8 rounded-lg bg-brand-primary/8 flex items-center justify-center shrink-0">
+                      <TopicIcon className="w-4 h-4 text-brand-primary" />
                     </div>
-                    <div className="min-w-0">
-                      <h4 className="font-semibold text-base text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
-                    </div>
+                    <h4 className="font-semibold text-sm text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-brand-text-body leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-[13px] text-brand-text-body leading-relaxed mb-3 line-clamp-3">
                     {card.desc}
                   </p>
 
-                  {/* CEO insight */}
+                  {/* CEO insight — compact */}
                   <div className="mt-auto">
-                    <div className="bg-brand-background-secondary/50 rounded-xl p-3.5 border border-brand-border/40">
-                      <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center gap-1.5">
-                        <Sparkles className="w-3 h-3" />
+                    <div className="bg-white/70 rounded-lg p-2.5 border border-brand-border/30">
+                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1 flex items-center gap-1">
+                        <Sparkles className="w-2.5 h-2.5" />
                         {ceoLabel}
                       </div>
-                      <p className="text-[13px] text-brand-text-secondary leading-relaxed font-medium line-clamp-2">
+                      <p className="text-[12px] text-brand-text-secondary leading-relaxed font-medium line-clamp-2">
                         {card.ceoInsight}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Bottom CTA — opens pulse questionnaire in embed */}
-                <button
-                  onClick={() => onOpenPulse(card.link)}
-                  className="flex items-center justify-center gap-2.5 px-5 py-3.5 border-t border-brand-border/40 text-sm font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
-                >
-                  <Play className="w-4 h-4" />
-                  <span>Vyzkoušet {card.name}</span>
-                  <ArrowRight className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" />
-                </button>
+                {/* Bottom CTA — only for pulse cards (quickScan, stress, values) */}
+                {hasPulse && (
+                  <button
+                    onClick={() => onOpenPulse(card.link)}
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 border-t border-brand-border/30 text-[13px] font-medium text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
+                  >
+                    <Play className="w-3.5 h-3.5" />
+                    <span>Vyzkoušet</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover/cta:translate-x-1 transition-transform" />
+                  </button>
+                )}
               </motion.div>
             );
           })}
