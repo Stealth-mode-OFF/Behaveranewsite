@@ -36,7 +36,7 @@ function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: {
       // Gentle ease-out: fast initial movement, long soft settling
       const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.round(startFrom + (end - startFrom) * eased));
-      // Blur goes from 3px -> 0 in the first 60% of animation
+      // Blur goes from 3px → 0 in the first 60% of animation
       setBlur(Math.max(0, 3 * (1 - progress / 0.6)));
       if (progress < 1) requestAnimationFrame(animate);
     };

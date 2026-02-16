@@ -32,7 +32,7 @@ export function StickyMobileCta() {
             rel="noopener noreferrer"
             className="flex-1 h-12 flex items-center justify-center rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"
           >
-            {language === 'cz' ? 'Otestovat na 1 týmu zdarma' : language === 'de' ? '1 Team kostenlos testen' : 'Test 1 team for free'}
+            {language === 'cz' ? 'Otestovat 1 tým zdarma' : language === 'de' ? '1 Team kostenlos testen' : 'Test 1 team for free'}
           </a>
           <button
             type="button"

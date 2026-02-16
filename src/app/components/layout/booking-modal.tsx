@@ -116,7 +116,7 @@ export function BookingModal() {
         <div className="flex flex-col lg:flex-row min-h-0 flex-1">
 
           {/* ─── LEFT: VALUE PANEL (hidden on mobile) ─── */}
-          <div className="hidden lg:flex lg:w-[320px] shrink-0 flex-col bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520] text-white p-8 relative overflow-hidden">
+          <div className="hidden lg:flex lg:w-[320px] shrink-0 flex-col bg-gradient-to-b from-brand-primary via-[#1a1540] to-[#0a0a14] text-white p-8 relative overflow-hidden">
             {/* Subtle grid bg */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
             {/* Glow orb for depth */}

@@ -171,7 +171,7 @@ export function TestimonialsCarousel() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="min-h-[220px] md:min-h-[200px] flex items-center justify-center">
+          <div className="min-h-[180px] sm:min-h-[200px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}

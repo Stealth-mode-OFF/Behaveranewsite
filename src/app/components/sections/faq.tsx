@@ -95,7 +95,7 @@ export function FAQ() {
           transition={{ delay: 0.1 }}
           className="flex justify-center mb-10"
         >
-          <div className="inline-flex p-1.5 bg-white border border-brand-border rounded-2xl shadow-sm">
+          <div className="inline-flex p-1.5 bg-white border border-brand-border rounded-2xl shadow-sm max-w-full overflow-x-auto">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (

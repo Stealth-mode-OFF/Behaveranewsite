@@ -121,7 +121,7 @@ export function BlogPostPage() {
           />
 
           {/* Bottom CTA — premium style */}
-          <div className="mt-16 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10 p-8 md:p-12">
+          <div className="mt-16 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0a0a14] to-[#1a1540] border border-white/10 p-8 md:p-12">
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-accent/10 rounded-full blur-[100px] pointer-events-none" />
             <div className="relative z-10 text-center">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/10 rounded-full mb-4">

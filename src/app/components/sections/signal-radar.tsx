@@ -13,10 +13,9 @@ import { trackPulseCheckOpen } from "@/lib/analytics";
 
 /* ─── Icons ─── */
 const topicIcons: Record<string, ElementType> = {
-  quickScan: Activity, pay: Scale, perks: Heart, tools: Cpu,
-  workload: Briefcase, recognition: Award, stress: Zap, values: Shield,
+  quickScan: Activity, stress: Zap, values: Shield,
 };
-const topicKeys = ['quickScan', 'pay', 'perks', 'tools', 'workload', 'recognition', 'stress', 'values'] as const;
+const topicKeys = ['quickScan', 'stress', 'values'] as const;
 const stepIcons = [Send, MessageCircle, BarChart3];
 const advantageIcons = [TrendingUp, BarChart3, Brain, Activity];
 
@@ -272,7 +271,7 @@ export function SignalRadar() {
         </div>
 
         {/* ═══════════ COMPARISON + TESTIMONIALS — side by side ═══════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
 
         {/* WHY NOT GOOGLE FORMS */}
         <div>
