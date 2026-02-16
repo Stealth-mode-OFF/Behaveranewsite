@@ -246,6 +246,9 @@ const copy = {
     guarantee: "30denní garance vrácení peněz. Bez otázek.",
     submit: "Vytvořit účet",
     submitting: ["Vytvářím účet…", "Ukládám týmy…", "Nastavuji fakturaci…", "Připravuji vše…", "Hotovo ✓"],
+    doneTitle: "Vše je připravené!",
+    doneSubtitle: "Zkontrolujte si údaje naposledy a odklikněte.",
+    doneButton: "Dokončit a aktivovat účet",
     successTitle: "Máte to! 🎉",
     successSubtitle: "Váš Echo Pulse účet je připravený. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
@@ -331,6 +334,9 @@ const copy = {
     guarantee: "30-day money-back guarantee. No questions asked.",
     submit: "Create account",
     submitting: ["Creating account…", "Saving teams…", "Setting up billing…", "Preparing everything…", "Done ✓"],
+    doneTitle: "Everything is ready!",
+    doneSubtitle: "Review your details one last time and confirm.",
+    doneButton: "Finish & activate account",
     successTitle: "You're in! 🎉",
     successSubtitle: "Your Echo Pulse account is ready. Here's what happens next:",
     successCta: "Back to homepage",
@@ -416,6 +422,9 @@ const copy = {
     guarantee: "30 Tage Geld-zurück-Garantie. Ohne Fragen.",
     submit: "Konto erstellen",
     submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Abrechnung wird eingerichtet…", "Alles wird vorbereitet…", "Fertig ✓"],
+    doneTitle: "Alles ist bereit!",
+    doneSubtitle: "Überprüfen Sie Ihre Angaben ein letztes Mal.",
+    doneButton: "Abschließen & Konto aktivieren",
     successTitle: "Geschafft! 🎉",
     successSubtitle: "Ihr Echo Pulse Konto ist bereit. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
@@ -456,6 +465,7 @@ export function OnboardingPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitPhase, setSubmitPhase] = useState(0);
   const [teams, setTeams] = useState<Team[]>([]);
@@ -689,13 +699,10 @@ export function OnboardingPage() {
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
       clearTimeout(phaseTimer3);
-      // Show "Done ✓" phase briefly before transitioning
       setSubmitPhase(4);
       await new Promise((r) => setTimeout(r, 1000));
       setIsSubmitting(false);
-      // Pause before celebration so the completed state registers
-      await new Promise((r) => setTimeout(r, 600));
-      setIsSuccess(true);
+      setIsDone(true);
     } catch {
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
@@ -703,10 +710,74 @@ export function OnboardingPage() {
       setSubmitPhase(4);
       await new Promise((r) => setTimeout(r, 1000));
       setIsSubmitting(false);
-      await new Promise((r) => setTimeout(r, 600));
-      setIsSuccess(true);
+      setIsDone(true);
     }
   };
+
+  /* ─── "Done" confirmation screen — user must click to celebrate ─── */
+  if (isDone && !isSuccess) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-brand-background via-white to-brand-background-secondary flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-md text-center space-y-8"
+        >
+          {/* Big checkmark */}
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
+            className="mx-auto w-20 h-20 rounded-full bg-brand-success/10 flex items-center justify-center"
+          >
+            <Check className="w-10 h-10 text-brand-success" strokeWidth={3} />
+          </motion.div>
+
+          <div>
+            <h1 className="text-2xl font-bold text-brand-text-primary mb-2">
+              {txt.doneTitle}
+            </h1>
+            <p className="text-[14px] text-brand-text-muted">
+              {txt.doneSubtitle}
+            </p>
+          </div>
+
+          {/* Summary chips */}
+          <div className="flex flex-wrap justify-center gap-2 text-[12px]">
+            <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
+              {watch("companyName")}
+            </span>
+            <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
+              {watch("employeeCount")} {txt.summaryMembers}
+            </span>
+            <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
+              {teams.length} {txt.summaryTeams.toLowerCase()}
+            </span>
+            <span className="px-3 py-1.5 rounded-full bg-brand-success/10 text-brand-success font-semibold">
+              {watch("billingInterval") === "yearly" ? txt.yearly : txt.monthly}
+            </span>
+          </div>
+
+          {/* THE button */}
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <Button
+              type="button"
+              onClick={() => setIsSuccess(true)}
+              className="h-14 px-12 text-[16px] font-bold shadow-xl shadow-brand-primary/25 bg-gradient-to-r from-brand-primary to-brand-primary-hover w-full"
+            >
+              <Rocket className="w-5 h-5 mr-2" />
+              {txt.doneButton}
+            </Button>
+          </motion.div>
+
+          <p className="text-[11px] text-brand-text-muted">
+            {txt.guarantee}
+          </p>
+        </motion.div>
+      </div>
+    );
+  }
 
   /* ─── Success screen ─── */
   if (isSuccess) {
