@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useLanguage } from "@/app/LanguageContext";
-import { Users, TrendingUp, Zap, MessageSquare, Mail } from "lucide-react";
+import { Users, TrendingUp, Zap } from "lucide-react";
 
 /**
  * Stats Bar — Fathom-inspired key metrics section
@@ -147,12 +147,6 @@ export function StatsBar() {
     ],
   };
 
-  const integrationsCopy = {
-    cz: "Funguje přes Slack nebo e-mail. Žádný nový software.",
-    en: "Works via Slack or email. No new software.",
-    de: "Funktioniert über Slack oder E-Mail. Keine neue Software.",
-  };
-
   const items = stats[language] || stats.en;
 
   return (
@@ -195,26 +189,7 @@ export function StatsBar() {
           })}
         </div>
 
-        {/* Integration strip — early "no new software" proof */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.3 }}
-          className="mt-12 pt-8 border-t border-brand-border/50 flex flex-wrap items-center justify-center gap-4 text-sm text-brand-text-muted"
-        >
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-4 h-4 text-brand-primary/60" />
-            <span className="font-medium">Slack</span>
-          </div>
-          <span className="text-brand-border">·</span>
-          <div className="flex items-center gap-2">
-            <Mail className="w-4 h-4 text-brand-primary/60" />
-            <span className="font-medium">E-mail</span>
-          </div>
-          <span className="hidden sm:inline text-brand-border">|</span>
-          <span>{integrationsCopy[language] || integrationsCopy.en}</span>
-        </motion.div>
+
       </div>
     </section>
   );

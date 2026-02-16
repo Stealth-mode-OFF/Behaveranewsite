@@ -10,7 +10,7 @@ import {
   type LucideIcon 
 } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
+
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { trackRoleSelected } from "@/lib/analytics";
@@ -38,7 +38,7 @@ type RoleConfig = {
  */
 export function RoleSelection() {
   const { t, language } = useLanguage();
-  const { openBooking } = useModal();
+
   const [activeRole, setActiveRole] = useState("ceo");
 
   const roles: RoleConfig[] = [
@@ -213,13 +213,11 @@ export function RoleSelection() {
                 </p>
 
                 {/* CTA */}
-                <Button
-                  onClick={() => openBooking('role_selection')}
-                  size="lg"
-                  className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl"
-                >
-                  {activeRoleData.cta}
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                <Button asChild size="lg" className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl">
+                  <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
+                    {activeRoleData.cta}
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
                 </Button>
               </div>
 

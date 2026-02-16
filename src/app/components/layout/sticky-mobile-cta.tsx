@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { useNavigate } from "react-router-dom";
 import { trackStickyCtaDismissed } from "@/lib/analytics";
 
 export function StickyMobileCta() {
   const { t, language } = useLanguage();
-  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 

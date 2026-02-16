@@ -59,10 +59,7 @@ const LeadCaptureSection = lazyNamed(
   () => import("@/app/components/sections/lead-capture"),
   "LeadCaptureSection"
 );
-const IntegrationsShowcase = lazyNamed(
-  () => import("@/app/components/sections/integrations-showcase"),
-  "IntegrationsShowcase"
-);
+
 
 export function LandingPage() {
   const { language } = useLanguage();
@@ -112,11 +109,11 @@ export function LandingPage() {
         {/* 3. PROBLEM — Build pain awareness */}
         <ProblemSection />
 
-        {/* 4. VISUAL PROOF — See the solution immediately */}
-        <DashboardPreview />
-
-        {/* 5. HOW IT WORKS + WHAT WE MEASURE */}
+        {/* 4. HOW IT WORKS + WHAT WE MEASURE */}
         <SignalRadar />
+
+        {/* 5. VISUAL PROOF — See the dashboard in action */}
+        <DashboardPreview />
 
         {/* 6. SOCIAL PROOF — Real client results */}
         <LazySection>
@@ -131,12 +128,7 @@ export function LandingPage() {
           <PurchaseSection />
         </LazySection>
 
-        {/* 8b. INTEGRATIONS — Works wherever you work */}
-        <LazySection>
-          <IntegrationsShowcase />
-        </LazySection>
-
-        {/* 9. OBJECTION HANDLING — FAQ */}
+        {/* 8. OBJECTION HANDLING — FAQ */}
         <LazySection>
           <FAQ />
         </LazySection>

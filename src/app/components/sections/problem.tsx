@@ -1,8 +1,6 @@
 import { AlertTriangle, TrendingDown, EyeOff, ZapOff, ArrowRight, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
 import { motion } from "framer-motion";
-import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 
 /**
@@ -16,7 +14,7 @@ import { cn } from "@/app/components/ui/utils";
  */
 export function ProblemSection() {
   const { t, language } = useLanguage();
-  const { openBooking } = useModal();
+
 
   // Extract items from translations
   const items = Array.isArray(t.problems?.items) ? t.problems.items : [];
@@ -146,14 +144,15 @@ export function ProblemSection() {
                 <p className="text-sm text-white/80 mb-4">
                   {t.problems?.ctaBox?.desc || "Get visibility before the damage is done."}
                 </p>
-                <Button
-                  onClick={openBooking}
-                  variant="ghost"
-                  className="text-white hover:text-brand-accent hover:bg-white/10 px-0 h-auto font-semibold group/btn"
+                <a
+                  href="https://app.behavera.com/echo-pulse/try"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-brand-accent font-semibold inline-flex items-center group/btn"
                 >
-                  {language === 'cz' ? 'Domluvit demo' : language === 'de' ? 'Demo buchen' : 'Book a demo'}
+                  {language === 'cz' ? 'Otestovat zdarma' : language === 'de' ? 'Kostenlos testen' : 'Try for free'}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                </a>
               </div>
             </div>
           </motion.div>
