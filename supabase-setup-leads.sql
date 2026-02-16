@@ -1,5 +1,5 @@
 -- Supabase Lead Submission Setup
--- Run this in Supabase SQL Editor: https://supabase.com/dashboard/project/jugjqgkguozarsmclgse/sql/new
+-- Run this in Supabase SQL Editor: https://supabase.com/dashboard/project/gruomxlcwerzevjohqdo/sql/new
 
 -- Create leads table
 create table if not exists leads (

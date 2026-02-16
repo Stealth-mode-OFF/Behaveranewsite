@@ -54,16 +54,16 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const blogLabel = "Blog";
   const loginLabel =
     language === "cz"
-      ? "Přihlásit se"
+      ? "Přihlášení"
       : language === "de"
       ? "Anmelden"
-      : "Log in";
+      : "Sign in";
   const ctaLabel =
     language === "cz"
-      ? "Začít zdarma"
+      ? "Chci to"
       : language === "de"
-      ? "Kostenlos starten"
-      : "Get started";
+      ? "Das will ich"
+      : "I want this";
 
   /* ─── Shared nav-link class ─── */
   const navLinkClass = cn(

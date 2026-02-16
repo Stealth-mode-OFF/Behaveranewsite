@@ -1,5 +1,5 @@
 -- Supabase Onboarding Data Setup
--- Run this in Supabase SQL Editor: https://supabase.com/dashboard/project/jugjqgkguozarsmclgse/sql/new
+-- Run this in Supabase SQL Editor: https://supabase.com/dashboard/project/gruomxlcwerzevjohqdo/sql/new
 -- This creates tables to store the COMPLETE onboarding flow data:
 -- company info, ARES registry data, teams, team members, OAuth contacts
 
