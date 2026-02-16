@@ -143,7 +143,7 @@ export function BlogPage() {
             >
               <Link 
                 to={`/blog/${featuredPost.slug}`}
-                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0a0a14] to-[#1a1540] border border-white/10"
+                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#120B25] to-[#2D1B69] border border-white/10"
               >
                 <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden">
