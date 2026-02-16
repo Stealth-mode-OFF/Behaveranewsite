@@ -26,10 +26,10 @@ export function CtaSection() {
       headline: "Spusťte Echo Pulse.",
       headlineHighlight: "A přestaňte hádat, co se ve firmě děje.",
       subheadline: "Buď si to bezpečně otestujete na jednom týmu, nebo to rovnou spustíte ve firmě.",
-      primaryCta: "Otestovat na 1 týmu zdarma",
-      primaryMicro: "Bez závazku. Výsledky jsou vidět okamžitě.",
-      secondaryCta: "Objednat pro firmu",
-      secondaryMicro: "Karta nebo faktura. Bez smlouvy.",
+      primaryCta: "Objednat pro celou firmu",
+      primaryMicro: "Karta nebo faktura. Bez smlouvy.",
+      secondaryCta: "Otestovat 1 tým zdarma",
+      secondaryMicro: "Bez závazku. Výsledky jsou vidět okamžitě.",
       demoLink: "Chci si to nejdřív projít na demu",
       trust: ["Bez kreditky", "GDPR ready", "Výsledky okamžitě"],
     },
@@ -38,10 +38,10 @@ export function CtaSection() {
       headline: "Launch Echo Pulse.",
       headlineHighlight: "And stop guessing what's happening in your company.",
       subheadline: "Either safely test it with one team, or launch it across your company right away.",
-      primaryCta: "Test 1 team for free",
-      primaryMicro: "No commitment. Results are instant.",
-      secondaryCta: "Order for company",
-      secondaryMicro: "Card or invoice. No contract.",
+      primaryCta: "Order for the whole company",
+      primaryMicro: "Card or invoice. No contract.",
+      secondaryCta: "Test 1 team for free",
+      secondaryMicro: "No commitment. Results are instant.",
       demoLink: "I'd like to see a demo first",
       trust: ["No credit card", "GDPR ready", "Instant results"],
     },
@@ -50,10 +50,10 @@ export function CtaSection() {
       headline: "Starten Sie Echo Pulse.",
       headlineHighlight: "Und hören Sie auf zu raten, was im Unternehmen passiert.",
       subheadline: "Testen Sie es sicher mit einem Team oder starten Sie direkt im ganzen Unternehmen.",
-      primaryCta: "1 Team kostenlos testen",
-      primaryMicro: "Unverbindlich. Ergebnisse sofort sichtbar.",
-      secondaryCta: "Für das Unternehmen bestellen",
-      secondaryMicro: "Karte oder Rechnung. Ohne Vertrag.",
+      primaryCta: "Für das ganze Unternehmen bestellen",
+      primaryMicro: "Karte oder Rechnung. Ohne Vertrag.",
+      secondaryCta: "1 Team kostenlos testen",
+      secondaryMicro: "Unverbindlich. Ergebnisse sofort sichtbar.",
       demoLink: "Ich möchte zuerst eine Demo sehen",
       trust: ["Keine Kreditkarte", "DSGVO-konform", "Sofortige Ergebnisse"],
     },
@@ -140,9 +140,9 @@ export function CtaSection() {
           >
             {/* Two buttons row */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              {/* Primary CTA */}
+              {/* Primary CTA — Objednat pro celou firmu (bílé) */}
               <a
-                href="https://app.behavera.com/echo-pulse/try"
+                href="https://www.echopulse.cz/start"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 min-w-[240px] h-14 px-8 rounded-[var(--button-radius)] bg-white text-brand-primary font-semibold text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20 w-full sm:w-auto"
@@ -151,9 +151,9 @@ export function CtaSection() {
                 <ArrowRight className="w-4 h-4" />
               </a>
 
-              {/* Secondary CTA */}
+              {/* Secondary CTA — Otestovat 1 tým zdarma (fialové) */}
               <a
-                href="https://www.echopulse.cz/start"
+                href="https://app.behavera.com/echo-pulse/try"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 min-w-[220px] h-14 px-8 rounded-[var(--button-radius)] bg-white/10 border border-white/30 text-white font-semibold text-base hover:bg-white/20 transition-all w-full sm:w-auto"
