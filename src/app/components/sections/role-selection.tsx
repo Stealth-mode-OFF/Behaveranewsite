@@ -50,6 +50,8 @@ export function RoleSelection() {
       title: t.roleSelection?.ceo?.title || "See what you're missing",
       subtitle: language === 'cz'
         ? "Získejte přehled o náladě v týmu a rizicích odchodů bez toho, abyste museli spoléhat jen na intuici."
+        : language === 'de'
+        ? "Verschaffen Sie sich Einblick in die Teamstimmung und Abwanderungsrisiken — ohne sich nur auf Ihr Bauchgefühl verlassen zu müssen."
         : "Get visibility into team sentiment and departure risks without relying on gut feel alone.",
       benefits: t.roleSelection?.ceo?.list || [
         "Real-time team pulse",
@@ -66,6 +68,8 @@ export function RoleSelection() {
       title: t.roleSelection?.hr?.title || "Prevent turnover proactively",
       subtitle: language === 'cz'
         ? "Přestaňte hasit požáry. Identifikujte rizikové jedince a týmy předtím, než dají výpověď."
+        : language === 'de'
+        ? "Schluss mit dem Feuerlöschen. Identifizieren Sie gefährdete Mitarbeiter und Teams, bevor sie kündigen."
         : "Stop firefighting. Identify at-risk individuals and teams before they hand in their notice.",
       benefits: t.roleSelection?.hr?.list || [
         "Predictive attrition alerts",
@@ -82,6 +86,8 @@ export function RoleSelection() {
       title: t.roleSelection?.teamLeader?.title || "Build a thriving team",
       subtitle: language === 'cz'
         ? "Pochopte dynamiku vašeho týmu a získejte nástroje pro budování zdravého pracovního prostředí."
+        : language === 'de'
+        ? "Verstehen Sie die Dynamik Ihres Teams und erhalten Sie Werkzeuge für ein gesundes Arbeitsumfeld."
         : "Understand your team dynamics and get tools to build a healthy work environment.",
       benefits: t.roleSelection?.teamLeader?.list || [
         "Team health visibility",
