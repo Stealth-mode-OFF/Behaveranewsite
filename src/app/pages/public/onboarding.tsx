@@ -45,6 +45,7 @@ import {
   type Team,
   type TeamContact,
 } from "@/app/components/team-builder";
+import { InviteTeammates } from "@/app/components/invite-teammates";
 import { useAresLookup, type AresResult } from "@/app/hooks/useAresLookup";
 
 /* ─── Types ─── */
@@ -76,18 +77,21 @@ const stepMotivation = {
     "Skvělý start! 🎯",
     "Jste na dobré cestě! 🚀",
     "Skoro hotovo! 💪",
+    "Ještě jeden krok! ✉️",
     "Poslední krok! 🎉",
   ],
   en: [
     "Great start! 🎯",
     "You're on track! 🚀",
     "Almost done! 💪",
+    "One more step! ✉️",
     "Final step! 🎉",
   ],
   de: [
     "Toller Start! 🎯",
     "Sie sind auf Kurs! 🚀",
     "Fast fertig! 💪",
+    "Noch ein Schritt! ✉️",
     "Letzter Schritt! 🎉",
   ],
 };
