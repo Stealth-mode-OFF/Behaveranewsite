@@ -507,6 +507,7 @@ export function OnboardingPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitPhase, setSubmitPhase] = useState(0);
   const [teams, setTeams] = useState<Team[]>(draft?.teams ?? []);
+  const [invitedTeammates, setInvitedTeammates] = useState<any[]>([]);
 
   // OAuth contacts
   const {
@@ -1639,6 +1640,7 @@ export function OnboardingPage() {
                       getValues={getValues}
                       errors={errors}
                       teams={teams}
+                      invitedCount={invitedTeammates.length}
                     />
                   )}
                 </motion.div>
@@ -1756,6 +1758,7 @@ function ConfirmStep({
   getValues,
   errors,
   teams,
+  invitedCount,
 }: {
   txt: any;
   language: string;
@@ -1767,6 +1770,7 @@ function ConfirmStep({
   getValues: any;
   errors: any;
   teams: Team[];
+  invitedCount: number;
 }) {
   const vals = getValues();
   const currentInterval = watch("billingInterval");
