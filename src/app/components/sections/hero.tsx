@@ -2,17 +2,25 @@ import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Play, Shield, Clock, Zap, Users } from "lucide-react";
 import { useModal } from "@/app/ModalContext";
 import { useLanguage } from "@/app/LanguageContext";
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";
 import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
 import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
 
 /**
- * Hero — Sharp, conversion-focused.
+ * Hero — Sharp, conversion-focused carousel.
  *
- * One painful headline → one concrete subtitle → dual CTA → trust line.
- * No rotating tabs. Minimal cognitive load. CEO lands and decides.
+ * Three rotating headlines targeted at CEO & HR → subtitle → dual CTA → trust line.
+ * Auto-advances every 6s with manual dot navigation.
  */
+
+/* ─── Carousel slide type ─── */
+interface HeroSlide {
+  headline: React.ReactNode;
+  headlineHighlight: string;
+  subtitle: string;
+}
 
 export function Hero() {
   const { language } = useLanguage();
@@ -21,9 +29,23 @@ export function Hero() {
   const copy = {
     cz: {
       badge: "Pro CEO a HR, kteří nechtějí hádat",
-      headline: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
-      headlineHighlight: "",
-      subtitle: "Echo Pulse sbírá zpětnou vazbu přes krátký AI chat jednou měsíčně. Výsledky vidíte okamžitě v dashboardu — podle týmů, témat i rizik. Přestaňte hádat. Začněte vědět.",
+      slides: [
+        {
+          headline: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
+          headlineHighlight: "",
+          subtitle: "Echo Pulse sbírá zpětnou vazbu přes krátký AI chat jednou měsíčně. Výsledky vidíte okamžitě v dashboardu — podle týmů, témat i rizik. Přestaňte hádat. Začněte vědět.",
+        },
+        {
+          headline: <>Odchody stojí firmu<br className="hidden md:block" />{' '}stovky tisíc ročně.{' '}</>,
+          headlineHighlight: "Předejděte jim včas.",
+          subtitle: "Echo Pulse odhalí rizikové signály dřív, než vám klíčoví lidé dají výpověď. Jeden krátký AI chat měsíčně stačí — vy vidíte, kde hoří, a můžete jednat.",
+        },
+        {
+          headline: <>HR reporty plné čísel,<br className="hidden md:block" />{' '}ale{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">žádné odpovědi?</span></>,
+          headlineHighlight: "",
+          subtitle: "Echo Pulse dává HR i CEO konkrétní doporučení — ne jen grafy. Víte přesně, co trápí který tým, a máte podklady pro rozhodování.",
+        },
+      ] as HeroSlide[],
       primaryCta: "Otestovat 1 tým zdarma",
       ctaMicro: "Bez závazku. Výsledky jsou vidět okamžitě.",
       secondaryCta: "Rezervovat demo",
@@ -36,9 +58,23 @@ export function Hero() {
     },
     en: {
       badge: "For CEOs and HR who refuse to guess",
-      headline: "Your best people are",
-      headlineHighlight: "thinking about leaving.",
-      subtitle: "Echo Pulse collects feedback through a short AI chat once a month. Results appear instantly in your dashboard — by team, topic, and risk. Stop guessing. Start knowing.",
+      slides: [
+        {
+          headline: "Your best people are",
+          headlineHighlight: "thinking about leaving.",
+          subtitle: "Echo Pulse collects feedback through a short AI chat once a month. Results appear instantly in your dashboard — by team, topic, and risk. Stop guessing. Start knowing.",
+        },
+        {
+          headline: "Turnover costs your company",
+          headlineHighlight: "hundreds of thousands a year.",
+          subtitle: "Echo Pulse detects risk signals before your key people hand in their notice. One short AI chat per month is all it takes — you see where the fire is and act.",
+        },
+        {
+          headline: <>HR reports full of numbers,<br className="hidden md:block" />{' '}but{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">no answers?</span></>,
+          headlineHighlight: "",
+          subtitle: "Echo Pulse gives HR and CEOs specific recommendations — not just charts. You know exactly what bothers each team and have the data to make decisions.",
+        },
+      ] as HeroSlide[],
       primaryCta: "Test 1 team for free",
       ctaMicro: "No commitment. Results are instant.",
       secondaryCta: "Book a demo",
@@ -51,9 +87,23 @@ export function Hero() {
     },
     de: {
       badge: "Für CEOs und HR, die nicht raten wollen",
-      headline: "Ihre besten Leute denken",
-      headlineHighlight: "über einen Wechsel nach.",
-      subtitle: "Echo Pulse sammelt Feedback über einen kurzen AI-Chat einmal im Monat. Ergebnisse erscheinen sofort in Ihrem Dashboard — nach Team, Thema und Risiko. Hören Sie auf zu raten.",
+      slides: [
+        {
+          headline: "Ihre besten Leute denken",
+          headlineHighlight: "über einen Wechsel nach.",
+          subtitle: "Echo Pulse sammelt Feedback über einen kurzen AI-Chat einmal im Monat. Ergebnisse erscheinen sofort in Ihrem Dashboard — nach Team, Thema und Risiko. Hören Sie auf zu raten.",
+        },
+        {
+          headline: "Fluktuation kostet Ihr Unternehmen",
+          headlineHighlight: "Hunderttausende pro Jahr.",
+          subtitle: "Echo Pulse erkennt Risikosignale, bevor Ihre Schlüsselpersonen kündigen. Ein kurzer AI-Chat pro Monat genügt — Sie sehen, wo es brennt, und handeln.",
+        },
+        {
+          headline: <>HR-Berichte voller Zahlen,<br className="hidden md:block" />{' '}aber{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">keine Antworten?</span></>,
+          headlineHighlight: "",
+          subtitle: "Echo Pulse gibt HR und CEOs konkrete Empfehlungen — nicht nur Diagramme. Sie wissen genau, was jedes Team belastet, und haben die Daten für Entscheidungen.",
+        },
+      ] as HeroSlide[],
       primaryCta: "1 Team kostenlos testen",
       ctaMicro: "Unverbindlich. Ergebnisse sofort sichtbar.",
       secondaryCta: "Demo buchen",
@@ -67,6 +117,27 @@ export function Hero() {
   };
 
   const c = copy[language] || copy.en;
+
+  /* ─── Carousel state ─── */
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const slideCount = c.slides.length;
+
+  const goToSlide = useCallback((index: number) => {
+    setDirection(index > activeSlide ? 1 : -1);
+    setActiveSlide(index);
+  }, [activeSlide]);
+
+  // Auto-advance every 6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setActiveSlide((prev) => (prev + 1) % slideCount);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [slideCount]);
+
+  const slide = c.slides[activeSlide];
   const heroImage = language === 'cz'
     ? { src: heroDashboardCz, width: 2400, height: 1456 }
     : { src: heroDashboardEn, width: 2400, height: 1453 };
@@ -97,31 +168,53 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.05] mb-6 font-display"
-            >
-              {c.headline}
-              {c.headlineHighlight && <br />}
-              {c.headlineHighlight && (
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary">
-                  {c.headlineHighlight}
-                </span>
-              )}
-            </motion.h1>
+            {/* Headline carousel */}
+            <div className="min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px] flex flex-col justify-start">
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={activeSlide}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction > 0 ? 40 : -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: direction > 0 ? -40 : 40 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.05] mb-6 font-display">
+                    {slide.headline}
+                    {slide.headlineHighlight && <br />}
+                    {slide.headlineHighlight && (
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary">
+                        {slide.headlineHighlight}
+                      </span>
+                    )}
+                  </h1>
 
-            {/* Subtitle — one concrete paragraph, no tabs */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              className="text-base md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-8 sm:mb-10"
-            >
-              {c.subtitle}
-            </motion.p>
+                  <p className="text-base md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto">
+                    {slide.subtitle}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Carousel dots */}
+            <div className="flex items-center justify-center gap-2 mb-10 mt-6">
+              {c.slides.map((_: HeroSlide, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => goToSlide(idx)}
+                  aria-label={`Slide ${idx + 1}`}
+                  className="group relative p-1"
+                >
+                  <span
+                    className={`block rounded-full transition-all duration-300 ${
+                      idx === activeSlide
+                        ? "w-8 h-2 bg-brand-primary"
+                        : "w-2 h-2 bg-brand-primary/25 group-hover:bg-brand-primary/50"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
 
             {/* CTAs */}
             <motion.div
