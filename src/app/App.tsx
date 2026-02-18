@@ -120,7 +120,9 @@ function App() {
                     {/* Public Routes */}
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/terms" element={<TermsPage />} />
+                    <Route path="/podminky-pouzivani-sluzby" element={<Navigate to="/terms" replace />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                    <Route path="/ochrana-osobnich-udaju" element={<Navigate to="/privacy-policy" replace />} />
 
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
