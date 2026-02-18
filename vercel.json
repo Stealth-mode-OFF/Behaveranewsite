@@ -4,6 +4,8 @@
     { "source": "/ochrana-osobnich-udaju", "destination": "/privacy-policy", "permanent": true }
   ],
   "rewrites": [
+    { "source": "/podminky-pouzivani-sluzby", "destination": "/api/cz-terms" },
+    { "source": "/ochrana-osobnich-udaju", "destination": "/api/cz-privacy" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
