@@ -2,6 +2,10 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/podminky-pouzivani-sluzby", "destination": "https://www.echopulse.cz/terms", "statusCode": 301 },
+    { "source": "/ochrana-osobnich-udaju", "destination": "https://www.echopulse.cz/privacy-policy", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]
