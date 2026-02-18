@@ -11,8 +11,15 @@ import { useLanguage } from '@/app/LanguageContext';
 import { useModal } from '@/app/ModalContext';
 import { useLocalizedPosts } from '@/app/hooks/useLocalizedPost';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
+
+/** Estimate reading time from HTML content */
+function estimateReadingTime(html: string): number {
+  const text = html.replace(/<[^>]*>/g, '');
+  const words = text.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
 
 export function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -20,6 +27,8 @@ export function BlogPage() {
   const { t, language } = useLanguage();
   const { openBooking } = useModal();
   const locale = language === 'cz' ? cs : language === 'de' ? de : enUS;
+
+  const readLabel = language === 'cz' ? 'min čtení' : language === 'de' ? 'Min. Lesezeit' : 'min read';
 
   useSEO({
     title: t.blog.seoTitle,
@@ -55,22 +64,19 @@ export function BlogPage() {
 
   const midCta = {
     cz: {
-      badge: 'Vyzkoušejte Echo Pulse',
-      title: 'Přestaňte hádat. Začněte vědět.',
-      desc: 'Zjistěte, jak se váš tým doopravdy cítí — za 3 minuty, anonymně, s okamžitými výsledky.',
-      cta: 'Domluvit ukázku',
+      title: 'Zajímá vás, jak na tom váš tým doopravdy je?',
+      desc: 'Získejte jasný obraz o angažovanosti a spokojenosti vašeho týmu — rychle, anonymně a bez zbytečné administrativy.',
+      cta: 'Zjistit více',
     },
     en: {
-      badge: 'Try Echo Pulse',
-      title: 'Stop guessing. Start knowing.',
-      desc: 'Discover how your team truly feels — in 3 minutes, anonymously, with instant results.',
-      cta: 'Book a demo',
+      title: 'Curious how your team really feels?',
+      desc: 'Get a clear picture of your team\'s engagement and satisfaction — quickly, anonymously, and without the admin overhead.',
+      cta: 'Learn more',
     },
     de: {
-      badge: 'Echo Pulse testen',
-      title: 'Hören Sie auf zu raten. Fangen Sie an zu wissen.',
-      desc: 'Erfahren Sie, wie sich Ihr Team wirklich fühlt — in 3 Minuten, anonym, mit sofortigen Ergebnissen.',
-      cta: 'Demo buchen',
+      title: 'Neugierig, wie sich Ihr Team wirklich fühlt?',
+      desc: 'Erhalten Sie ein klares Bild über das Engagement und die Zufriedenheit Ihres Teams — schnell, anonym und ohne Verwaltungsaufwand.',
+      cta: 'Mehr erfahren',
     },
   };
   const cta = midCta[language] || midCta.en;
@@ -78,10 +84,10 @@ export function BlogPage() {
   return (
     <div className="min-h-screen flex flex-col bg-brand-background-primary">
       <Header />
-      <main className="flex-1 pt-24 pb-16">
+      <main className="flex-1 pt-24 pb-20">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Page header */}
-          <div className="text-center mb-12 space-y-4">
+          <div className="text-center mb-14 space-y-4">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,7 +99,7 @@ export function BlogPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-brand-text-secondary max-w-2xl mx-auto"
+              className="text-lg text-brand-text-secondary max-w-xl mx-auto leading-relaxed"
             >
               {t.blog.pageSubtitle}
             </motion.p>
@@ -105,14 +111,14 @@ export function BlogPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15 }}
-              className="flex flex-wrap justify-center gap-2 mb-12"
+              className="flex flex-wrap justify-center gap-2 mb-14"
             >
               <button
                 onClick={() => setActiveTag(null)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                   activeTag === null
-                    ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20'
-                    : 'bg-brand-background-secondary text-brand-text-secondary hover:bg-brand-primary/5 hover:text-brand-primary border border-brand-border'
+                    ? 'bg-brand-primary text-white shadow-sm'
+                    : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
                 }`}
               >
                 {language === 'cz' ? 'Vše' : language === 'de' ? 'Alle' : 'All'}
@@ -121,10 +127,10 @@ export function BlogPage() {
                 <button
                   key={tag}
                   onClick={() => setActiveTag(tag)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
                     activeTag === tag
-                      ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20'
-                      : 'bg-brand-background-secondary text-brand-text-secondary hover:bg-brand-primary/5 hover:text-brand-primary border border-brand-border'
+                      ? 'bg-brand-primary text-white shadow-sm'
+                      : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
                   }`}
                 >
                   {tag}
@@ -139,14 +145,14 @@ export function BlogPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-12"
+              className="mb-14"
             >
               <Link 
                 to={`/blog/${featuredPost.slug}`}
                 className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10"
               >
                 <div className="flex flex-col lg:flex-row">
-                  <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden">
+                  <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden relative">
                     {featuredPost.coverImage && (
                       <img 
                         src={featuredPost.coverImage} 
@@ -154,14 +160,16 @@ export function BlogPage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" 
                       />
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0d0520]/40 lg:block hidden" />
                   </div>
                   <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-3 mb-5">
                       <span className="px-3 py-1 rounded-full bg-white/10 text-brand-accent text-xs font-bold uppercase tracking-wider">
                         {featuredPost.tags[0] || t.blog.defaultTag}
                       </span>
-                      <span className="text-white/40 text-xs">
-                        {format(new Date(featuredPost.publishedAt), 'MMM d, yyyy', { locale })}
+                      <span className="text-white/40 text-xs flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {estimateReadingTime(featuredPost.content)} {readLabel}
                       </span>
                     </div>
                     <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-brand-accent transition-colors leading-tight">
@@ -170,12 +178,19 @@ export function BlogPage() {
                     <p className="text-white/60 text-sm leading-relaxed mb-6 line-clamp-3">
                       {featuredPost.excerpt}
                     </p>
-                    <div className="flex items-center gap-3">
-                      {featuredPost.author.avatar && (
-                        <img src={featuredPost.author.avatar} alt={featuredPost.author.name} className="w-8 h-8 rounded-full border-2 border-white/20" />
-                      )}
-                      <span className="text-xs text-white/50 font-medium">
-                        {featuredPost.author.name}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {featuredPost.author.avatar && (
+                          <img src={featuredPost.author.avatar} alt={featuredPost.author.name} className="w-8 h-8 rounded-full border-2 border-white/20" />
+                        )}
+                        <div>
+                          <span className="text-xs text-white/70 font-medium block">{featuredPost.author.name}</span>
+                          <span className="text-[11px] text-white/40">{format(new Date(featuredPost.publishedAt), 'd. MMM yyyy', { locale })}</span>
+                        </div>
+                      </div>
+                      <span className="text-white/40 group-hover:text-brand-accent transition-colors text-sm flex items-center gap-1.5">
+                        {language === 'cz' ? 'Číst článek' : language === 'de' ? 'Artikel lesen' : 'Read article'}
+                        <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
                   </div>
@@ -185,24 +200,22 @@ export function BlogPage() {
           )}
 
           {/* Post grid with mid-page CTA */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
             {remainingPosts.map((post, idx) => (
               <Fragment key={post.id}>
-                {/* Insert CTA after 3rd post */}
+                {/* Insert editorial CTA after 3rd post */}
                 {idx === 3 && (
                   <div className="md:col-span-2 lg:col-span-3">
-                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand-primary/5 via-brand-accent/5 to-brand-primary/5 border border-brand-primary/10 p-8 md:p-12">
-                      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-brand-primary/5 rounded-full blur-[100px] pointer-events-none" />
-                      <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-12">
-                        <div className="flex-1 text-center md:text-left">
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-primary/10 border border-brand-primary/15 rounded-full mb-3">
-                            <Sparkles className="w-3 h-3 text-brand-primary" />
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-brand-primary">{cta.badge}</span>
-                          </div>
-                          <h3 className="text-xl md:text-2xl font-bold text-brand-text-primary mb-2">{cta.title}</h3>
-                          <p className="text-sm text-brand-text-secondary">{cta.desc}</p>
+                    <div className="relative overflow-hidden rounded-xl bg-brand-background-secondary border border-brand-border p-8 md:p-10 my-2">
+                      <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/10 shrink-0">
+                          <BookOpen className="w-5 h-5 text-brand-primary" />
                         </div>
-                        <Button onClick={openBooking} size="lg" className="shrink-0 h-12 px-8 text-[15px]">
+                        <div className="flex-1 text-center md:text-left">
+                          <h3 className="text-lg md:text-xl font-semibold text-brand-text-primary mb-1.5">{cta.title}</h3>
+                          <p className="text-sm text-brand-text-secondary leading-relaxed">{cta.desc}</p>
+                        </div>
+                        <Button onClick={openBooking} variant="outline" size="lg" className="shrink-0 h-11 px-7 text-sm border-brand-primary/20 hover:bg-brand-primary hover:text-white hover:border-brand-primary">
                           {cta.cta}
                           <ArrowRight className="w-4 h-4 ml-1.5" />
                         </Button>
@@ -218,9 +231,9 @@ export function BlogPage() {
                 >
                   <Link 
                     to={`/blog/${post.slug}`}
-                    className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg transition-all"
+                    className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
                   >
-                    <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary">
+                    <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
                       {post.coverImage && (
                         <img 
                           src={post.coverImage} 
@@ -228,26 +241,32 @@ export function BlogPage() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                         />
                       )}
-                    </div>
-                    <div className="flex-1 p-6 flex flex-col">
-                      <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-brand-primary uppercase tracking-wider">
-                        {post.tags[0] || t.blog.defaultTag}
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-brand-primary text-[11px] font-semibold uppercase tracking-wider shadow-sm">
+                          {post.tags[0] || t.blog.defaultTag}
+                        </span>
                       </div>
-                      <h2 className="text-xl font-bold text-brand-text-primary mb-3 group-hover:text-brand-primary transition-colors line-clamp-2">
+                    </div>
+                    <div className="flex-1 p-5 flex flex-col">
+                      <h2 className="text-lg font-bold text-brand-text-primary mb-2.5 group-hover:text-brand-primary transition-colors line-clamp-2 leading-snug">
                         {post.title}
                       </h2>
-                      <p className="text-brand-text-secondary text-sm leading-relaxed mb-6 line-clamp-3 flex-1">
+                      <p className="text-brand-text-secondary text-[13px] leading-relaxed mb-5 line-clamp-3 flex-1">
                         {post.excerpt}
                       </p>
-                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-brand-border">
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-brand-border/60">
                         <div className="flex items-center gap-2">
                           {post.author.avatar && (
                             <img src={post.author.avatar} alt={post.author.name} className="w-6 h-6 rounded-full" />
                           )}
                           <span className="text-xs text-brand-text-muted font-medium">
-                            {post.author.name} • {format(new Date(post.publishedAt), 'MMM d', { locale })}
+                            {post.author.name}
                           </span>
                         </div>
+                        <span className="text-[11px] text-brand-text-muted flex items-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {estimateReadingTime(post.content)} {readLabel}
+                        </span>
                       </div>
                     </div>
                   </Link>
