@@ -163,8 +163,10 @@ export function BlogPostPage() {
   }, [headings, sanitizedContent]);
 
   useEffect(() => {
+    if (!slug) return;
+    const currentSlug = slug;
     const updateProgress = () => {
-      if (!articleRef.current || !slug) return;
+      if (!articleRef.current) return;
       const el = articleRef.current;
       const rect = el.getBoundingClientRect();
       const articleTop = window.scrollY + rect.top;
@@ -178,7 +180,7 @@ export function BlogPostPage() {
       milestones.forEach((milestone) => {
         if (bounded >= milestone && !depthMilestones.current.has(milestone)) {
           depthMilestones.current.add(milestone);
-          trackBlogDepth(slug, milestone);
+          trackBlogDepth(currentSlug, milestone);
         }
       });
     };
@@ -194,6 +196,7 @@ export function BlogPostPage() {
 
   useEffect(() => {
     if (!slug) return;
+    const currentSlug = slug; // narrow for TS
 
     const ctas: Array<{
       key: string;
@@ -211,11 +214,12 @@ export function BlogPostPage() {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           const key = (entry.target as HTMLElement).dataset.ctaKey;
+          if (!key) return;
           const cta = ctas.find((item) => item.key === key);
           if (!cta || ctaViewsFired.current.has(key)) return;
 
           ctaViewsFired.current.add(key);
-          trackBlogCtaView(cta.type, slug, cta.position);
+          trackBlogCtaView(cta.type, currentSlug, cta.position);
           observer.unobserve(entry.target);
         });
       },

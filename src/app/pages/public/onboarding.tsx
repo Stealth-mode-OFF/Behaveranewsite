@@ -694,12 +694,12 @@ export function OnboardingPage() {
     const isValid = await validateStep(currentStep);
     if (!isValid) return;
     setDirection(1);
-    setCurrentStep((s) => Math.min(s + 1, STEPS.length - 1));
+    setCurrentStep((s: number) => Math.min(s + 1, STEPS.length - 1));
   };
 
   const goBack = () => {
     setDirection(-1);
-    setCurrentStep((s) => Math.max(s - 1, 0));
+    setCurrentStep((s: number) => Math.max(s - 1, 0));
   };
 
   /* ─── Submit ─── */
@@ -1630,7 +1630,6 @@ function ConfirmStep({
   getValues,
   errors,
   teams,
-  invitedCount,
 }: {
   txt: any;
   language: string;
