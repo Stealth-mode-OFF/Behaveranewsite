@@ -21,6 +21,9 @@ type PostRow = {
   tags?: string[] | null;
   status: BlogPost["status"];
   authors?: AuthorRow | null;
+  title_cz?: string | null;
+  excerpt_cz?: string | null;
+  content_cz?: string | null;
 };
 
 type CaseStudyRow = {
@@ -69,7 +72,10 @@ const mapPostRow = (row: PostRow): BlogPost => ({
   publishedAt: row.published_at,
   tags: row.tags || [],
   status: row.status,
-  conversionPrimary: 'balanced'
+  conversionPrimary: 'balanced',
+  title_cz: row.title_cz || undefined,
+  excerpt_cz: row.excerpt_cz || undefined,
+  content_cz: row.content_cz || undefined,
 });
 
 const mapCaseStudyRow = (row: CaseStudyRow): CaseStudy => ({
@@ -479,13 +485,124 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
 
 // Service Layer
 export const CmsService = {
-  // Posts — always use static blog-content.ts (bilingual EN+CZ)
+  // ═══════════ Blog Posts ═══════════
+
+  /** Public: returns only published posts (Supabase → fallback to static) */
   getPosts: async (): Promise<BlogPost[]> => {
-    return [...DEFAULT_POSTS];
+    if (!supabaseClient) {
+      return [...DEFAULT_POSTS].filter(p => p.status === 'published');
+    }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('*, authors(*)')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+
+      if (error) throw error;
+
+      const rows = (data as PostRow[] | null) || [];
+      const dbPosts = rows
+        .filter(r => r && r.title && r.slug)
+        .map(mapPostRow);
+
+      // Merge: DB posts take priority (by slug), then fill with DEFAULT_POSTS
+      const dbSlugs = new Set(dbPosts.map(p => p.slug));
+      const staticPosts = DEFAULT_POSTS
+        .filter(p => p.status === 'published' && !dbSlugs.has(p.slug));
+
+      return [...dbPosts, ...staticPosts].sort(
+        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+    } catch (err) {
+      console.error('Error fetching posts:', err);
+      return [...DEFAULT_POSTS].filter(p => p.status === 'published');
+    }
+  },
+
+  /** Admin: returns ALL posts (drafts + published) */
+  getAllPosts: async (): Promise<BlogPost[]> => {
+    if (!supabaseClient) {
+      return [...DEFAULT_POSTS];
+    }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('*, authors(*)')
+        .order('published_at', { ascending: false });
+
+      if (error) throw error;
+
+      const rows = (data as PostRow[] | null) || [];
+      const dbPosts = rows
+        .filter(r => r && r.title && r.slug)
+        .map(mapPostRow);
+
+      const dbSlugs = new Set(dbPosts.map(p => p.slug));
+      const staticPosts = DEFAULT_POSTS.filter(p => !dbSlugs.has(p.slug));
+
+      return [...dbPosts, ...staticPosts].sort(
+        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+    } catch (err) {
+      console.error('Error fetching all posts:', err);
+      return [...DEFAULT_POSTS];
+    }
   },
 
   getPostBySlug: async (slug: string): Promise<BlogPost | undefined> => {
-    return DEFAULT_POSTS.find(p => p.slug === slug);
+    if (!supabaseClient) {
+      return DEFAULT_POSTS.find(p => p.slug === slug);
+    }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('*, authors(*)')
+        .eq('slug', slug)
+        .single();
+
+      if (error) {
+        // Not found in DB — try static fallback
+        if (error.code === 'PGRST116') {
+          return DEFAULT_POSTS.find(p => p.slug === slug);
+        }
+        throw error;
+      }
+
+      return mapPostRow(data as PostRow);
+    } catch (err) {
+      console.error('Error fetching post by slug:', err);
+      return DEFAULT_POSTS.find(p => p.slug === slug);
+    }
+  },
+
+  getPostById: async (id: string): Promise<BlogPost | undefined> => {
+    if (!supabaseClient) {
+      return DEFAULT_POSTS.find(p => p.id === id);
+    }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('*, authors(*)')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        if (error.code === 'PGRST116') {
+          return DEFAULT_POSTS.find(p => p.id === id);
+        }
+        throw error;
+      }
+
+      return mapPostRow(data as PostRow);
+    } catch (err) {
+      console.error('Error fetching post by id:', err);
+      return DEFAULT_POSTS.find(p => p.id === id);
+    }
   },
 
   createPost: async (post: Omit<BlogPost, 'id' | 'author' | 'publishedAt'>): Promise<BlogPost> => {
@@ -512,7 +629,10 @@ export const CmsService = {
           cover_image: post.coverImage,
           tags: post.tags,
           status: post.status,
-          published_at: new Date().toISOString()
+          published_at: new Date().toISOString(),
+          title_cz: post.title_cz || null,
+          excerpt_cz: post.excerpt_cz || null,
+          content_cz: post.content_cz || null,
         }])
         .select('*, authors(*)')
         .single();
@@ -535,17 +655,21 @@ export const CmsService = {
     }
     
     try {
+      const payload: Record<string, unknown> = {};
+      if (updates.title !== undefined) payload.title = updates.title;
+      if (updates.slug !== undefined) payload.slug = updates.slug;
+      if (updates.excerpt !== undefined) payload.excerpt = updates.excerpt;
+      if (updates.content !== undefined) payload.content = updates.content;
+      if (updates.coverImage !== undefined) payload.cover_image = updates.coverImage;
+      if (updates.tags !== undefined) payload.tags = updates.tags;
+      if (updates.status !== undefined) payload.status = updates.status;
+      if (updates.title_cz !== undefined) payload.title_cz = updates.title_cz;
+      if (updates.excerpt_cz !== undefined) payload.excerpt_cz = updates.excerpt_cz;
+      if (updates.content_cz !== undefined) payload.content_cz = updates.content_cz;
+
       const { data, error } = await supabaseClient
         .from('posts')
-        .update({
-          title: updates.title,
-          slug: updates.slug,
-          excerpt: updates.excerpt,
-          content: updates.content,
-          cover_image: updates.coverImage,
-          tags: updates.tags,
-          status: updates.status
-        })
+        .update(payload)
         .eq('id', id)
         .select('*, authors(*)')
         .single();
@@ -699,7 +823,14 @@ export const CmsService = {
           content: study.content,
           cover_image: study.coverImage,
           status: study.status,
-          published_at: new Date().toISOString()
+          published_at: new Date().toISOString(),
+          title_cz: study.title_cz || null,
+          challenge_cz: study.challenge_cz || null,
+          solution_cz: study.solution_cz || null,
+          content_cz: study.content_cz || null,
+          industry_cz: study.industry_cz || null,
+          card_summary: study.cardSummary || null,
+          card_summary_cz: study.cardSummary_cz || null,
         }])
         .select('*')
         .single();
@@ -746,6 +877,13 @@ export const CmsService = {
       if (updates.content !== undefined) payload.content = updates.content;
       if (updates.coverImage !== undefined) payload.cover_image = updates.coverImage;
       if (updates.status !== undefined) payload.status = updates.status;
+      if (updates.title_cz !== undefined) payload.title_cz = updates.title_cz;
+      if (updates.challenge_cz !== undefined) payload.challenge_cz = updates.challenge_cz;
+      if (updates.solution_cz !== undefined) payload.solution_cz = updates.solution_cz;
+      if (updates.content_cz !== undefined) payload.content_cz = updates.content_cz;
+      if (updates.industry_cz !== undefined) payload.industry_cz = updates.industry_cz;
+      if (updates.cardSummary !== undefined) payload.card_summary = updates.cardSummary;
+      if (updates.cardSummary_cz !== undefined) payload.card_summary_cz = updates.cardSummary_cz;
 
       const { data, error } = await supabaseClient
         .from('case_studies')

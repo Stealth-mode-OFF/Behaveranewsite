@@ -13,18 +13,22 @@ import { Textarea } from '@/app/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Eye, Image as ImageIcon } from 'lucide-react';
+import { ArrowLeft, Save, Eye, Image as ImageIcon, Globe } from 'lucide-react';
+
+type LangTab = 'en' | 'cz';
 
 export function PostEditor() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [langTab, setLangTab] = useState<LangTab>('en');
   const isEditing = !!id;
 
   const { register, control, handleSubmit, setValue, watch, formState: { errors } } = useForm<BlogPostFormData>({
     defaultValues: {
       status: 'draft',
       content: '',
+      content_cz: '',
       tags: []
     }
   });
@@ -39,8 +43,7 @@ export function PostEditor() {
 
   useEffect(() => {
     if (isEditing && id) {
-      CmsService.getPosts().then(posts => {
-        const post = posts.find(p => p.id === id);
+      CmsService.getPostById(id).then(post => {
         if (post) {
             setValue('title', post.title);
             setValue('slug', post.slug);
@@ -49,6 +52,9 @@ export function PostEditor() {
             setValue('coverImage', post.coverImage || '');
             setValue('tags', post.tags || []);
             setValue('status', post.status);
+            setValue('title_cz', post.title_cz || '');
+            setValue('excerpt_cz', post.excerpt_cz || '');
+            setValue('content_cz', post.content_cz || '');
         }
       });
     }
@@ -71,6 +77,26 @@ export function PostEditor() {
       setIsLoading(false);
     }
   };
+
+  const LangTabs = () => (
+    <div className="flex gap-1 bg-brand-background-secondary/50 p-1 rounded-lg">
+      {(['en', 'cz'] as const).map(lang => (
+        <button
+          key={lang}
+          type="button"
+          onClick={() => setLangTab(lang)}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+            langTab === lang
+              ? 'bg-white text-brand-primary shadow-sm'
+              : 'text-brand-text-muted hover:text-brand-text-secondary'
+          }`}
+        >
+          <Globe className="w-3 h-3" />
+          {lang === 'en' ? 'English' : 'Čeština'}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -103,55 +129,103 @@ export function PostEditor() {
         {/* Main Content Column */}
         <div className="space-y-6">
             <Card className="border-brand-border/60 shadow-sm overflow-hidden">
-                <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40">
+                <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 flex flex-row items-center justify-between space-y-0">
                     <CardTitle className="text-base font-semibold text-brand-text-secondary">Article Content</CardTitle>
+                    <LangTabs />
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
-                    <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">Title</Label>
-                        <Input 
-                            {...register('title', { required: true })} 
-                            placeholder="Enter a catchy title..." 
-                            className="text-lg font-medium border-brand-border/60 focus:ring-brand-primary/20 h-12"
-                        />
-                        {errors.title && <span className="text-brand-error text-xs">Title is required</span>}
-                    </div>
+                    {langTab === 'en' ? (
+                      <>
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Title (EN)</Label>
+                            <Input 
+                                {...register('title', { required: true })} 
+                                placeholder="Enter a catchy title..." 
+                                className="text-lg font-medium border-brand-border/60 focus:ring-brand-primary/20 h-12"
+                            />
+                            {errors.title && <span className="text-brand-error text-xs">Title is required</span>}
+                        </div>
                     
-                    <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">Body Content</Label>
-                        <div className="prose-editor min-h-[500px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
-                            <Controller
-                            name="content"
-                            control={control}
-                            render={({ field }) => (
-                                <ReactQuill 
-                                    theme="snow" 
-                                    value={field.value} 
-                                    onChange={field.onChange} 
-                                    className="h-[450px] mb-12"
-                                    placeholder="Write your story here..."
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Body Content (EN)</Label>
+                            <div className="prose-editor min-h-[500px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
+                                <Controller
+                                name="content"
+                                control={control}
+                                render={({ field }) => (
+                                    <ReactQuill 
+                                        theme="snow" 
+                                        value={field.value} 
+                                        onChange={field.onChange} 
+                                        className="h-[450px] mb-12"
+                                        placeholder="Write your story here..."
+                                    />
+                                )}
                                 />
-                            )}
+                            </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Název (CZ)</Label>
+                            <Input 
+                                {...register('title_cz')} 
+                                placeholder="Zadejte český název článku..." 
+                                className="text-lg font-medium border-brand-border/60 focus:ring-brand-primary/20 h-12"
                             />
                         </div>
-                    </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Obsah (CZ)</Label>
+                            <div className="prose-editor min-h-[500px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
+                                <Controller
+                                name="content_cz"
+                                control={control}
+                                render={({ field }) => (
+                                    <ReactQuill 
+                                        theme="snow" 
+                                        value={field.value || ''} 
+                                        onChange={field.onChange} 
+                                        className="h-[450px] mb-12"
+                                        placeholder="Napište český obsah článku..."
+                                    />
+                                )}
+                                />
+                            </div>
+                        </div>
+                      </>
+                    )}
                 </CardContent>
             </Card>
 
             <Card className="border-brand-border/60 shadow-sm">
-                 <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40">
+                 <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 flex flex-row items-center justify-between space-y-0">
                     <CardTitle className="text-base font-semibold text-brand-text-secondary">SEO & Excerpt</CardTitle>
+                    <LangTabs />
                 </CardHeader>
                 <CardContent className="p-6">
-                     <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">Excerpt</Label>
+                    {langTab === 'en' ? (
+                      <div className="space-y-2">
+                        <Label className="text-brand-text-secondary">Excerpt (EN)</Label>
                         <Textarea 
                             {...register('excerpt')} 
                             placeholder="Short summary for list views and SEO..." 
                             className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20 resize-none" 
                         />
                         <p className="text-xs text-brand-text-muted text-right">Recommended: 150-160 characters</p>
-                    </div>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        <Label className="text-brand-text-secondary">Výtah (CZ)</Label>
+                        <Textarea 
+                            {...register('excerpt_cz')} 
+                            placeholder="Krátké shrnutí článku pro výpis a SEO..." 
+                            className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20 resize-none" 
+                        />
+                        <p className="text-xs text-brand-text-muted text-right">Doporučeno: 150-160 znaků</p>
+                      </div>
+                    )}
                 </CardContent>
             </Card>
         </div>
