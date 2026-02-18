@@ -119,6 +119,24 @@ export function trackStickyCtaDismissed() {
   safeTrack("sticky_mobile_cta_dismissed");
 }
 
+// ─── Blog (TOC, CTA, depth) ───────────────────────────────────────
+
+export function trackBlogTocClick(slug: string, headingId: string) {
+  safeTrack("blog_toc_click", { slug, heading_id: headingId });
+}
+
+export function trackBlogCtaView(type: "lead" | "demo", slug: string, position: "mid" | "end" | "rail") {
+  safeTrack("blog_cta_view", { type, slug, position });
+}
+
+export function trackBlogCtaClick(type: "lead" | "demo", slug: string, position: "mid" | "end" | "rail") {
+  safeTrack("blog_cta_click", { type, slug, position });
+}
+
+export function trackBlogDepth(slug: string, milestone: 25 | 50 | 75 | 100) {
+  safeTrack("blog_depth", { slug, milestone });
+}
+
 // ─── Cookie Consent ─────────────────────────────────────────────────
 
 export function trackCookieConsent(choice: "accept_all" | "essential_only" | "custom", analyticsEnabled?: boolean) {

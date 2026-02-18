@@ -2,10 +2,6 @@ import { lazy, Suspense, useState, useCallback, useEffect, type ComponentType, t
 import { pageSEO } from "@/app/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
-import { BookingModal } from "@/app/components/layout/booking-modal";
-import { DemoAccessModal } from "@/app/components/layout/demo-access-modal";
-import { SignupModal } from "@/app/components/layout/signup-modal";
-import { LeadPopup } from "@/app/components/layout/lead-popup";
 import { AnnouncementBar, ANNOUNCEMENT_BAR_HEIGHT } from "@/app/components/layout/announcement-bar";
 import { Hero } from "@/app/components/sections/hero";
 import { LogoMarquee } from "@/app/components/sections/logo-marquee";
@@ -150,12 +146,6 @@ export function LandingPage() {
       </main>
       <Footer />
       <StickyMobileCta />
-
-      {/* Modals */}
-      <BookingModal />
-      <DemoAccessModal />
-      <SignupModal />
-      <LeadPopup />
     </>
   );
 }

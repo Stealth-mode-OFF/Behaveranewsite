@@ -68,7 +68,8 @@ const mapPostRow = (row: PostRow): BlogPost => ({
   author: resolveAuthor(row.authors),
   publishedAt: row.published_at,
   tags: row.tags || [],
-  status: row.status
+  status: row.status,
+  conversionPrimary: 'balanced'
 });
 
 const mapCaseStudyRow = (row: CaseStudyRow): CaseStudy => ({
@@ -126,7 +127,10 @@ function getMergedCaseStudies(): CaseStudy[] {
 // Seed content — displayed when CMS (Supabase) is not configured
 const DEFAULT_AUTHORS: Author[] = BLOG_AUTHORS;
 
-const DEFAULT_POSTS: BlogPost[] = BLOG_POSTS;
+const DEFAULT_POSTS: BlogPost[] = BLOG_POSTS.map((post) => ({
+  ...post,
+  conversionPrimary: post.conversionPrimary ?? 'balanced',
+}));
 
 const DEFAULT_CASE_STUDIES: CaseStudy[] = [
   {
@@ -491,6 +495,7 @@ export const CmsService = {
         id: Math.random().toString(36).substr(2, 9),
         author: DEFAULT_AUTHORS[0],
         publishedAt: new Date().toISOString(),
+        conversionPrimary: post.conversionPrimary ?? 'balanced',
       };
       DEFAULT_POSTS.push(newPost);
       return newPost;

@@ -10,6 +10,10 @@ import { LandingPage } from "./pages/public/landing";
 import { adminEnabled } from "@/lib/config";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { BookingModal } from "./components/layout/booking-modal";
+import { DemoAccessModal } from "./components/layout/demo-access-modal";
+import { SignupModal } from "./components/layout/signup-modal";
+import { LeadPopup } from "./components/layout/lead-popup";
 
 const TermsPage = lazy(() =>
   import("./pages/public/terms").then((module) => ({ default: module.TermsPage }))
@@ -163,6 +167,11 @@ function App() {
                   </Routes>
                 </Suspense>
                 <Toaster position="top-center" richColors />
+                {/* Global modal layer so CTAs work from every route, including /blog/* */}
+                <BookingModal />
+                <DemoAccessModal />
+                <SignupModal />
+                <LeadPopup />
                 <CookieBanner />
                 <Analytics />
                 <SpeedInsights />
