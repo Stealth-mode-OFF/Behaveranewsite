@@ -25,6 +25,14 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* Lock body scroll when mobile menu is open (prevents iOS momentum scroll behind overlay) */
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [mobileMenuOpen]);
+
   const navItems = [
     {
       id: "radar",
@@ -88,7 +96,8 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{ top: topOffset }}
       className={cn(
-        "fixed left-0 right-0 z-50 transition-all duration-300",
+        "fixed left-0 right-0 transition-all duration-300",
+        mobileMenuOpen ? "z-[60]" : "z-50",
         isScrolled
           ? "bg-white/80 backdrop-blur-xl border-b border-brand-border/40 py-3"
           : "bg-transparent py-5"
