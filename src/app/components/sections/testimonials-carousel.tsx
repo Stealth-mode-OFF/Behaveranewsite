@@ -43,7 +43,7 @@ export function TestimonialsCarousel() {
         rating: 5,
       },
       {
-        quote: "Nový CEO díky Echo Pulse odhalil, že problém není v penězích, ale v podmínkách. Spokojenost vyskočila z 4.4 na 9 z 10.",
+        quote: "Nový CEO díky Behavera odhalil, že problém není v penězích, ale v podmínkách. Spokojenost vyskočila z 4.4 na 9 z 10.",
         name: "Karel Poplstein",
         role: "CEO",
         company: "Valxon",
@@ -73,7 +73,7 @@ export function TestimonialsCarousel() {
         rating: 5,
       },
       {
-        quote: "New CEO used Echo Pulse to discover dissatisfaction wasn't about pay — it was about conditions. Satisfaction jumped from 4.4/10 to 9/10.",
+        quote: "New CEO used Behavera to discover dissatisfaction wasn't about pay — it was about conditions. Satisfaction jumped from 4.4/10 to 9/10.",
         name: "Karel Poplstein",
         role: "CEO",
         company: "Valxon",
@@ -103,7 +103,7 @@ export function TestimonialsCarousel() {
         rating: 5,
       },
       {
-        quote: "Der neue CEO entdeckte mit Echo Pulse, dass die Unzufriedenheit nicht am Gehalt lag — sondern an den Bedingungen. Die Zufriedenheit stieg von 4,4 auf 9 von 10.",
+        quote: "Der neue CEO entdeckte mit Behavera, dass die Unzufriedenheit nicht am Gehalt lag — sondern an den Bedingungen. Die Zufriedenheit stieg von 4,4 auf 9 von 10.",
         name: "Karel Poplstein",
         role: "CEO",
         company: "Valxon",

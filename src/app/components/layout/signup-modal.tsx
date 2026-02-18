@@ -51,7 +51,7 @@ const STEPS = [
 const copy = {
   cz: {
     /* Brand panel */
-    brandLine: "Echo Pulse",
+    brandLine: "Behavera",
     brandTagline: "Poznejte svůj tým za 2 minuty",
     socialProof: "Důvěřuje přes 500 firem",
     valueProp1: "AI analýza nálady týmu v reálném čase",
@@ -98,7 +98,7 @@ const copy = {
     s3Title: "Zvolte si plán",
     s3Subtitle: "Žádné překvapení. Průhledné ceny.",
     employeeCount: "Velikost týmu",
-    employeeCountHelper: "Kolik lidí bude Echo Pulse používat?",
+    employeeCountHelper: "Kolik lidí bude Behavera používat?",
     plan: "Váš plán",
     monthly: "Měsíčně",
     yearly: "Ročně",
@@ -109,10 +109,10 @@ const copy = {
     termsAnd: "a",
     privacyLink: "ochranou údajů",
     guarantee: "30denní garance vrácení peněz",
-    submit: "Spustit Echo Pulse",
+    submit: "Spustit Behavera",
     submitting: "Vytváříme váš účet…",
     /* Success */
-    successTitle: "Vítejte v Echo Pulse!",
+    successTitle: "Vítejte v Behavera!",
     successBody: "Na e-mail administrátora jsme odeslali pozvánku. Do hodiny se ozveme a provedeme vás nastavením.",
     successCta: "Hotovo",
     /* Nav */
@@ -123,7 +123,7 @@ const copy = {
     people: "lidí",
   },
   en: {
-    brandLine: "Echo Pulse",
+    brandLine: "Behavera",
     brandTagline: "Understand your team in 2 minutes",
     socialProof: "Trusted by 500+ companies",
     valueProp1: "Real-time AI team mood analysis",
@@ -166,7 +166,7 @@ const copy = {
     s3Title: "Choose your plan",
     s3Subtitle: "No surprises. Transparent pricing.",
     employeeCount: "Team size",
-    employeeCountHelper: "How many people will use Echo Pulse?",
+    employeeCountHelper: "How many people will use Behavera?",
     plan: "Your plan",
     monthly: "Monthly",
     yearly: "Yearly",
@@ -177,9 +177,9 @@ const copy = {
     termsAnd: "and",
     privacyLink: "privacy policy",
     guarantee: "30-day money-back guarantee",
-    submit: "Launch Echo Pulse",
+    submit: "Launch Behavera",
     submitting: "Creating your account…",
-    successTitle: "Welcome to Echo Pulse!",
+    successTitle: "Welcome to Behavera!",
     successBody: "We've sent an invite to the admin email. We'll reach out within an hour to walk you through setup.",
     successCta: "Done",
     next: "Continue",
@@ -189,7 +189,7 @@ const copy = {
     people: "people",
   },
   de: {
-    brandLine: "Echo Pulse",
+    brandLine: "Behavera",
     brandTagline: "Verstehen Sie Ihr Team in 2 Minuten",
     socialProof: "Über 500 Unternehmen vertrauen uns",
     valueProp1: "KI-Teamstimmungsanalyse in Echtzeit",
@@ -232,7 +232,7 @@ const copy = {
     s3Title: "Wählen Sie Ihren Plan",
     s3Subtitle: "Keine Überraschungen. Transparente Preise.",
     employeeCount: "Teamgröße",
-    employeeCountHelper: "Wie viele Personen werden Echo Pulse nutzen?",
+    employeeCountHelper: "Wie viele Personen werden Behavera nutzen?",
     plan: "Ihr Plan",
     monthly: "Monatlich",
     yearly: "Jährlich",
@@ -243,9 +243,9 @@ const copy = {
     termsAnd: "und der",
     privacyLink: "Datenschutzerklärung",
     guarantee: "30 Tage Geld-zurück-Garantie",
-    submit: "Echo Pulse starten",
+    submit: "Behavera starten",
     submitting: "Konto wird erstellt…",
-    successTitle: "Willkommen bei Echo Pulse!",
+    successTitle: "Willkommen bei Behavera!",
     successBody: "Wir haben eine Einladung an die Admin-E-Mail gesendet. Innerhalb einer Stunde melden wir uns.",
     successCta: "Fertig",
     next: "Weiter",
@@ -686,12 +686,11 @@ export function SignupModal() {
                     transition={{ delay: 0.2 }}
                     className="flex items-center gap-3 mb-auto"
                   >
-                    <div className="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/10">
-                      <Sparkles className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-white font-bold text-xl tracking-tight font-[var(--font-display)]">
-                      {txt.brandLine}
-                    </span>
+                    <img
+                      src="/logo-behavera.png"
+                      alt="Behavera"
+                      className="h-7 w-auto brightness-0 invert"
+                    />
                   </motion.div>
 
                   {/* Hero text */}

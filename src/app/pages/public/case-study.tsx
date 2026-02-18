@@ -15,7 +15,7 @@ export function CaseStudyPage() {
   const [loading, setLoading] = useState(true);
   const { t, language } = useLanguage();
   const seoTitle = study?.title || 'Case Study';
-  const seoDescription = study?.challenge || 'Customer story from Echo Pulse.';
+  const seoDescription = study?.challenge || 'Customer story from Behavera.';
 
   useSEO({
     title: seoTitle,

@@ -1,6 +1,6 @@
 import { useLanguage } from "@/app/LanguageContext";
 import { Link, useLocation } from "react-router-dom";
-import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Zap, Calendar } from "lucide-react";
+import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Calendar } from "lucide-react";
 import { ECHO_PULSE_JOIN_URL } from "@/lib/urls";
 import { trackSocialClick } from "@/lib/analytics";
 import { useModal } from "@/app/ModalContext";
@@ -70,19 +70,19 @@ export function Footer() {
 
   const productLinks = {
     cz: [
-      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+      { label: "Behavera App", href: ECHO_PULSE_JOIN_URL, external: true },
       { label: "Jak to funguje", href: anchor("#radar") },
       { label: "Ceník", href: anchor("#pricing") },
       { label: "FAQ", href: anchor("#faq") },
     ],
     en: [
-      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+      { label: "Behavera App", href: ECHO_PULSE_JOIN_URL, external: true },
       { label: "How it works", href: anchor("#radar") },
       { label: "Pricing", href: anchor("#pricing") },
       { label: "FAQ", href: anchor("#faq") },
     ],
     de: [
-      { label: "Echo Pulse App", href: ECHO_PULSE_JOIN_URL, external: true },
+      { label: "Behavera App", href: ECHO_PULSE_JOIN_URL, external: true },
       { label: "So funktioniert es", href: anchor("#radar") },
       { label: "Preise", href: anchor("#pricing") },
       { label: "FAQ", href: anchor("#faq") },
@@ -169,11 +169,12 @@ export function Footer() {
             {/* Brand Column */}
             <div className="lg:col-span-2">
               {/* Logo */}
-              <Link to="/" className="inline-flex items-center gap-2.5 mb-5">
-                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-brand-accent" />
-                </div>
-                <span className="text-lg font-bold tracking-tight">Echo Pulse</span>
+              <Link to="/" className="inline-flex items-center mb-5">
+                <img
+                  src="/logo-behavera.png"
+                  alt="Behavera"
+                  className="h-6 w-auto brightness-0 invert"
+                />
               </Link>
               
               {/* Tagline */}

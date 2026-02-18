@@ -1,5 +1,5 @@
-# Behavera Echo Pulse - robots.txt
-# https://echopulse.cz
+# Behavera Behavera - robots.txt
+# https://www.behavera.com
 
 User-agent: *
 Allow: /
@@ -10,4 +10,4 @@ Disallow: /admin/
 Disallow: /api/
 
 # Sitemap
-Sitemap: https://echopulse.cz/sitemap.xml
+Sitemap: https://www.behavera.com/sitemap.xml

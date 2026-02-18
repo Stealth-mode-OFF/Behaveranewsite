@@ -50,7 +50,7 @@ const PULSE_BASE = "https://bibi.behavera.com/free/behiro/pulse-showcase-";
 
 const copy: Record<string, TCopy> = {
   cz: {
-    badge: "Echo Pulse",
+    badge: "Behavera",
     title: "2 minuty. Většina lidí odpoví. ",
     titleHighlight: "Každý měsíc.",
     subtitle: "Žádné formuláře. Zaměstnanci odpovídají v krátkém AI chatu \u2014 ověřené otázky, které mluví lidsky. 80 %+ lidí reálně a rádo odpovídá.",
@@ -90,7 +90,7 @@ const copy: Record<string, TCopy> = {
     tryNote: "Bez registrace \u00B7 Anonymní \u00B7 2 minuty",
   },
   en: {
-    badge: "Echo Pulse",
+    badge: "Behavera",
     title: "2 minutes. Most people respond. ",
     titleHighlight: "Every month.",
     subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 tested questions that feel human. 80%+ actually enjoy answering.",
@@ -130,7 +130,7 @@ const copy: Record<string, TCopy> = {
     tryNote: "No signup \u00B7 Anonymous \u00B7 2 minutes",
   },
   de: {
-    badge: "Echo Pulse",
+    badge: "Behavera",
     title: "2 Minuten. Die meisten antworten. ",
     titleHighlight: "Jeden Monat.",
     subtitle: "Keine Formulare. Mitarbeiter antworten in einem kurzen AI-Chat \u2014 getestete Fragen, die menschlich klingen. 80 %+ antworten gerne.",
@@ -566,7 +566,7 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
           className="w-full h-full border-0"
           onLoad={() => setLoading(false)}
           allow="clipboard-write"
-          title="Echo Pulse"
+          title="Behavera"
         />
       </motion.div>
     </motion.div>
@@ -731,7 +731,7 @@ const testimonialsByLang: Record<string, Testimonial[]> = {
     { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "Myslel jsem, že už lidi nemají zájem a rezignovali. Překvapilo mě, jak zapojení a investovaní naši zaměstnanci jsou. Bez Behavery bychom dál léčili symptomy místo skutečných příčin. Pomohla nám vidět to, co bychom jinak přehlédli." },
     { name: "Dana Kultová", role: "COO", company: "klientská firma", quote: "Výsledky víceméně potvrdily, co jsem tušila. Ale co mě úplně nadchlo, byl playbook plný praktických doporučení krok za krokem. Díky tomu jsme vyladili procesy, nastavili jasné KPI a zlepšili komunikaci v týmu." },
     { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Díky Behaveře lídři dostanou výstupy z průzkumu automaticky a to i s akčními doporučeními okamžitě a já tak ušetřím celý týden, který nyní mohu investovat do zlepšování procesů a rozvoje zaměstnanců." },
-    { name: "Martina", role: "Manažerka telesales týmu", company: "Teya", quote: "Díky Echo Pulse mám pravidelný feedback o tom, jestli je můj tým v pohodě. Hned vidím, kdy je třeba urgentně řešit nějaký problém i co moje lidi pálí nejvíc. Jsem v roli lídra čerstvě a Behavera mi pomáhá si správně definovat priority." },
+    { name: "Martina", role: "Manažerka telesales týmu", company: "Teya", quote: "Díky Behavera mám pravidelný feedback o tom, jestli je můj tým v pohodě. Hned vidím, kdy je třeba urgentně řešit nějaký problém i co moje lidi pálí nejvíc. Jsem v roli lídra čerstvě a Behavera mi pomáhá si správně definovat priority." },
     { name: "Ján Pavlík", role: "Project Manager", company: "Expando", quote: "Behavera nám ukázala, že kromě špatné interní komunikace máme také problémy s efektivní motivací lidí. Hodně mě to překvapilo. Nikdy předtím jsem to nepovažoval za problém." },
   ],
   en: [
@@ -741,7 +741,7 @@ const testimonialsByLang: Record<string, Testimonial[]> = {
     { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "I thought people are no longer engaged and gave up on us. I was surprised when I saw how engaged and invested our employees are. Without Behavera, we would've kept treating symptoms instead of the real causes." },
     { name: "Dana Kultová", role: "COO", company: "client company", quote: "The results more or less confirmed what I suspected. But what truly blew me away was the playbook full of practical, step-by-step recommendations. Thanks to that, we fine-tuned our processes, set clear KPIs, and improved team communication." },
     { name: "Ema Nováková", role: "HR Manager", company: "Expando", quote: "Thanks to Behavera, leaders get survey results automatically — complete with actionable recommendations — and I save an entire week that I can now invest in improving processes and employee development." },
-    { name: "Martina", role: "Telesales Team Manager", company: "Teya", quote: "With Echo Pulse I get regular feedback on whether my team is doing okay. I can immediately see when something needs urgent attention and what bothers people the most. I'm new in a leadership role and Behavera helps me set the right priorities." },
+    { name: "Martina", role: "Telesales Team Manager", company: "Teya", quote: "With Behavera I get regular feedback on whether my team is doing okay. I can immediately see when something needs urgent attention and what bothers people the most. I'm new in a leadership role and Behavera helps me set the right priorities." },
     { name: "Ján Pavlík", role: "Project Manager", company: "Expando", quote: "Behavera showed us that besides poor internal communication, we also had problems with effectively motivating people. That really surprised me. I'd never considered it an issue before." },
   ],
   de: [
@@ -751,7 +751,7 @@ const testimonialsByLang: Record<string, Testimonial[]> = {
     { name: "Karel Poplstein", role: "CEO", company: "Valxon", quote: "Ich dachte, die Leute sind nicht mehr engagiert und haben aufgegeben. Ich war überrascht, wie engagiert und investiert unsere Mitarbeiter tatsächlich sind. Ohne Behavera hätten wir weiter Symptome behandelt statt die wahren Ursachen." },
     { name: "Dana Kultová", role: "COO", company: "Kundenunternehmen", quote: "Die Ergebnisse bestätigten mehr oder weniger, was ich vermutet hatte. Aber was mich wirklich beeindruckt hat, war das Playbook voller praktischer Schritt-für-Schritt-Empfehlungen. Dadurch haben wir unsere Prozesse optimiert, klare KPIs gesetzt und die Teamkommunikation verbessert." },
     { name: "Ema Nováková", role: "HR-Managerin", company: "Expando", quote: "Dank Behavera erhalten Führungskräfte die Umfrageergebnisse automatisch — inklusive sofortiger Handlungsempfehlungen — und ich spare eine ganze Woche, die ich jetzt in die Verbesserung von Prozessen und Mitarbeiterentwicklung investieren kann." },
-    { name: "Martina", role: "Telesales-Teamleiterin", company: "Teya", quote: "Mit Echo Pulse bekomme ich regelmäßiges Feedback, ob mein Team zufrieden ist. Ich sehe sofort, wenn etwas dringend gelöst werden muss und was die Leute am meisten beschäftigt. Ich bin neu in der Führungsrolle und Behavera hilft mir, die richtigen Prioritäten zu setzen." },
+    { name: "Martina", role: "Telesales-Teamleiterin", company: "Teya", quote: "Mit Behavera bekomme ich regelmäßiges Feedback, ob mein Team zufrieden ist. Ich sehe sofort, wenn etwas dringend gelöst werden muss und was die Leute am meisten beschäftigt. Ich bin neu in der Führungsrolle und Behavera hilft mir, die richtigen Prioritäten zu setzen." },
     { name: "Ján Pavlík", role: "Projektmanager", company: "Expando", quote: "Behavera hat uns gezeigt, dass wir neben schlechter interner Kommunikation auch Probleme mit der effektiven Motivation unserer Mitarbeiter haben. Das hat mich sehr überrascht. Vorher hatte ich das nie als Problem gesehen." },
   ],
 };

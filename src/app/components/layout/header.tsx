@@ -98,13 +98,14 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
         {/* ── Logo ── */}
         <Link
           to="/"
-          className="flex items-center gap-2 group"
+          className="flex items-center group"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <span className="text-lg font-bold tracking-tight text-brand-text-primary transition-colors">
-            Echo Pulse
-          </span>
-          <div className="w-1.5 h-1.5 rounded-full bg-brand-primary group-hover:animate-pulse" />
+          <img
+            src="/logo-behavera.png"
+            alt="Behavera"
+            className="h-7 w-auto"
+          />
         </Link>
 
         {/* ── Desktop nav ── */}

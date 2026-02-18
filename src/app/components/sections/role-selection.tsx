@@ -124,7 +124,7 @@ export function RoleSelection() {
             </span>
           </h2>
           <p className="text-brand-text-on-dark text-lg leading-relaxed">
-            {t.roleSelection?.subtitle || "Select your role to see how Echo Pulse helps you specifically."}
+            {t.roleSelection?.subtitle || "Select your role to see how Behavera helps you specifically."}
           </p>
         </motion.div>
 

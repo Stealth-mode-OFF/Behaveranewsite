@@ -158,7 +158,7 @@ async function createPipedriveLead(payload: OnboardingPayload) {
 
   // Create lead
   const source = `onboarding:${payload.billingInterval || 'yearly'}:${totalMembers}members:${payload.teams.length}teams:${payload.oauthProvider || 'manual'}`;
-  const title = `[echopulse.cz/${source}] ${name} | ${payload.companyName}`;
+  const title = `[behavera.com/${source}] ${name} | ${payload.companyName}`;
 
   const lead = await pipedriveRequest<{ id: string }>('/leads', 'POST', {
     title,

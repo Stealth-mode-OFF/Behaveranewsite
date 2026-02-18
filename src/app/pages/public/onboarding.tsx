@@ -174,7 +174,7 @@ const MicrosoftLogo = () => (
 /* ─── Translations ─── */
 const copy = {
   cz: {
-    pageTitle: "Vytvořte si Echo Pulse účet",
+    pageTitle: "Vytvořte si Behavera účet",
     pageSubtitle: "Zabere to méně než 2 minuty",
     steps: ["Společnost", "Týmy", "Potvrzení"],
     s0Title: "Základní údaje",
@@ -196,7 +196,7 @@ const copy = {
     billingEmailPlaceholder: "fakturace@firma.cz",
     billingEmailHelper: "Pokud chcete faktury na jiný email.",
     adminSection: "Budoucí administrátor",
-    adminSectionDesc: "Kdo bude Echo Pulse denně používat?",
+    adminSectionDesc: "Kdo bude Behavera denně používat?",
     adminName: "Jméno administrátora",
     adminNamePlaceholder: "Jana Smolíková",
     adminEmail: "Email administrátora",
@@ -228,7 +228,7 @@ const copy = {
     summaryTeams: "Týmy",
     summaryMembers: "členů",
     employeeCount: "Počet zaměstnanců",
-    employeeCountHelper: "Kolik lidí bude Echo Pulse používat?",
+    employeeCountHelper: "Kolik lidí bude Behavera používat?",
     plan: "Ceník",
     monthly: "Měsíčně",
     yearly: "Ročně",
@@ -245,7 +245,7 @@ const copy = {
     doneSubtitle: "Zkontrolujte si údaje naposledy a odklikněte.",
     doneButton: "Dokončit a aktivovat účet",
     successTitle: "Máte to! 🎉",
-    successSubtitle: "Váš Echo Pulse účet je připravený. Tady je, co se stane dál:",
+    successSubtitle: "Váš Behavera účet je připravený. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
     successTimeline: [
       { icon: "mail", title: "Pozvánka odeslána", desc: "Admin obdrží email s přístupovými údaji." },
@@ -260,7 +260,7 @@ const copy = {
     required: "Povinné pole",
   },
   en: {
-    pageTitle: "Create your Echo Pulse account",
+    pageTitle: "Create your Behavera account",
     pageSubtitle: "Takes less than 2 minutes",
     steps: ["Company", "Teams", "Confirm"],
     s0Title: "Basic details",
@@ -282,7 +282,7 @@ const copy = {
     billingEmailPlaceholder: "billing@company.com",
     billingEmailHelper: "If you want invoices sent elsewhere.",
     adminSection: "Future account admin",
-    adminSectionDesc: "Who will use Echo Pulse day to day?",
+    adminSectionDesc: "Who will use Behavera day to day?",
     adminName: "Admin name",
     adminNamePlaceholder: "Jane Doe",
     adminEmail: "Admin email",
@@ -314,7 +314,7 @@ const copy = {
     summaryTeams: "Teams",
     summaryMembers: "members",
     employeeCount: "Number of employees",
-    employeeCountHelper: "How many people will use Echo Pulse?",
+    employeeCountHelper: "How many people will use Behavera?",
     plan: "Pricing",
     monthly: "Monthly",
     yearly: "Yearly",
@@ -331,7 +331,7 @@ const copy = {
     doneSubtitle: "Review your details one last time and confirm.",
     doneButton: "Finish & activate account",
     successTitle: "You're in! 🎉",
-    successSubtitle: "Your Echo Pulse account is ready. Here's what happens next:",
+    successSubtitle: "Your Behavera account is ready. Here's what happens next:",
     successCta: "Back to homepage",
     successTimeline: [
       { icon: "mail", title: "Invite sent", desc: "Admin will receive an email with access credentials." },
@@ -346,7 +346,7 @@ const copy = {
     required: "Required",
   },
   de: {
-    pageTitle: "Erstellen Sie Ihr Echo Pulse Konto",
+    pageTitle: "Erstellen Sie Ihr Behavera Konto",
     pageSubtitle: "Dauert weniger als 2 Minuten",
     steps: ["Unternehmen", "Teams", "Bestätigung"],
     s0Title: "Grunddaten",
@@ -368,7 +368,7 @@ const copy = {
     billingEmailPlaceholder: "buchhaltung@firma.de",
     billingEmailHelper: "Falls Rechnungen an eine andere Adresse gehen sollen.",
     adminSection: "Zukünftiger Account-Admin",
-    adminSectionDesc: "Wer Echo Pulse täglich nutzen wird?",
+    adminSectionDesc: "Wer Behavera täglich nutzen wird?",
     adminName: "Admin-Name",
     adminNamePlaceholder: "Erika Musterfrau",
     adminEmail: "Admin-E-Mail",
@@ -400,7 +400,7 @@ const copy = {
     summaryTeams: "Teams",
     summaryMembers: "Mitglieder",
     employeeCount: "Anzahl der Mitarbeiter",
-    employeeCountHelper: "Wie viele Personen werden Echo Pulse nutzen?",
+    employeeCountHelper: "Wie viele Personen werden Behavera nutzen?",
     plan: "Preise",
     monthly: "Monatlich",
     yearly: "Jährlich",
@@ -417,7 +417,7 @@ const copy = {
     doneSubtitle: "Überprüfen Sie Ihre Angaben ein letztes Mal.",
     doneButton: "Abschließen & Konto aktivieren",
     successTitle: "Geschafft! 🎉",
-    successSubtitle: "Ihr Echo Pulse Konto ist bereit. Das passiert als Nächstes:",
+    successSubtitle: "Ihr Behavera Konto ist bereit. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
     successTimeline: [
       { icon: "mail", title: "Einladung versendet", desc: "Admin erhält eine E-Mail mit Zugangsdaten." },
@@ -1007,7 +1007,7 @@ export function OnboardingPage() {
             to="/"
             className="text-brand-text-primary font-bold text-lg tracking-tight font-[var(--font-display)] hover:opacity-80 transition-opacity"
           >
-            Echo Pulse
+            Behavera
           </Link>
           <div className="flex items-center gap-3">
             <span className="text-[12px] font-bold text-brand-primary bg-brand-primary/[0.08] px-2.5 py-1 rounded-full">

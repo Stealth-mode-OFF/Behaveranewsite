@@ -10,7 +10,7 @@
 import { track } from "@vercel/analytics";
 
 // ─── Cookie consent check ───────────────────────────────────────────
-const COOKIE_CONSENT_KEY = "echopulse_cookie_consent";
+const COOKIE_CONSENT_KEY = "behavera_cookie_consent";
 
 function hasAnalyticsConsent(): boolean {
   try {

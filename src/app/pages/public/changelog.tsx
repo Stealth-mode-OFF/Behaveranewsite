@@ -32,7 +32,7 @@ const translations = {
     backHome: 'Zpět domů',
     badge: 'Co je nového',
     title: 'Changelog',
-    subtitle: 'Sledujte vývoj Echo Pulse. Pravidelné aktualizace a nové funkce.',
+    subtitle: 'Sledujte vývoj Behavera. Pravidelné aktualizace a nové funkce.',
     newBadge: 'Nové',
     improvementBadge: 'Vylepšení',
     fixBadge: 'Opravy',
@@ -113,7 +113,7 @@ const translations = {
         version: '2.0.0',
         date: 'Únor 2025',
         type: 'major',
-        title: 'Echo Pulse 2.0 Launch',
+        title: 'Behavera 2.0 Launch',
         description: 'Kompletně přepracovaná platforma s novým UI a AI capabilities.',
         changes: [
           'Nový moderní dashboard',
@@ -143,7 +143,7 @@ const translations = {
     backHome: 'Back home',
     badge: "What's new",
     title: 'Changelog',
-    subtitle: 'Follow Echo Pulse development. Regular updates and new features.',
+    subtitle: 'Follow Behavera development. Regular updates and new features.',
     newBadge: 'New',
     improvementBadge: 'Improvement',
     fixBadge: 'Fixes',
@@ -224,7 +224,7 @@ const translations = {
         version: '2.0.0',
         date: 'February 2025',
         type: 'major',
-        title: 'Echo Pulse 2.0 Launch',
+        title: 'Behavera 2.0 Launch',
         description: 'Completely redesigned platform with new UI and AI capabilities.',
         changes: [
           'New modern dashboard',
@@ -254,7 +254,7 @@ const translations = {
     backHome: 'Zurück zur Startseite',
     badge: 'Was gibt es Neues',
     title: 'Changelog',
-    subtitle: 'Verfolgen Sie die Entwicklung von Echo Pulse. Regelmäßige Updates und neue Funktionen.',
+    subtitle: 'Verfolgen Sie die Entwicklung von Behavera. Regelmäßige Updates und neue Funktionen.',
     newBadge: 'Neu',
     improvementBadge: 'Verbesserung',
     fixBadge: 'Korrekturen',
@@ -335,7 +335,7 @@ const translations = {
         version: '2.0.0',
         date: 'Februar 2025',
         type: 'major',
-        title: 'Echo Pulse 2.0 Launch',
+        title: 'Behavera 2.0 Launch',
         description: 'Komplett neu gestaltete Plattform mit neuem UI und KI-Funktionen.',
         changes: [
           'Neues modernes Dashboard',
@@ -391,7 +391,7 @@ export function ChangelogPage() {
   const t = translations[language] || translations.en;
 
   useSEO({
-    title: `${t.title} | Echo Pulse`,
+    title: `${t.title} | Behavera`,
     description: t.subtitle,
     ogType: 'website',
     canonicalUrl: `${SITE_ORIGIN}/changelog`,

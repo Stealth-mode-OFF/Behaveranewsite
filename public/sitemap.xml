@@ -2,51 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Main pages -->
   <url>
-    <loc>https://echopulse.cz/</loc>
+    <loc>https://www.behavera.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://echopulse.cz/terms</loc>
+    <loc>https://www.behavera.com/terms</loc>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <!-- Blog -->
   <url>
-    <loc>https://echopulse.cz/blog</loc>
+    <loc>https://www.behavera.com/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Case Studies -->
   <url>
-    <loc>https://echopulse.cz/case-studies</loc>
+    <loc>https://www.behavera.com/case-studies</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Comparison pages -->
   <url>
-    <loc>https://echopulse.cz/echo-pulse-vs-google-forms</loc>
+    <loc>https://www.behavera.com/echo-pulse-vs-google-forms</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Solution pages -->
   <url>
-    <loc>https://echopulse.cz/for-ceos</loc>
+    <loc>https://www.behavera.com/for-ceos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://echopulse.cz/for-hr</loc>
+    <loc>https://www.behavera.com/for-hr</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://echopulse.cz/for-team-leads</loc>
+    <loc>https://www.behavera.com/for-team-leads</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

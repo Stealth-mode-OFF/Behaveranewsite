@@ -1,6 +1,6 @@
 {
-  "name": "Echo Pulse by Behavera",
-  "short_name": "Echo Pulse",
+  "name": "Behavera",
+  "short_name": "Behavera",
   "description": "AI-powered behavioral intelligence for proactive team management",
   "start_url": "/",
   "display": "standalone",

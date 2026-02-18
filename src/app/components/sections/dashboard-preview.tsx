@@ -9,7 +9,7 @@ import { FeatureGrid } from "@/app/components/ui/snap-carousel";
  * Dashboard Preview — Real Dashboard Video
  * 
  * Features:
- * - Actual screen recording of the Echo Pulse dashboard
+ * - Actual screen recording of the Behavera dashboard
  * - MacBook Pro device frame
  * - Auto-plays on scroll (muted, looping)
  * - Feature grid below

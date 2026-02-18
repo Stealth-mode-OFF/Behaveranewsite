@@ -15,17 +15,17 @@ export function CaseStudiesPage() {
   const texts = {
     cz: {
       pageTitle: 'Případové studie',
-      pageSubtitle: 'Reálné výsledky od firem, které s Echo Pulse proměnily svou kulturu a retenci.',
+      pageSubtitle: 'Reálné výsledky od firem, které s Behavera proměnily svou kulturu a retenci.',
       readCta: 'Číst případovku',
     },
     en: {
       pageTitle: 'Success Stories',
-      pageSubtitle: 'Real results from companies using Echo Pulse to transform their culture and retention.',
+      pageSubtitle: 'Real results from companies using Behavera to transform their culture and retention.',
       readCta: 'Read Case Study',
     },
     de: {
       pageTitle: 'Erfolgsgeschichten',
-      pageSubtitle: 'Echte Ergebnisse von Unternehmen, die mit Echo Pulse ihre Kultur und Mitarbeiterbindung transformiert haben.',
+      pageSubtitle: 'Echte Ergebnisse von Unternehmen, die mit Behavera ihre Kultur und Mitarbeiterbindung transformiert haben.',
       readCta: 'Fallstudie lesen',
     },
   };

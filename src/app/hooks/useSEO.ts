@@ -19,7 +19,7 @@ export const useSEO = ({
 }: SEOProps) => {
   useEffect(() => {
     // Update title
-    document.title = `${title} | Behavera Echo Pulse`;
+    document.title = `${title} | Behavera Behavera`;
 
     // Helper to set/update meta tags
     const setMeta = (name: string, content: string, isProperty = false) => {

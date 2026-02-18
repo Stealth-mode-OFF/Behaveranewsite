@@ -158,14 +158,14 @@ export const translations: Record<Language, Translations> = {
       ctaBox: {
         label: "Before → After",
         title: "Today you guess. Tomorrow you'll know.",
-        desc: "Without Echo Pulse: you react to resignations. With Echo Pulse: you see risks in your dashboard months ahead and know where to act.",
+        desc: "Without Behavera: you react to resignations. With Behavera: you see risks in your dashboard months ahead and know where to act.",
       },
     },
     dashboard: {
       badge: "See it in action",
       title: "One dashboard.",
       titleHighlight: "Zero guesswork.",
-      subtitle: "Echo Pulse collects scattered signals and shows them in one place. Clear, real-time, and ready to act on.",
+      subtitle: "Behavera collects scattered signals and shows them in one place. Clear, real-time, and ready to act on.",
       features: [
         { title: "Mood by team", desc: "Instant overview of how each department feels. Broken down by location, seniority, or manager." },
         { title: "Warning before problems", desc: "The system alerts when something's off - overload, team tension, or significant energy drop." },
@@ -205,14 +205,14 @@ export const translations: Record<Language, Translations> = {
         { q: "Will it annoy people?", a: "No. The system uses a 'Low-Friction' protocol. No long surveys, just 1–3 minutes once a month. We keep respondent burden low." },
         { q: "Does it require complex IT implementation?", a: "No. We're a cloud service. We connect to your systems (M365/Slack) without IT intervention. No project required." },
         { q: "Is it truly anonymous?", a: "Absolutely. We guarantee a 'safety layer'. No one from leadership sees individual responses. People know this and trust it." },
-        { q: "Will it add work for managers?", a: "The opposite. Echo Pulse does the analytical work for them and gives them guidance. It doesn't increase manager workload." },
+        { q: "Will it add work for managers?", a: "The opposite. Behavera does the analytical work for them and gives them guidance. It doesn't increase manager workload." },
         { q: "What if the results aren't pretty?", a: "That's the point. You want to see reality so you can change it. Better to know now than deal with resignations." },
       ],
     },
     roleSelection: {
       title: "One tool.",
       titleHighlight: " Different answers.",
-      subtitle: "Whether you're a CEO, HR, or team lead — Echo Pulse gives you exactly what you need. No noise.",
+      subtitle: "Whether you're a CEO, HR, or team lead — Behavera gives you exactly what you need. No noise.",
       investor: {
         title: "Company health overview",
         list: ["Early warning before problems", "Risks caught in time"],
@@ -304,7 +304,7 @@ export const translations: Record<Language, Translations> = {
       railLeadCta: "Download",
       endDemoLabel: "See it in your team",
       endDemoTitle: "Want to turn these insights into action?",
-      endDemoDesc: "See how Echo Pulse helps you detect risks early and guide better 1:1 conversations.",
+      endDemoDesc: "See how Behavera helps you detect risks early and guide better 1:1 conversations.",
       endDemoCta: "Book a demo",
     },
     caseStudies: {
@@ -366,14 +366,14 @@ export const translations: Record<Language, Translations> = {
       ctaBox: {
         label: "Před → Po",
         title: "Dnes hádáte. Zítra budete vědět.",
-        desc: "Bez Echo Pulse: reagujete na výpovědi. S Echo Pulse: vidíte rizika v dashboardu měsíce předem a víte, kam jít.",
+        desc: "Bez Behavera: reagujete na výpovědi. S Behavera: vidíte rizika v dashboardu měsíce předem a víte, kam jít.",
       },
     },
     dashboard: {
       badge: "Pohled do praxe",
       title: "Jeden dashboard.",
       titleHighlight: "Žádné hádání.",
-      subtitle: "Echo Pulse sbírá rozptýlené signály a ukazuje je na jednom místě. Jasně, v reálném čase, připravené k akci.",
+      subtitle: "Behavera sbírá rozptýlené signály a ukazuje je na jednom místě. Jasně, v reálném čase, připravené k akci.",
       features: [
         { title: "Nálada podle týmů", desc: "Okamžitý přehled, jak se cítí jednotlivá oddělení. Rozděleno podle lokality, seniority nebo manažera." },
         { title: "Varování před problémy", desc: "Systém upozorní, když něco nesedí - přetížení, napětí v týmu, nebo výrazný pokles energie." },
@@ -413,14 +413,14 @@ export const translations: Record<Language, Translations> = {
         { q: "Bude to lidi otravovat?", a: "Ne. Systém používá 'Low-Friction' protokol. Žádné dlouhé dotazníky, jen 1–3 minuty jednou za měsíc. Udržíme zátěž respondentů nízko." },
         { q: "Vyžaduje to složitou IT implementaci?", a: "Ne. Jsme cloudová služba. Napojíme se na vaše systémy (M365/Slack) bez zásahu IT. Nevyžaduje to projekt." },
         { q: "Je to skutečně anonymní?", a: "Absolutně. Garantujeme 'vrstvu bezpečí'. Nikdo z vedení neuvidí individuální odpovědi. Lidé to ví a věří tomu." },
-        { q: "Přidělá to práci manažerům?", a: "Naopak. Echo Pulse za ně dělá analytickou práci a dává jim návod. Nezvyšuje to práci manažerům." },
+        { q: "Přidělá to práci manažerům?", a: "Naopak. Behavera za ně dělá analytickou práci a dává jim návod. Nezvyšuje to práci manažerům." },
         { q: "Co když nebudou výsledky hezké?", a: "To je cíl. Chcete vidět realitu, abyste ji mohli změnit. Lepší vědět teď, než řešit výpovědi." },
       ],
     },
     roleSelection: {
       title: "Jeden nástroj.",
       titleHighlight: " Různé odpovědi.",
-      subtitle: "Ať jste CEO, HR nebo team lead — Echo Pulse vám dá přesně to, co potřebujete. Bez šumu.",
+      subtitle: "Ať jste CEO, HR nebo team lead — Behavera vám dá přesně to, co potřebujete. Bez šumu.",
       investor: {
         title: "Přehled o zdraví firmy",
         list: ["Včasné varování před problémy", "Rizika zachycená včas"],
@@ -512,7 +512,7 @@ export const translations: Record<Language, Translations> = {
       railLeadCta: "Stáhnout",
       endDemoLabel: "Převeďte to do praxe",
       endDemoTitle: "Chcete tyto poznatky použít ve vašem týmu?",
-      endDemoDesc: "Podívejte se, jak Echo Pulse odhalí rizika včas a zlepší vaše 1:1 rozhovory.",
+      endDemoDesc: "Podívejte se, jak Behavera odhalí rizika včas a zlepší vaše 1:1 rozhovory.",
       endDemoCta: "Domluvit demo",
     },
     caseStudies: {
@@ -574,14 +574,14 @@ export const translations: Record<Language, Translations> = {
       ctaBox: {
         label: "Vorher → Nachher",
         title: "Heute raten Sie. Morgen werden Sie wissen.",
-        desc: "Ohne Echo Pulse: Sie reagieren auf Kündigungen. Mit Echo Pulse: Sie sehen Risiken im Dashboard Monate vorher und wissen, wo Sie handeln müssen.",
+        desc: "Ohne Behavera: Sie reagieren auf Kündigungen. Mit Behavera: Sie sehen Risiken im Dashboard Monate vorher und wissen, wo Sie handeln müssen.",
       },
     },
     dashboard: {
       badge: "Überblick für die Führung",
       title: "Ein Dashboard.",
       titleHighlight: "Kein Raten.",
-      subtitle: "Echo Pulse sammelt verstreute Signale und zeigt sie an einem Ort. Klar, in Echtzeit, bereit zum Handeln.",
+      subtitle: "Behavera sammelt verstreute Signale und zeigt sie an einem Ort. Klar, in Echtzeit, bereit zum Handeln.",
       features: [
         { title: "Stimmung nach Team", desc: "Sofortiger Überblick, wie sich jede Abteilung fühlt. Aufgeschlüsselt nach Standort, Seniorität oder Manager." },
         { title: "Warnung vor Problemen", desc: "Das System warnt, wenn etwas nicht stimmt - Überlastung, Team-Spannungen oder deutlicher Energie-Abfall." },
@@ -621,14 +621,14 @@ export const translations: Record<Language, Translations> = {
         { q: "Wird es die Leute nerven?", a: "Nein. Das System nutzt ein 'Low-Friction'-Protokoll. Keine langen Umfragen, nur 1–3 Minuten einmal im Monat. Wir halten die Belastung niedrig." },
         { q: "Erfordert es komplexe IT-Implementierung?", a: "Nein. Wir sind ein Cloud-Service. Wir verbinden uns mit Ihren Systemen (M365/Slack) ohne IT-Eingriff. Kein Projekt erforderlich." },
         { q: "Ist es wirklich anonym?", a: "Absolut. Wir garantieren eine 'Sicherheitsschicht'. Niemand aus der Führung sieht einzelne Antworten. Menschen wissen das und vertrauen darauf." },
-        { q: "Bedeutet es mehr Arbeit für Manager?", a: "Im Gegenteil. Echo Pulse übernimmt die analytische Arbeit und gibt Anleitungen. Es erhöht nicht die Manager-Arbeitslast." },
+        { q: "Bedeutet es mehr Arbeit für Manager?", a: "Im Gegenteil. Behavera übernimmt die analytische Arbeit und gibt Anleitungen. Es erhöht nicht die Manager-Arbeitslast." },
         { q: "Was wenn die Ergebnisse nicht schön sind?", a: "Das ist der Punkt. Sie wollen Realität sehen, um sie ändern zu können. Besser jetzt wissen als Kündigungen lösen." },
       ],
     },
     roleSelection: {
       title: "Jeder sieht das Unternehmen",
       titleHighlight: " aus einem anderen Blickwinkel.",
-      subtitle: "Wählen Sie Ihre Rolle und sehen Sie, was Echo Pulse Ihnen konkret bietet.",
+      subtitle: "Wählen Sie Ihre Rolle und sehen Sie, was Behavera Ihnen konkret bietet.",
       investor: {
         title: "Überblick über Unternehmensgesundheit",
         list: ["Frühwarnung vor Problemen", "Risiken rechtzeitig erkannt"],
@@ -720,7 +720,7 @@ export const translations: Record<Language, Translations> = {
       railLeadCta: "Herunterladen",
       endDemoLabel: "In Ihrem Team testen",
       endDemoTitle: "Möchten Sie diese Erkenntnisse direkt nutzen?",
-      endDemoDesc: "Sehen Sie, wie Echo Pulse Risiken früh erkennt und bessere 1:1 Gespräche unterstützt.",
+      endDemoDesc: "Sehen Sie, wie Behavera Risiken früh erkennt und bessere 1:1 Gespräche unterstützt.",
       endDemoCta: "Demo buchen",
     },
     caseStudies: {

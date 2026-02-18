@@ -23,7 +23,7 @@ export function CtaSection() {
   const copy = {
     cz: {
       badge: "Připraveni?",
-      headline: "Spusťte Echo Pulse.",
+      headline: "Spusťte Behavera.",
       headlineHighlight: "A přestaňte hádat, co se ve firmě děje.",
       subheadline: "Buď si to bezpečně otestujete na jednom týmu, nebo to rovnou spustíte ve firmě.",
       primaryCta: "Objednat pro celou firmu",
@@ -35,7 +35,7 @@ export function CtaSection() {
     },
     en: {
       badge: "Ready?",
-      headline: "Launch Echo Pulse.",
+      headline: "Launch Behavera.",
       headlineHighlight: "And stop guessing what's happening in your company.",
       subheadline: "Either safely test it with one team, or launch it across your company right away.",
       primaryCta: "Order for the whole company",
@@ -47,7 +47,7 @@ export function CtaSection() {
     },
     de: {
       badge: "Bereit?",
-      headline: "Starten Sie Echo Pulse.",
+      headline: "Starten Sie Behavera.",
       headlineHighlight: "Und hören Sie auf zu raten, was im Unternehmen passiert.",
       subheadline: "Testen Sie es sicher mit einem Team oder starten Sie direkt im ganzen Unternehmen.",
       primaryCta: "Für das ganze Unternehmen bestellen",
@@ -142,7 +142,7 @@ export function CtaSection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Primary CTA — Objednat pro celou firmu (bílé) */}
               <a
-                href="https://www.echopulse.cz/start"
+                href="https://www.behavera.com/start"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 h-12 sm:h-14 px-6 sm:px-8 rounded-[var(--button-radius)] bg-white text-brand-primary font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20 w-full sm:w-auto"

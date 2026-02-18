@@ -115,7 +115,7 @@ async function saveToSupabase(payload: LeadPayload): Promise<void> {
         company: payload.company,
         company_size: payload.companySize,
         role: payload.role,
-        source: payload.source || 'echopulse.cz',
+        source: payload.source || 'behavera.com',
         created_at: new Date().toISOString()
       })
     });
@@ -156,10 +156,10 @@ export default async function handler(request: Request): Promise<Response> {
       return new Response(JSON.stringify({ error: 'Email is required' }), { status: 400, headers: corsHeaders });
     }
 
-    // Normalize source - always include echopulse.cz
+    // Normalize source - always include behavera.com
     const source = payload.source 
-      ? `echopulse.cz/${payload.source}` 
-      : 'echopulse.cz';
+      ? `behavera.com/${payload.source}` 
+      : 'behavera.com';
 
     // Build name from available fields
     const name = payload.name 

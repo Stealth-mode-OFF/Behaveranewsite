@@ -32,17 +32,17 @@ export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (
   const copy = {
     cz: {
       message: "Stále používáte Google Forms pro zpětnou vazbu?",
-      cta: "Přejděte na Echo Pulse →",
+      cta: "Přejděte na Behavera →",
       link: "https://app.behavera.com/echo-pulse/try",
     },
     en: {
       message: "Still using Google Forms for employee feedback?",
-      cta: "Switch to Echo Pulse →",
+      cta: "Switch to Behavera →",
       link: "https://app.behavera.com/echo-pulse/try",
     },
     de: {
       message: "Nutzen Sie noch Google Forms für Mitarbeiter-Feedback?",
-      cta: "Wechseln Sie zu Echo Pulse →",
+      cta: "Wechseln Sie zu Behavera →",
       link: "https://app.behavera.com/echo-pulse/try",
     },
   };
