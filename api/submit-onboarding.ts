@@ -2,13 +2,14 @@
  * Vercel Edge Function: Submit COMPLETE onboarding data
  *
  * Receives the full onboarding payload (company, teams, members, OAuth info)
- * and persists it to Supabase + creates a Pipedrive lead.
+ * and persists it to Supabase + creates a Pipedrive lead + sends Slack notification.
  *
  * Environment variables required:
  * - SUPABASE_URL
  * - SUPABASE_SERVICE_KEY
  * - PIPEDRIVE_API_KEY (optional — lead creation skipped if missing)
  * - PIPEDRIVE_COMPANY_DOMAIN (optional, defaults to 'behavera')
+ * - SLACK_WEBHOOK_URL (optional — Slack notification skipped if missing)
  */
 
 export const config = { runtime: 'edge' };
@@ -195,6 +196,69 @@ ${isExisting ? '\n⚠️ Person already existed in Pipedrive' : ''}
   return { personId, leadId: lead.id };
 }
 
+/* ─── Slack notification ─── */
+
+async function sendSlackNotification(payload: OnboardingPayload, submissionId: string) {
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  if (!webhookUrl) return;
+
+  const totalMembers = payload.teams.reduce((s, t) => s + t.members.length, 0);
+  const pricePerPerson = payload.billingInterval === 'monthly' ? 129 : 99;
+  const monthlyTotal = (payload.employeeCount || totalMembers || 0) * pricePerPerson;
+
+  const teamLines = payload.teams
+    .map((t) => `• ${t.name} (${t.members.length} members, leader: ${t.leaderEmail || 'N/A'})`)
+    .join('\n');
+
+  const message = {
+    text: `🚀 New onboarding: ${payload.companyName}`,
+    blocks: [
+      {
+        type: 'header',
+        text: { type: 'plain_text', text: '🚀 Nový onboarding', emoji: true },
+      },
+      {
+        type: 'section',
+        fields: [
+          { type: 'mrkdwn', text: `*Firma:*\n${payload.companyName}${payload.companyId ? ` (IČO: ${payload.companyId})` : ''}` },
+          { type: 'mrkdwn', text: `*Zástupce:*\n${payload.repName} <${payload.repEmail}>` },
+          { type: 'mrkdwn', text: `*Admin:*\n${payload.adminName || '—'} <${payload.adminEmail || '—'}>` },
+          { type: 'mrkdwn', text: `*Zaměstnanců:*\n${payload.employeeCount || '—'}` },
+          { type: 'mrkdwn', text: `*Plán:*\n${payload.billingInterval || '—'} (${monthlyTotal.toLocaleString('cs-CZ')} Kč/měs)` },
+          { type: 'mrkdwn', text: `*Týmy:*\n${payload.teams.length} (${totalMembers} členů)` },
+        ],
+      },
+      ...(payload.teams.length > 0
+        ? [
+            {
+              type: 'section',
+              text: { type: 'mrkdwn', text: `*Detail týmů:*\n${teamLines}` },
+            },
+          ]
+        : []),
+      {
+        type: 'context',
+        elements: [
+          {
+            type: 'mrkdwn',
+            text: `Submission ID: \`${submissionId}\` | OAuth: ${payload.oauthProvider || 'manual'} | ${new Date().toISOString()}`,
+          },
+        ],
+      },
+    ],
+  };
+
+  try {
+    await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(message),
+    });
+  } catch (err) {
+    console.warn('Slack notification failed:', err);
+  }
+}
+
 /* ─── Main handler ─── */
 
 export default async function handler(request: Request): Promise<Response> {
@@ -320,6 +384,13 @@ export default async function handler(request: Request): Promise<Response> {
       }
     } catch (err) {
       console.warn('Pipedrive lead creation failed (Supabase data saved):', err);
+    }
+
+    // ─── 3. Send Slack notification ───
+    try {
+      await sendSlackNotification(payload, submissionId);
+    } catch (err) {
+      console.warn('Slack notification failed:', err);
     }
 
     return new Response(
