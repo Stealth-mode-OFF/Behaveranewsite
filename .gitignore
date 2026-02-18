@@ -5,3 +5,4 @@ dist
 *.mov
 .vite/
 supabase/.temp/
+.env.vercel

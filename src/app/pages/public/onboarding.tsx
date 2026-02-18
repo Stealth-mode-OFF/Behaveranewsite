@@ -45,7 +45,7 @@ import {
   type Team,
   type TeamContact,
 } from "@/app/components/team-builder";
-import { InviteTeammates } from "@/app/components/invite-teammates";
+// InviteTeammates step removed — OAuth import merged into Teams step
 import { useAresLookup, type AresResult } from "@/app/hooks/useAresLookup";
 
 /* ─── Types ─── */
@@ -65,9 +65,7 @@ type OnboardingFormData = {
 /* ─── Steps definition ─── */
 const STEPS = [
   { id: "company", icon: Building2 },
-  { id: "connect", icon: UserPlus },
   { id: "teams", icon: Users },
-  { id: "invite", icon: UserPlus },
   { id: "confirm", icon: CreditCard },
 ] as const;
 
@@ -75,23 +73,17 @@ const STEPS = [
 const stepMotivation = {
   cz: [
     "Skvělý start! 🎯",
-    "Jste na dobré cestě! 🚀",
     "Skoro hotovo! 💪",
-    "Ještě jeden krok! ✉️",
     "Poslední krok! 🎉",
   ],
   en: [
     "Great start! 🎯",
-    "You're on track! 🚀",
     "Almost done! 💪",
-    "One more step! ✉️",
     "Final step! 🎉",
   ],
   de: [
     "Toller Start! 🎯",
-    "Sie sind auf Kurs! 🚀",
     "Fast fertig! 💪",
-    "Noch ein Schritt! ✉️",
     "Letzter Schritt! 🎉",
   ],
 };
@@ -184,7 +176,7 @@ const copy = {
   cz: {
     pageTitle: "Vytvořte si Echo Pulse účet",
     pageSubtitle: "Zabere to méně než 2 minuty",
-    steps: ["Společnost", "Kontakty", "Týmy", "Potvrzení"],
+    steps: ["Společnost", "Týmy", "Potvrzení"],
     s0Title: "Základní údaje",
     s0Subtitle: "Tyto údaje použijeme k nastavení vašeho účtu a fakturace.",
     companyName: "Název společnosti",
@@ -210,8 +202,8 @@ const copy = {
     adminEmail: "Email administrátora",
     adminEmailPlaceholder: "jana@firma.cz",
     adminEmailHelper: "Pošleme pozvánku a instrukce k nastavení.",
-    s1Title: "Načtěte zaměstnance",
-    s1Subtitle: "Propojte firemní adresář — e-maily načteme automaticky.",
+    s1Title: "Sestavte týmy",
+    s1Subtitle: "Importujte kontakty z adresáře nebo přidejte ručně a rozdělte do týmů.",
     connectTitle: "Načtěte kontakty jedním klikem",
     connectSubtitle: "Přihlaste se přes firemní účet a my bezpečně načteme seznam zaměstnanců z vašeho adresáře.",
     connectGoogle: "Pokračovat přes Google",
@@ -228,10 +220,8 @@ const copy = {
     loadingContacts: "Načítám adresář…",
     errorOAuth: "Nepodařilo se propojit. Zkuste to znovu.",
     errorOAuthNotConfigured: "Přihlášení přes Google/Microsoft ještě není aktivní. Přeskočte a přidejte zaměstnance ručně.",
-    s2Title: "Sestavte týmy",
-    s2Subtitle: "Přetáhněte zaměstnance do týmů. Nezapomeňte přiřadit team leadera.",
-    s3Title: "Potvrzení & spuštění",
-    s3Subtitle: "Zkontrolujte údaje a potvrďte vytvoření účtu.",
+    s2Title: "Potvrzení & spuštění",
+    s2Subtitle: "Zkontrolujte údaje a potvrďte vytvoření účtu.",
     summaryCompany: "Společnost",
     summaryRep: "Zástupce",
     summaryAdmin: "Administrátor",
@@ -272,7 +262,7 @@ const copy = {
   en: {
     pageTitle: "Create your Echo Pulse account",
     pageSubtitle: "Takes less than 2 minutes",
-    steps: ["Company", "Contacts", "Teams", "Confirm"],
+    steps: ["Company", "Teams", "Confirm"],
     s0Title: "Basic details",
     s0Subtitle: "We use these details to set up your account and billing.",
     companyName: "Company name",
@@ -298,8 +288,8 @@ const copy = {
     adminEmail: "Admin email",
     adminEmailPlaceholder: "jane@company.com",
     adminEmailHelper: "We'll send an invite and getting-started instructions.",
-    s1Title: "Import employees",
-    s1Subtitle: "Connect your company directory — we import emails automatically.",
+    s1Title: "Build teams",
+    s1Subtitle: "Import contacts from your directory or add manually and organize into teams.",
     connectTitle: "Import contacts in one click",
     connectSubtitle: "Sign in with your company account and we'll securely import your employee directory.",
     connectGoogle: "Continue with Google",
@@ -316,10 +306,8 @@ const copy = {
     loadingContacts: "Importing directory…",
     errorOAuth: "Connection failed. Please try again.",
     errorOAuthNotConfigured: "Google/Microsoft sign-in is not yet active. Skip and add employees manually.",
-    s2Title: "Build teams",
-    s2Subtitle: "Drag employees into teams. Don't forget to assign a team leader.",
-    s3Title: "Confirm & launch",
-    s3Subtitle: "Review the details and confirm account creation.",
+    s2Title: "Confirm & launch",
+    s2Subtitle: "Review the details and confirm account creation.",
     summaryCompany: "Company",
     summaryRep: "Representative",
     summaryAdmin: "Admin",
@@ -360,7 +348,7 @@ const copy = {
   de: {
     pageTitle: "Erstellen Sie Ihr Echo Pulse Konto",
     pageSubtitle: "Dauert weniger als 2 Minuten",
-    steps: ["Unternehmen", "Kontakte", "Teams", "Bestätigung"],
+    steps: ["Unternehmen", "Teams", "Bestätigung"],
     s0Title: "Grunddaten",
     s0Subtitle: "Wir verwenden diese Daten für Ihr Konto und die Abrechnung.",
     companyName: "Firmenname",
@@ -386,8 +374,8 @@ const copy = {
     adminEmail: "Admin-E-Mail",
     adminEmailPlaceholder: "erika@firma.de",
     adminEmailHelper: "Wir senden eine Einladung und Einrichtungsanleitung.",
-    s1Title: "Mitarbeiter importieren",
-    s1Subtitle: "Verbinden Sie Ihr Firmenverzeichnis — E-Mails werden automatisch importiert.",
+    s1Title: "Teams aufbauen",
+    s1Subtitle: "Importieren Sie Kontakte aus Ihrem Verzeichnis oder fügen Sie sie manuell hinzu und organisieren Sie Teams.",
     connectTitle: "Kontakte mit einem Klick importieren",
     connectSubtitle: "Melden Sie sich mit Ihrem Firmenkonto an und wir importieren Ihr Mitarbeiterverzeichnis sicher.",
     connectGoogle: "Weiter mit Google",
@@ -404,10 +392,8 @@ const copy = {
     loadingContacts: "Verzeichnis wird importiert…",
     errorOAuth: "Verbindung fehlgeschlagen. Bitte erneut versuchen.",
     errorOAuthNotConfigured: "Google/Microsoft-Anmeldung ist noch nicht aktiv. Überspringen Sie und fügen Sie Mitarbeiter manuell hinzu.",
-    s2Title: "Teams aufbauen",
-    s2Subtitle: "Ziehen Sie Mitarbeiter in Teams. Vergessen Sie nicht, einen Teamleiter zuzuweisen.",
-    s3Title: "Bestätigen & starten",
-    s3Subtitle: "Überprüfen Sie die Details und bestätigen Sie die Kontoerstellung.",
+    s2Title: "Bestätigen & starten",
+    s2Subtitle: "Überprüfen Sie die Details und bestätigen Sie die Kontoerstellung.",
     summaryCompany: "Unternehmen",
     summaryRep: "Vertreter",
     summaryAdmin: "Admin",
@@ -507,7 +493,7 @@ export function OnboardingPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitPhase, setSubmitPhase] = useState(0);
   const [teams, setTeams] = useState<Team[]>(draft?.teams ?? []);
-  const [invitedTeammates, setInvitedTeammates] = useState<any[]>([]);
+
 
   // OAuth contacts
   const {
@@ -678,7 +664,7 @@ export function OnboardingPage() {
   }, [teams]);
 
   useEffect(() => {
-    if (currentStep === 3) {
+    if (currentStep === 2) {
       setValue("employeeCount", computedFromTeams);
     }
   }, [currentStep, computedFromTeams, setValue]);
@@ -696,8 +682,7 @@ export function OnboardingPage() {
           "adminEmail",
         ],
         1: [],
-        2: [],
-        3: ["employeeCount", "agreedToTerms"],
+        2: ["employeeCount", "agreedToTerms"],
       };
       if (!fieldsByStep[step] || fieldsByStep[step].length === 0) return true;
       return await trigger(fieldsByStep[step]);
@@ -1172,9 +1157,7 @@ export function OnboardingPage() {
                     ? txt.s0Title
                     : currentStep === 1
                       ? txt.s1Title
-                      : currentStep === 2
-                        ? txt.s2Title
-                        : txt.s3Title}
+                      : txt.s2Title}
                 </motion.h2>
               </div>
               <p className="text-[13px] text-brand-text-muted ml-12">
@@ -1182,9 +1165,7 @@ export function OnboardingPage() {
                   ? txt.s0Subtitle
                   : currentStep === 1
                     ? txt.s1Subtitle
-                    : currentStep === 2
-                      ? txt.s2Subtitle
-                      : txt.s3Subtitle}
+                    : txt.s2Subtitle}
               </p>
             </div>
 
@@ -1416,120 +1397,53 @@ export function OnboardingPage() {
                     </div>
                   )}
 
-                  {/* ═════════ STEP 1 — Connect / Import ═════════ */}
+                  {/* ═════════ STEP 1 — Teams (with inline OAuth import) ═════════ */}
                   {currentStep === 1 && (
                     <div className="space-y-6">
+                      {/* Compact import bar — collapsed when contacts already loaded */}
                       {oauthContacts.length > 0 ? (
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="space-y-5"
-                        >
-                          <div className="flex items-center gap-3 p-4 rounded-xl bg-brand-success/5 border border-brand-success/20">
-                            <div className="w-10 h-10 rounded-full bg-brand-success/10 flex items-center justify-center shrink-0">
-                              <Check className="w-5 h-5 text-brand-success" strokeWidth={3} />
-                            </div>
-                            <div>
-                              <p className="text-[15px] font-bold text-brand-text-primary">
-                                {filteredContacts.length} {txt.connectSuccess}
-                              </p>
-                              <p className="text-[12px] text-brand-text-muted">
-                                <span className="font-semibold text-brand-primary">
-                                  {companyDomain ? `@${companyDomain}` : ""}
+                        <div className="flex items-center gap-3 p-3 rounded-xl bg-brand-success/5 border border-brand-success/20">
+                          <div className="w-8 h-8 rounded-full bg-brand-success/10 flex items-center justify-center shrink-0">
+                            <Check className="w-4 h-4 text-brand-success" strokeWidth={3} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-[13px] font-bold text-brand-text-primary">
+                              {filteredContacts.length} {txt.connectSuccess}
+                              {companyDomain && (
+                                <span className="ml-1.5 text-[11px] font-semibold text-brand-primary">
+                                  @{companyDomain}
                                 </span>
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Preview sample contacts */}
-                          <div className="rounded-xl border border-brand-border/50 overflow-hidden">
-                            <div className="px-4 py-2 bg-brand-background-secondary/50 border-b border-brand-border/30">
-                              <span className="text-[11px] font-bold text-brand-text-muted uppercase tracking-wider">
-                                {companyDomain || "Contacts"}
-                              </span>
-                            </div>
-                            <div className="max-h-[200px] overflow-y-auto">
-                              {filteredContacts
-                                .slice(0, 20)
-                                .map((c) => (
-                                  <div
-                                    key={c.email}
-                                    className="flex items-center gap-3 px-4 py-2 border-b border-brand-border/20 last:border-0"
-                                  >
-                                    {c.photo ? (
-                                      <img
-                                        src={c.photo}
-                                        alt=""
-                                        className="w-6 h-6 rounded-full object-cover shrink-0"
-                                      />
-                                    ) : (
-                                      <div className="w-6 h-6 rounded-full bg-brand-primary/10 text-brand-primary text-[9px] font-bold flex items-center justify-center shrink-0">
-                                        {c.name
-                                          ? c.name
-                                              .split(" ")
-                                              .map((w) => w[0])
-                                              .join("")
-                                              .slice(0, 2)
-                                              .toUpperCase()
-                                          : c.email[0].toUpperCase()}
-                                      </div>
-                                    )}
-                                    <div className="min-w-0 flex-1">
-                                      {c.name && (
-                                        <span className="text-[12px] font-semibold text-brand-text-primary mr-2">
-                                          {c.name}
-                                        </span>
-                                      )}
-                                      <span className="text-[11px] text-brand-text-muted">
-                                        {c.email}
-                                      </span>
-                                    </div>
-                                  </div>
-                                ))}
-                              {filteredContacts.length > 20 && (
-                                <div className="px-4 py-2 text-center text-[11px] text-brand-text-muted bg-brand-background-secondary/30">
-                                  + {filteredContacts.length - 20} more…
-                                </div>
                               )}
-                            </div>
+                            </p>
                           </div>
-
                           <button
                             type="button"
-                            onClick={() => {
-                              clearContacts();
-                              setSkippedConnect(false);
-                            }}
-                            className="text-[12px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors"
+                            onClick={() => { clearContacts(); setSkippedConnect(false); }}
+                            className="text-[11px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors shrink-0"
                           >
                             {txt.connectChange}
                           </button>
-                        </motion.div>
+                        </div>
                       ) : oauthLoading ? (
-                        <div className="flex flex-col items-center justify-center py-12 gap-3">
-                          <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
+                        <div className="flex items-center justify-center py-6 gap-3">
+                          <Loader2 className="w-6 h-6 text-brand-primary animate-spin" />
                           <p className="text-[13px] text-brand-text-muted font-medium">
                             {txt.loadingContacts}
                           </p>
                         </div>
-                      ) : (
-                        <div className="space-y-6">
-                          <div className="text-center max-w-sm mx-auto">
-                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-brand-primary/5 border border-brand-primary/10 flex items-center justify-center">
-                              <UserPlus className="w-7 h-7 text-brand-primary" />
-                            </div>
-                            <h3 className="text-[16px] font-bold text-brand-text-primary mb-2">
+                      ) : !skippedConnect ? (
+                        <div className="rounded-xl border border-brand-border/50 p-4 bg-brand-background-secondary/30">
+                          <div className="flex items-center gap-2.5 mb-3">
+                            <UserPlus className="w-4 h-4 text-brand-primary" />
+                            <span className="text-[13px] font-bold text-brand-text-primary">
                               {txt.connectTitle}
-                            </h3>
-                            <p className="text-[13px] text-brand-text-muted leading-relaxed">
-                              {txt.connectSubtitle}
-                            </p>
+                            </span>
                           </div>
 
                           {oauthError && (
-                            <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-200">
-                              <AlertCircle className="w-4 h-4 text-brand-error shrink-0" />
-                              <p className="text-[12px] text-brand-error">
+                            <div className="flex items-center gap-2 p-2.5 rounded-lg bg-red-50 border border-red-200 mb-3">
+                              <AlertCircle className="w-3.5 h-3.5 text-brand-error shrink-0" />
+                              <p className="text-[11px] text-brand-error">
                                 {oauthError === 'oauth_not_configured'
                                   ? txt.errorOAuthNotConfigured
                                   : txt.errorOAuth}
@@ -1537,98 +1451,57 @@ export function OnboardingPage() {
                             </div>
                           )}
 
-                          <div className="space-y-3 max-w-sm mx-auto">
+                          <div className="flex flex-col sm:flex-row gap-2 mb-3">
                             <button
                               type="button"
                               onClick={() => fetchContacts("google")}
-                              className="w-full flex items-center gap-3 px-5 py-3.5 rounded-xl border-2 border-brand-border/60 bg-white hover:border-brand-primary/30 hover:bg-brand-primary/[0.02] transition-all text-left group"
+                              className="flex-1 flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-brand-border/60 bg-white hover:border-brand-primary/30 hover:bg-brand-primary/[0.02] transition-all text-left group"
                             >
                               <GoogleLogo />
-                              <span className="text-[14px] font-semibold text-brand-text-primary group-hover:text-brand-primary transition-colors">
+                              <span className="text-[13px] font-semibold text-brand-text-primary group-hover:text-brand-primary transition-colors">
                                 {txt.connectGoogle}
                               </span>
-                              <ArrowRight className="w-4 h-4 text-brand-text-muted ml-auto group-hover:text-brand-primary transition-colors" />
                             </button>
                             <button
                               type="button"
                               onClick={() => fetchContacts("microsoft")}
-                              className="w-full flex items-center gap-3 px-5 py-3.5 rounded-xl border-2 border-brand-border/60 bg-white hover:border-brand-primary/30 hover:bg-brand-primary/[0.02] transition-all text-left group"
+                              className="flex-1 flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-brand-border/60 bg-white hover:border-brand-primary/30 hover:bg-brand-primary/[0.02] transition-all text-left group"
                             >
                               <MicrosoftLogo />
-                              <span className="text-[14px] font-semibold text-brand-text-primary group-hover:text-brand-primary transition-colors">
+                              <span className="text-[13px] font-semibold text-brand-text-primary group-hover:text-brand-primary transition-colors">
                                 {txt.connectMicrosoft}
                               </span>
-                              <ArrowRight className="w-4 h-4 text-brand-text-muted ml-auto group-hover:text-brand-primary transition-colors" />
                             </button>
                           </div>
 
-                          {/* Privacy note + terms */}
-                          <div className="flex items-start gap-2 p-3 rounded-xl bg-brand-background-secondary/50 max-w-sm mx-auto">
-                            <Lock className="w-3.5 h-3.5 text-brand-success mt-0.5 shrink-0" />
-                            <p className="text-[11px] text-brand-text-muted leading-relaxed">
-                              {txt.privacyNote}{" "}
-                              {txt.termsNote}{" "}
-                              <a
-                                href="https://www.echopulse.cz/terms"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover transition-colors"
-                              >
-                                {txt.termsLinkLabel}
-                              </a>.
-                            </p>
-                          </div>
-
-                          {/* Skip option */}
-                          <div className="text-center pt-2">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-1.5">
+                              <Lock className="w-3 h-3 text-brand-success" />
+                              <span className="text-[10px] text-brand-text-muted">{txt.privacyNote}</span>
+                            </div>
                             <button
                               type="button"
-                              onClick={() => {
-                                setSkippedConnect(true);
-                                goNext();
-                              }}
-                              className="text-[13px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors"
+                              onClick={() => setSkippedConnect(true)}
+                              className="text-[11px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors"
                             >
                               {txt.skipConnect} →
                             </button>
-                            <p className="text-[11px] text-brand-text-muted/70 mt-1">
-                              {txt.skipConnectNote}
-                            </p>
                           </div>
                         </div>
-                      )}
+                      ) : null}
+
+                      {/* Team Builder */}
+                      <TeamBuilder
+                        contacts={teamBuilderContacts}
+                        language={language as "cz" | "en" | "de"}
+                        onTeamsChanged={(t) => { setTeams(t); saveDraft({ teams: t }); }}
+                        initialTeams={teams}
+                      />
                     </div>
                   )}
 
-                  {/* ═════════ STEP 2 — Team Builder ═════════ */}
+                  {/* ═════════ STEP 2 — Confirm ═════════ */}
                   {currentStep === 2 && (
-                    <TeamBuilder
-                      contacts={teamBuilderContacts}
-                      language={language as "cz" | "en" | "de"}
-                      onTeamsChanged={(t) => { setTeams(t); saveDraft({ teams: t }); }}
-                      initialTeams={teams}
-                    />
-                  )}
-
-                  {/* ═════════ STEP 3 — Confirm ═════════ */}
-                  {currentStep === 3 && (
-                    <InviteTeammates
-                      adminEmail={watch("adminEmail") || watch("repEmail") || ""}
-                      inviterName={watch("adminName") || watch("repName") || ""}
-                      companyName={watch("companyName") || ""}
-                      language={language as "cz" | "en" | "de"}
-                      optional
-                      onInvitesSaved={(invitees) => {
-                        setInvitedTeammates(invitees);
-                        // Auto-advance to Confirm step
-                        setDirection(1);
-                        setCurrentStep(4);
-                      }}
-                    />
-                  )}
-
-                  {/* ═════════ STEP 4 — Confirm ═════════ */}
-                  {currentStep === 4 && (
                     <ConfirmStep
                       txt={txt}
                       language={language}
@@ -1640,7 +1513,6 @@ export function OnboardingPage() {
                       getValues={getValues}
                       errors={errors}
                       teams={teams}
-                      invitedCount={invitedTeammates.length}
                     />
                   )}
                 </motion.div>
@@ -1770,15 +1642,14 @@ function ConfirmStep({
   getValues: any;
   errors: any;
   teams: Team[];
-  invitedCount: number;
 }) {
   const vals = getValues();
   const currentInterval = watch("billingInterval");
   const currentCount = watch("employeeCount");
   const currentPricePerPerson =
     currentInterval === "monthly" ? monthlyPrice : yearlyPrice;
-  const currentBillable = Math.min(currentCount, 200);
-  const currentBase = currentPricePerPerson * currentBillable;
+  const monthlyTotal = currentPricePerPerson * currentCount;
+  const annualTotal = monthlyTotal * 12;
   const totalMembers = teams.reduce(
     (sum: number, t: Team) => sum + t.members.length,
     0
@@ -1812,14 +1683,6 @@ function ConfirmStep({
           value={`${teams.length} ${teams.length === 1 ? "team" : "teams"}`}
           sub={`${totalMembers} ${txt.summaryMembers}`}
         />
-        {invitedCount > 0 && (
-          <SummaryCard
-            icon={<UserPlus className="w-4 h-4" />}
-            label={language === "cz" ? "Pozváno" : language === "de" ? "Eingeladen" : "Invited"}
-            value={`${invitedCount} ${language === "cz" ? "kolegů" : language === "de" ? "Kollegen" : "teammates"}`}
-            sub={language === "cz" ? "Obdrží pozvánku e-mailem" : language === "de" ? "Erhalten eine E-Mail-Einladung" : "Will receive invite emails"}
-          />
-        )}
       </div>
 
       {/* Employee count slider */}
@@ -1908,8 +1771,8 @@ function ConfirmStep({
         <div className="flex items-baseline gap-2">
           <span className="text-3xl font-bold text-brand-text-primary font-mono">
             {isEur
-              ? `\u20AC${currentBase.toLocaleString()}`
-              : `${currentBase.toLocaleString()} K\u010D`}
+              ? `\u20AC${monthlyTotal.toLocaleString()}`
+              : `${monthlyTotal.toLocaleString()} K\u010D`}
           </span>
           <span className="text-[13px] text-brand-text-muted">
             / {txt.monthly.toLowerCase()}
@@ -1919,8 +1782,16 @@ function ConfirmStep({
           {isEur
             ? `\u20AC${currentPricePerPerson}`
             : `${currentPricePerPerson} K\u010D`}{" "}
-          {txt.pricePerPerson} × {currentBillable}
+          {txt.pricePerPerson} × {currentCount}
         </p>
+        {currentInterval === "yearly" && (
+          <p className="text-[12px] font-semibold text-brand-success mt-1">
+            {isEur
+              ? `= \u20AC${annualTotal.toLocaleString()}`
+              : `= ${annualTotal.toLocaleString()} K\u010D`}{" "}
+            / {language === "cz" ? "rok" : language === "de" ? "Jahr" : "year"}
+          </p>
+        )}
       </div>
 
       {/* Terms */}
