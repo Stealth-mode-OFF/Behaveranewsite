@@ -105,13 +105,14 @@ function splitLongParagraphs(html) {
 function ensureMinH2(html, lang) {
   const textWords = wordCount(stripHtml(html));
   const h2Count = (html.match(/<h2\b/gi) || []).length;
-  if (textWords <= 700 || h2Count >= 3) return html;
+  const minH2 = textWords >= 500 ? 3 : textWords >= 250 ? 2 : 1;
+  if (h2Count >= minH2) return html;
 
   const titles = lang === 'cz'
     ? ['Klíčový kontext', 'Co to znamená v praxi', 'Doporučený další krok']
     : ['Key context', 'What this means in practice', 'Recommended next step'];
 
-  const needed = 3 - h2Count;
+  const needed = minH2 - h2Count;
   const blocks = html.match(/<(?:h2|h3|p|blockquote|ul|ol)[^>]*>[\s\S]*?<\/(?:h2|h3|p|blockquote|ul|ol)>/gi);
   if (!blocks || blocks.length < 2) {
     const added = titles.slice(0, needed).map((title) => `<h2>${title}</h2>`).join('\n');
