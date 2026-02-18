@@ -1,11 +1,12 @@
 {
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "redirects": [
     { "source": "/podminky-pouzivani-sluzby", "destination": "/terms", "permanent": true },
     { "source": "/ochrana-osobnich-udaju", "destination": "/privacy-policy", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/podminky-pouzivani-sluzby", "destination": "/api/cz-terms" },
-    { "source": "/ochrana-osobnich-udaju", "destination": "/api/cz-privacy" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
