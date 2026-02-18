@@ -71,16 +71,16 @@ export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (
           className="fixed top-0 left-0 right-0 bg-brand-primary text-white z-[60] overflow-hidden"
           style={{ height: ANNOUNCEMENT_BAR_HEIGHT }}
         >
-          <div className="container-default flex items-center justify-center gap-3 h-full text-sm relative">
+          <div className="container-default flex items-center justify-center gap-2 sm:gap-3 h-full text-xs sm:text-sm relative pr-8">
             <Sparkles className="w-4 h-4 text-brand-accent flex-shrink-0 hidden sm:block" />
-            <span className="font-medium text-white/90">
+            <span className="font-medium text-white/90 truncate">
               {c.message}
             </span>
             <a
               href={c.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-white hover:text-brand-accent transition-colors inline-flex items-center gap-1 underline underline-offset-2"
+              className="font-bold text-white hover:text-brand-accent transition-colors inline-flex items-center gap-1 underline underline-offset-2 shrink-0"
             >
               {c.cta}
             </a>
