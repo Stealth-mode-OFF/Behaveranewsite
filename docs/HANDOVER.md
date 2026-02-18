@@ -179,11 +179,56 @@ Parallel implementations exist for: `ares-lookup`, `submit-lead`, `submit-onboar
 
 ---
 
-## 7. Recommended Next Steps
+## 7. Akční plán — Co dělá kdo
 
-1. **Add E2E tests** (Playwright) — Cover: homepage render, blog listing + detail, onboarding flow, CMS login + CRUD
-2. **Lazy-load more landing sections** — Move Hero, LogoMarquee, StatsBar below the fold to reduce main chunk
-3. **Consolidate API duplication** — Pick Vercel or Supabase Edge as canonical; delete the other or extract shared logic
-4. **Remove static blog fallback** — Once CMS is stable, delete the embedded `BLOG_POSTS` array from `blog-content.ts`
-5. **Update external app URLs** — When `app.behavera.com` removes `/echo-pulse/` paths, do a find/replace in this repo
-6. **Set up CI** — Add a GitHub Actions workflow: `npm ci && npx tsc --noEmit && npm run build`
+### 7a. Codex (autonomní agent) — bezpečné, mechanické úlohy
+
+Codex umí spolehlivě řešit úlohy, které jsou jasně definované, dají se verifikovat buildem/tsc a nemají vedlejší efekty na produkci. Zadávej mu je jako samostatné tasky:
+
+| # | Task pro Codex | Popis | Verifikace |
+|---|----------------|-------|------------|
+| C1 | **CI pipeline** | Vytvoř `.github/workflows/ci.yml`: `npm ci → npx tsc --noEmit → npm run build`. Trigger na push + PR do main. | Mergni PR, zkontroluj zelený check |
+| C2 | **Lazy-load landing sections** | V `landing.tsx` přesuň `Hero`, `LogoMarquee`, `StatsBar`, `ProblemSection`, `SignalRadar`, `DashboardPreview`, `RoleSelection` na lazy import přes `lazyNamed()` + `<LazySection>` wrapper (pattern už tam existuje). | `npm run build` → chunk < 500 KB |
+| C3 | **Smazat Supabase Edge Functions** | Smaž celou složku `supabase/functions/` — produkce používá Vercel `api/`, edge funkce jsou duplicitní a neaktuální. | `npm run build` must pass |
+| C4 | **Vyčistit console.log** | Projdi všech 19 `console.log/warn/error` v `src/`. Ponech jen ty v ErrorBoundary a catch blocích. Ostatní odstraň. | `npx tsc --noEmit && npm run build` |
+| C5 | **Playwright E2E scaffold** | Přidej `@playwright/test`, vytvoř `e2e/` s testy: homepage render, `/blog` listing, `/blog/:slug` detail, `/start` onboarding step 1→2→3, `/terms` + `/privacy-policy` load. Přidej `test:e2e` script do package.json. | `npx playwright test` zelený |
+| C6 | **Type-safe ConfirmStep props** | V `onboarding.tsx` nahraď všechny `any` typy v `ConfirmStep` props (`txt`, `register`, `watch`, `getValues`, `errors`) správnými typy z `react-hook-form`. | `npx tsc --noEmit` 0 errors |
+| C7 | **Odstranit statický blog fallback** | Až CMS funguje → smaž `BLOG_POSTS` a `BLOG_AUTHORS` z `blog-content.ts`. V `cms-service.ts` odstraň fallback logiku (`DEFAULT_POSTS`). Ponech `getPosts()` → Supabase only. | Build + manuální check `/blog` |
+
+### 7b. Copilot (já, interaktivní session) — vyžaduje kontext/rozhodnutí
+
+Tyto úlohy potřebují diskuzi, iteraci, nebo přístup k externím službám:
+
+| # | Task | Proč já |
+|---|------|---------|
+| I1 | **Onboarding refactor** (rozdělit 1870 řádků) | Velký soubor, potřeba rozhodnutí o struktuře komponent, UX validace |
+| I2 | **Signup modal refactor** (1563 řádků) | Stejný důvod — velký scope, riziko regresí v konverzním flow |
+| I3 | **Update echo-pulse URLs** | Musí se koordinovat s app.behavera.com — závisí na tom, kdy backend přejmenuje routes |
+| I4 | **SEO audit + Core Web Vitals** | Vyžaduje Lighthouse, diskuzi nad výsledky, iterativní ladění |
+| I5 | **Přidat nové stránky/funkce** | Cokoli nového (nové landing pages, integrace, redesign sekcí) |
+| I6 | **Supabase migrace / schema changes** | Vyžaduje přístup k Supabase dashboard + verifikaci dat |
+
+### 7c. Člověk (Josef) — vyžaduje business rozhodnutí
+
+| # | Rozhodnutí | Kontext |
+|---|-----------|---------|
+| D1 | **DNS pro www.behavera.com** | CNAME musí směřovat na `cname.vercel-dns.com` — čeká na přepnutí z Webflow |
+| D2 | **Smazat Supabase Edge Functions?** | Potvrzení, že se edge funkce nepoužívají a Vercel api/ je jediný endpoint |
+| D3 | **Kdy smazat statický blog fallback?** | Až jsou všechny články v Supabase CMS a je jistota, že CMS je source of truth |
+| D4 | **Testing strategy** | Rozhodnutí, jestli investovat do E2E testů teď, nebo až po dalším feature sprint |
+| D5 | **Aktualizovat závislosti** | GitHub hlásí 13 vulnerabilities (5 high) — vyžaduje `npm audit fix` + manuální test |
+
+---
+
+## 8. Doporučené pořadí
+
+```
+1. C1 (CI pipeline)          ← okamžitě, základ pro vše ostatní
+2. D5 (npm audit fix)        ← security, potřeba lidské verifikace
+3. C2 (lazy-load landing)    ← snížení main chunk z 683→<500 KB
+4. C3+D2 (smaž edge funkce) ← po potvrzení od Josefa
+5. C5 (E2E testy)            ← bezpečnostní síť pro další práci
+6. C6 (type-safe onboarding) ← příprava na I1
+7. I1 (onboarding refactor)  ← interaktivní session
+8. C7+D3 (smaž blog fallback) ← až CMS je ověřeno
+```
