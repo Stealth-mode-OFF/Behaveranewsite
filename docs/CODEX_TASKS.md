@@ -1,7 +1,9 @@
 # Codex — Úkoly pro tebe
 
 > Tento soubor je tvůj pracovní seznam. Přečti si ho celý před začátkem práce.
-> Ostatní úkoly (I1-I6, D1-D5) řeší Copilot nebo člověk — **neřeš je, nesahej na ně**.
+> Úkoly označené "COPILOT" neřeš — ty dělá Copilot v interaktivní session s člověkem.
+
+---
 
 ## Pravidla
 
@@ -12,21 +14,11 @@
 5. **Neměň routy, URL strukturu ani SEO metadata.** To je produkční web.
 6. **Neinstaluj nové závislosti** pokud to task explicitně nevyžaduje.
 
-## Co NEŘEŠÍŠ (dělá Copilot v interaktivní session)
-
-- Refaktoring `onboarding.tsx` (1870 řádků) — vyžaduje UX diskuzi
-- Refaktoring `signup-modal.tsx` (1563 řádků) — konverzní flow, nesmí se rozbít
-- Změny `echo-pulse` URL — závisí na externím app.behavera.com
-- SEO audit, Core Web Vitals ladění
-- Nové stránky a funkce
-- Supabase migrace a schema changes
-- Cokoliv co vyžaduje přístup k Vercel dashboard nebo Supabase dashboard
-
 ---
 
-## Tvoje tasky — dělej v tomto pořadí
+## TVOJE TASKY — dělej v tomto pořadí
 
-### Task C1: CI pipeline ⬅ ZAČNI TÍMTO
+### C1: CI pipeline ⬅ ZAČNI TÍMTO
 
 Vytvoř `.github/workflows/ci.yml` — GitHub Actions workflow.
 
@@ -50,7 +42,7 @@ Vytvoř `.github/workflows/ci.yml` — GitHub Actions workflow.
 
 ---
 
-### Task C2: Lazy-load landing page sections
+### C2: Lazy-load landing page sections
 
 Soubor: `src/app/pages/public/landing.tsx`
 
@@ -85,7 +77,7 @@ const CaseStudiesSection = lazyNamed(
 
 ---
 
-### Task C3: Smazat Supabase Edge Functions
+### C3: Smazat Supabase Edge Functions
 
 Smaž celou složku `supabase/functions/` včetně všech podsložek.
 
@@ -100,7 +92,7 @@ Smaž celou složku `supabase/functions/` včetně všech podsložek.
 
 ---
 
-### Task C4: Vyčistit console.log/warn/error
+### C4: Vyčistit console.log/warn/error
 
 Projdi složku `src/` a najdi všechny `console.log`, `console.warn`, `console.error`.
 
@@ -121,7 +113,7 @@ Pokud si nejsi jistý, **ponech** — lepší nechat než smazat produkční err
 
 ---
 
-### Task C5: Playwright E2E scaffold
+### C5: Playwright E2E scaffold
 
 **Instalace:** `npm install -D @playwright/test` + `npx playwright install chromium`
 
@@ -154,7 +146,7 @@ Pokud si nejsi jistý, **ponech** — lepší nechat než smazat produkční err
 
 ---
 
-### Task C6: Type-safe ConfirmStep props
+### C6: Type-safe ConfirmStep props
 
 Soubor: `src/app/pages/public/onboarding.tsx`
 
@@ -174,7 +166,7 @@ errors: any;
 import { UseFormRegister, UseFormWatch, UseFormGetValues, FieldErrors } from 'react-hook-form';
 
 // V props typu ConfirmStep:
-txt: typeof import('@/app/translations').translations.en;  // nebo Record<string, any> pokud je příliš složité
+txt: typeof import('@/app/translations').translations.en;
 register: UseFormRegister<OnboardingFormData>;
 watch: UseFormWatch<OnboardingFormData>;
 getValues: UseFormGetValues<OnboardingFormData>;
@@ -189,7 +181,7 @@ Typ `OnboardingFormData` už v tom souboru existuje — najdi ho.
 
 ---
 
-### Task C7: Odstranit statický blog fallback
+### C7: Odstranit statický blog fallback
 
 > ⚠️ **DĚLEJ JAKO POSLEDNÍ.** Tento task závisí na tom, že CMS (Supabase) je source of truth pro blog.
 
@@ -210,6 +202,21 @@ Soubor: `src/lib/cms-service.ts` — obsahuje fallback logiku, která vrací `DE
 
 ---
 
+## TASKY PRO COPILOTA — NEŘEŠ JE
+
+Tohle dělá Copilot v interaktivní session. Uvádím je tu jen pro kontext, abys věděl, co se řeší jinde a **nesahal na tyto soubory**.
+
+| # | Task | Soubory kterých se NEDOTÝKEJ |
+|---|------|------|
+| I1 | Onboarding refactor (rozdělit 1870 řádků) | `onboarding.tsx` — potřeba UX diskuze |
+| I2 | Signup modal refactor (1563 řádků) | `signup-modal.tsx` — konverzní flow, nesmí se rozbít |
+| I3 | Update echo-pulse URLs | závisí na externím app.behavera.com |
+| I4 | SEO audit + Core Web Vitals | iterativní — Lighthouse + diskuze |
+| I5 | Nové stránky a funkce | vše nové co neexistuje |
+| I6 | Supabase migrace / schema changes | vyžaduje Supabase dashboard |
+
+---
+
 ## Shrnutí pořadí
 
 ```
@@ -217,3 +224,15 @@ C1 → C2 → C3 → C4 → C5 → C6 → C7
 ```
 
 Dělej je v tomto pořadí. Každý task commitni zvlášť. Po každém ověř build.
+
+---
+
+## Rozhodnutí čekající na člověka (Josefa)
+
+Tyto věci **neřeš**, vyžadují business rozhodnutí:
+
+- **D1:** DNS pro www.behavera.com — CNAME musí směřovat na `cname.vercel-dns.com`
+- **D2:** Potvrzení smazání Supabase Edge Functions (C3 závisí na tomto)
+- **D3:** Kdy smazat statický blog fallback (C7 závisí na tomto)
+- **D4:** Testing strategy — E2E testy teď nebo po feature sprintu
+- **D5:** `npm audit fix` — GitHub hlásí 14 vulnerabilities

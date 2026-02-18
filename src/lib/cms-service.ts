@@ -47,6 +47,8 @@ type CaseStudyRow = {
   results_cz?: { label: string; value: string }[] | null;
   card_summary?: string | null;
   card_summary_cz?: string | null;
+  tags?: string[] | null;
+  employee_count?: string | null;
 };
 
 // Supabase client is imported from shared module
@@ -89,6 +91,8 @@ const mapCaseStudyRow = (row: CaseStudyRow): CaseStudy => ({
   results: row.results || [],
   content: row.content,
   coverImage: row.cover_image || undefined,
+  tags: row.tags || undefined,
+  employeeCount: row.employee_count || undefined,
   publishedAt: row.published_at,
   status: row.status,
   title_cz: row.title_cz || undefined,
