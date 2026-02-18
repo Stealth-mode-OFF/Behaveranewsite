@@ -66,7 +66,7 @@ const inviteCopy = {
   cz: {
     title: "Pozvěte kolegy",
     subtitle:
-      "Přidejte kolegy, kteří budou s Echo Pulse pracovat. Čím víc lidí, tím lepší data.",
+      "Přidejte kolegy, kteří budou s Behavera pracovat. Čím víc lidí, tím lepší data.",
     privacyNote:
       "Použijeme to pouze k návrhu kolegů k pozvání. Nikdy nečteme vaše e-maily.",
     googleBtn: "Import z Google Workspace",
@@ -105,7 +105,7 @@ const inviteCopy = {
   en: {
     title: "Invite teammates",
     subtitle:
-      "Add colleagues who'll work with Echo Pulse. More people = better data.",
+      "Add colleagues who'll work with Behavera. More people = better data.",
     privacyNote:
       "We'll only use this to suggest colleagues to invite. We never read your emails.",
     googleBtn: "Import from Google Workspace",
@@ -144,7 +144,7 @@ const inviteCopy = {
   de: {
     title: "Kollegen einladen",
     subtitle:
-      "Fügen Sie Kollegen hinzu, die mit Echo Pulse arbeiten werden. Mehr Personen = bessere Daten.",
+      "Fügen Sie Kollegen hinzu, die mit Behavera arbeiten werden. Mehr Personen = bessere Daten.",
     privacyNote:
       "Wir nutzen dies nur, um Kollegen vorzuschlagen. Wir lesen niemals Ihre E-Mails.",
     googleBtn: "Import aus Google Workspace",

@@ -15,15 +15,15 @@ export function PrivacyPolicyPage() {
   const isCz = language === 'cz';
   const isDe = language === 'de';
   const pageTitle = isCz
-    ? 'Ochrana osobních údajů – Echo Pulse'
+    ? 'Ochrana osobních údajů – Behavera'
     : isDe
-    ? 'Datenschutz – Echo Pulse'
-    : 'Privacy Policy – Echo Pulse';
+    ? 'Datenschutz – Behavera'
+    : 'Privacy Policy – Behavera';
   const pageDescription = isCz
-    ? 'Zásady ochrany osobních údajů služby Echo Pulse.'
+    ? 'Zásady ochrany osobních údajů služby Behavera.'
     : isDe
-    ? 'Datenschutzrichtlinie für den Echo Pulse Service.'
-    : 'Privacy Policy for the Echo Pulse Service.';
+    ? 'Datenschutzrichtlinie für den Behavera Service.'
+    : 'Privacy Policy for the Behavera Service.';
 
   useSEO({
     title: pageTitle,

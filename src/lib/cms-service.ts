@@ -151,8 +151,8 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
     industry_cz: 'Technologie / 3D tisk',
     challenge: 'Průša Research chtěla ověřit, jak jsou klíčové hodnoty a firemní kultura vnímány napříč organizací, a získat kvalitní datový podklad pro další strategická rozhodnutí v oblasti employer brandu.',
     challenge_cz: 'Průša Research chtěla ověřit, jak jsou klíčové hodnoty a firemní kultura vnímány napříč organizací, a získat kvalitní datový podklad pro další strategická rozhodnutí v oblasti employer brandu.',
-    solution: 'Využili Echo Pulse od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition). Krátký, konverzační formát dotazníku zapojil 60,1 % zaměstnanců během několika dní.',
-    solution_cz: 'Využili Echo Pulse od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition). Krátký, konverzační formát dotazníku zapojil 60,1 % zaměstnanců během několika dní.',
+    solution: 'Využili Behavera od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition). Krátký, konverzační formát dotazníku zapojil 60,1 % zaměstnanců během několika dní.',
+    solution_cz: 'Využili Behavera od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition). Krátký, konverzační formát dotazníku zapojil 60,1 % zaměstnanců během několika dní.',
     results: [
       { label: 'Time to complete', value: '3 min' },
       { label: 'Employees incl. production', value: '1000+' }
@@ -161,14 +161,14 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
       { label: 'Čas na vyplnění', value: '3 min' },
       { label: 'Zaměstnanců i ve výrobě', value: '1000+' }
     ],
-    cardSummary: 'In just three minutes per employee, Prusa Research verified their core values and employer brand, engaging 60.1% of staff across production and office teams with Echo Pulse.',
-    cardSummary_cz: 'Za pouhé tři minuty na zaměstnance ověřila Prusa Research své klíčové hodnoty a employer brand. Do Echo Pulse se zapojilo 60,1 % lidí napříč výrobou i kancelářskými týmy.',
+    cardSummary: 'In just three minutes per employee, Prusa Research verified their core values and employer brand, engaging 60.1% of staff across production and office teams with Behavera.',
+    cardSummary_cz: 'Za pouhé tři minuty na zaměstnance ověřila Prusa Research své klíčové hodnoty a employer brand. Do Behavera se zapojilo 60,1 % lidí napříč výrobou i kancelářskými týmy.',
     content: `
       <h2>Cíl</h2>
       <p>Cílem první fáze spolupráce s Behaverou bylo získat strukturovanou a otevřenou zpětnou vazbu od zaměstnanců a ověřit, jaký přínos může mít systematický sběr dat pro další rozvoj employer brandu. Zároveň chtělo vedení posoudit, jak může tento přístup zapadnout do jejich dlouhodobé HR a komunikační strategie.</p>
 
       <h2>Řešení</h2>
-      <p>S cílem zapojit zaměstnance napříč celou organizací se v Průša Research rozhodli využít Echo Pulse od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition).</p>
+      <p>S cílem zapojit zaměstnance napříč celou organizací se v Průša Research rozhodli využít Behavera od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition).</p>
       <p>Krátký, konverzační formát dotazníku a jeho integrace do interních nástrojů umožnily oslovit lidi napříč týmy během několika dní a získat jejich pohled na to, za čím firma skutečně stojí.</p>
       <p>Do průzkumu se zapojilo 60,1 % zaměstnanců, což je v kontextu velkých výrobních organizací nadprůměrný výsledek a potvrzuje vysokou míru zapojení i důvěry v celý proces.</p>
       <p>V týmech se často objevovala zpětná vazba – <blockquote>"Je super, že se někdo ptá, co si opravdu myslíme"</blockquote> a že vyplnění dotazníku bylo rychlejší a jednodušší, než čekali.</p>
@@ -190,7 +190,7 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
       <p>Cílem první fáze spolupráce s Behaverou bylo získat strukturovanou a otevřenou zpětnou vazbu od zaměstnanců a ověřit, jaký přínos může mít systematický sběr dat pro další rozvoj employer brandu. Zároveň chtělo vedení posoudit, jak může tento přístup zapadnout do jejich dlouhodobé HR a komunikační strategie.</p>
 
       <h2>Řešení</h2>
-      <p>S cílem zapojit zaměstnance napříč celou organizací se v Průša Research rozhodli využít Echo Pulse od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition).</p>
+      <p>S cílem zapojit zaměstnance napříč celou organizací se v Průša Research rozhodli využít Behavera od Behavery zaměřený na téma hodnot a firemní identity (Employee Value Proposition).</p>
       <p>Krátký, konverzační formát dotazníku a jeho integrace do interních nástrojů umožnily oslovit lidi napříč týmy během několika dní a získat jejich pohled na to, za čím firma skutečně stojí.</p>
       <p>Do průzkumu se zapojilo 60,1 % zaměstnanců, což je v kontextu velkých výrobních organizací nadprůměrný výsledek a potvrzuje vysokou míru zapojení i důvěry v celý proces.</p>
       <p>V týmech se často objevovala zpětná vazba – <blockquote>"Je super, že se někdo ptá, co si opravdu myslíme"</blockquote> a že vyplnění dotazníku bylo rychlejší a jednodušší, než čekali.</p>
@@ -241,12 +241,12 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
       <p>Although the team put effort into identifying the root causes, their internal analyses were time-consuming, based on subjective impressions. Employee surveys and in-depth interviews took up to 7 working days per cycle, with only a 59% response rate despite repeated reminders. Poorly formulated questions and evaluator bias distorted the results.</p>
 
       <h2>Solution</h2>
-      <p>Thanks to Behavera, Expando gained an objective understanding of the challenges they face for the first time. Analysis using the targeted Echo Pulse survey revealed key issues: not only ineffective communication within and between teams and a lack of recognition, but also low employee motivation and limited growth opportunities.</p>
+      <p>Thanks to Behavera, Expando gained an objective understanding of the challenges they face for the first time. Analysis using the targeted Behavera survey revealed key issues: not only ineffective communication within and between teams and a lack of recognition, but also low employee motivation and limited growth opportunities.</p>
       <p>For employees who felt stuck and demotivated — unable to fully use their potential and lacking a challenge to grow — Expando introduced expert roles. These roles gave them more responsibility, autonomy, and, most importantly, a sense of purpose.</p>
-      <blockquote>"Echo Pulse nám dal objektivní pohled na problémy, které jsme tušili, ale neuměli pojmenovat." — Dominik Hegedüs, CEO Expando</blockquote>
+      <blockquote>"Behavera nám dal objektivní pohled na problémy, které jsme tušili, ale neuměli pojmenovat." — Dominik Hegedüs, CEO Expando</blockquote>
 
       <h2>Result</h2>
-      <p>Within three months of launching the first Echo Pulse, internal collaboration improved thanks to regular information sharing, clear goals, and a newly defined set of processes. One key achievement was the strong growth on the Kaufland marketplace, driven by an employee who, after stepping into her new role as Key Account Manager, activated 18% more clients on the platform and increased overall sales there by 14.5% in just 8 months. She even helped one of Expando's top clients boost their sales volume by 37%.</p>
+      <p>Within three months of launching the first Behavera, internal collaboration improved thanks to regular information sharing, clear goals, and a newly defined set of processes. One key achievement was the strong growth on the Kaufland marketplace, driven by an employee who, after stepping into her new role as Key Account Manager, activated 18% more clients on the platform and increased overall sales there by 14.5% in just 8 months. She even helped one of Expando's top clients boost their sales volume by 37%.</p>
       <p>Regular surveys now take employees just three minutes to complete and reach 84% participation — 25% more than with previous in-house questionnaires. HR can now complete the entire feedback cycle, including creation of a presentation, in one day instead of the original seven.</p>
     `,
     content_cz: `
@@ -255,12 +255,12 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
       <p>Přestože tým investoval úsilí do identifikace příčin, jejich interní analýzy byly časově náročné a založené na subjektivních dojmech. Zaměstnanecké průzkumy a hloubkové rozhovory trvaly až 7 pracovních dní na cyklus, s pouze 59% návratností i přes opakované připomínky. Špatně formulované otázky a zaujatost hodnotitelů zkreslovaly výsledky.</p>
 
       <h2>Řešení</h2>
-      <p>Díky Behaveře získalo Expando poprvé objektivní pohled na výzvy, kterým čelí. Analýza cíleným průzkumem Echo Pulse odhalila klíčové problémy: nejen neefektivní komunikaci uvnitř týmů i mezi nimi a nedostatek uznání, ale také nízkou motivaci zaměstnanců a omezené možnosti růstu.</p>
+      <p>Díky Behaveře získalo Expando poprvé objektivní pohled na výzvy, kterým čelí. Analýza cíleným průzkumem Behavera odhalila klíčové problémy: nejen neefektivní komunikaci uvnitř týmů i mezi nimi a nedostatek uznání, ale také nízkou motivaci zaměstnanců a omezené možnosti růstu.</p>
       <p>Pro zaměstnance, kteří se cítili zaseknutí a demotivovaní — nemohli plně využít svůj potenciál a chyběla jim výzva k růstu — Expando zavedlo expertní role. Ty jim daly více zodpovědnosti, autonomie a především smysl.</p>
-      <blockquote>"Echo Pulse nám dal objektivní pohled na problémy, které jsme tušili, ale neuměli pojmenovat." — Dominik Hegedüs, CEO Expando</blockquote>
+      <blockquote>"Behavera nám dal objektivní pohled na problémy, které jsme tušili, ale neuměli pojmenovat." — Dominik Hegedüs, CEO Expando</blockquote>
 
       <h2>Výsledky</h2>
-      <p>Během tří měsíců od spuštění prvního Echo Pulse se interní spolupráce zlepšila díky pravidelnému sdílení informací, jasným cílům a nově definované sadě procesů. Klíčovým úspěchem byl silný růst na marketplace Kaufland — zaměstnankyně, která po přechodu na pozici Key Account Manager aktivovala o 18 % více klientů na platformě a zvýšila celkové prodeje o 14,5 % za pouhých 8 měsíců. Jednomu z top klientů Expanda dokonce pomohla zvýšit objem prodejů o 37 %.</p>
+      <p>Během tří měsíců od spuštění prvního Behavera se interní spolupráce zlepšila díky pravidelnému sdílení informací, jasným cílům a nově definované sadě procesů. Klíčovým úspěchem byl silný růst na marketplace Kaufland — zaměstnankyně, která po přechodu na pozici Key Account Manager aktivovala o 18 % více klientů na platformě a zvýšila celkové prodeje o 14,5 % za pouhých 8 měsíců. Jednomu z top klientů Expanda dokonce pomohla zvýšit objem prodejů o 37 %.</p>
       <p>Pravidelné průzkumy nyní zaměstnancům zaberou jen tři minuty a dosahují 84% účasti — o 25 % více než dříve u interních dotazníků. HR nyní zvládne celý cyklus zpětné vazby včetně prezentace za jeden den místo původních sedmi.</p>
     `,
     coverImage: 'https://cdn.prod.website-files.com/63d2c5297fe3f5119d5e8eba/68932021e3812af317591450_2025-05-13-expando-by-lukasneasi-48%20(1).jpg',

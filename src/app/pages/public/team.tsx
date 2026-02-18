@@ -60,7 +60,7 @@ const translations = {
     backHome: 'Zpět domů',
     badge: 'Náš tým',
     title: 'Poznejte tým',
-    titleHighlight: 'Echo Pulse',
+    titleHighlight: 'Behavera',
     subtitle: 'Lidé, kteří stojí za transformací HR pomocí dat a AI.',
     experienceTitle: 'Zkušenosti',
     educationTitle: 'Vzdělání',
@@ -96,7 +96,7 @@ const translations = {
         role: 'Head of Product',
         focus: 'HR Analytics · Digital Learning',
         shortBio: '40 knih/měsíc. Vysvětlí i multivarianty.',
-        fullBio: 'Igor je mozkem za produktovou strategií Echo Pulse. S 15+ lety zkušeností v HR tech a digital learning designu přináší unikátní pohled na to, jak transformovat abstraktní behaviorální data do praktických poznatků pro manažery. Je posedý tím, aby komplexní věci byly jednoduché.',
+        fullBio: 'Igor je mozkem za produktovou strategií Behavera. S 15+ lety zkušeností v HR tech a digital learning designu přináší unikátní pohled na to, jak transformovat abstraktní behaviorální data do praktických poznatků pro manažery. Je posedý tím, aby komplexní věci byly jednoduché.',
         quote: 'Data bez kontextu jsou jen čísla. Náš úkol je dát jim příběh.',
         location: 'Praha, Česká republika',
         experience: [
@@ -121,7 +121,7 @@ const translations = {
         role: 'CTO',
         focus: 'AI · Security · Infrastructure',
         shortBio: 'Systémy běží. Vždy.',
-        fullBio: 'Dušan je architekt technologického stacku Echo Pulse. S 20+ lety v software engineering a security přináší stabilitu a škálovatelnost, kterou enterprise klienti vyžadují. Pod jeho vedením systémy běží s 99.99% uptime.',
+        fullBio: 'Dušan je architekt technologického stacku Behavera. S 20+ lety v software engineering a security přináší stabilitu a škálovatelnost, kterou enterprise klienti vyžadují. Pod jeho vedením systémy běží s 99.99% uptime.',
         quote: 'Nejlepší infrastruktura je ta, o které nikdo neví. Protože prostě funguje.',
         location: 'Brno, Česká republika',
         experience: [
@@ -166,7 +166,7 @@ const translations = {
         role: 'Customer Success',
         focus: 'HR Advisory · Content',
         shortBio: 'Propojuje lidi s produktem.',
-        fullBio: 'Veronika zajišťuje, že každý klient získá maximální hodnotu z Echo Pulse. S pozadím v HR advisory přináší hluboké porozumění výzvám, kterým HR týmy čelí, a pomáhá jim transformovat data do reálných změn.',
+        fullBio: 'Veronika zajišťuje, že každý klient získá maximální hodnotu z Behavera. S pozadím v HR advisory přináší hluboké porozumění výzvám, kterým HR týmy čelí, a pomáhá jim transformovat data do reálných změn.',
         location: 'Praha, Česká republika',
         experience: [
           'Customer Success @ Behavera (2023–)',
@@ -232,7 +232,7 @@ const translations = {
     backHome: 'Back home',
     badge: 'Our Team',
     title: 'Meet the',
-    titleHighlight: 'Echo Pulse team',
+    titleHighlight: 'Behavera team',
     subtitle: 'The people transforming HR with data and AI.',
     experienceTitle: 'Experience',
     educationTitle: 'Education',
@@ -268,7 +268,7 @@ const translations = {
         role: 'Head of Product',
         focus: 'HR Analytics · Digital Learning',
         shortBio: '40 books/month. Makes stats simple.',
-        fullBio: 'Igor is the brain behind Echo Pulse\'s product strategy. With 15+ years in HR tech and digital learning design, he brings a unique perspective on transforming abstract behavioral data into actionable insights. He\'s obsessed with making complex things simple.',
+        fullBio: 'Igor is the brain behind Behavera\'s product strategy. With 15+ years in HR tech and digital learning design, he brings a unique perspective on transforming abstract behavioral data into actionable insights. He\'s obsessed with making complex things simple.',
         quote: 'Data without context is just numbers. Our job is to give them a story.',
         location: 'Prague, Czech Republic',
         experience: [
@@ -293,7 +293,7 @@ const translations = {
         role: 'CTO',
         focus: 'AI · Security · Infrastructure',
         shortBio: 'Systems run. Always.',
-        fullBio: 'Dušan is the architect of Echo Pulse\'s technology stack. With 20+ years in software engineering and security, he brings the stability and scalability that enterprise clients demand. Under his leadership, systems run with 99.99% uptime.',
+        fullBio: 'Dušan is the architect of Behavera\'s technology stack. With 20+ years in software engineering and security, he brings the stability and scalability that enterprise clients demand. Under his leadership, systems run with 99.99% uptime.',
         quote: 'The best infrastructure is one nobody knows about. Because it just works.',
         location: 'Brno, Czech Republic',
         experience: [
@@ -338,7 +338,7 @@ const translations = {
         role: 'Customer Success',
         focus: 'HR Advisory · Content',
         shortBio: 'Connects people with product.',
-        fullBio: 'Veronika ensures every client gets maximum value from Echo Pulse. With a background in HR advisory, she brings deep understanding of the challenges HR teams face and helps them transform data into real change.',
+        fullBio: 'Veronika ensures every client gets maximum value from Behavera. With a background in HR advisory, she brings deep understanding of the challenges HR teams face and helps them transform data into real change.',
         location: 'Prague, Czech Republic',
         experience: [
           'Customer Success @ Behavera (2023–)',
@@ -404,7 +404,7 @@ const translations = {
     backHome: 'Zurück zur Startseite',
     badge: 'Unser Team',
     title: 'Lernen Sie das',
-    titleHighlight: 'Echo Pulse Team kennen',
+    titleHighlight: 'Behavera Team kennen',
     subtitle: 'Die Menschen, die HR mit Daten und KI transformieren.',
     experienceTitle: 'Erfahrung',
     educationTitle: 'Ausbildung',
@@ -440,7 +440,7 @@ const translations = {
         role: 'Head of Product',
         focus: 'HR Analytics · Digital Learning',
         shortBio: '40 Bücher/Monat. Macht Statistik einfach.',
-        fullBio: 'Igor ist das Gehirn hinter der Produktstrategie von Echo Pulse. Mit über 15 Jahren Erfahrung in HR-Tech und Digital Learning Design bringt er eine einzigartige Perspektive ein.',
+        fullBio: 'Igor ist das Gehirn hinter der Produktstrategie von Behavera. Mit über 15 Jahren Erfahrung in HR-Tech und Digital Learning Design bringt er eine einzigartige Perspektive ein.',
         quote: 'Daten ohne Kontext sind nur Zahlen. Unsere Aufgabe ist es, ihnen eine Geschichte zu geben.',
         location: 'Prag, Tschechische Republik',
         experience: [
@@ -464,7 +464,7 @@ const translations = {
         role: 'CTO',
         focus: 'AI · Security · Infrastructure',
         shortBio: 'Systeme laufen. Immer.',
-        fullBio: 'Dušan ist der Architekt des Technologie-Stacks von Echo Pulse. Mit über 20 Jahren Erfahrung in Software Engineering und Sicherheit bringt er die Stabilität und Skalierbarkeit, die Enterprise-Kunden fordern.',
+        fullBio: 'Dušan ist der Architekt des Technologie-Stacks von Behavera. Mit über 20 Jahren Erfahrung in Software Engineering und Sicherheit bringt er die Stabilität und Skalierbarkeit, die Enterprise-Kunden fordern.',
         quote: 'Die beste Infrastruktur ist die, von der niemand weiß. Weil sie einfach funktioniert.',
         location: 'Brünn, Tschechische Republik',
         experience: [
@@ -509,7 +509,7 @@ const translations = {
         role: 'Customer Success',
         focus: 'HR Advisory · Content',
         shortBio: 'Verbindet Menschen mit Produkt.',
-        fullBio: 'Veronika stellt sicher, dass jeder Kunde den maximalen Wert aus Echo Pulse erhält. Mit einem Hintergrund in HR-Beratung bringt sie tiefes Verständnis für die Herausforderungen von HR-Teams mit.',
+        fullBio: 'Veronika stellt sicher, dass jeder Kunde den maximalen Wert aus Behavera erhält. Mit einem Hintergrund in HR-Beratung bringt sie tiefes Verständnis für die Herausforderungen von HR-Teams mit.',
         location: 'Prag, Tschechische Republik',
         experience: [
           'Customer Success @ Behavera (2023–)',
@@ -578,7 +578,7 @@ export function TeamPage() {
   const t = translations[language] || translations.en;
 
   useSEO({
-    title: `${t.badge} | Echo Pulse`,
+    title: `${t.badge} | Behavera`,
     description: t.subtitle,
     ogType: 'website',
     canonicalUrl: `${SITE_ORIGIN}/team`,

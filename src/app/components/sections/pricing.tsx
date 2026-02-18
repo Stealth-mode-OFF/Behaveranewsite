@@ -44,7 +44,7 @@ const pricingCopy = {
     ],
     ctaPrimary: "Objednat pro celou firmu",
     ctaSecondary: "Otestovat 1 tým zdarma →",
-    trustLine: "Už přes 50 firem důvěřuje Echo Pulse",
+    trustLine: "Už přes 50 firem důvěřuje Behavera",
     roiTitle: " ROI za 30 dní",
     roiDesc: "Průměrná firma ušetří 3× investici díky nižší fluktuaci.",
   },
@@ -88,7 +88,7 @@ const pricingCopy = {
     ],
     ctaPrimary: "Für Ihr Unternehmen bestellen",
     ctaSecondary: "1 Team kostenlos testen →",
-    trustLine: "Über 50 Unternehmen vertrauen Echo Pulse",
+    trustLine: "Über 50 Unternehmen vertrauen Behavera",
     roiTitle: " ROI in 30 Tagen",
     roiDesc: "Durchschnittliches Unternehmen spart das 3-fache der Investition durch geringere Fluktuation.",
   },
@@ -402,7 +402,7 @@ export function PurchaseSection() {
                 
                 <div className="mt-8 relative space-y-3">
                   <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 text-[16px] group" size="lg">
-                    <a href="https://www.echopulse.cz/start" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.behavera.com/start" target="_blank" rel="noopener noreferrer">
                       <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                       {pc.ctaPrimary}
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

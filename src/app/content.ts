@@ -17,7 +17,7 @@ const titleOverrides: Record<string, string> = {
   "/privacy-policy": "Zásady ochrany osobních údajů",
   "/terms": "Obchodní a produktové podmínky",
   "/products-pricing": "Produkty a ceny",
-  "/engagement": "Engagement (Echo Pulse)",
+  "/engagement": "Engagement (Behavera)",
   "/hiring": "Hiring & onboarding",
   "/core-competencies": "Core competencies",
   "/culture-fit": "Culture fit",

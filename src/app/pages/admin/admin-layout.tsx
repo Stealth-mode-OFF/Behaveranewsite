@@ -87,7 +87,7 @@ export function AdminLayout() {
         <div className="h-16 flex items-center px-6 border-b border-brand-border/40">
            <div className="flex items-center gap-2">
              <div className="w-8 h-8 rounded-lg bg-brand-primary flex items-center justify-center text-white font-bold">EP</div>
-             <span className="text-lg font-bold text-brand-text-primary tracking-tight">Echo Pulse</span>
+             <span className="text-lg font-bold text-brand-text-primary tracking-tight">Behavera</span>
            </div>
         </div>
         
@@ -131,7 +131,7 @@ export function AdminLayout() {
              <SheetContent side="left" className="w-72 p-0 border-r border-brand-border/60">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                <div className="h-16 flex items-center px-6 border-b border-brand-border/40 bg-brand-background-primary">
-                  <span className="text-lg font-bold text-brand-text-primary">Echo Pulse</span>
+                  <span className="text-lg font-bold text-brand-text-primary">Behavera</span>
                 </div>
                 <div className="p-4 flex flex-col h-[calc(100vh-64px)] bg-brand-background-primary">
                   <div className="flex-1">

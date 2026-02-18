@@ -1,4 +1,4 @@
-export const SITE_ORIGIN = "https://echopulse.cz";
+export const SITE_ORIGIN = "https://www.behavera.com";
 
 export const BEHAVERA_APP_BASE_URL = "https://app.behavera.com";
 

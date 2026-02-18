@@ -16,7 +16,7 @@ import { trackCookieConsent } from '@/lib/analytics';
  * - Supports 3 languages
  */
 
-const COOKIE_CONSENT_KEY = 'echopulse_cookie_consent';
+const COOKIE_CONSENT_KEY = 'behavera_cookie_consent';
 const COOKIE_CONSENT_VERSION = '1'; // Bump this to re-ask users
 
 type ConsentState = {

@@ -44,7 +44,7 @@ const cz: LangCopy = {
     icon: Briefcase,
     color: "#1a0a3e",
     meta: {
-      title: "Echo Pulse pro CEO & Founders — Viditelnost, ne intuice",
+      title: "Behavera pro CEO & Founders — Viditelnost, ne intuice",
       description: "Přestaňte hádat, jak se vaši lidé cítí. Real-time engagement data pro strategická rozhodnutí.",
     },
     hero: {
@@ -70,14 +70,14 @@ const cz: LangCopy = {
     icon: Users,
     color: "#7C3AED",
     meta: {
-      title: "Echo Pulse pro HR — Prevence, ne hašení požárů",
+      title: "Behavera pro HR — Prevence, ne hašení požárů",
       description: "Identifikujte rizikové zaměstnance a týmy předtím, než dají výpověď. Proaktivní engagement platforma pro HR.",
     },
     hero: {
       badge: "Pro HR",
       title: "Z reaktivního HR na",
       titleHighlight: " proaktivní strategii",
-      subtitle: "Přestaňte hasit požáry. Echo Pulse vám pomůže identifikovat rizika předtím, než se stanou problémem.",
+      subtitle: "Přestaňte hasit požáry. Behavera vám pomůže identifikovat rizika předtím, než se stanou problémem.",
     },
     benefits: [
       { icon: ShieldAlert, title: "Prediktivní alerty", desc: "Automatická upozornění na zaměstnance s vysokým rizikem odchodu." },
@@ -88,7 +88,7 @@ const cz: LangCopy = {
     stats: [
       { value: "80 %+", label: "response rate (vs 25 % u klasických průzkumů)" },
       { value: "6 měs.", label: "predikce odchodů předem" },
-      { value: "50 000+", label: "zaměstnanců důvěřuje Echo Pulse" },
+      { value: "50 000+", label: "zaměstnanců důvěřuje Behavera" },
     ],
     cta: { title: "Chcete vidět, jak to funguje pro HR?", button: "Domluvit demo", micro: "30 min · Zdarma · Bez závazků" },
   },
@@ -96,7 +96,7 @@ const cz: LangCopy = {
     icon: Target,
     color: "#D97706",
     meta: {
-      title: "Echo Pulse pro Team Leads — Zdravý tým = lepší výsledky",
+      title: "Behavera pro Team Leads — Zdravý tým = lepší výsledky",
       description: "Pochopte dynamiku svého týmu a získejte nástroje pro budování zdravého pracovního prostředí.",
     },
     hero: {
@@ -125,7 +125,7 @@ const en: LangCopy = {
     icon: Briefcase,
     color: "#1a0a3e",
     meta: {
-      title: "Echo Pulse for CEOs & Founders — Visibility, not guesswork",
+      title: "Behavera for CEOs & Founders — Visibility, not guesswork",
       description: "Stop guessing how your people feel. Real-time engagement data for strategic people decisions.",
     },
     hero: {
@@ -151,14 +151,14 @@ const en: LangCopy = {
     icon: Users,
     color: "#7C3AED",
     meta: {
-      title: "Echo Pulse for HR — Prevention, not firefighting",
+      title: "Behavera for HR — Prevention, not firefighting",
       description: "Identify at-risk employees and teams before they resign. Proactive engagement platform for HR leaders.",
     },
     hero: {
       badge: "For HR Leaders",
       title: "From reactive HR to",
       titleHighlight: " proactive strategy",
-      subtitle: "Stop firefighting. Echo Pulse helps you identify risks before they become problems.",
+      subtitle: "Stop firefighting. Behavera helps you identify risks before they become problems.",
     },
     benefits: [
       { icon: ShieldAlert, title: "Predictive alerts", desc: "Automatic notifications for employees with high departure risk." },
@@ -169,7 +169,7 @@ const en: LangCopy = {
     stats: [
       { value: "80%+", label: "response rate (vs 25% for traditional surveys)" },
       { value: "6 mo.", label: "departure prediction in advance" },
-      { value: "50,000+", label: "employees trust Echo Pulse" },
+      { value: "50,000+", label: "employees trust Behavera" },
     ],
     cta: { title: "Want to see how it works for HR?", button: "Book a demo", micro: "30 min · Free · No commitment" },
   },
@@ -177,7 +177,7 @@ const en: LangCopy = {
     icon: Target,
     color: "#D97706",
     meta: {
-      title: "Echo Pulse for Team Leads — Healthy team = better results",
+      title: "Behavera for Team Leads — Healthy team = better results",
       description: "Understand your team dynamics and get tools to build a healthy work environment.",
     },
     hero: {
@@ -206,7 +206,7 @@ const de: LangCopy = {
     icon: Briefcase,
     color: "#1a0a3e",
     meta: {
-      title: "Echo Pulse für CEOs & Gründer — Sichtbarkeit statt Bauchgefühl",
+      title: "Behavera für CEOs & Gründer — Sichtbarkeit statt Bauchgefühl",
       description: "Hören Sie auf zu raten. Echtzeit-Engagement-Daten für strategische Personalentscheidungen.",
     },
     hero: {
@@ -232,14 +232,14 @@ const de: LangCopy = {
     icon: Users,
     color: "#7C3AED",
     meta: {
-      title: "Echo Pulse für HR — Prävention statt Feuerlöschen",
+      title: "Behavera für HR — Prävention statt Feuerlöschen",
       description: "Identifizieren Sie gefährdete Mitarbeiter, bevor sie kündigen. Proaktive Engagement-Plattform für HR.",
     },
     hero: {
       badge: "Für HR-Leiter",
       title: "Von reaktivem HR zu",
       titleHighlight: " proaktiver Strategie",
-      subtitle: "Hören Sie auf, Brände zu löschen. Echo Pulse hilft Ihnen, Risiken zu erkennen, bevor sie zu Problemen werden.",
+      subtitle: "Hören Sie auf, Brände zu löschen. Behavera hilft Ihnen, Risiken zu erkennen, bevor sie zu Problemen werden.",
     },
     benefits: [
       { icon: ShieldAlert, title: "Prädiktive Alerts", desc: "Automatische Benachrichtigungen für Mitarbeiter mit hohem Abgangsrisiko." },
@@ -250,7 +250,7 @@ const de: LangCopy = {
     stats: [
       { value: "80 %+", label: "Rücklaufquote (vs 25 % bei klassischen Umfragen)" },
       { value: "6 Mon.", label: "Vorhersage von Abgängen" },
-      { value: "50.000+", label: "Mitarbeiter vertrauen Echo Pulse" },
+      { value: "50.000+", label: "Mitarbeiter vertrauen Behavera" },
     ],
     cta: { title: "Sehen, wie es für HR funktioniert?", button: "Demo buchen", micro: "30 Min · Kostenlos · Unverbindlich" },
   },
@@ -258,7 +258,7 @@ const de: LangCopy = {
     icon: Target,
     color: "#D97706",
     meta: {
-      title: "Echo Pulse für Team Leads — Gesundes Team = bessere Ergebnisse",
+      title: "Behavera für Team Leads — Gesundes Team = bessere Ergebnisse",
       description: "Verstehen Sie die Dynamik Ihres Teams und erhalten Sie Werkzeuge für ein gesundes Arbeitsumfeld.",
     },
     hero: {

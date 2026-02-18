@@ -8,21 +8,21 @@ import { Check, X, ArrowRight, AlertTriangle, Zap, BarChart3, Shield, Users } fr
 import { useSEO } from "@/app/hooks/useSEO";
 
 /* ───────────────────────────────────────────────────
- *  Comparison Page — Echo Pulse vs Google Forms
+ *  Comparison Page — Behavera vs Google Forms
  *  SEO landing page targeting "Google Forms employee survey alternative"
  * ─────────────────────────────────────────────────── */
 
 const copy = {
   cz: {
     meta: {
-      title: "Echo Pulse vs Google Forms — Proč přejít na chytřejší engagement",
-      description: "Porovnání Echo Pulse a Google Forms pro měření spokojenosti zaměstnanců. Zjistěte, proč 50 000+ lidí důvěřuje Echo Pulse.",
+      title: "Behavera vs Google Forms — Proč přejít na chytřejší engagement",
+      description: "Porovnání Behavera a Google Forms pro měření spokojenosti zaměstnanců. Zjistěte, proč 50 000+ lidí důvěřuje Behavera.",
     },
     hero: {
       badge: "Srovnání",
       title: "Proč firmy přecházejí z",
       titleHighlight: " Google Forms",
-      subtitle: "Google Forms zvládne anketu. Echo Pulse zachytí signály ještě předtím, než je pozdě.",
+      subtitle: "Google Forms zvládne anketu. Behavera zachytí signály ještě předtím, než je pozdě.",
     },
     painPoints: {
       title: "Kde Google Forms nestačí",
@@ -55,14 +55,14 @@ const copy = {
   },
   en: {
     meta: {
-      title: "Echo Pulse vs Google Forms — Why Smart Teams Switch",
-      description: "Compare Echo Pulse and Google Forms for employee engagement surveys. Discover why 50,000+ people trust Echo Pulse for retention intelligence.",
+      title: "Behavera vs Google Forms — Why Smart Teams Switch",
+      description: "Compare Behavera and Google Forms for employee engagement surveys. Discover why 50,000+ people trust Behavera for retention intelligence.",
     },
     hero: {
       badge: "Comparison",
       title: "Why companies switch from",
       titleHighlight: " Google Forms",
-      subtitle: "Google Forms can run a survey. Echo Pulse catches the signals before it's too late.",
+      subtitle: "Google Forms can run a survey. Behavera catches the signals before it's too late.",
     },
     painPoints: {
       title: "Where Google Forms falls short",
@@ -95,14 +95,14 @@ const copy = {
   },
   de: {
     meta: {
-      title: "Echo Pulse vs Google Forms — Warum kluge Teams wechseln",
-      description: "Vergleichen Sie Echo Pulse und Google Forms für Mitarbeiterbefragungen. Entdecken Sie, warum 50.000+ Mitarbeiter Echo Pulse vertrauen.",
+      title: "Behavera vs Google Forms — Warum kluge Teams wechseln",
+      description: "Vergleichen Sie Behavera und Google Forms für Mitarbeiterbefragungen. Entdecken Sie, warum 50.000+ Mitarbeiter Behavera vertrauen.",
     },
     hero: {
       badge: "Vergleich",
       title: "Warum Unternehmen von",
       titleHighlight: " Google Forms wechseln",
-      subtitle: "Google Forms kann eine Umfrage durchführen. Echo Pulse erkennt die Signale, bevor es zu spät ist.",
+      subtitle: "Google Forms kann eine Umfrage durchführen. Behavera erkennt die Signale, bevor es zu spät ist.",
     },
     painPoints: {
       title: "Wo Google Forms an Grenzen stößt",
@@ -219,7 +219,7 @@ export function ComparisonGoogleFormsPage() {
                 <div className="grid grid-cols-3 text-center font-bold text-sm border-b border-brand-border">
                   <div className="p-4 text-left text-brand-text-muted" />
                   <div className="p-4 bg-gray-50 text-brand-text-secondary">Google Forms</div>
-                  <div className="p-4 bg-brand-primary/5 text-brand-primary">Echo Pulse</div>
+                  <div className="p-4 bg-brand-primary/5 text-brand-primary">Behavera</div>
                 </div>
                 {t.comparison.features.map((row, idx) => (
                   <div

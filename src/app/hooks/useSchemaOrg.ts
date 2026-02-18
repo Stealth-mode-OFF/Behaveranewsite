@@ -39,12 +39,12 @@ function getSchemas(language: string) {
     "@type": "Organization",
     "@id": `${baseUrl}/#organization`,
     "name": "Behavera s.r.o.",
-    "alternateName": ["Echo Pulse", "Behavera"],
+    "alternateName": ["Behavera", "Behavera"],
     "url": baseUrl,
-    "logo": `${baseUrl}/favicon-512.png`,
+    "logo": `${baseUrl}/logo.png`,
     "description": language === 'cz' 
-      ? "Echo Pulse je AI platforma pro predikci fluktuace a vyhoření zaměstnanců. Pomáháme HR a manažerům identifikovat rizika dříve, než se projeví v odchodech."
-      : "Echo Pulse is an AI-powered platform for predicting employee turnover and burnout. We help HR and managers identify risks before they result in resignations.",
+      ? "Behavera je AI platforma pro predikci fluktuace a vyhoření zaměstnanců. Pomáháme HR a manažerům identifikovat rizika dříve, než se projeví v odchodech."
+      : "Behavera is an AI-powered platform for predicting employee turnover and burnout. We help HR and managers identify risks before they result in resignations.",
     "foundingDate": "2018",
     "founders": [{
       "@type": "Person",
@@ -85,7 +85,7 @@ function getSchemas(language: string) {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "@id": `${baseUrl}/#software`,
-    "name": "Echo Pulse",
+    "name": "Behavera",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "People Analytics Software",
     "operatingSystem": "Web-based (SaaS)",
@@ -129,10 +129,10 @@ function getSchemas(language: string) {
     "mainEntity": language === 'cz' ? [
       {
         "@type": "Question",
-        "name": "Jak Echo Pulse predikuje fluktuaci zaměstnanců?",
+        "name": "Jak Behavera predikuje fluktuaci zaměstnanců?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Echo Pulse využívá AI analýzu 9 klíčových oblastí pracovního života (nálada, stres, pracovní zátěž, nástroje, uznání, růst, odměny, benefity, hodnoty). Data sbíráme přes krátké měsíční dotazníky trvající 1-3 minuty. Náš algoritmus založený na modelu JD-R (Job Demands-Resources) identifikuje rizikové vzorce měsíce předtím, než se projeví v odchodech."
+          "text": "Behavera využívá AI analýzu 9 klíčových oblastí pracovního života (nálada, stres, pracovní zátěž, nástroje, uznání, růst, odměny, benefity, hodnoty). Data sbíráme přes krátké měsíční dotazníky trvající 1-3 minuty. Náš algoritmus založený na modelu JD-R (Job Demands-Resources) identifikuje rizikové vzorce měsíce předtím, než se projeví v odchodech."
         }
       },
       {
@@ -145,7 +145,7 @@ function getSchemas(language: string) {
       },
       {
         "@type": "Question",
-        "name": "Jak dlouho trvá implementace Echo Pulse?",
+        "name": "Jak dlouho trvá implementace Behavera?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Základní implementace trvá přibližně 1 hodinu. Zahrnuje nastavení účtu, import zaměstnanců a spuštění prvního měření. Nevyžadujeme integraci s jinými systémy - fungujeme jako standalone řešení."
@@ -153,35 +153,35 @@ function getSchemas(language: string) {
       },
       {
         "@type": "Question",
-        "name": "Jaký je rozdíl mezi Echo Pulse a běžnými engagement průzkumy?",
+        "name": "Jaký je rozdíl mezi Behavera a běžnými engagement průzkumy?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Běžné engagement průzkumy probíhají 1-2× ročně a trvají 20-30 minut. Echo Pulse sbírá data měsíčně v 1-3 minutách, což zajišťuje aktuální přehled bez únavy respondentů. Navíc poskytujeme prediktivní analýzu a konkrétní doporučení pro manažery, ne jen statistiky."
+          "text": "Běžné engagement průzkumy probíhají 1-2× ročně a trvají 20-30 minut. Behavera sbírá data měsíčně v 1-3 minutách, což zajišťuje aktuální přehled bez únavy respondentů. Navíc poskytujeme prediktivní analýzu a konkrétní doporučení pro manažery, ne jen statistiky."
         }
       },
       {
         "@type": "Question",
-        "name": "Je Echo Pulse v souladu s GDPR?",
+        "name": "Je Behavera v souladu s GDPR?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ano, Echo Pulse je plně v souladu s GDPR. Data jsou anonymizována a agregována. Manažeři vidí pouze týmové trendy, nikoli odpovědi jednotlivců. Servery jsou v EU a máme uzavřenou DPA (Data Processing Agreement)."
+          "text": "Ano, Behavera je plně v souladu s GDPR. Data jsou anonymizována a agregována. Manažeři vidí pouze týmové trendy, nikoli odpovědi jednotlivců. Servery jsou v EU a máme uzavřenou DPA (Data Processing Agreement)."
         }
       },
       {
         "@type": "Question",
-        "name": "Pro jak velké firmy je Echo Pulse vhodný?",
+        "name": "Pro jak velké firmy je Behavera vhodný?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Echo Pulse je navržen pro střední a velké firmy s 50+ zaměstnanci. Optimální je pro organizace, kde manažeři vedou týmy 5-15 lidí a potřebují včasné signály o rizicích. Používají nás firmy jako Vodafone, O2, Notino nebo Lidl."
+          "text": "Behavera je navržen pro střední a velké firmy s 50+ zaměstnanci. Optimální je pro organizace, kde manažeři vedou týmy 5-15 lidí a potřebují včasné signály o rizicích. Používají nás firmy jako Vodafone, O2, Notino nebo Lidl."
         }
       }
     ] : [
       {
         "@type": "Question",
-        "name": "How does Echo Pulse predict employee turnover?",
+        "name": "How does Behavera predict employee turnover?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Echo Pulse uses AI analysis of 9 key work-life areas (mood, stress, workload, tools, recognition, growth, rewards, benefits, values). We collect data through short monthly surveys lasting 1-3 minutes. Our algorithm based on the JD-R model (Job Demands-Resources) identifies risk patterns months before they manifest in resignations."
+          "text": "Behavera uses AI analysis of 9 key work-life areas (mood, stress, workload, tools, recognition, growth, rewards, benefits, values). We collect data through short monthly surveys lasting 1-3 minutes. Our algorithm based on the JD-R model (Job Demands-Resources) identifies risk patterns months before they manifest in resignations."
         }
       },
       {
@@ -194,7 +194,7 @@ function getSchemas(language: string) {
       },
       {
         "@type": "Question",
-        "name": "How long does Echo Pulse implementation take?",
+        "name": "How long does Behavera implementation take?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Basic implementation takes approximately 1 hour. It includes account setup, employee import, and launching the first measurement. We don't require integration with other systems - we work as a standalone solution."
@@ -202,10 +202,10 @@ function getSchemas(language: string) {
       },
       {
         "@type": "Question",
-        "name": "Is Echo Pulse GDPR compliant?",
+        "name": "Is Behavera GDPR compliant?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Echo Pulse is fully GDPR compliant. Data is anonymized and aggregated. Managers see only team trends, not individual responses. Servers are in the EU and we have a signed DPA (Data Processing Agreement)."
+          "text": "Yes, Behavera is fully GDPR compliant. Data is anonymized and aggregated. Managers see only team trends, not individual responses. Servers are in the EU and we have a signed DPA (Data Processing Agreement)."
         }
       }
     ]
@@ -220,8 +220,8 @@ function getSchemas(language: string) {
       ? "Jak snížit fluktuaci zaměstnanců pomocí dat"
       : "How to reduce employee turnover using data",
     "description": language === 'cz'
-      ? "Průvodce krok za krokem, jak využít Echo Pulse pro predikci a prevenci odchodů zaměstnanců."
-      : "Step-by-step guide on using Echo Pulse to predict and prevent employee turnover.",
+      ? "Průvodce krok za krokem, jak využít Behavera pro predikci a prevenci odchodů zaměstnanců."
+      : "Step-by-step guide on using Behavera to predict and prevent employee turnover.",
     "totalTime": "P30D",
     "estimatedCost": {
       "@type": "MonetaryAmount",
@@ -245,7 +245,7 @@ function getSchemas(language: string) {
       {
         "@type": "HowToStep",
         "name": "Analyzujte výsledky",
-        "text": "Echo Pulse AI identifikuje rizikové oblasti a konkrétní týmy. Manažeři dostávají jasná doporučení.",
+        "text": "Behavera AI identifikuje rizikové oblasti a konkrétní týmy. Manažeři dostávají jasná doporučení.",
         "url": `${baseUrl}/#solutions`
       },
       {
@@ -268,7 +268,7 @@ function getSchemas(language: string) {
       {
         "@type": "HowToStep",
         "name": "Analyze results",
-        "text": "Echo Pulse AI identifies risk areas and specific teams. Managers receive clear recommendations."
+        "text": "Behavera AI identifies risk areas and specific teams. Managers receive clear recommendations."
       },
       {
         "@type": "HowToStep",
@@ -284,7 +284,7 @@ function getSchemas(language: string) {
     "@type": "WebSite",
     "@id": `${baseUrl}/#website`,
     "url": baseUrl,
-    "name": "Echo Pulse",
+    "name": "Behavera",
     "description": language === 'cz'
       ? "AI platforma pro predikci fluktuace a vyhoření zaměstnanců"
       : "AI platform for predicting employee turnover and burnout",

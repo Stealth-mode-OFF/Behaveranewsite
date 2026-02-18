@@ -83,7 +83,7 @@ export function FAQ() {
             </span>
           </h2>
           <p className="text-lg text-brand-text-secondary max-w-2xl mx-auto">
-            {t.faq?.desc || "Get answers to common questions about Echo Pulse."}
+            {t.faq?.desc || "Get answers to common questions about Behavera."}
           </p>
         </motion.div>
 
@@ -170,7 +170,7 @@ export function FAQ() {
             {language === 'cz' ? "Nenašli jste odpověď?" : language === 'de' ? "Keine Antwort gefunden?" : "Didn't find your answer?"}
           </p>
           <a
-            href="mailto:support@echopulse.cz"
+            href="mailto:support@behavera.com"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-border rounded-xl text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all"
           >
             <Mail className="w-4 h-4" />

@@ -87,7 +87,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Do not rely only on your gut feeling. Collect data and build next steps on them. Notice signals of change—someone is quieter than usual, someone keeps delaying work.</p>
 <p>Do regular 1:1s —sometimes just asking “How are you doing?” is enough. Where to start? Leading a team isn’t just the “next level” of expertise—it’s a completely new discipline. What separates experienced leaders from beginners is understanding that team satisfaction isn’t a one-time goal but a long-term journey. Does it feel like a lot at once? Start simple:</p>
 <p>Schedule 1:1s with your team and ask questions.</p>
-<p>Use Behavera’s Echo Pulse —an anonymous tool that in just a few minutes shows how your team is really doing, what they need, what frustrates them, and what they value. It instantly highlights the biggest risks and gives you tailored recommendations, including concrete questions for your 1:1s.</p>
+<p>Use Behavera’s Behavera —an anonymous tool that in just a few minutes shows how your team is really doing, what they need, what frustrates them, and what they value. It instantly highlights the biggest risks and gives you tailored recommendations, including concrete questions for your 1:1s.</p>
 `,
     content_cz: `
 <p class="lead"><em>Dlouho jste pracovali jako specialisti a lidé se na Vás obraceli</em>, protože víte, jak věci fungují. A pak přišla nabídka: „Nechcete vést tým?“ Zní to logicky – rozumíte práci, máte zkušenosti, znáte prostředí firmy. Jenže role lídra není jen „vyšší level“ Vaší dosavadní kariéry. Je to úplně nová disciplína. Už nejde jen o to být odborníkem, ale hlavně o práci s lidmi.</p>
@@ -136,7 +136,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><strong>1:1 schůzky</strong></p>
 <p>, někdy se stačí jen zeptat</p>
 <p>"Jak se máš? ". Kde začít? Vést tým není „vyšší level“ odbornosti, ale úplně nová disciplína. Právě tato obezřetnost a vědomí, že spokojenost není jednorázový cíl, ale běh na dlouhou trať, odlišuje zkušené lídry od těch začínajících. Zdá se Vám toho najednou hodně? Začněte jednoduše: naplánujte si 1:1 se svým týmem a ptejte se.</p>
-<p>Využijte k tomu Echo Pulse od Behavery - anonymní nástroj, který během pár minut zjistí, jak je váš tým spokojený, co potřebuje, co ho trápí a čeho si cení. Ihned vyhodnotí největší rizika a nabídne doporučení na míru, včetně konkrétních otázek pro vaše 1:1 .</p>
+<p>Využijte k tomu Behavera od Behavery - anonymní nástroj, který během pár minut zjistí, jak je váš tým spokojený, co potřebuje, co ho trápí a čeho si cení. Ihned vyhodnotí největší rizika a nabídne doporučení na míru, včetně konkrétních otázek pro vaše 1:1 .</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200',
     author: BLOG_AUTHORS[0],
@@ -179,7 +179,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>A Successful Leader Knows How - Quickly and Effectively</h2>
 <p>So, what should a leader focus on to support engagement altogether with integrity, loyalty, and transparency across the company? The key is communication and active listening. Beyond regular status updates, make time for</p>
 <p>regular 1:1 conversations and keep an open slot for anyone who needs it. Be open to personal topics and avoid to discuss day-to-day operations in these meetings - these should be addressed elsewhere. Does it sound like a lot of work?</p>
-<p>Echo Pulse by Behavera can do it for you - quickly, securely, and from anywhere. It acts as your extended arm to remote employees, enabling them to regularly, anonymously, and in just a few minutes share what helps them and what holds them back. Topics include satisfaction, workload, recognition, pay, and more - and the list grows with company needs.</p>
+<p>Behavera by Behavera can do it for you - quickly, securely, and from anywhere. It acts as your extended arm to remote employees, enabling them to regularly, anonymously, and in just a few minutes share what helps them and what holds them back. Topics include satisfaction, workload, recognition, pay, and more - and the list grows with company needs.</p>
 <p>Instant, automated dashboards show you both trends and tailored tips , enabling you to:</p>
 <p>respond early to risks and blockers (even if you can’t see them face-to-face), track what truly matters - results - via KPIs and performance reviews, not hours spent in an office chair, lead 1:1s effectively, always knowing what to ask and how, make informed decisions and show your team that their voice truly matters - even when you’re not in the same office every day.</p>
 <h2>Find out what your people truly care about</h2>
@@ -211,7 +211,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>Úspěšný lídr ví, jak na to - rychle a efektivně</h2>
 <p>Na co by se měl tedy zaměřit lídr, který chce podpořit angažovanost a s tím i integritu, loajalitu a transparentnost napříč firmou? Klíčová je komunikace a aktivní naslouchání. Mimo klasické statusy je dobré</p>
 <p>dát prostor jednotlivcům i během 1:1, případně mít další časový slot volný pro kohokoliv, kdo zrovna potřebuje. S tématy buďte otevření i pro sdílení osobnějších věcí, ideálně neřešte pouze operativu - ta by se měla řešit při jiných příležitostech. Cílem je zjistit, zda je váš zaměstnanec spokojený, zda má k práci vše, co potřebuje a co ho případně blokuje. Zní to jako hodně práce?</p>
-<p>Echo Pulse od Behavery to zvládne za vás - rychle, bezpečně a odkudkoli. Funguje jako vaše prodloužená ruka k lidem, kteří pracují na dálku, a umožňuje jim pravidelně, za pár minut a anonymně sdílet, co jim pomáhá i překáží. Témata pokrývají spokojenost, pracovní zátěž, uznání, odměňování a mnoho dalších – a neustále se rozšiřují podle potřeb firem. Okamžité a automatické přehledy vám ukážou jak trendy, tak i praktické tipy šité na míru, a tak jste schopni:</p>
+<p>Behavera od Behavery to zvládne za vás - rychle, bezpečně a odkudkoli. Funguje jako vaše prodloužená ruka k lidem, kteří pracují na dálku, a umožňuje jim pravidelně, za pár minut a anonymně sdílet, co jim pomáhá i překáží. Témata pokrývají spokojenost, pracovní zátěž, uznání, odměňování a mnoho dalších – a neustále se rozšiřují podle potřeb firem. Okamžité a automatické přehledy vám ukážou jak trendy, tak i praktické tipy šité na míru, a tak jste schopni:</p>
 <p>reagovat zavčas na vznikající rizika a blockery (i když je nevidíte přímo před sebou), sledovat pomocí KPIs a performance reviews to, na čem opravdu záleží - výsledky - a ne čas strávený na kancelářské židli, efektivně vést 1:1 - vždy vědět na co a jak se zeptat, dělat informovaná rozhodnutí a ukazovat týmu, že jejich hlas má skutečnou váhu – i když spolu nejste každý den v jedné kanceláři.</p>
 <p><strong>Zjistěte, na čem vašim lidem opravdu záleží</strong> — co je frustruje a co je motivuje — ať už sedí v open space, na verandě u lesa nebo pod palmou.</p>
 <p>Domluvte si demo bez závazků!</p>

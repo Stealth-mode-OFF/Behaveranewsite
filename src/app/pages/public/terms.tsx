@@ -15,15 +15,15 @@ export function TermsPage() {
   const isCz = language === 'cz';
   const isDe = language === 'de';
   const pageTitle = isCz
-    ? 'Podmínky Echo Pulse'
+    ? 'Podmínky Behavera'
     : isDe
-    ? 'Echo Pulse AGB'
-    : 'Echo Pulse Terms';
+    ? 'Behavera AGB'
+    : 'Behavera Terms';
   const pageDescription = isCz
-    ? 'Podmínky a pravidla služby Echo Pulse.'
+    ? 'Podmínky a pravidla služby Behavera.'
     : isDe
-    ? 'Allgemeine Geschäftsbedingungen für Echo Pulse.'
-    : 'Terms and Conditions for the Echo Pulse Service.';
+    ? 'Allgemeine Geschäftsbedingungen für Behavera.'
+    : 'Terms and Conditions for the Behavera Service.';
 
   useSEO({
     title: pageTitle,
@@ -44,7 +44,7 @@ export function TermsPage() {
         </div>
 
         <h1 className="text-3xl font-bold mb-2">
-            {isCz ? "Podmínky a pravidla Služby Echo Pulse" : "Terms and Conditions of the Echo Pulse Service"}
+            {isCz ? "Podmínky a pravidla Služby Behavera" : "Terms and Conditions of the Behavera Service"}
         </h1>
         <p className="text-sm text-brand-text-secondary mb-8">
             {isCz ? "Podmínky a pravidla Služeb Assessmentů jsou k dispozici zde: " : "Terms and Conditions of the Assessments are available here: "}
@@ -65,10 +65,10 @@ export function TermsPage() {
             <section>
                 <h3 className="text-lg font-bold mb-3">1. Úvodní ustanovení</h3>
                 <p className="mb-3">
-                    Těmito obchodními a produktovými podmínkami (dále společně jen „Podmínky“) se řídí vztahy při poskytování a využívání Služby Echo Pulse společnosti Behavera.
+                    Těmito obchodními a produktovými podmínkami (dále společně jen „Podmínky“) se řídí vztahy při poskytování a využívání Služby Behavera společnosti Behavera.
                 </p>
                 <p className="mb-3">
-                    „Služba“ znamená službu Echo Pulse poskytovanou společností Behavera formou vzdáleného přístupu prostřednictvím webového rozhraní, jejímž účelem je umožnit Klientovi získávat anonymní zpětnou vazbu od Účastníků a přehledné analytické výstupy a doporučení související s fungováním týmů a vedením lidí.
+                    „Služba“ znamená službu Behavera poskytovanou společností Behavera formou vzdáleného přístupu prostřednictvím webového rozhraní, jejímž účelem je umožnit Klientovi získávat anonymní zpětnou vazbu od Účastníků a přehledné analytické výstupy a doporučení související s fungováním týmů a vedením lidí.
                 </p>
                 <p className="mb-3">
                     Služba je poskytována v rozsahu a podobě dostupné Klientovi v daném čase a její konkrétní technické řešení, struktura a funkce se mohou v průběhu času měnit.
@@ -195,7 +195,7 @@ export function TermsPage() {
                 <h5 className="font-semibold mb-1 text-sm text-brand-text-secondary">Role smluvních stran</h5>
                 <p className="mb-2">
                     Klient vystupuje jako správce osobních údajů ve smyslu GDPR, neboť určuje účel a prostředky zpracování osobních údajů Účastníků.
-                    Společnost Behavera vystupuje jako zpracovatel osobních údajů a zpracovává osobní údaje výhradně na základě pokynů Klienta a v rozsahu nezbytném pro poskytování Služby Echo Pulse.
+                    Společnost Behavera vystupuje jako zpracovatel osobních údajů a zpracovává osobní údaje výhradně na základě pokynů Klienta a v rozsahu nezbytném pro poskytování Služby Behavera.
                 </p>
 
                 <h5 className="font-semibold mb-1 text-sm text-brand-text-secondary">Předmět, doba a účel zpracování</h5>
@@ -383,7 +383,7 @@ export function TermsPage() {
                     Tyto obchodní podmínky se použijí rovněž na veškeré smluvní vztahy mezi společností Behavera a Klienty vzniklé přede dnem jejich účinnosti, a to ode dne, kdy se Klient po nabytí jejich účinnosti poprvé přihlásí do Služby nebo ji jinak začne využívat.
                 </p>
                 <p>
-                    V případě jakékoli nejednoznačnosti, nesrovnalosti nebo sporu ohledně výkladu nebo významu těchto Podmínek má přednost česká jazyková verze, která se považuje za rozhodnou. Aktuální verze Podmínek a pravidel Služby Echo Pulse je k dispozici na adrese: <a href="https://cz.behavera.com/terms" className="text-brand-primary underline">cz.behavera.com/terms</a>.
+                    V případě jakékoli nejednoznačnosti, nesrovnalosti nebo sporu ohledně výkladu nebo významu těchto Podmínek má přednost česká jazyková verze, která se považuje za rozhodnou. Aktuální verze Podmínek a pravidel Služby Behavera je k dispozici na adrese: <a href="https://cz.behavera.com/terms" className="text-brand-primary underline">cz.behavera.com/terms</a>.
                 </p>
             </section>
         </div>
@@ -399,10 +399,10 @@ export function TermsPage() {
             <section>
                 <h3 className="text-lg font-bold mb-3">1. Introductory Provisions</h3>
                 <p className="mb-3">
-                    These commercial and product terms and conditions (hereinafter collectively referred to as the “Terms”) govern the legal relationships arising in connection with the provision and use of the Echo Pulse service by Behavera.
+                    These commercial and product terms and conditions (hereinafter collectively referred to as the “Terms”) govern the legal relationships arising in connection with the provision and use of the Behavera service by Behavera.
                 </p>
                 <p className="mb-3">
-                    The “Service” means the Echo Pulse service provided by Behavera through remote access via a web-based interface, the purpose of which is to enable the Client to obtain anonymous feedback from Participants and to receive clear analytical outputs and recommendations related to team functioning and people management.
+                    The “Service” means the Behavera service provided by Behavera through remote access via a web-based interface, the purpose of which is to enable the Client to obtain anonymous feedback from Participants and to receive clear analytical outputs and recommendations related to team functioning and people management.
                 </p>
                 <p className="mb-3">
                     The Service is provided in the scope and form available to the Client at any given time. Its specific technical solution, structure, and functionalities may change over time.
@@ -528,7 +528,7 @@ export function TermsPage() {
                 <h4 className="font-semibold mb-2">Personal Data Protection</h4>
                 <h5 className="font-semibold mb-1 text-sm text-brand-text-secondary">Roles of the Contracting Parties</h5>
                 <p className="mb-2">
-                    The Client acts as the data controller within the meaning of the GDPR, as it determines the purposes and means of processing the personal data of Participants. Behavera acts as the data processor and processes personal data exclusively on the basis of the Client’s instructions and to the extent necessary for the provision of the Echo Pulse Service.
+                    The Client acts as the data controller within the meaning of the GDPR, as it determines the purposes and means of processing the personal data of Participants. Behavera acts as the data processor and processes personal data exclusively on the basis of the Client’s instructions and to the extent necessary for the provision of the Behavera Service.
                 </p>
 
                 <h5 className="font-semibold mb-1 text-sm text-brand-text-secondary">Subject Matter, Duration, and Purpose of Processing</h5>
@@ -716,7 +716,7 @@ export function TermsPage() {
                     These Terms and Conditions shall also apply to all contractual relationships between Behavera and Clients established prior to their effective date, as of the date on which the Client first logs into the Service or otherwise begins using it after the effective date.
                 </p>
                 <p>
-                    In the event of any ambiguity, discrepancy, or dispute regarding the interpretation or meaning of these Terms and Conditions, the Czech language version shall prevail and be deemed the authoritative version. The current version of the Terms and Conditions of the Echo Pulse Service in the Czech language is available at: <a href="https://cz.behavera.com/terms" className="text-brand-primary underline">cz.behavera.com/terms</a>.
+                    In the event of any ambiguity, discrepancy, or dispute regarding the interpretation or meaning of these Terms and Conditions, the Czech language version shall prevail and be deemed the authoritative version. The current version of the Terms and Conditions of the Behavera Service in the Czech language is available at: <a href="https://cz.behavera.com/terms" className="text-brand-primary underline">cz.behavera.com/terms</a>.
                 </p>
             </section>
         </div>

@@ -198,7 +198,7 @@ export function CaseStudyEditor() {
                             <Label className="text-brand-text-secondary">The Solution (EN)</Label>
                             <Textarea 
                                 {...register('solution')} 
-                                placeholder="How did Echo Pulse solve it?" 
+                                placeholder="How did Behavera solve it?" 
                                 className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
                             />
                         </div>
@@ -246,7 +246,7 @@ export function CaseStudyEditor() {
                             <Label className="text-brand-text-secondary">Řešení (CZ)</Label>
                             <Textarea 
                                 {...register('solution_cz')} 
-                                placeholder="Jak Echo Pulse problém vyřešil?" 
+                                placeholder="Jak Behavera problém vyřešil?" 
                                 className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
                             />
                         </div>

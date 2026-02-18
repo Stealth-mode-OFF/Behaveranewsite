@@ -442,7 +442,7 @@ export function DemoAccessModal() {
           className="w-full flex-1 border-0"
           onLoad={() => setIframeLoaded(true)}
           allow="clipboard-write"
-          title="Echo Pulse Demo"
+          title="Behavera Demo"
         />
 
         {/* Bottom: book demo alternative */}
