@@ -53,48 +53,34 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>“Would you like to lead a team?” It sounds logical—you understand the work, you have the experience, you know the company. But leadership isn’t just a “higher level” of your current career. It’s a completely new discipline. It’s less about expertise and more about people. If you underestimate that, your new role can quickly overwhelm you—and the team that was supposed to stay motivated and united may lose energy or even fall apart. So how do you make it work? The best way is to learn from those who’ve been leading teams for a while. Leaders from Albi, CREDITAS Group, DHL, PF komplet, and snuggs shared their lessons with us.</p>
 <h2>1. Be present, listen, and act</h2>
 <p>As a new leader, you may feel like you need to have all the answers. In reality, it’s far more important to ask questions, listen, and respond. “I regularly ask my team what helps them and what they’d like to improve. When a suggestion comes up, I try to make it happen so they see their voice has real weight,” says Adela Pijaková, Customer Care Team Lead at snuggs. Radomír Švec, CEO of Albi, adds: “We ask employees for their opinions in different meetings, and leadership does the same. If we discover something that would make people more comfortable and motivated, we work with our HR director to see if it’s feasible. That’s how we adjusted our employee benefits.” The result? Albi earned the <strong>Czechia Best Managed Companies</strong> award for the first time this year.</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p>Ask in your 1:1s:</p>
 <p>“What helps you most right now, and what’s holding you back?” If you can’t change something right away, say so openly—transparency builds trust. Even small adjustments (like tweaking a meeting agenda) show that people’s voices matter.</p>
 <h2>2. Let your team find solutions—not just report problems</h2>
 <p>Leadership isn’t about giving orders. It’s much stronger when you involve the team in finding solutions. “Our team values open communication and the chance to influence how we work. I give space for feedback, celebrate small wins, involve the team in decisions, and clearly communicate while holding the direction we’re going,” says Jiří Procházka, Co-Founder and Commercial Director at PF komplet.</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p><strong>When solving a problem, ask:</strong></p>
 <p>“How would you do it?” You set the goal (e.g., deliver the campaign by Friday), but let the team figure out the path. Keep the direction clear and support them—that builds ownership.</p>
 <h2>3. Find and negotiate common ground</h2>
 <p>Requests don’t only come from the top anymore—they also come from your team. Your role is to align interests and find common ground. “We often struggle with unclear or incomplete tasks and overly ambitious deadlines,” says Jan Krejčí, Head of UX at CREDITAS Group. The solution? Open communication with stakeholders, finding compromises, and explaining why changes are necessary. That way, everyone understands what’s realistic, and both the team and the project stay on track.</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p>If a task is unrealistic, don’t just say “it can’t be done.” Explain why, show the impact, and suggest an alternative. Be the translator: “The client wants X, but the team has capacity for Y. A good solution might be Z.” The team needs to feel you’ve got their back—or they’ll quickly lose trust.</p>
 <h2>4. Trust matters more than control</h2>
 <p>Real motivation doesn’t come from micromanagement—it comes from trust. “People value freedom and trust the most. They know they can organize their time as they need, as long as goals are met. And if I know the team appreciates working on new projects, I try to give them the space to experiment and develop new skills,” says Adela Pijaková.</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p>Agree on goals, not steps. Give regular feedback—praise specifically, raise concerns empathetically. When someone makes a mistake, treat it as a learning opportunity, not a punishment.</p>
 <h2>5. Show purpose and results</h2>
 <p>People need to know their work has meaning. The feeling of making a difference—helping customers, making them happy—is often more powerful than any bonus. “Colleagues appreciate being treated with respect, knowing their work has meaning, and seeing results. When people feel purpose and see impact, their satisfaction and motivation grow naturally,” says Jiří Procházka.</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p>Connect work to outcomes: “Your campaign brought in 300 new customers—that’s why we can expand further.” Show not just numbers, but customer impact (feedback, testimonials).</p>
 <p>Repeat the purpose often—people stay motivated when they see the “why.”</p>
 <h2>6. Be a teammate, not just “the boss”</h2>
 <p>An informal, friendly environment makes people feel like they’re in the same boat. “No topic is taboo on our team. We’re all on the same level—partners, colleagues, not bosses and subordinates,” says Jan Krejčí. His team has been running for two and a half years without losing a single member. Or, as Jakub Kuba puts it: “Don’t be their boss—be a friend and colleague who just happens to have veto power.”</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p>Don’t be afraid of humor and informality—it builds closeness. Share your mistakes—it shows you’re human too. If you’re only “the boss,” people will never tell you the truth about their problems.</p>
 <h2>7. Never stop paying attention</h2>
 <p>The true impact of leadership shows up in everyday details—laughter on calls, a willingness to help outside one’s own role, or someone volunteering to take on extra responsibility. But intuition isn’t enough, warns Adela Pijaková: “I collect concrete examples, numbers, and productivity impacts. I use this data when discussing changes or investments in new solutions with management. That way, ideas turn into real steps that make work easier for the team.” Jakub Kuba adds: “Motivation fluctuates almost daily. If I see a 9 in a survey, I read it more like a 7. I don’t need the team to always be at 10, but I do need them to stay in good spirits and engaged in the long run.”</p>
-<ul>
-<li><strong>️ What to do in practice:</strong></li>
-</ul>
+<h3>What to do in practice</h3>
 <p>Do not rely only on your gut feeling. Collect data and build next steps on them. Notice signals of change—someone is quieter than usual, someone keeps delaying work.</p>
 <p>Do regular 1:1s —sometimes just asking “How are you doing?” is enough. Where to start? Leading a team isn’t just the “next level” of expertise—it’s a completely new discipline. What separates experienced leaders from beginners is understanding that team satisfaction isn’t a one-time goal but a long-term journey. Does it feel like a lot at once? Start simple:</p>
 <p>Schedule 1:1s with your team and ask questions.</p>
@@ -106,54 +92,40 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>1. Buďte přítomni, naslouchejte a jednejte</h2>
 <p>Jako nový lídr můžete mít pocit, že musíte mít odpověď na všechno. Ve skutečnosti je mnohem důležitější klást otázky, naslouchat a reagovat.</p>
 <blockquote>„Pravidelne sa ich pýtam, čo im pomáha a čo by chceli zlepšiť, a keď príde návrh, snažím sa ho pretaviť do reality, aby videli, že ich hlas má reálnu váhu,“ říká Adela Pijaková, Customer Care Team Lead ve snuggs. Podobně Radomír Švec, CEO Albi, dodává: „Ptáme se na názory zaměstnanců při různých setkáních, a stejně tak vedení. Pokud zjistíme, že existuje něco dalšího, co by lidem vyhovovalo a motivovalo je, tak společně s HR ředitelkou řešíme, zda je to realizovatelné. Takto jsme například upravili nabídku zaměstnaneckých benefitů.“ Výsledek? I díky tomuto přístupu Albi letos získalo ocenění Czechia Best Managed Companies .</blockquote>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p>Ptejte se na 1:1:</p>
 <blockquote>&quot;Co vám právě teď nejvíce pomáhá a co vás brzdí?&quot; . Pokud nemůžete něco změnit hned, řekněte to otevřeně - transparentnost buduje důvěru. Pamatujte: i drobná úprava (např. změna meeting agendy podle týmu) ukáže, že hlas lidí má váhu.</blockquote>
 <h2>2. Nechte svůj tým hledat řešení - ne jen hlásit problémy.</h2>
 <p>Lídrovství není o tom rozdávat direktivní zadání. Silnější je, když tým zapojíte do hledání cest.</p>
 <blockquote>&quot;Náš tým si cení otevřené komunikace a možnosti ovlivňovat způsob práce. Dávám prostor pro zpětnou vazbu, oslavuji malá vítězství, zapojuji tým do rozhodování a jasně komunikuji a zároveň držím směr, kterým se ubíráme,&quot; říká Jiří Procházka, spoluzakladatel a obchodní ředitel společnosti PF komplet.</blockquote>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p><strong>Při řešení problému se ptejte:</strong></p>
 <blockquote>&quot;Jak byste to udělali vy?&quot; Cíl stanovte vy (např. doručit kampaň do konce týdne), ale cestu nechte na týmu. Udržujte jasný směr a podporujte je - to posiluje odpovědnost.</blockquote>
 <h2>3. Hledejte a vyjednávejte společný zájem</h2>
 <p>Požadavky už nepřicházejí jen shora - přicházejí také od vašeho týmu. Vaším úkolem je sladit zájmy a najít společnou řeč.</p>
 <blockquote>„Trápí nás často nejednoznačné a nekompletní zadání úkolů a nesmyslně ambiciózní termíny dodání,“ říká Jan Krejčí, Head of UX z CREDITAS Group. Řešení? Otevřená komunikace se stakeholdery, hledání kompromisů a jasné vysvětlení, proč jsou změny nutné. Jen tak všichni chápou, co je reálné – a tým i projekt zůstávají v pohodě.</blockquote>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p>Pokud je úkol nereálný, neříkejte jen</p>
 <blockquote>&quot;to nejde&quot; . Vysvětlete proč, ukažte dopady a navrhněte alternativu. Staňte se tlumočníkem: &quot;Klient chce X, ale náš tým má kapacitu na Y. Řešením může být Z.&quot; Tým musí cítit, že za ním stojíte – jinak rychle ztratí důvěru.</blockquote>
 <h2>4. Důvěra je víc než kontrola</h2>
 <p>Skutečná motivace nevychází z mikromanagementu - vychází z důvěry.</p>
 <blockquote>„Najviac si ľudia vážia slobodu a dôveru v práci. Vedia, že si môžu organizovať svoj čas podľa potreby, pokiaľ plnia ciele. A ak napríklad viem, že tím si váži možnosť pracovať na nových projektoch, snažím sa im dávať priestor skúšať nové veci alebo rozvíjať nové zručnosti,” říká Adela Pijaková.</blockquote>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p>Dohodněte se na cílech, ne na krocích. Pravidelně dávejte zpětnou vazbu - chvalte konkrétně, upozorňujte empaticky. Pokud někdo chybuje, řešte to jako příležitost k učení, ne jako trest.</p>
 <h2>5. Hledejte smysl a ukazujte výsledky</h2>
 <p>Lidé potřebují vědět, že jejich práce má smysl. Pocit, že něco mění k lepšímu, že zákazníkům pomáhají nebo dělají radost a oni to oceňují, je často silnější než jakýkoliv bonus.</p>
 <blockquote>„Kolegové oceňují, že se k nim přistupuje s respektem, jejich práce má smysl a výsledky jsou vidět. Když lidé cítí smysl své práce a vidí výsledky, přirozeně roste jejich spokojenost i motivace,“ říká Jiří Procházka.</blockquote>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p><strong>Propojte práci s výsledky:</strong></p>
 <blockquote>&quot;Tvoje kampaň nám přivedla 300 nových zákazníků - proto můžeme expandovat dál.&quot; Ukazujte nejen čísla, ale i dopad na zákazníky (zpětná vazba, reference). Opakujte smysl znovu a znovu – lidi motivuje, že vidí důvod, proč jejich práce dává smysl.</blockquote>
 <h2>6. “Nebýt pro ně šéf, ale kamarád a kolega s právem veta” (Jakub Kuba)</h2>
 <p>Neformální a přátelské prostředí je klíč k tomu, aby se lidé cítili jako součást jedné lodi.</p>
 <blockquote>„Žádné téma u nás není tabu a jsme všichni na jedné úrovni – parťáci, kolegové, ne nadřízení a podřízení,“ říká Jan Krejčí. Jeho tým také díky tomu funguje už dva a půl roku bez ztráty jediného člena.&quot;</blockquote>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p>Nebojte se humoru a uvolněnosti – buduje blízkost. Sdílejte i své chyby – ukazujete tím, že jste taky člověk. Pokud budete jen „šéf“, lidé vám nikdy neřeknou pravdu o svých problémech.</p>
 <h2>7.  Zkušení lídři neusínají na vavřínech</h2>
 <p>Skutečný dopad jejich práce, lídři poznávají v každodenních drobnostech – smích na callech, ochota pomoct mimo vlastní agendu nebo chuť dobrovolně vzít extra zodpovědnost. Spoléhat na pocity ale nestačí, varuje Adela Pijaková: &quot;Zbieram konkrétne príklady, čísla a dopady na produktivitu, a tieto dáta používam pri diskusii s vedením o zmenách alebo investíciách do nových riešení.&quot; Jakub Kuba dodává: „Motivace fluktuuje snad každý den. Když v průzkumech vidím 9, čtu spíš 7. Nepotřebuji, aby tým byl neustále na 10, ale aby se dlouhodobě držel v dobré náladě a se zájmem o práci.”</p>
-<ul>
-<li><strong>️ Co dělat v praxi:</strong></li>
-</ul>
+<h3>Co dělat v praxi</h3>
 <p>Nespoléhejte se pouze na svůj instinkt. Sbírejte data a na nich stavte další kroky. Vnímejte signály změn – někdo je tišší než obvykle, někdo odkládá práci.</p>
 <p>Pravidelně choďte na</p>
 <p><strong>1:1 schůzky</strong></p>
@@ -220,16 +192,12 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>práce z domova jako důležitá součást nabídky hned vedle mzdy .</p>
 <p>To ostatně potvrzuje i průzkum společnosti Hays, který uvádí, že 52 % dotazovaných si nejvíce cenní home office jako benefitu, dalších 32 % flexibility a volného pracovního režimu. Celých 80 % českých firem tak stále nabízí možnost home office v omezené míře, plně remote spolupráce nabízí jen 30 % z nich (průzkum Pay-Fair 2025). Pokud chcete zůstat atraktivním zaměstnavatelem a umět lidem nabídnout více než mzdu, je dobré proto s možností home office počítat. Nebojte se nechat své lidi pracovat tak, jak jim to nejlépe vyhovuje - opravdu to jde, aniž by utrpěl jejich pracovní výkon! Zjišťujte (a zajišťujte) Společně s tím ale vznikají jiné výzvy pro vás, pro leadery, kterým je třeba nejen čelit, ale jít jim i proaktivně naproti. Odprostit se od potřeby dohledu z prostředí kanceláře a jít na to efektivněji prostřednictvím dat. Přítomnost v kanceláři se totiž nerovná vyšší produktivitě, jelikož i tam se setkáváme s rušivými faktory, zejména pak v prostředí tzv. “open space”. Prokazatelně vyšší produktivitu, a to až o 20 %, zajistí engagement neboli angažovanost zaměstnanců (Deloitte, Gallup), a to jak z domova, tak z Bali nebo z kanceláře. Angažovanost zaměstnanců propojuje lidi s firmou, s její vizí, misí a hodnotami. Vytváří emocionální pouto, pojí se s proaktivním přístupem, s vyšší kreativitou a chutí čelit výzvám. Jednoduše vám vytváří armádu vysoce produktivních lidí, kteří se aktivně zapojují a vytváří podmínky, kde se problémy řeší skoro až samy, nebo se jim daří úspěšně předcházet. Nic není ale jen tak - výměnou je požadován dostatek důvěry, transparentnosti, pravidelného feedbacku a oceňování.</p>
-<h2>Na první pohled to může znít složitě, ale</h2>
-<p>angažovanost lze podporovat a měřit i na dálku, – díky tomu neztratíte přehled o lidech, se kterými nejste v každodenním kontaktu, a můžete včas reagovat. Umožní vám to vést pestrý tým a přesto fungovat jako sehraný celek. Ukáže vám, zda s lidmi rezonují nové strategie pozitivně či negativně, a také, zda nejsou na prahu vyhoření či před výpovědí. ‍.</p>
+<p><strong>Na první pohled to může znít složitě, ale</strong> angažovanost lze podporovat a měřit i na dálku — díky tomu neztratíte přehled o lidech, se kterými nejste v každodenním kontaktu, a můžete včas reagovat. Umožní vám to vést pestrý tým a přesto fungovat jako sehraný celek. Ukáže vám, zda s lidmi rezonují nové strategie pozitivně či negativně, a také, zda nejsou na prahu vyhoření či před výpovědí.</p>
 <h2>Úspěšný lídr ví, jak na to - rychle a efektivně</h2>
 <p>Na co by se měl tedy zaměřit lídr, který chce podpořit angažovanost a s tím i integritu, loajalitu a transparentnost napříč firmou? Klíčová je komunikace a aktivní naslouchání. Mimo klasické statusy je dobré</p>
 <p>dát prostor jednotlivcům i během 1:1, případně mít další časový slot volný pro kohokoliv, kdo zrovna potřebuje. S tématy buďte otevření i pro sdílení osobnějších věcí, ideálně neřešte pouze operativu - ta by se měla řešit při jiných příležitostech. Cílem je zjistit, zda je váš zaměstnanec spokojený, zda má k práci vše, co potřebuje a co ho případně blokuje. Zní to jako hodně práce?</p>
 <p>Echo Pulse od Behavery to zvládne za vás - rychle, bezpečně a odkudkoli. Funguje jako vaše prodloužená ruka k lidem, kteří pracují na dálku, a umožňuje jim pravidelně, za pár minut a anonymně sdílet, co jim pomáhá i překáží. Témata pokrývají spokojenost, pracovní zátěž, uznání, odměňování a mnoho dalších – a neustále se rozšiřují podle potřeb firem. Okamžité a automatické přehledy vám ukážou jak trendy, tak i praktické tipy šité na míru, a tak jste schopni: reagovat zavčas na vznikající rizika a blockery (i když je nevidíte přímo před sebou), sledovat pomocí KPIs a performance reviews to, na čem opravdu záleží - výsledky - a ne čas strávený na kancelářské židli, efektivně vést 1:1 - vždy vědět na co a jak se zeptat, dělat informovaná rozhodnutí a ukazovat týmu, že jejich hlas má skutečnou váhu – i když spolu nejste každý den v jedné kanceláři.</p>
-<h2>Zjistěte, na čem vašim lidem opravdu záleží</h2>
-<ul>
-<li>co je frustruje a co je motivuje - ať už sedí v open space, na verandě u lesa nebo pod palmou.</li>
-</ul>
+<p><strong>Zjistěte, na čem vašim lidem opravdu záleží</strong> — co je frustruje a co je motivuje — ať už sedí v open space, na verandě u lesa nebo pod palmou.</p>
 <p>Domluvte si demo bez závazků!</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&q=80&w=1200',
@@ -281,8 +249,7 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>that don&#x27;t drain your or your team’s time through endless back-and-forth communication and trial and error approach. That’s why smart organizations don’t rely on annual surveys or vague check-ins. They invest in simple, efficient systems that gather</p>
 <p>real behavioral data without draining time or adding complexity .</p>
-<h2>Behavera provides that system</h2>
-<p>. We help companies detect disengagement early—by measuring not only who is struggling, but why, and what can be done about it. We provide fast, repeatable touchpoints that give managers clarity. And for companies unsure which leaders need support, our leadership diagnostics pinpoint strengths and development areas so training and coaching can be targeted where it matters most. Nearly 60% of leaders consider it important to understand individual motivations and needs of their employees to tailor their work in order to reach the top of their performance. (Deloitte) Companies like Exapndo, Valxon or Effectix are already using Behavera to do so and equip their managers with real-time insights. With the right data, their leaders can step in early, re-engage their teams, and protect performance before it&#x27;s compromised. Listen with Behavera, do it as a team! Wondering if there might be an Ema, David, or Lukas in your team quietly slipping through the cracks? With Behavera, you gain clear, data-driven insights into team engagement—without guessing anymore.</p>
+<p><strong>Behavera provides that system.</strong> We help companies detect disengagement early—by measuring not only who is struggling, but why, and what can be done about it. We provide fast, repeatable touchpoints that give managers clarity. And for companies unsure which leaders need support, our leadership diagnostics pinpoint strengths and development areas so training and coaching can be targeted where it matters most. Nearly 60% of leaders consider it important to understand individual motivations and needs of their employees to tailor their work in order to reach the top of their performance. (Deloitte) Companies like Exapndo, Valxon or Effectix are already using Behavera to do so and equip their managers with real-time insights. With the right data, their leaders can step in early, re-engage their teams, and protect performance before it&#x27;s compromised. Listen with Behavera, do it as a team! Wondering if there might be an Ema, David, or Lukas in your team quietly slipping through the cracks? With Behavera, you gain clear, data-driven insights into team engagement—without guessing anymore.</p>
 <p>Our tools are easy to use, grounded in behavioral science, and designed to help you spot early signs of disengagement and understand what’s driving them. Disengagement is a warning light—not a verdict. Are you ready to see what’s really going on beneath the surface? Request a free demo with us, and you’ll know!</p>
 <h2>Sources:</h2>
 <p>Deloitte: Trendy v oblasti lidského kapitálu 2025 Gallup:</p>
@@ -302,8 +269,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>. Když si to vynásbíte jen pěti lidmi, dostanete se na částku 10 mil. Kč v &quot;tichých ztrátách&quot;. Přesto si toho mnoho vedoucích pracovníků všimne, až když je příliš pozdě. Částečně je to proto, že se neangažovanost málokdy hlásí nahlas. V obchodu může projevovat jako plná pipeline - ale skutečných rozhovory se zákazníky se nekonají. U remote týmů, zejména populárních u nastupující generace Z může znamenat vypnuté kamery a téměř neexistující interakce na meetinzích. U introvertních nebo sociálně plachých lidí nemusí být pokles angažovanosti vůbec znatelný. Spoléhat se pouze na špatné výsledky jako na hlavní ukazatel znamená měsíce promarněných mezd a obratu firmy, zatímco zaměstnanec již ve své hlavě dal výpověď. Situaci zhoršují i další trendy. V roce 2023 Mc Kinsey zveřejnil, že se celkový well-being zaměstnanců snížuje, a to zejména u osob mladších 35 let. A protože angažovanost a životní pohoda spolu úzce souvisí, je právě angažovanost jedním z klíčů k řešení.</p>
 <h2>Kde začít: Vybavte nejdřív své lídry</h2>
 <p>Jak poznat rozdíl mezi špatným týdnem, nízkým výkonem nebo začínající neangažovaností? A hlavně, co s tím?</p>
-<h2>Začíná to u lídrů. Podle Gallupu z roku 2024</h2>
-<p>kvalita vedení ovlivňuje 70 % rozdílů v míře zapojení týmu. Jinými slovy: největší roli hraje to, jak vedoucí vedou. Ti nejlepší lídři: Podle Gallupu z roku 2024 kvalita vedení ovlivňuje 70 % rozdílů v úrovni angažovanosti týmů. Jinými slovy: největší roli hraje to, jak vedoucí vedou. Ti nejlepší:</p>
+<p><strong>Začíná to u lídrů.</strong> Podle Gallupu z roku 2024 kvalita vedení ovlivňuje 70 % rozdílů v míře zapojení týmu. Jinými slovy: největší roli hraje to, jak vedoucí vedou. Ti nejlepší lídři: Podle Gallupu z roku 2024 kvalita vedení ovlivňuje 70 % rozdílů v úrovni angažovanosti týmů. Jinými slovy: největší roli hraje to, jak vedoucí vedou. Ti nejlepší:</p>
 <ul>
 <li>Naslouchají a berou zpětnou vazbu vážně</li>
 <li>Jasně komunikují očekávání a odpovědnosti</li>
@@ -321,8 +287,7 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>Proto se chytré organizace nespoléhají jen na jednorázové evaluace nebo vágní kontroly. Investují do jednoduchých a efektivních řešení, které vyhodnocují</p>
 <p>skutečné údaje o chování lidí, aniž by je to stálo mnoho času a peněz .</p>
-<h2>Behavera tento systém poskytuje</h2>
-<p>. Pomáháme firmám odhalit neangažovanost včas - měříme nejen to, kdo má problém, ale také proč a co se s tím dá dělat. Poskytujeme rychlé a opakovatelné vhledy, které manažerům dávají jasnou představu a dodávají jim jistotu. A pokud si nejste jisti, kteří vaši lídři potřebují podporu, náš nástroj pro diagnostiku leadershipu přesně určí silné stránky a oblasti pro zlepšení tak, že pomůže cílit rozvoj tam, kde to má největší dopad. Téměř 60 % vedoucích pracovníků považuje za důležité porozumět individuálním motivacím a potřebám svých zaměstnanců a přizpůsobit jim práci tak, aby dosáhli nejvyššího výkonu. (Deloitte) Společnosti jako Exapndo, Valxon nebo Effectix k tomu využívají Behaveru a dávají svým manažerům tak do ruky reálná data v reálném čase. Díky nim mohou včas zasáhnout, znovu zapojit své týmy a ochránit výkon dříve, než začne klesat. Naslouchejte s Behaverou, jednejte to jako tým! Máte ve firmě svou Emu, Davida nebo Lukáše, kteří vám možná právě tiše mizí mezi prsty? S Behaverou získáte jasný, daty podložený přehled o vašem týmu - bez dohadů.</p>
+<p><strong>Behavera tento systém poskytuje.</strong> Pomáháme firmám odhalit neangažovanost včas - měříme nejen to, kdo má problém, ale také proč a co se s tím dá dělat. Poskytujeme rychlé a opakovatelné vhledy, které manažerům dávají jasnou představu a dodávají jim jistotu. A pokud si nejste jisti, kteří vaši lídři potřebují podporu, náš nástroj pro diagnostiku leadershipu přesně určí silné stránky a oblasti pro zlepšení tak, že pomůže cílit rozvoj tam, kde to má největší dopad. Téměř 60 % vedoucích pracovníků považuje za důležité porozumět individuálním motivacím a potřebám svých zaměstnanců a přizpůsobit jim práci tak, aby dosáhli nejvyššího výkonu. (Deloitte) Společnosti jako Exapndo, Valxon nebo Effectix k tomu využívají Behaveru a dávají svým manažerům tak do ruky reálná data v reálném čase. Díky nim mohou včas zasáhnout, znovu zapojit své týmy a ochránit výkon dříve, než začne klesat. Naslouchejte s Behaverou, jednejte to jako tým! Máte ve firmě svou Emu, Davida nebo Lukáše, kteří vám možná právě tiše mizí mezi prsty? S Behaverou získáte jasný, daty podložený přehled o vašem týmu - bez dohadů.</p>
 <p>Naše nástroje se snadno používají, jsou založeny na behaviorální vědě a navržené tak, aby vám pomohly odhalit první příznaky neangažovanosti a pochopit, co je jejich příčinou. Příznaky neangažovanosti jsou pouze varováním - nikoli rozsudek. Jste připraveni zjistit, co se skutečně děje pod povrchem? Přihlaste se o nezávaznou ukázku a dozvíte se to!</p>
 <h2>Zdroje:</h2>
 <p>Deloitte: Trendy v oblasti lidského kapitálu 2025 Gallup:</p>
@@ -354,8 +319,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>How to Spot Real Sales Talent Before They Even Make Their First Call</h2>
 <p>Hiring someone who falls short of expectations isn’t just frustrating—it’s costly. According to a study by Accenture,</p>
 <p>mediocre sales performance costs companies approximately 3.2% of potential revenue.</p>
-<h2>Additionally, the cost of an</h2>
-<p>employee leaving within the first year can range from 30% to 100% of their annual salary. And it goes further. Every bad hire impacts team dynamics, morale, and productivity. Even when you think you&#x27;ve learned from past mistakes, it often happens again. Why? Hiring top sales talent doesn&#x27;t have to be so difficult. The key is to shake off the fluff, superficial gestures, and flashy behavior, and start using the</p>
+<p><strong>Additionally, the cost of an employee leaving</strong> within the first year can range from 30% to 100% of their annual salary. And it goes further. Every bad hire impacts team dynamics, morale, and productivity. Even when you think you&#x27;ve learned from past mistakes, it often happens again. Why? Hiring top sales talent doesn&#x27;t have to be so difficult. The key is to shake off the fluff, superficial gestures, and flashy behavior, and start using the</p>
 <p>right tools, measure what truly matters, and make data-based decisions.</p>
 <p>That’s exactly what Behavera delivers—the easy-to-use assessment tool measuring the core competencies that truly distinguish top-performing salespeople from the rest. Through game-based simulations and chatbot assessments, Behavera cuts through the noise and pinpoints what really matters:</p>
 <p>integrity, customer orientation, individuality, and performance drive . It’s fast, objective, and fun for the candidates too.</p>
@@ -396,14 +360,10 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>klíčové kompetence, které prokazatelně odlišují nadprůměrně výkonné obchodníky od ostatních . Prostřednictvím herních simulací a chatbotu, Behavera dokáže odfiltrovat nepodstatné informace a zaměřit se na to, co skutečně rozhoduje:</p>
 <p>integrita, orientace na zákazníka, individualita a výkonnost . Je to rychlé, objektivní a zábavné i pro kandidáty.</p>
-<h2>Behavera je chytrý nástroj, který pomáhají vybrat</h2>
-<p>správné lidi na správné pozice o 87 % efektivněji oproti tradičním metodám a zároveň Vám ušetří až 30 % nákladů na nábor. Nejdůležitější je, že nábor založený na datech není jen teorie – už teď mění byznysy. Ve Vodafonu využili poznatky z Behavery k vylepšení náboru a koučinku, což vedlo ke snížení fluktuace o 40 % a nárůstu tržeb na hovor o 70–80 %. Zajímají Vás, jaké klíčové kompetence odlišují špičkové obchodníky? Pojďme se podívat na vlastnosti, které Behavera měří, a proč jsou těmi nejdůležitějšími faktory při budování Vašeho all-stars obchodního týmu. Co dělá obchodníka top obchodníkem? Zkušenosti v oboru a znalost produktů jsou sice základem, ale samy o sobě nestačí. Nejlepší obchodní zástupci vykazují řadu kompetencí, které jim umožňují budovat vztahy, porozumět potřebám zákazníků a efektivně uzavírat obchody. Na základě dlouholetého testování prodejců pomocí nástrojů od Behavery a analýzy jejich výsledků v porovnání s reálným výkonem jsme se zaměřili na čtyři klíčové vlastnosti, které se u nejlepších talentů v obchodu trvale projevují.</p>
+<p><strong>Behavera je chytrý nástroj, který pomáhá vybrat správné lidi</strong> na správné pozice o 87 % efektivněji oproti tradičním metodám a zároveň Vám ušetří až 30 % nákladů na nábor. Nejdůležitější je, že nábor založený na datech není jen teorie – už teď mění byznysy. Ve Vodafonu využili poznatky z Behavery k vylepšení náboru a koučinku, což vedlo ke snížení fluktuace o 40 % a nárůstu tržeb na hovor o 70–80 %. Zajímají Vás, jaké klíčové kompetence odlišují špičkové obchodníky? Pojďme se podívat na vlastnosti, které Behavera měří, a proč jsou těmi nejdůležitějšími faktory při budování Vašeho all-stars obchodního týmu. Co dělá obchodníka top obchodníkem? Zkušenosti v oboru a znalost produktů jsou sice základem, ale samy o sobě nestačí. Nejlepší obchodní zástupci vykazují řadu kompetencí, které jim umožňují budovat vztahy, porozumět potřebám zákazníků a efektivně uzavírat obchody. Na základě dlouholetého testování prodejců pomocí nástrojů od Behavery a analýzy jejich výsledků v porovnání s reálným výkonem jsme se zaměřili na čtyři klíčové vlastnosti, které se u nejlepších talentů v obchodu trvale projevují.</p>
 <p>🤝 Integrita pro odolnost pod tlakem Nejlepší prodejci zůstávají autentičtí a upřímní i v obtížných situacích.</p>
 <h2>Vyrovnanost a pravdomluvnost</h2>
-<ul>
-<li>jak ve vztahu ke klientům, tak uvnitř firmy - buduje</li>
-</ul>
-<p>důvěru, podporuje dlouhodobé vztahy, a tak i opakované obchody. Aktivní naslouchání a porozumění potřebám zákazníků posiluje integritu a vytváří důvěryhodnost, dodává panel expertů pro Forbes (19 Underappreciated Traits Of Top Sales Professionals). 🗨️ Orientace na zákazníka, abyste skutečně porozuměli potřebám klienta. Orientace na zákazníka odlišuje řešitele problémů od pouhých prodejců. Dnešní zákazníci očekávají, že obchodníci skutečně porozumí jejich potřebám. Ti, kteří zákazníky upřednostňují a přizpůsobují jim řešení, dosahují lepších výsledků.</p>
+<p>Jak ve vztahu ke klientům, tak uvnitř firmy — buduje důvěru, podporuje dlouhodobé vztahy, a tak i opakované obchody. Aktivní naslouchání a porozumění potřebám zákazníků posiluje integritu a vytváří důvěryhodnost, dodává panel expertů pro Forbes (19 Underappreciated Traits Of Top Sales Professionals). 🗨️ Orientace na zákazníka, abyste skutečně porozuměli potřebám klienta. Orientace na zákazníka odlišuje řešitele problémů od pouhých prodejců. Dnešní zákazníci očekávají, že obchodníci skutečně porozumí jejich potřebám. Ti, kteří zákazníky upřednostňují a přizpůsobují jim řešení, dosahují lepších výsledků.</p>
 <p>Budování vztahů, emoční inteligence a dovednost řešit problémy vedou k vyšší loajalitě zákazníků a doporučení dalším. (European Journal of Marketing) 🤹 Individualita pro adaptivní prodej Špičkoví prodejci nespoléhají na obecné nabídky - přizpůsobují se každému klientovi a přinášejí svůj jedinečný přístup.</p>
 <h2>Adaptivní prodej zlepšuje výsledky</h2>
 <p>(Forbes). Odolnost a přizpůsobivost pomáhají špičkovým prodejcům překonávat neúspěchy, upravovat strategie a</p>
@@ -459,33 +419,14 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt_cz: 'Expando je dynamická firma z e-commerce oblasti, která v pomáhá e-shopům expandovat na zahraniční trhy. S rychlým růstem přicházejí i výzvy – zejména jak efektivně nabírat talenty, volit správné lídry a zajišťovat maximální produktivitu týmů. Behaveru začali používat před více než rokem a otestov...',
     content: `
 <p class="lead">Key Benefits of Behavera for Expando</p>
-<ul>
-<li></li>
-</ul>
 <p>Saved 1/4 of a full-time position and €800 per month by eliminating manual pre-screening</p>
-<ul>
-<li></li>
-</ul>
 <h2>Made hiring 30% more efficient</h2>
 <p>through automated competency measurement and clear recommendations</p>
-<ul>
-<li></li>
-</ul>
 <p>90% of candidates hired after Behavera testing became top performers</p>
-<ul>
-<li></li>
-</ul>
-<h2>92% of candidates completed the tests</h2>
-<p>—they enjoy them because they are based on a game simulation Expando’s HR Manager, Ema Nováková, and</p>
-<h2>Project Manager, Ján Pavlík</h2>
-<p>, shared how they use Behavera and how it has improved their hiring process. “Before Behavera, we were shooting in the dark during interviews. Pre-screening notes were full of biases and didn’t provide a real insight.” How did Expando’s hiring process work before Behavera? From complete chaos, we gradually developed a standard three-round process over the years. The first round was pre-screening, handled by a part-time colleague who reviewed CVs and conducted a 15-minute call with the candidate. The second round is still conducted by the hiring manager today, focusing on hard skills, usually accompanied by a case study. The third and final round is with the CEO, where we primarily assess cultural fit. What were the main weaknesses of this process? Before Behavera, our hiring managers&#x27; interviews were quite unstructured. Pre-screening was handled by a law student—very intelligent and capable, but not a trained recruiter. Her notes often included not only practical information but also subjective opinions, such as how the candidate came across to her. However, such information is not relevant for a hiring manager and can unnecessarily influence their decision. Additionally, the process was time-consuming for her, taking up almost half of her working hours. Hiring managers, often with little recruitment experience themselves, would enter interviews without a clear plan—they didn’t know exactly what they were looking for or how to evaluate candidates. While the case study helped assess hard skills, it didn’t provide a complete picture of the candidate. “Thanks to Behavera, we identified what we are actually looking for and can now focus on key attributes or red flags during interviews.” What changed after implementing Behavera? After implementing Behavera, two key things changed for us: we eliminated traditional pre-screening, which wasn’t providing the necessary value. Instead, we now</p>
+<p><strong>92% of candidates completed the tests</strong> — they enjoy them because they are based on a game simulation. Expando’s HR Manager, Ema Nováková, and Project Manager, Ján Pavlík, shared how they use Behavera and how it has improved their hiring process. “Before Behavera, we were shooting in the dark during interviews. Pre-screening notes were full of biases and didn’t provide a real insight.” How did Expando’s hiring process work before Behavera? From complete chaos, we gradually developed a standard three-round process over the years. The first round was pre-screening, handled by a part-time colleague who reviewed CVs and conducted a 15-minute call with the candidate. The second round is still conducted by the hiring manager today, focusing on hard skills, usually accompanied by a case study. The third and final round is with the CEO, where we primarily assess cultural fit. What were the main weaknesses of this process? Before Behavera, our hiring managers&#x27; interviews were quite unstructured. Pre-screening was handled by a law student—very intelligent and capable, but not a trained recruiter. Her notes often included not only practical information but also subjective opinions, such as how the candidate came across to her. However, such information is not relevant for a hiring manager and can unnecessarily influence their decision. Additionally, the process was time-consuming for her, taking up almost half of her working hours. Hiring managers, often with little recruitment experience themselves, would enter interviews without a clear plan—they didn’t know exactly what they were looking for or how to evaluate candidates. While the case study helped assess hard skills, it didn’t provide a complete picture of the candidate. “Thanks to Behavera, we identified what we are actually looking for and can now focus on key attributes or red flags during interviews.” What changed after implementing Behavera? After implementing Behavera, two key things changed for us: we eliminated traditional pre-screening, which wasn’t providing the necessary value. Instead, we now</p>
 <p>send candidates tests right away and only call them to verify key requirements. This saves us time and reduces costs equivalent to a quarter of a full-time position. At the same time, we clearly defined what we are looking for in each role. In Behavera, you can set up roles with recommended attributes, but since we have a long history of performance data at Expando, we were able to take it a step further. Every team member took competency tests, and we compared their results with long-term job performance. For example, for the Customer Service role, we identified key competencies as numeracy, customer orientation, self-reflection, and integrity. Agents who scored highly in these areas also demonstrated consistently strong performance over time. Today, we assess candidates based on these attributes. Test results show how well a candidate matches our requirements. If a particular attribute significantly deviates, we see it as a red flag. “We once ignored Behavera’s warnings—and quickly paid the price. Since then, we trust the data.” Recruiter&#x27;s notes vs. Behavera Office Day assessment results Can you recall a specific time Behavera helped?</p>
-<h2>One of the key moments was when</h2>
-<p>we once prioritized feelings over Behavera’s results. We hired a candidate who had very low scores in numeracy, customer orientation, and effective communication—and we quickly paid the price. The employee completely failed in client communication, ignoring messages and phone calls, which had a rapid negative impact on the most important thing—our customer experience. Not only did it cost us time and money, but it also put our reputation at risk. It was a clear lesson for us, and since then, we rely on data, not gut feelings. “We can trust the data. 90% of candidates who performed well in Behavera tests are now top performers at Expando.” How does Expando use Behavera today?</p>
-<h2>We give tests to every candidate instead of conducting a pre-screening</h2>
-<p>. Candidates receive an invitation to complete the test within one to two days. Once finished, we immediately have access to their profile and can clearly see whether their attributes align with the position or not. Our experience has shown that we can rely on this approach— 90% of the candidates we hired who performed well in Behavera are now top performers at Expando . Additionally, we know which attributes to focus on, allowing us to ask targeted questions in the second interview. “Candidates love the tests because they also receive their own results and recommendations.” How do candidates react to Behavera? We were concerned that a 30–45 minute test might discourage some candidates. However, the opposite turned out to be true—</p>
-<h2>92% of candidates successfully complete the test</h2>
-<p>. As for the rest? We see it as an indication that they weren’t genuinely interested in the role, making the test an excellent filtering tool. In the final interview round, our CEO always asks candidates for feedback on the entire process, and the test is something they frequently highlight. They appreciate its format—the simulation game surprises and engages them. Moreover, they value that they gain something from the process as well. The test results are sent to them in an adjusted format via email, providing them with an analysis of their competencies and concrete recommendations—something they would otherwise have to pay for. They see this as a significant added value. What’s the biggest benefit of Behavera for Expando today?</p>
+<p><strong>One of the key moments was when</strong> we once prioritized feelings over Behavera’s results. We hired a candidate who had very low scores in numeracy, customer orientation, and effective communication—and we quickly paid the price. The employee completely failed in client communication, ignoring messages and phone calls, which had a rapid negative impact on the most important thing—our customer experience. Not only did it cost us time and money, but it also put our reputation at risk. It was a clear lesson for us, and since then, we rely on data, not gut feelings. “We can trust the data. 90% of candidates who performed well in Behavera tests are now top performers at Expando.” How does Expando use Behavera today?</p>
+<p><strong>We give tests to every candidate instead of conducting a pre-screening.</strong> Candidates receive an invitation to complete the test within one to two days. Once finished, we immediately have access to their profile and can clearly see whether their attributes align with the position or not. Our experience has shown that we can rely on this approach— 90% of the candidates we hired who performed well in Behavera are now top performers at Expando . Additionally, we know which attributes to focus on, allowing us to ask targeted questions in the second interview. “Candidates love the tests because they also receive their own results and recommendations.” How do candidates react to Behavera? We were concerned that a 30–45 minute test might discourage some candidates. However, the opposite turned out to be true—<strong>92% of candidates successfully complete the test.</strong> As for the rest? We see it as an indication that they weren’t genuinely interested in the role, making the test an excellent filtering tool. In the final interview round, our CEO always asks candidates for feedback on the entire process, and the test is something they frequently highlight. They appreciate its format—the simulation game surprises and engages them. Moreover, they value that they gain something from the process as well. The test results are sent to them in an adjusted format via email, providing them with an analysis of their competencies and concrete recommendations—something they would otherwise have to pay for. They see this as a significant added value. What’s the biggest benefit of Behavera for Expando today?</p>
 <p>Behavera has helped us eliminate subjectivity from decision-making, speed up the selection process, and bring certainty when evaluating people. We no longer use the tests just for new candidates—we also apply them for internal team changes and promotions to leadership positions. For example, every potential leader undergoes a leadership-focused test. This allows us to identify not only their strengths but also the areas where they need improvement. Thanks to this, we have already avoided two rushed promotions that could have negatively impacted the entire team. Instead, we gained a clear plan outlining what the candidate needs to work on to be fully prepared for a leadership role—an invaluable piece of feedback for them as well.</p>
 `,
     content_cz: `
@@ -494,25 +435,14 @@ export const BLOG_POSTS: BlogPost[] = [
 <li>Úspora 1/4 úvazku a 20 tisíc měsíčně</li>
 </ul>
 <p>díky eliminaci manuálního prescreeningu</p>
-<ul>
-<li></li>
-</ul>
 <h2>Zefektivnění náborového procesu o 30 %</h2>
 <p>díky automatizovanému měření kompetencí a jasným doporučením</p>
-<ul>
-<li></li>
-</ul>
 <p>90 % kandidátů přijatých po testování Behaverou se stalo top performery</p>
-<ul>
-<li></li>
-</ul>
-<h2>92 % kandidátů testy dokončilo -</h2>
-<p>baví je, protože jsou založeny na herní simulaci.</p>
+<p><strong>92 % kandidátů testy dokončilo</strong> — baví je, protože jsou založeny na herní simulaci.</p>
 <p>HR manažerka společnosti Expando Ema Nováková a projektový manažer Ján Pavlík se s námi podělili o to, jak využívají Behaveru a jak zlepšila jejich náborový proces.</p>
 <blockquote>&quot;Před Behaverou jsme na pohovorech stříleli naslepo. Poznámky z pre-screeningu jsou plné předsudků, nedávají reálný vhled.&quot; Jaká byla v expando cesta kandidáta před Behaverou? Z úplného chaosu jsme se za pár let propracovali ke standardnímu tříkolovému procesu. První kolo - prescreening, které nám řešila kolegyně na částečný úvazek, kde si prošla CV a udělala 15 minutový hovor s kandidátem. Druhé kolo potom má i dnes hiring manažer. Ten se zaměřuje na hard skills, většinou spolu s case study. Třetí a poslední kolo má u nás kandidát se CEO a řešíme hlavně kulturní fit. Co byly hlavní limity toho procesu? Před Behaverou byly pohovory našich hiring manažerů dost nekoncepční. Prescreening měla na starosti studentka práv – velmi chytrá a schopná, ale ne školená recruiterka. Její zápisy často kromě praktických informací obsahovaly i subjektivní názory, například jak na ni kandidát působil. Takové informace ale pro hiring manažera nejsou relevantní a naopak ho mohou zbytečně ovlivnit. Navíc to pro ni bylo časově náročné a zabralo to téměř polovinu její pracovní doby. Hiring manažeři, sami často bez větších zkušeností s náborem, pak přicházeli na pohovor bez jasného plánu – nevěděli, co přesně hledají, ani podle čeho by měli kandidáty hodnotit. Case study sice pomohla odhalit hard skills, ale neposkytla celkový obraz o kandidátovi. &quot;Díky Behavera jsme zjistili, co vlastně hledáme, a nyní se můžeme při pohovorech zaměřit na klíčové kompetence nebo red flags.&quot; Co se změnilo po zavedení Behavery? Po zavedení Behavery se u nás změnily dvě klíčové věci: odstranili jsme tradiční pre-screening, který nám nepřinášel potřebnou hodnotu. Místo toho kandidátům rovnou posíláme testy a voláme jim jen pro ověření požadavků. Díky tomu šetříme čas a náklady odpovídající ¼ úvazku. Zároveň jsme si jasně nastavili, co u jednotlivých pozic hledáme. V Behaveře si můžete nastavit role s doporučenými atributy, ale protože máme v Expando dlouhou historii výkonových dat, mohli jsme jít ještě dál. Všichni členové týmu prošli kompetenčními testy a jejich výsledky jsme porovnali s dlouhodobými pracovními výsledky. Například u pozice Zákaznického servisu jsme díky tomu identifikovali, že klíčové kompetence jsou numerika, zákaznická orientace, sebereflexe a integrita. Agenti, kteří v těchto oblastech dosáhli vysokých hodnot, mají zároveň dlouhodobě dobrý výkon. Dnes hodnotíme uchazeče na základě těchto vlastností. Výsledky testů ukazují, do jaké míry kandidát odpovídá našim požadavkům. Pokud se některý atribut výrazně odchyluje, vnímáme to jako červenou vlajku. &quot;Ignorovali jsme varování Behavery a rychle jsme na to doplatili – od té doby už datům věříme.&quot;</blockquote>
 <p>Poznámky recruitera vs. výsledky Behavera Office Day assesmentu Vzpomenete si, kdy konkrétně vám Behavera pomohla?</p>
-<h2>Jedním z klíčových momentů bylo, když</h2>
-<p>jsme kdysi dali přednost pocitům před výsledky Behavery. Přijali jsme kandidáta, který měl velmi nízké hodnoty v numerice, zákaznické orientaci a efektivní komunikaci – a rychle jsme na to doplatili. Zaměstnanec zcela selhal v komunikaci s klienty – ignoroval jejich zprávy i telefonáty, což mělo během krátké doby negativní dopad na to nejdůležitější – naši zákaznickou zkušenost. Nejenže nás to stálo čas a peníze, ale ohrozilo to i naši reputaci. Byla to pro nás jasná lekce, a od té doby spoléháme na data, ne na dojmy.</p>
+<p><strong>Jedním z klíčových momentů bylo, když</strong> jsme kdysi dali přednost pocitům před výsledky Behavery. Přijali jsme kandidáta, který měl velmi nízké hodnoty v numerice, zákaznické orientaci a efektivní komunikaci – a rychle jsme na to doplatili. Zaměstnanec zcela selhal v komunikaci s klienty – ignoroval jejich zprávy i telefonáty, což mělo během krátké doby negativní dopad na to nejdůležitější – naši zákaznickou zkušenost. Nejenže nás to stálo čas a peníze, ale ohrozilo to i naši reputaci. Byla to pro nás jasná lekce, a od té doby spoléháme na data, ne na dojmy.</p>
 <blockquote>&quot;Datům můžeme věřit. 90 % uchazečů, kteří v testech Behavera dosáhli dobrých výsledků, jsou nyní ve společnosti Expando top performery.&quot; Jak dnes společnost Expando používá Behaveru? Testy dáváme každému kandidátovi, místo pre-screeningu. Kandidátovi pošleme pozvánku k testu, a dáme mu na vyplnění 1-2 dny. Po dokončení máme ihned dostupný profil a jasně vidíme, jestli se atributy na pozici hodí, nebo ne. Zkušenost nám ukázala, že se na to můžeme spolehnout - 90% kandidátů, které jsme vzali, a měli v Behaveře dobré výsledky, jsou dnes v Expando top performeři. Navíc víme, na které atributy se zaměřit, což nám umožňuje klást cílené otázky při druhém pohovoru. &quot;Kandidáti jsou z testů nadšeni, protože výsledky a doporučení dostanou i oni.&quot; Jaká je zpětná vazba od kandidátů? Měli jsme obavy, že 30–45 minutový test některé kandidáty odradí. Ukázal se ale pravý opak – 92% uchazečů test úspěšně dokončilo . Ti ostatní? Bereme to tak, že o danou roli nemají skutečný zájem, takže test funguje i jako skvělý filtr. V posledním kole pohovoru se náš CEO vždy ptá kandidátů na zpětnou vazbu k celému procesu, a test je něco, co sami často vyzdvihnou. Oceňují jeho formu – simulační hra je příjemně překvapí a zaujme. Navíc oceňují, že z procesu sami něco získají, protože výsledky testu jim přijdou v upravené podobě také na e-mail. Najdou tam analýzu svých kompetencí i konkrétní doporučení, která by si jinak museli zaplatit. To vnímají jako velkou přidanou hodnotu. Jaký je dnes největší přínos Behavery pro společnost Expando? Behavera nám pomohla odstranit subjektivitu v rozhodování, urychlit proces výběru a přinést jistotu při hodnocení lidí . Testy už nepoužíváme jen pro nové kandidáty - využíváme je i při změnách uvnitř týmu nebo při povýšení na vedoucí pozice. Například každého potenciálního lídra necháme projít testem zaměřeným na leadership. Díky tomu vidíme nejen jeho silné stránky, ale i oblasti, které je potřeba se zlepšit. Už dvakrát jsme se díky tomu vyhnuli uspěchanému povýšení, které by mohlo negativně ovlivnit celý tým. Místo toho jsme získali jasný plán, na čem musí kandidát zapracovat, aby byl na pozici lídra připravený – a i pro něj samotného to byla cenná zpětná vazba.</blockquote>
 `,
     coverImage: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?auto=format&fit=crop&q=80&w=1200',
@@ -684,12 +614,10 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>One of the catalysts for The Great Resignation trend was the desire for flexibility and work-life balance. At the free virtual event, learn how to support hybrid workers, how to measure the impact of greater inclusivity, diversity and equality on business, and how to improve diversity in leadership recruitment.</p>
 <p>When: 11-12 July 2023 Where: Online Website:</p>
 <p>hrexchangenetwork.com Creating Agile, Adaptable and Motivated Teams Through Learning &amp; Development</p>
-<h2>We live in a time of rapid change and</h2>
-<p>our skills are quickly becoming obsolete. According to a recent study, companies that invest in employee development are 24% more productive and 22% more profitable. This free interactive event will focus on the topics of digital tools, personal and professional development, measuring success, development program planning strategies, remote working, and employee experience. Sounds interesting!</p>
+<p><strong>We live in a time of rapid change and</strong> our skills are quickly becoming obsolete. According to a recent study, companies that invest in employee development are 24% more productive and 22% more profitable. This free interactive event will focus on the topics of digital tools, personal and professional development, measuring success, development program planning strategies, remote working, and employee experience. Sounds interesting!</p>
 <p>When: 19-21 September 2023 Where: Online Website:</p>
 <p>hrexchangenetwork.com HR Virtual Summit</p>
-<h2>How about giving yourself a</h2>
-<p>whole month packed with inspiration that you can tap into whenever it suits you? The biggest international virtual HR event of the year has selected experts on HR, education, corporate culture, psychology, leadership, hybrid workplaces, recruitment, attrition, burnout, well-being, team management, talent acquisition, employer branding, and more. It&#x27;s free to attend, what a steal!</p>
+<p><strong>How about giving yourself a whole month</strong> packed with inspiration that you can tap into whenever it suits you? The biggest international virtual HR event of the year has selected experts on HR, education, corporate culture, psychology, leadership, hybrid workplaces, recruitment, attrition, burnout, well-being, team management, talent acquisition, employer branding, and more. It&#x27;s free to attend, what a steal!</p>
 <p>When: 14 November - 14 December 2023 Where: Online Website:</p>
 <p>bamboohr.com Have we forgotten an event that should definitely be on this list? Email us at marketing(at)behavera.com and we&#x27;ll add it!</p>
 `,
@@ -702,8 +630,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>hackinghrlab.io HR and Future of Work Technologie jsou katalyzátorem obrovských změn v byznysu i způsobu práce. HR Exchange Network pořádá hned několik akcí během roku a to zdarma. Tato se zaměřuje na téma budoucnosti práce a dozvíte se například o zvyšování kvalifikace (upskilling), benefity relevantní pro dnešní dobu, metaverse, data o zaměstnancích a jak zajistit angažovanost i v budoucnosti.</p>
 <p>Kdy: 14. – 16. března 2023 Kde: Online Web:</p>
 <p>hrexchangenetwork.com The Future of Diversity, Equity, Inclusion, and Belonging</p>
-<h2>Chcete se letos zaměřit na</h2>
-<p>diverzitu, rovnost příležitostí a inkluzi na pracovišti? Pak je tahle online akce zdarma přesně pro vás. Podle organizátorů je tohle téma, se kterým bojuje nejeden HR profesionál, i přesto, že se situace zlepšuje na všech frontách. Proč tomu tak je a co na to říkají vaši kolegové v zahraničí? Dozvíte se na eventu od HR.com.</p>
+<p><strong>Chcete se letos zaměřit na</strong> diverzitu, rovnost příležitostí a inkluzi na pracovišti? Pak je tahle online akce zdarma přesně pro vás. Podle organizátorů je tohle téma, se kterým bojuje nejeden HR profesionál, i přesto, že se situace zlepšuje na všech frontách. Proč tomu tak je a co na to říkají vaši kolegové v zahraničí? Dozvíte se na eventu od HR.com.</p>
 <p>Kdy: 15. – 16. března 2023 Kde: Online Web:</p>
 <p>hr.com Reduce Turnover, Enhance Productivity &amp; Satisfaction Through Culture, Flexibility &amp; Development Věděli jste, že firmy s angažovanými zaměstnanci mají o 23 % vyšší zisky? Nízká angažovanost je trápení, které má nejedna organizace. Na online akci zdarma můžete nasosat inspiraci o budování firemní kultury, flexibilní práci, personalizovém rozvoji zaměstnanců a vylepšení komunikace.</p>
 <p>Kdy: 25. – 26. dubna 2023 Kde: Online Web:</p>
@@ -725,8 +652,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Jedním z katalyzátorů trendu The Great Resignation byla touha po flexibilitě a work-life balance. Na virtuálním eventu zdarma se dozvíte, jak podpořit hybridní pracovníky, jak měřit dopad větší inkluzivity, diverzity a rovnosti na byznys, a jak zlepšit diverzitu v náboru leaderů.</p>
 <p>Kdy: 11. – 12. července 2023 Kde: Online Web:</p>
 <p>hrexchangenetwork.com Creating Agile, Adaptable and Motivated Teams Through Learning &amp; Development</p>
-<h2>Žijeme v době rapidních změn a</h2>
-<p>naše dovednosti rychle zastarávají. Podle nedávné studie firmy, které investují do rozvoje zaměstnanců, mají o 24 % vyšší produktivitu a o 22 % větší ziskovost. Interaktivní event zdarma zaostří na témata digitálních nástrojů, osobního a profesního rozvoje, měření úspěchu, strategie plánování rozvojových programů, remote práci a zaměstnanecké zkušenosti. To zní zajímavě!</p>
+<p><strong>Žijeme v době rapidních změn a</strong> naše dovednosti rychle zastarávají. Podle nedávné studie firmy, které investují do rozvoje zaměstnanců, mají o 24 % vyšší produktivitu a o 22 % větší ziskovost. Interaktivní event zdarma zaostří na témata digitálních nástrojů, osobního a profesního rozvoje, měření úspěchu, strategie plánování rozvojových programů, remote práci a zaměstnanecké zkušenosti. To zní zajímavě!</p>
 <p>Kdy: 19. – 21. září 2023 Kde: Online Web:</p>
 <p>hrexchangenetwork.com HR Virtual Summit Což takhle dát si celý měsíc nadupaný inspirací, pro kterou si můžete chodit kdykoliv se vám to zrovna hodí? Největší mezinárodní virtuální HR event tohoto roku vybral odborníky na HR, vzdělávání, firemní kulturu, psychologii, leadership, hybridní fungování, recruitment, fluktuace, vyhoření, well-being, budování týmů, získávání talentů, employer branding a další. Zúčastnit se můžete zdarma, no neberte to.</p>
 <p>Kdy: 14. listopadu – 14. prosince 2023 Kde: Online Web:</p>
@@ -749,10 +675,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt_cz: 'Co kdyby existoval nástroj, který by za vás udělal průzkum, analýzu dat a doporučil vám, jak zlepšit well-being u vás ve firmě? Zapomeňte na nudné dotazníky a hodiny strávené vyhodnocováním výstupů. Díky Well-being Indexu se můžete soustředit na péči o své lidi a jejich spokojenost v práci.',
     content: `
 <h2>Chatbot instead of a boring survey</h2>
-<p class="lead">Surveys are great to start with because</p>
-<p>it&#x27;s a free solution. Most companies that have already started to address well-being have reached for custom surveys as a first solution. However, creating surveys is not without its hidden costs. Putting together a good survey with good questions is quite a challenge.</p>
-<h2>It can take hours of time to create</h2>
-<p>, plus sending the survey out to employees, follow-up comments, and finally, the time-consuming analysis of the results in spreadsheets. Without blinking an eye, you&#x27;ve burned dozens of man-hours on just one survey. The other problem with surveys is...</p>
+<p class="lead">Surveys are great to start with because it&#x27;s a free solution. Most companies that have already started to address well-being have reached for custom surveys as a first solution. However, creating surveys is not without its hidden costs. Putting together a good survey with good questions is quite a challenge.</p>
+<p><strong>It can take hours of time to create,</strong> plus sending the survey out to employees, follow-up comments, and finally, the time-consuming analysis of the results in spreadsheets. Without blinking an eye, you&#x27;ve burned dozens of man-hours on just one survey. The other problem with surveys is...</p>
 <p>they&#x27;re boring. Answering the questions is a passive activity that gets old very quickly. Companies often find that after just a few surveys are sent out, the completion rate drops rapidly. The effort expended is then not a return on investment.</p>
 <p>The solution? A chatbot with which the employee has an active conversation similar to a discussion on Slack or another messenger. It&#x27;s a modern way to humanize surveys and make them more fun.</p>
 <p>A quick conversation with our chatbot Echo will give the respondent the opportunity to rate their current motivation and happiness. Completely online, also available on mobile. No need to download the app or learn how to use it. It couldn&#x27;t be simpler.</p>
@@ -760,27 +684,20 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>Personalized insights with science-based recommendations</h2>
 <p>Well-being Index is like having a data analyst and a behavioral psychologist inside a computer evaluating the results in real-time. The ECHO chatbot asks respondents questions tailored by our science team and in the background maps the</p>
 <p>top 12 factors behind the risk of burnout, loss of engagement, reduced productivity, or risk of quitting.</p>
-<h2>Team leaders and HR professionals then</h2>
-<p>have access to a report where the data collected are analyzed and accompanied by practical recommendations based on behavioral science. All in real-time, without having to pay extra for expensive consultations or attend lengthy training programs. In the report, you will find the overall Well-being Score for the company, the TOP 3 risk factors, and profiles of individuals, teams, and branches. This allows you to make better decisions and prioritize changes.</p>
-<p>Přehled rizikových faktorů. Praktická doporučení od behaviorálních psychologů. I want to try the Well-being Index! What do I need to do to get it?</p>
+<p><strong>Team leaders and HR professionals then have access to a report</strong> where the data collected are analyzed and accompanied by practical recommendations based on behavioral science. All in real-time, without having to pay extra for expensive consultations or attend lengthy training programs. In the report, you will find the overall Well-being Score for the company, the TOP 3 risk factors, and profiles of individuals, teams, and branches. This allows you to make better decisions and prioritize changes.</p>
+<p>I want to try the Well-being Index! What do I need to do to get it?</p>
 <p>Managers, team leaders, and HR professionals can sign up here, and then it&#x27;s just a few steps away: Let your people know that you&#x27;d like to start monitoring the level of well-being in the company to find out what&#x27;s on their minds so you can create a better environment. Focus on creating a sense of safety. When employees know that the results will not be used against them, but to improve their well-being, they will take a more positive approach to the research. We recommend making participation voluntary; well-being is a sensitive topic for some people and they should not be pressured to participate. When you collect the results, share them with everyone, along with plans for improvement. Transparency and openness help build trust. Open the floor to questions and suggestions. Involve volunteers in the change process. Then share the progress of changes, including successes and failures. Effort is more valuable than perfect results. Don&#x27;t forget to repeat the survey. We recommend having employees chat with our ECHO chatbot at least once a quarter. You will then be able to track how your well-being score is evolving over time and therefore how the changes you have put in place are working. Do you have any questions about the Behavera Well-being Index? Email us at hello@behavera.com and we&#x27;ll be happy to help.</p>
 `,
     content_cz: `
 <h2>Chatbot místo nudného dotazníku</h2>
 <p class="lead">Dotazníky jsou pro začátek super, protože je to dostupné řešení zdarma. Většina firem, která už začala řešit well-being, sáhla po vlastní dotaznících jako prvním řešení. Avšak tvorba dotazníků má plno skrytých nákladů. Sestavit kvalitní dotazník s dobrými otázkami je docela majstrštyk.</p>
-<h2>Vytvoření zabere i hodiny času</h2>
-<p>, ke kterým musíte připočítat rozeslání dotazníku zaměstnancům, následné připomínky, a nakonec krkolomnou analýzu výstupů v tabulkách. Ani nemrknete a propálili jste desítky člověkohodin jen na jednom dotazníku. Další bolístkou dotazníků je...</p>
+<p><strong>Vytvoření zabere i hodiny času,</strong> ke kterým musíte připočítat rozeslání dotazníku zaměstnancům, následné připomínky, a nakonec krkolomnou analýzu výstupů v tabulkách. Ani nemrknete a propálili jste desítky člověkohodin jen na jednom dotazníku. Další bolístkou dotazníků je...</p>
 <p>že jsou nudné. Odpovídání na otázky je pasivní činnost, která se velmi rychle zprotiví. Firmy často řeší, že se už po pár zaslaných dotaznících rapidně klesá míra vyplnění.. Vynaložené úsilí pak není návratná investice.</p>
 <p>Řešení? Chatbot, se kterým zaměstnanec vede aktivní konverzaci podobnou diskusi na Slacku nebo jiném messengeru. Je to moderní způsob, jak průzkumy polidštit a udělat je zábavnější. ‍Rychlá konverzace s naším chatbotem ECHO dá respondentovi možnost ohodnotit svoji momentální motivaci a spokojenost. Komplet online, dostupné i v mobilu. Bez nutnosti stahovat aplikaci nebo se s ní učit pracovat. Jednodušší už to být nemůže.</p>
 <p>Chatbot Echo</p>
 <h2>Personalizovaný přehled s doporučeními podloženými vědou</h2>
-<p>Well-being Index je jako mít data-analytika a behaviorálního psychologa v počítači, který vyhodnocuje výsledky v reálném čase. Chatbot Echo respondentům pokládá otázky sestavené našim vědeckým týmem a na pozadí mapuje</p>
-<h2>12 nejvýznamnějších faktorů</h2>
-<p>, které stojí za rizikem vyhoření, ztrátou engagementu, snížené produktivity a nebo rizikem odchodu.</p>
-<h2>Team leadeři a HR profesionálové pak mají</h2>
-<p>přístup do přehledu, kde jsou sesbíraná data analyzovaná a doplněná o praktická doporučení opřená o behaviorální vědu. To vše v reálném čase, bez nutnosti platit extra za drahé konzultace nebo se účastnit zdlouhavých školení.</p>
-<h2>Team leadeři a HR profesionálové pak mají</h2>
-<p>přístup do přehledu, kde jsou sesbíraná data analyzovaná a doplněná o praktická doporučení opřená o behaviorální vědu. To vše v reálném čase, bez nutnosti platit extra za drahé konzultace nebo se účastnit zdlouhavých školení.</p>
+<p>Well-being Index je jako mít data-analytika a behaviorálního psychologa v počítači, který vyhodnocuje výsledky v reálném čase. Chatbot Echo respondentům pokládá otázky sestavené našim vědeckým týmem a na pozadí mapuje <strong>12 nejvýznamnějších faktorů,</strong> které stojí za rizikem vyhoření, ztrátou engagementu, snížené produktivity a nebo rizikem odchodu.</p>
+<p><strong>Team leadeři a HR profesionálové pak mají přístup do přehledu,</strong> kde jsou sesbíraná data analyzovaná a doplněná o praktická doporučení opřená o behaviorální vědu. To vše v reálném čase, bez nutnosti platit extra za drahé konzultace nebo se účastnit zdlouhavých školení.</p>
 <p>Přehled rizikových faktorů. Praktická doporučení od behaviorálních psychologů. Chci vyzkoušet Well-being Index! Co musím udělat, abych získal přístup?</p>
 <p>Manažeři, team leadeři a HR profesionálové se mohou zaregistrovat tady, a pak už zbývá jen pár kroků: Dejte svým lidem vědět, že byste rádi začali sledovat úroveň well-beingu ve firmě, abyste zjistili, co je trápí a mohli jste jim vytvořit lepší prostředí. Zaměřte se na vytvoření pocitu bezpečí. Když zaměstnanci vědí, že výsledky nebudou použité proti nim, ale pro zlepšení jejich spokojenosti, postaví se k výzkumu pozitivněji. Doporučujeme udělat účast dobrovolnou, well-being je pro některé lidi citlivé téma a neměli by se účastnit pod nátlakem. Až posbíráte výsledky, sdílejte je se všemi spolu s plány na zlepšení. Transparentnost a otevřenost pomáhají budovat důvěru. Otevřete prostor otázkám a návrhům. Zapojte dobrovolníky do procesu změn. Sdílejte pak i proces změn, úspěchy i neúspěchy. Snaha se cení více než perfektní výsledky. Nezapomeňte průzkum opakovat. Doporučujeme nechat zaměstnance si popovídat s naším chatbotem Echo nejméně jednou za čtvrt roku. V přehledu pak budete moct sledovat, jak se vaše well-being skóre vyvíjí v čase a jak tedy fungují zavedené změny. Máte nějaké otázky na Behavera Well-being Index? Napište nám na hello(at)behavera.com a rádi vám vše vysvětlíme.</p>
 `,
@@ -800,8 +717,7 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: 'Despite 96%[1] of companies worldwide providing their employees with more resources to improve their mental health, only 1 in 6 people feel truly supported by their employer. How can companies make the right investments in well-being and create an environment where people feel good at work?',
     excerpt_cz: 'Přestože 96 %[1] firem po celém světě poskytuje svým zaměstnancům více zdrojů pro zlepšení mentálního zdraví, pouze 1 ze 6 lidí se cítí skutečně podpořeno svým zaměstnavatelem. Jak mohou firmy správně investovat do well-beingu a vytvořit prostředí, kde se lidem dobře pracuje?',
     content: `
-<h2>Well-being can be achieved when</h2>
-<p class="lead">we are generally satisfied with our lives both personally and professionally</p>
+<p class="lead"><strong>Well-being can be achieved when</strong> we are generally satisfied with our lives both personally and professionally</p>
 <p>. It&#x27;s a state that is constantly changing and can be influenced through learnable skills, much like working on our soft skills.</p>
 <p>Companies should consider well-being as a tangible skill, a critical business benefit, and a measurable outcome. It is important that leaders value the well-being of their people as much as they value their skills. Two years of the COVID-19 pandemic have affected all of us and have had a direct impact on productivity at work. According to research</p>
 <p>[2], employers have invested in wellness benefits and activities to give their employees a helping hand. However, employees reported that constant availability due to poor use of technology, lack of flexibility and autonomy, or unsustainably high workloads were sources of burnout. The problem, then, lies in employers&#x27; grasping the issue of well-being at the wrong end. Want to try the Behavera Well-being Index?</p>
@@ -810,19 +726,16 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>However, a global survey by McKinsey &amp; Company [3] revealed that building resilience and adaptability in individuals alone is not the solution to burnout.</p>
 <p>They believe that companies need to start with themselves and come up with a systemic solution.</p>
 <p>What exactly does that mean? A systemic solution [4] means to think about the functioning of the organization and its processes and to make changes in the job description and the cultural and working environment. To move to a more sustainable operation where people come first. In other words, a webinar on mental resilience and a yoga class won&#x27;t help an employee&#x27;s long-term well-being as much as finally not having the workload of three people and having the boss stop micromanaging them. Finding the source of the problem and focusing on employee well-being is a worthwhile long-term investment that pays back in the form of retaining and attracting the best people.</p>
-<h2>Through our research, we found that</h2>
-<p>well-being has so far been important for only a third of companies and 30% of them considered it a TOP priority. However,</p>
+<p><strong>Through our research, we found that</strong> well-being has so far been important for only a third of companies and 30% of them considered it a TOP priority. However,</p>
 <p><strong>50% of HR professionals</strong></p>
 <p>said their primary focus at the moment is on employee retention due to how difficult it is to find quality candidates in the market and how costly high turnover is. Well-being was one of the most recurring issues that they are actively looking for an answer to and a viable solution. How to start effectively addressing well-being?</p>
-<h2>Systemic changes will be a challenge for the company, so it</h2>
-<p>needs to support its decisions with data on the current state of employee well-being. This allows leaders to identify which employees are at risk, prioritize changes, and monitor how new solutions are working through</p>
+<p><strong>Systemic changes will be a challenge for the company, so it</strong> needs to support its decisions with data on the current state of employee well-being. This allows leaders to identify which employees are at risk, prioritize changes, and monitor how new solutions are working through</p>
 <p>regular surveys . Well-being is like a marathon. You have a long way to go and you need to strategically adapt your running to that. And the most important thing is not to give up after a few kilometers. Is measuring well-being suitable for everyone? Yes, but it is not a foolproof solution, especially in companies where employee trust in their leaders is low.</p>
 <p>According to research from McKinsey, only 30% of employees [5] feel comfortable enough to open up a conversation about their well-being and mental health. So again, companies need to start with themselves, and the first adepts to tackle well-being are their leaders.</p>
 <h2>The unexpected well-being helper</h2>
 <p>The hybrid model of work has emerged as a challenge for employers and employees during the pandemic. However, it has proven to have a</p>
 <p>direct impact on people&#x27;s well-being for several reasons [5]: From a workplace-centric to worker-centric world: Relationships and social connections at work are key to well-being. A safe and supportive environment contributes to greater mental resilience and increases productivity. From a static and fixed to a dynamic and fluid workplace: Employees with more autonomy and accountability for their outputs are better able to manage their energy. For example, when they have the freedom to go for a walk or exercise after lunch, they return to their afternoon block of work with more vigor and a better ability to focus.</p>
-<h2>From office work to work from anywhere:</h2>
-<p>It&#x27;s a matter of preference. Previously, working from anywhere used to be the domain of digital nomads and freelancers, but the hybrid work model has also allowed many more employees to choose where they work.</p>
+<p><strong>From office work to work from anywhere:</strong> It&#x27;s a matter of preference. Previously, working from anywhere used to be the domain of digital nomads and freelancers, but the hybrid work model has also allowed many more employees to choose where they work.</p>
 <p>Would you like to learn more about Behavera Well-being Index and how it can help you improve the well-being of your employees?</p>
 <p>Learn more here .</p>
 <h2>Sources:</h2>
@@ -839,12 +752,10 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Globální průzkum McKinsey &amp; Company [3] však odhalil, že jen samotné budování odolnosti a přizpůsobivosti jednotlivců není řešením jejich vyhoření.</p>
 <p>Je podle nich potřeba, aby firmy začaly u sebe a přišly se systémovým řešením.</p>
 <p>Co přesně to znamená? Systémové řešení [4] znamená zamyslet se nad fungováním organizace a jejími procesy, a také udělat změny v náplni práce a kulturně-pracovním prostředí. Přejít na více udržitelné fungování, kde jsou lidé na prvním místě. Jinými slovy, zaměstnanci z dlouhodobého hlediska k well-beingu nepomůže webinář o mentální odolnosti a hodina jógy tak, jako když konečně nebude dělat za tři lidi a šéf ho přestane mikromanažovat. Firmám se dlouhodobě finančně vyplatí investovat do hledání zdroje problému a investice do well-beingu zaměstnanců se vrátí udržením a přilákáním talentů.</p>
-<h2>Vlastním výzkumem jsme zjistili, že</h2>
-<p>well-being byl až doposud důležitý pouze pro třetinu firem a 30 % z nich ho považovalo za TOP prioritu. Avšak</p>
+<p><strong>Vlastním výzkumem jsme zjistili, že</strong> well-being byl až doposud důležitý pouze pro třetinu firem a 30 % z nich ho považovalo za TOP prioritu. Avšak</p>
 <p><strong>50 % HR profesionálů</strong></p>
 <p>uvedlo, že se momentálně primárně soustředí na udržení zaměstnanců kvůli tomu, jak těžké je na trhu najít kvalitní uchazeče a jak nákladná je vysoká fluktuace. Well-being byl jednou z nejvíce se opakujících otázek, na kterou aktivně hledají odpověď a funkční řešení. Jak začít efektivně řešit well-being?</p>
-<h2>Systémové změny budou pro firmu výzva, proto je potřeba</h2>
-<p>podložit svá rozhodnutí daty o momentálním stavu well-beingu zaměstnanců. Leadeři tak mohou zjistit, kde firma nejvíce pokulhává, určit priority pro změny a</p>
+<p><strong>Systémové změny budou pro firmu výzva, proto je potřeba</strong> podložit svá rozhodnutí daty o momentálním stavu well-beingu zaměstnanců. Leadeři tak mohou zjistit, kde firma nejvíce pokulhává, určit priority pro změny a</p>
 <p>pravidelnými průzkumy sledovat , jak nová řešení zabírají. Well-being je jako maraton. Máte před sebou dlouhou cestu a tomu je potřeba strategicky přizpůsobit svůj běh. A hlavní je to nevzdat po pár kilometrech. Je měření well-beingu vhodné pro všechny? Ano, ale není to samospásné řešení, obzvlášť u firem, kde důvěra zaměstnanců ve své leadery je nízká.</p>
 <p>Podle průzkumu od McKinsey pouhých 30 % zaměstnanců [5] se cítí dostatečně komfortně k otevření konverzace ohledně jejich well-beingu a mentálního zdraví. Opět je tedy potřeba, aby firmy začaly u sebe a prvními adepty na řešení well-beingu byli jejich leadeři.</p>
 <h2>Nečekaný pomocník well-beingu</h2>
@@ -873,26 +784,21 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt_cz: 'Dělala vám angažovanost vrásky ještě před pandemií? V hybridním nastavení to pro mnohé firmy představuje ještě větší výzvu. Pokud nevíte, kde začít nebo vám dochází inspirace, co ještě vyzkoušet, snad vám přijdou vhod naše praktické tipy. Lenka Šilhánová říjen 11, 2022 - 2 minuty 1) Mluvte spolu ...',
     content: `
 <h2>1) Communicate often and meaningfully</h2>
-<h2>Communication is like oxygen</h2>
-<p>and we can&#x27;t do without it, even in a work environment. The hybrid model of work requires frequent communication, even if you think everything must be clear to everyone. Your team may operate</p>
+<p><strong>Communication is like oxygen</strong> and we can&#x27;t do without it, even in a work environment. The hybrid model of work requires frequent communication, even if you think everything must be clear to everyone. Your team may operate</p>
 <p>asynchronously and the level of technology skills may vary. Employees who don&#x27;t have the information they need or feel sidelined won&#x27;t engage.</p>
 <p>At Behavera, we kick things off every Tuesday with an all-hands meeting called Tuesday Rocks, where each team tells what they&#x27;re working on in one slide. That way we all know what&#x27;s going on and don&#x27;t miss the context of what we&#x27;re working on together as a company. In addition to news from all departments, we have a slide about people, which is dedicated to the introduction of newcomers or serves as an invitation to an online or offline team-building activity. Update by Product team at Tuesday Rocks.</p>
 <p>We always record our half-hour session so that the information is not missed by those who couldn&#x27;t join at the time. Whether it&#x27;s Tuesday Rocks or other meetings, we try to do them in a meaningful way (with a pre-determined agenda) and stick to the allotted time. Would you like to try Behavera Well-being Index?</p>
 <p>Sign up here .</p>
 <h2>2) Feedback is the breakfast of champions</h2>
-<h2>Take a genuine interest in your employees&#x27; opinions and suggestions</h2>
-<p>, whether they are pleasant or not. One of the most important ways to influence engagement is to create an environment where you</p>
+<p><strong>Take a genuine interest in your employees&#x27; opinions and suggestions</strong>, whether they are pleasant or not. One of the most important ways to influence engagement is to create an environment where you</p>
 <p>listen to each other and where feedback helps you improve whatever is bothering your team. When people see that their opinions matter and they have a chance to make an impact, they will naturally engage because it will be meaningful to them.</p>
-<h2>Surveys and 1:1 video calls</h2>
-<p>with team leaders work great in a hybrid setting. Surveys allow people to think deeply about what they want to say and how. Video calls, on the other hand, are a fine tool for follow-up conversations where individual suggestions can be discussed and added context. And thanks to location independence, you can make meetings more enjoyable, for example by combining them with a walk or relaxing in the garden.</p>
+<p><strong>Surveys and 1:1 video calls</strong> with team leaders work great in a hybrid setting. Surveys allow people to think deeply about what they want to say and how. Video calls, on the other hand, are a fine tool for follow-up conversations where individual suggestions can be discussed and added context. And thanks to location independence, you can make meetings more enjoyable, for example by combining them with a walk or relaxing in the garden.</p>
 <h2>3) Base your relationship with people on trust</h2>
-<h2>Micromanagement is a trust killer</h2>
-<p>and in hybrid work can have a big impact on engagement. If employees feel trapped like birds in a cage where their every move is under scrutiny, their motivation will go down the drain.</p>
+<p><strong>Micromanagement is a trust killer</strong> and in hybrid work can have a big impact on engagement. If employees feel trapped like birds in a cage where their every move is under scrutiny, their motivation will go down the drain.</p>
 <p>However, if you base your relationship on trust and give people autonomy and accountability for their results, their productivity will flourish. Hybrid working has enabled many to work in a personalized environment, including working hours. Instead of counting hours worked, give people the freedom to organize their work as they see fit.</p>
 <p>One of the values at Behavera is trust by default. People have been selected for the team who have personal values that are in alignment with the company values. That&#x27;s how we know we can rely on everyone.</p>
 <h2>4) Create space for informal interactions</h2>
-<h2>When operating in hybrid mode, some team members may miss</h2>
-<p>informal places like the kitchen for friendly conversation. Whether you use Slack, Teams, or another alternative, create a space where colleagues can just chat, share memes, or discuss the latest episode of a favorite show.</p>
+<p><strong>When operating in hybrid mode, some team members may miss</strong> informal places like the kitchen for friendly conversation. Whether you use Slack, Teams, or another alternative, create a space where colleagues can just chat, share memes, or discuss the latest episode of a favorite show.</p>
 <p>If your team is new like ours, informal video calls could help you get to know each other. We have Couch Talks every Friday, where we interview one of our own and close with a fun quiz on topics that the person enjoys. It&#x27;s a nice way to get to know each other and find out that you work with great and interesting people. If you like your colleagues affects, among other things, your engagement at work.</p>
 <p>Couch Talk with Dušan Murčo🍕</p>
 <h2>5) Don&#x27;t forget to praise people&#x27;s achievements</h2>
@@ -915,16 +821,13 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Komunikace je jako kyslík a bez něho se neobejdeme, ani ve firemním prostředí. Hybridní model práce vyžaduje častou komunikaci, i když si myslíte, že všem už musí být všechno jasné. Váš tým může fungovat asynchronně a úroveň technologických dovedností se může lišit. Zaměstnanci, kteří nemají potřebné informace nebo se cítí odstrčeni, se nebudou angažovat.</p>
 <p>V Behaveře vykopáváme každé úterý all-hands meetingem Tuesday Rocks, kde každý tým na jednom slidu poví, na čem právě dělá. Všichni tak víme, co se děje a nechybí nám kontext toho, na čem jako celá firma pracujeme.</p>
 <p>Kromě novinek ze všech oddělení míváme slide o lidech, ať už představení nováčků nebo pozvánku na teambuildingovou online či offline aktivitu. Update od produktového týmu na Tuesday Rocks.</p>
-<h2>Naši půlhodinovou seanci vždycky</h2>
-<p>nahráváme, aby informace nechyběly ani těm, kteří se zrovna nemohli připojit. Ať už je to Tuesday Rocks nebo jiné meetingy, snažíme se je dělat smysluplně (s předem danou agendou) a dodržovat určený čas. Chcete si vyzkoušet Behavera Well-being Index? Zaregistrujte se zde.</p>
+<p><strong>Naši půlhodinovou seanci vždycky</strong> nahráváme, aby informace nechyběly ani těm, kteří se zrovna nemohli připojit. Ať už je to Tuesday Rocks nebo jiné meetingy, snažíme se je dělat smysluplně (s předem danou agendou) a dodržovat určený čas. Chcete si vyzkoušet Behavera Well-being Index? Zaregistrujte se zde.</p>
 <h2>2) Zpětná vazba je snídaně šampionů</h2>
-<h2>Upřímně se zajímejte o názory a podněty svých zaměstnanců</h2>
-<p>, ať už budou příjemné nebo nikoliv. Jedním ze zásadních způsobů, jak ovlivnit angažovanost, je vytvoření prostředí, kde si vzájemně</p>
+<p><strong>Upřímně se zajímejte o názory a podněty svých zaměstnanců</strong>, ať už budou příjemné nebo nikoliv. Jedním ze zásadních způsobů, jak ovlivnit angažovanost, je vytvoření prostředí, kde si vzájemně</p>
 <p>nasloucháte a kde podle zpětné vazby vylepšujete vše, co váš tým trápí. Když lidé vidí, že na jejich názorech záleží a mají šanci něco ovlivnit, budou se přirozeně zapojovat do dění, protože to pro ně bude mít smysl.</p>
 <p>V hybridním nastavení skvěle fungují dotazníky a 1:1 video hovory s team leadery. Dotazníky umožňují lidem se v klidu zamyslet nad tím, co chtějí říct a jak. Video hovory jsou zase fajn nástroj k navazující konverzaci, kde se dají jednotlivé podněty probrat a doplnit o kontext. A díky lokační nezávislosti si můžete meetingy zpříjemnit třeba tím, že je spojíte s procházkou nebo odpočinkem na zahradě.</p>
 <h2>3) Založte svůj vztah s lidmi na důvěře</h2>
-<h2>Mikromanagement je zabijákem důvěry</h2>
-<p>a v hybridní práci může mít velký dopad na angažovanost. Pokud se zaměstnanci cítí lapení jako ptáci v kleci, kde každý jejich pohyb je pod drobnohledem, jejich motivace půjde do kytek.</p>
+<p><strong>Mikromanagement je zabijákem důvěry</strong> a v hybridní práci může mít velký dopad na angažovanost. Pokud se zaměstnanci cítí lapení jako ptáci v kleci, kde každý jejich pohyb je pod drobnohledem, jejich motivace půjde do kytek.</p>
 <p>Avšak pokud založíte svůj vztah na důvěře a dáte lidem autonomii a zodpovědnost za své výsledky, jejich produktivita pokvete. Hybridní práce mnohým umožnila pracovat v prostředí uzpůsobeného podle vlastních potřeb včetně pracovní doby. Místo počítání odpracovaných hodin dejte lidem volnost si zorganizovat práci podle svého.</p>
 <p>Jednou z hodnot v Behaveře je důvěra jako samozřejmost. Do týmu byli vybraní takoví lidé, kteří mají hodnoty v souladu s těmi firemními. Díky tomu víme, že se na každého z nás můžeme spolehnout</p>
 <h2>4) Vytvořte prostor pro neformální interakce</h2>
