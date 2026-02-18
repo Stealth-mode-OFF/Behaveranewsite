@@ -475,49 +475,13 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
 
 // Service Layer
 export const CmsService = {
-  // Posts
+  // Posts — always use static blog-content.ts (bilingual EN+CZ)
   getPosts: async (): Promise<BlogPost[]> => {
-    if (!supabaseClient) return [...DEFAULT_POSTS];
-    
-    try {
-      const { data, error } = await supabaseClient
-        .from('posts')
-        .select('*, authors(*)')
-        .eq('status', 'published')
-        .order('published_at', { ascending: false });
-      
-      if (error) throw error;
-      
-      const rows = (data as PostRow[] | null) || [];
-      const posts = rows
-        .filter((post) => post && post.title && post.slug)
-        .map(mapPostRow);
-      // Fall back to hardcoded posts when Supabase returns empty
-      return posts.length > 0 ? posts : [...DEFAULT_POSTS];
-    } catch (err) {
-      console.error('Error fetching posts:', err);
-      return [...DEFAULT_POSTS];
-    }
+    return [...DEFAULT_POSTS];
   },
 
   getPostBySlug: async (slug: string): Promise<BlogPost | undefined> => {
-    if (!supabaseClient) return DEFAULT_POSTS.find(p => p.slug === slug);
-    
-    try {
-      const { data, error } = await supabaseClient
-        .from('posts')
-        .select('*, authors(*)')
-        .eq('slug', slug)
-        .single();
-      
-      if (error) throw error;
-      
-      if (!data || !data.title || !data.slug) return undefined;
-      return mapPostRow(data as PostRow);
-    } catch (err) {
-      console.error('Error fetching post:', err);
-      return DEFAULT_POSTS.find(p => p.slug === slug);
-    }
+    return DEFAULT_POSTS.find(p => p.slug === slug);
   },
 
   createPost: async (post: Omit<BlogPost, 'id' | 'author' | 'publishedAt'>): Promise<BlogPost> => {
