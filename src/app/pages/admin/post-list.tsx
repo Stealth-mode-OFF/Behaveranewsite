@@ -20,7 +20,7 @@ export function PostList() {
   const loadPosts = async () => {
     setIsLoading(true);
     try {
-      const data = await CmsService.getPosts();
+      const data = await CmsService.getAllPosts();
       setPosts(data);
       setFilteredPosts(data);
     } catch {

@@ -13,12 +13,15 @@ import { Textarea } from '@/app/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/app/components/ui/card';
 import { toast } from 'sonner';
-import { ArrowLeft, Save, Plus, Trash, Image as ImageIcon, Briefcase } from 'lucide-react';
+import { ArrowLeft, Save, Plus, Trash, Image as ImageIcon, Briefcase, Globe } from 'lucide-react';
+
+type LangTab = 'en' | 'cz';
 
 export function CaseStudyEditor() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [langTab, setLangTab] = useState<LangTab>('en');
   const isEditing = !!id;
 
   const { register, control, handleSubmit, setValue, watch } = useForm<CaseStudyFormData>({
@@ -56,6 +59,14 @@ export function CaseStudyEditor() {
             setValue('coverImage', study.coverImage || '');
             setValue('results', study.results && study.results.length > 0 ? study.results : [{ label: '', value: '' }]);
             setValue('status', study.status);
+            // CZ fields
+            setValue('title_cz', study.title_cz || '');
+            setValue('challenge_cz', study.challenge_cz || '');
+            setValue('solution_cz', study.solution_cz || '');
+            setValue('content_cz', study.content_cz || '');
+            setValue('industry_cz', study.industry_cz || '');
+            setValue('cardSummary', study.cardSummary || '');
+            setValue('cardSummary_cz', study.cardSummary_cz || '');
         } else {
             toast.error('Case study not found');
             navigate('/admin/case-studies');
@@ -81,6 +92,26 @@ export function CaseStudyEditor() {
       setIsLoading(false);
     }
   };
+
+  const LangTabs = () => (
+    <div className="flex gap-1 bg-brand-background-secondary/50 p-1 rounded-lg">
+      {(['en', 'cz'] as const).map(lang => (
+        <button
+          key={lang}
+          type="button"
+          onClick={() => setLangTab(lang)}
+          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+            langTab === lang
+              ? 'bg-white text-brand-primary shadow-sm'
+              : 'text-brand-text-muted hover:text-brand-text-secondary'
+          }`}
+        >
+          <Globe className="w-3 h-3" />
+          {lang === 'en' ? 'English' : 'Čeština'}
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -122,59 +153,132 @@ export function CaseStudyEditor() {
                             <Input {...register('clientName', { required: true })} placeholder="Acme Corp" className="border-brand-border/60 focus:ring-brand-primary/20" />
                         </div>
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Industry</Label>
+                            <Label className="text-brand-text-secondary">Industry (EN)</Label>
                             <Input {...register('industry')} placeholder="Tech, Health, etc." className="border-brand-border/60 focus:ring-brand-primary/20" />
                         </div>
                     </div>
 
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Case Study Title (EN)</Label>
+                            <Input {...register('title', { required: true })} placeholder="How we saved..." className="border-brand-border/60 focus:ring-brand-primary/20 font-medium text-lg" />
+                        </div>
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Název (CZ)</Label>
+                            <Input {...register('title_cz')} placeholder="Český název..." className="border-brand-border/60 focus:ring-brand-primary/20 font-medium text-lg" />
+                        </div>
+                    </div>
+
                     <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">Case Study Title</Label>
-                        <Input {...register('title', { required: true })} placeholder="How we saved..." className="border-brand-border/60 focus:ring-brand-primary/20 font-medium text-lg" />
+                        <Label className="text-brand-text-secondary">Odvětví / Industry (CZ)</Label>
+                        <Input {...register('industry_cz')} placeholder="Technologie, Zdravotnictví, atd." className="border-brand-border/60 focus:ring-brand-primary/20" />
                     </div>
                 </CardContent>
             </Card>
 
             <Card className="border-brand-border/60 shadow-sm">
-                <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 pb-4">
+                <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 pb-4 flex flex-row items-center justify-between space-y-0">
                     <CardTitle className="text-base font-semibold text-brand-text-secondary">The Story</CardTitle>
+                    <LangTabs />
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
-                    <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">The Challenge</Label>
-                        <Textarea 
-                            {...register('challenge')} 
-                            placeholder="Describe the problem the client faced..." 
-                            className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">The Solution</Label>
-                        <Textarea 
-                            {...register('solution')} 
-                            placeholder="How did Echo Pulse solve it?" 
-                            className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">Full Detailed Content</Label>
-                        <div className="prose-editor min-h-[300px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
-                            <Controller
-                            name="content"
-                            control={control}
-                            render={({ field }) => (
-                                <ReactQuill 
-                                    theme="snow" 
-                                    value={field.value} 
-                                    onChange={field.onChange} 
-                                    className="h-[250px] mb-12"
-                                    placeholder="Tell the full story..."
-                                />
-                            )}
+                    {langTab === 'en' ? (
+                      <>
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">The Challenge (EN)</Label>
+                            <Textarea 
+                                {...register('challenge')} 
+                                placeholder="Describe the problem the client faced..." 
+                                className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
                             />
                         </div>
-                    </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">The Solution (EN)</Label>
+                            <Textarea 
+                                {...register('solution')} 
+                                placeholder="How did Echo Pulse solve it?" 
+                                className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Card Summary (EN)</Label>
+                            <Textarea 
+                                {...register('cardSummary')} 
+                                placeholder="Short summary for the card back..." 
+                                className="min-h-[80px] border-brand-border/60 focus:ring-brand-primary/20" 
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Full Detailed Content (EN)</Label>
+                            <div className="prose-editor min-h-[300px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
+                                <Controller
+                                name="content"
+                                control={control}
+                                render={({ field }) => (
+                                    <ReactQuill 
+                                        theme="snow" 
+                                        value={field.value} 
+                                        onChange={field.onChange} 
+                                        className="h-[250px] mb-12"
+                                        placeholder="Tell the full story..."
+                                    />
+                                )}
+                                />
+                            </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Výzva (CZ)</Label>
+                            <Textarea 
+                                {...register('challenge_cz')} 
+                                placeholder="Popište problém, kterému klient čelil..." 
+                                className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Řešení (CZ)</Label>
+                            <Textarea 
+                                {...register('solution_cz')} 
+                                placeholder="Jak Echo Pulse problém vyřešil?" 
+                                className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Shrnutí na kartě (CZ)</Label>
+                            <Textarea 
+                                {...register('cardSummary_cz')} 
+                                placeholder="Krátké shrnutí pro zadní stranu karty..." 
+                                className="min-h-[80px] border-brand-border/60 focus:ring-brand-primary/20" 
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label className="text-brand-text-secondary">Kompletní obsah (CZ)</Label>
+                            <div className="prose-editor min-h-[300px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
+                                <Controller
+                                name="content_cz"
+                                control={control}
+                                render={({ field }) => (
+                                    <ReactQuill 
+                                        theme="snow" 
+                                        value={field.value || ''} 
+                                        onChange={field.onChange} 
+                                        className="h-[250px] mb-12"
+                                        placeholder="Napište celý příběh česky..."
+                                    />
+                                )}
+                                />
+                            </div>
+                        </div>
+                      </>
+                    )}
                 </CardContent>
             </Card>
         </div>
