@@ -14,6 +14,9 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 const TermsPage = lazy(() =>
   import("./pages/public/terms").then((module) => ({ default: module.TermsPage }))
 );
+const PrivacyPolicyPage = lazy(() =>
+  import("./pages/public/privacy-policy").then((module) => ({ default: module.PrivacyPolicyPage }))
+);
 const BlogPage = lazy(() =>
   import("./pages/public/blog").then((module) => ({ default: module.BlogPage }))
 );
@@ -113,6 +116,7 @@ function App() {
                     {/* Public Routes */}
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/terms" element={<TermsPage />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />

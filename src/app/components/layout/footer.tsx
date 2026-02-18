@@ -112,22 +112,16 @@ export function Footer() {
 
   const supportLegalLinks = {
     cz: [
-      { label: "Trust Center", href: anchor("#legal") },
       { label: "Obchodní podmínky", href: "/terms" },
-      { label: "Ochrana osobních údajů", href: "/terms#privacy" },
-      { label: "Cookies", href: "/terms#cookies" },
+      { label: "Ochrana osobních údajů", href: "/privacy-policy" },
     ],
     en: [
-      { label: "Trust Center", href: anchor("#legal") },
       { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/terms#privacy" },
-      { label: "Cookie Policy", href: "/terms#cookies" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
     ],
     de: [
-      { label: "Trust Center", href: anchor("#legal") },
       { label: "AGB", href: "/terms" },
-      { label: "Datenschutz", href: "/terms#privacy" },
-      { label: "Cookie-Richtlinie", href: "/terms#cookies" },
+      { label: "Datenschutz", href: "/privacy-policy" },
     ],
   };
 
