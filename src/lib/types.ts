@@ -22,6 +22,7 @@ export type BlogPost = {
   publishedAt: string;
   tags: string[];
   status: 'draft' | 'published';
+  conversionPrimary?: 'lead' | 'demo' | 'balanced';
 };
 
 export type BlogPostFormData = Omit<BlogPost, 'id' | 'author' | 'publishedAt'>;

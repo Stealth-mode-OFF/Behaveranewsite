@@ -80,6 +80,22 @@ type Translations = {
     seoTitle: string;
     seoDescription: string;
     seoKeywords: string;
+    tocTitle: string;
+    tocEmpty: string;
+    progressLabel: string;
+    relatedLabel: string;
+    midLeadLabel: string;
+    midLeadTitle: string;
+    midLeadDesc: string;
+    midLeadCta: string;
+    railLeadLabel: string;
+    railLeadTitle: string;
+    railLeadDesc: string;
+    railLeadCta: string;
+    endDemoLabel: string;
+    endDemoTitle: string;
+    endDemoDesc: string;
+    endDemoCta: string;
   };
   caseStudies: {
     loading: string;
@@ -274,6 +290,22 @@ export const translations: Record<Language, Translations> = {
       seoTitle: "Blog & Insights",
       seoDescription: "Practical articles on engagement, retention, and organizational psychology.",
       seoKeywords: "employee engagement, HR analytics, burnout prevention, organizational psychology, retention strategies",
+      tocTitle: "In this article",
+      tocEmpty: "No sections available",
+      progressLabel: "Reading progress",
+      relatedLabel: "Related articles",
+      midLeadLabel: "Free resources",
+      midLeadTitle: "Get 2 practical e-books on retention and engagement",
+      midLeadDesc: "Actionable playbooks and data-backed insights you can use with your team immediately.",
+      midLeadCta: "Get free e-books",
+      railLeadLabel: "Quick download",
+      railLeadTitle: "Keep the best people before they disengage",
+      railLeadDesc: "Short, practical materials for leaders and HR teams.",
+      railLeadCta: "Download",
+      endDemoLabel: "See it in your team",
+      endDemoTitle: "Want to turn these insights into action?",
+      endDemoDesc: "See how Echo Pulse helps you detect risks early and guide better 1:1 conversations.",
+      endDemoCta: "Book a demo",
     },
     caseStudies: {
       loading: "Loading...",
@@ -466,6 +498,22 @@ export const translations: Record<Language, Translations> = {
       seoTitle: "Blog a poznatky",
       seoDescription: "Praktické články o engagementu, retenci a organizační psychologii.",
       seoKeywords: "engagement, HR analytika, prevence vyhoření, organizační psychologie, retence",
+      tocTitle: "Obsah článku",
+      tocEmpty: "Sekce nejsou dostupné",
+      progressLabel: "Průběh čtení",
+      relatedLabel: "Další články k tématu",
+      midLeadLabel: "Praktické materiály",
+      midLeadTitle: "Stáhněte si 2 e-booky o retenci a angažovanosti",
+      midLeadDesc: "Konkrétní postupy a data, které můžete využít ve firmě hned.",
+      midLeadCta: "Stáhnout e-booky zdarma",
+      railLeadLabel: "Rychlé stažení",
+      railLeadTitle: "Udržte klíčové lidi dřív, než se odpojí",
+      railLeadDesc: "Stručné a praktické materiály pro leadery a HR.",
+      railLeadCta: "Stáhnout",
+      endDemoLabel: "Převeďte to do praxe",
+      endDemoTitle: "Chcete tyto poznatky použít ve vašem týmu?",
+      endDemoDesc: "Podívejte se, jak Echo Pulse odhalí rizika včas a zlepší vaše 1:1 rozhovory.",
+      endDemoCta: "Domluvit demo",
     },
     caseStudies: {
       loading: "Načítání...",
@@ -658,6 +706,22 @@ export const translations: Record<Language, Translations> = {
       seoTitle: "Blog & Einblicke",
       seoDescription: "Praktische Artikel zu Engagement, Retention und Organisationspsychologie.",
       seoKeywords: "Mitarbeiterengagement, HR-Analytik, Burnout-Prävention, Organisationspsychologie, Retentionsstrategien",
+      tocTitle: "Inhaltsverzeichnis",
+      tocEmpty: "Keine Abschnitte verfügbar",
+      progressLabel: "Lesefortschritt",
+      relatedLabel: "Ähnliche Artikel",
+      midLeadLabel: "Kostenlose Ressourcen",
+      midLeadTitle: "2 praktische E-Books zu Retention und Engagement",
+      midLeadDesc: "Konkrete Vorgehensweisen und datenbasierte Insights für Ihr Team.",
+      midLeadCta: "E-Books kostenlos",
+      railLeadLabel: "Schnelldownload",
+      railLeadTitle: "Schlüsselkräfte halten, bevor sie abspringen",
+      railLeadDesc: "Kurze, praktische Materialien für Führung und HR.",
+      railLeadCta: "Herunterladen",
+      endDemoLabel: "In Ihrem Team testen",
+      endDemoTitle: "Möchten Sie diese Erkenntnisse direkt nutzen?",
+      endDemoDesc: "Sehen Sie, wie Echo Pulse Risiken früh erkennt und bessere 1:1 Gespräche unterstützt.",
+      endDemoCta: "Demo buchen",
     },
     caseStudies: {
       loading: "Wird geladen...",
