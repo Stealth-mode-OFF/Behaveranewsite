@@ -86,8 +86,9 @@ export function CaseStudyEditor() {
         toast.success('Case Study created');
       }
       navigate('/admin/case-studies');
-    } catch {
-      toast.error('Failed to save');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      toast.error(`Failed to save: ${message}`);
     } finally {
       setIsLoading(false);
     }

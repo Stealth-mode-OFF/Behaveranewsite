@@ -71,8 +71,9 @@ export function PostEditor() {
         toast.success('Post created successfully');
       }
       navigate('/admin/posts');
-    } catch {
-      toast.error('Failed to save post');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      toast.error(`Failed to save post: ${message}`);
     } finally {
       setIsLoading(false);
     }

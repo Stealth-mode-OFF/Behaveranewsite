@@ -101,6 +101,9 @@ const mapCaseStudyRow = (row: CaseStudyRow): CaseStudy => ({
   cardSummary_cz: row.card_summary_cz || undefined,
 });
 
+const isNoRowsError = (error: { code?: string } | null | undefined): boolean =>
+  !!error && error.code === 'PGRST116';
+
 /* ─── localStorage helpers ─── */
 const LS_KEY_CASE_STUDIES = 'behavera_case_studies';
 const LS_KEY_POSTS = 'behavera_posts';
@@ -653,7 +656,7 @@ export const CmsService = {
       DEFAULT_POSTS[index] = { ...DEFAULT_POSTS[index], ...updates };
       return DEFAULT_POSTS[index];
     }
-    
+
     try {
       const payload: Record<string, unknown> = {};
       if (updates.title !== undefined) payload.title = updates.title;
@@ -673,16 +676,70 @@ export const CmsService = {
         .eq('id', id)
         .select('*, authors(*)')
         .single();
-      
-      if (error) throw error;
 
-      return mapPostRow(data as PostRow);
+      if (!error && data) {
+        return mapPostRow(data as PostRow);
+      }
+      if (error && !isNoRowsError(error)) {
+        throw error;
+      }
+
+      // Fallback path: editing static seed content (id not present in DB yet).
+      const seedPost =
+        DEFAULT_POSTS.find(p => p.id === id) ||
+        (updates.slug ? DEFAULT_POSTS.find(p => p.slug === updates.slug) : undefined);
+      const slug = updates.slug ?? seedPost?.slug;
+      if (!slug) {
+        throw error || new Error('Post not found in database and slug is missing.');
+      }
+
+      const { data: bySlugData, error: bySlugError } = await supabaseClient
+        .from('posts')
+        .update(payload)
+        .eq('slug', slug)
+        .select('*, authors(*)')
+        .single();
+
+      if (!bySlugError && bySlugData) {
+        return mapPostRow(bySlugData as PostRow);
+      }
+      if (bySlugError && !isNoRowsError(bySlugError)) {
+        throw bySlugError;
+      }
+
+      const title = updates.title ?? seedPost?.title;
+      if (!title) {
+        throw new Error('Unable to create post override: title is missing.');
+      }
+
+      const insertPayload = {
+        title,
+        slug,
+        excerpt: updates.excerpt ?? seedPost?.excerpt ?? '',
+        content: updates.content ?? seedPost?.content ?? '',
+        cover_image: updates.coverImage ?? seedPost?.coverImage ?? null,
+        tags: updates.tags ?? seedPost?.tags ?? [],
+        status: updates.status ?? seedPost?.status ?? 'draft',
+        published_at: seedPost?.publishedAt ?? new Date().toISOString(),
+        title_cz: updates.title_cz ?? seedPost?.title_cz ?? null,
+        excerpt_cz: updates.excerpt_cz ?? seedPost?.excerpt_cz ?? null,
+        content_cz: updates.content_cz ?? seedPost?.content_cz ?? null,
+      };
+
+      const { data: insertedData, error: insertError } = await supabaseClient
+        .from('posts')
+        .insert([insertPayload])
+        .select('*, authors(*)')
+        .single();
+
+      if (insertError) throw insertError;
+      return mapPostRow(insertedData as PostRow);
     } catch (err) {
       console.error('Error updating post:', err);
       throw err;
     }
   },
-  
+
   deletePost: async (id: string): Promise<void> => {
     if (!supabaseClient) {
       const index = DEFAULT_POSTS.findIndex(p => p.id === id);
@@ -892,8 +949,70 @@ export const CmsService = {
         .select('*')
         .single();
 
-      if (error) throw error;
-      return mapCaseStudyRow(data as CaseStudyRow);
+      if (!error && data) {
+        return mapCaseStudyRow(data as CaseStudyRow);
+      }
+      if (error && !isNoRowsError(error)) {
+        throw error;
+      }
+
+      // Fallback path: editing static seed content (id not present in DB yet).
+      const seedCaseStudy =
+        DEFAULT_CASE_STUDIES.find(s => s.id === id) ||
+        (updates.slug ? DEFAULT_CASE_STUDIES.find(s => s.slug === updates.slug) : undefined);
+      const slug = updates.slug ?? seedCaseStudy?.slug;
+      if (!slug) {
+        throw error || new Error('Case study not found in database and slug is missing.');
+      }
+
+      const { data: bySlugData, error: bySlugError } = await supabaseClient
+        .from('case_studies')
+        .update(payload)
+        .eq('slug', slug)
+        .select('*')
+        .single();
+
+      if (!bySlugError && bySlugData) {
+        return mapCaseStudyRow(bySlugData as CaseStudyRow);
+      }
+      if (bySlugError && !isNoRowsError(bySlugError)) {
+        throw bySlugError;
+      }
+
+      const title = updates.title ?? seedCaseStudy?.title;
+      if (!title) {
+        throw new Error('Unable to create case study override: title is missing.');
+      }
+
+      const insertPayload = {
+        title,
+        slug,
+        client_name: updates.clientName ?? seedCaseStudy?.clientName ?? null,
+        industry: updates.industry ?? seedCaseStudy?.industry ?? null,
+        challenge: updates.challenge ?? seedCaseStudy?.challenge ?? null,
+        solution: updates.solution ?? seedCaseStudy?.solution ?? null,
+        results: updates.results ?? seedCaseStudy?.results ?? [],
+        content: updates.content ?? seedCaseStudy?.content ?? '',
+        cover_image: updates.coverImage ?? seedCaseStudy?.coverImage ?? null,
+        status: updates.status ?? seedCaseStudy?.status ?? 'draft',
+        published_at: seedCaseStudy?.publishedAt ?? new Date().toISOString(),
+        title_cz: updates.title_cz ?? seedCaseStudy?.title_cz ?? null,
+        challenge_cz: updates.challenge_cz ?? seedCaseStudy?.challenge_cz ?? null,
+        solution_cz: updates.solution_cz ?? seedCaseStudy?.solution_cz ?? null,
+        content_cz: updates.content_cz ?? seedCaseStudy?.content_cz ?? null,
+        industry_cz: updates.industry_cz ?? seedCaseStudy?.industry_cz ?? null,
+        card_summary: updates.cardSummary ?? seedCaseStudy?.cardSummary ?? null,
+        card_summary_cz: updates.cardSummary_cz ?? seedCaseStudy?.cardSummary_cz ?? null,
+      };
+
+      const { data: insertedData, error: insertError } = await supabaseClient
+        .from('case_studies')
+        .insert([insertPayload])
+        .select('*')
+        .single();
+
+      if (insertError) throw insertError;
+      return mapCaseStudyRow(insertedData as CaseStudyRow);
     } catch (err) {
       console.error('Error updating case study:', err);
       throw err;
