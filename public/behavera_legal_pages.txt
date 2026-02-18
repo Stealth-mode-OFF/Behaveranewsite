@@ -1,0 +1,370 @@
+====================================================================================================
+[1] EN_Terms – Terms and Conditions of the Echo Pulse Service
+URL: https://www.behavera.com/terms
+Lang: en
+====================================================================================================
+
+1. Introductory Provisions
+These commercial and product terms and conditions (hereinafter collectively referred to as the
+“Terms”) govern the legal relationships arising in connection with the provision and use of the Echo Pulse service by Behavera.
+The
+“Service”
+means the Echo Pulse service provided by Behavera through remote access via a web-based interface, the purpose of which is to enable the Client to obtain anonymous feedback from Participants and to receive clear analytical outputs and recommendations related to team functioning and people management.
+The Service is provided in the scope and form available to the Client at any given time. Its specific technical solution, structure, and functionalities may change over time.
+A
+“Participant”
+means a natural person invited by the Client to participate in a Pulse survey or other assessment conducted through the Service (hereinafter the
+“Participant”). A Participant may in particular be an employee of the Client or another person cooperating with the Client whose participation in the Service is enabled on the basis of a contractual relationship between Behavera and the Client.
+Any written agreements concluded individually between Behavera and the Client shall prevail over the provisions of these Terms.
+‍
+‍
+2. Conclusion of the Agreement and Conditions of Use of the Service
+Conclusion of the Agreement
+The contractual relationship between Behavera and the Client is formed at the moment when the Client expresses its consent to these Terms during the online registration process by means of a confirmation element in the web interface and the first payment for the Service is made, whichever occurs later, unless expressly agreed otherwise between the Parties.
+Upon conclusion of the Agreement, the information regarding the Price of the Service and its scope displayed to the Client during the online registration process or provided individually by Behavera prior to the conclusion of the Agreement shall also form an integral part of the Agreement.
+In the event of any discrepancy between an individual price offer provided to the Client by Behavera and the information displayed during the online registration process, the individual price offer shall prevail.
+Client Registration and Use of the Service
+By registering the Client in the Service’s web interface, the Client obtains user access through which it is entitled to use the Service within the scope agreed in accordance with these Terms.
+The Client is obliged to provide true and up-to-date information during registration and is responsible for the actions of persons to whom it grants access to the Service.
+The Client is entitled to enable the Participants through the Service, in particular by means of an individual link, for the purpose of involving them in Pulse surveys or assessments. A Participant may interrupt an assessment and continue it later, if permitted by the technical settings of the Service, and is not obliged to complete it.
+Outputs and Responsibility
+If an assessment is completed, the Client shall have access to automatically generated outputs corresponding to the current functionalities of the Service. If an assessment is not completed, only limited data may be made available.
+The Client undertakes to use the Service in compliance with applicable legal regulations, good morals, and its intended purpose, and is responsible for the content made available through the Service.
+Behavera is entitled, in justified cases, to restrict or suspend access to the Service in the event of misuse or a material breach of these Terms.
+Technical Nature of the Service and Data
+The Client acknowledges that the Service is provided as a cloud-based service and that its availability may be affected by technical circumstances beyond Behavera’s control.
+Behavera is entitled to anonymize data generated in connection with the provision of the Service and to further use such anonymized data for statistical purposes and for improving the Service, in compliance with applicable legal regulations.
+‍
+3. Price of the Service and Payment Terms
+Price of the Service and Its Determination
+The Price of the Service is determined based on the scope of use of the Service agreed between the Client and Behavera, in particular with regard to the reference number of Participants, the selected subscription variant (monthly or annual), and other parameters of the Service selected by the Client.
+The
+reference number of Participants
+means the number of Participants specified by the Client and approved upon conclusion of the Agreement, in particular during the online registration process or in an individual price offer, which serves as the basis for determining the agreed Price of the Service.
+The agreed Price of the Service is a fixed price for the agreed scope of the Service and is linked to the reference number of Participants.
+A decrease in the actual number of Participants compared to the reference number shall have no effect on the agreed Price of the Service.
+If the actual number of Participants using the Service within a single billing month exceeds the reference number of Participants by more than ten percent (10%), Behavera is entitled to adjust the agreed Price of the Service so that it corresponds to the expanded scope of use of the Service. For the purposes of this provision, the highest actual number of Participants recorded in the given billing month shall be taken into account.
+The Price adjustment shall be made proportionally, so that the percentage increase in the Price corresponds to the percentage increase in the actual number of Participants above the reference number. The adjusted Price shall be deemed the new agreed Price of the Service and shall be linked to the updated reference number of Participants, regardless of any subsequent decrease in the actual number of Participants. The Parties acknowledge and agree that a Price adjustment under this Article is a direct consequence of a change in the scope of use of the Service and does not constitute a unilateral amendment of the Agreement or these Terms.
+In the case of an annual subscription, Behavera is entitled to invoice the Price increase corresponding to the expanded scope of the Service even during the prepaid twelve-month period, proportionally for the remaining part of that period.
+Behavera is obliged to inform the Client of any Price adjustment at least thirty (30) days in advance, with the new Price becoming applicable as of the date specified in the notice.
+Payment Terms
+The Price of the Service shall be paid on the basis of an invoice issued by Behavera and delivered electronically. Invoicing shall be carried out according to the selected subscription variant, i. e. monthly for a monthly subscription and in advance for twelve (12) months for an annual subscription. The invoice shall be due and payable within fourteen (14) days of its issue date.
+If the Client is in default with payment of the Price for more than fourteen (14) days, Behavera is entitled to suspend the provision of the Service until the outstanding amount has been paid in full. During the period of suspension, the Client shall not be entitled to any discount or extension of the Service period.
+Trial Period and Withdrawal Without Stating Reasons
+The Client is entitled to withdraw from the Agreement without stating reasons within thirty (30) days from the date of payment of the first payment and to request a refund of the paid amount, provided that:
+a) the implementation of the Service has been completed, and
+b) the first Pulse survey has been completed.
+If the first Pulse survey is not completed, the right to a refund shall not arise. Upon expiry of the period specified in this Article, the Client’s right to a refund shall lapse and the contractual relationship shall continue under the agreed terms.
+Scope of the Price and Free Participation of Participants
+The Price of the Service applies exclusively to the provision of the Service to the Client. Completion of an assessment by a Participant is free of charge under all circumstances and may not be charged to any of the Parties involved. The Client is not entitled to require any additional consideration from a Participant in connection with completing an assessment.
+Non-Use of the Service
+The Client shall not be entitled to a refund of the paid Price or to a discount from the Price in the event that it does not use the ordered Service, in particular due to technical obstacles on its side and/or failure of its Participants to complete assessments.
+‍
+4. Information Security
+Confidentiality
+The Contracting Parties undertake to maintain confidentiality regarding all confidential information obtained in connection with the conclusion of the Agreement and the use of the Service. The obligation of confidentiality shall survive termination of the contractual relationship and shall not apply where disclosure of information is required by law.
+Personal Data Protection
+Roles of the Contracting Parties
+The Client acts as the data controller within the meaning of the GDPR, as it determines the purposes and means of processing the personal data of Participants. Behavera acts as the data processor and processes personal data exclusively on the basis of the Client’s instructions and to the extent necessary for the provision of the Echo Pulse Service.
+Subject Matter, Duration, and Purpose of Processing
+The subject matter of processing consists of the personal data of Participants involved by the Client in the use of the Service. Processing is carried out for the duration of the contractual relationship, or for the period necessary to settle rights and obligations following its termination. The purpose of processing is the provision of the Service, in particular the implementation of Pulse surveys, evaluation of Participants’ responses, and making outputs available to the Client.
+Types of Personal Data and Data Subjects
+In particular, the following may be processed:
+- limited identification and contact data,
+- Participants’ responses within the Service,
+- technical data related to the use of the Service.
+Special categories of personal data under Article 9 GDPR are not processed unless expressly agreed otherwise. The data subjects are Participants, i. e. natural persons involved by the Client in the Service.
+Obligations of the Processor
+Behavera undertakes to:
+a) process personal data only on the basis of documented instructions from the Client,
+b) ensure confidentiality of persons authorized to process the data,
+c) implement appropriate technical and organizational measures pursuant to Article 32 GDPR,
+d) provide reasonable assistance to the Client in fulfilling GDPR obligations,
+e) notify the Client without undue delay of any personal data breach.
+Sub-processors
+The Client grants Behavera general authorization to engage additional processors, in particular providers of technical and cloud infrastructure.
+Behavera shall ensure that such sub-processors are bound by obligations corresponding to this provision.
+Termination of Processing
+Upon termination of the provision of the Service, Behavera shall delete or return the personal data in accordance with the Client’s instructions, unless retention is required by law.
+Liability
+The Client is responsible for fulfilling the obligations of a data controller, in particular for having a lawful basis for processing and for complying with information obligations towards data subjects.
+‍
+5. Intellectual Property Protection
+All content, functionalities, and technical solutions of the Service, including methodologies, tools, survey questions, algorithms, databases, user interfaces, and other related elements, are protected by intellectual property laws. The rights to these elements belong to Behavera or its licensing partners.
+For the duration of the contractual relationship, the Client is entitled to use the Service exclusively by remote access and solely for its internal purposes, in accordance with these Terms. Provision of the Service does not result in any transfer of intellectual property rights to the Client.
+In particular, the Client undertakes not to:
+- make the Service or any part thereof available to unauthorized third parties,
+- make copies of the Service or its content,
+- perform reverse engineering, decompilation, or other interference with the technical solution of the Service,
+- use the Service for the purpose of developing or operating a competing solution.
+This shall not affect the Client’s right to use outputs and results generated through the use of the Service for its internal purposes.
+6. Term of the Agreement and Its Termination
+Term of the Agreement
+The contractual relationship between Behavera and the Client is concluded for an indefinite period, unless expressly agreed otherwise between the Parties. The selected subscription variant (monthly or annual) determines the billing method and payment period, not the duration of the Agreement.
+Termination of the Agreement by the Client
+a) Monthly Subscription
+In the case of a monthly subscription, the Client is entitled to terminate the Agreement in writing under the following conditions:
+- during the first three (3) months from the commencement of the provision of the Service, the Client may terminate the Agreement at any time with immediate effect; the notice of termination must be delivered to Behavera no later than the last day of this period;
+- after the expiry of this three-month period, the Client is entitled to terminate the Agreement with a notice period of two (2) months, with the notice period commencing on the first day of the calendar month following the month in which the notice of termination is delivered to Behavera.
+Termination of the Agreement shall not affect the Client’s obligation to pay the Price for periods already provided or paid for, unless expressly stated otherwise in these Terms.
+b) Annual Subscription
+In the case of an annual subscription, the Client is entitled to terminate the Agreement in writing provided that the notice of termination is delivered to Behavera no later than two (2) months prior to the expiry of the current twelve-month prepaid Service period.
+If the notice of termination is not delivered within this period, the scope of the Service under the annual subscription shall be automatically renewed for a further twelve-month period (repeatedly).
+Withdrawal from the Agreement by Behavera
+Behavera is entitled to withdraw from the Agreement with immediate effect if:
+a) the Client is in default with payment of any due amount for more than fourteen (14) calendar days, or
+b) the Client materially breaches its obligations arising from the Agreement or these Terms, in particular obligations related to payments, proper and authorized use of the Service, or protection of Behavera’s rights.
+Termination of the Agreement by Behavera Without Stating Reasons
+Behavera is entitled to terminate the Agreement in writing at any time without stating reasons, with a notice period of three (3) months. The notice period shall commence on the first day of the calendar month following the month in which the notice of termination is delivered to the Client.
+In the event of termination under this provision, Behavera shall be obliged either to allow the Client to continue using the Service for a period corresponding to the already paid period, or to refund the Client a proportional part of the already paid Price for the period during which the Service will no longer be provided.
+This shall not affect Behavera’s right to withdraw from the Agreement pursuant to the previous Article.
+Behavera is entitled to terminate the Agreement under this provision even if the contractual relationship is agreed for a fixed term, unless expressly agreed otherwise between the Parties.
+Consequences of Termination
+Termination of the Agreement for any reason shall not entitle the Client to a refund of payments already made or any proportional part thereof, except in cases expressly stated in these Terms.
+Upon termination of the Agreement, the Client’s right to use the Service shall cease; this shall not affect obligations which by their nature are intended to survive termination of the Agreement, in particular obligations relating to confidentiality, intellectual property protection, and payment of outstanding amounts.
+7. Limitation of Liability and Disclaimer of Warranties
+The Service is provided as a cloud-based service on an “as is” and “as available” basis. Behavera provides no warranties regarding uninterrupted availability, error-free operation of the Service, or achievement of any specific results. Outputs, assessments, and recommendations generated through the Service are for informational purposes only and do not constitute professional advice; all decisions made on their basis are taken by the Client at its own responsibility.
+To the maximum extent permitted by applicable law, Behavera’s total liability for damages arising in connection with the provision of the Service shall be limited to an amount corresponding to the Price of the Service paid by the Client for one (1) calendar month.
+‍
+8. Amendments to the Terms and the Price
+Behavera is entitled to unilaterally amend these Terms and/or the Price of the Service to a reasonable extent, in particular for the following reasons:
+a) changes in legal regulations, regulatory requirements, or interpretative practice of public authorities,
+b) changes in technical, security, or operational parameters of the Service,
+c) extension, limitation, modification, or optimization of Service functionalities or structure,
+d) changes in costs of development, operation, maintenance, or support of the Service,
+e) changes in Behavera’s business or pricing strategy,
+f) adjustments of the Price reflecting market conditions, economic developments, or Behavera’s strategic objectives,
+g) changes in the scope or manner of the Client’s use of the Service.
+Any amendment to the Terms and/or the Price shall be notified to the Client at least thirty (30) days in advance by electronic mail sent to the Client’s contact email address and/or by notification in the Service’s user interface (e. g. notification or pop-up).
+Client’s Right to Terminate the Agreement Upon Amendment
+If the Client does not agree with the amended Terms and/or the Price, it is entitled to terminate the Agreement in writing no later than on the date the amendment becomes effective. In such case, the contractual relationship shall terminate on the effective date of the amendment, unless agreed otherwise between the Parties.
+If, as of the termination date, the Client has paid the Price for a period during which the Service will no longer be provided, Behavera shall refund the Client a proportional part of the paid Price corresponding to the unused part of the prepaid period.
+Acceptance of Amendments
+If the Client continues to use the Service after the effective date of the amended Terms and/or Price, it shall be deemed that the Client accepts the amendment, and the amended Terms and/or Price shall become a binding part of the contractual relationship between the Client and Behavera.
+Limitation of Effects of Amendments
+Unilateral amendments to the Terms and/or the Price shall not affect claims already due or performances provided prior to the effective date of the amendment, and rights of the Parties arising before that date shall remain unaffected.
+9. Final Provisions
+These Terms and Conditions enter into force and effect on the 25th of January 2026.
+These Terms and Conditions shall also apply to all contractual relationships between Behavera and Clients established prior to their effective date, as of the date on which the Client first logs into the Service or otherwise begins using it after the effective date.
+In the event of any ambiguity, discrepancy, or dispute regarding the interpretation or meaning of these Terms and Conditions, the Czech language version shall prevail and be deemed the authoritative version. The current version of the Terms and Conditions of the Echo Pulse Service in the Czech language is available at: cz. behavera. com/terms.
+‍
+
+====================================================================================================
+[2] EN_PrivacyPolicy – Privacy policy
+URL: https://www.behavera.com/privacy-policy
+Lang: en
+====================================================================================================
+
+Protection of personal data
+Thank you for your interest in our services in the field of career development and self-knowledge. We believe that you will find our services useful. Our goal is for you to be satisfied with our services and feel good. That is why we tried to write this document, which you are reading right now, clearly and comprehensively in the spirit of our values and mission.
+This Privacy Policy describes our services and what personal data we process, how and for what we use it, and how we keep your personal data safe. This is information within the meaning of Article 13 of Regulation (EU) 2016/679 of the European Parliament and of the Council on the protection of natural persons in connection with the processing of personal data (hereinafter referred to as "GDPR"). You can always easily find the current wording of the Personal Data Protection at the link: behavera. com/privacy-policy.
+Who is the Administrator of your personal data?
+The administrator is us, the company Behavera s. r. o. , with registered office at Křižíkova 148/34, Karlín, 186 00 Prague 8, Czech Republic, IČO: 03525520, file number C 233138 kept at the Municipal Court in Prague.
+Commissioner for the protection of personal data
+‍We have our own personal data officer. You can contact him in connection with questions regarding the processing of your personal data, additional information or with a request to exercise any of the guaranteed rights.
+You can contact the commissioner by email at the address: gdpr@behavera. com.
+Why do we process your personal data?
+The purposes for which personal data are processed relate to the services we offer you and which our Client, your current or potential employer has provided for you. These are services in the field of your career development and self-knowledge or within the selection process for the position you have applied for. We process your personal data only if you give us your consent.
+What personal data do we process?
+We process your email, first name, last name, desired address and your age, education data, work history and other information that we receive from our Client, which may be your job title or other information. We may also passively process your IP address and other technical metadata, such as browser type, time zone settings, operating system, etc.
+Only you can see your personal data, and the profile only serves your needs in our environment, depending on what Services our Client orders for you.
+What about automated decision making and profiling?
+‍Your personal data are not subject to automatic decision-making, including profiling in the sense of Article 22, Paragraphs 1 and 4 of the GDPR Regulation.
+To whom do we transfer your personal data?
+We pass your personal data back to our Client who ordered our Services for you.
+Aggregated data and passively collected information can be used to create general statistical reports. These reports are anonymized and do not contain your personal data within the meaning of the GDPR regulation.
+Like many businesses, we sometimes hire other companies ("service providers") to perform certain functions for us related to the operation of our Services. Examples include customer service, database maintenance, data storage, cloud services and hosting services. If we have a service provider to perform any of these functions, we only provide them with the information they need to perform their specific duties, which may include, but in the vast majority of situations do not include, your personal information. Service providers are authorized to use this information only as necessary to provide their services to us, and they perform this activity on the basis of a properly concluded personal data processing agreement.
+How long do we process your personal data?
+Your personal data is stored with us for the duration of your registration, which was created in accordance with our Terms of Use, which you familiarized yourself with during registration. After the termination of your registration for any reason, we keep your personal data for a period of 6 months. As soon as the period for storing your personal data or the period for which we are obliged to keep it according to legal regulations, we anonymize or delete your personal data from our databases and systems.
+Contacting us to request access, transfer, and deletion of your data
+If you wish to exercise your right to access, transfer, or delete your personal data that we process, you can contact us by sending a request electronically to
+gdpr@behavera. com. Our personal data officer will handle your request and respond to it as soon as possible.
+We will provide you with access to your personal data, transfer it to you or to another controller, or delete it from our systems in accordance with your request, unless we are legally obligated to keep it. We will also inform you about the steps we have taken to comply with your request.
+Please note that in some cases, we may not be able to fully comply with your request if it interferes with our legal obligations or our legitimate interests. In such cases, we will provide you with an explanation of why we cannot fully comply with your request.
+What are your rights?
+We process your data transparently, correctly, in accordance with the GDPR regulation and generally binding legal regulations. You have the right to access and correct your data. In cases of processing of your data for which you have given consent, you are entitled to withdraw this consent at any time.
+You can exercise the right to access your data and your other rights by sending a request electronically to
+gdpr@behavera. com, as well as any other questions. If you believe that the processing of your data is incorrect, you can file a complaint with the Office for Personal Data Protection.
+
+====================================================================================================
+[3] CZ_Terms – Podmínky a pravidla Služby Echo Pulse
+URL: https://cz.behavera.com/terms
+Lang: cs
+====================================================================================================
+
+1. Úvodní ustanovení
+‍Těmito obchodními a produktovými podmínkami (dále společně jen
+„Podmínky„) se řídí vztahy při poskytování a využívání Služby Echo Pulse společnosti Behavera.
+„Služba„
+znamená službu Echo Pulse poskytovanou společností Behavera formou vzdáleného přístupu prostřednictvím webového rozhraní, jejímž účelem je umožnit Klientovi získávat anonymní zpětnou vazbu od Účastníků a přehledné analytické výstupy a doporučení související s fungováním týmů a vedením lidí.
+Služba je poskytována v rozsahu a podobě dostupné Klientovi v daném čase a její konkrétní technické řešení, struktura a funkce se mohou v průběhu času měnit.
+„Účastníkem„
+se rozumí fyzická osoba, kterou Klient pozve k účasti na pulse měření nebo jiném hodnocení realizovaném prostřednictvím Služby (dále jen
+„Účastník„). Účastníkem může být zejména zaměstnanec Klienta nebo jiná osoba spolupracující s Klientem, které je účast na Službě umožněna na základě smluvního vztahu mezi společností Behavera a Klientem.
+Odchylné písemné dohody uzavřené mezi společností Behavera a Klientem mají přednost před ustanoveními těchto Podmínek.
+2.	Uzavření smlouvy a podmínky používání služby
+Uzavření smlouvy
+Smluvní vztah mezi společností Behavera a Klientem vzniká okamžikem, kdy Klient v rámci online registračního procesu vyjádří souhlas s těmito Podmínkami prostřednictvím potvrzovacího prvku v internetovém rozhraní a současně dojde k úhradě první platby za Službu, pokud není mezi stranami výslovně sjednáno jinak.
+Uzavřením smlouvy se její součástí stávají rovněž údaje o ceně Služby a jejím rozsahu, které byly Klientovi zobrazeny v rámci online registračního procesu nebo mu byly poskytnuty individuálně společností Behavera před uzavřením smlouvy.
+V případě rozporu mezi individuální cenovou nabídkou poskytnutou Klientovi společností Behavera a údaji zobrazenými v rámci online registračního procesu má přednost individuální cenová nabídka.
+Registrace Klienta a využívání Služby
+Registrací Klienta v internetovém rozhraní Služby vzniká Klientovi uživatelský přístup, prostřednictvím kterého je oprávněn Službu využívat v rozsahu sjednaném podle těchto Podmínek.
+Klient je povinen uvádět při registraci pravdivé a aktuální údaje a odpovídá za jednání osob, kterým umožní ke Službě přístup.
+Klient je oprávněn prostřednictvím Služby umožnit účast třetích osob (Účastníků), zejména formou individuálního odkazu, za účelem jejich zapojení do pulse měření nebo hodnocení. Účastník může hodnocení přerušit a pokračovat v něm později, pokud to technické nastavení Služby umožňuje, a není povinen jej dokončit.
+Výstupy a odpovědnost
+V případě dokončení hodnocení má Klient přístup k automaticky generovaným výstupům odpovídajícím aktuálním funkcionalitám Služby. Pokud hodnocení dokončeno není, mohou být zpřístupněny pouze omezené údaje.
+Klient se zavazuje využívat Službu v souladu s právními předpisy, dobrými mravy a jejím účelem a odpovídá za obsah zpřístupněný prostřednictvím Služby.
+Společnost Behavera je oprávněna v odůvodněných případech omezit nebo pozastavit přístup ke Službě při jejím zneužívání nebo podstatném porušení těchto Podmínek.
+Technická povaha Služby a data
+Klient bere na vědomí, že Služba je poskytována formou cloudové služby a její dostupnost může být ovlivněna technickými okolnostmi mimo kontrolu společnosti Behavera.
+Společnost Behavera je oprávněna anonymizovat data vzniklá při poskytování Služby a tato anonymizovaná data dále využívat pro statistické účely a zlepšování Služby, v souladu s právními předpisy.
+‍
+3.	Cena Služby a platební podmínky
+Cena Služby a její stanovení
+Cena Služby je stanovena na základě rozsahu využívání Služby sjednaného mezi Klientem a společností Behavera, zejména s ohledem na referenční počet Účastníků, zvolenou variantu předplatného (měsíční nebo roční) a další parametry Služby zvolené Klientem.
+Referenčním počtem Účastníků se rozumí počet Účastníků uvedený Klientem a odsouhlasený při uzavření smlouvy, zejména v rámci online registračního procesu nebo individuální cenové nabídky, který slouží jako základ pro stanovení sjednané ceny Služby.
+Sjednaná cena Služby je fixní cenou za sjednaný rozsah Služby a váže se k referenčnímu počtu Účastníků.
+Pokles skutečného počtu Účastníků oproti referenčnímu počtu nemá vliv na sjednanou cenu Služby.
+V případě, že skutečný počet Účastníků využívajících Službu v rámci jednoho fakturačního měsíce překročí referenční počet Účastníků o více než deset procent (10 %), je společnost Behavera oprávněna upravit sjednanou cenu Služby tak, aby odpovídala rozšířenému rozsahu využívání Služby. Pro účely tohoto ustanovení se vychází z nejvyššího skutečného počtu Účastníků zaznamenaného v daném fakturačním měsíci.
+Úprava ceny se provede poměrně, a to tak, že procentní navýšení ceny odpovídá procentnímu navýšení skutečného počtu Účastníků nad referenční počet. Takto upravená cena se považuje za novou sjednanou cenu Služby a váže se k aktualizovanému referenčnímu počtu Účastníků, bez ohledu na případný pozdější pokles skutečného počtu Účastníků. Strany berou na vědomí a souhlasí s tím, že úprava ceny podle tohoto článku je přímým důsledkem změny rozsahu využívání Služby a nepředstavuje jednostrannou změnu smlouvy ani obchodních podmínek.
+V případě ročního předplatného je společnost Behavera oprávněna dofakturovat navýšení ceny odpovídající rozšířenému rozsahu Služby i v průběhu předplaceného dvanáctiměsíčního období, a to poměrně za zbývající část tohoto období.
+Společnost Behavera je povinna Klienta o úpravě ceny informovat alespoň třicet (30) dnů předem, přičemž nová cena se uplatní od data uvedeného v oznámení.
+Platební podmínky
+Cena Služby je hrazena na základě faktury vystavené společností Behavera, která je zasílána elektronicky. Fakturace probíhá podle zvolené varianty předplatného, tj. : u měsíčního předplatného měsíčně, u ročního předplatného předem na dvanáct (12) měsíců. Faktura je splatná do čtrnácti (14) dnů ode dne vystavení.
+Je-li Klient v prodlení s úhradou ceny déle než čtrnáct (14) dnů, je společnost Behavera oprávněna pozastavit poskytování Služby až do úplného zaplacení dlužné částky. Po dobu pozastavení Služby nemá Klient nárok na slevu ani na prodloužení doby poskytování Služby.
+Zkušební období a odstoupení bez uvedení důvodu
+Klient je oprávněn do třiceti (30) dnů ode dne úhrady první platby odstoupit od smlouvy bez uvedení důvodu a požádat o vrácení zaplacené částky, pokud:
+a) byla provedena implementace Služby, a
+b) bylo dokončeno první Pulse měření.
+Nedojde-li k dokončení prvního Pulse měření, nárok na vrácení zaplacené částky nevzniká. Po uplynutí lhůty podle tohoto článku nárok Klienta na vrácení zaplacené částky zaniká a smluvní vztah pokračuje za sjednaných podmínek.
+Rozsah ceny a bezplatná účast účastníků
+Cena Služby se vztahuje výhradně na poskytování Služby Klientovi. Vyplnění hodnocení Účastníkem je za všech okolností bezplatné a nemůže být účtováno žádné ze zúčastněných stran. Klient není oprávněn požadovat po Účastníkovi v souvislosti s provedením hodnocení žádné další plnění.
+Nevyužití Služby
+Klient nemá nárok na vrácení zaplacené Ceny ani na slevu z Ceny v případě, že objednané Služby nevyužije, zejména z důvodu technických překážek na jeho straně a/nebo nedokončení hodnocení jeho Účastníky.
+‍
+4. Bezpečnost informací
+Mlčenlivost
+Smluvní strany se zavazují zachovávat mlčenlivost o všech důvěrných informacích, které se dozvědí v souvislosti s uzavřením smlouvy a využíváním Služby. Povinnost mlčenlivosti trvá i po ukončení smluvního vztahu a nevztahuje se na případy, kdy je zpřístupnění informací vyžadováno právními předpisy.
+Ochrana osobních údajů
+Role smluvních stran
+Klient vystupuje jako správce osobních údajů ve smyslu GDPR, neboť určuje účel a prostředky zpracování osobních údajů Účastníků.
+Společnost Behavera vystupuje jako zpracovatel osobních údajů a zpracovává osobní údaje výhradně na základě pokynů Klienta a v rozsahu nezbytném pro poskytování Služby Echo Pulse.
+Předmět, doba a účel zpracování
+Předmětem zpracování jsou osobní údaje Účastníků zapojených Klientem do využívání Služby. Zpracování probíhá po dobu trvání smluvního vztahu, případně po dobu nezbytnou k vypořádání práv a povinností po jeho ukončení. Účelem zpracování je poskytování Služby, zejména realizace pulse měření, vyhodnocení odpovědí Účastníků a zpřístupnění výstupů Klientovi.
+Typy osobních údajů a subjekty údajů
+Zpracovávány mohou být zejména:
+-  omezené identifikační a kontaktní údaje,
+-  odpovědi Účastníků v rámci Služby,
+-  technické údaje související s využíváním Služby.
+Zvláštní kategorie osobních údajů dle čl. 9 GDPR nejsou zpracovávány, ledaže by bylo výslovně sjednáno jinak. Subjekty údajů jsou Účastníci, tj. fyzické osoby zapojené Klientem do Služby.
+Povinnosti zpracovatele
+Společnost Behavera se zavazuje:
+a) zpracovávat osobní údaje pouze na základě dokumentovaných pokynů Klienta,
+b) zajistit mlčenlivost osob oprávněných ke zpracování,
+c) přijmout vhodná technická a organizační opatření dle čl. 32 GDPR,
+d) poskytnout Klientovi přiměřenou součinnost při plnění povinností dle GDPR,
+e) bez zbytečného odkladu oznámit Klientovi porušení zabezpečení osobních údajů.
+Další zpracovatelé
+Klient uděluje společnosti Behavera obecné povolení k zapojení dalších zpracovatelů, zejména poskytovatelů technické a cloudové infrastruktury.
+Společnost Behavera zajistí, aby další zpracovatelé byli vázáni povinnostmi odpovídajícími tomuto ustanovení.
+Ukončení zpracování
+Po ukončení poskytování Služby společnost Behavera osobní údaje dle pokynu Klienta vymaže nebo vrátí, nebrání-li tomu právní předpisy.
+Odpovědnost
+Klient odpovídá za splnění povinností správce osobních údajů, zejména za právní titul ke zpracování a splnění informační povinnosti vůči subjektům údajů.
+‍
+5. Ochrana duševního vlastnictví
+Veškerý obsah, funkcionality a technické řešení Služby, včetně metodik, nástrojů, testových otázek, algoritmů, databází, uživatelského rozhraní a dalších souvisejících prvků, jsou chráněny právními předpisy o ochraně duševního vlastnictví. Nositelem práv k těmto prvkům je společnost Behavera nebo její licenční partneři.
+Klient je oprávněn po dobu trvání smluvního vztahu Službu užívat výhradně vzdáleným způsobem a pouze pro své interní účely, v souladu s těmito Podmínkami. Poskytnutím Služby nedochází k převodu jakýchkoli práv duševního vlastnictví na Klienta.
+Klient se zejména zavazuje, že nebude:
+-  zpřístupňovat Službu nebo její části neoprávněným třetím osobám,
+-  pořizovat kopie Služby nebo jejího obsahu,
+-  provádět reverse engineering, dekompilaci nebo jiné zásahy do technického řešení Služby,
+-  využívat Službu za účelem vývoje nebo provozu konkurenčního řešení.
+Tím není dotčeno právo Klienta používat výstupy a výsledky vzniklé při využívání Služby pro své interní potřeby.
+6.	Trvání smlouvy a její ukončení
+Trvání smlouvy
+Smluvní vztah mezi společností Behavera a Klientem se uzavírá na dobu neurčitou, není-li mezi smluvními stranami výslovně sjednáno jinak. Zvolená varianta předplatného (měsíční nebo roční) určuje způsob fakturace a platební období, nikoli dobu trvání smlouvy.
+Ukončení smlouvy ze strany Klienta
+a) Měsíční předplatné
+V případě měsíčního předplatného je Klient oprávněn smlouvu písemně vypovědět za těchto podmínek:
+-  po dobu prvních tří (3) měsíců ode dne zahájení poskytování Služby může Klient smlouvu vypovědět kdykoli s okamžitou účinností, výpověď musí být společnosti Behavera doručena nejpozději poslední den této doby;
+-  po uplynutí této tří měsíční doby je Klient oprávněn smlouvu vypovědět s výpovědní dobou dvou (2) měsíců, přičemž výpovědní doba počíná běžet prvním dnem kalendářního měsíce následujícího po kalendářním měsíci, ve kterém byla výpověď doručena společnosti Behavera.
+Ukončení smlouvy nemá vliv na povinnost Klienta uhradit cenu za již poskytnuté nebo zaplacené období, pokud není v těchto Podmínkách výslovně stanoveno jinak.
+b) Roční předplatné
+V případě ročního předplatného je Klient oprávněn smlouvu písemně vypovědět tak, aby výpověď byla doručena společnosti Behavera nejpozději dva (2) měsíce před uplynutím aktuálního dvanáctiměsíčního předplaceného období poskytování Služby.
+Není-li výpověď doručena v této lhůtě, rozsah poskytování Služby v režimu ročního předplatného se automaticky obnovuje na další dvanáctiměsíční období (a to i opakovaně).
+Odstoupení od smlouvy ze strany společnosti Behavera
+Společnost Behavera je oprávněna od smlouvy odstoupit s okamžitou účinností, pokud:
+a) je Klient v prodlení s úhradou jakékoli splatné částky po dobu delší než čtrnáct (14) kalendářních dnů, nebo
+b) Klient podstatným způsobem poruší své povinnosti vyplývající ze smlouvy nebo těchto Podmínek, zejména povinnosti týkající se plateb, řádného a oprávněného užívání Služby nebo ochrany práv společnosti Behavera.
+Výpověď smlouvy ze strany společnosti Behavera bez uvedení důvodu
+Společnost Behavera je oprávněna smlouvu kdykoli písemně vypovědět i bez uvedení důvodu, a to s výpovědní dobou tří (3) měsíců. Výpovědní doba počíná běžet prvním dnem kalendářního měsíce následujícího po kalendářním měsíci, ve kterém byla výpověď doručena Klientovi.
+V případě výpovědi smlouvy podle tohoto ustanovení je společnost Behavera povinna buď umožnit Klientovi využívat Službu po dobu odpovídající již uhrazenému období, nebo vrátit Klientovi poměrnou část již uhrazené Ceny za období, po které již Služba nebude poskytována.
+Tím nejsou dotčena práva společnosti Behavera odstoupit od smlouvy podle předchozího článku.
+Společnost Behavera je oprávněna smlouvu vypovědět podle tohoto ustanovení i v případě, že je smluvní vztah sjednán na dobu určitou, pokud není mezi smluvními stranami výslovně dohodnuto jinak.
+Důsledky ukončení smlouvy
+Ukončení smlouvy z jakéhokoli důvodu nezakládá Klientovi nárok na vrácení již uhrazených plateb ani jejich poměrné části, s výjimkou případů výslovně uvedených v těchto Podmínkách.
+Ukončením smlouvy zaniká právo Klienta využívat Službu; tím nejsou dotčeny povinnosti, které mají podle své povahy trvat i po ukončení smlouvy, zejména povinnosti týkající se mlčenlivosti, ochrany duševního vlastnictví a úhrady dlužných částek.
+‍7.	Omezení odpovědnosti a vyloučení záruk
+Služba je poskytována jako cloudová služba ve stavu „jak je„ a „jak je dostupná„. Společnost Behavera neposkytuje žádné záruky ohledně nepřetržité dostupnosti, bezchybnosti Služby ani dosažení konkrétních výsledků. Výstupy, hodnocení a doporučení generované prostřednictvím Služby mají výhradně informativní charakter a nepředstavují odborné poradenství; veškerá rozhodnutí přijatá na jejich základě činí Klient na vlastní odpovědnost.
+Celková odpovědnost společnosti Behavera za škodu vzniklou v souvislosti s poskytováním Služby je v maximálním rozsahu přípustném právními předpisy omezena na částku odpovídající ceně Služby uhrazené Klientem za jeden (1) kalendářní měsíc.
+‍
+8.	Změna obchodních podmínek a Ceny
+Společnost Behavera je oprávněna v přiměřeném rozsahu jednostranně měnit tyto obchodní podmínky a/nebo Cenu Služby, zejména z následujících důvodů:
+a) změny právních předpisů, regulatorních požadavků nebo výkladové praxe orgánů veřejné moci,
+b) změny technických, bezpečnostních nebo provozních parametrů Služby,
+c) rozšíření, omezení, úpravy nebo optimalizace funkcionalit Služby nebo její struktury,
+d) změny nákladů na vývoj, provoz, údržbu nebo podporu Služby,
+e) změny obchodní nebo cenové strategie společnosti Behavera,
+f) úpravy Ceny Služby reflektující tržní podmínky, ekonomický vývoj nebo strategické cíle společnosti Behavera,
+g) změny rozsahu nebo způsobu využívání Služby Klientem.
+Změna obchodních podmínek a/nebo Ceny Služby bude Klientovi oznámena nejméně třicet (30) dnů předem, a to prostřednictvím elektronické pošty zaslané na kontaktní e-mail Klienta a/nebo formou oznámení v uživatelském rozhraní Služby (např. prostřednictvím notifikace nebo pop-up okna).
+Právo Klienta na ukončení smlouvy při změně Podmínek nebo Ceny
+V případě, že Klient se změnou obchodních podmínek a/nebo Ceny Služby nesouhlasí, je oprávněn smlouvu písemně vypovědět, a to nejpozději do dne nabytí účinnosti oznámené změny. V takovém případě smluvní vztah skončí ke dni účinnosti změny, není-li mezi smluvními stranami dohodnuto jinak.
+Má-li Klient ke dni ukončení smlouvy uhrazenou Cenu za období, po které již nebude Služba poskytována, je společnost Behavera povinna Klientovi vrátit poměrnou část uhrazené Ceny odpovídající nevyčerpané části předplaceného období.
+Akceptace změn
+Pokračuje-li Klient v užívání Služby po dni nabytí účinnosti změny obchodních podmínek a/nebo Ceny Služby, má se za to, že Klient se změnou souhlasí a změněné obchodní podmínky a/nebo Cena Služby se stávají závaznou součástí smluvního vztahu mezi Klientem a společností Behavera.
+Omezení účinků změn
+Jednostranné změny obchodních podmínek a/nebo Ceny Služby se nedotýkají již splatných nároků ani plnění poskytnutých před nabytím účinnosti změny a nejsou dotčena práva smluvních stran vzniklá před tímto okamžikem.
+9. Závěrečná ustanovení
+Tyto obchodní podmínky nabývají platnosti a účinnosti dne 25. ledna 2026.
+Tyto obchodní podmínky se použijí rovněž na veškeré smluvní vztahy mezi společností Behavera a Klienty vzniklé přede dnem jejich účinnosti, a to ode dne, kdy se Klient po nabytí jejich účinnosti poprvé přihlásí do Služby nebo ji jinak začne využívat.
+V případě jakékoli nejednoznačnosti, nesrovnalosti nebo sporu ohledně výkladu nebo významu těchto Podmínek má přednost česká jazyková verze, která se považuje za rozhodnou. Aktuální verze Podmínek a pravidel Služby Echo Pulse je k dispozici na adrese: cz. behavera. com/terms.
+‍
+
+====================================================================================================
+[4] CZ_PrivacyPolicy – Zásady ochrany osobních údajů
+URL: https://cz.behavera.com/privacy-policy
+Lang: cs
+====================================================================================================
+
+Ochrana osobních údajů
+Děkujeme vám za váš zájem o naše služby v oblasti kariérního rozvoje a sebepoznání. Věříme, že pro vás budou naše služby užitečné. Naším cílem je, abyste byli s našimi službami spokojeni a cítili se dobře. Proto jsme se snažili tento dokument, který právě čtete, napsat jasně a srozumitelně v duchu našich hodnot a poslání.
+Tyto zásady ochrany osobních údajů popisují naše služby a to, jaké osobní údaje zpracováváme, jak a k čemu je používáme a jak vaše osobní údaje uchováváme v bezpečí. Jedná se o informace ve smyslu článku 13 nařízení Evropského parlamentu a Rady (EU) 2016/679 o ochraně fyzických osob v souvislosti se zpracováním osobních údajů (dále jen „GDPR“). Aktuální znění ochrany osobních údajů vždy snadno najdete na odkazu: behavera. com/privacy-policy.
+Kdo je správcem vašich osobních údajů?
+Správcem jsme my, společnost Behavera s. r. o. , se sídlem Křižíkova 148/34, Karlín, 186 00 Praha 8, Česká republika, IČO: 03525520, spisová značka C 233138 vedená u Městského soudu v Praze.
+Komisař pro ochranu osobních údajů
+‍Máme vlastního pověřence pro ochranu osobních údajů. Můžete se na něj obrátit v souvislosti s dotazy týkajícími se zpracování vašich osobních údajů, s doplňujícími informacemi nebo s žádostí o uplatnění některého ze zaručených práv.
+Komisaře můžete kontaktovat e-mailem na adrese: gdpr@behavera. com.
+Proč zpracováváme vaše osobní údaje?
+Účely, pro které jsou osobní údaje zpracovávány, souvisejí se službami, které vám nabízíme a které pro vás zajistil náš klient, váš současný nebo potenciální zaměstnavatel. Jedná se o služby v oblasti vašeho kariérního rozvoje a sebepoznání nebo v rámci výběrového řízení na pozici, o kterou jste se ucházeli. Vaše osobní údaje zpracováváme pouze v případě, že nám k tomu dáte souhlas.
+Jaké osobní údaje zpracováváme?
+Zpracováváme váš e-mail, jméno, příjmení, požadovanou adresu a váš věk, údaje o vzdělání, pracovní historii a další informace, které obdržíme od našeho klienta, což může být vaše pracovní pozice nebo jiné informace. Můžeme také pasivně zpracovávat vaši IP adresu a další technická metadata, jako je typ prohlížeče, nastavení časového pásma, operační systém atd.
+Své osobní údaje můžete vidět pouze vy a profil slouží pouze vašim potřebám v našem prostředí v závislosti na tom, jaké služby si u vás náš klient objedná.
+Jak je to s automatizovaným rozhodováním a profilováním?
+‍Vaše osobní údaje nepodléhají automatickému rozhodování, včetně profilování ve smyslu čl. 22 odst. 1 a 4 nařízení GDPR.
+Komu předáváme vaše osobní údaje?
+Vaše osobní údaje předáváme zpět našemu klientovi, který si pro vás objednal naše služby.
+Agregované údaje a pasivně shromážděné informace lze použít k vytváření obecných statistických zpráv. Tyto zprávy jsou anonymizované a neobsahují vaše osobní údaje ve smyslu nařízení GDPR.
+Stejně jako mnoho jiných podniků si někdy najímáme jiné společnosti („poskytovatele služeb“), aby pro nás vykonávaly určité funkce související s provozem našich služeb. Příkladem jsou služby zákaznického servisu, údržba databází, ukládání dat, cloudové služby a hostingové služby. Pokud si na výkon některé z těchto funkcí najmeme poskytovatele služeb, poskytujeme jim pouze informace, které potřebují k výkonu svých konkrétních povinností, které mohou zahrnovat vaše osobní údaje, ale v naprosté většině situací je neobsahují. Poskytovatelé služeb jsou oprávněni tyto informace používat pouze v rozsahu nezbytném pro poskytování svých služeb pro nás a tuto činnost vykonávají na základě řádně uzavřené smlouvy o zpracování osobních údajů.
+Jak dlouho vaše osobní údaje zpracováváme?
+Vaše osobní údaje jsou u nás uloženy po dobu vaší registrace, která byla vytvořena v souladu s našimi podmínkami používání, s nimiž jste se seznámili při registraci. Po ukončení vaší registrace z jakéhokoli důvodu uchováváme vaše osobní údaje po dobu 6 měsíců. Jakmile uplyne doba uchovávání vašich osobních údajů nebo doba, po kterou jsme povinni je uchovávat podle právních předpisů, vaše osobní údaje anonymizujeme nebo vymažeme z našich databází a systémů.
+Kontaktujte nás a požádejte o přístup k vašim údajům, jejich přenos a vymazání.
+Pokud chcete uplatnit své právo na přístup k vašim osobním údajům, které zpracováváme, na jejich přenos nebo výmaz, můžete nás kontaktovat zasláním žádosti elektronicky na adresu gdpr@behavera. com. Náš pověřenec pro ochranu osobních údajů vaši žádost vyřídí a odpoví na ni co nejdříve.
+V souladu s vaší žádostí vám poskytneme přístup k vašim osobním údajům, předáme je vám nebo jinému správci nebo je vymažeme z našich systémů, pokud nejsme ze zákona povinni je uchovávat. Budeme vás také informovat o krocích, které jsme podnikli, abychom vaší žádosti vyhověli.
+Vezměte prosím na vědomí, že v některých případech nemusíme být schopni plně vyhovět vaší žádosti, pokud by to bylo v rozporu s našimi zákonnými povinnostmi nebo našimi oprávněnými zájmy. V takových případech vám poskytneme vysvětlení, proč nemůžeme vaší žádosti plně vyhovět.
+Jaká jsou vaše práva?
+Vaše údaje zpracováváme transparentně, správně, v souladu s nařízením GDPR a obecně závaznými právními předpisy. Máte právo na přístup ke svým údajům a na jejich opravu. V případech zpracování vašich údajů, ke kterému jste udělili souhlas, máte právo tento souhlas kdykoli odvolat.
+Právo na přístup ke svým údajům a další práva můžete uplatnit zasláním žádosti elektronicky na adresu
+gdpr@behavera. com, stejně jako další dotazy. Pokud se domníváte, že zpracování vašich údajů je nesprávné, můžete podat stížnost u Úřadu pro ochranu osobních údajů.
+
