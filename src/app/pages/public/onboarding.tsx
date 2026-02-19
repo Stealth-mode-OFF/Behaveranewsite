@@ -248,11 +248,18 @@ const copy = {
     termsAnd: "a",
     privacyLink: "Ochranou osobních údajů",
     guarantee: "30denní garance vrácení peněz. Bez otázek.",
+    adjustLater: "Počet zaměstnanců můžete kdykoli upravit.",
+    billingStarts: "Fakturace začíná až po aktivaci.",
+    teamsConfigLater: "Týmy můžete přidat nebo změnit i později.",
     submit: "Vytvořit účet",
     submitting: ["Vytvářím účet…", "Ukládám týmy…", "Nastavuji fakturaci…", "Připravuji vše…", "Hotovo ✓"],
     doneTitle: "Vše je připravené!",
-    doneSubtitle: "Zkontrolujte si údaje naposledy a odklikněte.",
-    doneButton: "Dokončit a aktivovat účet",
+    doneSubtitle: "Zkontrolujte si údaje naposledy a spusťte Behavera.",
+    doneButton: "Spustit firemní dashboard",
+    doneValueReminder: "První přehledy o vašich týmech uvidíte do 1 hodiny.",
+    doneTrustCancel: "Zrušit kdykoli",
+    doneTrustNoContract: "Bez dlouhodobé smlouvy",
+    doneTeamsLater: "Týmy nakonfigurujete kdykoli v dashboardu.",
     successTitle: "Máte to! 🎉",
     successSubtitle: "Váš Behavera účet je připravený. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
@@ -340,11 +347,18 @@ const copy = {
     termsAnd: "and",
     privacyLink: "Privacy Policy",
     guarantee: "30-day money-back guarantee. No questions asked.",
+    adjustLater: "You can adjust the number of employees anytime.",
+    billingStarts: "Billing starts after activation.",
+    teamsConfigLater: "You can add or change teams later.",
     submit: "Create account",
     submitting: ["Creating account…", "Saving teams…", "Setting up billing…", "Preparing everything…", "Done ✓"],
     doneTitle: "Everything is ready!",
-    doneSubtitle: "Review your details one last time and confirm.",
-    doneButton: "Finish & activate account",
+    doneSubtitle: "Review your details one last time and launch Behavera.",
+    doneButton: "Launch company dashboard",
+    doneValueReminder: "Your first team insights will be visible within 1 hour.",
+    doneTrustCancel: "Cancel anytime",
+    doneTrustNoContract: "No long-term contract",
+    doneTeamsLater: "You can configure teams anytime in your dashboard.",
     successTitle: "You're in! 🎉",
     successSubtitle: "Your Behavera account is ready. Here's what happens next:",
     successCta: "Back to homepage",
@@ -432,11 +446,18 @@ const copy = {
     termsAnd: "und der",
     privacyLink: "Datenschutzerklärung",
     guarantee: "30 Tage Geld-zurück-Garantie. Ohne Fragen.",
+    adjustLater: "Anzahl der Mitarbeiter jederzeit anpassbar.",
+    billingStarts: "Abrechnung beginnt nach der Aktivierung.",
+    teamsConfigLater: "Teams können Sie später hinzufügen oder ändern.",
     submit: "Konto erstellen",
     submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Abrechnung wird eingerichtet…", "Alles wird vorbereitet…", "Fertig ✓"],
     doneTitle: "Alles ist bereit!",
-    doneSubtitle: "Überprüfen Sie Ihre Angaben ein letztes Mal.",
-    doneButton: "Abschließen & Konto aktivieren",
+    doneSubtitle: "Überprüfen Sie Ihre Angaben ein letztes Mal und starten Sie.",
+    doneButton: "Unternehmens-Dashboard starten",
+    doneValueReminder: "Erste Team-Insights sind innerhalb von 1 Stunde sichtbar.",
+    doneTrustCancel: "Jederzeit kündbar",
+    doneTrustNoContract: "Kein Langzeitvertrag",
+    doneTeamsLater: "Teams können Sie jederzeit im Dashboard konfigurieren.",
     successTitle: "Geschafft! 🎉",
     successSubtitle: "Ihr Behavera Konto ist bereit. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
@@ -910,13 +931,24 @@ export function OnboardingPage() {
             <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
               {watch("employeeCount")} {txt.summaryMembers}
             </span>
-            <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
-              {teams.length} {txt.summaryTeams.toLowerCase()}
-            </span>
+            {teams.length > 0 ? (
+              <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
+                {teams.length} {txt.summaryTeams.toLowerCase()}
+              </span>
+            ) : (
+              <span className="px-3 py-1.5 rounded-full bg-brand-background-muted text-brand-text-muted font-medium">
+                {txt.doneTeamsLater}
+              </span>
+            )}
             <span className="px-3 py-1.5 rounded-full bg-brand-success/10 text-brand-success font-semibold">
               {watch("billingInterval") === "yearly" ? txt.yearly : txt.monthly}
             </span>
           </div>
+
+          {/* Value reminder */}
+          <p className="text-[13px] font-medium text-brand-text-secondary">
+            {txt.doneValueReminder}
+          </p>
 
           {/* THE button */}
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
@@ -930,9 +962,23 @@ export function OnboardingPage() {
             </Button>
           </motion.div>
 
-          <p className="text-[11px] text-brand-text-muted">
-            {txt.guarantee}
-          </p>
+          {/* Trust strip — 3 reassurance items */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-brand-text-muted">
+            <div className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-success" />
+              <span>{txt.guarantee.replace('. No questions asked.', '').replace('. Bez otázek.', '').replace('. Ohne Fragen.', '')}</span>
+            </div>
+            <span className="text-brand-border">·</span>
+            <div className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-brand-success" />
+              <span>{txt.doneTrustCancel}</span>
+            </div>
+            <span className="text-brand-border">·</span>
+            <div className="flex items-center gap-1.5">
+              <Check className="w-3.5 h-3.5 text-brand-success" />
+              <span>{txt.doneTrustNoContract}</span>
+            </div>
+          </div>
         </motion.div>
       </div>
     );
@@ -1827,6 +1873,14 @@ function ConfirmStep({
         />
       </div>
 
+      {/* Hint when no teams configured */}
+      {teams.length === 0 && (
+        <p className="text-[11px] text-brand-text-muted flex items-center gap-1.5 -mt-4">
+          <Check className="w-3 h-3 text-brand-success" />
+          {txt.teamsConfigLater}
+        </p>
+      )}
+
       {/* Employee count slider */}
       <div>
         <label className="block text-[13px] font-semibold text-brand-text-primary mb-1">
@@ -1857,6 +1911,10 @@ function ConfirmStep({
           <span>200</span>
           <span>350+</span>
         </div>
+        <p className="text-[11px] text-brand-text-muted mt-2 flex items-center gap-1">
+          <Check className="w-3 h-3 text-brand-success" />
+          {txt.adjustLater}
+        </p>
       </div>
 
       {/* Billing toggle + price */}
@@ -1934,6 +1992,10 @@ function ConfirmStep({
             / {language === "cz" ? "rok" : language === "de" ? "Jahr" : "year"}
           </p>
         )}
+        <p className="text-[11px] text-brand-text-muted mt-2 flex items-center gap-1">
+          <Check className="w-3 h-3 text-brand-success" />
+          {txt.billingStarts}
+        </p>
       </div>
 
       {/* Terms */}
