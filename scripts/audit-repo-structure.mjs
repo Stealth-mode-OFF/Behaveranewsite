@@ -6,14 +6,9 @@ import crypto from 'node:crypto';
 const repoRoot = process.cwd();
 const outArgIndex = process.argv.indexOf('--out');
 const outPath = outArgIndex > -1 ? process.argv[outArgIndex + 1] : null;
+const checkMode = process.argv.includes('--check');
 
-const ignoredDirs = new Set([
-  '.git',
-  '.vercel',
-  '.vscode',
-  'dist',
-  'node_modules',
-]);
+const ignoredDirs = new Set(['.git', '.vercel', '.vscode', 'dist', 'node_modules']);
 
 const rootFilenameWhitelist = new Set([
   'README.md',
@@ -31,10 +26,17 @@ const rootFilenameWhitelist = new Set([
   '.env.vercel',
 ]);
 
+const nonKebabPathWhitelistPrefixes = ['archive/', 'public/', 'guidelines/'];
+const nonKebabPathWhitelistExact = new Set(['behavera_cz_full_text.txt']);
 const runtimeEntryFiles = new Set(['src/main.tsx']);
 
 const isKebabFilename = (filename) =>
   /^[a-z0-9]+(?:-[a-z0-9]+)*(?:\.[a-z0-9]+(?:\.[a-z0-9]+)*)?$/u.test(filename);
+
+const isWhitelistedNonKebabPath = (relPath) => {
+  if (nonKebabPathWhitelistExact.has(relPath)) return true;
+  return nonKebabPathWhitelistPrefixes.some((prefix) => relPath.startsWith(prefix));
+};
 
 function walkFiles(dir) {
   const files = [];
@@ -87,7 +89,7 @@ function resolveImport(fromAbs, spec, tsFileSet) {
 }
 
 const allFilesAbs = walkFiles(repoRoot);
-const allFilesRel = allFilesAbs.map((file) => path.relative(repoRoot, file)).sort();
+const allFilesRel = allFilesAbs.map((file) => path.relative(repoRoot, file).replace(/\\/g, '/')).sort();
 
 const tsFilesAbs = allFilesAbs.filter((file) => /\.(ts|tsx)$/.test(file));
 const tsFileSet = new Set(tsFilesAbs.map((file) => path.resolve(file)));
@@ -113,7 +115,7 @@ for (const fromAbs of tsFilesAbs) {
 
 const deadTsFiles = [];
 for (const abs of tsFilesAbs) {
-  const rel = path.relative(repoRoot, abs);
+  const rel = path.relative(repoRoot, abs).replace(/\\/g, '/');
   if (runtimeEntryFiles.has(rel)) continue;
   const incoming = incomingRefs.get(path.resolve(abs));
   if (!incoming || incoming.size === 0) {
@@ -123,16 +125,25 @@ for (const abs of tsFilesAbs) {
 
 const nonKebabFiles = [];
 for (const rel of allFilesRel) {
-  const segments = rel.split(path.sep);
+  const segments = rel.split('/');
   const filename = segments[segments.length - 1];
   const isRoot = segments.length === 1;
 
-  if (isRoot && rootFilenameWhitelist.has(filename)) {
-    continue;
-  }
+  if (isRoot && rootFilenameWhitelist.has(filename)) continue;
+  if (!isKebabFilename(filename)) nonKebabFiles.push(rel);
+}
 
-  if (!isKebabFilename(filename)) {
-    nonKebabFiles.push(rel);
+const enforcedNonKebabFiles = nonKebabFiles.filter((file) => !isWhitelistedNonKebabPath(file));
+
+const srcFiles = tsFilesAbs
+  .map((abs) => path.relative(repoRoot, abs).replace(/\\/g, '/'))
+  .filter((rel) => rel.startsWith('src/'));
+
+const srcArchiveImports = [];
+for (const rel of srcFiles) {
+  const text = readText(path.join(repoRoot, rel));
+  if (/archive\/legacy/.test(text)) {
+    srcArchiveImports.push(rel);
   }
 }
 
@@ -143,7 +154,7 @@ for (const tsAbs of tsFilesAbs) {
   assetImportRe.lastIndex = 0;
   let m;
   while ((m = assetImportRe.exec(text)) !== null) {
-    importedAssets.add(path.join('src', 'assets', m[1]));
+    importedAssets.add(path.join('src/assets', m[1]).replace(/\\/g, '/'));
   }
 }
 
@@ -160,16 +171,9 @@ for (const assetRel of assetFiles) {
 
 const duplicateGroups = [];
 for (const [hash, group] of hashGroups.entries()) {
-  if (group.length > 1) {
-    duplicateGroups.push({ hash, files: group.sort() });
-  }
+  if (group.length > 1) duplicateGroups.push({ hash, files: group.sort() });
 }
 duplicateGroups.sort((a, b) => b.files.length - a.files.length);
-
-const unusedDuplicateGroups = duplicateGroups
-  .map((group) => ({ ...group, files: group.files.filter((file) => unusedAssets.includes(file)) }))
-  .filter((group) => group.files.length > 1)
-  .sort((a, b) => b.files.length - a.files.length);
 
 const now = new Date().toISOString();
 
@@ -182,74 +186,40 @@ lines.push('## Summary');
 lines.push('');
 lines.push(`- Total files (excluding ignored dirs): ${allFilesRel.length}`);
 lines.push(`- TypeScript files: ${tsFilesAbs.length}`);
-lines.push(`- Non-kebab filenames (outside root whitelist): ${nonKebabFiles.length}`);
+lines.push(`- Non-kebab filenames (raw): ${nonKebabFiles.length}`);
+lines.push(`- Non-kebab filenames (enforced scope): ${enforcedNonKebabFiles.length}`);
 lines.push(`- Unreferenced TS/TSX files (excluding runtime entries): ${deadTsFiles.length}`);
+lines.push(`- src imports pointing to archive: ${srcArchiveImports.length}`);
 lines.push(`- Asset files in src/assets: ${assetFiles.length}`);
 lines.push(`- Unused assets in src/assets: ${unusedAssets.length}`);
-lines.push(`- Duplicate asset hash groups: ${duplicateGroups.length}`);
-lines.push(`- Unused duplicate asset groups: ${unusedDuplicateGroups.length}`);
+lines.push(`- Duplicate asset hash groups in src/assets: ${duplicateGroups.length}`);
 lines.push('');
 
 lines.push('## API Contract Snapshot');
 lines.push('');
-const apiFiles = allFilesRel.filter((file) => file.startsWith('api/')).sort();
-if (apiFiles.length === 0) {
-  lines.push('- _None_');
-} else {
-  for (const file of apiFiles) lines.push(`- \`${file}\``);
-}
+for (const file of allFilesRel.filter((f) => f.startsWith('api/'))) lines.push(`- \`${file}\``);
 lines.push('');
 
 lines.push('## Public URL-Critical Files Snapshot');
 lines.push('');
-const publicFiles = allFilesRel.filter((file) => file.startsWith('public/')).sort();
-if (publicFiles.length === 0) {
+for (const file of allFilesRel.filter((f) => f.startsWith('public/'))) lines.push(`- \`${file}\``);
+lines.push('');
+
+lines.push('## Non-Kebab Filenames (Enforced Scope)');
+lines.push('');
+if (enforcedNonKebabFiles.length === 0) {
   lines.push('- _None_');
 } else {
-  for (const file of publicFiles) lines.push(`- \`${file}\``);
+  for (const file of enforcedNonKebabFiles.sort()) lines.push(`- \`${file}\``);
 }
 lines.push('');
 
-lines.push('## Non-Kebab Filenames');
+lines.push('## src Imports Pointing to archive/legacy');
 lines.push('');
-if (nonKebabFiles.length === 0) {
+if (srcArchiveImports.length === 0) {
   lines.push('- _None_');
 } else {
-  for (const file of nonKebabFiles.sort()) lines.push(`- \`${file}\``);
-}
-lines.push('');
-
-lines.push('## Unreferenced TS/TSX Files');
-lines.push('');
-if (deadTsFiles.length === 0) {
-  lines.push('- _None_');
-} else {
-  for (const file of deadTsFiles.sort()) lines.push(`- \`${file}\``);
-}
-lines.push('');
-
-lines.push('## Unused Duplicate Asset Groups');
-lines.push('');
-if (unusedDuplicateGroups.length === 0) {
-  lines.push('- _None_');
-} else {
-  for (const group of unusedDuplicateGroups) {
-    lines.push(`- SHA1 \`${group.hash}\` (${group.files.length} files)`);
-    for (const file of group.files) {
-      lines.push(`  - \`${file}\``);
-    }
-  }
-}
-lines.push('');
-
-lines.push('## Unused Assets (Non-duplicate or singletons)');
-lines.push('');
-const unusedInDuplicateSet = new Set(unusedDuplicateGroups.flatMap((group) => group.files));
-const unusedSingletons = unusedAssets.filter((file) => !unusedInDuplicateSet.has(file));
-if (unusedSingletons.length === 0) {
-  lines.push('- _None_');
-} else {
-  for (const file of unusedSingletons.sort()) lines.push(`- \`${file}\``);
+  for (const file of srcArchiveImports.sort()) lines.push(`- \`${file}\``);
 }
 lines.push('');
 
@@ -261,4 +231,20 @@ if (outPath) {
   console.log(`Audit report written to ${path.relative(repoRoot, outAbs)}`);
 } else {
   process.stdout.write(output);
+}
+
+if (checkMode) {
+  const failures = [];
+  if (enforcedNonKebabFiles.length > 0) {
+    failures.push(`Non-kebab filenames in enforced scope: ${enforcedNonKebabFiles.length}`);
+  }
+  if (srcArchiveImports.length > 0) {
+    failures.push(`src imports referencing archive/legacy: ${srcArchiveImports.length}`);
+  }
+
+  if (failures.length > 0) {
+    console.error('\nStructure audit failed:');
+    for (const failure of failures) console.error(`- ${failure}`);
+    process.exit(1);
+  }
 }

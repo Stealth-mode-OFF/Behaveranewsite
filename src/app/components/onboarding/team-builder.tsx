@@ -441,7 +441,7 @@ export function TeamBuilder({
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* ─── LEFT: Unassigned Pool ─── */}
         <div
-          className="rounded-xl border border-brand-border/60 bg-white overflow-hidden flex flex-col"
+          className="rounded-xl border-2 border-brand-border/50 bg-white overflow-hidden flex flex-col"
           onDragOver={(e) => {
             e.preventDefault();
             e.dataTransfer.dropEffect = "move";
@@ -449,40 +449,44 @@ export function TeamBuilder({
           onDrop={handleDropOnPool}
         >
           {/* Header */}
-          <div className="px-4 py-3 bg-brand-background-secondary/50 border-b border-brand-border/40">
+          <div className="px-4 py-3.5 bg-gradient-to-r from-brand-primary/[0.06] to-brand-background-secondary/50 border-b border-brand-border/40">
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-brand-primary" />
-                <h3 className="text-[13px] font-bold text-brand-text-primary">
-                  {txt.unassigned}
-                </h3>
-                <span className="text-[11px] text-brand-text-muted bg-brand-background-muted px-2 py-0.5 rounded-full font-semibold">
-                  {filteredUnassigned.length}
-                </span>
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center">
+                  <Users className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <h3 className="text-[14px] font-bold text-brand-text-primary leading-tight">
+                    {txt.unassigned}
+                    <span className="ml-2 text-[11px] text-white bg-brand-primary/80 px-2 py-0.5 rounded-full font-bold align-middle">
+                      {filteredUnassigned.length}
+                    </span>
+                  </h3>
+                  <p className="text-[11px] text-brand-text-muted mt-0.5">
+                    {txt.unassignedDesc}
+                  </p>
+                </div>
               </div>
               {filteredUnassigned.length > 0 && (
                 <div className="flex items-center gap-1">
                   <button
                     type="button"
                     onClick={selectAll}
-                    className="text-[10px] font-bold text-brand-primary hover:underline px-1.5 py-0.5"
+                    className="text-[11px] font-bold text-brand-primary hover:underline px-1.5 py-0.5"
                   >
                     {txt.selectAll}
                   </button>
-                  <span className="text-brand-border">|</span>
+                  <span className="text-brand-border/60">|</span>
                   <button
                     type="button"
                     onClick={deselectAll}
-                    className="text-[10px] font-bold text-brand-text-muted hover:underline px-1.5 py-0.5"
+                    className="text-[11px] font-bold text-brand-text-muted hover:underline px-1.5 py-0.5"
                   >
                     {txt.deselectAll}
                   </button>
                 </div>
               )}
             </div>
-            <p className="text-[11px] text-brand-text-muted mt-0.5">
-              {txt.unassignedDesc}
-            </p>
           </div>
 
           {/* Search */}
@@ -504,8 +508,11 @@ export function TeamBuilder({
           {/* Contact list */}
           <div className="flex-1 max-h-[360px] overflow-y-auto">
             {filteredUnassigned.length === 0 && !showManualInput ? (
-              <div className="py-8 text-center">
-                <p className="text-[12px] text-brand-text-muted">
+              <div className="py-10 px-6 text-center">
+                <div className="w-12 h-12 rounded-2xl bg-brand-background-muted text-brand-text-muted/40 flex items-center justify-center mx-auto mb-3">
+                  <Users className="w-5 h-5" />
+                </div>
+                <p className="text-[13px] font-medium text-brand-text-muted">
                   {unassigned.length === 0 ? txt.noContacts : txt.noResults}
                 </p>
               </div>
@@ -584,7 +591,7 @@ export function TeamBuilder({
           </AnimatePresence>
 
           {/* Manual email input */}
-          <div className="px-4 py-2.5 border-t border-brand-border/30">
+          <div className="px-4 py-3 border-t border-brand-border/30 bg-brand-background-secondary/20">
             {showManualInput ? (
               <div className="flex gap-2">
                 <input
@@ -630,9 +637,11 @@ export function TeamBuilder({
               <button
                 type="button"
                 onClick={() => setShowManualInput(true)}
-                className="flex items-center gap-1.5 text-[12px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors"
+                className="flex items-center gap-2 text-[12px] font-bold text-brand-primary/70 hover:text-brand-primary transition-colors"
               >
-                <Plus className="w-3.5 h-3.5" />
+                <div className="w-5 h-5 rounded-md bg-brand-primary/10 flex items-center justify-center">
+                  <Plus className="w-3 h-3" />
+                </div>
                 {txt.addManual}
               </button>
             )}
@@ -640,9 +649,9 @@ export function TeamBuilder({
         </div>
 
         {/* ─── RIGHT: Teams panel ─── */}
-        <div className="flex flex-col rounded-xl border border-brand-border/60 bg-white overflow-hidden">
+        <div className="flex flex-col rounded-xl border-2 border-dashed border-brand-primary/25 bg-white overflow-hidden transition-colors" style={{ borderStyle: teams.length > 0 ? 'solid' : 'dashed' }}>
           {/* Team tabs */}
-          <div className="flex items-center gap-1 px-3 py-2 bg-brand-background-secondary/50 border-b border-brand-border/40 overflow-x-auto">
+          <div className="flex items-center gap-1.5 px-3 py-2.5 bg-gradient-to-r from-brand-primary/[0.06] to-brand-background-secondary/50 border-b border-brand-border/40 overflow-x-auto">
             {teams.map((team) => (
               <button
                 key={team.id}
@@ -688,13 +697,18 @@ export function TeamBuilder({
                   setShowNewTeam(true);
                   setTimeout(() => newTeamInputRef.current?.focus(), 100);
                 }}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[12px] font-semibold text-brand-text-muted hover:text-brand-primary hover:bg-brand-primary/5 transition-all shrink-0"
+                className={cn(
+                  "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[12px] font-bold transition-all shrink-0",
+                  teams.length === 0
+                    ? "bg-brand-primary text-white shadow-sm hover:bg-brand-primary/90"
+                    : "text-brand-primary hover:bg-brand-primary/5 border border-brand-primary/20"
+                )}
               >
                 <Plus className="w-3.5 h-3.5" />
-                {txt.newTeam}
+                {teams.length === 0 ? txt.addTeam : txt.newTeam}
               </button>
             ) : (
-              <div className="flex items-center gap-1 shrink-0">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <input
                   ref={newTeamInputRef}
                   type="text"
@@ -711,7 +725,7 @@ export function TeamBuilder({
                     }
                   }}
                   placeholder={txt.teamNamePlaceholder}
-                  className="w-36 px-2 py-1 text-[12px] rounded-lg border border-brand-primary/30 bg-white focus:outline-none focus:border-brand-primary"
+                  className="w-44 px-3 py-1.5 text-[13px] rounded-lg border-2 border-brand-primary/40 bg-white focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/10 placeholder:text-brand-text-muted/40 font-medium"
                   autoFocus
                 />
                 <button
@@ -739,16 +753,27 @@ export function TeamBuilder({
           {/* Active team content */}
           <div className="flex-1 min-h-[300px]">
             {!activeTeam ? (
-              <div className="flex flex-col items-center justify-center h-full py-12 px-6 text-center">
-                <div className="w-14 h-14 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-4">
-                  <UserPlus className="w-6 h-6" />
+              <div className="flex flex-col items-center justify-center h-full py-14 px-6 text-center">
+                <div className="w-16 h-16 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center mb-5 ring-4 ring-brand-primary/5">
+                  <UserPlus className="w-7 h-7" />
                 </div>
-                <p className="text-[14px] font-semibold text-brand-text-primary mb-1">
+                <p className="text-[16px] font-bold text-brand-text-primary mb-2">
                   {txt.createTeamFirst}
                 </p>
-                <p className="text-[12px] text-brand-text-muted max-w-[200px]">
+                <p className="text-[13px] text-brand-text-muted max-w-[240px] leading-relaxed">
                   {txt.dragHint}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowNewTeam(true);
+                    setTimeout(() => newTeamInputRef.current?.focus(), 100);
+                  }}
+                  className="mt-5 flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-primary text-white text-[13px] font-bold shadow-md shadow-brand-primary/20 hover:shadow-lg hover:bg-brand-primary/90 transition-all"
+                >
+                  <Plus className="w-4 h-4" />
+                  {txt.addTeam}
+                </button>
               </div>
             ) : (
               <div
