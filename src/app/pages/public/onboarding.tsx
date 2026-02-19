@@ -1432,18 +1432,25 @@ export function OnboardingPage() {
                           </p>
                         </div>
                       ) : !skippedConnect ? (
-                        <div className="rounded-xl border border-brand-border/50 p-4 bg-brand-background-secondary/30">
-                          <div className="flex items-center gap-2.5 mb-3">
-                            <UserPlus className="w-4 h-4 text-brand-primary" />
-                            <span className="text-[13px] font-bold text-brand-text-primary">
-                              {txt.connectTitle}
-                            </span>
+                        <div className="rounded-2xl border-2 border-brand-primary/20 p-5 sm:p-6 bg-gradient-to-br from-brand-primary/[0.03] to-brand-background-secondary/40 shadow-sm">
+                          <div className="flex items-start gap-3 mb-4">
+                            <div className="w-9 h-9 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 mt-0.5">
+                              <UserPlus className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <h3 className="text-[15px] font-bold text-brand-text-primary leading-tight">
+                                {txt.connectTitle}
+                              </h3>
+                              <p className="text-[12px] text-brand-text-muted mt-0.5 leading-relaxed">
+                                {txt.connectSubtitle}
+                              </p>
+                            </div>
                           </div>
 
                           {oauthError && (
-                            <div className="flex items-center gap-2 p-2.5 rounded-lg bg-red-50 border border-red-200 mb-3">
-                              <AlertCircle className="w-3.5 h-3.5 text-brand-error shrink-0" />
-                              <p className="text-[11px] text-brand-error">
+                            <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 border border-red-200 mb-4">
+                              <AlertCircle className="w-4 h-4 text-brand-error shrink-0" />
+                              <p className="text-[12px] text-brand-error font-medium">
                                 {oauthError === 'oauth_not_configured'
                                   ? txt.errorOAuthNotConfigured
                                   : txt.errorOAuth}
@@ -1451,38 +1458,38 @@ export function OnboardingPage() {
                             </div>
                           )}
 
-                          <div className="flex flex-col sm:flex-row gap-2 mb-3">
+                          <div className="flex flex-col sm:flex-row gap-3 mb-4">
                             <button
                               type="button"
                               onClick={() => fetchContacts("google")}
-                              className="flex-1 flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-brand-border/60 bg-white hover:border-brand-primary/30 hover:bg-brand-primary/[0.02] transition-all text-left group"
+                              className="flex-1 flex items-center justify-center gap-3 px-5 py-3.5 rounded-xl border-2 border-brand-border/40 bg-white hover:border-brand-primary/40 hover:shadow-md transition-all text-center group"
                             >
                               <GoogleLogo />
-                              <span className="text-[13px] font-semibold text-brand-text-primary group-hover:text-brand-primary transition-colors">
+                              <span className="text-[14px] font-bold text-brand-text-primary group-hover:text-brand-primary transition-colors">
                                 {txt.connectGoogle}
                               </span>
                             </button>
                             <button
                               type="button"
                               onClick={() => fetchContacts("microsoft")}
-                              className="flex-1 flex items-center gap-2.5 px-4 py-2.5 rounded-lg border border-brand-border/60 bg-white hover:border-brand-primary/30 hover:bg-brand-primary/[0.02] transition-all text-left group"
+                              className="flex-1 flex items-center justify-center gap-3 px-5 py-3.5 rounded-xl border-2 border-brand-border/40 bg-white hover:border-brand-primary/40 hover:shadow-md transition-all text-center group"
                             >
                               <MicrosoftLogo />
-                              <span className="text-[13px] font-semibold text-brand-text-primary group-hover:text-brand-primary transition-colors">
+                              <span className="text-[14px] font-bold text-brand-text-primary group-hover:text-brand-primary transition-colors">
                                 {txt.connectMicrosoft}
                               </span>
                             </button>
                           </div>
 
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between pt-1">
                             <div className="flex items-center gap-1.5">
-                              <Lock className="w-3 h-3 text-brand-success" />
-                              <span className="text-[10px] text-brand-text-muted">{txt.privacyNote}</span>
+                              <Lock className="w-3.5 h-3.5 text-brand-success" />
+                              <span className="text-[11px] text-brand-text-muted">{txt.privacyNote}</span>
                             </div>
                             <button
                               type="button"
                               onClick={() => setSkippedConnect(true)}
-                              className="text-[11px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors"
+                              className="text-[12px] font-bold text-brand-text-muted hover:text-brand-primary transition-colors whitespace-nowrap ml-3"
                             >
                               {txt.skipConnect} →
                             </button>

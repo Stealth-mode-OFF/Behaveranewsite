@@ -26,6 +26,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Repo structure audit
+        run: npm run audit:repo-structure -- --check
+
       - name: TypeScript check
         run: npx tsc --noEmit
 
