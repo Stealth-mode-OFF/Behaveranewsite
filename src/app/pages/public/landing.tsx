@@ -5,10 +5,10 @@ import { Footer } from "@/app/components/layout/footer";
 import { AnnouncementBar, ANNOUNCEMENT_BAR_HEIGHT } from "@/app/components/layout/announcement-bar";
 
 import { StickyMobileCta } from "@/app/components/layout/sticky-mobile-cta";
-import { useModal } from "@/app/ModalContext";
-import { useSEO } from "@/app/hooks/useSEO";
-import { useSchemaOrg } from "@/app/hooks/useSchemaOrg";
-import { useLanguage } from "@/app/LanguageContext";
+import { useModal } from "@/app/modal-context";
+import { useSEO } from "@/app/hooks/use-seo";
+import { useSchemaOrg } from "@/app/hooks/use-schema-org";
+import { useLanguage } from "@/app/language-context";
 import { SITE_ORIGIN } from "@/lib/urls";
 
 type LazyComponent<TProps = Record<string, unknown>> = ComponentType<TProps>;

@@ -1,7 +1,7 @@
 import { useState, type ElementType } from "react";
 import { ShieldCheck, FileText, Lock, Server, Eye, Users, CheckCircle2, Globe, Database, ChevronDown } from "lucide-react";
 import { getBehaveraItem } from "@/app/content";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 import { motion, AnimatePresence } from "framer-motion";
 
 const privacy = getBehaveraItem("/privacy-policy");

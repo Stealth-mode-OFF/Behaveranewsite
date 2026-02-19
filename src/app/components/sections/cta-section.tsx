@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useModal } from "@/app/ModalContext";
+import { useModal } from "@/app/modal-context";
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Sparkles, Check } from "lucide-react";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 
 /**
  * CTA Section - Full-width Dark Premium Design

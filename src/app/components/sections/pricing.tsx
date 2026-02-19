@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "
 import { Check, ShieldCheck, Star, Users, Zap, Sparkles, ArrowRight, Gift, Clock, Rocket, Heart } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
 
 /* ─── Animated counter hook ─── */

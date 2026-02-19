@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Eye, Zap, ShieldAlert } from "lucide-react";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 import { motion, useInView } from "framer-motion";
 import { DeviceFrame } from "@/app/components/ui/device-frame";
 import { FeatureGrid } from "@/app/components/ui/snap-carousel";

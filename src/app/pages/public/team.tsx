@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/app/LanguageContext';
+import { useLanguage } from '@/app/language-context';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
-import { useSEO } from '@/app/hooks/useSEO';
+import { useSEO } from '@/app/hooks/use-seo';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { Link } from 'react-router-dom';
 import { 

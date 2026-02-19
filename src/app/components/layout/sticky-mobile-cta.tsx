@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 import { trackStickyCtaDismissed } from "@/lib/analytics";
 
 export function StickyMobileCta() {

@@ -1,7 +1,7 @@
 import { useCallback, useState, useRef, useEffect } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
-import { useModal } from '@/app/ModalContext';
-import { useLanguage } from '@/app/LanguageContext';
+import { useModal } from '@/app/modal-context';
+import { useLanguage } from '@/app/language-context';
 import { Input } from '@/app/components/ui/input';
 import { PhoneInput } from '@/app/components/ui/phone-input';
 import { Button } from '@/app/components/ui/button';
