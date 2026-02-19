@@ -5,8 +5,8 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";
-import heroDashboardCz from "@/assets/hero-dashboard-cz.webp";
-import heroDashboardEn from "@/assets/hero-dashboard-en.webp";
+import heroDashboardCz from "@/assets/hero/hero-dashboard-cz.webp";
+import heroDashboardEn from "@/assets/hero/hero-dashboard-en.webp";
 
 /**
  * Hero — Sharp, conversion-focused with rotating headline.
