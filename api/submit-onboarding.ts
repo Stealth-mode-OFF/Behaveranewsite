@@ -204,48 +204,81 @@ async function sendSlackNotification(payload: OnboardingPayload, submissionId: s
 
   const totalMembers = payload.teams.reduce((s, t) => s + t.members.length, 0);
   const pricePerPerson = payload.billingInterval === 'monthly' ? 129 : 99;
-  const monthlyTotal = (payload.employeeCount || totalMembers || 0) * pricePerPerson;
+  const seats = payload.employeeCount || totalMembers || 0;
+  const monthlyTotal = seats * pricePerPerson;
+  const planLabel = payload.billingInterval === 'yearly' ? 'Roční' : 'Měsíční';
 
   const teamLines = payload.teams
-    .map((t) => `• ${t.name} (${t.members.length} members, leader: ${t.leaderEmail || 'N/A'})`)
+    .map((t) => {
+      const leader = t.leaderEmail ? `👤 ${t.leaderEmail}` : '_bez lídra_';
+      return `>  *${t.name}*  —  ${t.members.length} členů  ·  lídr: ${leader}`;
+    })
     .join('\n');
 
+  const blocks: Record<string, unknown>[] = [
+    // ── Header ──
+    {
+      type: 'header',
+      text: { type: 'plain_text', text: '🚀  Nový onboarding', emoji: true },
+    },
+
+    // ── Company hero ──
+    {
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: [
+          `*🏢  ${payload.companyName}*${payload.companyId ? `  ·  IČO \`${payload.companyId}\`` : ''}`,
+          `📋  *Plán:* ${planLabel}  ·  *${seats}* zaměstnanců  ·  *${monthlyTotal.toLocaleString('cs-CZ')} Kč*/měs`,
+        ].join('\n'),
+      },
+    },
+
+    { type: 'divider' },
+
+    // ── People ──
+    {
+      type: 'section',
+      fields: [
+        {
+          type: 'mrkdwn',
+          text: `*👤 Zástupce*\n${payload.repName}\n${payload.repEmail}`,
+        },
+        {
+          type: 'mrkdwn',
+          text: `*🔑 Admin*\n${payload.adminName || '—'}\n${payload.adminEmail || '—'}`,
+        },
+      ],
+    },
+
+    { type: 'divider' },
+
+    // ── Teams ──
+    {
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: `*👥 Týmy* (${payload.teams.length})  ·  ${totalMembers} členů celkem\n${teamLines || '_žádné týmy_'}`,
+      },
+    },
+
+    { type: 'divider' },
+
+    // ── Footer / metadata ──
+    {
+      type: 'context',
+      elements: [
+        {
+          type: 'mrkdwn',
+          text: `🔗 \`${submissionId}\`  ·  OAuth: *${payload.oauthProvider || 'manual'}*  ·  ${new Date().toLocaleString('cs-CZ', { timeZone: 'Europe/Prague' })}`,
+        },
+      ],
+    },
+  ];
+
   const message = {
-    text: `🚀 New onboarding: ${payload.companyName}`,
-    blocks: [
-      {
-        type: 'header',
-        text: { type: 'plain_text', text: '🚀 Nový onboarding', emoji: true },
-      },
-      {
-        type: 'section',
-        fields: [
-          { type: 'mrkdwn', text: `*Firma:*\n${payload.companyName}${payload.companyId ? ` (IČO: ${payload.companyId})` : ''}` },
-          { type: 'mrkdwn', text: `*Zástupce:*\n${payload.repName} <${payload.repEmail}>` },
-          { type: 'mrkdwn', text: `*Admin:*\n${payload.adminName || '—'} <${payload.adminEmail || '—'}>` },
-          { type: 'mrkdwn', text: `*Zaměstnanců:*\n${payload.employeeCount || '—'}` },
-          { type: 'mrkdwn', text: `*Plán:*\n${payload.billingInterval || '—'} (${monthlyTotal.toLocaleString('cs-CZ')} Kč/měs)` },
-          { type: 'mrkdwn', text: `*Týmy:*\n${payload.teams.length} (${totalMembers} členů)` },
-        ],
-      },
-      ...(payload.teams.length > 0
-        ? [
-            {
-              type: 'section',
-              text: { type: 'mrkdwn', text: `*Detail týmů:*\n${teamLines}` },
-            },
-          ]
-        : []),
-      {
-        type: 'context',
-        elements: [
-          {
-            type: 'mrkdwn',
-            text: `Submission ID: \`${submissionId}\` | OAuth: ${payload.oauthProvider || 'manual'} | ${new Date().toISOString()}`,
-          },
-        ],
-      },
-    ],
+    text: `🚀 Nový onboarding: ${payload.companyName} (${seats} zaměstnanců)`,
+    blocks,
   };
 
   try {
