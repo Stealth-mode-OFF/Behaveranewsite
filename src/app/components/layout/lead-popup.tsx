@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
 import { ArrowRight, Download, Check, BookOpen, Users, Sparkles, Shield } from 'lucide-react';
@@ -24,11 +25,16 @@ export function LeadPopup() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const { t, language } = useLanguage();
+  const { pathname } = useLocation();
   type LeadPopupFormData = { email: string; marketingConsent: boolean };
   const { register, handleSubmit, formState: { errors } } = useForm<LeadPopupFormData>({
     defaultValues: { marketingConsent: false }
   });
   const [error, setError] = useState<string | null>(null);
+
+  /* ─── Suppress on sales-critical pages ─── */
+  const SUPPRESSED_ROUTES = ['/start', '/signup', '/admin'];
+  const isSuppressed = SUPPRESSED_ROUTES.some(r => pathname.startsWith(r));
 
   const isMobile = typeof window !== 'undefined' &&
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -38,7 +44,7 @@ export function LeadPopup() {
   const [canTrigger, setCanTrigger] = useState(false);
 
   const triggerPopup = useCallback((trigger: 'exit_intent' | 'timeout' | 'scroll_depth' = 'exit_intent') => {
-    if (hasTriggered) return;
+    if (hasTriggered || isSuppressed) return;
     const hasSeen = sessionStorage.getItem('leadPopupSeen');
     if (hasSeen) return;
     setIsOpen(true);
