@@ -1,0 +1,258 @@
+# Repo Structure Audit Baseline
+
+Generated: 2026-02-19T01:39:47.029Z
+
+## Summary
+
+- Total files (excluding ignored dirs): 266
+- TypeScript files: 101
+- Non-kebab filenames (outside root whitelist): 82
+- Unreferenced TS/TSX files (excluding runtime entries): 18
+- Asset files in src/assets: 109
+- Unused assets in src/assets: 79
+- Duplicate asset hash groups: 25
+- Unused duplicate asset groups: 22
+
+## API Contract Snapshot
+
+- `api/ares-lookup.ts`
+- `api/cz-privacy.ts`
+- `api/cz-terms.ts`
+- `api/invitations/send.ts`
+- `api/oauth/google/callback.ts`
+- `api/oauth/google/start.ts`
+- `api/oauth/microsoft/callback.ts`
+- `api/oauth/microsoft/start.ts`
+- `api/submit-lead.ts`
+- `api/submit-onboarding.ts`
+
+## Public URL-Critical Files Snapshot
+
+- `public/behavera_legal_pages.txt`
+- `public/dashboard-demo-poster.webp`
+- `public/dashboard-demo.mp4`
+- `public/ebooks/lide-odchazeji-z-dobrych-firem.pdf`
+- `public/ebooks/motivovani-jen-2-z-10.pdf`
+- `public/favicon-192.png`
+- `public/favicon-512.png`
+- `public/favicon.svg`
+- `public/logo-behavera-symbol.png`
+- `public/logo-behavera.png`
+- `public/logo.png`
+- `public/manifest.json`
+- `public/robots.txt`
+- `public/sitemap.xml`
+
+## Non-Kebab Filenames
+
+- `behavera_cz_full_text.txt`
+- `docs/CHANGELOG.md`
+- `docs/CODEX_TASKS.md`
+- `docs/DEPENDENCY_AUDIT.md`
+- `docs/HANDOVER.md`
+- `docs/NEXT_PLAN.md`
+- `docs/PERFORMANCE.md`
+- `docs/VERIFICATION.md`
+- `guidelines/Guidelines.md`
+- `public/behavera_legal_pages.txt`
+- `scripts/apply_cz_content.py`
+- `scripts/fix_post12cz.py`
+- `scripts/process_cz_articles.py`
+- `src/app/App.tsx`
+- `src/app/LanguageContext.tsx`
+- `src/app/ModalContext.tsx`
+- `src/app/components/CookieBanner.tsx`
+- `src/app/hooks/useAresLookup.ts`
+- `src/app/hooks/useLocalizedPost.ts`
+- `src/app/hooks/useOAuthContacts.ts`
+- `src/app/hooks/useSEO.ts`
+- `src/app/hooks/useSchemaOrg.ts`
+- `src/app/pages/admin/Dashboard.tsx`
+- `src/assets/IMG_2149.webp`
+- `src/assets/IMG_2152.webp`
+- `src/assets/IMG_2153.webp`
+- `src/assets/IMG_2156.webp`
+- `src/assets/IMG_2157.webp`
+- `src/assets/IMG_2158.webp`
+- `src/assets/Screenshot 2025-07-07 192230.png`
+- `src/assets/Screenshot 2025-07-07 192803.png`
+- `src/assets/Screenshot 2025-07-08 115439.png`
+- `src/assets/Screenshot 2025-07-08 115535.png`
+- `src/assets/Screenshot 2025-07-08 141720.png`
+- `src/assets/Screenshot 2026-02-02 123913.png`
+- `src/assets/Screenshot 2026-02-02 124447.png`
+- `src/assets/Screenshot 2026-02-05 at 13.18.55.png`
+- `src/assets/Screenshot 2026-02-05 at 13.20.43.png`
+- `src/assets/Tmavé - transaprent.png`
+- `src/assets/imgi_14_63da6ae6d88743d98636bf53_634bdf1faf899d548bebb348_behavera-for-pwc-logo.png`
+- `src/assets/imgi_15_63da6af00c7389c32cba29a2_634bdf20990236763287693c_behavera-for-vodafone-logo (1).png`
+- `src/assets/imgi_15_63da6af00c7389c32cba29a2_634bdf20990236763287693c_behavera-for-vodafone-logo.png`
+- `src/assets/imgi_16_63da6ab66baf454209c07404_634bdf1f007b7ff22e80e1d3_behavera-for-notino-logo.png`
+- `src/assets/imgi_18_63da6acab385f97c008bab31_634bdf1f0007a10cfe2472c0_behavera-for-o2-logo (1).png`
+- `src/assets/imgi_19_68f23a7ad710e60412595db4_průša logo.png`
+- `src/assets/imgi_20_63da6abe18c3ae0b7320622d_634bdf1fc8b9e23c7a8973a5_behavera-for-lidl-logo (1).png`
+- `src/assets/imgi_21_686cfccc6136ad1eee74ab9c_Your paragraph text (7).png`
+- `src/assets/imgi_22_67b4839c279e223c4c0aa26c_Valxon - Logo - Black.png`
+- `src/assets/imgi_22_68d3e452ae5a2da9698ea094_Untitled design (45) (1).webp`
+- `src/assets/imgi_23_63f4a99d1dc162409a74256f_igor.webp`
+- `src/assets/imgi_23_67b4818dc6c29d62f50f76ae_Logo Medevio vector black (1).png`
+- `src/assets/imgi_23_67b4818dc6c29d62f50f76ae_Logo Medevio vector black.png`
+- `src/assets/imgi_24_63f4ab8c6a107ed7cce0bcba_dusan.webp`
+- `src/assets/imgi_25_686cf8d0e3e66ae50d2795d9_teya (1).png`
+- `src/assets/imgi_25_686d2af4b3022512644e32a4_jana.webp`
+- `src/assets/imgi_26_686cf82afeef468aab6d7234_sprinx (1).png`
+- `src/assets/imgi_26_686d156a1cb983f39a6e470a_veru.webp`
+- `src/assets/imgi_27_686c062661cb07144b250d02_martinus (1).png`
+- `src/assets/imgi_27_686c062661cb07144b250d02_martinus.png`
+- `src/assets/imgi_27_68e777c37c3e0ee92d4a6b2f_Pepa.webp`
+- `src/assets/imgi_28_686cf5e325759ac290cbf09f_optimio.png`
+- `src/assets/imgi_28_686d181e2536dd17ff0dda8c_Untitled design (30).webp`
+- `src/assets/imgi_29_643537234e92238d87f671c6_effectix-logo-bw (1).png`
+- `src/assets/imgi_30_686d0e049f6df0eb62d11a3e_socialmind (1).png`
+- `src/assets/imgi_30_686d0e049f6df0eb62d11a3e_socialmind.png`
+- `src/assets/imgi_37_63f72ecbcf0bd28e134020c7_websupport (1).png`
+- `src/assets/imgi_50_686cfccc6136ad1eee74ab9c_Your paragraph text (7)-p-500.png`
+- `src/assets/imgi_52_67b4803acaa0a30cd7cc8e3e_Černé - transaprent-p-500.png`
+- `src/assets/imgi_52_686cfccc6136ad1eee74ab9c_Your paragraph text (7)-p-500.png`
+- `src/assets/imgi_53_67b4818dc6c29d62f50f76ae_Logo Medevio vector black-p-500.png`
+- `src/assets/imgi_53_686cf8d0e3e66ae50d2795d9_teya-p-500.png`
+- `src/assets/imgi_54_67b4803acaa0a30cd7cc8e3e_Černé - transaprent-p-500.png`
+- `src/assets/imgi_54_686cf82afeef468aab6d7234_sprinx-p-500.png`
+- `src/assets/imgi_55_686c062661cb07144b250d02_martinus-p-500.png`
+- `src/assets/imgi_55_686cf8d0e3e66ae50d2795d9_teya-p-500.png`
+- `src/assets/imgi_56_686cf82afeef468aab6d7234_sprinx-p-500.png`
+- `src/assets/imgi_57_686c062661cb07144b250d02_martinus-p-500.png`
+- `src/assets/imgi_58_686d0e049f6df0eb62d11a3e_socialmind-p-500.png`
+- `src/assets/imgi_5_63d2a099e907ee054f4cca4f_untitled-ui-logo.png`
+- `src/assets/imgi_86_67b4803acaa0a30cd7cc8e3e_Černé - transaprent-p-1080.png`
+- `src/assets/imgi_92_686d0e049f6df0eb62d11a3e_socialmind-p-500.png`
+- `src/assets/logos/raw/image (1).png`
+
+## Unreferenced TS/TSX Files
+
+- `api/ares-lookup.ts`
+- `api/cz-privacy.ts`
+- `api/cz-terms.ts`
+- `api/invitations/send.ts`
+- `api/oauth/google/callback.ts`
+- `api/oauth/google/start.ts`
+- `api/oauth/microsoft/callback.ts`
+- `api/oauth/microsoft/start.ts`
+- `api/submit-lead.ts`
+- `api/submit-onboarding.ts`
+- `e2e/blog.spec.ts`
+- `e2e/homepage.spec.ts`
+- `e2e/legal.spec.ts`
+- `e2e/onboarding.spec.ts`
+- `playwright.config.ts`
+- `src/app/components/invite-teammates.tsx`
+- `src/vite-env.d.ts`
+- `vite.config.ts`
+
+## Unused Duplicate Asset Groups
+
+- SHA1 `3145bd006953b95f14983661e43d61682322bfd6` (3 files)
+  - `src/assets/imgi_15_63da6af00c7389c32cba29a2_634bdf20990236763287693c_behavera-for-vodafone-logo (1).png`
+  - `src/assets/imgi_15_63da6af00c7389c32cba29a2_634bdf20990236763287693c_behavera-for-vodafone-logo.png`
+  - `src/assets/logos/raw/vodafone.png`
+- SHA1 `63e451d81252a300b592ae3e72c8e5259cbcb4fe` (3 files)
+  - `src/assets/imgi_50_686cfccc6136ad1eee74ab9c_Your paragraph text (7)-p-500.png`
+  - `src/assets/imgi_52_686cfccc6136ad1eee74ab9c_Your paragraph text (7)-p-500.png`
+  - `src/assets/logos/raw/hajduk-partners.png`
+- SHA1 `6c201f4589e9b2b85975e0d47d2b39a5dea257b3` (3 files)
+  - `src/assets/imgi_53_686cf8d0e3e66ae50d2795d9_teya-p-500.png`
+  - `src/assets/imgi_55_686cf8d0e3e66ae50d2795d9_teya-p-500.png`
+  - `src/assets/logos/raw/teya.png`
+- SHA1 `fb863092ae9f48201a26d84b285be674aeb16b74` (3 files)
+  - `src/assets/imgi_54_686cf82afeef468aab6d7234_sprinx-p-500.png`
+  - `src/assets/imgi_56_686cf82afeef468aab6d7234_sprinx-p-500.png`
+  - `src/assets/logos/raw/sprinx.png`
+- SHA1 `34d10236c3fc2186453467cc7fd7a0372ac5cd8b` (3 files)
+  - `src/assets/imgi_55_686c062661cb07144b250d02_martinus-p-500.png`
+  - `src/assets/imgi_57_686c062661cb07144b250d02_martinus-p-500.png`
+  - `src/assets/logos/raw/martinus.png`
+- SHA1 `6b7b555fc9dcd2ede459f3aa6a1745cb515864b1` (3 files)
+  - `src/assets/imgi_58_686d0e049f6df0eb62d11a3e_socialmind-p-500.png`
+  - `src/assets/imgi_92_686d0e049f6df0eb62d11a3e_socialmind-p-500.png`
+  - `src/assets/logos/raw/socialmind.png`
+- SHA1 `a3a1f961b5c075ff8be46670316de3ffc98b2a73` (2 files)
+  - `src/assets/imgi_14_63da6ae6d88743d98636bf53_634bdf1faf899d548bebb348_behavera-for-pwc-logo.png`
+  - `src/assets/logos/raw/pwc.png`
+- SHA1 `77e15bb1fa8abb44c6a5c7a2a1abe0632d50622e` (2 files)
+  - `src/assets/imgi_16_63da6ab66baf454209c07404_634bdf1f007b7ff22e80e1d3_behavera-for-notino-logo.png`
+  - `src/assets/logos/raw/notino.png`
+- SHA1 `3896f1b77b5acc17a5b40825b94e483f4a8f1f27` (2 files)
+  - `src/assets/imgi_18_63da6acab385f97c008bab31_634bdf1f0007a10cfe2472c0_behavera-for-o2-logo (1).png`
+  - `src/assets/logos/raw/o2.png`
+- SHA1 `0e96a371ab3b2a95141c118ed4d56a77612cbe86` (2 files)
+  - `src/assets/imgi_19_68f23a7ad710e60412595db4_průša logo.png`
+  - `src/assets/logos/raw/prusa.png`
+- SHA1 `257bfe230e189c31aed39d75abf6e7f31e2afde2` (2 files)
+  - `src/assets/imgi_20_63da6abe18c3ae0b7320622d_634bdf1fc8b9e23c7a8973a5_behavera-for-lidl-logo (1).png`
+  - `src/assets/logos/raw/lidl.png`
+- SHA1 `9413be94496400019a8bdbdf4f0242a639148273` (2 files)
+  - `src/assets/imgi_22_67b4839c279e223c4c0aa26c_Valxon - Logo - Black.png`
+  - `src/assets/logos/raw/valxon.png`
+- SHA1 `7f47877c529ad1f6cd66b59a903e8c7fe8b0d933` (2 files)
+  - `src/assets/imgi_23_67b4818dc6c29d62f50f76ae_Logo Medevio vector black (1).png`
+  - `src/assets/imgi_23_67b4818dc6c29d62f50f76ae_Logo Medevio vector black.png`
+- SHA1 `47f507e1497b4ec92111bd6e7940b9b74ad4e9f0` (2 files)
+  - `src/assets/imgi_27_686c062661cb07144b250d02_martinus (1).png`
+  - `src/assets/imgi_27_686c062661cb07144b250d02_martinus.png`
+- SHA1 `7348fc6cc2a92c81078b099fa3399e7958ab5995` (2 files)
+  - `src/assets/imgi_28_686cf5e325759ac290cbf09f_optimio.png`
+  - `src/assets/logos/raw/optimio.png`
+- SHA1 `a6be8b240022445da96b5734f82dbcd586033a56` (2 files)
+  - `src/assets/imgi_29_643537234e92238d87f671c6_effectix-logo-bw (1).png`
+  - `src/assets/logos/raw/effectix.png`
+- SHA1 `6147797b232bfe599160b0e6f165feb096730872` (2 files)
+  - `src/assets/imgi_30_686d0e049f6df0eb62d11a3e_socialmind (1).png`
+  - `src/assets/imgi_30_686d0e049f6df0eb62d11a3e_socialmind.png`
+- SHA1 `2238e66c28c428fb72f9c53db85be103e6e3fcac` (2 files)
+  - `src/assets/imgi_37_63f72ecbcf0bd28e134020c7_websupport (1).png`
+  - `src/assets/logos/raw/websupport.png`
+- SHA1 `ce45650bf9a8cd8edc1df64cd8ee48fab17abecc` (2 files)
+  - `src/assets/imgi_52_67b4803acaa0a30cd7cc8e3e_Černé - transaprent-p-500.png`
+  - `src/assets/imgi_54_67b4803acaa0a30cd7cc8e3e_Černé - transaprent-p-500.png`
+- SHA1 `f5e2cf121d2c5183f2da830a3e808fbf850f3331` (2 files)
+  - `src/assets/imgi_53_67b4818dc6c29d62f50f76ae_Logo Medevio vector black-p-500.png`
+  - `src/assets/logos/raw/medevio.png`
+- SHA1 `ce1d3dc4295c008f9b46e62820b82456001e63d3` (2 files)
+  - `src/assets/imgi_5_63d2a099e907ee054f4cca4f_untitled-ui-logo.png`
+  - `src/assets/logos/raw/untitled-ui.png`
+- SHA1 `756f9cbdbd48b891a6daf3ae6aaeca3883423ee1` (2 files)
+  - `src/assets/imgi_86_67b4803acaa0a30cd7cc8e3e_Černé - transaprent-p-1080.png`
+  - `src/assets/logos/raw/expando.png`
+
+## Unused Assets (Non-duplicate or singletons)
+
+- `src/assets/365.png`
+- `src/assets/57784f33eede4d7388f560072042dfccbed29cab.png`
+- `src/assets/95ef6229ea479f28b4f0d02e0936f15e4d01057c.png`
+- `src/assets/IMG_2149.webp`
+- `src/assets/IMG_2152.webp`
+- `src/assets/IMG_2153.webp`
+- `src/assets/IMG_2156.webp`
+- `src/assets/IMG_2157.webp`
+- `src/assets/IMG_2158.webp`
+- `src/assets/Screenshot 2025-07-07 192230.png`
+- `src/assets/Screenshot 2025-07-07 192803.png`
+- `src/assets/Screenshot 2025-07-08 115439.png`
+- `src/assets/Screenshot 2025-07-08 115535.png`
+- `src/assets/Screenshot 2025-07-08 141720.png`
+- `src/assets/Screenshot 2026-02-02 123913.png`
+- `src/assets/Screenshot 2026-02-02 124447.png`
+- `src/assets/Screenshot 2026-02-05 at 13.18.55.png`
+- `src/assets/Screenshot 2026-02-05 at 13.20.43.png`
+- `src/assets/Tmavé - transaprent.png`
+- `src/assets/f61b0b0b60a800b8b932b5d7e2864d06b2c15c07.png`
+- `src/assets/image.png`
+- `src/assets/imgi_21_686cfccc6136ad1eee74ab9c_Your paragraph text (7).png`
+- `src/assets/imgi_25_686cf8d0e3e66ae50d2795d9_teya (1).png`
+- `src/assets/imgi_26_686cf82afeef468aab6d7234_sprinx (1).png`
+- `src/assets/logos/normalized/expando.png`
+- `src/assets/logos/normalized/untitled-ui.png`
+- `src/assets/logos/raw/image (1).png`
+- `src/assets/logos/raw/raynet.png`
+- `src/assets/vodafone.png`
+
