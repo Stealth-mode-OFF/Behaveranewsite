@@ -1,5 +1,6 @@
 import { useLanguage } from "@/app/contexts/language-context";
 import { motion } from "framer-motion";
+import { TrendingUp, Heart, BarChart3 } from "lucide-react";
 import pwcLogo from "@/assets/clients/pwc.png";
 import vodafoneLogo from "@/assets/clients/vodafone.png";
 import notinoLogo from "@/assets/clients/notino.png";
@@ -92,7 +93,65 @@ export function LogoMarquee() {
             </ul>
           </div>
         </div>
+
+        {/* Proof Chips — verifiable case study outcomes */}
+        <ProofChips language={language} />
       </div>
     </section>
+  );
+}
+
+/* ─── Proof Chips ─── */
+type ProofChip = { icon: typeof TrendingUp; metric: string; label: string; company: string };
+
+function ProofChips({ language }: { language: string }) {
+  const chips: Record<string, ProofChip[]> = {
+    cz: [
+      { icon: TrendingUp, metric: "+37 %", label: "nárůst prodeje klientů", company: "Expando" },
+      { icon: Heart, metric: "+25 %", label: "spokojenost zaměstnanců", company: "Valxon" },
+      { icon: BarChart3, metric: "60 %", label: "míra zapojení, 1 000+ lidí", company: "Prusa Research" },
+    ],
+    en: [
+      { icon: TrendingUp, metric: "+37%", label: "client sales increase", company: "Expando" },
+      { icon: Heart, metric: "+25%", label: "employee satisfaction", company: "Valxon" },
+      { icon: BarChart3, metric: "60%", label: "response rate, 1,000+ people", company: "Prusa Research" },
+    ],
+    de: [
+      { icon: TrendingUp, metric: "+37 %", label: "Kundenumsatz-Steigerung", company: "Expando" },
+      { icon: Heart, metric: "+25 %", label: "Mitarbeiterzufriedenheit", company: "Valxon" },
+      { icon: BarChart3, metric: "60 %", label: "Rücklaufquote, 1.000+ MA", company: "Prusa Research" },
+    ],
+  };
+
+  const items = chips[language] || chips.en;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8"
+    >
+      {items.map((chip, idx) => {
+        const Icon = chip.icon;
+        return (
+          <div
+            key={idx}
+            className="flex items-center gap-3 px-4 py-3 rounded-xl border border-brand-border bg-brand-background-secondary/50"
+          >
+            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-brand-primary/5 shrink-0">
+              <Icon className="w-4 h-4 text-brand-primary" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-lg font-bold text-brand-text-primary leading-tight">{chip.metric}</div>
+              <div className="text-xs text-brand-text-muted leading-snug truncate">
+                {chip.label} — <span className="font-medium">{chip.company}</span>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </motion.div>
   );
 }

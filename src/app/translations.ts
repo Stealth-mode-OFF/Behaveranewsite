@@ -63,6 +63,7 @@ type Translations = {
     complianceBadges: Array<{ label: string; sub: string }>;
     expandLabel: string;
     collapseLabel: string;
+    enterpriseBullets: string[];
     legalDocsTitle: string;
     dpoLabel: string;
     privacyFallbackTitle: string;
@@ -207,6 +208,8 @@ export const translations: Record<Language, Translations> = {
         { q: "Is it truly anonymous?", a: "Absolutely. We guarantee a 'safety layer'. No one from leadership sees individual responses. People know this and trust it." },
         { q: "Will it add work for managers?", a: "The opposite. Behavera does the analytical work for them and gives them guidance. It doesn't increase manager workload." },
         { q: "What if the results aren't pretty?", a: "That's the point. You want to see reality so you can change it. Better to know now than deal with resignations." },
+        { q: "Is this just another HR tool I'll never open?", a: "Behavera is designed for leadership, not HR alone. The CEO dashboard shows 3 numbers: team risk, engagement trend, and action priority. It takes 2 minutes a week. If you stop getting value, cancel anytime — no lock-in." },
+        { q: "How do you guarantee anonymity in a team of 8 people?", a: "Results are only shown when a group has 5+ respondents. For smaller teams, data rolls up into the next level. No manager ever sees individual answers — this is enforced at the database level, not just the UI." },
       ],
     },
     roleSelection: {
@@ -273,6 +276,12 @@ export const translations: Record<Language, Translations> = {
       ],
       expandLabel: "Show security details",
       collapseLabel: "Hide details",
+      enterpriseBullets: [
+        "DPIA completed & DPO available",
+        "Role-based access — managers see only their teams",
+        "Aggregated reporting only (5+ person threshold)",
+        "DPA available on request",
+      ],
       legalDocsTitle: "Legal documents",
       dpoLabel: "Data Protection Officer:",
       privacyFallbackTitle: "Privacy policy",
@@ -415,6 +424,8 @@ export const translations: Record<Language, Translations> = {
         { q: "Je to skutečně anonymní?", a: "Absolutně. Garantujeme 'vrstvu bezpečí'. Nikdo z vedení neuvidí individuální odpovědi. Lidé to ví a věří tomu." },
         { q: "Přidělá to práci manažerům?", a: "Naopak. Behavera za ně dělá analytickou práci a dává jim návod. Nezvyšuje to práci manažerům." },
         { q: "Co když nebudou výsledky hezké?", a: "To je cíl. Chcete vidět realitu, abyste ji mohli změnit. Lepší vědět teď, než řešit výpovědi." },
+        { q: "Není to jen další HR nástroj, který nikdo neotevře?", a: "Behavera je navržena pro vedení, ne jen pro HR. CEO dashboard ukazuje 3 čísla: riziko týmu, trend angažovanosti a prioritu akce. Zabere 2 minuty týdně. Pokud vám přestane přinášet hodnotu, zrušte kdykoli — žádný lock-in." },
+        { q: "Jak zaručíte anonymitu v týmu o 8 lidech?", a: "Výsledky se zobrazí až od 5+ respondentů. U menších týmů se data agregují o úroveň výš. Manažer nikdy nevidí individuální odpovědi — to je vynuceno na úrovni databáze, ne jen v UI." },
       ],
     },
     roleSelection: {
@@ -481,6 +492,12 @@ export const translations: Record<Language, Translations> = {
       ],
       expandLabel: "Zobrazit detaily zabezpečení",
       collapseLabel: "Skrýt detaily",
+      enterpriseBullets: [
+        "DPIA zpracována a DPO k dispozici",
+        "Přístup dle rolí — manažeři vidí jen své týmy",
+        "Pouze agregované reporty (práh 5+ lidí)",
+        "Smlouva o zpracování (DPA) na vyžádání",
+      ],
       legalDocsTitle: "Právní dokumenty",
       dpoLabel: "Pověřenec pro ochranu osobních údajů:",
       privacyFallbackTitle: "Zásady ochrany osobních údajů",
@@ -623,6 +640,8 @@ export const translations: Record<Language, Translations> = {
         { q: "Ist es wirklich anonym?", a: "Absolut. Wir garantieren eine 'Sicherheitsschicht'. Niemand aus der Führung sieht einzelne Antworten. Menschen wissen das und vertrauen darauf." },
         { q: "Bedeutet es mehr Arbeit für Manager?", a: "Im Gegenteil. Behavera übernimmt die analytische Arbeit und gibt Anleitungen. Es erhöht nicht die Manager-Arbeitslast." },
         { q: "Was wenn die Ergebnisse nicht schön sind?", a: "Das ist der Punkt. Sie wollen Realität sehen, um sie ändern zu können. Besser jetzt wissen als Kündigungen lösen." },
+        { q: "Ist das nur ein weiteres HR-Tool, das niemand öffnet?", a: "Behavera ist für die Geschäftsführung, nicht nur für HR. Das CEO-Dashboard zeigt 3 Zahlen: Teamrisiko, Engagement-Trend und Handlungspriorität. 2 Minuten pro Woche. Wenn Sie keinen Mehrwert sehen, kündigen Sie jederzeit — kein Lock-in." },
+        { q: "Wie garantieren Sie Anonymität in einem Team mit 8 Personen?", a: "Ergebnisse werden erst ab 5+ Befragten angezeigt. Bei kleineren Teams werden Daten auf die nächste Ebene aggregiert. Kein Manager sieht individuelle Antworten — das wird auf Datenbankebene erzwungen, nicht nur in der Oberfläche." },
       ],
     },
     roleSelection: {
@@ -689,6 +708,12 @@ export const translations: Record<Language, Translations> = {
       ],
       expandLabel: "Sicherheitsdetails anzeigen",
       collapseLabel: "Details ausblenden",
+      enterpriseBullets: [
+        "DSFA durchgeführt & DSB verfügbar",
+        "Rollenbasierter Zugriff — Manager sehen nur ihre Teams",
+        "Nur aggregierte Berichte (Schwelle ab 5 Personen)",
+        "AVV/DPA auf Anfrage",
+      ],
       legalDocsTitle: "Rechtliche Dokumente",
       dpoLabel: "Datenschutzbeauftragter:",
       privacyFallbackTitle: "Datenschutzerklärung",

@@ -45,8 +45,9 @@ const pricingCopy = {
     ctaPrimary: "Objednat pro celou firmu",
     ctaSecondary: "Otestovat 1 tým zdarma →",
     trustLine: "Už přes 50 firem důvěřuje Behavera",
-    roiTitle: " ROI za 30 dní",
-    roiDesc: "Průměrná firma ušetří 3× investici díky nižší fluktuaci.",
+    roiTitle: "Proč se to vyplatí",
+    roiDesc: "Průměrná mzda v ČR: 48 295 Kč (ČSÚ, Q3 2025). Ztráta jednoho člověka stojí 6–9 měsíčních platů. Behavera pro 50 lidí: ~4 950 Kč/měsíc.",
+    roiSource: "Zdroj: ČSÚ, Gallup 2024",
   },
   en: {
     popularBadge: "Most popular",
@@ -67,8 +68,9 @@ const pricingCopy = {
     ctaPrimary: "Order for your company",
     ctaSecondary: "Test 1 team for free →",
     trustLine: "Already trusted by 50+ companies",
-    roiTitle: " ROI in 30 days",
-    roiDesc: "Average company saves 3× their investment through lower turnover.",
+    roiTitle: "Why it pays off",
+    roiDesc: "Average CZ wage: CZK 48,295 (CZSO, Q3 2025). Losing one person costs 6–9 months' salary. Behavera for 50 people: ~CZK 4,950/mo.",
+    roiSource: "Source: CZSO, Gallup 2024",
   },
   de: {
     popularBadge: "Beliebteste",
@@ -89,8 +91,9 @@ const pricingCopy = {
     ctaPrimary: "Für Ihr Unternehmen bestellen",
     ctaSecondary: "1 Team kostenlos testen →",
     trustLine: "Über 50 Unternehmen vertrauen Behavera",
-    roiTitle: " ROI in 30 Tagen",
-    roiDesc: "Durchschnittliches Unternehmen spart das 3-fache der Investition durch geringere Fluktuation.",
+    roiTitle: "Warum es sich rechnet",
+    roiDesc: "Durchschnittlicher CZ-Lohn: 48.295 CZK (CZSO, Q3 2025). Ein Abgang kostet 6–9 Monatsgehälter. Behavera für 50 MA: ~4.950 CZK/Monat.",
+    roiSource: "Quelle: CZSO, Gallup 2024",
   },
 };
 
@@ -440,19 +443,23 @@ export function PurchaseSection() {
             </div>
           </div>
           
-          {/* ROI callout below card */}
+          {/* ROI callout below card — CZSO-backed */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="mt-8 text-center"
+            className="mt-8 max-w-lg mx-auto text-center"
           >
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-brand-success/[0.06] border border-brand-success/15">
-              <Heart className="w-5 h-5 text-brand-success" />
-              <p className="text-[13px] text-brand-text-secondary">
-                <span className="font-bold text-brand-success">3×{pc.roiTitle}</span> — {pc.roiDesc}
+            <div className="px-6 py-4 rounded-2xl bg-brand-success/[0.06] border border-brand-success/15">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Heart className="w-4 h-4 text-brand-success" />
+                <span className="text-sm font-bold text-brand-success">{pc.roiTitle}</span>
+              </div>
+              <p className="text-[13px] text-brand-text-secondary leading-relaxed">
+                {pc.roiDesc}
               </p>
+              <p className="text-[11px] text-brand-text-muted mt-1.5">{pc.roiSource}</p>
             </div>
           </motion.div>
         </motion.div>
