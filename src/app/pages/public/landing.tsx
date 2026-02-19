@@ -83,15 +83,25 @@ const RoleSelection = lazyNamed(
 
 export function LandingPage() {
   const { language } = useLanguage();
-  const { openSignup } = useModal();
+  const { openSignup, openDemo } = useModal();
 
-  // Auto-open signup modal if ?signup=1 or came from /signup
+  // Auto-open modals or scroll to section based on URL params
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get('signup') === '1') {
       openSignup('direct_link');
-      // Clean up URL
       window.history.replaceState({}, '', '/');
+    } else if (params.get('demo') === '1') {
+      openDemo('direct_link');
+      window.history.replaceState({}, '', '/');
+    } else if (params.get('scroll')) {
+      const target = params.get('scroll');
+      window.history.replaceState({}, '', '/');
+      // Small delay to let lazy sections render
+      setTimeout(() => {
+        const el = target ? document.getElementById(target) : null;
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }, 600);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   const seo = pageSEO.home[language] || pageSEO.home.en;

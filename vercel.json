@@ -4,7 +4,9 @@
   "outputDirectory": "dist",
   "redirects": [
     { "source": "/podminky-pouzivani-sluzby", "destination": "/terms", "permanent": true },
-    { "source": "/ochrana-osobnich-udaju", "destination": "/privacy-policy", "permanent": true }
+    { "source": "/ochrana-osobnich-udaju", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/demo", "destination": "/?demo=1", "permanent": false },
+    { "source": "/engagement", "destination": "/?scroll=radar", "permanent": false }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }

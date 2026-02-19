@@ -144,6 +144,10 @@ function App() {
                     <Route path="/start" element={<OnboardingPage />} />
                     <Route path="/signup" element={<Navigate to="/?signup=1" replace />} />
 
+                    {/* Marketing short-links */}
+                    <Route path="/demo" element={<Navigate to="/?demo=1" replace />} />
+                    <Route path="/engagement" element={<Navigate to="/?scroll=radar" replace />} />
+
                     {/* Admin Routes */}
                     {adminEnabled ? (
                       <>
