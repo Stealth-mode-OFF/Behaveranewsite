@@ -28,6 +28,8 @@ import {
   Star,
   Heart,
   Zap,
+  Upload,
+  FileSpreadsheet,
 } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -47,6 +49,7 @@ import {
 } from "@/app/components/onboarding/team-builder";
 // InviteTeammates step removed — OAuth import merged into Teams step
 import { useAresLookup, type AresResult } from "@/app/hooks/use-ares-lookup";
+import { parseContactsFile, CSV_ACCEPT, type ParsedContact } from "@/app/utils/csv-parser";
 
 /* ─── Types ─── */
 type OnboardingFormData = {
@@ -208,6 +211,12 @@ const copy = {
     connectSubtitle: "Přihlaste se přes firemní účet a my bezpečně načteme seznam zaměstnanců z vašeho adresáře.",
     connectGoogle: "Pokračovat přes Google",
     connectMicrosoft: "Pokračovat přes Microsoft",
+    connectCSV: "Nahrát CSV soubor",
+    csvOrDivider: "nebo nahrajte soubor",
+    csvDropHint: "CSV, TSV nebo TXT (jméno + e-mail)",
+    csvSuccess: "kontaktů načteno ze souboru",
+    csvError: "Chyba při čtení souboru",
+    csvParsing: "Zpracovávám soubor…",
     privacyNote: "Čteme pouze jména a e-maily. Nikdy nepřistupujeme k vašim e-mailům, souborům ani kalendářům.",
     termsNote: "Pokračováním souhlasíte s",
     termsLinkLabel: "obchodními podmínkami",
@@ -294,6 +303,12 @@ const copy = {
     connectSubtitle: "Sign in with your company account and we'll securely import your employee directory.",
     connectGoogle: "Continue with Google",
     connectMicrosoft: "Continue with Microsoft",
+    connectCSV: "Upload CSV file",
+    csvOrDivider: "or upload a file",
+    csvDropHint: "CSV, TSV, or TXT (name + email)",
+    csvSuccess: "contacts imported from file",
+    csvError: "Failed to read file",
+    csvParsing: "Processing file…",
     privacyNote: "We only read names and emails. We never access your email content, files, or calendars.",
     termsNote: "By continuing you agree to the",
     termsLinkLabel: "Terms & Conditions",
@@ -380,6 +395,12 @@ const copy = {
     connectSubtitle: "Melden Sie sich mit Ihrem Firmenkonto an und wir importieren Ihr Mitarbeiterverzeichnis sicher.",
     connectGoogle: "Weiter mit Google",
     connectMicrosoft: "Weiter mit Microsoft",
+    connectCSV: "CSV-Datei hochladen",
+    csvOrDivider: "oder Datei hochladen",
+    csvDropHint: "CSV, TSV oder TXT (Name + E-Mail)",
+    csvSuccess: "Kontakte aus Datei importiert",
+    csvError: "Datei konnte nicht gelesen werden",
+    csvParsing: "Datei wird verarbeitet…",
     privacyNote: "Wir lesen nur Namen und E-Mails. Wir greifen nie auf Ihre E-Mail-Inhalte, Dateien oder Kalender zu.",
     termsNote: "Mit der Fortsetzung stimmen Sie den",
     termsLinkLabel: "Nutzungsbedingungen",
@@ -506,6 +527,48 @@ export function OnboardingPage() {
   } = useOAuthContacts();
   const [skippedConnect, setSkippedConnect] = useState(draft?.skippedConnect ?? false);
 
+  // CSV upload contacts
+  const [csvContacts, setCsvContacts] = useState<ParsedContact[]>([]);
+  const [csvLoading, setCsvLoading] = useState(false);
+  const [csvError, setCsvError] = useState<string | null>(null);
+  const csvInputRef = useRef<HTMLInputElement>(null);
+
+  const handleCSVUpload = useCallback(async (file: File) => {
+    setCsvLoading(true);
+    setCsvError(null);
+    try {
+      const result = await parseContactsFile(file);
+      if (result.errors.length > 0) {
+        setCsvError(result.errors[0]);
+        setCsvLoading(false);
+        return;
+      }
+      if (result.contacts.length === 0) {
+        setCsvError("No valid contacts found in file");
+        setCsvLoading(false);
+        return;
+      }
+      setCsvContacts(result.contacts);
+      setSkippedConnect(false);
+    } catch {
+      setCsvError("Failed to read file");
+    } finally {
+      setCsvLoading(false);
+    }
+  }, []);
+
+  const handleCSVInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) handleCSVUpload(file);
+    // Reset so same file can be re-uploaded
+    e.target.value = "";
+  }, [handleCSVUpload]);
+
+  const clearCSVContacts = useCallback(() => {
+    setCsvContacts([]);
+    setCsvError(null);
+  }, []);
+
   // ARES lookup
   const {
     results: aresResults,
@@ -605,18 +668,41 @@ export function OnboardingPage() {
     [oauthContacts, companyDomain]
   );
 
-  // Contacts for TeamBuilder — only company domain contacts
+  // Contacts for TeamBuilder — OAuth (domain-filtered) + CSV contacts merged
   const teamBuilderContacts: TeamContact[] = useMemo(() => {
-    const pool = companyDomain ? domainContacts : oauthContacts;
-    return pool.map((c) => ({
-      name: c.name,
-      email: c.email,
-      photo: c.photo,
-    }));
-  }, [domainContacts, oauthContacts, companyDomain]);
+    const oauthPool = companyDomain ? domainContacts : oauthContacts;
+    const seen = new Set<string>();
+    const result: TeamContact[] = [];
+
+    // OAuth contacts first (may have photos)
+    for (const c of oauthPool) {
+      const key = c.email.toLowerCase();
+      if (!seen.has(key)) {
+        seen.add(key);
+        result.push({ name: c.name, email: c.email, photo: c.photo });
+      }
+    }
+
+    // CSV contacts (no photo), skip duplicates
+    for (const c of csvContacts) {
+      const key = c.email.toLowerCase();
+      if (!seen.has(key)) {
+        // If company domain is set, only include matching domain contacts
+        if (companyDomain && !key.endsWith(`@${companyDomain}`)) continue;
+        seen.add(key);
+        result.push({ name: c.name, email: c.email, photo: "" });
+      }
+    }
+
+    return result;
+  }, [domainContacts, oauthContacts, companyDomain, csvContacts]);
 
   // Filtered contacts = only company domain (what we actually use everywhere)
   const filteredContacts = companyDomain ? domainContacts : oauthContacts;
+
+  // Combined import count for the success bar
+  const totalImportedContacts = teamBuilderContacts.length;
+  const hasImportedContacts = oauthContacts.length > 0 || csvContacts.length > 0;
 
   // ─── ARES: handle company name input ───
   const handleCompanyNameChange = useCallback(
@@ -1401,14 +1487,14 @@ export function OnboardingPage() {
                   {currentStep === 1 && (
                     <div className="space-y-6">
                       {/* Compact import bar — collapsed when contacts already loaded */}
-                      {oauthContacts.length > 0 ? (
+                      {hasImportedContacts ? (
                         <div className="flex items-center gap-3 p-3 rounded-xl bg-brand-success/5 border border-brand-success/20">
                           <div className="w-8 h-8 rounded-full bg-brand-success/10 flex items-center justify-center shrink-0">
                             <Check className="w-4 h-4 text-brand-success" strokeWidth={3} />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-[13px] font-bold text-brand-text-primary">
-                              {filteredContacts.length} {txt.connectSuccess}
+                              {totalImportedContacts} {oauthContacts.length > 0 ? txt.connectSuccess : txt.csvSuccess}
                               {companyDomain && (
                                 <span className="ml-1.5 text-[11px] font-semibold text-brand-primary">
                                   @{companyDomain}
@@ -1418,7 +1504,7 @@ export function OnboardingPage() {
                           </div>
                           <button
                             type="button"
-                            onClick={() => { clearContacts(); setSkippedConnect(false); }}
+                            onClick={() => { clearContacts(); clearCSVContacts(); setSkippedConnect(false); }}
                             className="text-[11px] font-semibold text-brand-text-muted hover:text-brand-primary transition-colors shrink-0"
                           >
                             {txt.connectChange}
@@ -1447,18 +1533,18 @@ export function OnboardingPage() {
                             </div>
                           </div>
 
-                          {oauthError && (
+                          {(oauthError || csvError) && (
                             <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 border border-red-200 mb-4">
                               <AlertCircle className="w-4 h-4 text-brand-error shrink-0" />
                               <p className="text-[12px] text-brand-error font-medium">
-                                {oauthError === 'oauth_not_configured'
+                                {csvError ? csvError : oauthError === 'oauth_not_configured'
                                   ? txt.errorOAuthNotConfigured
                                   : txt.errorOAuth}
                               </p>
                             </div>
                           )}
 
-                          <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                          <div className="flex flex-col sm:flex-row gap-3 mb-3">
                             <button
                               type="button"
                               onClick={() => fetchContacts("google")}
@@ -1480,6 +1566,56 @@ export function OnboardingPage() {
                               </span>
                             </button>
                           </div>
+
+                          {/* ── CSV upload divider + button ── */}
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="flex-1 h-px bg-brand-border/40" />
+                            <span className="text-[11px] font-semibold text-brand-text-muted uppercase tracking-wider">
+                              {txt.csvOrDivider}
+                            </span>
+                            <div className="flex-1 h-px bg-brand-border/40" />
+                          </div>
+
+                          <input
+                            ref={csvInputRef}
+                            type="file"
+                            accept={CSV_ACCEPT}
+                            onChange={handleCSVInputChange}
+                            className="hidden"
+                            aria-label={txt.connectCSV}
+                          />
+
+                          {csvLoading ? (
+                            <div className="flex items-center justify-center py-4 gap-3 rounded-xl border-2 border-dashed border-brand-border/40 bg-brand-background-muted/30">
+                              <Loader2 className="w-5 h-5 text-brand-primary animate-spin" />
+                              <p className="text-[13px] text-brand-text-muted font-medium">{txt.csvParsing}</p>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => csvInputRef.current?.click()}
+                              onDragOver={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                              onDrop={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                const file = e.dataTransfer.files?.[0];
+                                if (file) handleCSVUpload(file);
+                              }}
+                              className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-xl border-2 border-dashed border-brand-border/40 bg-white hover:border-brand-primary/40 hover:bg-brand-primary/[0.02] hover:shadow-md transition-all text-center group mb-3"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center shrink-0 group-hover:bg-brand-primary/15 transition-colors">
+                                <FileSpreadsheet className="w-4 h-4 text-brand-primary" />
+                              </div>
+                              <div className="text-left">
+                                <span className="text-[14px] font-bold text-brand-text-primary group-hover:text-brand-primary transition-colors block leading-tight">
+                                  {txt.connectCSV}
+                                </span>
+                                <span className="text-[11px] text-brand-text-muted leading-tight">
+                                  {txt.csvDropHint}
+                                </span>
+                              </div>
+                            </button>
+                          )}
 
                           <div className="flex items-center justify-between pt-1">
                             <div className="flex items-center gap-1.5">
