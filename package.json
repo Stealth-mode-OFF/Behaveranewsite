@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "audit:repo-structure": "node scripts/audit-repo-structure.mjs",
     "build": "vite build",
     "dev": "vite",
     "preview": "vite preview",
