@@ -133,6 +133,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Nespoléhejte se pouze na svůj instinkt. Sbírejte data a na nich stavte další kroky. Vnímejte signály změn – někdo je tišší než obvykle, někdo odkládá práci.</p>
 <p>Pravidelně choďte na <strong>1:1 schůzky</strong>, někdy se stačí jen zeptat</p>
 <p>"Jak se máš? ". Kde začít? Vést tým není „vyšší level“ odbornosti, ale úplně nová disciplína. Právě tato obezřetnost a vědomí, že spokojenost není jednorázový cíl, ale běh na dlouhou trať, odlišuje zkušené lídry od těch začínajících. Zdá se Vám toho najednou hodně? Začněte jednoduše: naplánujte si 1:1 se svým týmem a ptejte se.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Naslouchání a jednání podle podnětů týmu buduje důvěru více než mít odpověď na všechno</li>
+<li>Autonomie a odpovědnost motivují lépe než kontrola každého kroku</li>
+<li>Sbírejte data o spokojenosti — na instinkt se nespoléhejte</li>
+</ul>
 <p>Využijte k tomu Echo Pulse od Behavery - anonymní nástroj, který během pár minut zjistí, jak je váš tým spokojený, co potřebuje, co ho trápí a čeho si cení. Ihned vyhodnotí největší rizika a nabídne doporučení na míru, včetně konkrétních otázek pro vaše 1:1 .</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200',
@@ -199,6 +205,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <h3>Co přinesl Covid</h3>
 <p>Pandemie Covidu s sebou přinesla nové poznatky, zejména v náhledu na práci z domova – lze to u skoro každého oboru či segmentu. Lidé to postupně začali vnímat jako žádoucí součást jejich pracovního života, jako cestu si lépe korigovat život pracovní a osobní, jak efektivněji řídit jejich život jako celek, ne jen jako profesi. Prakticky se tak z benefitu (a během pandemie nutného zla) stala možnost práce z domova <strong>důležitou součástí nabídky hned vedle mzdy</strong>.</p>
 <p>To ostatně potvrzuje i průzkum společnosti Hays, který uvádí, že <strong>52 % dotazovaných si nejvíce cenní home office</strong> jako benefitu, dalších <strong>32 % flexibility a volného pracovního režimu</strong>. Celých <strong>80 % českých firem</strong> tak stále nabízí možnost home office v omezené míře, plně remote spolupráce nabízí jen <strong>30 % z nich</strong> (průzkum Pay-Fair 2025). Pokud chcete zůstat atraktivním zaměstnavatelem a umět lidem nabídnout více než mzdu, je dobré proto s možností home office počítat.</p>
+<blockquote>📊 52 % zaměstnanců si nejvíce cenní home office, 80 % českých firem ho stále nabízí (Hays, Pay-Fair 2025).</blockquote>
 <p>Nebojte se nechat své lidi pracovat tak, jak jim to nejlépe vyhovuje - opravdu to jde, aniž by utrpěl jejich pracovní výkon!</p>
 <h3>Zjišťujte (a zajišťujte)</h3>
 <p>Společně s tím ale vznikají jiné výzvy pro vás, pro leadery, kterým je třeba nejen čelit, ale jít jim i proaktivně naproti. Odprostit se od potřeby dohledu z prostředí kanceláře a jít na to efektivněji prostřednictvím dat.</p>
@@ -214,6 +221,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <li><strong>Sledovat výsledky</strong> pomocí KPIs a performance reviews — ne čas strávený na kancelářské židli</li>
 <li><strong>Efektivně vést 1:1</strong> — vždy vědět na co a jak se zeptat</li>
 <li><strong>Dělat informovaná rozhodnutí</strong> a ukazovat týmu, že jejich hlas má skutečnou váhu – i když spolu nejste každý den v jedné kanceláři</li>
+</ul>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Přítomnost v kanceláři se nerovná vyšší produktivitě — angažovanost ji zvyšuje až o 20 %</li>
+<li>Hodnoťte výsledky a dopady, ne odpracované hodiny na kancelářské židli</li>
+<li>Využívejte data místo dohledu — i na dálku si udržíte přehled o svém týmu</li>
 </ul>
 <p><strong>Zjistěte, na čem vašim lidem opravdu záleží</strong> — co je frustruje a co je motivuje — ať už sedí v open space, na verandě u lesa nebo pod palmou.</p>
 <p>Domluvte si demo bez závazků!</p>
@@ -273,6 +286,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><em>👨‍🦳 Lukáš (Vedoucí prodeje) Měl schopnost nabíjet svůj tým energií díky jasné strategii a koučování - nyní je odtažitý</em>, vyhýbá se CRM a telefonátům a ze špatných prodejních výsledků viní trh. Prodej stagnuje a co teprve výkonnost jeho týmu.</p>
 <p>Co mají tihle lidé společného? Nejsou neschopní, jsou neangažovaní. A dávají to jasně najevo - pokud se někdo dívá. Neangažovanost se často projevuje jako uzavřenost, absence iniciativy, rostoucí absence nebo zhoršující se kvalita práce. Tyto signály jsou snadno zaměněny za lenost nebo „špatný přístup“, i když ve skutečnosti ukazují na hlubší problém – ztrátu smyslu a směru v práci a sounáležitosti s týmem a firmou. V některých případech tak pozorujeme "quiet quitting".</p>
 <p>V horším případě jde o dokonce o vyhoření. A to není nic vzácného. Naopak. Můžeme se s tím setkat až znepokojivě často. Podle průzkumu Gallup 2024 je pouze <strong>23 % zaměstnanců na celém světě aktivně zapojeno</strong> do své práce. Neuvěřitelných <strong>62 % je neangažovaných</strong> a <strong>15 % je aktivně neangažovaných</strong>. Pokud máte tedy tým o deseti lidech, statisticky vzato 6 z nich není plně angažovaných a minimálně u 1 hrozí vysoké riziko odchodu .</p>
+<blockquote>📊 Pouze 23 % zaměstnanců je aktivně zapojeno do práce. 62 % je neangažovaných (Gallup 2024).</blockquote>
 <h2>Skrytá cena neangažovanosti</h2>
 <p>Za neangažované zaměstnance se platí vysoká cena. Podle výzkumu Gallup 2024 stojí zaměstnavatele <strong>34 % jejich ročního platu</strong>. A to bez započtení dalších dopadů: horší týmová atmosféra, nespokojení zákazníci, fluktuace a náklady na nábor a zaškolení – které se mohou vyšplhat až na dvojnásobek roční mzdy zaměstnance .</p>
 <p>Navíc je u neangažovaných zaměstnanců <strong>o 43 % vyšší pravděpodobnost odchodu</strong>. A i ti, kteří zůstanou, mohou <strong>snížit produktivitu týmu až o 20 %</strong>. (Deloitte, Gallup) Neangažovanost jednoho člověka může vyvolat dominový efekt - zejména v úzce spolupracujících týmech nebo v prostředí pod vysokým tlakem. Tech firma zaměstnává vývojáře softwaru s platem 100 000 Kč měsíčně. V případě že bude neangažovaný v práci, přijde společnost o více než 400 000 Kč ročně, a to jen na ztrátě produktivity. Pokud zaměstnanec odejde, celkové náklady -včetně náboru a zaškolení mohou dosáhnout až <strong>2,4 mil. Kč</strong>. Když si to vynásobíte jen pěti lidmi, dostanete se na částku <strong>10 mil. Kč v "tichých ztrátách"</strong>. Přesto si toho mnoho vedoucích pracovníků všimne, až když je příliš pozdě. Částečně je to proto, že se neangažovanost málokdy hlásí nahlas. V obchodu může projevovat jako plná pipeline - ale skutečných rozhovory se zákazníky se nekonají. U remote týmů, zejména populárních u nastupující generace Z může znamenat vypnuté kamery a téměř neexistující interakce na meetinzích.</p>
@@ -298,6 +312,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Behavera tento systém poskytuje. Pomáháme firmám odhalit neangažovanost včas - měříme nejen to, kdo má problém, ale také proč a co se s tím dá dělat. Poskytujeme rychlé a opakovatelné vhledy, které manažerům dávají jasnou představu a dodávají jim jistotu. A pokud si nejste jisti, kteří vaši lídři potřebují podporu, náš nástroj pro diagnostiku leadershipu přesně určí silné stránky a oblasti pro zlepšení tak, že pomůže cílit rozvoj tam, kde to má největší dopad.</p>
 <p><strong>Téměř 60 % vedoucích pracovníků</strong> považuje za důležité porozumět individuálním motivacím a potřebám svých zaměstnanců a přizpůsobit jim práci tak, aby dosáhli nejvyššího výkonu.</p>
 <p>(Deloitte) Společnosti jako Exapndo, Valxon nebo Effectix k tomu využívají Behaveru a dávají svým manažerům tak do ruky reálná data v reálném čase. Díky nim mohou včas zasáhnout, znovu zapojit své týmy a ochránit výkon dříve, než začne klesat. Naslouchejte s Behaverou, jednejte to jako tým! Máte ve firmě svou Emu, Davida nebo Lukáše, kteří vám možná právě tiše mizí mezi prsty? S Behaverou získáte jasný, daty podložený přehled o vašem týmu - bez dohadů.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Pouze 23 % zaměstnanců je aktivně zapojeno — 6 z 10 lidí tichu ztrácí motivaci</li>
+<li>Neangažovanost jednoho člověka stojí firmu 34 % jeho ročního platu</li>
+<li>Kvalita vedení ovlivňuje 70 % rozdílů v angažovanosti týmu</li>
+</ul>
 <p>Naše nástroje se snadno používají, jsou založeny na behaviorální vědě a navržené tak, aby vám pomohly odhalit první příznaky neangažovanosti a pochopit, co je jejich příčinou. Příznaky neangažovanosti jsou pouze varováním - nikoli rozsudek. Jste připraveni zjistit, co se skutečně děje pod povrchem? Přihlaste se o nezávaznou ukázku a dozvíte se to!</p>
 <h2>Zdroje:</h2>
 <p>Deloitte: Trendy v oblasti lidského kapitálu 2025 Gallup:</p>
@@ -370,22 +390,29 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Přesně to přináší Behavera – snadno použitelný nástroj měřící klíčové kompetence, které prokazatelně odlišují nadprůměrně výkonné obchodníky od ostatních . Prostřednictvím herních simulací a chatbotu, Behavera dokáže odfiltrovat nepodstatné informace a zaměřit se na to, co skutečně rozhoduje:</p>
 <p><strong>integrita, orientace na zákazníka, individualita a výkonnost</strong> . Je to rychlé, objektivní a zábavné i pro kandidáty.</p>
 <p>Behavera je chytrý nástroj, který pomáhá vybrat <strong>správné lidi na správné pozice o 87 % efektivněji</strong> oproti tradičním metodám a zároveň Vám <strong>ušetří až 30 % nákladů na nábor</strong>. Nejdůležitější je, že nábor založený na datech není jen teorie – už teď mění byznysy. Ve Vodafonu využili poznatky z Behavery k vylepšení náboru a koučinku, což vedlo ke <strong>snížení fluktuace o 40 %</strong> a <strong>nárůstu tržeb na hovor o 70–80 %</strong>. Zajímají Vás, jaké klíčové kompetence odlišují špičkové obchodníky?</p>
+<blockquote>📊 Behavera pomáhá vybrat správné lidi o 87 % efektivněji a šetří až 30 % nákladů na nábor.</blockquote>
 <p>Pojďme se podívat na vlastnosti, které Behavera měří, a proč jsou těmi nejdůležitějšími faktory při budování Vašeho all-stars obchodního týmu.</p>
 <h3>Co dělá obchodníka top obchodníkem?</h3>
 <p>Zkušenosti v oboru a znalost produktů jsou sice základem, ale samy o sobě nestačí. Nejlepší obchodní zástupci vykazují řadu kompetencí, které jim umožňují budovat vztahy, porozumět potřebám zákazníků a efektivně uzavírat obchody.</p>
 <p>Na základě dlouholetého testování prodejců pomocí nástrojů od Behavery a analýzy jejich výsledků v porovnání s reálným výkonem jsme se zaměřili na čtyři klíčové vlastnosti, které se u nejlepších talentů v obchodu trvale projevují.</p>
 <h3>4 klíčové kompetence top obchodníků</h3>
 <p>🤝 <strong>Integrita pro odolnost pod tlakem</strong> Nejlepší prodejci zůstávají autentičtí a upřímní i v obtížných situacích.</p>
-<h2>Vyrovnanost a pravdomluvnost</h2>
+<h3>Vyrovnanost a pravdomluvnost</h3>
 <p>Jak ve vztahu ke klientům, tak uvnitř firmy — buduje důvěru, podporuje dlouhodobé vztahy, a tak i opakované obchody. Aktivní naslouchání a porozumění potřebám zákazníků posiluje integritu a vytváří důvěryhodnost, dodává panel expertů pro Forbes (19 Underappreciated Traits Of Top Sales Professionals). 🗨️ Orientace na zákazníka, abyste skutečně porozuměli potřebám klienta. Orientace na zákazníka odlišuje řešitele problémů od pouhých prodejců. Dnešní zákazníci očekávají, že obchodníci skutečně porozumí jejich potřebám. Ti, kteří zákazníky upřednostňují a přizpůsobují jim řešení, dosahují lepších výsledků.</p>
 <p>Budování vztahů, emoční inteligence a dovednost řešit problémy vedou k vyšší loajalitě zákazníků a doporučení dalším. (European Journal of Marketing) 🤹 Individualita pro adaptivní prodej Špičkoví prodejci nespoléhají na obecné nabídky - přizpůsobují se každému klientovi a přinášejí svůj jedinečný přístup.</p>
-<h2>Adaptivní prodej zlepšuje výsledky</h2>
+<h3>Adaptivní prodej zlepšuje výsledky</h3>
 <p>(Forbes). Odolnost a přizpůsobivost pomáhají špičkovým prodejcům překonávat neúspěchy, upravovat strategie a udržovat si motivaci i přes odmítnutí.</p>
 <p>🎯 Orientace na výkon pro konzistentní prodejní úspěchy Nejlepší obchodníci se zaměřují na cíle, neustále zdokonalují svůj přístup a daří se jim v kompetitivním prostředí. Výzkum časopisu Journal of Business &amp; Industrial Marketing ukazuje, že obchodní zástupci orientovaní na výkon používají adaptivní prodej k optimalizaci výsledků. Růstové myšlení, jehož hnací silou je potřeba neustálého zlepšování, definuje vysoce výkonné obchodníky. (Forbes)</p>
 <h2>Váš ideální kandidát v aplikaci Behavera</h2>
 <p>Samozřejmě, žádné dvě obchodní pozice nejsou úplně stejné. Ať už hledáte aktivní lovce, mistry vztahového prodeje nebo technické uzavírače obchodů – bez ohledu na to, zda společnost rychle roste nebo dolaďuje svůj produkt na trhu – vždy se objeví nějaké ty rozdíly. Nicméně tyto základní kompetence zůstávají klíčové ve všech situacích. Daří se Vám získat ty nejlepší obchodníky do týmu? Najít a udržet špičkové obchodníky by nemělo být pro Vás ani pro firmu takovou zátěží.</p>
 <p>Každý špatný nábor v obchodním oddělení stojí firmu tržby, zpomaluje růst a frustruje vedení i tým. Rozdíl mezi týmy, které se potýkají s problémy, a těmi vysoce výkonnými není ve štěstí – je to v identifikaci a investici do lidí se správným myšlením a kompetencemi od samého začátku.</p>
 <p>Behavera odstraňuje nejistotu při náboru zaměstnanců a poskytuje jasný, daty podložený přehled o tom, kdo bude ve Vaší organizaci a na dané pozici úspěšný. Díky našim herním simulacím a chatbotu se můžete přestat spoléhat na instinkty a začít přijímat rozhodnutí, která skutečně ovlivní vaše výsledky.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Pohovorové dovednosti nepředpovídají prodejní výkon — měřte integitu, orientaci na zákazníka, individualitu a výkonnost</li>
+<li>Nábor založený na datech je o 87 % efektivnější než tradiční metody</li>
+<li>Každý špatný nábor stojí firmu 30–100 % ročního platu dané pozice</li>
+</ul>
 <p><strong>Umí Váš náborový proces skutečně vybrat ty nejlepší obchodní talenty?</strong> Pokud ne, je čas na změnu. Vyzkoušejte Behaveru ještě dnes a objevte skutečný potenciál svého týmu – a to zcela zdarma!</p>
 <p>+420 724 256 447 hello@behavera.com</p>
 `,
@@ -427,9 +454,8 @@ export const BLOG_POSTS: BlogPost[] = [
 `,
     content_cz: `
 <h2>Porozumění kontextu s Behaverou</h2>
-<h2>Klíčový kontext</h2>
 <p class="lead"><em>Nové vedení společnosti Valxon se místo spoléhání na dojmy</em> obrátilo na objektivní <strong>průzkum angažovanosti od Behavery</strong>, aby diagnostikovali hlavní problémy, které ovlivňují jejich zaměstnance. Rozhodli se provést průzkum neanonymně, s cílem podpořit kulturu otevřené komunikace a lépe tak pochopit, co každý zaměstnanec potřebuje, aby se mu dařilo. Tento přístup pomohl vedení přizpůsobit řešení jednotlivcům a zajistit, aby změny byly smysluplné a účinné. Výsledky potvrdily jejich obavy a zároveň přinesly překvapivé zjištění: zaměstnanci jsou stále angažovaní. Jen jim chybí adekvátní podmínky pro efektivní práci.</p>
-<h2>Co to znamená v praxi</h2>
+<h2>Za stížnostmi se skrývaly hlubší problémy</h2>
 <p><strong>"Ze všech těch stížností jsme si mysleli</strong>, že tým ztrácíme. Výstupy ukázaly, že máme problém v oblasti odměňování, stresu, přetížení i podpory – ale přesto se nám ulevilo. Pochipili jsme, že naši lidé jsou stále zapojení, jen jim musíme vytvořit lepší podmínky a to zvládneme!" - Karel Poplstein, CEO <strong>Klíčovým poznatkem bylo, že za nespokojeností se často skrývají hlubší problémy</strong> . Zaměstnanci někdy vyjadřovali svou frustraci požadavky na zvýšení mzdy nebo bonusy, ale skutečné problémy mohly spočívat v nadměrné pracovní zátěži, nedostatku vedení a celkové nestabilitě a chaosu.</p>
 <p><strong>Místo toho, aby se společnost Valxon zaměřila na povrchní stížnosti</strong>, identifikovala a řešila jejich podstatu - například potřebu lepšího řízení pracovní zátěže, flexibility a jasných očekávání a procesů. Kromě toho byla společnost Valxon schopna vypracovat cílené plány a opatření, které skutečně zvýší spokojenost zaměstnanců. "Otevřelo nám to oči. Například jsme si mysleli, že jsme docela flexibilní, ale home office maximálně jeden den v týdnu prostě nestačil. Nyní máme pravidla pro práci na dálku, která zaměstnancům umožňují domluvit si hybridní rozvrh přímo s jejich vedoucími.</p>
 <p><em>Posun v přístupu zaměstnanců jsme zpozorovali v podstatě okamžitě</em>. Když investujete do svých lidí, oni investují zpět do vás." - Karel Poplstein, CEO Další analýza odhalila, že zaměstnanci nebyli spokojeni pouze s pracovní zátěží a flexibilitou , ale také se cítili odtrženi od cílů společnosti kvůli neefektivní komunikaci . Chyběl jim jasný pocit směřování a porozumění cílů, což mělo negativní dopad na jejich motivaci a produktivitu . Někteří zaměstnanci dokonce začali bojkotovat svou práci, což celou situaci ještě zhoršovalo.</p>
@@ -445,6 +471,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Vedení navíc plánuje pravidelně - jednou za čtvrtletí - posílat všem zaměstnancům průzkum angažovanosti , aby mohli sledovat jejich spokojenost a proaktivně řešit vznikající problémy. Valxon je odhodlán pokračovat v nastoleném tempu. Do konce prvního čtvrtletí chce <strong>zvýšit svůj well-being index ze současných 7,7 na průměrných 8,2</strong>. Aby toho dosáhli, plánují: Vypracování individuálních plánů růstu: Den v kanceláři - simulační hra - bude sloužit k vyhodnocení kompetencí a potenciálu vedoucích pracovníků a k vytvoření individuálních rozvojových plánů. Zlepšit leadershipové schopnosti:</p>
 <p>Využijí zde poznatky ze simulační hry Game Changer k identifikaci nedostatků v kompetencích manažerů. V kombinaci s kulturními preferencemi týmu , obchodní strategií a cíli společnosti, vytvoří plány rozvoje se zaměřením na prioritní oblasti pro zlepšení a tak maximalizují potenciál vedoucích pracovníků. Udržet si kulturu, kde je otevřená zpětná vazba vítaná a zohleďována při rozhodování: Vedení bude i nadále zapojovat zaměstnance do plánování změn na pracovišti na základě poznatků založených na datech. Zjistěte, co vaši zaměstnanci skutečně chtějí Nespokojenost zaměstnanců neznamená hádat - znamená naslouchat, jak opět dokázala společnost Valxon.</p>
 <p>Jejich zkušenost představuje důležité ponaučení pro každou organizaci: mzdové požadavky mohou být signálem, nikoli hlavním problémem. Zaměstnanci někdy požadují vyšší mzdu jako kompenzaci za stres, zmatky nebo nedostatek uznání, místo aby tyto problémy přímo řešili. Díky zasazení stížností do kontextu a využití poznatků založených na datech mohla společnost Valxon zavést změny, které dláždí cestu ke zlepšení pracovních podmínek a spokojenosti zaměstnanců. Dosáhnou svých cílů? Jaký bude skutečný dopad těchto změn? Sledujte jejich pokrok s námi v rámci nadcházející případové studie.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Stížnosti na mzdu mohou maskovat hlubší problémy — přetížení, chaos a nedostatek směru</li>
+<li>Neanonymní průzkum odhalil, že zaměstnanci jsou stále angažovaní, jen jim chybí podmínky</li>
+<li>Data umožnila rychlé a cílené změny v procesech i komunikaci</li>
+</ul>
 <p>Pokud se vaše společnost potýká s podobnými problémy, udělejte první krok využitím našeho průzkumu angažovanosti. Získané poznatky mohou nově definovat váš přístup k výkonnosti zaměstnanců a odblokovat dlouhodobý úspěch vaší firmy.</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200',
@@ -494,7 +526,8 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>díky automatizovanému měření kompetencí a jasným doporučením</p>
 <p><strong>90 % kandidátů přijatých po testování Behaverou se stalo top performery</strong></p>
 <p><strong>92 % kandidátů testy dokončilo</strong> — baví je, protože jsou založeny na herní simulaci.</p>
-<h2>Klíčový kontext</h2>
+<blockquote>📊 90 % kandidátů přijatých po testování Behaverou se stalo top performery (Expando).</blockquote>
+<h2>Od chaosu ke třem kolům s daty</h2>
 <p><strong>HR manažerka společnosti Expando Ema Nováková a projektový manažer Ján Pavlík se s námi podělili o to</strong>, jak využívají Behaveru a jak zlepšila jejich náborový proces.</p>
 <p><em>"Před Behaverou jsme na pohovorech stříleli naslepo</em>. Poznámky z pre-screeningu jsou plné předsudků, nedávají reálný vhled." Jaká byla v expando cesta kandidáta před Behaverou? Z úplného chaosu jsme se za pár let propracovali ke standardnímu tříkolovému procesu. První kolo - prescreening, které nám řešila kolegyně na částečný úvazek, kde si prošla CV a udělala 15 minutový hovor s kandidátem. Druhé kolo potom má i dnes hiring manažer. Ten se zaměřuje na hard skills, většinou spolu s case study.</p>
 <p><em>Třetí a poslední kolo má u nás kandidát se CEO a řešíme hlavně kulturní fit</em>. Co byly hlavní limity toho procesu? Před Behaverou byly pohovory našich hiring manažerů dost nekoncepční. Prescreening měla na starosti studentka práv – velmi chytrá a schopná, ale ne školená recruiterka. Její zápisy často kromě praktických informací obsahovaly i subjektivní názory, například jak na ni kandidát působil. Takové informace ale pro hiring manažera nejsou relevantní a naopak ho mohou zbytečně ovlivnit. Navíc to pro ni bylo časově náročné a zabralo to téměř polovinu její pracovní doby.</p>
@@ -511,6 +544,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Navíc víme, na které atributy se zaměřit, což nám umožňuje klást cílené otázky při druhém pohovoru. "Kandidáti jsou z testů nadšeni, protože výsledky a doporučení dostanou i oni." Jaká je zpětná vazba od kandidátů? Měli jsme obavy, že 30–45 minutový test některé kandidáty odradí. Ukázal se ale pravý opak – <strong>92 % uchazečů test úspěšně dokončilo</strong> . Ti ostatní? Bereme to tak, že o danou roli nemají skutečný zájem, takže test funguje i jako skvělý filtr.</p>
 <p>V posledním kole pohovoru se náš CEO vždy ptá kandidátů na zpětnou vazbu k celému procesu, a test je něco, co sami často vyzdvihnou.</p>
 <p>Oceňují jeho formu – simulační hra je příjemně překvapí a zaujme. Navíc oceňují, že z procesu sami něco získají, protože výsledky testu jim přijdou v upravené podobě také na e-mail. Najdou tam analýzu svých kompetencí i konkrétní doporučení, která by si jinak museli zaplatit. To vnímají jako velkou přidanou hodnotu. Jaký je dnes největší přínos Behavery pro společnost Expando? <strong>Behavera nám pomohla odstranit subjektivitu v rozhodování, urychlit proces výběru a přinést jistotu při hodnocení lidí</strong> .</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Eliminace pre-screeningu ušetřila čtvrtinu úvazku a 20 tisíc měsíčně</li>
+<li>90 % kandidátů přijatých po testování se stalo top performery</li>
+<li>Data z assessmentů pomáhají i při interních povyšováních a změnách</li>
+</ul>
 <p>Testy už nepoužíváme jen pro nové kandidáty - využíváme je i při změnách uvnitř týmu nebo při povýšení na vedoucí pozice. Například každého potenciálního lídra necháme projít testem zaměřeným na leadership. Díky tomu vidíme nejen jeho silné stránky, ale i oblasti, které je potřeba se zlepšit. Už dvakrát jsme se díky tomu vyhnuli uspěchanému povýšení, které by mohlo negativně ovlivnit celý tým.</p>
 <p>Místo toho jsme získali jasný plán, na čem musí kandidát zapracovat, aby byl na pozici lídra připravený – a i pro něj samotného to byla cenná zpětná vazba.</p>
 `,
@@ -558,11 +597,11 @@ export const BLOG_POSTS: BlogPost[] = [
 `,
     content_cz: `
 <p class="lead"><strong>Proč dělat 1:1? Jsou leadeři</strong>, kteří je mohou vnímat jako promrhaný čas nestrávený “reálnou prací”. Avšak opak je pravdou, 1:1 jsou jeden ze základních pilířů na vybudování důvěry a dobrých vztahů v týmu.</p>
-<h2>Klíčový kontext</h2>
+<h2>Proč mají 1:1 přímý vliv na výkon</h2>
 <p><strong>Mají přímý vliv na angažovanost a loajalitu protože lidem dodají pocit</strong>, že jsou vyslyšeni a jejich zájmy jsou respektovány. Je to také příležitost probrat překážky, a tím zvyšují produktivitu.</p>
-<h2>Co to znamená v praxi</h2>
+<h2>Spokojenost týmu je priorita číslo jedna</h2>
 <p><strong>Starat se o spokojenost a angažovanost vašeho týmu je jednou z hlavních rolí leadera</strong>, proto jsou 1:1 jeden z nejlepších nástrojů, jak toho docílit.</p>
-<h2>Doporučený další krok</h2>
+<h2>Co říkají zkušení lídři</h2>
 <p><em>„Z pohledu leadera týmu mám tyto schůzky docela rád</em>, baví mě to, baví mě posouvat lidi, posouvat sebe a baví mě vidět pokrok,“ prozradil náš Dušan Murčo .</p>
 <h3>Jak často dělat 1:1?</h3>
 <p>To záleží na velikosti týmu , agendě a jestli fungujete v remote či office módu. „Mně osobně nejlépe vyhovuje týdenní struktura, protože jelikož nejsme ve stejné kanceláři, mám čas zjistit, jak se lidem v týmu daří a co prožívají nejen v práci, ale i mimo ni.</p>
@@ -584,6 +623,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <h3>Na co se ptát?</h3>
 <p><strong>Dobré otázky jsou základ.</strong> Bez nich se může stát, že bude konverzace váznout a nevyřešíte to, co máte v agendě . „Ještě bych přidal tematické okruhy. Stále mám připravenou sadu otázek, které sledují well-being , protože to je pro mě to podstatné na 1:1.</p>
 <p>Kladu je, pokud je to potřeba k vyvolání diskuse, na každém setkání. Kromě nich si však připravuji i témata k diskusi, která se řídí buď ročním obdobím, aktuálními potřebami firmy, nebo významnými změnami,“ Igor Dudinský , Chief Executive Officer, Enkon. Připravujeme praktického asistenta pro leadery, který vám doporučí kvalitní otázky pro různé situace. Takovou tajnou zbraň efektivních leaderů. Chcete být jedni z prvních, co si asistenta vyzkouší? Nechte nám na sebe e-mail a my se vám ozveme jen, co bude hotový.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>1:1 meetingy jsou příležitost poznat potřeby a motivaci svých lidí.</li>
+<li>Dělejte si poznámky a pracujte na výstupech — jinak lidé ztratí důvěru v 1:1.</li>
+<li>Připravte si tematické okruhy a kvalitní otázky, které sledují well-being týmu.</li>
+</ul>
 <p>Behavera assistent pro team leadery Leadeři, jak děláte 1:1 meetingy vy? Podělte se o své zkušenosti s kolegy v komentářích na LinkedInu a pošlete tento článek kolegům, protože sharing is caring.</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1200',
@@ -655,6 +700,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><strong>Opak je pravdou.</strong> Jsou jednotlivci, týmy nebo pobočky, kde se stav well-beingu může dramaticky lišit a je potřeba k nim přistupovat individuálně.</p>
 <h2>Náš Well-being Index měří 12 nejvýznamnějších faktorů</h2>
 <p>Měříme faktory, které stojí za rizikem vyhoření, ztrátou engagementu, snížené produktivity nebo rizikem odchodu. Dozvíte se tak, v jakých oblastech a jak moc lidé volají o pomoc. V přehledu zároveň vidíte, jak jsou na tom jednotlivé týmy či pobočky. Můžete tak snadno poznat, kde potřebují pomoc a kde jsou věci v pořádku.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Neanonymní dotazníky přinášejí více dat pro cílené řešení</li>
+<li>Měřte well-being ideálně čtvrtletně, ne jednou ročně</li>
+<li>Well-being řešte preventivně — ne až při odchodu klíčových lidí</li>
+</ul>
 <p>Chtěli byste se do řešení well-beingu pořádně opřít?</p>
 <p>Skvělá zpráva, rádi bychom vám představili <strong>Behavera Well-being Index</strong>, váš people-first nástroj pro spokojenější firmu. Jak to celé funguje? Získáte chatbota Echo, se kterým si váš tým během 15 minut popovídá a zjistí, jak moc a v jakých oblastech lidé volají o pomoc.</p>
 <p>V přehledu uvidíte až 12 nejrizikovějších oblastí, celkové skóre i míru vyplnění. Zároveň ke každé rizikové oblasti získáte tipy od behaviorálních psychologů, jak se k řešení problému postavit. Řešíte u vás ve firmě well-being?</p>
@@ -702,6 +753,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p class="lead">Proč je well-being leaderů v ohrožení?</p>
 <p><strong>Vedení firem konečně začíná docházet důležitost well-beingu a 89 % [1] c-level leaderů ho má jako prioritu</strong>. Avšak ani oni sami nejsou imunní a vliv událostí posledních tří let se podepsal i na nich.</p>
 <p><strong>70 % [1] leaderů dokonce zvažuje změnu práce</strong>, pokud najdou takovou, která jim umožní zdravější životní styl a více flexibility. Uvědomují si, že aby mohli dobře zastávat svou roli, musí s well-beingem začít u sebe.</p>
+<blockquote>📊 89 % C-level leaderů má well-being jako prioritu, ale 70 % z nich zvažuje odchod kvůli zdravějšímu životnímu stylu.</blockquote>
 <p><strong>„Věříme, že když se leadeři starají sami o sebe</strong>, jsou mnohem schopnější postarat se o své zaměstnance. Být empatičtí, kreativní a inspirativní. Když jsou však vyčerpaní a vyhořelí, je mnohem těžší ze sebe vydat to nejlepší a jít příkladem. Modelování rolí je klíčové, protože měníme celou kulturu, která si zvykla věřit, že vyhoření je prostě cena, kterou zaplatíte za úspěch,“ prozradila Arianna Huffington v rozhovoru pro Forbes [2] . Změna priorit a snaha o změnu jsou skvělý začátek a významný krok směrem ke zdravějšímu životnímu stylu.</p>
 <p><em>Avšak leadeři si uvědomují</em>, že prošlapat tuto novou cestu nebude jednoduché a hlavní překážkou je současný způsob práce. Hlavními záporáky jsou velký objem práce a stresující pracovní náplň hned vedle dlouhé pracovní doby. Běžně se tak stává, že si leadeři nevybírají dovolenou potřebnou k regeneraci kvůli „práci, která nepočká“. Podaří se nám postavit most přes propast mezi potřebou řešit well-being a realitou v práci? Kde je vůle, tam je i cesta. Technologie by mohly být součástí řešení .</p>
 <p>„Věříme, že nastává doba, kdy se práce bude podřizovat našemu životnímu stylu, místo toho, abychom podřizovali svůj životní styl práci. Což je fundamentální změna mindsetu, která bude vyžadovat odlišný přístup firem směrem k pracovníkům. Nejen s nástupem aplikované AI to bude více o tom změnit paradigma z ‚pracuj tvrdě‘ na ‚pracuj chytře‘,“ předpovídá Tomáš Jiroušek, investiční manažer ve skupině MITON.</p>
@@ -714,7 +766,13 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><strong>Upřímně se zajímejte</strong> – pravidelná setkání týmu, 1:1 schůzky i neformální pokec na Slacku nebo Teamsech. Kromě osobních schůzek využívejte i nástroje na well-being . „Použijte intuici, ale taky použijte data,“ doporučuje Dušan. Můžete totiž včas odhalit realitu, o které se lidé bojí mluvit tváří v tvář. Průzkum společnosti Deloitte [1] odhalil, že <strong>pouhých 56 % zaměstnanců věří</strong>, že se o jejich well-being leadeři skutečně zajímají, <strong>zatímco 91 % leaderů si myslí</strong>, že se zajímají dostatečně. Právě proto je potřeba dělat pravidelné průzkumy well-beingu a opírat svá rozhodnutí o data, ne o domněnky.</p>
 <p><strong>Buďte přítomni</strong> – buďte tu pro své lidi a buďte vidět. Udělejte pro svůj tým jednoduché vás kdykoliv najít, napsat vám či zavolat dále doporučuje Dušan. <strong>Vytvořte bezpečný prostor</strong> – budujte důvěru skrze zranitelnost. Ukažte, že je v pořádku dělat chyby, nebo se cítit špatně. Mějte pro to pochopení, ale také dlouhodobě pracujte na zlepšení, radí Dušan.</p>
 <p>Ve firmách, kde je je vysoká hladina důvěry je <strong>o 76 % vyšší angažovanost</strong>, <strong>o 74 % nižší stres</strong>, <strong>o 56 % vyšší míra ochoty spolupracovat</strong>, <strong>o 50 % vyšší produktivita</strong> a <strong>o 27 % nižší míra fluktuace</strong>. [3].</p>
-<h2>Klíčový kontext</h2>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>89 % leaderů má well-being jako prioritu, ale sami jsou v ohrožení vyhořením</li>
+<li>Jako první v kalendáři prioritizujte volno pro rodinu, sport a hlubokou práci</li>
+<li>Firmy s vysokou důvěrou mají o 76 % vyšší angažovanost a o 50 % vyšší produktivitu</li>
+</ul>
+<h2>Změřte well-being ve Vašem týmu</h2>
 <p>Jak jste na tom s well-beingem vy?</p>
 <p><em>Vyzkoušejte náš Well-being Index zdarma pro prvních 10 zaměstnanců</em>. Dotazy a připomínky nám můžete zaslat na hello(at)behavera.com.</p>
 <h2>Zdroje:</h2>
@@ -806,6 +864,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Kdy: 19. – 21. září 2023 Kde: Online Web:</p>
 <p>hrexchangenetwork.com HR Virtual Summit Což takhle dát si celý měsíc nadupaný inspirací, pro kterou si můžete chodit kdykoliv se vám to zrovna hodí? Největší mezinárodní virtuální HR event tohoto roku vybral odborníky na HR, vzdělávání, firemní kulturu, psychologii, leadership, hybridní fungování, recruitment, fluktuace, vyhoření, well-being, budování týmů, získávání talentů, employer branding a další. <strong>Zúčastnit se můžete zdarma</strong>, no neberte to.</p>
 <p>Kdy: 14. listopadu – 14. prosince 2023 Kde: Online Web:</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Sledujte mezinárodní HR konference pro inspiraci a nové trendy.</li>
+<li>Většina akcí nabízí virtuální účast – zdarma nebo za zvýhodněnou cenu.</li>
+<li>Témata jako well-being, hybridní práce a engagement dominují programu.</li>
+</ul>
 <p>bamboohr.com Zapomněli jsme na některou akci, která by na tomto seznamu rozhodně neměla chybět? Napište nám na marketing(at)behavera.com a my ji tam doplníme.</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
@@ -857,6 +921,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Co musíte udělat, abyste získali přístup?</p>
 <p>Manažeři, team leadeři a HR profesionálové se mohou zaregistrovat tady, a pak už zbývá jen pár kroků: Dejte svým lidem vědět, že byste rádi začali sledovat úroveň well-beingu ve firmě, abyste zjistili, co je trápí a mohli jste jim vytvořit lepší prostředí. Zaměřte se na vytvoření pocitu bezpečí. Když zaměstnanci vědí, že výsledky nebudou použité proti nim, ale pro zlepšení jejich spokojenosti, postaví se k výzkumu pozitivněji.</p>
 <p>Doporučujeme udělat účast dobrovolnou, well-being je pro některé lidi citlivé téma a neměli by se účastnit pod nátlakem. Až posbíráte výsledky, sdílejte je se všemi spolu s plány na zlepšení.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Chatbot nahrazuje nudné dotazníky — zaměstnanci odpovídají aktivněji.</li>
+<li>Well-being Index měří 12 faktorů – od vyhoření po riziko odchodu.</li>
+<li>Průzkum opakujte minimálně jednou za čtvrt roku a sledujte vývoj.</li>
+</ul>
 <p>Transparentnost a otevřenost pomáhají budovat důvěru. Otevřete prostor otázkám a návrhům. Zapojte dobrovolníky do procesu změn. Sdílejte pak i proces změn, úspěchy i neúspěchy. Snaha se cení více než perfektní výsledky. Nezapomeňte průzkum opakovat. <strong>Doporučujeme nechat zaměstnance si popovídat s naším chatbotem Echo nejméně jednou za čtvrt roku.</strong> V přehledu pak budete moct sledovat, jak se vaše well-being skóre vyvíjí v čase a jak tedy fungují zavedené změny. Máte nějaké otázky na Behavera Well-being Index? Napište nám na hello(at)behavera.com a rádi vám vše vysvětlíme.</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&q=80&w=1200',
@@ -913,12 +983,19 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Je podle nich potřeba, aby firmy začaly u sebe a přišly se systémovým řešením.</p>
 <p>Co přesně to znamená? <strong>Systémové řešení</strong> [4] znamená zamyslet se nad fungováním organizace a jejími procesy, a také udělat změny v náplni práce a kulturně-pracovním prostředí. Přejít na více udržitelné fungování, kde jsou lidé na prvním místě. <strong>Jinými slovy, zaměstnanci z dlouhodobého hlediska k well-beingu nepomůže webinář o mentální odolnosti a hodina jógy tak, jako když konečně nebude dělat za tři lidi a šéf ho přestane mikromanažovat.</strong> Firmám se dlouhodobě finančně vyplatí investovat do hledání zdroje problému a investice do well-beingu zaměstnanců se vrátí udržením a přilákáním talentů.</p>
 <p><strong>Vlastním výzkumem jsme zjistili, že</strong> well-being byl až doposud důležitý pouze pro třetinu firem a 30 % z nich ho považovalo za TOP prioritu. Avšak <strong>50 % HR profesionálů</strong> uvedlo, že se momentálně primárně soustředí na udržení zaměstnanců kvůli tomu, jak těžké je na trhu najít kvalitní uchazeče a jak nákladná je vysoká fluktuace. Well-being byl jednou z nejvíce se opakujících otázek, na kterou aktivně hledají odpověď a funkční řešení. Jak začít efektivně řešit well-being?</p>
-<h2>Klíčový kontext</h2>
+<h2>Podložte rozhodnutí o well-beingu daty</h2>
 <p><strong>Systémové změny budou pro firmu výzva, proto je potřeba</strong> podložit svá rozhodnutí daty o momentálním stavu well-beingu zaměstnanců. Leadeři tak mohou zjistit, kde firma nejvíce pokulhává, určit priority pro změny a pravidelnými průzkumy sledovat, jak nová řešení zabírají. Well-being je jako maraton. Máte před sebou dlouhou cestu a tomu je potřeba strategicky přizpůsobit svůj běh. A hlavní je to nevzdat po pár kilometrech. Je měření well-beingu vhodné pro všechny? Ano, ale není to samospásné řešení, obzvlášť u firem, kde důvěra zaměstnanců ve své leadery je nízká.</p>
 <p>Podle průzkumu od McKinsey <strong>pouhých 30 % zaměstnanců</strong> [5] se cítí dostatečně komfortně k otevření konverzace ohledně jejich well-beingu a mentálního zdraví. Opět je tedy potřeba, aby firmy začaly u sebe a prvními adepty na řešení well-beingu byli jejich leadeři.</p>
+<blockquote>📊 Pouze 30 % zaměstnanců se cítí komfortně mluvit o svém well-beingu (McKinsey).</blockquote>
 <h2>Nečekaný pomocník well-beingu</h2>
 <p>Hybridní model práce se během pandemie ukázal jako výzva pro zaměstnavatele a zaměstnance. Ukázalo se však, že má přímý vliv na well-being lidí, a to hned z několika důvodů [5]: Od světa, který se točil kolem pracoviště, ke světu zaměřenému na pracovníky: Vztahy a sociální vazby v práci jsou klíčové pro well-being. Bezpečné a podpůrné prostředí přispívá k větší mentální odolnosti lidí a zvyšuje produktivitu. Od pevné pracovní doby k flexibilní: Zaměstnanci s vyšší autonomií a zodpovědností za své výstupy dokáží lépe pracovat se svou energií.</p>
 <p>Například, když mají svobodu jít po obědě na procházku nebo si zacvičit, vrací se k odpolednímu bloku práce s větším elánem a lepší schopností se soustředit. Od práce v kanceláři k práci odkudkoliv: Co člověk, to preference. Dříve práce odkudkoliv bývala výsada digitálních nomádů a freelancerů, ale v hybridní model práce umožnil i mnohem více zaměstnancům zvolit si místo práce.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Well-being vyžaduje systémové řešení, nikoliv jednorázové benefity.</li>
+<li>Podložte rozhodnutí daty — pravidelné průzkumy odhalí skutečné příčiny.</li>
+<li>Hybridní model práce přispívá k well-beingu díky větší autonomii zaměstnanců.</li>
+</ul>
 <p>Chcete se dozvědět více o Behavera Well-being Indexu a o tom, jak vám může pomoci zlepšit well-being vašich zaměstnanců?</p>
 <p>Více informací se dozvíte zde .</p>
 <h2>Zdroje:</h2>
@@ -996,6 +1073,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Dobře odvedená práce je samozřejmost, ale chyby jsou konec světa? Tak takovému přístupu už dávno odzvonilo.</p>
 <p>Chvála a ocenění za povedené projekty má velký vliv na psychickou pohodu a pocit naplnění u zaměstnanců.</p>
 <p>Podle studie by <strong>až 66 % [1] lidí</strong> skončilo v práci, pokud by se cítili nedoceněni. U mladších generací pak toto číslo stoupá <strong>až na 76 %</strong>. Manažeři s přístupem cukr a bič mohou firmu stát majlant a vyplatí se přejít na people-first přístup.</p>
+<blockquote>📊 66 % lidí by odešlo, pokud by se cítili nedoceněni. U mladších generací až 76 % (Forbes).</blockquote>
 <h2>6) Nastolte work-life balance jako firemní hodnotu</h2>
 <p>Největší výzvou práce v remote režimu je odpojení se od práce.</p>
 <p>Když zaměstnanci dojíždí do kanceláře, tak cesta do práce a z práce je jakýmsi přechodovým rituálem mezi domácím a pracovním prostředím. Home office tento léta pěstovaný návyk odstranil a výsledkem jsou vyhořelí zaměstnanci (spolu s trendy jako The Great Resignation nebo Quiet Quitting).</p>
@@ -1004,6 +1082,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Zaměstnanci se přestávají angažovat, když se práce stane nudnou rutinou, která je nenaplňuje a nemají se kam posouvat.</p>
 <p>Na firemní vzdělávání je často pohlíženo jako na náklad místo investice. Bývá to jedna z prvních věcí, které se škrtají rozpočty. Tento krok se firmám vrací jako bumerang v podobě nespokojených, neangažovaných zaměstnanců, a dokonce častých odchodů [2].</p>
 <p>I s malým rozpočtem se dá dělat velké divadlo. Místo nákladných externích školení rozhoďte sítě do vlastních řad. Školení a mentoring je win-win pro obě strany, zaměstnanci se mohou naučit novým dovednostem a školitel či mentor může získat cennou praxi a rozvíjet své dovednosti. A třeba si i trochu přivydělat či získat zajímavý bonus.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Komunikujte často, nasloucháte zpětné vazbě a stavte vztahy na důvěře.</li>
+<li>Až 66 % lidí by odešlo, pokud by se cítili nedoceněni – chvalte a oceňujte.</li>
+<li>Nastolte work-life balance jako firemní hodnotu a dejte lidem prostor růst.</li>
+</ul>
 <p>Co funguje v remote nastavení vašemu týmu?</p>
 <p>Podělte se s námi na LinkedInu a uděláte nám radost, když článek doporučíte i kolegům.</p>
 <h2>Zdroje:</h2>
@@ -1051,6 +1135,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>A ti, kteří nás vedou , nás inspirují svým PROČ. Následujeme je, protože chceme, ne protože musíme. Tento princip se pak dá krásně aplikovat nejen na vedení lidí, ale i na komunikaci k zákazníkům. „Lidé nekupují to, co děláte, ale kupují proč to děláte.“ – Simon Sinek <strong>Adam Grant: Jste dárce nebo příjemce?</strong> Podle Granta jsou v každé firmě najdete tři typy lidí: dárce, příjemce a dorovnávač. Do které skupiny patří ti nejúspěšnější a nejproduktivnější zaměstnanci? Odpověď vás možná překvapí.</p>
 <p>Ve svém TED Talku Adam Grant nabídl hned několik praktických tipů, jak vytvořit ideální prostředí pro tyto ideální zaměstnance a jak je ochránit (před sebou samotnými i před ostatními skupinami lidí). „Nejsmysluplnější způsob, jak uspět, je pomáhat druhým uspět.“ – Adam Grant <strong>Matt Mullenweg: Proč je práce z domova dobrá pro podnikání</strong> Podle posledních průzkumů jsou <strong>remote zaměstnanci o 13 % produktivnější</strong> než ti, co docházejí do kanceláře. Proč? Vliv na to má jejich pracovnímu prostředí , které si mohou přizpůsobit dle svých potřeb.</p>
 <p>Podle Mullenwega je autonomie zaměstnanců jedna z konkurenčních výhod pro firmy. Ve svém TED Talku předal plno skvělých tipů, na co se zaměřit pokud v remote režimu chcete uspět i vy. „Talent a inteligenci najdete u všech lidí ve světě. Ale ne všichni mají rovné příležitosti.“ – Matt Mullenweg</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Nábor podle kompetencí odhale potenciál kandidátů, který životopis neukáže.</li>
+<li>Lidé nekupují to, co děláte, ale proč to děláte – komunikujte své PROČ.</li>
+<li>Remote zaměstnanci jsou o 13 % produktivnější díky autonomii a přizpůsobenému prostředí.</li>
+</ul>
 <p>Které myšlenky z TED talků s vámi rezonovaly nejvíce?</p>
 <p><em>Zapojte se do diskuse na LinkedInu a uděláte nám radost</em>, když článek budete sdílet se svými kolegy.</p>
 `,
@@ -1105,6 +1195,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><strong>Firmy začínají modernizovat svůj náborový proces a online assessmenty rostou na popularitě</strong>. HR profesionálům a manažerům díky nim odpadá mnoho administrativy, jako například vymýšlení a vyhodnocování úkolů pro kandidáty. Celý proces se tak stává efektivnější, férovější a flexibilnější. Jak vám s tímto trendem může pomoci Behavera? Napište nám na hello(at)behavera.com.</p>
 <h2>2) Digitální dovednosti jako nejžádanější dovednost</h2>
 <p><em>Používání a ovládání technologií bude jednou z nejpotřebnějších dovedností na trhu práce v roce 2025 [1]</em>, uvedlo Světové ekonomické fórum. Všechna odvětví si procházejí digitální transformací a prakticky každá firma se tak stává technologickou [2]. To mimo jiné bude mít za následek, že <strong>50 % [3] zaměstnanců se bude muset v nejbližších několika letech rekvalifikovat</strong>.</p>
+<blockquote>📊 50 % zaměstnanců se bude muset rekvalifikovat v následujících letech (WEF).</blockquote>
 <p><em><strong>Nový trend v zaměstnatelnosti už nebude jen o soft skills</strong></em>, jako komunikace, schopnost spolupráce, kritické myšlení a emoční inteligence. K nim se přidávají právě digitální dovednosti a s nimi spojená adaptovatelnost na rychlé změny.</p>
 <h2>3) Remote práce a mezinárodní týmy</h2>
 <p>Pandemie normalizovala práci na dálku a spustila boom v rozvoji digitálních nástrojů, což otevřelo dveře mezinárodnímu trhu práce.</p>
@@ -1118,6 +1209,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Inflace, válka na Ukrajině, pandemie, digitalizační smršť a celkové obavy z budoucnosti se podepisují na mentálním zdraví nás všech. Není divu, že právě teď se na sociálních sítích velmi skloňuje termín quiet quitting (tichá rezignace), kdy lidé hledají úlevu od přepracování a naopak firmy se obávají nízké produktivity.</p>
 <p><strong>People-first leadeři však chápou přímou souvislost mezi well-beingem a produktivitou zaměstnance.</strong> Nehledají rychlá a jednorázová řešení, ale přemýšlí dlouhodobě.</p>
 <p>Trendem tedy bude vzdělávání manažerů v oblasti well-beingu zaměstnanců a využití HR technologií které pomohou problém odhalit a doporučí manažerům, co dělat. Cenově dostupné řešení, jak mít psychologa a data-analytika v počítači dostupného 24/7.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Nábor podle kompetencí nahradí hodnocení pouze na základě životopisu.</li>
+<li>50 % zaměstnanců se bude muset v nejbližších letech rekvalifikovat.</li>
+<li>Well-being se z benefitu stane standardem – firmy potřebují systémové řešení.</li>
+</ul>
 <p>Co říkáte na těchto pět trendů v HR? Jsou to podle vás změny k lepšímu, které vyřeší některé současné výzvy? Nebo to jsou jen výdobytky, které zmizí tak rychle jak se jen objevily? Podělte se s námi o svou vizi budoucnosti na LinkedInu a uděláte nám radost, když článek nasdílíte se svými kolegy.</p>
 <h2>Zdroje:</h2>
 <p>[1] Weforum.org, Five key trends shaping the new world of work, autor Segun Ogunwale [2] Forbes.com, Why Every Company Is A Technology Company, autor Stephenie Stone [3] Europass.com, Dovednosti budoucnosti [4] BBC.co.uk, What the war for worker talent really looks like, autor Alex Christian [5] Forbes.com, The Remote Trend Of Working Two Jobs At The Same Time Without Both Companies Knowing, autor Jack Kelly [6] Weforum.org, Skill, re-skill and re-skill again. How to keep up with the future of work, autor Stephane Kasriel [7] LinkedIn.com, Skills are the New Currency, autor Ryan Roslansky</p>
@@ -1185,6 +1282,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <h3>Reputace people-first firmy vám pomůže přilákat kvalifikované kandidáty</h3>
 <p>Lidé chtějí pracovat tam, kde se budou cítit dobře. Pro přilákání kandidátů nejlépe fungují spokojení zaměstnanci a stará dobrá šuškanda. Ať už jste dobrý nebo špatný zaměstnavatel, lidé si to řeknou – osobně nebo na sociálních sítích, vaše pověst vás bude předcházet.</p>
 <p><strong>Změna přístupu k people-first je dlouhodobá investice</strong> a budování reputace funguje jako složené úročení. Na začátku to jsou drobné, ale časem se to mnohonásobně vrátí. Jak? Stanete se vyhledávanou firmou , kde chtějí pracovat ti nejlepší. Nebudete potřebovat tak velký rozpočet na nábor. Protože u vás budou lidé spokojenější , nebudou tak často odcházet. Vysoká fluktuace se prodraží, ale to vás trápit nebude. Díky špičkovému talentu budete mít lepší produkty a služby. Zákazníci vás budou vyhledávat a sníží se náklady na marketing i prodej.</p>
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>People-first přístup vrací lidskost do vedení a firmám přináší dlouhodobý zisk.</li>
+<li>Reputace people-first firmy šetří náklady na nábor i fluktuaci.</li>
+<li>Budujte firemní kulturu od začátku — na hodnotách, ne na sloganech.</li>
+</ul>
 <p>Co říkáte na myšlenku people-first přístupu?</p>
 <p><em>Pojďme se spojit na LinkedInu</em> a uděláte nám radost, když se o článek podělíte se svými kolegy.</p>
 <h2>Zdroje:</h2>
