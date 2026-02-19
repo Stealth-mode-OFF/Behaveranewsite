@@ -3,6 +3,14 @@ import { expect, test } from '@playwright/test';
 test('onboarding step 1 form allows progressing to next steps', async ({ page }) => {
   await page.goto('/start');
 
+  const acceptCookiesButton = page.getByRole('button', {
+    name: /Accept all|Přijmout vše|Alle akzeptieren|Alles akzeptieren/i,
+  });
+
+  if (await acceptCookiesButton.isVisible({ timeout: 2500 }).catch(() => false)) {
+    await acceptCookiesButton.click();
+  }
+
   await expect(page.locator('h1').first()).toBeVisible();
 
   await page.locator('input[autocomplete="organization"]').fill('Acme Corp');
