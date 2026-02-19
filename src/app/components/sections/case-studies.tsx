@@ -8,27 +8,27 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
 
 // Logo imports
-import effectixLogo from "@/assets/logos/normalized/effectix.png";
-import growRangersLogo from "@/assets/logos/normalized/grow-rangers.png";
-import hajdukPartnersLogo from "@/assets/logos/normalized/hajduk-partners.png";
-import lidlLogo from "@/assets/logos/normalized/lidl.png";
-import martinusLogo from "@/assets/logos/normalized/martinus.png";
-import medevioLogo from "@/assets/logos/normalized/medevio.png";
-import notinoLogo from "@/assets/logos/normalized/notino.png";
-import o2Logo from "@/assets/logos/normalized/o2.png";
-import optimioLogo from "@/assets/logos/normalized/optimio.png";
-import prusaLogo from "@/assets/logos/normalized/prusa.png";
-import pwcLogo from "@/assets/logos/normalized/pwc.png";
-import raynetLogo from "@/assets/logos/normalized/raynet.png";
-import socialmindLogo from "@/assets/logos/normalized/socialmind.png";
-import sprinxLogo from "@/assets/logos/normalized/sprinx.png";
-import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
-import teyaLogo from "@/assets/logos/normalized/teya.png";
-import valxonLogo from "@/assets/logos/normalized/valxon.png";
-import vodafoneLogo from "@/assets/logos/normalized/vodafone.png";
-import websupportLogo from "@/assets/logos/normalized/websupport.png";
-import logo365 from "@/assets/logos/normalized/365.svg";
-import expandoLogo from "@/assets/logos/normalized/expando.svg";
+import effectixLogo from "@/assets/clients/effectix.png";
+import growRangersLogo from "@/assets/clients/grow-rangers.png";
+import hajdukPartnersLogo from "@/assets/clients/hajduk-partners.png";
+import lidlLogo from "@/assets/clients/lidl.png";
+import martinusLogo from "@/assets/clients/martinus.png";
+import medevioLogo from "@/assets/clients/medevio.png";
+import notinoLogo from "@/assets/clients/notino.png";
+import o2Logo from "@/assets/clients/o2.png";
+import optimioLogo from "@/assets/clients/optimio.png";
+import prusaLogo from "@/assets/clients/prusa.png";
+import pwcLogo from "@/assets/clients/pwc.png";
+import raynetLogo from "@/assets/clients/raynet.png";
+import socialmindLogo from "@/assets/clients/socialmind.png";
+import sprinxLogo from "@/assets/clients/sprinx.png";
+import startupjobsLogo from "@/assets/clients/startupjobs.png";
+import teyaLogo from "@/assets/clients/teya.png";
+import valxonLogo from "@/assets/clients/valxon.png";
+import vodafoneLogo from "@/assets/clients/vodafone.png";
+import websupportLogo from "@/assets/clients/websupport.png";
+import logo365 from "@/assets/clients/365.svg";
+import expandoLogo from "@/assets/clients/expando.svg";
 
 // Map clientName → logo
 const LOGO_MAP: Record<string, string> = {

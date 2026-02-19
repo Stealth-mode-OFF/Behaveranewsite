@@ -1,18 +1,18 @@
 import { useLanguage } from "@/app/contexts/language-context";
 import { motion } from "framer-motion";
-import pwcLogo from "@/assets/logos/normalized/pwc.png";
-import vodafoneLogo from "@/assets/logos/normalized/vodafone.png";
-import notinoLogo from "@/assets/logos/normalized/notino.png";
-import o2Logo from "@/assets/logos/normalized/o2.png";
-import lidlLogo from "@/assets/logos/normalized/lidl.png";
-import prusaLogo from "@/assets/logos/normalized/prusa.png";
-import teyaLogo from "@/assets/logos/normalized/teya.png";
-import martinusLogo from "@/assets/logos/normalized/martinus.png";
-import startupjobsLogo from "@/assets/logos/normalized/startupjobs.png";
-import raynetLogo from "@/assets/logos/normalized/raynet.png";
-import growRangersLogo from "@/assets/logos/normalized/grow-rangers.png";
-import logo365 from "@/assets/logos/normalized/365.svg";
-import expandoLogo from "@/assets/logos/normalized/expando.svg";
+import pwcLogo from "@/assets/clients/pwc.png";
+import vodafoneLogo from "@/assets/clients/vodafone.png";
+import notinoLogo from "@/assets/clients/notino.png";
+import o2Logo from "@/assets/clients/o2.png";
+import lidlLogo from "@/assets/clients/lidl.png";
+import prusaLogo from "@/assets/clients/prusa.png";
+import teyaLogo from "@/assets/clients/teya.png";
+import martinusLogo from "@/assets/clients/martinus.png";
+import startupjobsLogo from "@/assets/clients/startupjobs.png";
+import raynetLogo from "@/assets/clients/raynet.png";
+import growRangersLogo from "@/assets/clients/grow-rangers.png";
+import logo365 from "@/assets/clients/365.svg";
+import expandoLogo from "@/assets/clients/expando.svg";
 
 // Export logos for reuse in other components
 export const clientLogos = [
