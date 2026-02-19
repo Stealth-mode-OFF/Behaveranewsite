@@ -17,10 +17,10 @@ import {
   Target,
   Download,
 } from 'lucide-react';
-import { useSEO } from '@/app/hooks/useSEO';
-import { useLanguage } from '@/app/LanguageContext';
-import { useModal } from '@/app/ModalContext';
-import { useLocalizedPost, useLocalizedPosts } from '@/app/hooks/useLocalizedPost';
+import { useSEO } from '@/app/hooks/use-seo';
+import { useLanguage } from '@/app/language-context';
+import { useModal } from '@/app/modal-context';
+import { useLocalizedPost, useLocalizedPosts } from '@/app/hooks/use-localized-post';
 import { Button } from '@/app/components/ui/button';
 import {
   trackBlogCtaClick,

@@ -1,11 +1,11 @@
 import { Component, Suspense, lazy, type ErrorInfo, type ReactNode } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { LanguageProvider } from "./LanguageContext";
-import { ModalProvider } from "./ModalContext";
+import { LanguageProvider } from "./language-context";
+import { ModalProvider } from "./modal-context";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "./components/ui/scroll-progress";
-import { CookieBanner } from "./components/CookieBanner";
+import { CookieBanner } from "./components/cookie-banner";
 import { LandingPage } from "./pages/public/landing";
 import { adminEnabled } from "@/lib/config";
 import { Analytics } from "@vercel/analytics/react";
@@ -59,7 +59,7 @@ const AdminLogin = lazy(() =>
   import("./pages/admin/admin-login").then((module) => ({ default: module.AdminLogin }))
 );
 const Dashboard = lazy(() =>
-  import("./pages/admin/Dashboard").then((module) => ({ default: module.Dashboard }))
+  import("./pages/admin/dashboard").then((module) => ({ default: module.Dashboard }))
 );
 const PostList = lazy(() =>
   import("./pages/admin/post-list").then((module) => ({ default: module.PostList }))

@@ -1,7 +1,7 @@
 import { useLocation, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
+import { useLanguage } from "@/app/language-context";
+import { useModal } from "@/app/modal-context";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { Button } from "@/app/components/ui/button";
@@ -18,7 +18,7 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
-import { useSEO } from "@/app/hooks/useSEO";
+import { useSEO } from "@/app/hooks/use-seo";
 
 /* ───────────────────────────────────────────────────
  *  Solutions Sub-Page — /for-ceos, /for-hr, /for-team-leads

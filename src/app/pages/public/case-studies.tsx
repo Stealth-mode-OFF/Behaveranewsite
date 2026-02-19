@@ -5,8 +5,8 @@ import { CaseStudy } from '@/lib/types';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { ArrowRight, Building2, TrendingUp } from 'lucide-react';
-import { useSEO } from '@/app/hooks/useSEO';
-import { useLanguage } from '@/app/LanguageContext';
+import { useSEO } from '@/app/hooks/use-seo';
+import { useLanguage } from '@/app/language-context';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { motion } from 'framer-motion';
 

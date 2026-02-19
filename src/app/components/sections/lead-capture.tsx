@@ -5,7 +5,7 @@ import { Input } from "@/app/components/ui/input";
 
 import { Loader2, ArrowRight, Check, Download } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
 import { motion } from "framer-motion";
 import { trackLeadSubmitted, trackEbookDownload } from "@/lib/analytics";

@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
-import { useLanguage } from "@/app/LanguageContext";
-import { useModal } from "@/app/ModalContext";
+import { useLanguage } from "@/app/language-context";
+import { useModal } from "@/app/modal-context";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { Button } from "@/app/components/ui/button";
 import { Check, X, ArrowRight, AlertTriangle, Zap, BarChart3, Shield, Users } from "lucide-react";
-import { useSEO } from "@/app/hooks/useSEO";
+import { useSEO } from "@/app/hooks/use-seo";
 
 /* ───────────────────────────────────────────────────
  *  Comparison Page — Behavera vs Google Forms

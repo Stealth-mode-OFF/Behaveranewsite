@@ -1,5 +1,5 @@
 import { AlertTriangle, TrendingDown, EyeOff, ZapOff, ArrowRight, type LucideIcon } from "lucide-react";
-import { useLanguage } from "@/app/LanguageContext";
+import { useLanguage } from "@/app/language-context";
 import { motion } from "framer-motion";
 import { cn } from "@/app/components/ui/utils";
 

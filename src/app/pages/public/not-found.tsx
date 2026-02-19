@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/app/LanguageContext';
+import { useLanguage } from '@/app/language-context';
 
 const translations = {
   cz: {
