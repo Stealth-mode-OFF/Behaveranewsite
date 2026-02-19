@@ -1,7 +1,7 @@
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Play, Shield, Clock, Zap, Users } from "lucide-react";
-import { useModal } from "@/app/modal-context";
-import { useLanguage } from "@/app/language-context";
+import { useModal } from "@/app/contexts/modal-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";

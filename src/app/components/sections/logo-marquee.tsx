@@ -1,4 +1,4 @@
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { motion } from "framer-motion";
 import pwcLogo from "@/assets/logos/normalized/pwc.png";
 import vodafoneLogo from "@/assets/logos/normalized/vodafone.png";

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { SITE_ORIGIN } from '@/lib/urls';
 
 /**

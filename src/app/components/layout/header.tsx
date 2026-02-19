@@ -4,9 +4,9 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/app/components/ui/button";
 import { LanguageSwitcher } from "./language-switcher";
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
-import { useModal } from "@/app/modal-context";
+import { useModal } from "@/app/contexts/modal-context";
 import { BEHAVERA_LOGIN_URL } from "@/lib/urls";
 import { trackLoginClick } from "@/lib/analytics";
 

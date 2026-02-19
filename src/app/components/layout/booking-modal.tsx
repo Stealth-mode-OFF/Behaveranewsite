@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
-import { useModal } from '@/app/modal-context';
+import { useModal } from '@/app/contexts/modal-context';
 import { Check, Clock, Video, Calendar, Shield, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { trackBookingCalendarLoaded } from '@/lib/analytics';
 
 // Calendly embed with clean inline params

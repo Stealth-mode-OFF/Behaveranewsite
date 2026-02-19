@@ -1,9 +1,9 @@
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { Link, useLocation } from "react-router-dom";
 import { Phone, Linkedin, Facebook, Instagram, Mail, ArrowUpRight, Calendar } from "lucide-react";
 import { ECHO_PULSE_JOIN_URL } from "@/lib/urls";
 import { trackSocialClick } from "@/lib/analytics";
-import { useModal } from "@/app/modal-context";
+import { useModal } from "@/app/contexts/modal-context";
 import { Button } from "@/app/components/ui/button";
 
 export function Footer() {

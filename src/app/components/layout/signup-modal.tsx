@@ -1,8 +1,8 @@
 import { useCallback, useState, useMemo, useEffect, useRef, forwardRef } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/app/components/ui/dialog";
-import { useModal } from "@/app/modal-context";
-import { useLanguage } from "@/app/language-context";
+import { useModal } from "@/app/contexts/modal-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { FormField } from "@/app/components/ui/form-field";

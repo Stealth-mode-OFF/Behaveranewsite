@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Mail, Shield, Zap, Users, BarChart } from "lucide-react";
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
 import { trackFaqCategoryChanged, trackFaqItemToggled } from "@/lib/analytics";
 

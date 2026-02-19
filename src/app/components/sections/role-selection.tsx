@@ -9,7 +9,7 @@ import {
   ArrowRight,
   type LucideIcon 
 } from "lucide-react";
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";

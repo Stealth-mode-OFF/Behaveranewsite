@@ -4,7 +4,7 @@ import { ArrowRight, Building2, ChevronLeft, ChevronRight, ChevronDown, Sparkles
 import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
 
 // Logo imports

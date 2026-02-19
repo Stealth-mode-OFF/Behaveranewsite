@@ -1,11 +1,11 @@
 import { Component, Suspense, lazy, type ErrorInfo, type ReactNode } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { LanguageProvider } from "./language-context";
-import { ModalProvider } from "./modal-context";
+import { LanguageProvider } from "./contexts/language-context";
+import { ModalProvider } from "./contexts/modal-context";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "./components/ui/scroll-progress";
-import { CookieBanner } from "./components/cookie-banner";
+import { CookieBanner } from "./components/layout/cookie-banner";
 import { LandingPage } from "./pages/public/landing";
 import { adminEnabled } from "@/lib/config";
 import { Analytics } from "@vercel/analytics/react";

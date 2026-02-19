@@ -5,8 +5,8 @@ import {
   Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
   ChevronLeft, ChevronRight, X, Play, ArrowRight, Loader2
 } from "lucide-react";
-import { useLanguage } from "@/app/language-context";
-import { useModal } from "@/app/modal-context";
+import { useLanguage } from "@/app/contexts/language-context";
+import { useModal } from "@/app/contexts/modal-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { getPulseCheckUrl } from "@/lib/urls";
 import { trackPulseCheckOpen } from "@/lib/analytics";
