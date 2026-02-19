@@ -1,7 +1,6 @@
 import { BlogPost, CaseStudy, Author } from './types';
 import { supabase as supabaseClient } from './supabase';
 import { adminEnabled } from './config';
-import { BLOG_POSTS, BLOG_AUTHORS } from './blog-content';
 
 type AuthorRow = {
   id: string;
@@ -53,8 +52,15 @@ type CaseStudyRow = {
 
 // Supabase client is imported from shared module
 
+const FALLBACK_AUTHOR: Author = {
+  id: 'default',
+  name: 'Behavera Team',
+  avatar: undefined,
+  role: 'Team',
+};
+
 const resolveAuthor = (row?: AuthorRow | null): Author => {
-  if (!row) return DEFAULT_AUTHORS[0];
+  if (!row) return FALLBACK_AUTHOR;
   return {
     id: row.id,
     name: row.name,
@@ -138,13 +144,6 @@ function getMergedCaseStudies(): CaseStudy[] {
 }
 
 // Seed content — displayed when CMS (Supabase) is not configured
-const DEFAULT_AUTHORS: Author[] = BLOG_AUTHORS;
-
-const DEFAULT_POSTS: BlogPost[] = BLOG_POSTS.map((post) => ({
-  ...post,
-  conversionPrimary: post.conversionPrimary ?? 'balanced',
-}));
-
 const DEFAULT_CASE_STUDIES: CaseStudy[] = [
   {
     id: '0',
@@ -494,10 +493,10 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
 export const CmsService = {
   // ═══════════ Blog Posts ═══════════
 
-  /** Public: returns only published posts (Supabase → fallback to static) */
+  /** Public: returns only published posts (Supabase only) */
   getPosts: async (): Promise<BlogPost[]> => {
     if (!supabaseClient) {
-      return [...DEFAULT_POSTS].filter(p => p.status === 'published');
+      return [];
     }
 
     try {
@@ -510,28 +509,19 @@ export const CmsService = {
       if (error) throw error;
 
       const rows = (data as PostRow[] | null) || [];
-      const dbPosts = rows
+      return rows
         .filter(r => r && r.title && r.slug)
         .map(mapPostRow);
-
-      // Merge: DB posts take priority (by slug), then fill with DEFAULT_POSTS
-      const dbSlugs = new Set(dbPosts.map(p => p.slug));
-      const staticPosts = DEFAULT_POSTS
-        .filter(p => p.status === 'published' && !dbSlugs.has(p.slug));
-
-      return [...dbPosts, ...staticPosts].sort(
-        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      );
     } catch (err) {
       console.error('Error fetching posts:', err);
-      return [...DEFAULT_POSTS].filter(p => p.status === 'published');
+      return [];
     }
   },
 
-  /** Admin: returns ALL posts (drafts + published) */
+  /** Admin: returns ALL posts (drafts + published, Supabase only) */
   getAllPosts: async (): Promise<BlogPost[]> => {
     if (!supabaseClient) {
-      return [...DEFAULT_POSTS];
+      return [];
     }
 
     try {
@@ -543,25 +533,18 @@ export const CmsService = {
       if (error) throw error;
 
       const rows = (data as PostRow[] | null) || [];
-      const dbPosts = rows
+      return rows
         .filter(r => r && r.title && r.slug)
         .map(mapPostRow);
-
-      const dbSlugs = new Set(dbPosts.map(p => p.slug));
-      const staticPosts = DEFAULT_POSTS.filter(p => !dbSlugs.has(p.slug));
-
-      return [...dbPosts, ...staticPosts].sort(
-        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-      );
     } catch (err) {
       console.error('Error fetching all posts:', err);
-      return [...DEFAULT_POSTS];
+      return [];
     }
   },
 
   getPostBySlug: async (slug: string): Promise<BlogPost | undefined> => {
     if (!supabaseClient) {
-      return DEFAULT_POSTS.find(p => p.slug === slug);
+      return undefined;
     }
 
     try {
@@ -572,23 +555,20 @@ export const CmsService = {
         .single();
 
       if (error) {
-        // Not found in DB — try static fallback
-        if (error.code === 'PGRST116') {
-          return DEFAULT_POSTS.find(p => p.slug === slug);
-        }
+        if (error.code === 'PGRST116') return undefined;
         throw error;
       }
 
       return mapPostRow(data as PostRow);
     } catch (err) {
       console.error('Error fetching post by slug:', err);
-      return DEFAULT_POSTS.find(p => p.slug === slug);
+      return undefined;
     }
   },
 
   getPostById: async (id: string): Promise<BlogPost | undefined> => {
     if (!supabaseClient) {
-      return DEFAULT_POSTS.find(p => p.id === id);
+      return undefined;
     }
 
     try {
@@ -599,30 +579,20 @@ export const CmsService = {
         .single();
 
       if (error) {
-        if (error.code === 'PGRST116') {
-          return DEFAULT_POSTS.find(p => p.id === id);
-        }
+        if (error.code === 'PGRST116') return undefined;
         throw error;
       }
 
       return mapPostRow(data as PostRow);
     } catch (err) {
       console.error('Error fetching post by id:', err);
-      return DEFAULT_POSTS.find(p => p.id === id);
+      return undefined;
     }
   },
 
   createPost: async (post: Omit<BlogPost, 'id' | 'author' | 'publishedAt'>): Promise<BlogPost> => {
     if (!supabaseClient) {
-      const newPost: BlogPost = {
-        ...post,
-        id: Math.random().toString(36).substr(2, 9),
-        author: DEFAULT_AUTHORS[0],
-        publishedAt: new Date().toISOString(),
-        conversionPrimary: post.conversionPrimary ?? 'balanced',
-      };
-      DEFAULT_POSTS.push(newPost);
-      return newPost;
+      throw new Error('CMS not configured — Supabase client is missing.');
     }
     
     try {
@@ -655,10 +625,7 @@ export const CmsService = {
   
   updatePost: async (id: string, updates: Partial<BlogPost>): Promise<BlogPost> => {
     if (!supabaseClient) {
-      const index = DEFAULT_POSTS.findIndex(p => p.id === id);
-      if (index === -1) throw new Error("Post not found");
-      DEFAULT_POSTS[index] = { ...DEFAULT_POSTS[index], ...updates };
-      return DEFAULT_POSTS[index];
+      throw new Error('CMS not configured — Supabase client is missing.');
     }
 
     try {
@@ -688,11 +655,8 @@ export const CmsService = {
         throw error;
       }
 
-      // Fallback path: editing static seed content (id not present in DB yet).
-      const seedPost =
-        DEFAULT_POSTS.find(p => p.id === id) ||
-        (updates.slug ? DEFAULT_POSTS.find(p => p.slug === updates.slug) : undefined);
-      const slug = updates.slug ?? seedPost?.slug;
+      // Post might exist by slug but not by id — try slug-based update
+      const slug = updates.slug;
       if (!slug) {
         throw error || new Error('Post not found in database and slug is missing.');
       }
@@ -711,23 +675,23 @@ export const CmsService = {
         throw bySlugError;
       }
 
-      const title = updates.title ?? seedPost?.title;
+      const title = updates.title;
       if (!title) {
-        throw new Error('Unable to create post override: title is missing.');
+        throw new Error('Unable to create post: title is missing.');
       }
 
       const insertPayload = {
         title,
         slug,
-        excerpt: updates.excerpt ?? seedPost?.excerpt ?? '',
-        content: updates.content ?? seedPost?.content ?? '',
-        cover_image: updates.coverImage ?? seedPost?.coverImage ?? null,
-        tags: updates.tags ?? seedPost?.tags ?? [],
-        status: updates.status ?? seedPost?.status ?? 'draft',
-        published_at: seedPost?.publishedAt ?? new Date().toISOString(),
-        title_cz: updates.title_cz ?? seedPost?.title_cz ?? null,
-        excerpt_cz: updates.excerpt_cz ?? seedPost?.excerpt_cz ?? null,
-        content_cz: updates.content_cz ?? seedPost?.content_cz ?? null,
+        excerpt: updates.excerpt ?? '',
+        content: updates.content ?? '',
+        cover_image: updates.coverImage ?? null,
+        tags: updates.tags ?? [],
+        status: updates.status ?? 'draft',
+        published_at: new Date().toISOString(),
+        title_cz: updates.title_cz ?? null,
+        excerpt_cz: updates.excerpt_cz ?? null,
+        content_cz: updates.content_cz ?? null,
       };
 
       const { data: insertedData, error: insertError } = await supabaseClient
@@ -746,9 +710,7 @@ export const CmsService = {
 
   deletePost: async (id: string): Promise<void> => {
     if (!supabaseClient) {
-      const index = DEFAULT_POSTS.findIndex(p => p.id === id);
-      if (index !== -1) DEFAULT_POSTS.splice(index, 1);
-      return;
+      throw new Error('CMS not configured — Supabase client is missing.');
     }
     
     try {
