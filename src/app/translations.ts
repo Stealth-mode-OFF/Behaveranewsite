@@ -106,6 +106,9 @@ type Translations = {
     industryLabel: string;
     challengeTitle: string;
     solutionTitle: string;
+    tocTitle: string;
+    tocEmpty: string;
+    progressLabel: string;
   };
   leadPopup: {
     badge: string;
@@ -324,6 +327,9 @@ export const translations: Record<Language, Translations> = {
       industryLabel: "Industry",
       challengeTitle: "The Challenge",
       solutionTitle: "The Solution",
+      tocTitle: "In this case study",
+      tocEmpty: "No sections available",
+      progressLabel: "Reading progress",
     },
     leadPopup: {
       badge: "New Study 2026",
@@ -540,6 +546,9 @@ export const translations: Record<Language, Translations> = {
       industryLabel: "Odvětví",
       challengeTitle: "Výzva",
       solutionTitle: "Řešení",
+      tocTitle: "Obsah případové studie",
+      tocEmpty: "Sekce nejsou dostupné",
+      progressLabel: "Průběh čtení",
     },
     leadPopup: {
       badge: "Nová studie 2026",
@@ -756,6 +765,9 @@ export const translations: Record<Language, Translations> = {
       industryLabel: "Branche",
       challengeTitle: "Herausforderung",
       solutionTitle: "Lösung",
+      tocTitle: "Inhalt der Fallstudie",
+      tocEmpty: "Keine Abschnitte verfügbar",
+      progressLabel: "Lesefortschritt",
     },
     leadPopup: {
       badge: "Neue Studie 2026",
