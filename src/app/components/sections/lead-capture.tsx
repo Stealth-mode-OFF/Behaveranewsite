@@ -202,13 +202,13 @@ export function LeadCaptureSection() {
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-              <div className="flex gap-3">
-                <div className="flex-1">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-1 min-w-0">
                   <Input
                     type="email"
                     autoComplete={autocompleteAttributes.email}
                     placeholder={txt.emailPlaceholder}
-                    className="h-12"
+                    className="h-12 w-full"
                     {...register("email", validationRules.workEmail)}
                   />
                   {errors.email?.message && (
@@ -218,7 +218,7 @@ export function LeadCaptureSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting || isSuccess}
-                  className="h-12 px-6 text-sm font-semibold shrink-0"
+                  className="h-12 px-6 text-sm font-semibold shrink-0 w-full sm:w-auto"
                   size="lg"
                 >
                   {isSubmitting ? (
