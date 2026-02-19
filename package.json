@@ -42,13 +42,7 @@
     "@vitejs/plugin-react": "4.7.0",
     "tailwindcss": "4.1.12",
     "typescript": "^5.9.3",
-    "vercel": "^41.0.2",
     "vite": "^7.3.1"
   },
-  "peerDependenciesMeta": {},
-  "pnpm": {
-    "overrides": {
-      "vite": "6.3.5"
-    }
-  }
+  "peerDependenciesMeta": {}
 }
