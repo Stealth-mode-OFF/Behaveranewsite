@@ -21,16 +21,20 @@
 
 | ✅ | Task | Commit |
 |----|------|--------|
-| ✅ | C1: CI pipeline (`.github/workflows/ci.yml`) | Součást příštího commitu |
-| ✅ | C2: Lazy-load landing sections + manualChunks (684→293 KB) | Součást příštího commitu |
+| ✅ | C1: CI pipeline (`.github/workflows/ci.yml`) | `96fa296` |
+| ✅ | C2: Lazy-load landing sections + manualChunks (684→293 KB) | `96fa296` |
 | ✅ | C4: Console.log audit — **všech 19 je legitimních** (catch/ErrorBoundary), žádné debug logy | Nic ke smazání |
-| ✅ | C6: Type-safe ConfirmStep props (5× `any` → proper types) | Součást příštího commitu |
+| ✅ | C6: Type-safe ConfirmStep props (5× `any` → proper types) | `96fa296` |
+| ✅ | D5: npm audit fix — vercel→devDeps, react-quill→react-quill-new, vite 7, TS 5.9 (26→2 low) | `a3e23ab` |
+| ✅ | CX2: Smazání Supabase Edge Functions | `1286155` |
+| ✅ | CX3: Odstranění statického blog fallbacku — smazán blog-content.ts (1187 řádků) | `b71e59f` |
+| ✅ | CX1: Playwright E2E scaffold — 4 test suites + CI integrace | `3a649f0` |
 
 ---
 
-## TVOJE TASKY — dělej v tomto pořadí
+## HOTOVÉ TASKY — archiv instrukcí
 
-### CX1: Playwright E2E scaffold ⬅ ZAČNI TÍMTO
+### ✅ CX1: Playwright E2E scaffold (commit `3a649f0`)
 
 **Instalace:** `npm install -D @playwright/test` + `npx playwright install chromium`
 
@@ -65,9 +69,7 @@
 
 ---
 
-### CX2: Smazat Supabase Edge Functions
-
-> ⚠️ **ČEKÁ NA JOSEFA (D2).** Dělej až dostaneš potvrzení.
+### ✅ CX2: Smazat Supabase Edge Functions (commit `1286155`)
 
 Smaž celou složku `supabase/functions/` včetně všech podsložek.
 
@@ -118,22 +120,17 @@ Tohle dělá Copilot v interaktivní session. Uvádím je tu jen pro kontext, ab
 
 ---
 
-## Shrnutí pořadí
+## Shrnutí
 
-```
-CX1 → CX2 (po D2) → CX3 (po D3)
-```
-
-Dělej je v tomto pořadí. Každý task commitni zvlášť. Po každém ověř build.
+Všechny CX tasky (CX1, CX2, CX3) a rozhodnutí D2-D5 jsou hotové.
+Zbývá jen **D1: DNS** — Josef musí u registrátora nastavit CNAME `www.behavera.com` → `cname.vercel-dns.com`.
 
 ---
 
-## Rozhodnutí čekající na člověka (Josefa)
+## Rozhodnutí — vyřešeno
 
-Tyto věci **neřeš**, vyžadují business rozhodnutí:
-
-- **D1:** DNS pro www.behavera.com — CNAME musí směřovat na `cname.vercel-dns.com`
-- **D2:** Potvrzení smazání Supabase Edge Functions (CX2 závisí na tomto)
-- **D3:** Kdy smazat statický blog fallback (CX3 závisí na tomto)
-- **D4:** Testing strategy — E2E testy teď nebo po feature sprintu
-- **D5:** `npm audit fix` — 26 vulnerabilities (20 high, 6 moderate)
+- **D1:** DNS pro www.behavera.com — CNAME musí směřovat na `cname.vercel-dns.com` ➜ **Josef musí nastavit u registrátora**
+- **D2:** ✅ Supabase Edge Functions smazány (commit `1286155`)
+- **D3:** ✅ Statický blog fallback odstraněn (commit `b71e59f`)
+- **D4:** ✅ Playwright E2E scaffold hotový (commit `3a649f0`)
+- **D5:** ✅ npm audit fix hotový (commit `a3e23ab`) — produkce: 2 low (quill XSS v admin CMS)
