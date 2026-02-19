@@ -6,7 +6,7 @@ import { sanitizeHtml } from '@/lib/sanitize';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { ArrowLeft, Building2 } from 'lucide-react';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { useSEO } from '@/app/hooks/use-seo';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { motion } from 'framer-motion';

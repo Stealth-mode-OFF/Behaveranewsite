@@ -1,5 +1,5 @@
 import { BlogPost } from '@/lib/types';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 
 /**
  * Returns a post with title / excerpt / content resolved

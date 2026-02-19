@@ -1,4 +1,4 @@
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { Language } from '@/app/translations';
 import { Button } from '@/app/components/ui/button';
 import { trackLanguageSwitch } from '@/lib/analytics';

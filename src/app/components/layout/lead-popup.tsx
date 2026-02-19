@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/app/components/ui/dialog';
 import { ArrowRight, Download, Check, BookOpen, Users, Sparkles, Shield } from 'lucide-react';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { useForm } from 'react-hook-form';

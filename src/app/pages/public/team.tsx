@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { useSEO } from '@/app/hooks/use-seo';

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { Users, TrendingUp, Zap } from "lucide-react";
 
 /**

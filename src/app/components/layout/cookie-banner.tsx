@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X, Shield, Settings2 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '@/app/language-context';
+import { useLanguage } from '@/app/contexts/language-context';
 import { trackCookieConsent } from '@/lib/analytics';
 
 /**

@@ -32,7 +32,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { FormField } from "@/app/components/ui/form-field";
-import { useLanguage } from "@/app/language-context";
+import { useLanguage } from "@/app/contexts/language-context";
 import { submitLead } from "@/app/utils/lead";
 import { trackLeadSubmitted } from "@/lib/analytics";
 import { cn } from "@/app/components/ui/utils";
@@ -44,7 +44,7 @@ import {
   TeamBuilder,
   type Team,
   type TeamContact,
-} from "@/app/components/team-builder";
+} from "@/app/components/onboarding/team-builder";
 // InviteTeammates step removed — OAuth import merged into Teams step
 import { useAresLookup, type AresResult } from "@/app/hooks/use-ares-lookup";
 

@@ -18,8 +18,8 @@ import {
   Download,
 } from 'lucide-react';
 import { useSEO } from '@/app/hooks/use-seo';
-import { useLanguage } from '@/app/language-context';
-import { useModal } from '@/app/modal-context';
+import { useLanguage } from '@/app/contexts/language-context';
+import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPost, useLocalizedPosts } from '@/app/hooks/use-localized-post';
 import { Button } from '@/app/components/ui/button';
 import {
