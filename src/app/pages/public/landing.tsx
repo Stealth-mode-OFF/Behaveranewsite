@@ -3,13 +3,7 @@ import { pageSEO } from "@/app/seo.config";
 import { Header } from "@/app/components/layout/header";
 import { Footer } from "@/app/components/layout/footer";
 import { AnnouncementBar, ANNOUNCEMENT_BAR_HEIGHT } from "@/app/components/layout/announcement-bar";
-import { Hero } from "@/app/components/sections/hero";
-import { LogoMarquee } from "@/app/components/sections/logo-marquee";
-import { StatsBar } from "@/app/components/sections/stats-bar";
-import { ProblemSection } from "@/app/components/sections/problem";
-import { DashboardPreview } from "@/app/components/sections/dashboard-preview";
-import { SignalRadar } from "@/app/components/sections/signal-radar";
-import { RoleSelection } from "@/app/components/sections/role-selection";
+
 import { StickyMobileCta } from "@/app/components/layout/sticky-mobile-cta";
 import { useModal } from "@/app/ModalContext";
 import { useSEO } from "@/app/hooks/useSEO";
@@ -20,12 +14,13 @@ import { SITE_ORIGIN } from "@/lib/urls";
 type LazyComponent<TProps = Record<string, unknown>> = ComponentType<TProps>;
 
 // Helper to load named exports via React.lazy without repeating boilerplate.
-function lazyNamed<TProps>(
-  importer: () => Promise<Record<string, LazyComponent<TProps>>>,
+function lazyNamed<TProps = Record<string, unknown>>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  importer: () => Promise<any>,
   exportName: string
 ) {
   return lazy(() =>
-    importer().then((module) => ({
+    importer().then((module: Record<string, unknown>) => ({
       default: module[exportName] as LazyComponent<TProps>,
     }))
   );
@@ -54,6 +49,35 @@ const CtaSection = lazyNamed(
 const LeadCaptureSection = lazyNamed(
   () => import("@/app/components/sections/lead-capture"),
   "LeadCaptureSection"
+);
+
+const Hero = lazyNamed(
+  () => import("@/app/components/sections/hero"),
+  "Hero"
+);
+const LogoMarquee = lazyNamed(
+  () => import("@/app/components/sections/logo-marquee"),
+  "LogoMarquee"
+);
+const StatsBar = lazyNamed(
+  () => import("@/app/components/sections/stats-bar"),
+  "StatsBar"
+);
+const ProblemSection = lazyNamed(
+  () => import("@/app/components/sections/problem"),
+  "ProblemSection"
+);
+const SignalRadar = lazyNamed(
+  () => import("@/app/components/sections/signal-radar"),
+  "SignalRadar"
+);
+const DashboardPreview = lazyNamed(
+  () => import("@/app/components/sections/dashboard-preview"),
+  "DashboardPreview"
+);
+const RoleSelection = lazyNamed(
+  () => import("@/app/components/sections/role-selection"),
+  "RoleSelection"
 );
 
 
@@ -94,22 +118,34 @@ export function LandingPage() {
       <Header topOffset={topOffset} />
       <main style={{ paddingTop: topOffset }}>
         {/* 1. HERO — Outcome promise + dual CTA */}
-        <Hero />
+        <LazySection>
+          <Hero />
+        </LazySection>
         
         {/* 2. SOCIAL PROOF — Client logos */}
-        <LogoMarquee />
+        <LazySection>
+          <LogoMarquee />
+        </LazySection>
 
         {/* 2b. CREDIBILITY — Animated stat counters */}
-        <StatsBar />
+        <LazySection>
+          <StatsBar />
+        </LazySection>
         
         {/* 3. PROBLEM — Build pain awareness */}
-        <ProblemSection />
+        <LazySection>
+          <ProblemSection />
+        </LazySection>
 
         {/* 4. HOW IT WORKS + WHAT WE MEASURE */}
-        <SignalRadar />
+        <LazySection>
+          <SignalRadar />
+        </LazySection>
 
         {/* 5. VISUAL PROOF — See the dashboard in action */}
-        <DashboardPreview />
+        <LazySection>
+          <DashboardPreview />
+        </LazySection>
 
         {/* 6. SOCIAL PROOF — Real client results */}
         <LazySection>
@@ -117,7 +153,9 @@ export function LandingPage() {
         </LazySection>
 
         {/* 7. PERSONALIZATION — Role-based value */}
-        <RoleSelection />
+        <LazySection>
+          <RoleSelection />
+        </LazySection>
 
         {/* 8. INVESTMENT — Pricing calculator */}
         <LazySection>

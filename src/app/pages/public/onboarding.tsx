@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type UseFormRegister, type UseFormWatch, type UseFormGetValues, type FieldErrors } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -1631,15 +1631,15 @@ function ConfirmStep({
   errors,
   teams,
 }: {
-  txt: any;
+  txt: (typeof copy)[keyof typeof copy];
   language: string;
   isEur: boolean;
   monthlyPrice: number;
   yearlyPrice: number;
-  register: any;
-  watch: any;
-  getValues: any;
-  errors: any;
+  register: UseFormRegister<OnboardingFormData>;
+  watch: UseFormWatch<OnboardingFormData>;
+  getValues: UseFormGetValues<OnboardingFormData>;
+  errors: FieldErrors<OnboardingFormData>;
   teams: Team[];
 }) {
   const vals = getValues();
