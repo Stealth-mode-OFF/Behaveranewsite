@@ -62,6 +62,18 @@ export function TrustCenter() {
             {copy.subtitle}
           </p>
 
+          {/* Enterprise compliance highlights — always visible */}
+          {copy.enterpriseBullets && copy.enterpriseBullets.length > 0 && (
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5">
+              {copy.enterpriseBullets.map((bullet: string, i: number) => (
+                <div key={i} className="flex items-center gap-1.5 text-xs text-emerald-700">
+                  <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>{bullet}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Show/Hide details toggle — defaults to collapsed */}
           <button
             onClick={() => setSectionOpen(!sectionOpen)}

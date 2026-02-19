@@ -45,8 +45,9 @@ export function Hero() {
       ] as HeroHeadline[],
       subtitle: "Krátký AI pulse, který zachytí, kde se ztrácí výkon, kde vzniká tření mezi týmy, kde hrozí tichá demotivace — a co má vedení udělat jako první.",
       primaryCta: "Otestovat 1 tým zdarma",
-      ctaMicro: "Bez závazku. Výsledky jsou vidět okamžitě.",
+      ctaMicro: "Bez kreditní karty · Bez závazku · Výsledky ihned",
       secondaryCta: "Rezervovat demo",
+      proofLine: "Používá Prusa Research (1 000+ zaměstnanců), Expando, Valxon a dalších 40+ firem.",
       socialProof: "50 000+ otestovaných lidí",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
@@ -72,8 +73,9 @@ export function Hero() {
       ] as HeroHeadline[],
       subtitle: "A short AI pulse that catches where performance is slipping, where friction builds between teams, where quiet demotivation lurks — and what leadership should tackle first.",
       primaryCta: "Test 1 team for free",
-      ctaMicro: "No commitment. Results are instant.",
+      ctaMicro: "No credit card · No commitment · Results are instant",
       secondaryCta: "Book a demo",
+      proofLine: "Trusted by Prusa Research (1,000+ employees), Expando, Valxon, and 40+ more companies.",
       socialProof: "50,000+ people assessed",
       trust: [
         { icon: Shield, text: "GDPR compliant" },
@@ -99,8 +101,9 @@ export function Hero() {
       ] as HeroHeadline[],
       subtitle: "Ein kurzer AI-Pulse, der erkennt, wo Leistung sinkt, wo Reibung zwischen Teams entsteht, wo stille Demotivation droht — und was die Führung zuerst tun sollte.",
       primaryCta: "1 Team kostenlos testen",
-      ctaMicro: "Unverbindlich. Ergebnisse sofort sichtbar.",
+      ctaMicro: "Keine Kreditkarte · Unverbindlich · Ergebnisse sofort",
       secondaryCta: "Demo buchen",
+      proofLine: "Vertraut von Prusa Research (1.000+ MA), Expando, Valxon und 40+ weiteren Unternehmen.",
       socialProof: "50.000+ getestete Personen",
       trust: [
         { icon: Shield, text: "DSGVO-konform" },
@@ -236,7 +239,8 @@ export function Hero() {
             </motion.div>
 
             {/* Micro-copy + Trust */}
-            <p className="text-xs text-brand-text-muted mb-6">{c.ctaMicro}</p>
+            <p className="text-xs text-brand-text-muted mb-3">{c.ctaMicro}</p>
+            <p className="text-xs font-medium text-brand-text-muted/80 mb-6">{c.proofLine}</p>
 
             <motion.div
               initial={{ opacity: 0 }}
