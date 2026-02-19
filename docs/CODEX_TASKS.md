@@ -1,7 +1,8 @@
 # Codex — Úkoly pro tebe
 
 > Tento soubor je tvůj pracovní seznam. Přečti si ho celý před začátkem práce.
-> Úkoly označené "COPILOT" neřeš — ty dělá Copilot v interaktivní session s člověkem.
+> Úkoly označené "HOTOVO" neřeš — ty už udělal Copilot.
+> Úkoly označené "ČEKÁ NA JOSEFA" jsou blokované rozhodnutím — neřeš je, dokud se u nich nezmění status.
 
 ---
 
@@ -9,111 +10,27 @@
 
 1. **Jeden task = jeden commit.** Nedělej obří commit přes celé repo.
 2. **Po každém tasku ověř**: `npx tsc --noEmit && npm run build` — musí projít s 0 chybami.
-3. **Commit messages v angličtině**, formát: `type: popis` (např. `ci: add GitHub Actions workflow`).
+3. **Commit messages v angličtině**, formát: `type: popis` (např. `test: add Playwright E2E tests`).
 4. **Nesahej na soubory, které nejsou součástí tvého tasku.** Žádné "vylepšování" navíc.
 5. **Neměň routy, URL strukturu ani SEO metadata.** To je produkční web.
 6. **Neinstaluj nové závislosti** pokud to task explicitně nevyžaduje.
 
 ---
 
+## HOTOVO — udělal Copilot, NEŘEŠ
+
+| ✅ | Task | Commit |
+|----|------|--------|
+| ✅ | C1: CI pipeline (`.github/workflows/ci.yml`) | Součást příštího commitu |
+| ✅ | C2: Lazy-load landing sections + manualChunks (684→293 KB) | Součást příštího commitu |
+| ✅ | C4: Console.log audit — **všech 19 je legitimních** (catch/ErrorBoundary), žádné debug logy | Nic ke smazání |
+| ✅ | C6: Type-safe ConfirmStep props (5× `any` → proper types) | Součást příštího commitu |
+
+---
+
 ## TVOJE TASKY — dělej v tomto pořadí
 
-### C1: CI pipeline ⬅ ZAČNI TÍMTO
-
-Vytvoř `.github/workflows/ci.yml` — GitHub Actions workflow.
-
-**Trigger:** push na `main` + pull request do `main`.
-
-**Steps:**
-```yaml
-- uses: actions/checkout@v4
-- uses: actions/setup-node@v4
-  with:
-    node-version: 20
-    cache: npm
-- run: npm ci
-- run: npx tsc --noEmit
-- run: npm run build
-```
-
-**Verifikace:** `npm run build` musí projít. Workflow soubor musí být validní YAML.
-
-**Commit:** `ci: add GitHub Actions workflow for build + typecheck`
-
----
-
-### C2: Lazy-load landing page sections
-
-Soubor: `src/app/pages/public/landing.tsx`
-
-Aktuálně jsou tyto sekce importované eagerly (přímo nahoře):
-- `Hero`
-- `LogoMarquee`
-- `StatsBar`
-- `ProblemSection`
-- `SignalRadar`
-- `DashboardPreview`
-- `RoleSelection`
-
-**Přesuň je na lazy import** pomocí `lazyNamed()` helperu, který už v tom souboru existuje (viz jak je použitý pro `CaseStudiesSection`, `FAQ`, `PurchaseSection` atd.). Pak je v JSX obal do `<LazySection>` wrapperu, který tam taky už existuje.
-
-**Vzor (už funguje v tom souboru):**
-```tsx
-const CaseStudiesSection = lazyNamed(
-  () => import("@/app/components/sections/case-studies"),
-  "CaseStudiesSection"
-);
-// ...
-<LazySection><CaseStudiesSection /></LazySection>
-```
-
-**Udělej totéž pro těchto 7 sekcí.** Smaž jejich eager importy nahoře.
-
-**Pozor:** `Hero` je export `{ Hero }` z `hero.tsx`, `LogoMarquee` z `logo-marquee.tsx` atd. Ověř si exportované jméno v každém souboru.
-
-**Verifikace:** `npx tsc --noEmit && npm run build` — 0 errors. Main chunk (`index-*.js`) by měl klesnout pod 500 KB.
-
-**Commit:** `perf: lazy-load all landing page sections to reduce main chunk`
-
----
-
-### C3: Smazat Supabase Edge Functions
-
-Smaž celou složku `supabase/functions/` včetně všech podsložek.
-
-**Důvod:** Produkce používá Vercel serverless funkce v `api/`. Supabase edge funkce jsou duplicitní kopie, které se nepoužívají a budou se rozcházet.
-
-**NESAHEJ na složku `api/`** — ta zůstává.
-**NESAHEJ na `supabase-setup-*.sql` soubory** v root — ty zůstávají.
-
-**Verifikace:** `npm run build` musí projít.
-
-**Commit:** `chore: remove duplicate Supabase Edge Functions (production uses Vercel api/)`
-
----
-
-### C4: Vyčistit console.log/warn/error
-
-Projdi složku `src/` a najdi všechny `console.log`, `console.warn`, `console.error`.
-
-**Ponech tyto (legitimní):**
-- `console.error` v `catch` blocích (error handling)
-- `console.error` v `ErrorBoundary` (`componentDidCatch`)
-- `console.error` v `main.tsx` (app bootstrap error)
-
-**Smaž tyto (nepotřebné):**
-- `console.log` pro debugging (výpisy dat, stavů)
-- `console.warn` informační (ne skutečná varování)
-
-Pokud si nejsi jistý, **ponech** — lepší nechat než smazat produkční error handling.
-
-**Verifikace:** `npx tsc --noEmit && npm run build` — 0 errors.
-
-**Commit:** `chore: remove debug console statements from production code`
-
----
-
-### C5: Playwright E2E scaffold
+### CX1: Playwright E2E scaffold ⬅ ZAČNI TÍMTO
 
 **Instalace:** `npm install -D @playwright/test` + `npx playwright install chromium`
 
@@ -134,10 +51,12 @@ Pokud si nejsi jistý, **ponech** — lepší nechat než smazat produkční err
 "test:e2e": "playwright test"
 ```
 
-**Přidej do `.github/workflows/ci.yml`** (pokud existuje) step:
+**Přidej do `.github/workflows/ci.yml`** nový step za `npm run build`:
 ```yaml
-- run: npx playwright install chromium --with-deps
-- run: npm run test:e2e
+- name: Install Playwright
+  run: npx playwright install chromium --with-deps
+- name: E2E tests
+  run: npm run test:e2e
 ```
 
 **Verifikace:** `npm run test:e2e` — všechny testy zelené.
@@ -146,44 +65,26 @@ Pokud si nejsi jistý, **ponech** — lepší nechat než smazat produkční err
 
 ---
 
-### C6: Type-safe ConfirmStep props
+### CX2: Smazat Supabase Edge Functions
 
-Soubor: `src/app/pages/public/onboarding.tsx`
+> ⚠️ **ČEKÁ NA JOSEFA (D2).** Dělej až dostaneš potvrzení.
 
-Najdi komponentu `ConfirmStep` (přibližně řádek 1620). Její props mají tyto typy:
+Smaž celou složku `supabase/functions/` včetně všech podsložek.
 
-```tsx
-txt: any;
-register: any;
-watch: any;
-getValues: any;
-errors: any;
-```
+**Důvod:** Produkce používá Vercel serverless funkce v `api/`. Supabase edge funkce jsou duplicitní kopie, které se nepoužívají a budou se rozcházet.
 
-**Nahraď je správnými typy z `react-hook-form`:**
+**NESAHEJ na složku `api/`** — ta zůstává.
+**NESAHEJ na `supabase-setup-*.sql` soubory** v root — ty zůstávají.
 
-```tsx
-import { UseFormRegister, UseFormWatch, UseFormGetValues, FieldErrors } from 'react-hook-form';
+**Verifikace:** `npm run build` musí projít.
 
-// V props typu ConfirmStep:
-txt: typeof import('@/app/translations').translations.en;
-register: UseFormRegister<OnboardingFormData>;
-watch: UseFormWatch<OnboardingFormData>;
-getValues: UseFormGetValues<OnboardingFormData>;
-errors: FieldErrors<OnboardingFormData>;
-```
-
-Typ `OnboardingFormData` už v tom souboru existuje — najdi ho.
-
-**Verifikace:** `npx tsc --noEmit` — 0 errors.
-
-**Commit:** `refactor: replace any types in ConfirmStep with proper react-hook-form types`
+**Commit:** `chore: remove duplicate Supabase Edge Functions (production uses Vercel api/)`
 
 ---
 
-### C7: Odstranit statický blog fallback
+### CX3: Odstranit statický blog fallback
 
-> ⚠️ **DĚLEJ JAKO POSLEDNÍ.** Tento task závisí na tom, že CMS (Supabase) je source of truth pro blog.
+> ⚠️ **ČEKÁ NA JOSEFA (D3).** Dělej až dostaneš potvrzení, že CMS je source of truth.
 
 Soubor: `src/lib/blog-content.ts` (1187 řádků) — obsahuje hardcoded `BLOG_POSTS` a `BLOG_AUTHORS`.
 
@@ -208,7 +109,7 @@ Tohle dělá Copilot v interaktivní session. Uvádím je tu jen pro kontext, ab
 
 | # | Task | Soubory kterých se NEDOTÝKEJ |
 |---|------|------|
-| I1 | Onboarding refactor (rozdělit 1870 řádků) | `onboarding.tsx` — potřeba UX diskuze |
+| I1 | Onboarding refactor (rozdělit 1868 řádků) | `onboarding.tsx` — potřeba UX diskuze |
 | I2 | Signup modal refactor (1563 řádků) | `signup-modal.tsx` — konverzní flow, nesmí se rozbít |
 | I3 | Update echo-pulse URLs | závisí na externím app.behavera.com |
 | I4 | SEO audit + Core Web Vitals | iterativní — Lighthouse + diskuze |
@@ -220,7 +121,7 @@ Tohle dělá Copilot v interaktivní session. Uvádím je tu jen pro kontext, ab
 ## Shrnutí pořadí
 
 ```
-C1 → C2 → C3 → C4 → C5 → C6 → C7
+CX1 → CX2 (po D2) → CX3 (po D3)
 ```
 
 Dělej je v tomto pořadí. Každý task commitni zvlášť. Po každém ověř build.
@@ -232,7 +133,7 @@ Dělej je v tomto pořadí. Každý task commitni zvlášť. Po každém ověř 
 Tyto věci **neřeš**, vyžadují business rozhodnutí:
 
 - **D1:** DNS pro www.behavera.com — CNAME musí směřovat na `cname.vercel-dns.com`
-- **D2:** Potvrzení smazání Supabase Edge Functions (C3 závisí na tomto)
-- **D3:** Kdy smazat statický blog fallback (C7 závisí na tomto)
+- **D2:** Potvrzení smazání Supabase Edge Functions (CX2 závisí na tomto)
+- **D3:** Kdy smazat statický blog fallback (CX3 závisí na tomto)
 - **D4:** Testing strategy — E2E testy teď nebo po feature sprintu
-- **D5:** `npm audit fix` — GitHub hlásí 14 vulnerabilities
+- **D5:** `npm audit fix` — 26 vulnerabilities (20 high, 6 moderate)
