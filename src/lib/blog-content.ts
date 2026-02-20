@@ -1515,4 +1515,127 @@ export const BLOG_POSTS: BlogPost[] = [
     status: 'published' as const,
   },
 
+  // Article 20 – Innovation Week AI 2025
+  {
+    id: 20,
+    title: 'Innovation Week AI 2025: Why Startups Need Pulse Check-Ins More Than Corporates',
+    title_cz: 'Innovation Week AI 2025: Proč startupy potřebují pulse check-iny víc než korporáty',
+    slug: 'innovation-week-ai-2025-startup-team-health',
+    excerpt: 'Two days at CSOB Campus in Prague among 15,000 innovators. We came to show startups and scale-ups how regular anonymous pulse check-ins protect team health during rapid growth \u0027 because in a small team, one toxic person can threaten the entire project.',
+    excerpt_cz: 'Dva dny na ČSOB Campusu v Praze mezi 15 000 inovátory. Přijeli jsme ukázat startupům a scale-upům, jak pravidelné anonymní pulse check-iny chrání zdraví týmu při dynamickém růstu — protože v malém týmu stačí jeden toxický člověk a může to ohrozit celý projekt.',
+    content: `
+<p class="lead"><strong>Innovation Week 2025 in Prague was everything you\u0027d expect</strong> from Europe\u0027s largest innovation and AI event — 350+ speakers, four stages, 15,000 attendees, and two intense days of pitches, talks, and networking at the ČSOB Campus. What you might not expect is what the most impactful conversations were actually about: <strong>people.</strong></p>
+<p>More specifically, how fast-growing startups and scale-ups are losing their best talent — not because of bad products, but because of blind spots in team dynamics that nobody measured until it was too late.</p>
+
+<h2>Why we came to Innovation Week</h2>
+<p>Innovation Week (Týden inovací) has been running for 11 years. It\u0027s the place where founders pitch to investors, corporates scout emerging tech, and the startup ecosystem gathers to connect. The event features a dedicated <strong>Startup &amp; Innovation Stage</strong>, investor matchmaking, and a Venture &amp; Investment track.</p>
+<p>Behavera was there — but not to pitch an AI model or show off a robot. We came to have honest conversations with founders, CPOs, and people leads at companies going through <strong>the hardest phase of growth</strong>: scaling from 10 to 50 people, when culture shifts, communication breaks, and assumptions about "who we are" get tested every week.</p>
+
+<h2>What founders and people leaders told us</h2>
+<p>Over two days, we spoke with dozens of startup and scale-up leaders. The patterns were strikingly consistent:</p>
+<ul>
+<li>"We grew from 12 to 35 people in six months. <strong>The culture changed overnight</strong> and nobody talked about it."</li>
+<li>"We hired fast, didn\u0027t check team fit, and lost three key engineers within a quarter."</li>
+<li>"One person destroyed our team dynamic. We only found out through exit interviews — when it was too late."</li>
+<li>"We run OKRs and sprint retros, but we have <strong>zero insight into how people actually feel.</strong>"</li>
+</ul>
+<p>These weren\u0027t hypothetical scenarios. They were real stories from real leaders, told over coffee between sessions.</p>
+
+<h2>One toxic person can threaten the entire project</h2>
+<p>In a corporation with 500 employees, a difficult individual can blend into the crowd. Frustrating, but survivable. In a startup with 8 people? <strong>There\u0027s nowhere to hide.</strong></p>
+<p>Research from Harvard Business School shows that a single toxic employee can reduce surrounding team productivity by <strong>30–40%</strong>. In a small team where everyone depends on everyone, the damage compounds fast — missed deadlines, growing resentment, silent disengagement, and eventually, resignations that cascade.</p>
+<p>The problem isn\u0027t that founders don\u0027t care. They do — passionately. The problem is that they often lack the data to see what\u0027s happening before it becomes a crisis. By the time someone says "I\u0027m leaving," the damage is already done.</p>
+
+<h2>Why regular pulse check-ins work in dynamic environments</h2>
+<p>Traditional engagement surveys are designed for stable organizations. Annual or quarterly questionnaires assume that teams, roles, and priorities stay roughly the same between measurements. <strong>In a startup, that assumption is absurd.</strong></p>
+<p>Echo Pulse by Behavera takes a different approach: short, anonymous check-ins that take <strong>under 3 minutes</strong>, run weekly or bi-weekly, and cover the dimensions that matter most in fast-changing teams — communication, psychological safety, recognition, workload, and trust in leadership.</p>
+<p>Because the check-ins are anonymous and conversational, people say what they actually think — not what they think the founder wants to hear. And because they run regularly, you see <strong>trends, not just snapshots</strong>.</p>
+
+<blockquote>📊 Companies with regular pulse check-ins detect team friction 4× faster than those relying on annual surveys — and our clients in fast-growing companies see 25–30% lower early-stage turnover.</blockquote>
+
+<h2>What the dashboard actually shows a founder</h2>
+<p>Imagine you\u0027re a CEO of a 25-person SaaS company. Your engineering team doubled last quarter. Everything seems fine — sprint velocity is up, product is shipping. But Echo Pulse shows:</p>
+<ul>
+<li><strong>Psychological safety dropped 22%</strong> in the backend team over the last 4 weeks</li>
+<li>One sub-team has a growing <strong>recognition gap</strong> — people feel their work goes unnoticed</li>
+<li>Communication scores between product and engineering are <strong>diverging fast</strong></li>
+</ul>
+<p>Without this data, you\u0027d find out in 3 months — through an unexpected resignation letter. With it, you can have the right conversation this week.</p>
+
+<h2>Scaling the team without losing the culture</h2>
+<p>The startups that scale successfully aren\u0027t just the ones with the best product-market fit. They\u0027re the ones that <strong>invest in team health as a strategic priority</strong> — not as a nice-to-have once they hit 100 people.</p>
+<p>Regular anonymous pulse check-ins give founders and people leaders a continuous signal. Not a bureaucratic exercise, but a lightweight early warning system that catches friction before it becomes a fire.</p>
+<p>At Innovation Week, we saw firsthand that the startup ecosystem is ready for this conversation. The founders we met weren\u0027t skeptical about people analytics — they were hungry for it. They just needed a tool that fits their speed, their size, and their culture.</p>
+
+<h2>Takeaways</h2>
+<ul>
+<li>In small teams, one toxic individual can reduce productivity by 30–40% and trigger cascading resignations.</li>
+<li>Annual surveys are archaeology in a startup context — regular anonymous pulse check-ins give you real-time signal.</li>
+<li>The hardest scaling phase (10→50 people) is where most cultural damage happens undetected.</li>
+<li>3-minute anonymous check-ins give founders concrete data to act on — before problems become resignations.</li>
+<li>People are your product\u0027s infrastructure. Monitor them at least as well as your servers.</li>
+</ul>
+<p>Innovation Week 2026 takes place <strong>October 1–3 at ČSOB Campus, Prague</strong>. We\u0027ll be there again. Will you?</p>
+`,
+    content_cz: `
+<p class="lead"><strong>Innovation Week 2025 v Praze splnil všechna očekávání</strong> — 350+ řečníků, čtyři pódia, 15 000 účastníků a dva intenzivní dny plné přednášek, pitchů a networkingu na ČSOB Campusu. Ale ty nejpodstatnější rozhovory se netočily kolem AI modelů ani nových technologií. Točily se kolem <strong>lidí.</strong></p>
+<p>Konkrétně kolem toho, jak rychle rostoucí startupy a scale-upy přicházejí o své nejlepší lidi — ne kvůli špatnému produktu, ale kvůli slepým místům v týmové dynamice, které nikdo neměřil, dokud nebylo pozdě.</p>
+
+<h2>Proč jsme přijeli na Innovation Week</h2>
+<p>Innovation Week (Týden inovací) běží už 11 let. Je to místo, kde founderové pitchují investorům, korporáty hledají nové technologie a celý startupový ekosystém se potkává. K dispozici je specializovaná <strong>Startup &amp; Innovation Stage</strong>, matchmaking s investory i Venture &amp; Investment track.</p>
+<p>Behavera byla na místě — ale ne abychom prezentovali AI model nebo ukazovali robota. Přijeli jsme na upřímné rozhovory s founery, CPO a people leadery ve firmách, které procházejí <strong>nejtěžší fází růstu</strong>: škálování z 10 na 50 lidí, kdy se mění kultura, komunikace se tříští a předpoklady o „kdo jsme" se testují každý týden.</p>
+
+<h2>Co nám řekli founderové a HR lídři</h2>
+<p>Během dvou dnů jsme mluvili s desítkami lídrů startupů a scale-upů. Vzorce se překvapivě opakovaly:</p>
+<ul>
+<li>„Vyrostli jsme z 12 na 35 lidí za půl roku. <strong>Kultura se změnila přes noc</strong> a nikdo o tom nemluvil."</li>
+<li>„Najímali jsme rychle, neověřovali týmový fit a přišli jsme o tři klíčové inženýry za čtvrt roku."</li>
+<li>„Jeden člověk nám rozvrátil dynamiku celého týmu. Zjistili jsme to až z exit rozhovorů — když už bylo pozdě."</li>
+<li>„Máme OKR, sprint retro, ale <strong>nemáme vůbec přehled, jak se lidé skutečně cítí.</strong>"</li>
+</ul>
+<p>Nebyly to hypotetické scénáře. Byly to reálné příběhy reálných lídrů, vyprávěné u kávy mezi přednáškami.</p>
+
+<h2>Jeden toxický člověk může ohrozit celý projekt</h2>
+<p>V korporátu s 500 zaměstnanci se problémový jedinec může ztratit v davu. Nepříjemné, ale přežitelné. Ve startupu s 8 lidmi? <strong>Není kam se schovat.</strong></p>
+<p>Výzkum Harvard Business School ukazuje, že jediný toxický zaměstnanec může snížit produktivitu okolního týmu o <strong>30–40 %</strong>. V malém týmu, kde je každý závislý na každém, se škody násobí — zmeškané deadliny, narůstající frustrace, tichý disengagement a nakonec kaskádovité odchody.</p>
+<p>Problém není v tom, že by to founderům bylo jedno. Záleží jim — enormně. Problém je, že často nemají data, aby viděli, co se děje, dříve než se to stane krizí. Když někdo řekne „odcházím," škoda je už hotová.</p>
+
+<h2>Proč pravidelné pulse check-iny fungují v dynamickém prostředí</h2>
+<p>Tradiční engagement průzkumy jsou navrženy pro stabilní organizace. Roční nebo čtvrtletní dotazníky předpokládají, že týmy, role a priority zůstávají mezi měřeními v zásadě stejné. <strong>Ve startupu je takový předpoklad absurdní.</strong></p>
+<p>Echo Pulse od Behavery funguje jinak: krátké, anonymní check-iny, které zaberou <strong>méně než 3 minuty</strong>, probíhají týdně nebo dvoutýdně a pokrývají dimenze, které jsou v rychle se měnících týmech klíčové — komunikace, psychologická bezpečnost, uznání, pracovní zátěž a důvěra ve vedení.</p>
+<p>Protože jsou check-iny anonymní a konverzační, lidé říkají, co si skutečně myslí — ne to, co si myslí, že founder chce slyšet. A protože běží pravidelně, vidíte <strong>trendy, ne jen momentky</strong>.</p>
+
+<blockquote>📊 Firmy s pravidelnými pulse check-iny odhalí týmové tření 4× rychleji než firmy spoléhající na roční průzkumy — a naši klienti v rychle rostoucích firmách dosahují o 25–30 % nižší fluktuace v prvním roce.</blockquote>
+
+<h2>Co dashboard ukáže founderovi v praxi</h2>
+<p>Představte si, že jste CEO 25členné SaaS firmy. Váš engineering tým se za poslední kvartál zdvojnásobil. Zdánlivě všechno jede — sprint velocity roste, produkt se dodává. Ale Echo Pulse ukazuje:</p>
+<ul>
+<li><strong>Psychologická bezpečnost klesla o 22 %</strong> v backend týmu za poslední 4 týdny</li>
+<li>Jeden sub-tým má narůstající <strong>mezeru v uznání</strong> — lidé mají pocit, že jejich práce nikoho nezajímá</li>
+<li>Skóre komunikace mezi produktem a engineeringem <strong>se rychle rozjíždí</strong></li>
+</ul>
+<p>Bez těchto dat se to dozvíte za 3 měsíce — z nečekaného výpovědního dopisu. S nimi můžete vést správný rozhovor ještě tento týden.</p>
+
+<h2>Škálovat tým, aniž byste ztratili kulturu</h2>
+<p>Startupy, které úspěšně vyrostou, nejsou jen ty s nejlepším product-market fitem. Jsou to ty, které <strong>investují do zdraví týmu jako do strategické priority</strong> — ne jako do nice-to-have, když jednou překročí 100 lidí.</p>
+<p>Pravidelné anonymní pulse check-iny dávají founderům a people lídrům kontinuální signál. Nejde o byrokratické cvičení, ale o lehký systém včasného varování, který zachytí tření dřív, než se z něj stane požár.</p>
+<p>Na Innovation Week jsme na vlastní oči viděli, že startupový ekosystém je na tuto konverzaci připravený. Founderové, se kterými jsme mluvili, nebyli k people analytics skeptičtí — byli na ně hladoví. Jen potřebovali nástroj, který odpovídá jejich rychlosti, jejich velikosti a jejich kultuře.</p>
+
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>V malém týmu může jeden toxický člověk snížit produktivitu o 30–40 % a spustit kaskádu odchodů.</li>
+<li>Roční průzkumy jsou v kontextu startupu archeologie — pravidelné anonymní pulse check-iny dávají signál v reálném čase.</li>
+<li>Nejtěžší fáze škálování (10→50 lidí) je ta, kde většina kulturních škod vzniká bez povšimnutí.</li>
+<li>Tříminutové anonymní check-iny dávají founderům konkrétní data k akci — dříve než se problémy změní v výpovědi.</li>
+<li>Lidé jsou infrastruktura Vašeho produktu. Monitorujte je minimálně tak dobře jako své servery.</li>
+</ul>
+<p>Innovation Week 2026 se koná <strong>1.–3. října na ČSOB Campusu v Praze</strong>. My tam budeme. A Vy?</p>
+`,
+    coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
+    author: BLOG_AUTHORS[2],
+    publishedAt: '2025-10-13T00:00:00.000Z',
+    tags: ['Events', 'Engagement'],
+    status: 'published' as const,
+  },
+
 ];
