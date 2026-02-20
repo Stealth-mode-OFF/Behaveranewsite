@@ -115,6 +115,7 @@ export function BlogPostPage() {
     description: localizedPost?.excerpt || t.blog.seoDescription,
     keywords: post?.tags?.join(', ') || t.blog.seoKeywords,
     ogType: 'article',
+    ogImage: post?.coverImage,
   });
 
   const sanitizedContent = useMemo(() => {

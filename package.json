@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "audit:repo-structure": "node scripts/audit-repo-structure.mjs",
-    "build": "vite build",
+    "build": "vite build && node scripts/generate-og-pages.mjs",
     "dev": "vite",
     "preview": "vite preview",
     "test:e2e": "playwright test"
