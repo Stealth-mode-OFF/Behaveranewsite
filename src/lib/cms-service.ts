@@ -208,6 +208,13 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
       <p>Na základě výstupů má dnes HR a vedení k dispozici ověřené argumenty, příklady a autentické citace zaměstnanců, které podporují jednotnou a důvěryhodnou komunikaci značky zaměstnavatele.</p>
       <p>Průzkum také poskytl detailnější pohled na fungování firmy napříč různými týmy a rolemi a stal se dalším podkladem pro cílený rozvoj leadershipu, spolupráce a pracovního prostředí.</p>
       <p>A proč to funguje? Za pouhé tři minuty času každého zaměstnance získali v Průša Research data, která jim umožňují dlouhodobě posilovat svou reputaci atraktivního zaměstnavatele a přitahovat správné talenty na základě reálných zkušeností lidí uvnitř firmy.</p>
+      <blockquote>📊 60,1 % zaměstnanců se zapojilo do průzkumu — v kontextu velké výrobní organizace nadprůměrný výsledek.</blockquote>
+      <h2>Co si z toho odnést</h2>
+      <ul>
+        <li>Za 3 minuty na osobu získáte data pro strategický employer branding.</li>
+        <li>Konverzační formát dotazníku zapojí i zaměstnance ve výrobě.</li>
+        <li>Systematický sběr dat pomáhá přesněji komunikovat značku zaměstnavatele.</li>
+      </ul>
     `,
     coverImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200',
     tags: ['Employer Branding', 'Culture', 'EVP'],
@@ -264,6 +271,13 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
       <h2>Výsledky</h2>
       <p>Během tří měsíců od spuštění prvního Echo Pulse se interní spolupráce zlepšila díky pravidelnému sdílení informací, jasným cílům a nově definované sadě procesů. Klíčovým úspěchem byl silný růst na marketplace Kaufland — zaměstnankyně, která po přechodu na pozici Key Account Manager aktivovala o 18 % více klientů na platformě a zvýšila celkové prodeje o 14,5 % za pouhých 8 měsíců. Jednomu z top klientů Expanda dokonce pomohla zvýšit objem prodejů o 37 %.</p>
       <p>Pravidelné průzkumy nyní zaměstnancům zaberou jen tři minuty a dosahují 84% účasti — o 25 % více než dříve u interních dotazníků. HR nyní zvládne celý cyklus zpětné vazby včetně prezentace za jeden den místo původních sedmi.</p>
+      <blockquote>📊 Jedna povýšená zaměstnankyně zvýšila prodeje na marketplace o 37 %.</blockquote>
+      <h2>Co si z toho odnést</h2>
+      <ul>
+        <li>Echo Pulse odhale problémy, které subjektivní rozhovory nezachytí.</li>
+        <li>Cyklus zpětné vazby se zkrátil ze 7 dní na 1 den s 84% účastí.</li>
+        <li>Odhalí skrytý talent a otevře nové obchodní příležitosti.</li>
+      </ul>
     `,
     coverImage: 'https://cdn.prod.website-files.com/63d2c5297fe3f5119d5e8eba/68932021e3812af317591450_2025-05-13-expando-by-lukasneasi-48%20(1).jpg',
     tags: ['Engagement', 'Promotion', 'Communication'],
@@ -345,6 +359,13 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
         <li>Zaměstnanec vykazující známky burnoutu (2,8/10) se zlepšil na 8,8/10 a rozhodl se zůstat</li>
         <li>Důvěra mezi zaměstnanci a vedením obnovena díky transparentní komunikaci</li>
       </ul>
+      <blockquote>📊 Spokojenost s uznáním vzrostla ze 4,4/10 na 9/10 po zavedení strukturovaných změn.</blockquote>
+      <h2>Co si z toho odnést</h2>
+      <ul>
+        <li>Stížnosti na peníze neznamenají, že je problém v penězích — hák bývá jinde.</li>
+        <li>Transparentní komunikace a jasné procesy obnovují důvěru ve vedení.</li>
+        <li>Zaměstnanec na hranici burnoutu (2,8/10) se zlepil na 8,8/10 a rozhodl se zůstat.</li>
+      </ul>
     `,
     coverImage: 'https://cdn.prod.website-files.com/63d2c5297fe3f5119d5e8eba/67c9b914d0abe99293d51d3b_Karel%20Valxon%202.jpeg',
     tags: ['Engagement', 'Compensation', 'Retention'],
@@ -413,6 +434,13 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
         <li>96% účast v hodnocení well-beingu</li>
         <li>8bodový nárůst skóre engagementu zaměstnanců</li>
       </ul>
+      <blockquote>📊 Fluktuace klesla o 40 % a tržby na hovor vzrostly o 70–80 %.</blockquote>
+      <h2>Co si z toho odnést</h2>
+      <ul>
+        <li>Datově řízený přístup k talentu snižuje fluktuaci a zvyšuje výkon.</li>
+        <li>96 % zaměstnanců se zapojilo do hodnocení well-beingu.</li>
+        <li>Ideální profily pro obchodní role pomáhají cílit koučink a rozvoj.</li>
+      </ul>
     `,
     coverImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
     tags: ['Retention', 'Productivity', 'Development'],
@@ -478,6 +506,13 @@ const DEFAULT_CASE_STUDIES: CaseStudy[] = [
         <li>Leadership sladěný s transformací — povýšeni byli pouze lídři schopní řídit změnu</li>
         <li>Rychlejší kulturní adaptace — včasná identifikace bodů odporu umožnila proaktivní podporu</li>
         <li>Výrazně snížená rizikovost náboru — lepší role-fit, plynulejší onboarding a nižší fluktuace</li>
+      </ul>
+      <blockquote>📊 Fluktuace klesla o 14 %, nábor se zrychlil o 36 %.</blockquote>
+      <h2>Co si z toho odnést</h2>
+      <ul>
+        <li>100 % rozhodnutí o náboru a povýšení na základě dat, ne dojmů.</li>
+        <li>Včasná identifikace odporu umožnila proaktivní podporu změny.</li>
+        <li>Behaviorální hodnocení zrychluje i zkvalitňuje celý náborový proces.</li>
       </ul>
     `,
     coverImage: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200',
