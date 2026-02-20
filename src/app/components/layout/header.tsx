@@ -1,23 +1,20 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/app/components/ui/button";
 import { LanguageSwitcher } from "./language-switcher";
 import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
-import { useModal } from "@/app/contexts/modal-context";
-import { BEHAVERA_LOGIN_URL } from "@/lib/urls";
+import { BEHAVERA_LOGIN_URL, ECHO_PULSE_TRY_URL } from "@/lib/urls";
 import { trackLoginClick } from "@/lib/analytics";
+import { NAV_ITEMS, ROUTES, homeAnchor } from "@/app/config/routes";
 
 export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
-  const { openDemo } = useModal();
   const location = useLocation();
-  const navigate = useNavigate();
-  const isHome = location.pathname === "/";
+  const isHome = location.pathname === ROUTES.home;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -29,57 +26,53 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = ""; };
+      return () => {
+        document.body.style.overflow = "";
+      };
     }
   }, [mobileMenuOpen]);
 
-  const navItems = [
-    {
-      id: "radar",
-      label:
-        language === "cz"
-          ? "Jak to funguje"
-          : language === "de"
+  const navLabelById: Record<(typeof NAV_ITEMS)[number], string> = {
+    radar:
+      language === "cz"
+        ? "Jak to funguje"
+        : language === "de"
           ? "So funktioniert's"
           : "How it works",
-    },
-    {
-      id: "case-studies",
-      label:
-        language === "cz"
-          ? "Případové studie"
-          : language === "de"
+    "case-studies":
+      language === "cz"
+        ? "Případové studie"
+        : language === "de"
           ? "Fallstudien"
           : "Case studies",
-    },
-    {
-      id: "pricing",
-      label:
-        language === "cz" ? "Ceník" : language === "de" ? "Preise" : "Pricing",
-    },
-  ];
+    pricing:
+      language === "cz"
+        ? "Ceník"
+        : language === "de"
+          ? "Preise"
+          : "Pricing",
+  };
 
   const blogLabel = "Blog";
   const aboutLabel =
     language === "cz"
       ? "O nás"
       : language === "de"
-      ? "Über uns"
-      : "About";
+        ? "Über uns"
+        : "About";
   const loginLabel =
     language === "cz"
       ? "Přihlášení"
       : language === "de"
-      ? "Anmelden"
-      : "Sign in";
+        ? "Anmelden"
+        : "Sign in";
   const ctaLabel =
     language === "cz"
       ? "Otestovat zdarma"
       : language === "de"
-      ? "Kostenlos testen"
-      : "Test for free";
+        ? "Kostenlos testen"
+        : "Test for free";
 
-  /* ─── Shared nav-link class ─── */
   const navLinkClass = cn(
     "text-[13px] font-medium transition-colors",
     isScrolled
@@ -110,53 +103,42 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
       )}
     >
       <div className="container-default flex items-center justify-between">
-        {/* ── Logo ── */}
         <Link
-          to="/"
+          to={ROUTES.home}
           className="flex items-center group"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          <img
-            src="/logo-behavera.png"
-            alt="Behavera"
-            className="h-7 w-auto"
-          />
+          <img src="/logo-behavera.png" alt="Behavera" className="h-7 w-auto" />
         </Link>
 
-        {/* ── Desktop nav ── */}
         <nav className="hidden lg:flex items-center gap-7">
-          {navItems.map((item) =>
+          {NAV_ITEMS.map((itemId) =>
             isHome ? (
               <a
-                key={item.id}
-                href={`#${item.id}`}
+                key={itemId}
+                href={`#${itemId}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollTo(item.id);
+                  scrollTo(itemId);
                 }}
                 className={navLinkClass}
               >
-                {item.label}
+                {navLabelById[itemId]}
               </a>
             ) : (
-              <Link
-                key={item.id}
-                to={`/#${item.id}`}
-                className={navLinkClass}
-              >
-                {item.label}
+              <Link key={itemId} to={homeAnchor(itemId)} className={navLinkClass}>
+                {navLabelById[itemId]}
               </Link>
             )
           )}
-          <Link to="/blog" className={navLinkClass}>
+          <Link to={ROUTES.blog} className={navLinkClass}>
             {blogLabel}
           </Link>
-          <Link to="/team" className={navLinkClass}>
+          <Link to={ROUTES.team} className={navLinkClass}>
             {aboutLabel}
           </Link>
         </nav>
 
-        {/* ── Right actions ── */}
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
 
@@ -171,7 +153,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           </a>
 
           <a
-            href="https://app.behavera.com/echo-pulse/try"
+            href={ECHO_PULSE_TRY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
@@ -196,7 +178,6 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
         </div>
       </div>
 
-      {/* ── Mobile menu ── */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -208,40 +189,40 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
             id="mobile-navigation"
           >
             <div className="flex flex-col gap-1">
-              {navItems.map((item) =>
+              {NAV_ITEMS.map((itemId) =>
                 isHome ? (
                   <a
-                    key={item.id}
-                    href={`#${item.id}`}
+                    key={itemId}
+                    href={`#${itemId}`}
                     className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
                     onClick={(e) => {
                       e.preventDefault();
                       setMobileMenuOpen(false);
-                      setTimeout(() => scrollTo(item.id), 350);
+                      setTimeout(() => scrollTo(itemId), 350);
                     }}
                   >
-                    {item.label}
+                    {navLabelById[itemId]}
                   </a>
                 ) : (
                   <Link
-                    key={item.id}
-                    to={`/#${item.id}`}
+                    key={itemId}
+                    to={homeAnchor(itemId)}
                     className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {item.label}
+                    {navLabelById[itemId]}
                   </Link>
                 )
               )}
               <Link
-                to="/blog"
+                to={ROUTES.blog}
                 className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {blogLabel}
               </Link>
               <Link
-                to="/team"
+                to={ROUTES.team}
                 className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -250,7 +231,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
 
               <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
                 <a
-                  href="https://app.behavera.com/echo-pulse/try"
+                  href={ECHO_PULSE_TRY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}

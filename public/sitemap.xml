@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main pages -->
   <url>
     <loc>https://www.behavera.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
   <url>
     <loc>https://www.behavera.com/terms</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.7</priority>
   </url>
-  
-  <!-- Blog -->
+  <url>
+    <loc>https://www.behavera.com/privacy-policy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.behavera.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-  
-  <!-- Case Studies -->
   <url>
     <loc>https://www.behavera.com/case-studies</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Comparison pages -->
+  <url>
+    <loc>https://www.behavera.com/team</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/start</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/pro-neziskovky</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/changelog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.behavera.com/echo-pulse-vs-google-forms</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Solution pages -->
   <url>
     <loc>https://www.behavera.com/for-ceos</loc>
     <changefreq>monthly</changefreq>
@@ -47,6 +62,136 @@
   </url>
   <url>
     <loc>https://www.behavera.com/for-team-leads</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/5-leaders-share-7-tips-to-kickstart-your-leadership</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/5-trends-that-will-transform-the-way-we-work</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/7-tips-for-improving-employee-engagement-in-hybrid-work</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/behavera-well-being-index</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/busting-6-myths-about-well-being-in-companies</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/digifest-2025-ai-tools-team-health-sme</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/events-2026-kde-nas-potkate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/evolve-summit-2025-behavera-report</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/hiring-only-top-performing-sales-reps</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/how-to-deal-with-well-being-effectively</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/how-to-do-1-1-meetings-effectively</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/hr-conferences-2023-international-online-events</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/innovation-week-ai-2025-startup-team-health</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/inspiring-ted-talks-for-hr-professionals</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/msv-2025-manufacturing-employee-engagement</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/office-time-productive-time-or-is-it</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/old-school-recruiting-is-the-new-blackberry</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/the-creeping-killer-of-your-business</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/the-future-of-work-is-in-the-people-first-approach</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/valxons-discovery-journey-of-the-truth-behind-money-complaints</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/blog/well-being-of-leaders-at-risk</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/case-studies/from-data-to-action-how-vodafone-increased-sales-by-80-and-cut-attrition-by-40</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/case-studies/how-behaveras-data-helped-365-bank-achieve-a-successful-digital-transformation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/case-studies/jak-expando-objevilo-skryty-talent</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/case-studies/nove-vedeni-a-stiznosti-na-penize</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.behavera.com/case-studies/za-3-minuty-jasno-jak-na-employer-branding</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

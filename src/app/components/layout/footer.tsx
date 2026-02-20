@@ -5,16 +5,17 @@ import { ECHO_PULSE_JOIN_URL } from "@/lib/urls";
 import { trackSocialClick } from "@/lib/analytics";
 import { useModal } from "@/app/contexts/modal-context";
 import { Button } from "@/app/components/ui/button";
+import { HOME_SECTION_IDS, ROUTES, homeAnchor } from "@/app/config/routes";
 
 export function Footer() {
   const { language } = useLanguage();
   const { openBooking } = useModal();
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === ROUTES.home;
 
-  // Helper: anchor links must use /#anchor from non-home pages
-  const anchor = (hash: string) => isHome ? hash : `/${hash}`;
-  
+  // Anchor links must use /#anchor from non-home pages
+  const anchor = (id: string) => (isHome ? `#${id}` : homeAnchor(id));
+
   const texts = {
     cz: {
       tagline: "Lidé jsou to nejcennější. My vám pomůžeme je udržet.",
@@ -71,57 +72,57 @@ export function Footer() {
   const productLinks = {
     cz: [
       { label: "Behavera App", href: ECHO_PULSE_JOIN_URL, external: true },
-      { label: "Jak to funguje", href: anchor("#radar") },
-      { label: "Ceník", href: anchor("#pricing") },
-      { label: "FAQ", href: anchor("#faq") },
+      { label: "Jak to funguje", href: anchor(HOME_SECTION_IDS.radar) },
+      { label: "Ceník", href: anchor(HOME_SECTION_IDS.pricing) },
+      { label: "FAQ", href: anchor(HOME_SECTION_IDS.faq) },
     ],
     en: [
       { label: "Behavera App", href: ECHO_PULSE_JOIN_URL, external: true },
-      { label: "How it works", href: anchor("#radar") },
-      { label: "Pricing", href: anchor("#pricing") },
-      { label: "FAQ", href: anchor("#faq") },
+      { label: "How it works", href: anchor(HOME_SECTION_IDS.radar) },
+      { label: "Pricing", href: anchor(HOME_SECTION_IDS.pricing) },
+      { label: "FAQ", href: anchor(HOME_SECTION_IDS.faq) },
     ],
     de: [
       { label: "Behavera App", href: ECHO_PULSE_JOIN_URL, external: true },
-      { label: "So funktioniert es", href: anchor("#radar") },
-      { label: "Preise", href: anchor("#pricing") },
-      { label: "FAQ", href: anchor("#faq") },
+      { label: "So funktioniert es", href: anchor(HOME_SECTION_IDS.radar) },
+      { label: "Preise", href: anchor(HOME_SECTION_IDS.pricing) },
+      { label: "FAQ", href: anchor(HOME_SECTION_IDS.faq) },
     ],
   };
 
   const companyLinks = {
     cz: [
-      { label: "O nás", href: "/team" },
-      { label: "Případové studie", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "O nás", href: ROUTES.team },
+      { label: "Případové studie", href: ROUTES.caseStudies },
+      { label: "Blog", href: ROUTES.blog },
+      { label: "Changelog", href: ROUTES.changelog },
     ],
     en: [
-      { label: "About", href: "/team" },
-      { label: "Case Studies", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "About", href: ROUTES.team },
+      { label: "Case Studies", href: ROUTES.caseStudies },
+      { label: "Blog", href: ROUTES.blog },
+      { label: "Changelog", href: ROUTES.changelog },
     ],
     de: [
-      { label: "Über uns", href: "/team" },
-      { label: "Fallstudien", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
-      { label: "Changelog", href: "/changelog" },
+      { label: "Über uns", href: ROUTES.team },
+      { label: "Fallstudien", href: ROUTES.caseStudies },
+      { label: "Blog", href: ROUTES.blog },
+      { label: "Changelog", href: ROUTES.changelog },
     ],
   };
 
   const supportLegalLinks = {
     cz: [
-      { label: "Obchodní podmínky", href: "/terms" },
-      { label: "Ochrana osobních údajů", href: "/privacy-policy" },
+      { label: "Obchodní podmínky", href: ROUTES.terms },
+      { label: "Ochrana osobních údajů", href: ROUTES.privacy },
     ],
     en: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: ROUTES.terms },
+      { label: "Privacy Policy", href: ROUTES.privacy },
     ],
     de: [
-      { label: "AGB", href: "/terms" },
-      { label: "Datenschutz", href: "/privacy-policy" },
+      { label: "AGB", href: ROUTES.terms },
+      { label: "Datenschutz", href: ROUTES.privacy },
     ],
   };
 
@@ -130,11 +131,11 @@ export function Footer() {
   const company = companyLinks[language] || companyLinks.en;
   const supportLegal = supportLegalLinks[language] || supportLegalLinks.en;
 
-  // Helper to render links properly (internal vs external vs anchor)
+  // Render links properly (internal vs external vs anchor)
   const renderLink = (item: { label: string; href: string; external?: boolean }) => {
     if (item.external) {
       return (
-        <a 
+        <a
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
@@ -145,7 +146,7 @@ export function Footer() {
         </a>
       );
     }
-    if (item.href.startsWith('#') || item.href.startsWith('/#')) {
+    if (item.href.startsWith("#") || item.href.startsWith("/#")) {
       return (
         <a href={item.href} className="text-sm text-white/70 hover:text-white transition-colors">
           {item.label}
@@ -158,46 +159,43 @@ export function Footer() {
       </Link>
     );
   };
-  
+
   return (
     <footer className="bg-brand-primary text-white">
       <div className="container-default max-w-6xl">
         {/* Main Footer Content */}
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
-            
             {/* Brand Column */}
             <div className="lg:col-span-2">
               {/* Logo */}
-              <Link to="/" className="inline-flex items-center mb-5">
+              <Link to={ROUTES.home} className="inline-flex items-center mb-5">
                 <img
                   src="/logo-behavera.png"
                   alt="Behavera"
                   className="h-6 w-auto brightness-0 invert"
                 />
               </Link>
-              
+
               {/* Tagline */}
-              <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
-                {txt.tagline}
-              </p>
+              <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">{txt.tagline}</p>
 
               {/* CTA */}
-              <Button 
-                onClick={() => openBooking('footer_cta')}
+              <Button
+                onClick={() => openBooking("footer_cta")}
                 className="mb-6 rounded h-10 px-6 font-semibold text-sm bg-white text-brand-primary hover:bg-white/90 transition-colors inline-flex items-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
                 {txt.bookDemo}
               </Button>
-              
+
               {/* Social Links */}
               <div className="flex items-center gap-2">
                 <a
                   href="https://www.linkedin.com/company/behavera/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackSocialClick('linkedin')}
+                  onClick={() => trackSocialClick("linkedin")}
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="LinkedIn"
                 >
@@ -207,7 +205,7 @@ export function Footer() {
                   href="https://www.instagram.com/behavera"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackSocialClick('instagram')}
+                  onClick={() => trackSocialClick("instagram")}
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Instagram"
                 >
@@ -217,7 +215,7 @@ export function Footer() {
                   href="https://www.facebook.com/BehaveraTDC"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackSocialClick('facebook')}
+                  onClick={() => trackSocialClick("facebook")}
                   className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
                   aria-label="Facebook"
                 >
@@ -225,53 +223,47 @@ export function Footer() {
                 </a>
               </div>
             </div>
-            
+
             {/* Product */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-                {txt.product}
-              </h4>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">{txt.product}</h4>
               <ul className="space-y-2.5">
                 {products.map((item, i) => (
                   <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
             </div>
-            
+
             {/* Company */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-                {txt.company}
-              </h4>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">{txt.company}</h4>
               <ul className="space-y-2.5">
                 {company.map((item, i) => (
                   <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
             </div>
-            
+
             {/* Support & Legal + Contact */}
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">
-                {txt.support}
-              </h4>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white/40 mb-4">{txt.support}</h4>
               <ul className="space-y-2.5">
                 {supportLegal.map((item, i) => (
                   <li key={i}>{renderLink(item)}</li>
                 ))}
               </ul>
-              
+
               {/* Contact info */}
               <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
-                <a 
-                  href="mailto:hello@behavera.com" 
+                <a
+                  href="mailto:hello@behavera.com"
                   className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   hello@behavera.com
                 </a>
-                <a 
-                  href="tel:+420605839456" 
+                <a
+                  href="tel:+420605839456"
                   className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5" />
@@ -281,7 +273,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        
+
         {/* Bottom Bar */}
         <div className="py-5 border-t border-white/10">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/40">
@@ -290,7 +282,7 @@ export function Footer() {
               <span className="hidden sm:inline">•</span>
               <span className="hidden sm:inline">{info.ico}</span>
             </div>
-            
+
             <div className="flex items-center gap-1.5">
               <span>{txt.madeWith}</span>
               <span className="text-red-400">♥</span>

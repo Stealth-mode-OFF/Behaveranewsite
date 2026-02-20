@@ -106,7 +106,6 @@ const isNoRowsError = (error: { code?: string } | null | undefined): boolean =>
 
 /* ─── localStorage helpers ─── */
 const LS_KEY_CASE_STUDIES = 'behavera_case_studies';
-const LS_KEY_POSTS = 'behavera_posts';
 
 function loadLocalCaseStudies(): CaseStudy[] {
   try {
@@ -802,7 +801,9 @@ export const CmsService = {
   /** Public: returns only published case studies */
   getCaseStudies: async (): Promise<CaseStudy[]> => {
     if (!supabaseClient) {
-      return getMergedCaseStudies().filter(s => s.status === 'published');
+      return DEFAULT_CASE_STUDIES.filter(s => s.status === 'published').sort(
+        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
     }
     
     try {
@@ -819,10 +820,10 @@ export const CmsService = {
         .filter((study) => study && study.title && study.slug)
         .map(mapCaseStudyRow);
       // Fall back to hardcoded case studies when Supabase returns empty
-      return studies.length > 0 ? studies : getMergedCaseStudies().filter(s => s.status === 'published');
+      return studies.length > 0 ? studies : DEFAULT_CASE_STUDIES.filter(s => s.status === 'published');
     } catch (err) {
       console.error('Error fetching case studies:', err);
-      return getMergedCaseStudies().filter(s => s.status === 'published');
+      return DEFAULT_CASE_STUDIES.filter(s => s.status === 'published');
     }
   },
 
@@ -852,7 +853,7 @@ export const CmsService = {
   },
 
   getCaseStudyBySlug: async (slug: string): Promise<CaseStudy | undefined> => {
-    if (!supabaseClient) return getMergedCaseStudies().find(c => c.slug === slug);
+    if (!supabaseClient) return DEFAULT_CASE_STUDIES.find(c => c.slug === slug);
     
     try {
       const { data, error } = await supabaseClient
@@ -867,7 +868,7 @@ export const CmsService = {
       return mapCaseStudyRow(data as CaseStudyRow);
     } catch (err) {
       console.error('Error fetching case study:', err);
-      return getMergedCaseStudies().find(c => c.slug === slug);
+      return DEFAULT_CASE_STUDIES.find(c => c.slug === slug);
     }
   },
 

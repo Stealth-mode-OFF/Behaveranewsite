@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { X, ArrowRight, Sparkles } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
 import { motion, AnimatePresence } from "framer-motion";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
 
 /** Height of the announcement bar in px — used to offset the header */
 export const ANNOUNCEMENT_BAR_HEIGHT = 48;
@@ -33,17 +34,17 @@ export function AnnouncementBar({ onVisibilityChange }: { onVisibilityChange?: (
     cz: {
       message: "Stále používáte Google Forms pro zpětnou vazbu?",
       cta: "Přejděte na Behavera →",
-      link: "https://app.behavera.com/echo-pulse/try",
+      link: ECHO_PULSE_TRY_URL,
     },
     en: {
       message: "Still using Google Forms for employee feedback?",
       cta: "Switch to Behavera →",
-      link: "https://app.behavera.com/echo-pulse/try",
+      link: ECHO_PULSE_TRY_URL,
     },
     de: {
       message: "Nutzen Sie noch Google Forms für Mitarbeiter-Feedback?",
       cta: "Wechseln Sie zu Behavera →",
-      link: "https://app.behavera.com/echo-pulse/try",
+      link: ECHO_PULSE_TRY_URL,
     },
   };
 

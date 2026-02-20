@@ -13,6 +13,8 @@ import { useLocalizedPosts } from '@/app/hooks/use-localized-post';
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, BookOpen } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
+import { SITE_ORIGIN } from '@/lib/urls';
+import { blogPostPath } from '@/app/config/routes';
 
 /** Estimate reading time from HTML content */
 function estimateReadingTime(html: string): number {
@@ -35,6 +37,7 @@ export function BlogPage() {
     description: t.blog.seoDescription,
     keywords: t.blog.seoKeywords,
     ogType: 'website',
+    canonicalUrl: `${SITE_ORIGIN}/blog`,
   });
 
   useEffect(() => {
@@ -148,7 +151,7 @@ export function BlogPage() {
               className="mb-14"
             >
               <Link 
-                to={`/blog/${featuredPost.slug}`}
+                to={blogPostPath(featuredPost.slug)}
                 className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10"
               >
                 <div className="flex flex-col lg:flex-row">
@@ -230,7 +233,7 @@ export function BlogPage() {
                   transition={{ delay: Math.min(idx * 0.05, 0.3) }}
                 >
                   <Link 
-                    to={`/blog/${post.slug}`}
+                    to={blogPostPath(post.slug)}
                     className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
                   >
                     <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
