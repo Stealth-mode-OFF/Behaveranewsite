@@ -17,6 +17,7 @@ export const ROUTES = {
 export const HOME_SECTION_IDS = {
   radar: 'radar',
   caseStudies: 'case-studies',
+  blog: 'blog',
   about: 'about',
   pricing: 'pricing',
   faq: 'faq',

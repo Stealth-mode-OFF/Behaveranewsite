@@ -92,6 +92,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
     window.dispatchEvent(new Event('behavera:about:open'));
   };
 
+  const blogLinkTarget = `${ROUTES.home}?scroll=${HOME_SECTION_IDS.blog}`;
   const aboutLinkTarget = `${ROUTES.home}?scroll=${HOME_SECTION_IDS.about}&open=${HOME_SECTION_IDS.about}`;
 
   return (
@@ -137,9 +138,22 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               </Link>
             )
           )}
-          <Link to={ROUTES.blog} className={navLinkClass}>
-            {blogLabel}
-          </Link>
+          {isHome ? (
+            <a
+              href={`#${HOME_SECTION_IDS.blog}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo(HOME_SECTION_IDS.blog);
+              }}
+              className={navLinkClass}
+            >
+              {blogLabel}
+            </a>
+          ) : (
+            <Link to={blogLinkTarget} className={navLinkClass}>
+              {blogLabel}
+            </Link>
+          )}
           {isHome ? (
             <button
               type="button"
@@ -230,13 +244,27 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   </Link>
                 )
               )}
-              <Link
-                to={ROUTES.blog}
-                className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {blogLabel}
-              </Link>
+              {isHome ? (
+                <a
+                  href={`#${HOME_SECTION_IDS.blog}`}
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    setTimeout(() => scrollTo(HOME_SECTION_IDS.blog), 350);
+                  }}
+                >
+                  {blogLabel}
+                </a>
+              ) : (
+                <Link
+                  to={blogLinkTarget}
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {blogLabel}
+                </Link>
+              )}
               {isHome ? (
                 <button
                   type="button"
