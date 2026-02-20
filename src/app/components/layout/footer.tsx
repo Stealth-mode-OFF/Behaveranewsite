@@ -15,6 +15,9 @@ export function Footer() {
 
   // Anchor links must use /#anchor from non-home pages
   const anchor = (id: string) => (isHome ? `#${id}` : homeAnchor(id));
+  const aboutHref = isHome
+    ? `#${HOME_SECTION_IDS.about}`
+    : `${ROUTES.home}?scroll=${HOME_SECTION_IDS.about}&open=${HOME_SECTION_IDS.about}`;
 
   const texts = {
     cz: {
@@ -92,19 +95,19 @@ export function Footer() {
 
   const companyLinks = {
     cz: [
-      { label: "O nás", href: ROUTES.team },
+      { label: "O nás", href: aboutHref },
       { label: "Případové studie", href: ROUTES.caseStudies },
       { label: "Blog", href: ROUTES.blog },
       { label: "Changelog", href: ROUTES.changelog },
     ],
     en: [
-      { label: "About", href: ROUTES.team },
+      { label: "About", href: aboutHref },
       { label: "Case Studies", href: ROUTES.caseStudies },
       { label: "Blog", href: ROUTES.blog },
       { label: "Changelog", href: ROUTES.changelog },
     ],
     de: [
-      { label: "Über uns", href: ROUTES.team },
+      { label: "Über uns", href: aboutHref },
       { label: "Fallstudien", href: ROUTES.caseStudies },
       { label: "Blog", href: ROUTES.blog },
       { label: "Changelog", href: ROUTES.changelog },
