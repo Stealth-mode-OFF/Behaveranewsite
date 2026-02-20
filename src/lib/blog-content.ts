@@ -1641,108 +1641,82 @@ export const BLOG_POSTS: BlogPost[] = [
   // Article 21 – DigiFest 2025
   {
     id: 21,
-    title: 'DigiFest 2025: When 5,000 Managers Ask the Same Question About Their Teams',
-    title_cz: 'DigiFest 2025: Když se 5 000 manažerů ptá na totéž — jak na tom vlastně jsou jejich lidé?',
+    title: 'DigiFest 2025: How Are Your People Really Doing?',
+    title_cz: 'DigiFest 2025: Jak na tom vlastně jsou Vaši lidé?',
     slug: 'digifest-2025-ai-tools-team-health-sme',
-    excerpt: 'The biggest Czech SaaS & AI fair at Cubex Prague. Among 40 business tools and thousands of SME owners, we found that the most urgent question wasn\u0027t about automation — it was about people.',
-    excerpt_cz: 'Největší český SaaS & AI veletrh v Cubex Praha. Mezi 40 firemními nástroji a tisíci majiteli malých a středních firem jsme zjistili, že nejpalčivější otázka nebyla o automatizaci — byla o lidech.',
+    excerpt: 'We went to the biggest Czech SaaS fair without a booth or an agenda. What we heard in the hallways was more telling than anything on stage — managers and founders all asking the same question about their teams.',
+    excerpt_cz: 'Vyrazili jsme na největší český SaaS veletrh bez stánku a bez agendy. To, co jsme zaslechli na chodbách, bylo výmluvnější než cokoliv na pódiu — majitelé a manažeři se pořád dokola ptali na totéž.',
     content: `
-<p class="lead"><strong>DigiFest is the largest Czech SaaS & Business fair</strong> — a full day of conference talks, workshops, hands-on consultations, and an expo floor packed with modern tools for companies. On October 9, 2025, Cubex Prague hosted over 5,000 owners and managers of small and medium-sized businesses, 40+ exhibitors, 30+ conference talks across three stages, and 28+ workshops. The event is organized by Dáváme s.r.o. and has quickly become the go-to place for Czech SME leaders who want to digitize, automate, and innovate.</p>
-<p>We came as attendees. No booth, no sponsored talk. Just conversations. And that turned out to be exactly the right approach — because the most interesting insights didn\u0027t come from the stage. They came from the hallways.</p>
+<p class="lead">In October we headed to DigiFest. No booth, no talk, no agenda. We simply wanted to see what owners and managers of small and medium-sized businesses talk about when they\u0027re all in one place.</p>
+<p>Cubex Prague hosted over 5,000 people, 40+ exhibitors, 33 talks on three stages and 40 workshops. The biggest Czech SaaS & Business fair — and it was quite a day.</p>
 
-<h2>Three stages, one recurring theme</h2>
-<p>The conference program ran across three parallel stages — Pipedrive stage, wflow stage, and Cloud stage — from 9 AM to 4:30 PM. The lineup was impressive: <strong>Aneta Martinek</strong> (co-founder of #HolkyZMarketingu) on organizational structure, <strong>Dan Tržil</strong> (Czech Republic\u0027s first podcaster) interviewing Slevomat CEO Tomáš Braverman live on stage, <strong>Martin Košťál</strong> from Extrémní proměny on connecting healthy lifestyle with work performance, <strong>Sean Evers</strong> from Pipedrive on AI-powered sales features, and <strong>Peter Trenkner</strong> from Make showing how to automate an entire business with AI workflows.</p>
-<p>Across all three stages, one pattern stood out: <strong>every tool promises efficiency, but none of them address the human layer</strong>. You can automate your CRM, your invoicing, your marketing funnels. But when the team behind the tools is disengaged, burnt out, or quietly falling apart — automation can\u0027t save you.</p>
-<p>That\u0027s where we noticed the gap. And so did the people we talked to.</p>
+<h2>What happened on the stages</h2>
+<p>The program was packed and varied. <strong>Aneta Martinek</strong> spoke about the organizational chaos companies create for themselves. <strong>Dan Tržil</strong> invited Slevomat CEO Tomáš Braverman for a live studio conversation. <strong>Martin Košťál</strong> from Extrémní proměny connected physical fitness with work performance — the room was full. <strong>Sean Evers</strong> from Pipedrive showed where AI is heading in sales. <strong>Peter Trenkner</strong> from Make demoed automations that light a bulb in your head.</p>
+<p>Good program. But the most interesting things happened off the stage.</p>
 
-<h2>The expo floor: tools for everything — except people</h2>
-<p>Walking the expo floor at DigiFest felt like stepping into the future of Czech SME operations. CRM systems, project management platforms, accounting automation, AI chatbots, e-commerce integrations, HR information systems — you name it. Every booth had a demo, a pitch, and a promise: <strong>"We\u0027ll save you 10 hours a week."</strong></p>
-<p>And many of them genuinely will. The tools on display were practical, polished, and built for the Czech market.</p>
-<p>But here\u0027s what was missing: not a single tool addressed the question of <strong>how the people using those tools actually feel</strong>. Are they engaged? Do they trust their manager? Is there a silent conflict brewing that\u0027s about to cost the company its best performer?</p>
-<p>In a room full of solutions for business process optimization, the human process was invisible.</p>
+<h2>What people said in the hallways</h2>
+<p>Between sessions and over coffee we had dozens of conversations. Unplanned, honest. And surprisingly, they kept circling the same theme.</p>
+<p><strong>E-shop founder, 35 people:</strong> "This year we rolled out three new tools. Productivity was supposed to go up. Instead two people left and one is on sick leave. I have no idea what happened."</p>
+<p><strong>Agency owner, 18 people:</strong> "I do 1:1s every two weeks. I thought I knew my team. Then our best developer left without warning. She told HR she hadn\u0027t felt heard in months. She never told me."</p>
+<p><strong>SaaS co-founder, 45 people:</strong> "We measure MRR, churn, NPS, CAC. The one thing we don\u0027t measure is how our own people are doing. Say it out loud and it\u0027s a bit embarrassing."</p>
+<p><strong>Logistics manager, 70 people:</strong> "We ran an annual engagement survey. Results came in March. By the time we opened them, the people who had flagged the problems were already gone."</p>
+<p>These weren\u0027t exceptions. This was the pattern of the entire day.</p>
 
-<h2>Four conversations that stuck with us</h2>
-<p>Between sessions, we had dozens of informal conversations. Here are the four that stayed:</p>
-<p><strong>E-commerce founder, 35 employees:</strong> "We just implemented three new tools this quarter. Productivity should be up. Instead, two people quit and one is on burnout leave. I have no idea what happened."</p>
-<p><strong>Agency owner, 18 people:</strong> "I do 1:1s every two weeks. I thought I knew my team. Then our best developer left with zero warning. She told HR she hadn\u0027t felt heard in months. She never told me."</p>
-<p><strong>SaaS co-founder, 45 people:</strong> "We measure everything — MRR, churn, NPS, CAC. The one thing we don\u0027t measure is how our own people are doing. It\u0027s embarrassing when you say it out loud."</p>
-<p><strong>Logistics company manager, 70 people:</strong> "We ran an annual engagement survey last year. Got the results in March. By the time we acted on them, the people who flagged the problems had already left."</p>
+<h2>What was missing at the fair</h2>
+<p>The expo floor was impressive. CRM systems, project management, accounting automation, AI chatbots, e-commerce integrations — tools for every business process you can imagine. Polished, practical, built for the Czech market.</p>
+<p>But as we walked booth after booth, one question kept nagging: <strong>which of these solves how the people behind the tools actually feel?</strong></p>
+<p>It\u0027s not that exhibitors were doing a bad job. It\u0027s that an entire category was missing. People analytics — continuous tracking of how engaged a team is, where tensions lie, who\u0027s on the edge of burnout — had no presence on the floor. Yet it was practically the only problem people brought up spontaneously.</p>
 
-<h2>Why annual surveys fail — and what works instead</h2>
-<p>The annual engagement survey is a relic. It was designed for a world where companies changed slowly and people stayed for decades. In a Czech SME growing 30% year-over-year, the workforce on January 1 is not the same workforce on December 31.</p>
-<p>Research from Gallup shows that <strong>engagement is most predictable when measured frequently</strong> — weekly or bi-weekly pulse check-ins catch shifts in morale 6–8 weeks before they become resignations. That\u0027s not a theoretical number. That\u0027s the difference between spotting a problem and reading an exit interview.</p>
-<p>The key is making it frictionless. <strong>Under 3 minutes. Anonymous. Conversational.</strong> No app install, no corporate email. Just a link shared with the team. The tool tracks five dimensions: communication, psychological safety, recognition, workload, and leadership trust. First results typically arrive within a week — and the reaction is almost always the same: <strong>"I had no idea."</strong></p>
-
-<blockquote>📊 Annual surveys measure the past. Weekly pulse check-ins predict the future. The difference is 6–8 weeks of warning before a resignation becomes real.</blockquote>
+<h2>Why annual surveys aren\u0027t enough</h2>
+<p>An annual satisfaction survey makes sense — but only in a world where a company changes slowly. In a Czech SME growing thirty percent a year, the team in January is not the same team in December. People arrive, leave; relationships, workload, and morale shift. A yearly snapshot in that environment is more of a historical document than a management tool.</p>
+<p>Gallup research shows that shifts in employee engagement can be detected <strong>6–8 weeks before they result in a departure</strong>. But only if you measure continuously — not once a year.</p>
+<p>That doesn\u0027t mean deploying a complex system. Quite the opposite: a short, anonymous check-in once a week or every two weeks, taking less than three minutes, requiring no install and no corporate email. The questions are simple — how people are doing, whether they feel their work is valued, whether they have enough space to speak their mind.</p>
+<p>Results come fast. And most managers who try it say the same thing: <strong>"I had no idea."</strong></p>
 
 <h2>The automation paradox</h2>
-<p>Here\u0027s the irony of an event like DigiFest: the more you automate processes, the more <strong>people become the critical variable</strong>. When routine tasks are handled by software, what remains is creativity, collaboration, decision-making, and trust. These are inherently human — and inherently fragile.</p>
-<p>A company that automates its sales pipeline but ignores psychological safety in its sales team hasn\u0027t optimized. It\u0027s built a faster machine on an unstable foundation.</p>
-<p>We saw this repeatedly. Companies that had invested heavily in technology but hadn\u0027t invested in understanding how their people were actually doing. Not because they didn\u0027t care — but because they didn\u0027t have a tool for it. The irony? They were at a tool fair.</p>
+<p>There\u0027s a certain irony in it. The more processes a company automates, the more people matter. When software takes over routine tasks, what remains is collaboration, creativity, trust, decision-making under pressure. These are things no tool can replace — and also the things that fall apart most easily when no one\u0027s paying attention.</p>
+<p>Companies came to DigiFest looking for tools that save time. That makes sense. But few realize that faster processes on a shaky human foundation don\u0027t help much.</p>
 
-<h2>What Czech SMEs actually need</h2>
-<p>The Czech market has unique characteristics. Many SMEs are founder-led. The distance between leadership and the team is small — but that can be deceptive. Founders assume they know how people feel because they sit in the same office. They don\u0027t.</p>
-<p>What these companies need isn\u0027t another dashboard. It\u0027s a <strong>mechanism for honest, anonymous feedback</strong> that runs continuously. Something that takes less time than making coffee. Something that doesn\u0027t require HR to administer. Something that gives founders and managers signal — not noise.</p>
-<p>That\u0027s what we build at Behavera. And when we described it at DigiFest, the response wasn\u0027t "interesting." It was: <strong>"Why doesn\u0027t this exist already?"</strong></p>
-
-<h2>Takeaways</h2>
-<ul>
-<li>DigiFest showed that Czech SMEs are ready for digital transformation — but <strong>people analytics remains the blind spot</strong>.</li>
-<li>Tools automate processes. They don\u0027t automate trust, engagement, or psychological safety.</li>
-<li>Annual surveys are too slow. Weekly 3-minute pulse check-ins catch problems 6–8 weeks before they become resignations.</li>
-<li>The more you automate, the more people become the critical variable.</li>
-<li>Czech SME founders don\u0027t lack empathy. They lack a <strong>signal mechanism</strong> for what their team actually feels.</li>
-</ul>
-<p>DigiFest 2026 will return to Prague this autumn. We\u0027ll be there again — this time, hopefully, with a booth. In the meantime, find out more at <a href="https://www.digifest.cz" target="_blank" rel="noopener noreferrer">digifest.cz</a>.</p>
+<h2>Why we\u0027re writing about this</h2>
+<p>This isn\u0027t an ad for Behavera. It\u0027s more of a field report — about what we heard from people who run companies and genuinely don\u0027t know how their team is doing.</p>
+<p>We\u0027re building a tool that addresses this. But even if you never use it — the question is worth asking. <strong>How do your people really feel?</strong> Not what they say in a meeting. Not what they write in an annual questionnaire. But what they feel on Monday morning when they open their laptop.</p>
+<p>DigiFest 2026 returns to Prague this autumn. We\u0027ll be there again. More at <a href="https://www.digifest.cz" target="_blank" rel="noopener noreferrer">digifest.cz</a>.</p>
 `,
     content_cz: `
-<p class="lead"><strong>DigiFest je největší český SaaS & Business veletrh</strong> — celodenní program konferenčních přednášek, workshopů, individuálních konzultací a výstavní plochy plné moderních nástrojů pro firmy. 9. října 2025 hostil Cubex Praha přes 5 000 majitelů a manažerů malých a středních firem, 40+ vystavovatelů, 30+ přednášek na třech stagích a 28+ workshopů. Akci pořádá Dáváme s.r.o. a rychle se stala místem, kam míří čeští lídři SME segmentu, kteří chtějí digitalizovat, automatizovat a inovovat.</p>
-<p>Přijeli jsme jako návštěvníci. Bez stánku, bez sponzorované přednášky. Jen rozhovory. A ukázalo se, že to byl přesně ten správný přístup — protože ty nejzajímavější poznatky nepřišly z pódia. Přišly z chodeb.</p>
+<p class="lead">V říjnu jsme vyrazili na DigiFest. Bez stánku, bez přednášky, bez agendy. Jen jsme se chtěli podívat, o čem se dnes baví majitelé a manažeři malých a středních firem, když jsou pohromadě.</p>
+<p>Cubex Praha hostil přes 5 000 lidí, 40+ vystavovatelů, 33 přednášek na třech stagích a 40 workshopů. Největší český SaaS & Business veletrh — a byl to pořádný den.</p>
 
-<h2>Tři stage, jedno opakující se téma</h2>
-<p>Konferenční program běžel na třech paralelních stagích — Pipedrive stage, wflow stage a Cloud stage — od 9:00 do 16:30. Sestava řečníků byla působivá: <strong>Aneta Martinek</strong> (spoluzakladatelka #HolkyZMarketingu) o organizační struktuře, <strong>Dan Tržil</strong> (první český podcaster) s živým rozhovorem s CEO Slevomatu Tomášem Bravermanem, <strong>Martin Košťál</strong> z Extrémních proměn o propojení zdravého životního stylu s pracovním výkonem, <strong>Sean Evers</strong> z Pipedrive o AI funkcích pro sales a <strong>Peter Trenkner</strong> z Make, který ukázal, jak AI automatizovat celou firmu.</p>
-<p>Napříč všemi třemi stagemi vyčníval jeden vzorec: <strong>každý nástroj slibuje efektivitu, ale žádný neřeší lidskou vrstvu</strong>. CRM, fakturace, marketingové funnely — to vše se dá zautomatizovat. Ale když tým za těmi nástroji není zapojený, je vyčerpaný nebo se potichu rozpadá — automatizace Vás nezachrání.</p>
-<p>Právě tam jsme zaznamenali mezeru. A lidé, se kterými jsme mluvili, taky.</p>
+<h2>Co se dělo na stagích</h2>
+<p>Program byl nabitý a pestrý. <strong>Aneta Martinek</strong> mluvila o organizačním chaosu, který si firmy samy vytváří. <strong>Dan Tržil</strong> si pozval živě do studia CEO Slevomatu Tomáše Bravermana. <strong>Martin Košťál</strong> z Extrémních proměn propojoval fyzičku s pracovním výkonem — a sál byl plný. <strong>Sean Evers</strong> z Pipedrive ukazoval, kam míří AI v obchodě. <strong>Peter Trenkner</strong> z Make předváděl automatizace, po kterých se v hlavě rozsvítí.</p>
+<p>Dobrý program. Ale to nejzajímavější se odehrávalo mimo jeviště.</p>
 
-<h2>Výstavní plocha: nástroje na všechno — kromě lidí</h2>
-<p>Procházet expo DigiFest bylo jako nahlédnout do budoucnosti provozu českých malých a středních firem. CRM systémy, platformy pro projektový management, automatizace účetnictví, AI chatboti, e-commerce integrace, HR informační systémy — vše, co si dokážete představit. Každý stánek měl demo, pitch a slib: <strong>„Ušetříme Vám 10 hodin týdně."</strong></p>
-<p>A mnohé z nich to opravdu splní. Nástroje na výstavě byly praktické, propracované a vytvořené pro český trh.</p>
-<p>Ale jedna věc chyběla: ani jeden nástroj neřešil otázku, <strong>jak se lidé, kteří ty nástroje používají, vlastně cítí</strong>. Jsou zapojení? Důvěřují svému manažerovi? Nevaří se pod povrchem tichý konflikt, který firmu brzy bude stát jejího nejlepšího člověka?</p>
-<p>V místnosti plné řešení pro optimalizaci firemních procesů byl lidský proces neviditelný.</p>
+<h2>Co lidé říkali na chodbách</h2>
+<p>Mezi přednáškami a u kávy jsme vedli desítky rozhovorů. Neplánovaných, upřímných. A kupodivu se točily kolem podobného tématu.</p>
+<p><strong>Zakladatel e-shopu se 35 lidmi:</strong> „Letos jsme zavedli tři nové nástroje. Produktivita měla jít nahoru. Místo toho dva lidi odešli a jeden je na sick leave. Vůbec nevím, co se stalo."</p>
+<p><strong>Majitelka agentury s 18 lidmi:</strong> „Dělám 1:1 každé dva týdny. Myslela jsem, že svůj tým znám. Pak naše nejlepší vývojářka odešla bez varování. Na HR prý říkala, že se měsíce necítila vyslyšená. Mně to nikdy neřekla."</p>
+<p><strong>Spoluzakladatel SaaS firmy se 45 lidmi:</strong> „Měříme MRR, churn, NPS, CAC. Jediné, co neměříme, je to, jak se mají naši vlastní lidi. Když to takhle řeknete nahlas, je to trochu trapné."</p>
+<p><strong>Manažer z logistiky se 70 lidmi:</strong> „Udělali jsme roční průzkum spokojenosti. Výsledky přišly v březnu. Než jsme je vůbec otevřeli, lidé, kteří na problémy upozorňovali, už byli pryč."</p>
+<p>Nejde o výjimky. Tohle byl opakující se vzorec celého dne.</p>
 
-<h2>Čtyři rozhovory, které nám utkvěly</h2>
-<p>Mezi přednáškami jsme vedli desítky neformálních rozhovorů. Tady jsou čtyři, které zůstaly:</p>
-<p><strong>Zakladatel e-shopu, 35 zaměstnanců:</strong> „Letos jsme zavedli tři nové nástroje. Produktivita měla jít nahoru. Místo toho dva lidé odešli a jeden je na sick leave kvůli vyhoření. Nemám tušení, co se stalo."</p>
-<p><strong>Majitelka agentury, 18 lidí:</strong> „1:1 dělám jednou za dva týdny. Myslela jsem si, že svůj tým znám. Pak naše nejlepší vývojářka odešla bez varování. Na HR řekla, že se měsíce necítila vyslyšená. Mně to nikdy neřekla."</p>
-<p><strong>Spoluzakladatel SaaS firmy, 45 lidí:</strong> „Měříme úplně všechno — MRR, churn, NPS, CAC. Jediné, co neměříme, je to, jak se mají naši vlastní lidé. Když to řeknete nahlas, je to trapné."</p>
-<p><strong>Manažer logistické firmy, 70 lidí:</strong> „Loni jsme udělali roční průzkum spokojenosti. Výsledky jsme dostali v březnu. Než jsme na ně zareagovali, lidé, kteří na problémy upozorňovali, už odešli."</p>
+<h2>Co na veletrhu chybělo</h2>
+<p>Výstavní plocha byla impozantní. CRM systémy, projektový management, automatizace účetnictví, AI chatboti, e-commerce integrace — nástroje pro každý firemní proces, který si dovedete představit. Propracované, praktické, vytvořené pro český trh.</p>
+<p>Ale procházeli jsme stánek za stánkem a jedna otázka nám stále vrtala hlavou: <strong>co z toho řeší to, jak se lidé za těmi nástroji vlastně cítí?</strong></p>
+<p>Nejde o to, že by vystavovatelé dělali špatnou práci. Jde o to, že celá kategorie chybí. People analytics — tedy průběžné sledování toho, jak je tým zapojený, kde jsou tenze, kdo je na hraně vyhoření — to na výstavišti nemělo zastoupení. Přitom to byl téměř jediný problém, o kterém lidé spontánně mluvili.</p>
 
-<h2>Proč roční průzkumy selhávají — a co funguje místo nich</h2>
-<p>Roční průzkum spokojenosti je přežitek. Byl navržen pro svět, kde se firmy měnily pomalu a lidé zůstávali desítky let. V české SME firmě rostoucí 30 % ročně není tým k 1. lednu stejný jako tým 31. prosince.</p>
-<p>Výzkum Gallupu ukazuje, že <strong>zapojení zaměstnanců je nejlépe predikovatelné při častém měření</strong> — týdenní nebo dvoutýdenní pulse check-iny zachytí změny v morálce 6–8 týdnů předtím, než se změní ve výpovědi. To není teoretické číslo. To je rozdíl mezi včasným odhalením problému a čtením výstupního dotazníku.</p>
-<p>Klíčem je nulové tření. <strong>Pod 3 minuty. Anonymní. Konverzační formou.</strong> Žádná instalace aplikace, žádný firemní e-mail. Stačí odkaz sdílený s týmem. Nástroj sleduje pět dimenzí: komunikace, psychologická bezpečnost, uznání, pracovní zátěž a důvěra ve vedení. První výsledky obvykle přijdou do týdne — a reakce je téměř vždy stejná: <strong>„To jsem netušil/a."</strong></p>
-
-<blockquote>📊 Roční průzkumy měří minulost. Týdenní pulse check-iny predikují budoucnost. Rozdíl je 6–8 týdnů varování, než se výpověď stane realitou.</blockquote>
+<h2>Proč roční průzkumy nestačí</h2>
+<p>Roční průzkum spokojenosti má logiku — ale jen ve světě, kde se firma mění pomalu. V české SME firmě, která roste třicet procent ročně, není tým v lednu stejný jako v prosinci. Lidé přicházejí, odcházejí, mění se vztahy, zátěž, nálada. Roční snímek je v takovém prostředí spíše historický dokument než nástroj řízení.</p>
+<p>Gallupův výzkum ukazuje, že změny v zapojení zaměstnanců se dají zachytit <strong>6–8 týdnů předtím, než se projeví odchodem</strong>. Ale jen tehdy, když měříte průběžně — ne jednou za rok.</p>
+<p>Neznamená to zavést složitý systém. Spíš naopak: krátký, anonymní check-in jednou týdně nebo jednou za dva týdny, který trvá méně než tři minuty a nevyžaduje žádnou instalaci ani firemní email. Věci, na které se ptáte, jsou prosté — jak se lidem daří, jestli cítí, že je jejich práce oceněná, jestli mají dost prostoru říct, co si myslí.</p>
+<p>Výsledky přijdou rychle. A většina manažerů, kteří to zkusí, říká totéž: <strong>„To jsem netušil."</strong></p>
 
 <h2>Automatizační paradox</h2>
-<p>Na akci jako DigiFest je to vlastně ironie: čím víc procesů zautomatizujete, tím víc <strong>se lidé stávají klíčovou proměnnou</strong>. Když rutinní úkoly řeší software, zbývá kreativita, spolupráce, rozhodování a důvěra. To jsou ze své podstaty lidské vlastnosti — a ze své podstaty křehké.</p>
-<p>Firma, která automatizuje svůj sales pipeline, ale ignoruje psychologickou bezpečnost svého obchodního týmu, neoptimalizovala. Postavila rychlejší stroj na nestabilním základě.</p>
-<p>Viděli jsme to opakovaně. Firmy, které masivně investovaly do technologií, ale neinvestovaly do porozumění tomu, jak se jejich lidé opravdu mají. Ne proto, že by jim na nich nezáleželo — ale proto, že na to neměly nástroj. A ironie? Byly na veletrhu nástrojů.</p>
+<p>Je v tom určitá ironie. Čím víc procesů firma automatizuje, tím víc záleží na lidech. Když software přebírá rutinní úkoly, zbývá spolupráce, kreativita, důvěra, rozhodování pod tlakem. To jsou věci, které žádný nástroj nenahradí — a zároveň věci, které se nejsnáz rozpadnou nepozorovaně.</p>
+<p>Firmy na DigiFest přišly hledat nástroje, které jim ušetří čas. To dává smysl. Ale málokdo si uvědomuje, že rychlejší procesy na vratkém lidském základě moc nepomůžou.</p>
 
-<h2>Co české SME firmy skutečně potřebují</h2>
-<p>Český trh má svá specifika. Většina SME firem je řízená zakladateli. Vzdálenost mezi vedením a týmem je malá — ale to může být klamné. Zakladatelé předpokládají, že vědí, jak se lidé cítí, protože sedí ve stejné kanceláři. Nevědí.</p>
-<p>Co tyto firmy potřebují, není další dashboard. Je to <strong>mechanismus pro poctivou, anonymní zpětnou vazbu</strong>, který běží kontinuálně. Něco, co zabere méně času než příprava kávy. Něco, co nevyžaduje HR oddělení k administraci. Něco, co dá zakladatelům a manažerům signál — ne šum.</p>
-<p>Přesně to stavíme v Behavera. A když jsme to na DigiFest popsali, reakce nebyla „zajímavé." Reakce byla: <strong>„Proč tohle už dávno neexistuje?"</strong></p>
-
-<h2>Co si z toho odnést</h2>
-<ul>
-<li>DigiFest ukázal, že české SME firmy jsou na digitální transformaci připravené — ale <strong>people analytics zůstává slepým místem</strong>.</li>
-<li>Nástroje automatizují procesy. Neautomatizují důvěru, zapojení ani psychologickou bezpečnost.</li>
-<li>Roční průzkumy jsou příliš pomalé. Týdenní 3minutové pulse check-iny zachytí problémy 6–8 týdnů předtím, než se změní ve výpovědi.</li>
-<li>Čím víc automatizujete, tím víc se lidé stávají klíčovou proměnnou.</li>
-<li>Českým zakladatelům nechybí empatie. Chybí jim <strong>signální mechanismus</strong> pro to, co jejich tým opravdu cítí.</li>
-</ul>
-<p>DigiFest 2026 se na podzim vrátí do Prahy. Budeme tam zase — tentokrát snad i se stánkem. Více informací najdete na <a href="https://www.digifest.cz" target="_blank" rel="noopener noreferrer">digifest.cz</a>.</p>
+<h2>Proč o tom píšeme</h2>
+<p>Tohle není reklama na Behavera. Je to spíš zpráva z terénu — o tom, co jsme slyšeli od lidí, kteří řídí firmy a upřímně nevědí, jak se jejich tým má.</p>
+<p>Stavíme nástroj, který tohle řeší. Ale i kdybyste ho nikdy nepoužili — stojí za to se té otázky zeptat. <strong>Jak se Vaši lidé opravdu cítí?</strong> Ne co říkají na poradě. Ne co napíšou do ročního dotazníku. Ale co cítí v pondělí ráno, když otevřou notebook.</p>
+<p>DigiFest 2026 se vrátí na podzim do Prahy. Budeme tam zase. Více na <a href="https://www.digifest.cz" target="_blank" rel="noopener noreferrer">digifest.cz</a>.</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
     author: BLOG_AUTHORS[2],
