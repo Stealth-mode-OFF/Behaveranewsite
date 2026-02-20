@@ -1638,4 +1638,107 @@ export const BLOG_POSTS: BlogPost[] = [
     status: 'published' as const,
   },
 
+  // Article 21 – Czech Startup Week 2025
+  {
+    id: 21,
+    title: 'Czech Startup Week 2025: The Conversations Nobody Plans But Everyone Needs',
+    title_cz: 'Czech Startup Week 2025: Rozhovory, které nikdo neplánuje, ale všichni potřebují',
+    slug: 'czech-startup-week-2025-team-dynamics-startups',
+    excerpt: 'A week of startup events across Prague. We came to listen — and left with a notebook full of the same story: fast-growing teams breaking apart because nobody asked how people actually felt.',
+    excerpt_cz: 'Týden startupových akcí napříč Prahou. Přijeli jsme naslouchat — a odjeli s poznámkovým blokem plným stejného příběhu: rychle rostoucí týmy se rozpadají, protože se nikdo nezeptal, jak se lidé doopravdy cítí.',
+    content: `
+<p class="lead"><strong>Czech Startup Week isn\u0027t one event.</strong> It\u0027s a whole week — October 20 to 26, 2025 — of meetups, demo days, panel discussions, pitch contests, and networking spread across Prague. Organized by CzechInvest, it pulls together the best of the Czech startup ecosystem under one umbrella. This year, it also ran alongside Czech Space Week, which added a whole extra layer of ambition to the atmosphere.</p>
+<p>We didn\u0027t have a booth. We didn\u0027t sponsor a stage. We just showed up, talked to people, and paid attention. And honestly? That\u0027s where the real stories came from.</p>
+
+<h2>The Planetarium, a pitch contest, and a lot of honesty</h2>
+<p>The highlight of the week was the <strong>Technology Incubation #demoday</strong> at Prague Planetarium in Stromovka on October 22nd. Over 200 startups from CzechInvest\u0027s incubation program pitched to an expert jury, with people like Vojtěch Horna from Index Ventures and Arthur Jordão from the European Startup Nations Alliance in the audience.</p>
+<p>The pitches were sharp. The products were impressive. But the most interesting conversations happened afterwards — during Tech Happy Hours, over beers, in the corridors. Because that\u0027s when founders stopped performing and started talking about what actually keeps them up at night.</p>
+<p>Spoiler: it wasn\u0027t CAC, MRR, or runway. <strong>It was people.</strong></p>
+
+<h2>Three founders, three versions of the same story</h2>
+<p>We won\u0027t name names — people spoke candidly because it was off the record. But here are three conversations that stuck with us:</p>
+<p><strong>Founder A</strong> — a B2B SaaS company, 22 people. They\u0027d just closed a seed round and hired 8 people in 2 months. "I used to know everyone\u0027s mood by walking through the office. Now I have no idea what half our team thinks. And I\u0027m terrified of what I don\u0027t know."</p>
+<p><strong>Founder B</strong> — a deeptech spin-off, 11 people. One senior engineer had been quietly poisoning team dynamics for months. "Everyone knew except me. By the time I figured it out, two good people had already handed in their notice." The cost? Six months of hiring and onboarding — gone.</p>
+<p><strong>Founder C</strong> — a fintech startup, 30+ people. They run retros, 1:1s, the works. But: "People tell me what I want to hear. I needed them to tell me the truth. I just didn\u0027t have a mechanism for that."</p>
+
+<h2>The myth of "we\u0027re too small for this"</h2>
+<p>There\u0027s a persistent belief in the startup world that <strong>people analytics is for big companies</strong>. That you don\u0027t need surveys until you hit 100 people. That culture takes care of itself when you can all fit in one room.</p>
+<p>It doesn\u0027t.</p>
+<p>In fact, the data says the opposite. Research from the Society for Human Resource Management shows that startups between 15 and 50 employees experience the <strong>highest per-capita cultural risk</strong> — because informal communication norms break down, but formal structures haven\u0027t been built yet. It\u0027s a gap. And in that gap, toxic dynamics thrive undetected.</p>
+<p>One person who consistently undermines trust, avoids accountability, or creates anxiety across a small team doesn\u0027t just make work unpleasant. They <strong>drive out your best people</strong> — quietly, politely, permanently.</p>
+
+<blockquote>📊 Startups between 15–50 employees face the highest cultural risk: informal norms break down while formal structures haven\u0027t been built yet. Regular pulse check-ins close that gap.</blockquote>
+
+<h2>What we actually showed people</h2>
+<p>When someone asked us "so what do you do?", we didn\u0027t lead with a pitch. We showed them a dashboard.</p>
+<p>Echo Pulse runs anonymous check-ins — <strong>under 3 minutes</strong>, conversational, weekly or bi-weekly. No app install, no corporate email required. Just a link you share with your team. The tool tracks five key dimensions: communication, psychological safety, recognition, workload, and leadership trust.</p>
+<p>For a 20-person startup, the setup takes about 15 minutes. The first results come in within a week. And typically, the founder\u0027s reaction is some version of: <strong>"I had no idea."</strong></p>
+<p>Not because things are terrible. But because there are always blind spots — and in a fast-moving team, blind spots have consequences.</p>
+
+<h2>Why Czech Startup Week matters for this conversation</h2>
+<p>Czech Startup Week is different from big conferences. There\u0027s no expo hall, no branded swag bags, no keynote with 5,000 people watching a screen. It\u0027s a distributed week of real events organized by real communities — and that\u0027s exactly why it works for real conversations.</p>
+<p>As Ivo Denemark, Director of CzechInvest\u0027s Startups and Investment Division, put it: <strong>"For one week, Prague becomes the center of attention for European startups."</strong> And we\u0027d add: it\u0027s also the one week a year where founders actually have time to step back and think about the people side of their business.</p>
+<p>Because during the other 51 weeks, they\u0027re too busy building. Which is exactly why the problems we\u0027re describing go unnoticed until it\u0027s too late.</p>
+
+<h2>Takeaways</h2>
+<ul>
+<li>The most dangerous phase for team culture is 15–50 people — when informal norms fail but formal structures don\u0027t exist yet.</li>
+<li>One toxic person in a small team doesn\u0027t just cause friction — they drive out your best performers, often silently.</li>
+<li>Founders don\u0027t lack empathy. They lack signal. Anonymous pulse check-ins give them data they can\u0027t get from 1:1s.</li>
+<li>3-minute weekly check-ins catch problems weeks before they become resignations.</li>
+<li>You don\u0027t need to be "big enough" for people analytics. You need it most when you\u0027re growing fastest.</li>
+</ul>
+<p>Czech Startup Week 2026 runs <strong>October 19–23 in Prague</strong>. We\u0027ll be somewhere in the crowd again. Come find us.</p>
+`,
+    content_cz: `
+<p class="lead"><strong>Czech Startup Week není jedna akce.</strong> Je to celý týden — 20. až 26. října 2025 — plný meetupů, demo dayů, panelových diskuzí, pitch soutěží a networkingu napříč Prahou. Organizuje ho CzechInvest a spojuje to nejlepší z českého startupového ekosystému pod jednu střechu. Letos souběžně probíhal i Czech Space Week, což celé atmosféře dodalo extra náboj.</p>
+<p>Neměli jsme stánek. Nesponzorovali jsme stage. Prostě jsme přišli, bavili se s lidmi a poslouchali. A upřímně? Právě tam vznikly ty nejzajímavější příběhy.</p>
+
+<h2>Planetárium, pitch soutěž a spousta upřímnosti</h2>
+<p>Vrcholem týdne byl <strong>Technology Incubation #demoday</strong> v pražském Planetáriu ve Stromovce 22. října. Přes 200 startupů z inkubačního programu CzechInvestu pitchovalo před odbornou porotou — v publiku seděli mimo jiné Vojtěch Horna z Index Ventures nebo Arthur Jordão z European Startup Nations Alliance.</p>
+<p>Pitche byly ostré. Produkty působivé. Ale ty nejzajímavější rozhovory se odehrály až potom — během Tech Happy Hours, u piva, na chodbách. Protože teprve tam founderové přestali performovat a začali mluvit o tom, co je doopravdy trápí.</p>
+<p>Spoiler: nebyl to CAC, MRR ani runway. <strong>Byli to lidé.</strong></p>
+
+<h2>Tři founderové, tři verze stejného příběhu</h2>
+<p>Nebudeme jmenovat — lidé mluvili otevřeně, protože to bylo neoficiální. Ale tady jsou tři rozhovory, které nám utkvěly:</p>
+<p><strong>Founder A</strong> — B2B SaaS firma, 22 lidí. Právě uzavřeli seed kolo a za 2 měsíce najali 8 nových lidí. „Dříve jsem znal náladu každého, stačilo projít kanceláří. Teď nemám tušení, co si myslí polovina týmu. A děsí mě, co nevím."</p>
+<p><strong>Founder B</strong> — deeptech spin-off, 11 lidí. Jeden seniorní inženýr měsíce tiše otravoval dynamiku celého týmu. „Všichni to věděli, jen ne já. Když jsem na to přišel, dva skvělí lidé už dali výpověď." Náklady? Půl roku náboru a zaučování — pryč.</p>
+<p><strong>Founder C</strong> — fintech startup, přes 30 lidí. Mají retro, 1:1, všechno jak má být. Jenže: „Lidé mi říkají to, co chci slyšet. Potřeboval jsem, aby mi řekli pravdu. Jen jsem na to neměl žádný mechanismus."</p>
+
+<h2>Mýtus „na tohle jsme ještě malí"</h2>
+<p>Ve startupovém světě přetrvává přesvědčení, že <strong>people analytics je pro velké firmy</strong>. Že průzkumy nepotřebujete, dokud nemáte 100 lidí. Že kultura se pohlídá sama, dokud se vejdete do jedné místnosti.</p>
+<p>Nepohlídá.</p>
+<p>Data říkají pravý opak. Výzkum Society for Human Resource Management ukazuje, že startupy mezi 15 a 50 zaměstnanci čelí <strong>nejvyššímu kulturnímu riziku na osobu</strong> — protože neformální komunikační normy selhávají, ale formální struktury ještě neexistují. Je to mezera. A v té mezeře toxická dynamika bují bez povšimnutí.</p>
+<p>Jeden člověk, který soustavně narušuje důvěru, vyhýbá se odpovědnosti nebo šíří úzkost v malém týmu, práci jenom neznepříjemňuje. <strong>Vytlačuje Vaše nejlepší lidi</strong> — tiše, slušně, nenávratně.</p>
+
+<blockquote>📊 Startupy s 15–50 zaměstnanci čelí nejvyššímu kulturnímu riziku: neformální normy selhávají, ale formální struktury ještě neexistují. Pravidelné pulse check-iny tuto mezeru uzavírají.</blockquote>
+
+<h2>Co jsme lidem reálně ukazovali</h2>
+<p>Když se nás někdo zeptal „a co vlastně děláte?", nezačali jsme pitchem. Ukázali jsme dashboard.</p>
+<p>Echo Pulse spouští anonymní check-iny — <strong>pod 3 minuty</strong>, konverzační formou, týdně nebo dvoutýdně. Žádná instalace aplikace, žádný firemní e-mail. Stačí odkaz, který sdílíte se svým týmem. Nástroj sleduje pět klíčových dimenzí: komunikace, psychologická bezpečnost, uznání, pracovní zátěž a důvěra ve vedení.</p>
+<p>Pro 20členný startup zabere nastavení asi 15 minut. První výsledky přijdou do týdne. A typická reakce foundera je nějaká variace na: <strong>„To jsem netušil."</strong></p>
+<p>Ne proto, že by věci byly hrozné. Ale proto, že slepá místa jsou vždycky — a v rychle se měnícím týmu mají slepá místa důsledky.</p>
+
+<h2>Proč Czech Startup Week pro tuto konverzaci funguje</h2>
+<p>Czech Startup Week se liší od velkých konferencí. Žádná expo hala, žádné reklamní tašky, žádný keynote pro 5 000 lidí zírajících na obrazovku. Je to distribuovaný týden reálných akcí organizovaných reálnými komunitami — a právě proto funguje pro reálné rozhovory.</p>
+<p>Jak řekl Ivo Denemark, ředitel Divize startupů a investic CzechInvestu: <strong>„Pro jeden týden se Praha stane centrem pozornosti evropských startupů."</strong> A my bychom dodali: je to také jediný týden v roce, kdy mají founderové čas se zastavit a přemýšlet o lidské stránce svého podnikání.</p>
+<p>Protože zbylých 51 týdnů jen budují. A přesně proto problémy, o kterých mluvíme, zůstávají bez povšimnutí — dokud není pozdě.</p>
+
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Nejnebezpečnější fáze pro týmovou kulturu je 15–50 lidí — když neformální normy selhávají, ale formální struktury ještě neexistují.</li>
+<li>Jeden toxický člověk v malém týmu nezpůsobuje jen tření — vytlačuje Vaše nejlepší lidi, často potichu.</li>
+<li>Founderům nechybí empatie. Chybí jim signál. Anonymní pulse check-iny jim dávají data, která z 1:1 nedostanou.</li>
+<li>Tříminutové týdenní check-iny zachytí problémy týdny předtím, než se změní ve výpovědi.</li>
+<li>Nemusíte být „dost velcí" na people analytics. Nejvíc ho potřebujete, když rostete nejrychleji.</li>
+</ul>
+<p>Czech Startup Week 2026 proběhne <strong>19.–23. října v Praze</strong>. Budeme zase někde v davu. Přijďte nás najít.</p>
+`,
+    coverImage: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=1200',
+    author: BLOG_AUTHORS[2],
+    publishedAt: '2025-10-28T00:00:00.000Z',
+    tags: ['Events', 'Engagement'],
+    status: 'published' as const,
+  },
+
 ];
