@@ -7,7 +7,7 @@
  * Environment variables required:
  * - SUPABASE_URL
  * - SUPABASE_SERVICE_KEY
- * - PIPEDRIVE_API_KEY (optional — lead creation skipped if missing)
+ * - PIPEDRIVE_API_KEY or PIPEDRIVE_API_TOKEN (optional — lead creation skipped if missing)
  * - PIPEDRIVE_COMPANY_DOMAIN (optional, defaults to 'behavera')
  * - SLACK_WEBHOOK_URL (optional — Slack notification skipped if missing)
  */
@@ -27,6 +27,31 @@ interface TeamPayload {
   name: string;
   leaderEmail: string;
   members: TeamMember[];
+}
+
+interface LeadAttributionPayload {
+  first_touch_source?: string;
+  first_touch_medium?: string;
+  first_touch_campaign?: string;
+  first_touch_landing_page?: string;
+  first_touch_referrer?: string;
+  last_touch_source?: string;
+  last_touch_medium?: string;
+  last_touch_campaign?: string;
+  last_touch_landing_page?: string;
+  last_touch_referrer?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  gclid?: string;
+  fbclid?: string;
+  msclkid?: string;
+  ttclid?: string;
+  visits?: number;
+  page_views?: number;
+  last_seen_at?: string;
 }
 
 interface OnboardingPayload {
@@ -49,6 +74,9 @@ interface OnboardingPayload {
 
   // Teams (Step 3)
   teams: TeamPayload[];
+
+  // First-party attribution snapshot from browser
+  attribution?: LeadAttributionPayload;
 }
 
 /* ─── Supabase helpers ─── */
@@ -81,6 +109,58 @@ async function supabasePost(
   return returnData ? res.json() : null;
 }
 
+const MAX_LEAD_TITLE_LENGTH = 255;
+
+interface PipedriveResponse<T> {
+  success: boolean;
+  data: T;
+  error?: string;
+}
+
+function normalizePipedriveDomain(rawDomain: string | undefined): string {
+  const fallback = 'behavera';
+  if (!rawDomain) return fallback;
+
+  const trimmed = rawDomain.trim().toLowerCase();
+  const withoutProtocol = trimmed.replace(/^https?:\/\//, '');
+  const host = withoutProtocol.replace(/\/.*$/, '');
+  const subdomain = host.replace(/\.pipedrive\.com$/, '');
+
+  return subdomain || fallback;
+}
+
+function truncate(value: string, maxLength: number): string {
+  if (value.length <= maxLength) return value;
+  return `${value.slice(0, maxLength - 1)}…`;
+}
+
+function formatAttributionBlock(attribution?: LeadAttributionPayload): string {
+  if (!attribution) {
+    return '**Attribution:** Not captured';
+  }
+
+  const firstTouch = `${attribution.first_touch_source || 'direct'} / ${attribution.first_touch_medium || 'none'}`;
+  const lastTouch = `${attribution.last_touch_source || 'direct'} / ${attribution.last_touch_medium || 'none'}`;
+
+  return [
+    '**Attribution Snapshot**',
+    `- Visits before submit: ${attribution.visits ?? 'n/a'}`,
+    `- Page views before submit: ${attribution.page_views ?? 'n/a'}`,
+    `- First touch: ${firstTouch}`,
+    `- First campaign: ${attribution.first_touch_campaign || 'n/a'}`,
+    `- First landing page: ${attribution.first_touch_landing_page || 'n/a'}`,
+    `- First referrer: ${attribution.first_touch_referrer || 'n/a'}`,
+    `- Last touch: ${lastTouch}`,
+    `- Last campaign: ${attribution.last_touch_campaign || attribution.utm_campaign || 'n/a'}`,
+    `- Last landing page: ${attribution.last_touch_landing_page || 'n/a'}`,
+    `- Last referrer: ${attribution.last_touch_referrer || 'n/a'}`,
+    `- UTM source/medium: ${attribution.utm_source || 'n/a'} / ${attribution.utm_medium || 'n/a'}`,
+    `- UTM term/content: ${attribution.utm_term || 'n/a'} / ${attribution.utm_content || 'n/a'}`,
+    `- Paid IDs: gclid=${attribution.gclid || 'n/a'}, fbclid=${attribution.fbclid || 'n/a'}, msclkid=${attribution.msclkid || 'n/a'}, ttclid=${attribution.ttclid || 'n/a'}`,
+    `- Last seen at: ${attribution.last_seen_at || 'n/a'}`,
+  ].join('\n');
+}
+
 /* ─── Pipedrive helpers (copied from submit-lead.ts) ─── */
 
 async function pipedriveRequest<T>(
@@ -88,12 +168,12 @@ async function pipedriveRequest<T>(
   method: 'GET' | 'POST' | 'PUT' = 'GET',
   body?: Record<string, unknown>
 ): Promise<T> {
-  const apiKey = process.env.PIPEDRIVE_API_KEY;
-  const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || 'behavera';
-  if (!apiKey) throw new Error('PIPEDRIVE_API_KEY not configured');
+  const apiToken = process.env.PIPEDRIVE_API_KEY || process.env.PIPEDRIVE_API_TOKEN;
+  const domain = normalizePipedriveDomain(process.env.PIPEDRIVE_COMPANY_DOMAIN);
+  if (!apiToken) throw new Error('PIPEDRIVE_API_KEY or PIPEDRIVE_API_TOKEN not configured');
 
   const sep = endpoint.includes('?') ? '&' : '?';
-  const url = `https://${domain}.pipedrive.com/api/v1${endpoint}${sep}api_token=${apiKey}`;
+  const url = `https://${domain}.pipedrive.com/api/v1${endpoint}${sep}api_token=${apiToken}`;
 
   const options: RequestInit = {
     method,
@@ -104,7 +184,7 @@ async function pipedriveRequest<T>(
   }
 
   const response = await fetch(url, options);
-  const data = await response.json();
+  const data = await response.json() as PipedriveResponse<T>;
   if (!response.ok || !data.success) {
     throw new Error(data.error || `Pipedrive error: ${response.status}`);
   }
@@ -125,7 +205,8 @@ async function findPersonByEmail(email: string): Promise<number | null> {
 }
 
 async function createPipedriveLead(payload: OnboardingPayload) {
-  if (!process.env.PIPEDRIVE_API_KEY) return { personId: null, leadId: null };
+  const apiToken = process.env.PIPEDRIVE_API_KEY || process.env.PIPEDRIVE_API_TOKEN;
+  if (!apiToken) return { personId: null, leadId: null };
 
   const totalMembers = payload.teams.reduce((s, t) => s + t.members.length, 0);
   const name = payload.repName || payload.repEmail.split('@')[0];
@@ -157,8 +238,17 @@ async function createPipedriveLead(payload: OnboardingPayload) {
   }
 
   // Create lead
-  const source = `onboarding:${payload.billingInterval || 'yearly'}:${totalMembers}members:${payload.teams.length}teams:${payload.oauthProvider || 'manual'}`;
-  const title = `[behavera.com/${source}] ${name} | ${payload.companyName}`;
+  const attributionSource = payload.attribution?.last_touch_source;
+  const attributionCampaign = payload.attribution?.last_touch_campaign || payload.attribution?.utm_campaign;
+  const source = [
+    `onboarding:${payload.billingInterval || 'yearly'}:${totalMembers}members:${payload.teams.length}teams:${payload.oauthProvider || 'manual'}`,
+    attributionSource ? `src-${attributionSource}` : '',
+    attributionCampaign ? `cmp-${attributionCampaign}` : '',
+  ]
+    .filter(Boolean)
+    .join(':');
+
+  const title = truncate(`[behavera.com/${source}] ${name} | ${payload.companyName}`, MAX_LEAD_TITLE_LENGTH);
 
   const lead = await pipedriveRequest<{ id: string }>('/leads', 'POST', {
     title,
@@ -185,6 +275,8 @@ async function createPipedriveLead(payload: OnboardingPayload) {
 **Teams:** ${payload.teams.length} | **Total Members:** ${totalMembers}
 ${teamLines}
 **Submitted:** ${new Date().toISOString()}
+
+${formatAttributionBlock(payload.attribution)}
 ${isExisting ? '\n⚠️ Person already existed in Pipedrive' : ''}
   `.trim();
 
