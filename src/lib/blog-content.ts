@@ -1401,4 +1401,118 @@ export const BLOG_POSTS: BlogPost[] = [
     status: 'published' as const,
   },
 
+  /* ───────────────────────── 19 ───────────────────────── */
+  {
+    id: '19',
+    title: 'MSV 2025: What Manufacturing Taught Us About Employee Engagement',
+    title_cz: 'MSV 2025: Co nás strojírenský veletrh naučil o angažovanosti ve výrobě',
+    slug: 'msv-2025-manufacturing-employee-engagement',
+    excerpt: 'At the 66th International Engineering Fair in Brno, we didn\u0027t just look at machines. We talked to HR leaders from manufacturing and industrial companies about the real challenge nobody wants to talk about: blue-collar turnover and how to actually fix it with data.',
+    excerpt_cz: 'Na 66. ročníku Mezinárodního strojírenského veletrhu v Brně jsme se nedívali jen na stroje. Bavili jsme se s HR lídry z výrobních a průmyslových firem o problému, o kterém se moc nemluví: fluktuaci na dělnických pozicích a jak ji skutečně řešit pomocí dat.',
+    content: `
+<p class="lead"><strong>When you hear "MSV Brno," you probably think of CNC machines</strong>, robotic arms, and halls full of industrial technology. And you wouldn\u0027t be wrong — the 66th International Engineering Fair, held October 7–10, 2025, brought together 1,356 exhibitors from 42 countries and attracted over 55,000 visitors.</p>
+<p>But we at Behavera weren\u0027t there to buy a lathe. <strong>We came to listen.</strong> To talk to the people behind the machines — HR directors, production managers, and plant leaders who deal with a challenge that no CNC machine can solve: keeping their people.</p>
+
+<h2>The elephant in the factory hall</h2>
+<p>Let\u0027s be honest. When it comes to employee engagement, most solutions on the market are designed for office workers — people with company emails, laptops, and Slack channels. But what about the welder on the second shift? The CNC operator who doesn\u0027t check emails? The logistics worker who has 15 minutes for lunch and zero time for a 40-question survey?</p>
+<p><em>These are the people who keep the Czech economy running</em>, and yet they\u0027re the ones most overlooked when it comes to engagement tools. The result? Higher turnover, constant hiring costs, lost know-how, and teams that never fully gel.</p>
+<p>At MSV, we heard this story over and over again. Not from consultants — from the people living it every day.</p>
+
+<h2>What manufacturing HR leaders actually told us</h2>
+<p>We spent four days walking the exhibition halls, but the best conversations happened at the coffee stands and in the quiet corners between pavilions. <strong>Here\u0027s what we heard most often:</strong></p>
+<ul>
+<li>"We lose 30–40% of new hires within the first 6 months — and we have no idea why."</li>
+<li>"Our people don\u0027t have corporate email. How are we supposed to survey them?"</li>
+<li>"Turnover costs us more than any machine upgrade, but nobody tracks it."</li>
+<li>"The guys on the floor won\u0027t fill out a 20-minute questionnaire. Ever."</li>
+</ul>
+<p>Sound familiar? If you manage a manufacturing team, you\u0027ve probably said at least one of these yourself.</p>
+
+<h2>65% response rate — even on the shop floor</h2>
+<p>This is where we could actually help. Echo Pulse by Behavera was built to work for everyone — not just people behind desks.</p>
+<p>The survey takes <strong>under 3 minutes</strong>. It works on any phone — no app download, no company email required. Just a simple link or QR code posted in the break room, locker area, or on a notice board. The conversational format feels natural, not like a corporate audit.</p>
+<p>And the results speak for themselves: <strong>even in blue-collar environments, we consistently achieve over 65% response rates</strong>. That\u0027s not a theoretical number — it\u0027s what our manufacturing clients actually see.</p>
+<p>Why does it work? Because people want to be heard. They just need a tool that respects their time and their reality.</p>
+
+<h2>From data to the production floor</h2>
+<p>Getting responses is step one. What matters is what you do with them. Echo Pulse gives production managers and HR teams <strong>instant, automated dashboards</strong> that show:</p>
+<ul>
+<li>Which shifts or departments have the lowest satisfaction</li>
+<li>Where workload is becoming a risk for burnout or turnover</li>
+<li>Whether recognition and communication gaps exist between management and the floor</li>
+<li>Concrete, actionable recommendations — not vague averages</li>
+</ul>
+<p><em>For a production manager</em>, this means knowing that the night shift in Hall B has a recognition problem before three people hand in their notice. It means being able to walk into a 1:1 with a team leader armed with real data, not just gut feeling.</p>
+
+<h2>Why this matters for Czech manufacturing</h2>
+<p>The Czech Republic is an industrial powerhouse. Manufacturing accounts for roughly 25% of GDP and employs over a million people. But the sector is facing a structural talent shortage that\u0027s only getting worse.</p>
+<p><strong>Every unnecessary resignation costs money</strong> — recruitment, training, lost productivity, team disruption. In manufacturing, where onboarding a skilled CNC operator can take 3–6 months, the real cost of turnover is staggering.</p>
+<p>Companies that invest in understanding their people — even (and especially) those without a laptop — will have a decisive competitive advantage. Not because it\u0027s fashionable, but because it\u0027s math.</p>
+
+<h2>Takeaways</h2>
+<ul>
+<li>Blue-collar engagement is the biggest untapped opportunity in Czech industry.</li>
+<li>Short, mobile-first surveys with 65%+ response rates make real feedback possible — even on the shop floor.</li>
+<li>Data-driven people decisions aren\u0027t just for corporate HQs — production managers need them too.</li>
+<li>If you want to reduce turnover, start by actually listening to your people. It takes 3 minutes.</li>
+</ul>
+<p>The next MSV takes place <strong>October 6–9, 2026</strong>. We\u0027ll be there again. Will you?</p>
+`,
+    content_cz: `
+<p class="lead"><strong>Když se řekne „MSV Brno," většina lidí si představí CNC stroje</strong>, robotická ramena a haly plné průmyslových technologií. A mají pravdu — 66. ročník Mezinárodního strojírenského veletrhu, který proběhl 7.–10. října 2025, přilákal 1 356 vystavovatelů ze 42 zemí a přes 55 000 návštěvníků.</p>
+<p>My v Behaveře jsme ale nepřijeli kupovat soustruh. <strong>Přijeli jsme naslouchat.</strong> Mluvit s lidmi za stroji — s HR řediteli, vedoucími výroby a šéfy závodů, kteří řeší problém, který žádný CNC stroj nevyřeší: jak udržet své lidi.</p>
+
+<h2>Slon ve výrobní hale</h2>
+<p>Řekněme si to na rovinu. Většina nástrojů pro měření angažovanosti na trhu je navržena pro kancelářské pracovníky — lidi s firemním e-mailem, notebookem a Slackem. Ale co svářeč na druhé směně? CNC operátor, který e-maily nečte? Skladník, který má 15 minut na oběd a nulový čas na 40otázkový dotazník?</p>
+<p><em>Právě tito lidé táhnou českou ekonomiku</em>, a přesto jsou při zavádění engagement nástrojů nejčastěji přehlíženi. Výsledek? Vyšší fluktuace, neustálé náklady na nábor, ztráta know-how a týmy, které se nikdy pořádně nesehrajou.</p>
+<p>Na MSV jsme tento příběh slyšeli znovu a znovu. Ne od konzultantů — od lidí, kteří to žijí každý den.</p>
+
+<h2>Co nám skutečně řekli HR lídři z výroby</h2>
+<p>Čtyři dny jsme procházeli výstavní haly, ale ty nejlepší rozhovory se odehrávaly u kávových stánků a v tichých zákoutích mezi pavilony. <strong>Tady je to, co jsme slyšeli nejčastěji:</strong></p>
+<ul>
+<li>„Ztratíme 30–40 % nováčků během prvních 6 měsíců — a nemáme ponětí proč."</li>
+<li>„Naši lidé nemají firemní e-mail. Jak je máme vůbec oslovit?"</li>
+<li>„Fluktuace nás stojí víc než jakýkoli upgrade strojů, ale nikdo to nesleduje."</li>
+<li>„Kluci na hale Vám 20minutový dotazník nikdy nevyplní. Prostě nikdy."</li>
+</ul>
+<p>Zní Vám to povědomě? Pokud řídíte výrobní tým, minimálně jednu z těchto vět jste určitě řekli sami.</p>
+
+<h2>65% návratnost odpovědí — i na dílně</h2>
+<p>A přesně tady jsme mohli pomoci. Echo Pulse od Behavery byl vytvořen tak, aby fungoval pro všechny — nejen pro lidi za pracovním stolem.</p>
+<p>Průzkum zabere <strong>méně než 3 minuty</strong>. Funguje na jakémkoli telefonu — žádná instalace aplikace, žádný firemní e-mail. Stačí jednoduchý odkaz nebo QR kód vyvěšený v šatně, na jídelně nebo na nástěnce. Konverzační formát působí přirozeně, ne jako firemní audit.</p>
+<blockquote>📊 I u dělnických pozic dosahujeme přes 65% návratnost odpovědí — a to bez firemního e-mailu, jen s QR kódem na nástěnce.</blockquote>
+<p>A výsledky mluví za sebe: <strong>i v prostředí dělnických pozic konzistentně dosahujeme přes 65% návratnost odpovědí</strong>. To není teoretické číslo — je to realita našich klientů z výroby.</p>
+<p>Proč to funguje? Protože lidé chtějí být slyšet. Potřebují jen nástroj, který respektuje jejich čas a jejich realitu.</p>
+
+<h2>Od dat k výrobní hale</h2>
+<p>Získat odpovědi je první krok. Důležité je, co s nimi uděláte. Echo Pulse dává vedoucím výroby a HR týmům <strong>okamžité, automatizované přehledy</strong>, které ukazují:</p>
+<ul>
+<li><strong>Které směny nebo oddělení</strong> mají nejnižší spokojenost</li>
+<li><strong>Kde se pracovní zátěž</strong> stává rizikem pro vyhoření nebo odchod</li>
+<li><strong>Zda existují mezery v uznání a komunikaci</strong> mezi managementem a halou</li>
+<li><strong>Konkrétní, použitelná doporučení</strong> — ne vágní průměry</li>
+</ul>
+<p><em>Pro vedoucího výroby</em> to znamená vědět, že noční směna v hale B má problém s uznáním, dříve než tři lidé podají výpověď. Znamená to přijít na 1:1 s mistrem s reálnými daty, ne jen s pocitem.</p>
+
+<h2>Proč je to klíčové pro český průmysl</h2>
+<p>Česká republika je průmyslovou velmocí. Výroba tvoří zhruba 25 % HDP a zaměstnává přes milion lidí. Ale sektor čelí strukturálnímu nedostatku talentů, který se jen zhoršuje.</p>
+<p><strong>Každý zbytečný odchod stojí peníze</strong> — nábor, zaškolení, ztráta produktivity, narušení týmu. Ve výrobě, kde zaučení kvalifikovaného CNC operátora trvá 3–6 měsíců, jsou skutečné náklady fluktuace ohromující.</p>
+<p>Firmy, které investují do pochopení svých lidí — i (a zejména) těch bez notebooku — budou mít rozhodující konkurenční výhodu. Ne proto, že je to trendy, ale proto, že je to prostě matematika.</p>
+
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>Angažovanost dělnických pozic je největší nevyužitá příležitost v českém průmyslu.</li>
+<li>Krátké, mobilní průzkumy s 65%+ návratností umožňují reálnou zpětnou vazbu — i na dílně.</li>
+<li>Datová rozhodnutí o lidech nejsou jen pro korporátní centrály — potřebují je i vedoucí výroby.</li>
+<li>Chcete snížit fluktuaci? Začněte tím, že svým lidem skutečně nasloucháte. Zabere to 3 minuty.</li>
+</ul>
+<p>Další MSV se koná <strong>6.–9. října 2026</strong>. My tam budeme. A Vy?</p>
+`,
+    coverImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200',
+    author: BLOG_AUTHORS[2],
+    publishedAt: '2025-10-14T00:00:00.000Z',
+    tags: ['Events', 'Engagement'],
+    status: 'published' as const,
+  },
+
 ];
