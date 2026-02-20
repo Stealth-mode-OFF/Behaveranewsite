@@ -1394,7 +1394,7 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p><em>Uvidíme se v Brně!</em></p>
 `,
-    coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/evolve-summit-2025.jpg',
     author: BLOG_AUTHORS[2],
     publishedAt: '2025-11-18T00:00:00.000Z',
     tags: ['Events', 'Future of Work'],
