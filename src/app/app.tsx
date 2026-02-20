@@ -5,6 +5,7 @@ import { ModalProvider } from "./contexts/modal-context";
 import { AuthProvider } from "@/lib/auth-context";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "./components/ui/scroll-progress";
+import { ScrollToTop } from "./components/scroll-to-top";
 import { CookieBanner } from "./components/layout/cookie-banner";
 import { LandingPage } from "./pages/public/landing";
 import { adminEnabled } from "@/lib/config";
@@ -113,6 +114,7 @@ function App() {
         <LanguageProvider>
           <ModalProvider>
             <AuthProvider>
+              <ScrollToTop />
               <ScrollProgress />
               <div className="min-h-screen bg-brand-background-primary font-sans text-brand-text-primary">
                 <Suspense fallback={<PageLoader />}>

@@ -60,6 +60,12 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
   ];
 
   const blogLabel = "Blog";
+  const aboutLabel =
+    language === "cz"
+      ? "O nás"
+      : language === "de"
+      ? "Über uns"
+      : "About";
   const loginLabel =
     language === "cz"
       ? "Přihlášení"
@@ -144,6 +150,9 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           )}
           <Link to="/blog" className={navLinkClass}>
             {blogLabel}
+          </Link>
+          <Link to="/team" className={navLinkClass}>
+            {aboutLabel}
           </Link>
         </nav>
 
@@ -230,6 +239,13 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {blogLabel}
+              </Link>
+              <Link
+                to="/team"
+                className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {aboutLabel}
               </Link>
 
               <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
