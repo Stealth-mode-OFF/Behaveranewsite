@@ -54,13 +54,11 @@ export function ProblemSection() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-error font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
               <div className="w-2 h-2 bg-brand-error rounded-full animate-pulse" />
-              <span className="font-mono text-[11px] font-bold text-brand-error tracking-[0.15em] uppercase">
-                {t.problems?.badge || "The Problem"}
-              </span>
+              {t.problems?.badge || "The Problem"}
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.015em] text-brand-text-primary leading-[1.15]">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary leading-[1.15]">
               {t.problems?.title || "People don't leave"}
               <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
                 {t.problems?.titleHighlight || " overnight."}

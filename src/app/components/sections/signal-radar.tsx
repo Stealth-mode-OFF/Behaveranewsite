@@ -188,7 +188,7 @@ export function SignalRadar() {
 
   return (
     <section className="section-spacing bg-brand-background-secondary/30 relative overflow-hidden" id="radar">
-      <div className="container-default max-w-[1120px] mx-auto relative z-10">
+      <div className="container-default relative z-10">
 
         {/* ═══════════ HEADER ═══════════ */}
         <motion.div
@@ -198,17 +198,17 @@ export function SignalRadar() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-brand-primary/15 mb-8 shadow-sm">
-            <span className="relative flex h-2.5 w-2.5">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-primary font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+            <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-primary" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary" />
             </span>
-            <span className="font-mono text-[11px] font-bold text-brand-primary tracking-[0.15em] uppercase">
+            <span>
               {c.badge}
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-[-0.02em] text-brand-text-primary mb-6 leading-[1.1]">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4 leading-[1.15]">
             {c.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {c.titleHighlight}

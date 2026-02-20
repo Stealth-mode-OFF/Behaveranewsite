@@ -127,11 +127,7 @@ export function PurchaseSection() {
   const animatedSavings = useAnimatedNumber(yearlySavings);
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-white via-brand-background-secondary/30 to-white relative overflow-hidden" id="pricing">
-      {/* Decorative background orbs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/[0.03] rounded-full blur-3xl -translate-y-1/2" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-accent/[0.03] rounded-full blur-3xl translate-y-1/2" />
-      
+    <section className="section-spacing bg-white relative overflow-hidden" id="pricing">
       <div className="container-default relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -46,10 +46,10 @@ export function TrustCenter() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-12"
+          className="text-center max-w-2xl mx-auto mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-emerald-200">
-            <ShieldCheck className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-primary font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+            <ShieldCheck className="w-3.5 h-3.5" />
             {copy.badge}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight mb-4">
@@ -66,7 +66,7 @@ export function TrustCenter() {
           {copy.enterpriseBullets && copy.enterpriseBullets.length > 0 && (
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-5">
               {copy.enterpriseBullets.map((bullet: string, i: number) => (
-                <div key={i} className="flex items-center gap-1.5 text-xs text-emerald-700">
+                <div key={i} className="flex items-center gap-1.5 text-xs text-brand-primary">
                   <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0" />
                   <span>{bullet}</span>
                 </div>

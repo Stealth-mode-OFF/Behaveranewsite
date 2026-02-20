@@ -55,7 +55,7 @@ export function DashboardPreview() {
       <div className="container-default relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -63,13 +63,11 @@ export function DashboardPreview() {
             transition={{ duration: 0.6 }}
             className="max-w-xl"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-              <span className="text-[11px] font-mono font-bold text-brand-text-muted tracking-[0.15em] uppercase">
-                {t.dashboard?.badge}
-              </span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+              {t.dashboard?.badge}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-[-0.015em] leading-[1.15]">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight leading-[1.15]">
               {t.dashboard?.title}
               <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-3">{t.dashboard?.titleHighlight}</span>
             </h2>

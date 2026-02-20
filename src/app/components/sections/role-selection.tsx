@@ -108,14 +108,14 @@ export function RoleSelection() {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[150px]" />
       </div>
 
-      <div className="container-default max-w-[1000px] relative z-10">
+      <div className="container-default relative z-10">
         
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-12"
+          className="text-center max-w-2xl mx-auto mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
             {t.roleSelection?.title || "Everyone sees the company"}

@@ -154,8 +154,8 @@ export function CaseStudiesSection() {
   if (studies.length === 0) return null;
 
   return (
-    <section className="section-spacing bg-white" id="case-studies">
-      <div className="container-default max-w-[1200px]">
+    <section className="section-spacing bg-brand-background-secondary/30" id="case-studies">
+      <div className="container-default">
         
         {/* Header */}
         <motion.div
@@ -164,11 +164,9 @@ export function CaseStudiesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
             <span className="w-2 h-2 rounded-full bg-brand-success animate-pulse" />
-            <span className="text-[11px] font-mono font-bold text-brand-text-muted tracking-[0.15em] uppercase">
-              {t.badge}
-            </span>
+            {t.badge}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
             {t.title}

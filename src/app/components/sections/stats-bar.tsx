@@ -150,7 +150,7 @@ export function StatsBar() {
   const items = stats[language] || stats.en;
 
   return (
-    <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+    <section className="section-spacing-compact bg-white relative overflow-hidden">
       {/* Subtle background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.03),transparent_70%)]" />
       
