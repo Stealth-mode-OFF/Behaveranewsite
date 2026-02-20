@@ -144,9 +144,9 @@ const blogPosts = [
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
   },
   {
-    slug: 'czech-startup-week-2025-team-dynamics-startups',
-    title: 'Czech Startup Week 2025: Rozhovory, které nikdo neplánuje, ale všichni potřebují',
-    desc: 'Týden startupových akcí napříč Prahou. Rychle rostoucí týmy se rozpadají, protože se nikdo nezeptal, jak se lidé doopravdy cítí.',
+    slug: 'digifest-2025-ai-tools-team-health-sme',
+    title: 'DigiFest 2025: Když se 5 000 manažerů ptá na totéž — jak na tom vlastně jsou jejich lidé?',
+    desc: 'Největší český SaaS & AI veletrh v Cubex Praha. Mezi 40 firemními nástroji a tisíci majiteli SME firem jsme zjistili, že nejpalčivější otázka nebyla o automatizaci — byla o lidech.',
     image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&q=80&w=1200',
   },
 ];
