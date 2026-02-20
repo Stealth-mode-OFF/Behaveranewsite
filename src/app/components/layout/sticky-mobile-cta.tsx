@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
 import { trackStickyCtaDismissed } from "@/lib/analytics";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
 
 export function StickyMobileCta() {
   const { t, language } = useLanguage();
@@ -27,7 +28,7 @@ export function StickyMobileCta() {
       <div className="bg-white border-t border-brand-border shadow-[0_-8px_24px_rgba(0,0,0,0.08)] px-4 py-3 pb-[calc(12px+env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3">
           <a
-            href="https://app.behavera.com/echo-pulse/try"
+            href={ECHO_PULSE_TRY_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 h-12 flex items-center justify-center rounded-[var(--button-radius)] bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover transition-colors"

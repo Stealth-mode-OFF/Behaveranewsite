@@ -5,6 +5,9 @@
   "redirects": [
     { "source": "/podminky-pouzivani-sluzby", "destination": "/terms", "permanent": true },
     { "source": "/ochrana-osobnich-udaju", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/case-studies-2-0", "destination": "/case-studies", "permanent": true },
+    { "source": "/case-study/(.*)", "destination": "/case-studies/$1", "permanent": true },
+    { "source": "/case-study", "destination": "/case-studies", "permanent": true },
     { "source": "/demo", "destination": "/?demo=1", "permanent": false },
     { "source": "/engagement", "destination": "/?scroll=radar", "permanent": false }
   ],

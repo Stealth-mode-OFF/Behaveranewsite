@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
 import { Check, ShieldCheck, Star, Users, Zap, Sparkles, ArrowRight, Gift, Clock, Rocket, Heart } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/contexts/language-context";
 import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
+import { ROUTES } from "@/app/config/routes";
 
 /* ─── Animated counter hook ─── */
 function useAnimatedNumber(value: number, duration = 0.5) {
@@ -405,15 +408,15 @@ export function PurchaseSection() {
                 
                 <div className="mt-8 relative space-y-3">
                   <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 text-[16px] group" size="lg">
-                    <a href="https://www.behavera.com/start" target="_blank" rel="noopener noreferrer">
+                    <Link to={ROUTES.start}>
                       <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                       {pc.ctaPrimary}
                       <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </Link>
                   </Button>
                   
                   <a
-                    href="https://app.behavera.com/echo-pulse/try"
+                    href={ECHO_PULSE_TRY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full text-center text-[12px] text-white/50 hover:text-white transition-colors underline underline-offset-2"

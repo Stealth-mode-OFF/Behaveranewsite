@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useModal } from "@/app/contexts/modal-context";
 import { Button } from "@/app/components/ui/button";
 import { ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
+import { ROUTES } from "@/app/config/routes";
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -18,7 +20,6 @@ import { useLanguage } from "@/app/contexts/language-context";
 export function CtaSection() {
   const { openBooking } = useModal();
   const { t, language } = useLanguage();
-  const navigate = useNavigate();
 
   const copy = {
     cz: {
@@ -141,19 +142,17 @@ export function CtaSection() {
             {/* Two buttons row */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Primary CTA — Objednat pro celou firmu (bílé) */}
-              <a
-                href="https://www.behavera.com/start"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to={ROUTES.start}
                 className="inline-flex items-center justify-center gap-2.5 h-12 sm:h-14 px-6 sm:px-8 rounded-[var(--button-radius)] bg-white text-brand-primary font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20 w-full sm:w-auto"
               >
                 {c.primaryCta}
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
 
               {/* Secondary CTA — Otestovat 1 tým zdarma (fialové) */}
               <a
-                href="https://app.behavera.com/echo-pulse/try"
+                href={ECHO_PULSE_TRY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 h-12 sm:h-14 px-6 sm:px-8 rounded-[var(--button-radius)] bg-white/10 border border-white/30 text-white font-semibold text-sm sm:text-base hover:bg-white/20 transition-all w-full sm:w-auto"

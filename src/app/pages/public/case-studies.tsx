@@ -9,6 +9,7 @@ import { useSEO } from '@/app/hooks/use-seo';
 import { useLanguage } from '@/app/contexts/language-context';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { motion } from 'framer-motion';
+import { caseStudyPath } from '@/app/config/routes';
 
 /** Resolve a localized field with fallback */
 function loc<T>(language: string, cz: T | undefined, en: T): T {
@@ -157,7 +158,7 @@ export function CaseStudiesPage() {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
                   <Link
-                    to={`/case-studies/${study.slug}`}
+                    to={caseStudyPath(study.slug)}
                     className="group relative bg-white rounded-3xl overflow-hidden border border-brand-border/50 hover:shadow-2xl transition-all duration-300 flex flex-col md:flex-row min-h-[400px]"
                   >
                     <div className="md:w-1/2 relative overflow-hidden min-h-[250px]">

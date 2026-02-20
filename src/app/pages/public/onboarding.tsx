@@ -50,6 +50,7 @@ import {
 // InviteTeammates step removed — OAuth import merged into Teams step
 import { useAresLookup, type AresResult } from "@/app/hooks/use-ares-lookup";
 import { parseContactsFile, CSV_ACCEPT, type ParsedContact } from "@/app/utils/csv-parser";
+import { ROUTES } from "@/app/config/routes";
 
 /* ─── Types ─── */
 type OnboardingFormData = {
@@ -2009,7 +2010,7 @@ function ConfirmStep({
           <span className="text-[13px] text-brand-text-secondary leading-relaxed group-hover:text-brand-text-primary transition-colors">
             {txt.termsAgree}{" "}
             <a
-              href="https://www.behavera.com/podminky-pouzivani-sluzby"
+              href={ROUTES.terms}
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover"
@@ -2018,7 +2019,7 @@ function ConfirmStep({
             </a>{" "}
             {txt.termsAnd}{" "}
             <a
-              href="https://www.behavera.com/ochrana-osobnich-udaju"
+              href={ROUTES.privacy}
               target="_blank"
               rel="noopener noreferrer"
               className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover"

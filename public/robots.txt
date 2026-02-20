@@ -1,13 +1,12 @@
-# Behavera Behavera - robots.txt
+# Behavera robots.txt
 # https://www.behavera.com
 
 User-agent: *
 Allow: /
 
-# Disallow admin and internal paths
+# Internal paths
 Disallow: /admin
 Disallow: /admin/
 Disallow: /api/
 
-# Sitemap
 Sitemap: https://www.behavera.com/sitemap.xml

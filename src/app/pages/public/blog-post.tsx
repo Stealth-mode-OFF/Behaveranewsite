@@ -28,6 +28,8 @@ import {
   trackBlogDepth,
   trackBlogTocClick,
 } from '@/lib/analytics';
+import { SITE_ORIGIN } from '@/lib/urls';
+import { ROUTES, blogPostPath } from '@/app/config/routes';
 
 /** Estimate reading time from HTML content */
 function estimateReadingTime(html: string): number {
@@ -116,6 +118,7 @@ export function BlogPostPage() {
     keywords: post?.tags?.join(', ') || t.blog.seoKeywords,
     ogType: 'article',
     ogImage: post?.coverImage,
+    canonicalUrl: slug ? `${SITE_ORIGIN}/blog/${slug}` : `${SITE_ORIGIN}/blog`,
   });
 
   const sanitizedContent = useMemo(() => {
@@ -260,7 +263,7 @@ export function BlogPostPage() {
       <main className="flex-1 pt-24 pb-20">
         <div className="max-w-[1240px] mx-auto px-4 md:px-6">
           <div className="mb-8">
-            <Link to="/blog" className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-primary transition-colors group">
+            <Link to={ROUTES.blog} className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-primary transition-colors group">
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-0.5 transition-transform" />
               {t.blog.backToList}
             </Link>
@@ -462,7 +465,7 @@ export function BlogPostPage() {
               {relatedPosts.map((rp) => (
                 <Link
                   key={rp.id}
-                  to={`/blog/${rp.slug}`}
+                  to={blogPostPath(rp.slug)}
                   className="group flex flex-col bg-white rounded-xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-md transition-all"
                 >
                   <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary">

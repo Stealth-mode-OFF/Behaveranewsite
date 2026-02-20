@@ -2,6 +2,7 @@ import { AlertTriangle, TrendingDown, EyeOff, ZapOff, ArrowRight, type LucideIco
 import { useLanguage } from "@/app/contexts/language-context";
 import { motion } from "framer-motion";
 import { cn } from "@/app/components/ui/utils";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
 
 /**
  * Problem Section - Bento Grid Style
@@ -145,7 +146,7 @@ export function ProblemSection() {
                   {t.problems?.ctaBox?.desc || "Get visibility before the damage is done."}
                 </p>
                 <a
-                  href="https://app.behavera.com/echo-pulse/try"
+                  href={ECHO_PULSE_TRY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white hover:text-brand-accent font-semibold inline-flex items-center group/btn"

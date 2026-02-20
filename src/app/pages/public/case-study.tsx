@@ -10,6 +10,7 @@ import { useLanguage } from '@/app/contexts/language-context';
 import { useSEO } from '@/app/hooks/use-seo';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { motion } from 'framer-motion';
+import { ROUTES } from '@/app/config/routes';
 
 /** Resolve a localized field with fallback */
 function loc<T>(language: string, cz: T | undefined, en: T): T {
@@ -121,7 +122,7 @@ export function CaseStudyPage() {
           <div className="text-center space-y-4">
             <Building2 className="w-16 h-16 text-brand-border mx-auto" />
             <h1 className="text-2xl font-bold text-brand-text-primary">{t.caseStudies.notFound}</h1>
-            <Link to="/case-studies" className="inline-flex items-center text-brand-primary font-medium hover:underline">
+            <Link to={ROUTES.caseStudies} className="inline-flex items-center text-brand-primary font-medium hover:underline">
               <ArrowLeft className="w-4 h-4 mr-2" /> {t.caseStudies.backToList}
             </Link>
           </div>
@@ -160,7 +161,7 @@ export function CaseStudyPage() {
                   transition={{ duration: 0.4 }}
                   className="container mx-auto px-4 max-w-6xl relative z-20"
                 >
-                     <Link to="/case-studies" className="inline-flex items-center text-sm font-medium text-white hover:text-white/90 mb-8 transition-colors">
+                     <Link to={ROUTES.caseStudies} className="inline-flex items-center text-sm font-medium text-white hover:text-white/90 mb-8 transition-colors">
                         <ArrowLeft className="w-4 h-4 mr-2" />
                         {t.caseStudies.backToList}
                     </Link>

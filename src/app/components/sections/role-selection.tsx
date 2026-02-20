@@ -14,6 +14,7 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { trackRoleSelected } from "@/lib/analytics";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
 
 type RoleConfig = {
   id: string;
@@ -214,7 +215,7 @@ export function RoleSelection() {
 
                 {/* CTA */}
                 <Button asChild size="lg" className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl">
-                  <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
+                  <a href={ECHO_PULSE_TRY_URL} target="_blank" rel="noopener noreferrer">
                     {activeRoleData.cta}
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </a>

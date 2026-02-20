@@ -10,6 +10,7 @@ import { submitLead } from "@/app/utils/lead";
 import { trackLeadSubmitted } from "@/lib/analytics";
 import { cn } from "@/app/components/ui/utils";
 import { motion, AnimatePresence, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { ROUTES } from "@/app/config/routes";
 import {
   Building2, Users, CreditCard, Check, ChevronRight, ChevronLeft,
   Plus, Trash2, ArrowRight, Loader2, ShieldCheck, Rocket, Crown,
@@ -1397,9 +1398,9 @@ function Step3Plan({
           </div>
           <span className="text-[13px] text-brand-text-secondary leading-relaxed group-hover:text-brand-text-primary transition-colors">
             {txt.termsAgree}{" "}
-            <a href="https://www.behavera.com/podminky-pouzivani-sluzby" target="_blank" rel="noopener noreferrer" className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover">{txt.termsLink}</a>{" "}
+            <a href={ROUTES.terms} target="_blank" rel="noopener noreferrer" className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover">{txt.termsLink}</a>{" "}
             {txt.termsAnd}{" "}
-            <a href="https://www.behavera.com/ochrana-osobnich-udaju" target="_blank" rel="noopener noreferrer" className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover">{txt.privacyLink}</a>
+            <a href={ROUTES.privacy} target="_blank" rel="noopener noreferrer" className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover">{txt.privacyLink}</a>
           </span>
         </label>
         {errors.agreedToTerms && (

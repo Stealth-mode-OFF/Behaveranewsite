@@ -125,9 +125,7 @@ function App() {
                     {/* Public Routes */}
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/terms" element={<TermsPage />} />
-                    <Route path="/podminky-pouzivani-sluzby" element={<Navigate to="/terms" replace />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                    <Route path="/ochrana-osobnich-udaju" element={<Navigate to="/privacy-policy" replace />} />
 
                     <Route path="/blog" element={<BlogPage />} />
                     <Route path="/blog/:slug" element={<BlogPostPage />} />
@@ -150,8 +148,6 @@ function App() {
                     <Route path="/signup" element={<Navigate to="/?signup=1" replace />} />
 
                     {/* Marketing short-links */}
-                    <Route path="/demo" element={<Navigate to="/?demo=1" replace />} />
-                    <Route path="/engagement" element={<Navigate to="/?scroll=radar" replace />} />
 
                     {/* Nonprofit campaign — Givt × Behavera (no nav link) */}
                     <Route path="/pro-neziskovky" element={<NonprofitPage />} />

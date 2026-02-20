@@ -5,6 +5,7 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DeviceFrame, AnimatedDashboardContent } from "@/app/components/ui/device-frame";
+import { ECHO_PULSE_TRY_URL } from "@/lib/urls";
 import heroDashboardCz from "@/assets/hero/hero-dashboard-cz.webp";
 import heroDashboardEn from "@/assets/hero/hero-dashboard-en.webp";
 
@@ -221,7 +222,7 @@ export function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
               <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
-                <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
+                <a href={ECHO_PULSE_TRY_URL} target="_blank" rel="noopener noreferrer">
                   <Play className="w-4 h-4 mr-2 fill-current" />
                   {c.primaryCta}
                 </a>
