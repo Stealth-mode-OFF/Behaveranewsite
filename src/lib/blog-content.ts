@@ -1720,4 +1720,168 @@ export const BLOG_POSTS: BlogPost[] = [
     status: 'published' as const,
   },
 
+  /* ───────────────────────── 22 ───────────────────────── */
+  {
+    id: 22,
+    title: 'Events 2026: Where to Find Us This Year',
+    title_cz: 'Akce 2026: Kde se s námi letos potkáte',
+    slug: 'events-2026-kde-nas-potkate',
+    excerpt: 'We mapped the most interesting conferences, summits, and meetups for HR professionals and leaders happening in the Czech Republic in 2026. Here\u0027s our curated guide — plus where you\u0027ll definitely find the Behavera team.',
+    excerpt_cz: 'Prošli jsme nabídku konferencí, summitů a meetupů na rok 2026 a sestavili přehled těch, které nás zajímají — a kde doporučujeme být i Vám, pokud se pohybujete v HR, leadershipu nebo řídíte firmu. Plus kde nás určitě potkáte.',
+    content: `
+<p class="lead">The start of a new year is the perfect time to look at the calendar and pick the events worth attending. We went through the conferences, summits, and meetups happening in 2026 and put together a guide focused on what matters to us at Behavera — and what we think matters to you if you work in HR, leadership, or run a company.</p>
+<p>This isn\u0027t an exhaustive list of everything happening in the Czech Republic. It\u0027s our curated selection — events that make sense for people who work with people.</p>
+
+<h2>February–March: Season kickoff</h2>
+<p>The year starts fast. February alone has several interesting formats to choose from.</p>
+<p><strong><a href="https://www.opero.cz/cs/akce/duetycz02" target="_blank" rel="noopener noreferrer">Duety: Business Matchmaking</a></strong> (Feb 17 &amp; Mar 3, Prague, CZK 1,490) — structured matchmaking where you meet specific people for a specific purpose. If you\u0027re looking for partners or clients, it\u0027s efficient.</p>
+<p><strong><a href="https://www.meetup.com/producttank-prague/" target="_blank" rel="noopener noreferrer">ProductTank Prague</a></strong> (Feb 19, Prague, 60–120 people) — regular meetup for product leaders. If you lead a product team, this is your community.</p>
+<p><strong>Scaleup Night #3</strong> (Feb 25, Prague, 80–150 people) — curated meetup for founders and scaleup leaders. On the agenda: Phonexia exit story and valuations. If you\u0027re scaling, worth showing up.</p>
+<p><strong><a href="https://www.meetup.com/hr-meetups-prague/" target="_blank" rel="noopener noreferrer">HR Meetups Prague</a></strong> (Feb 25, Prague, 60–120 people) — February edition focused on immigration. Practical meetup for HR leaders and People Ops.</p>
+<p><strong><a href="https://www.czechonlineexpo.cz/" target="_blank" rel="noopener noreferrer">Czech Online Expo</a></strong> (Feb 24–26, Prague, 5,000+ visitors) — the biggest Czech e-commerce conference. If you run an online business, this is a must.</p>
+
+<h2>The March marathon: Watch out for March 19</h2>
+<p>March is traditionally the busiest month for conferences. And 2026 is no exception — on <strong>March 19 alone</strong>, several events happen simultaneously:</p>
+<ul>
+<li><strong><a href="https://ceoforumeurope.com/" target="_blank" rel="noopener noreferrer">CEO Forum Europe</a></strong> (Prague) — international summit for C-level executives.</li>
+<li><strong><a href="https://www.visionity.cz/" target="_blank" rel="noopener noreferrer">HR Visionity Day</a></strong> (Prague, CZK 1,500) — gathering for HR managers from small and mid-sized companies. Practical, intimate, on-topic.</li>
+<li><strong><a href="https://www.tuesday.cz/akce/hr-incomms-r-evoluce-2026/" target="_blank" rel="noopener noreferrer">HR &amp; InComms (R)Evoluce 2026</a></strong> (CZK 5,500) — connecting HR and internal communications. If you\u0027re figuring out how to communicate change inside your company, this is relevant.</li>
+<li><strong><a href="https://www.educity.cz/kurzy/konference-a-veletrhy-id-41/jak-ridit-firmu-skrze-lidi-id-4503877" target="_blank" rel="noopener noreferrer">Jak řídit firmu skrze lidi</a></strong> (Nové Město na Moravě, CZK 11,250 + VAT) — "How to manage a company through people." The name says it all.</li>
+</ul>
+<p>Yes, you\u0027ll have to choose. We know the feeling.</p>
+<p>Other March events worth noting:</p>
+<p><strong><a href="https://www.meetup.com/truesdays-regular-meetup-for-tech-startup-communitym-prague/" target="_blank" rel="noopener noreferrer">TRUESDAYS Prague</a></strong> (Mar 3, Prague, 80–150) — regular meetup for tech founders and leaders.</p>
+<p><strong>Global Investment Summit</strong> (Mar 4–5, Prague) — summit for investors and C-level. Hundreds of attendees, focused on investment, strategy, and growth.</p>
+<p><strong><a href="https://luma.com/lq71zrzz" target="_blank" rel="noopener noreferrer">Tech Execs Circle with Robert Batůšek</a></strong> (Mar 10, CZK 299) — intimate tech exec gathering. Low price, high value.</p>
+<p><strong><a href="https://www.retailsummit.cz/" target="_blank" rel="noopener noreferrer">Retail Summit</a></strong> (Mar 10–12, Prague Congress Centre, 1,200–1,500 people) — key conference for retail and e-commerce. C-level audience.</p>
+<p><strong><a href="https://hipther.com/events/prague-summit/" target="_blank" rel="noopener noreferrer">HIPTHER Prague Summit</a></strong> (Mar 24–25, Prague, 300–600) — technology summit for executives.</p>
+<p><strong><a href="https://forbes.cz/eventy/" target="_blank" rel="noopener noreferrer">Forbes Lepší Česko</a></strong> (Mar 25, Prague) — Forbes conference for top management. Leadership and business topics.</p>
+<p><strong><a href="https://www.epdcz.com/" target="_blank" rel="noopener noreferrer">Equal Pay Day 2026</a></strong> (Mar 26, Prague) — if you care about pay equity and diversity, don\u0027t skip this one.</p>
+
+<h2>April–May: Peak HR season</h2>
+<p>Spring is the critical period for the HR community. The concentration of quality events is at its highest and topics go deeper.</p>
+<p><strong><a href="https://www.brandstormingevent.cz/" target="_blank" rel="noopener noreferrer">BRANDstorming 2026</a></strong> (Apr 9, Prague) — building authentic brands. Relevant for anyone working on employer branding.</p>
+<p><strong><a href="https://www.peoplelab.cz/" target="_blank" rel="noopener noreferrer">HR &amp; BUSINESS SUMMIT 2026</a></strong> (Apr 23, České Budějovice) — conference for business owners and HR with a special focus on giving feedback. This is a topic we deal with daily at Behavera.</p>
+<p><strong><a href="https://www.tuesday.cz/akce/ai-transformace-2026/" target="_blank" rel="noopener noreferrer">AI transformace 2026</a></strong> (Apr 28, Prague) — how AI is changing business processes in practice.</p>
+<p><strong><a href="https://www.hrsummit.cz/" target="_blank" rel="noopener noreferrer">HR Summit 2026</a></strong> (May 19, CZK 9,890 + VAT) — theme: "HR in the Age of AI: Humanity, Innovation, and Sustainability." One of the biggest HR conferences in the Czech Republic. If you\u0027re picking one major HR event in the first half of the year, this is a strong candidate.</p>
+<p><strong><a href="https://www.ap-cr.cz/konference-hr-know-how/" target="_blank" rel="noopener noreferrer">HR Know How | HoRizont 2026</a></strong> (May 27, Prague Congress Centre, early bird CZK 9,900) — full-day conference on "The Human Factor in the Digital Age."</p>
+<p><strong><a href="https://webexpo.net/tickets/" target="_blank" rel="noopener noreferrer">WebExpo</a></strong> (May 27–29, early bird CZK 7,999) — web conference, but topics regularly include leadership, product management, and working with teams.</p>
+
+<h2>Summer and autumn: The home stretch</h2>
+<p><strong><a href="https://suhr.cz/konference/" target="_blank" rel="noopener noreferrer">SUHR Conference</a></strong> (Jun 4) — Czech HR Association conference.</p>
+<p><strong><a href="https://www.communicationsummit.cz/en/" target="_blank" rel="noopener noreferrer">Communication Summit</a></strong> (Jun 9, Prague, from CZK 8,900) — internal and external communication.</p>
+<p><strong><a href="https://www.firemnivzdelavani.eu/konference" target="_blank" rel="noopener noreferrer">LEARN &amp; DEV 2026</a></strong> (Jun 17, Prague) — corporate learning and people development.</p>
+<p><strong><a href="https://luma.com/a8qpl4p8" target="_blank" rel="noopener noreferrer">Tech Execs Meetup Brno</a></strong> (Jul 23, FREE) — summer meetup for tech execs in Brno. Free and informal.</p>
+<p><strong><a href="https://blf.cz/event/csr-europe-european-sustainable-industry-summit-2026/" target="_blank" rel="noopener noreferrer">CSR Europe: European Sustainable Industry Summit</a></strong> (Oct 13) — sustainability and responsible business at a European level.</p>
+<p><strong><a href="https://hrko.cz/" target="_blank" rel="noopener noreferrer">HRko</a></strong> (Oct 14, Ostrava, early bird CZK 4,949) — HR conference outside Prague. If you\u0027re from Moravia, this is a solid pick.</p>
+<p><strong><a href="https://www.evolvesummit.cz/" target="_blank" rel="noopener noreferrer">EVOLVE! Summit 2026</a></strong> (Nov 5, Brno) — we were there last year and <a href="/blog/evolve-summit-2025-behavera-report">wrote about it</a>. A festival, not a conference. The best HR event in Central Europe. We\u0027ll be there again.</p>
+<p><strong><a href="https://cfoforumeurope.com/" target="_blank" rel="noopener noreferrer">CFO Forum Europe</a></strong> (November, Prague) — "Redefining the CFO: Strategy Beyond the Balance Sheet."</p>
+
+<h2>Recurring: Inclusion as Opportunity</h2>
+<p>A special mention for the <strong><a href="https://www.arthur-hunt.cz/cs/events/inkluze-jako-prilezitost-1" target="_blank" rel="noopener noreferrer">Inkluze jako příležitost</a></strong> series by Arthur Hunt Group, running in Prague throughout the year (Mar 19, Apr 16, May 21, Jun 18, Oct 15). Diversity and inclusion directly affect how teams function.</p>
+
+<h2>Where you\u0027ll find us</h2>
+<p>We won\u0027t be at every event — that\u0027s not possible. But you\u0027ll definitely find us at some. So far we\u0027re planning:</p>
+<ul>
+<li><strong>HR &amp; BUSINESS SUMMIT</strong> in České Budějovice (Apr 23) — the feedback topic is our home turf</li>
+<li><strong>HR Summit 2026</strong> (May 19) — the big HR conference we want to be at</li>
+<li><strong>WebExpo</strong> (May 27–29) — the tech community we love</li>
+<li><strong>HRko</strong> in Ostrava (Oct 14) — an HR event in Moravia</li>
+<li><strong>EVOLVE! Summit 2026</strong> in Brno (Nov 5) — we have to be there</li>
+</ul>
+<p>We\u0027ll also attend smaller meetups throughout the year — HR Meetups Prague, Scaleup Night, and others. Follow our <a href="https://www.linkedin.com/company/behavera" target="_blank" rel="noopener noreferrer">LinkedIn</a> where we\u0027ll share where we\u0027re headed.</p>
+
+<h2>How to choose</h2>
+<p>A few criteria that help us pick:</p>
+<ul>
+<li><strong>Audience</strong> — who will be there? If you\u0027re looking for HR leaders, don\u0027t go to a pure tech event and vice versa.</li>
+<li><strong>Format</strong> — an intimate meetup for a few hundred CZK vs. a major conference for ten thousand. Both have value, but for different reasons.</li>
+<li><strong>Topic</strong> — general conferences have their place, but specialized events (feedback, inclusion, AI in HR) are often more valuable.</li>
+<li><strong>Networking</strong> — the most valuable conversations happen outside the lecture hall. Choose events where you\u0027ll have room to talk to people.</li>
+</ul>
+<p>One last tip: most conferences have early bird pricing. If you know you want to go, don\u0027t hesitate. You\u0027ll save money — and having the date in your calendar is often more than half the battle.</p>
+<p><strong>See you at one of them.</strong></p>
+`,
+    content_cz: `
+<p class="lead">Začátek roku je ideální čas podívat se na kalendář a vytipovat akce, které stojí za to. Prošli jsme nabídku konferencí, summitů a meetupů na rok 2026 a sestavili přehled těch, které nás jako tým Behavera zajímají — a kde doporučujeme být i Vám, pokud se pohybujete v HR, leadershipu nebo řídíte firmu.</p>
+<p>Nejde o vyčerpávající seznam všeho, co se v Česku koná. Je to náš subjektivní výběr — akce, které mají smysl pro lidi, kteří pracují s lidmi.</p>
+
+<h2>Únor–březen: Rozjezd sezóny</h2>
+<p>Rok odstartuje v plné rychlosti. Už v únoru je na výběr hned z několika zajímavých formátů.</p>
+<p><strong><a href="https://www.opero.cz/cs/akce/duetycz02" target="_blank" rel="noopener noreferrer">Duety: byznysový matchmaking</a></strong> (17. 2. a 3. 3., Praha, 1 490 Kč) — formát, kde se potkáte s konkrétními lidmi na konkrétní účel. Pokud hledáte partnery nebo zákazníky, je to efektivní.</p>
+<p><strong><a href="https://www.meetup.com/producttank-prague/" target="_blank" rel="noopener noreferrer">ProductTank Prague</a></strong> (19. 2., Praha, 60–120 lidí) — pravidelný meetup pro product lídry. Pokud vedete produktový tým, tohle je Vaše komunita.</p>
+<p><strong>Scaleup Night #3</strong> (25. 2., Praha, 80–150 lidí) — kurátorovaný meetup pro zakladatele a lídry scale-upů. Na programu Phonexia exit story a téma valuací. Pokud škálujete, stojí za to přijít.</p>
+<p><strong><a href="https://www.meetup.com/hr-meetups-prague/" target="_blank" rel="noopener noreferrer">HR Meetups Prague</a></strong> (25. 2., Praha, 60–120 lidí) — únorová edice zaměřená na imigraci. Praktický meetup pro HR lídry a People Ops.</p>
+<p><strong><a href="https://www.czechonlineexpo.cz/" target="_blank" rel="noopener noreferrer">Czech Online Expo</a></strong> (24.–26. 2., Praha, 5 000+ návštěvníků) — největší česká e-commerce konference. Pokud řídíte online byznys, je to povinná zastávka.</p>
+
+<h2>Březnový maraton: Pozor na 19. března</h2>
+<p>Březen je tradičně nejnabitější měsíc konferenční sezóny. A rok 2026 není výjimka — jen na <strong>19. března</strong> se koná hned několik akcí současně:</p>
+<ul>
+<li><strong><a href="https://ceoforumeurope.com/" target="_blank" rel="noopener noreferrer">CEO Forum Europe</a></strong> (Praha) — mezinárodní summit pro C-level. Pokud jste CEO nebo ve vedení firmy, tohle je Vaše liga.</li>
+<li><strong><a href="https://www.visionity.cz/" target="_blank" rel="noopener noreferrer">HR Visionity Day</a></strong> (Praha, 1 500 Kč) — setkání HR manažerů z malých a středních firem. Praktické, komorní, na téma.</li>
+<li><strong><a href="https://www.tuesday.cz/akce/hr-incomms-r-evoluce-2026/" target="_blank" rel="noopener noreferrer">HR &amp; InComms (R)Evoluce 2026</a></strong> (5 500 Kč) — konference propojující HR a interní komunikaci. Pokud řešíte, jak komunikovat změny dovnitř firmy, tohle je na místě.</li>
+<li><strong><a href="https://www.educity.cz/kurzy/konference-a-veletrhy-id-41/jak-ridit-firmu-skrze-lidi-id-4503877" target="_blank" rel="noopener noreferrer">Jak řídit firmu skrze lidi</a></strong> (Nové Město na Moravě, 11 250 Kč + DPH) — konference o tom, co nás v Behaveře zajímá nejvíc. Název mluví za vše.</li>
+</ul>
+<p>Ano, budete si muset vybrat. My to víme taky.</p>
+<p>Další březnové akce, které stojí za pozornost:</p>
+<p><strong><a href="https://www.meetup.com/truesdays-regular-meetup-for-tech-startup-communitym-prague/" target="_blank" rel="noopener noreferrer">TRUESDAYS Prague</a></strong> (3. 3., Praha, 80–150) — pravidelný meetup pro tech zakladatele a lídry. Dobré pro networking mimo konferenční formát.</p>
+<p><strong>Global Investment Summit</strong> (4.–5. 3., Praha) — summit pro investory a C-level. Stovky lidí, témata investic, strategie a růst.</p>
+<p><strong>Career Expo</strong> (4.–5. 3., O2 universum, Praha) — konference pro HR a lídry. Pokud nabíráte, stojí za návštěvu.</p>
+<p><strong><a href="https://luma.com/lq71zrzz" target="_blank" rel="noopener noreferrer">Tech Execs Circle s Robertem Batůškem</a></strong> (10. 3., 299 Kč) — komorní setkání tech execs. Nízká cena, vysoká hodnota, pokud je to Vaše bublina.</p>
+<p><strong><a href="https://www.retailsummit.cz/" target="_blank" rel="noopener noreferrer">Retail Summit</a></strong> (10.–12. 3., Kongresové centrum Praha, 1 200–1 500 lidí) — klíčová konference pro retail a e-commerce. C-level publikum.</p>
+<p><strong><a href="https://hipther.com/events/prague-summit/" target="_blank" rel="noopener noreferrer">HIPTHER Prague Summit</a></strong> (24.–25. 3., Praha, 300–600) — technologický summit pro executives.</p>
+<p><strong><a href="https://forbes.cz/eventy/" target="_blank" rel="noopener noreferrer">Forbes Lepší Česko</a></strong> (25. 3., Praha) — Forbes konference pro top management. Témata leadershipu a byznysu.</p>
+<p><strong><a href="https://www.epdcz.com/" target="_blank" rel="noopener noreferrer">Equal Pay Day 2026</a></strong> (26. 3., Praha) — pokud Vás zajímá férovost odměňování a diverzita, tohle je akce, kterou byste neměli přehlédnout.</p>
+
+<h2>Duben–květen: Hlavní HR sezóna</h2>
+<p>Jaro je pro HR komunitu klíčové období. Koncentrace kvalitních akcí je nejvyšší a témata se dostávají do hloubky.</p>
+<p><strong><a href="https://www.brandstormingevent.cz/" target="_blank" rel="noopener noreferrer">BRANDstorming 2026</a></strong> (9. 4., Praha) — konference o budování autentické značky. Relevantní pro každého, kdo řeší employer branding.</p>
+<p><strong><a href="https://www.peoplelab.cz/" target="_blank" rel="noopener noreferrer">HR &amp; BUSINESS SUMMIT 2026</a></strong> (23. 4., České Budějovice) — konference pro podnikatele a HR se speciálním tématem: jak dávat zpětnou vazbu. Tohle je téma, které v Behaveře řešíme denně — zpětná vazba a její vliv na fungování týmů.</p>
+<p><strong><a href="https://www.tuesday.cz/akce/ai-transformace-2026/" target="_blank" rel="noopener noreferrer">AI transformace 2026</a></strong> (28. 4., Praha) — jak AI mění firemní procesy. Pro každého, kdo chce vědět, kam se AI v byznysu reálně posouvá.</p>
+<p><strong><a href="https://www.hrsummit.cz/" target="_blank" rel="noopener noreferrer">HR Summit 2026</a></strong> (19. 5., 9 890 Kč + DPH) — téma „HR v éře AI: Lidskost, inovace a udržitelnost". Jedna z největších HR konferencí v Česku. Pokud si máte vybrat jednu velkou HR akci v první polovině roku, tohle je silný kandidát.</p>
+<p><strong><a href="https://www.ap-cr.cz/konference-hr-know-how/" target="_blank" rel="noopener noreferrer">HR Know How | HoRizont 2026</a></strong> (27. 5., Kongresové centrum Praha, early bird 9 900 Kč bez DPH) — celodenní konference na téma „Lidský faktor v digitálním věku". Pořádá Asociace provozovatelů kontaktních center, ale témata sahají daleko za kontaktní centra.</p>
+<p><strong><a href="https://webexpo.net/tickets/" target="_blank" rel="noopener noreferrer">WebExpo</a></strong> (27.–29. 5., early bird 7 999 Kč) — webová a tech konference, ale témata pravidelně zahrnují leadership, produktový management a práci s týmy. Pokud jste z tech prostředí, pravděpodobně to znáte.</p>
+
+<h2>Léto a podzim: Finišová rovinka</h2>
+<p><strong><a href="https://suhr.cz/konference/" target="_blank" rel="noopener noreferrer">SUHR konference</a></strong> (4. 6.) — konference Sdružení úřadů HR. Pokud se pohybujete ve veřejném sektoru nebo Vás zajímá HR z institucionálního pohledu.</p>
+<p><strong><a href="https://www.communicationsummit.cz/en/" target="_blank" rel="noopener noreferrer">Communication Summit</a></strong> (9. 6., Praha, od 8 900 Kč) — konference o komunikaci — interní i externí. Pokud řešíte, jak mluvit se zaměstnanci i se světem venku.</p>
+<p><strong><a href="https://www.firemnivzdelavani.eu/konference" target="_blank" rel="noopener noreferrer">Konference LEARN &amp; DEV 2026</a></strong> (17. 6., Praha) — pro ty, kdo se zabývají firemním vzděláváním a rozvojem lidí.</p>
+<p><strong><a href="https://luma.com/a8qpl4p8" target="_blank" rel="noopener noreferrer">Tech Execs Meetup Brno</a></strong> (23. 7., ZDARMA) — letní meetup pro tech execs v Brně. Zdarma a neformální — přesně tak, jak má léto vypadat.</p>
+<p><strong><a href="https://blf.cz/event/csr-europe-european-sustainable-industry-summit-2026/" target="_blank" rel="noopener noreferrer">CSR Europe: European Sustainable Industry Summit</a></strong> (13. 10.) — udržitelnost a odpovědné podnikání na evropské úrovni.</p>
+<p><strong><a href="https://hrko.cz/" target="_blank" rel="noopener noreferrer">HRko</a></strong> (14. 10., Ostrava, early bird 4 949 Kč bez DPH) — HR konference mimo Prahu. Pokud jste z Moravy nebo prostě chcete konferenční zážitek bez pražského shonu, je to dobrá volba.</p>
+<p><strong><a href="https://www.evolvesummit.cz/" target="_blank" rel="noopener noreferrer">EVOLVE! Summit 2026</a></strong> (5. 11., Brno) — loni jsme tam byli a <a href="/blog/evolve-summit-2025-behavera-report">psali jsme o tom</a>. Festival, ne konference. Podle nás nejlepší HR event ve střední Evropě — a nemáme důvod měnit názor. Letos tam budeme znovu.</p>
+<p><strong><a href="https://cfoforumeurope.com/" target="_blank" rel="noopener noreferrer">CFO Forum Europe</a></strong> (listopad, Praha) — „Redefining the CFO: Strategy Beyond the Balance Sheet". Pokud jste CFO nebo finanční ředitel, který chce přemýšlet nad rámec čísel.</p>
+
+<h2>Průběžně: Série Inkluze jako příležitost</h2>
+<p>Zvlášť chceme zmínit sérii <strong><a href="https://www.arthur-hunt.cz/cs/events/inkluze-jako-prilezitost-1" target="_blank" rel="noopener noreferrer">Inkluze jako příležitost</a></strong> od Arthur Hunt Group, která probíhá v Praze po celý rok (19. 3., 16. 4., 21. 5., 18. 6. a 15. 10.). Diverzita a inkluze nejsou módní slova — jsou to témata, která přímo ovlivňují fungování týmů.</p>
+
+<h2>Kde nás najdete</h2>
+<p>Nebudeme na všech akcích — to ani nejde. Ale na některých nás určitě potkáte. Zatím plánujeme:</p>
+<ul>
+<li><strong>HR &amp; BUSINESS SUMMIT</strong> v Českých Budějovicích (23. 4.) — téma zpětné vazby je naše parketa</li>
+<li><strong>HR Summit 2026</strong> (19. 5.) — velká HR konference, kde chceme být</li>
+<li><strong>WebExpo</strong> (27.–29. 5.) — tech komunita, kterou máme rádi</li>
+<li><strong>HRko</strong> v Ostravě (14. 10.) — HR akce na Moravě, to se nesmí vynechat</li>
+<li><strong>EVOLVE! Summit 2026</strong> v Brně (5. 11.) — tady být musíme</li>
+</ul>
+<p>Průběžně budeme chodit i na menší meetupy — HR Meetups Prague, Scaleup Night a další. Sledujte náš <a href="https://www.linkedin.com/company/behavera" target="_blank" rel="noopener noreferrer">LinkedIn</a>, kde budeme dopředu sdílet, kam jdeme.</p>
+
+<h2>Jak si vybrat</h2>
+<p>Z přehledu výše je jasné, že akcí je hodně. Pár kritérií, která nám pomáhají při výběru:</p>
+<ul>
+<li><strong>Publikum</strong> — kdo tam bude? Pokud hledáte HR lídry, nechoďte na čistě tech akce a naopak.</li>
+<li><strong>Formát</strong> — komorní meetup za pár stovek vs. velká konference za deset tisíc. Obojí má smysl, ale z jiného důvodu.</li>
+<li><strong>Téma</strong> — obecné konference mají své místo, ale specializované akce (zpětná vazba, inkluze, AI v HR) bývají cennější.</li>
+<li><strong>Networking</strong> — nejcennější rozhovory probíhají mimo přednáškový sál. Vybírejte akce, kde budete mít prostor mluvit s lidmi.</li>
+</ul>
+<p>A jeden tip na závěr: většina konferencí má early bird ceny. Pokud už víte, že chcete jít, neváhejte. Ušetříte — a budete mít datum v kalendáři, což je často víc než polovina úspěchu.</p>
+<p><strong>Uvidíme se na některé z nich.</strong></p>
+`,
+    coverImage: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=1200',
+    author: BLOG_AUTHORS[2],
+    publishedAt: '2026-01-06T00:00:00.000Z',
+    tags: ['Events'],
+    status: 'published' as const,
+  },
+
 ];
