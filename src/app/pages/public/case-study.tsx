@@ -33,6 +33,7 @@ export function CaseStudyPage() {
     title: seoTitle,
     description: seoDescription,
     ogType: 'article',
+    ogImage: study?.coverImage,
     canonicalUrl: slug ? `${SITE_ORIGIN}/case-studies/${slug}` : undefined,
   });
 
