@@ -31,6 +31,10 @@ const CaseStudiesSection = lazyNamed(
   () => import("@/app/components/sections/case-studies"),
   "CaseStudiesSection"
 );
+const BlogFeedSection = lazyNamed(
+  () => import("@/app/components/sections/blog-feed"),
+  "BlogFeedSection"
+);
 const AboutUnfoldSection = lazyNamed(
   () => import("@/app/components/sections/about-unfold"),
   "AboutUnfoldSection"
@@ -109,7 +113,11 @@ export function LandingPage() {
     const shouldOpenAbout = params.get('open') === HOME_SECTION_IDS.about || target === HOME_SECTION_IDS.about;
 
     if (target || shouldOpenAbout) {
-      window.history.replaceState({}, '', '/');
+      const next = new URL(window.location.href);
+      next.searchParams.delete('scroll');
+      next.searchParams.delete('open');
+      window.history.replaceState({}, '', next.pathname + next.search + next.hash);
+
       // Small delay to let lazy sections render.
       setTimeout(() => {
         if (target && target !== HOME_SECTION_IDS.about) {
@@ -193,7 +201,12 @@ export function LandingPage() {
           <CaseStudiesSection />
         </LazySection>
 
-        {/* 6b. ABOUT — unfold on demand */}
+        {/* 6b. BLOG — unfold cards + modal read */}
+        <LazySection>
+          <BlogFeedSection />
+        </LazySection>
+
+        {/* 6c. ABOUT — unfold on demand */}
         <LazySection>
           <AboutUnfoldSection />
         </LazySection>

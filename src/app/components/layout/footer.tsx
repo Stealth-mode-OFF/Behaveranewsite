@@ -96,21 +96,21 @@ export function Footer() {
   const companyLinks = {
     cz: [
       { label: "O nás", href: aboutHref },
-      { label: "Případové studie", href: ROUTES.caseStudies },
-      { label: "Blog", href: ROUTES.blog },
-      { label: "Changelog", href: ROUTES.changelog },
+      { label: "Případové studie", href: anchor(HOME_SECTION_IDS.caseStudies) },
+      { label: "Blog", href: anchor(HOME_SECTION_IDS.blog) },
+      { label: "Changelog", href: anchor(HOME_SECTION_IDS.blog) },
     ],
     en: [
       { label: "About", href: aboutHref },
-      { label: "Case Studies", href: ROUTES.caseStudies },
-      { label: "Blog", href: ROUTES.blog },
-      { label: "Changelog", href: ROUTES.changelog },
+      { label: "Case Studies", href: anchor(HOME_SECTION_IDS.caseStudies) },
+      { label: "Blog", href: anchor(HOME_SECTION_IDS.blog) },
+      { label: "Changelog", href: anchor(HOME_SECTION_IDS.blog) },
     ],
     de: [
       { label: "Über uns", href: aboutHref },
-      { label: "Fallstudien", href: ROUTES.caseStudies },
-      { label: "Blog", href: ROUTES.blog },
-      { label: "Changelog", href: ROUTES.changelog },
+      { label: "Fallstudien", href: anchor(HOME_SECTION_IDS.caseStudies) },
+      { label: "Blog", href: anchor(HOME_SECTION_IDS.blog) },
+      { label: "Changelog", href: anchor(HOME_SECTION_IDS.blog) },
     ],
   };
 

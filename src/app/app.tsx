@@ -1,5 +1,5 @@
 import { Component, Suspense, lazy, type ErrorInfo, type ReactNode } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { LanguageProvider } from "./contexts/language-context";
 import { ModalProvider } from "./contexts/modal-context";
 import { AuthProvider } from "@/lib/auth-context";
@@ -22,35 +22,14 @@ const TermsPage = lazy(() =>
 const PrivacyPolicyPage = lazy(() =>
   import("./pages/public/privacy-policy").then((module) => ({ default: module.PrivacyPolicyPage }))
 );
-const BlogPage = lazy(() =>
-  import("./pages/public/blog").then((module) => ({ default: module.BlogPage }))
-);
-const BlogPostPage = lazy(() =>
-  import("./pages/public/blog-post").then((module) => ({ default: module.BlogPostPage }))
-);
-const CaseStudiesPage = lazy(() =>
-  import("./pages/public/case-studies").then((module) => ({ default: module.CaseStudiesPage }))
-);
-const CaseStudyPage = lazy(() =>
-  import("./pages/public/case-study").then((module) => ({ default: module.CaseStudyPage }))
-);
 const NotFoundPage = lazy(() =>
   import("./pages/public/not-found").then((module) => ({ default: module.NotFoundPage }))
-);
-const ChangelogPage = lazy(() =>
-  import("./pages/public/changelog").then((module) => ({ default: module.ChangelogPage }))
-);
-const TeamPage = lazy(() =>
-  import("./pages/public/team").then((module) => ({ default: module.TeamPage }))
 );
 const ComparisonGoogleFormsPage = lazy(() =>
   import("./pages/public/comparison-google-forms").then((module) => ({ default: module.ComparisonGoogleFormsPage }))
 );
 const SolutionPage = lazy(() =>
   import("./pages/public/solution").then((module) => ({ default: module.SolutionPage }))
-);
-const OnboardingPage = lazy(() =>
-  import("./pages/public/onboarding").then((module) => ({ default: module.OnboardingPage }))
 );
 const NonprofitPage = lazy(() =>
   import("./pages/public/nonprofit").then((module) => ({ default: module.NonprofitPage }))
@@ -127,13 +106,13 @@ function App() {
                     <Route path="/terms" element={<TermsPage />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/blog/:slug" element={<BlogPostPage />} />
+                    <Route path="/blog" element={<Navigate to="/?scroll=blog" replace />} />
+                    <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
 
-                    <Route path="/case-studies" element={<CaseStudiesPage />} />
-                    <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
-                    <Route path="/changelog" element={<ChangelogPage />} />
-                    <Route path="/team" element={<TeamPage />} />
+                    <Route path="/case-studies" element={<Navigate to="/?scroll=case-studies" replace />} />
+                    <Route path="/case-studies/:slug" element={<LegacyCaseStudyRedirect />} />
+                    <Route path="/changelog" element={<Navigate to="/?scroll=blog" replace />} />
+                    <Route path="/team" element={<Navigate to="/?scroll=about&open=about" replace />} />
 
                     {/* Comparison SEO landing pages */}
                     <Route path="/echo-pulse-vs-google-forms" element={<ComparisonGoogleFormsPage />} />
@@ -144,7 +123,7 @@ function App() {
                     <Route path="/for-team-leads" element={<SolutionPage />} />
 
                     {/* Self-service Sign Up */}
-                    <Route path="/start" element={<OnboardingPage />} />
+                    <Route path="/start" element={<Navigate to="/?signup=1" replace />} />
                     <Route path="/signup" element={<Navigate to="/?signup=1" replace />} />
 
                     {/* Marketing short-links */}
@@ -177,7 +156,7 @@ function App() {
                   </Routes>
                 </Suspense>
                 <Toaster position="top-center" richColors />
-                {/* Global modal layer so CTAs work from every route, including /blog/* */}
+                {/* Global modal layer so CTAs work from every route in one-page mode */}
                 <BookingModal />
                 <DemoAccessModal />
                 <SignupModal />
@@ -202,4 +181,20 @@ function PageLoader() {
       Loading…
     </div>
   );
+}
+
+function LegacyBlogRedirect() {
+  const { slug } = useParams();
+  if (!slug) {
+    return <Navigate to="/?scroll=blog" replace />;
+  }
+  return <Navigate to={`/?scroll=blog&post=${encodeURIComponent(slug)}`} replace />;
+}
+
+function LegacyCaseStudyRedirect() {
+  const { slug } = useParams();
+  if (!slug) {
+    return <Navigate to="/?scroll=case-studies" replace />;
+  }
+  return <Navigate to={`/?scroll=case-studies&case=${encodeURIComponent(slug)}`} replace />;
 }

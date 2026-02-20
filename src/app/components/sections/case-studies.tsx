@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, Building2, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Quote, TrendingUp } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowRight, Building2, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Quote, TrendingUp, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
+import { sanitizeHtml } from "@/lib/sanitize";
 import { useLanguage } from "@/app/contexts/language-context";
+import { HOME_SECTION_IDS } from "@/app/config/routes";
 import { cn } from "@/app/components/ui/utils";
 
 // Logo imports
@@ -67,6 +68,7 @@ export function CaseStudiesSection() {
   const [loading, setLoading] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedCaseSlug, setSelectedCaseSlug] = useState<string | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
 
@@ -119,6 +121,51 @@ export function CaseStudiesSection() {
 
   const t = texts[language] || texts.en;
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('case');
+    if (slug) {
+      setSelectedCaseSlug(slug);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCaseSlug) return;
+
+    const onEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeCaseModal();
+      }
+    };
+
+    document.addEventListener('keydown', onEsc);
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.removeEventListener('keydown', onEsc);
+      document.body.style.overflow = '';
+    };
+  }, [selectedCaseSlug]);
+
+  const selectedStudy = useMemo(
+    () => studies.find((study) => study.slug === selectedCaseSlug) || null,
+    [studies, selectedCaseSlug]
+  );
+
+  const openCaseModal = (slug: string) => {
+    setSelectedCaseSlug(slug);
+    const next = new URL(window.location.href);
+    next.searchParams.set('case', slug);
+    window.history.pushState({}, '', next.toString());
+  };
+
+  const closeCaseModal = () => {
+    setSelectedCaseSlug(null);
+    const next = new URL(window.location.href);
+    next.searchParams.delete('case');
+    window.history.replaceState({}, '', next.toString());
+  };
+
   const visibleStudies = isExpanded ? studies : studies.slice(0, 3);
   const hasMoreStudies = studies.length > 3;
 
@@ -135,7 +182,7 @@ export function CaseStudiesSection() {
 
   if (loading) {
     return (
-      <section className="section-spacing bg-white" id="case-studies">
+      <section className="section-spacing bg-white" id={HOME_SECTION_IDS.caseStudies}>
         <div className="container-default">
           <div className="animate-pulse">
             <div className="h-10 bg-brand-border rounded w-64 mb-4 mx-auto" />
@@ -154,7 +201,7 @@ export function CaseStudiesSection() {
   if (studies.length === 0) return null;
 
   return (
-    <section className="section-spacing bg-white" id="case-studies">
+    <section className="section-spacing bg-white" id={HOME_SECTION_IDS.caseStudies}>
       <div className="container-default max-w-[1200px]">
         
         {/* Header */}
@@ -204,7 +251,7 @@ export function CaseStudiesSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} isMobile language={language} />
+                <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} isMobile language={language} onOpenCase={openCaseModal} />
               </motion.div>
             ))}
           </div>
@@ -263,7 +310,7 @@ export function CaseStudiesSection() {
                   exit={{ opacity: 0, y: -20, scale: 0.9 }}
                   transition={{ duration: 0.4, delay: index < 3 ? index * 0.1 : (index - 3) * 0.1 + 0.1, layout: { duration: 0.3 } }}
                 >
-                  <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} language={language} />
+                  <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} language={language} onOpenCase={openCaseModal} />
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -298,6 +345,16 @@ export function CaseStudiesSection() {
           )}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedStudy && (
+          <CaseStudyQuickViewModal
+            study={selectedStudy}
+            language={language}
+            onClose={closeCaseModal}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -311,6 +368,7 @@ type FlipCardProps = {
   index: number;
   isMobile?: boolean;
   language: string;
+  onOpenCase: (slug: string) => void;
 };
 
 const gradients = [
@@ -325,17 +383,10 @@ const accentDots = [
   "bg-amber-500",
 ];
 
-const tagColors = [
-  "bg-violet-100 text-violet-700 border-violet-200",
-  "bg-blue-100 text-blue-700 border-blue-200",
-  "bg-amber-100 text-amber-700 border-amber-200",
-];
-
-function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: FlipCardProps) {
+function FlipCard({ study, readMoreText, flipHint, index, isMobile, language, onOpenCase }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const gradient = gradients[index % gradients.length];
   const accentDot = accentDots[index % accentDots.length];
-  const tagColor = tagColors[index % tagColors.length];
   const logo = LOGO_MAP[study.clientName];
 
   return (
@@ -485,9 +536,12 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             </div>
 
             {/* CTA */}
-            <Link
-              to={`/case-studies/${study.slug}`}
-              onClick={(e) => e.stopPropagation()}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenCase(study.slug);
+              }}
               className={cn(
                 "relative z-10 flex items-center justify-center gap-2 py-2.5 mt-3 rounded-xl text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg hover:scale-[1.02] bg-gradient-to-r",
                 gradient
@@ -495,10 +549,107 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             >
               {readMoreText}
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function loc<T>(language: string, cz: T | undefined, fallback: T): T {
+  return language === 'cz' && cz ? cz : fallback;
+}
+
+function CaseStudyQuickViewModal({
+  study,
+  language,
+  onClose,
+}: {
+  study: CaseStudy;
+  language: string;
+  onClose: () => void;
+}) {
+  const title = loc(language, study.title_cz, study.title);
+  const challenge = loc(language, study.challenge_cz, study.challenge);
+  const solution = loc(language, study.solution_cz, study.solution);
+  const industry = loc(language, study.industry_cz, study.industry);
+  const results = loc(language, study.results_cz, study.results);
+  const content = sanitizeHtml(loc(language, study.content_cz, study.content));
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[9999] p-3 sm:p-6 flex items-center justify-center"
+      onClick={onClose}
+    >
+      <div className="absolute inset-0 bg-[#090312]/72 backdrop-blur-md" />
+
+      <motion.div
+        initial={{ opacity: 0, y: 22, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.97 }}
+        transition={{ duration: 0.34, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full max-w-[1120px] h-[min(92vh,940px)] overflow-hidden rounded-2xl border border-white/15 bg-white shadow-[0_45px_120px_-45px_rgba(42,18,85,0.85)]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute top-3 right-3 z-20 inline-flex items-center justify-center w-9 h-9 rounded-full bg-white text-brand-text-primary border border-brand-border hover:border-brand-primary/40 hover:text-brand-primary transition-colors"
+          aria-label="Close"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        <div className="h-full overflow-y-auto">
+          {study.coverImage && (
+            <div className="h-[240px] md:h-[320px] overflow-hidden">
+              <img src={study.coverImage} alt={study.clientName} className="w-full h-full object-cover" />
+            </div>
+          )}
+
+          <div className="max-w-4xl mx-auto p-6 md:p-9">
+            <div className="mb-5">
+              <div className="inline-flex items-center gap-2 text-xs font-semibold text-brand-primary uppercase tracking-[0.12em] mb-2">
+                <span>{study.clientName}</span>
+                <span className="text-brand-text-muted">•</span>
+                <span className="text-brand-text-muted">{industry}</span>
+              </div>
+              <h3 className="text-2xl md:text-4xl font-bold text-brand-text-primary leading-tight">{title}</h3>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-3 mb-8">
+              {results.map((res, idx) => (
+                <div key={idx} className="rounded-xl border border-brand-border/60 bg-brand-background-secondary/40 p-3.5">
+                  <div className="text-2xl font-bold text-brand-primary leading-none mb-1">{res.value}</div>
+                  <div className="text-xs text-brand-text-muted uppercase tracking-[0.08em]">{res.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-5 mb-8">
+              <div className="rounded-xl border border-brand-border/60 bg-white p-4">
+                <div className="text-xs uppercase tracking-[0.12em] text-brand-text-muted font-semibold mb-2">
+                  {language === 'cz' ? 'Výzva' : language === 'de' ? 'Herausforderung' : 'Challenge'}
+                </div>
+                <p className="text-sm text-brand-text-secondary leading-relaxed">{challenge}</p>
+              </div>
+              <div className="rounded-xl border border-brand-border/60 bg-white p-4">
+                <div className="text-xs uppercase tracking-[0.12em] text-brand-text-muted font-semibold mb-2">
+                  {language === 'cz' ? 'Řešení' : language === 'de' ? 'Lösung' : 'Solution'}
+                </div>
+                <p className="text-sm text-brand-text-secondary leading-relaxed">{solution}</p>
+              </div>
+            </div>
+
+            <div className="case-study-content prose prose-lg prose-violet max-w-none text-brand-text-secondary" dangerouslySetInnerHTML={{ __html: content }} />
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
