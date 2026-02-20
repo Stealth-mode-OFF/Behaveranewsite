@@ -1307,19 +1307,19 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'EVOLVE! Summit 2025: Where HR Meets the Future',
     title_cz: 'EVOLVE! Summit 2025: Jak jsme jako Behavera zažili největší HR festival ve střední Evropě',
     slug: 'evolve-summit-2025-behavera-report',
-    excerpt: 'In November 2025, we attended the EVOLVE! Summit in Brno — the biggest HR & Talent Acquisition festival in Europe. Keynote speaker Greg Savage, live music, powerful networking, and honest conversations about the future of HR and AI. Here\u0027s our report from the event...',
-    excerpt_cz: 'V listopadu 2025 jsme se vydali do brněnského SONO Centra na EVOLVE! Summit — největší HR a recruitment festival v Evropě. Keynote speaker Greg Savage, živá hudba, silný networking a upřímné rozhovory o budoucnosti HR a AI. Přinášíme Vám krátkou reportáž...',
+    excerpt: 'In November 2025, we attended the EVOLVE! Summit in Brno — one of the biggest HR & recruitment events in Central Europe. Greg Savage on stage, solid networking, and honest conversations about the future of HR and AI. Here\u0027s our report from the event...',
+    excerpt_cz: 'V listopadu 2025 jsme se vydali do brněnského SONO Centra na EVOLVE! Summit — jeden z největších HR a recruitment eventů ve střední Evropě. Greg Savage na pódiu, solidní networking a upřímné rozhovory o budoucnosti HR a AI. Přinášíme krátkou reportáž...',
     content: `
-<p class="lead"><strong>In November 2025, our Behavera team traveled to Brno</strong> for the EVOLVE! Summit — the largest HR and talent acquisition festival in Central Europe. For us, it wasn't just another conference. It was a chance to reconnect with our customers, meet key partners face-to-face, and hear firsthand what's truly keeping HR leaders up at night.</p>
-<p>Held at the iconic SONO Centrum in the heart of Brno, the event brought together hundreds of HR professionals, recruiters, people & culture leaders, and technology innovators. <strong>The energy was electric from the very first moment.</strong></p>
+<p class="lead"><strong>In November 2025, our Behavera team traveled to Brno</strong> for the EVOLVE! Summit — one of the biggest HR and recruitment events in Central Europe. For us, it wasn't just another conference — we wanted to reconnect with customers, meet partners face-to-face, and hear firsthand what's keeping HR leaders up at night.</p>
+<p>Held at SONO Centrum in Brno, the event brought together hundreds of HR professionals, recruiters, people & culture leaders, and technology providers.</p>
 
 <h2>Greg Savage and world-class speakers</h2>
-<p>The main stage opened with <strong>keynote speaker Greg Savage</strong> — one of the top 20 HR leaders worldwide and founder of The Savage Recruitment Academy. His talk reminded every person in the room why the human element in recruitment can never be replaced, no matter how powerful AI becomes.</p>
+<p>The main stage opened with <strong>keynote speaker Greg Savage</strong> — an internationally recognized recruitment thought leader and founder of The Savage Recruitment Academy. His talk was a good reminder that the human element in recruitment isn't going away, no matter how powerful AI gets.</p>
 <p>The speaker lineup was equally impressive: Johnny Campbell (CEO of SocialTalent), Bill Boorman, Ivana Brutenic, Mick Griffin, and over 20 other thought leaders from across Europe. Topics ranged from employer branding and social recruiting to leadership development and the psychology of workplace culture.</p>
 <p><em>The presentations weren't the usual corporate slides and rehearsed scripts.</em> They were honest, sometimes raw conversations about the real challenges HR teams face every day.</p>
 
 <h2>Networking that actually matters</h2>
-<p>If you've ever been to EVOLVE!, you know their networking sessions are legendary. Lucie Halušková, the summit's dedicated "Networking Pro," made sure <strong>nobody stood alone in a corner</strong>. From structured speed-networking rounds to relaxed conversations over coffee, the connections formed here were genuine and valuable.</p>
+<p>If you've ever been to EVOLVE!, you know their networking sessions are well organized. Lucie Halušková, the summit's dedicated "Networking Pro," made sure <strong>nobody stood alone in a corner</strong>. From structured speed-networking rounds to relaxed conversations over coffee, the conversations here had a different quality — more honest, less guarded.</p>
 <p>For us at Behavera, this was the highlight. We reconnected with existing customers — HR directors and people & culture managers from companies we work with daily. But hearing their challenges in person, away from emails and dashboards, gave us a completely different perspective.</p>
 <p><em>What surprised us most</em> was how consistent the themes were across industries: employee engagement remains the top priority, followed closely by retention and meaningful use of data in people decisions.</p>
 
@@ -1330,7 +1330,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Live music and the EVOLVE! atmosphere</h2>
 <p>One thing that sets EVOLVE! Summit apart from any other HR conference is the atmosphere. The organizers — Michal Toman and Vladimír Klescht from Engage Advisory — have built something that feels more like a festival than a corporate event.</p>
-<p><strong>The live music was phenomenal.</strong> Between sessions, the SONO Centrum transformed into a live venue with performances that kept the energy high and created the perfect backdrop for deeper conversations. Add stand-up comedy from Jiří Charvát and expert moderation by Veronika Prášková, Petr Skondrojanis, and Eva Vacíková — and you get an event that engages both your mind and your soul.</p>
+<p><strong>The live music was a nice touch.</strong> Between sessions, the SONO Centrum transformed into a live venue with performances that kept the energy high and created the perfect backdrop for deeper conversations. Add stand-up comedy from Jiří Charvát and expert moderation by Veronika Prášková, Petr Skondrojanis, and Eva Vacíková — and you get an event that engages both your mind and your soul.</p>
 
 <h2>What our customers told us</h2>
 <p>The most valuable part of any conference isn't what's on stage — it's the conversations that happen between sessions. <strong>We sat down with dozens of partners and customers</strong> and listened. Here's what we heard most often:</p>
@@ -1340,20 +1340,20 @@ export const BLOG_POSTS: BlogPost[] = [
 <li>Employer branding is no longer optional — it's survival</li>
 <li>AI adoption in HR is accelerating, but trust and transparency are non-negotiable</li>
 </ul>
-<p><em>Every single one of these points</em> reinforced why we built Behavera the way we did — and gave us clear direction for what to build next.</p>
+<p><em>These conversations</em> gave us useful perspective on where people analytics is heading — and where there's still room to improve.</p>
 
 <h2>Takeaways</h2>
 <ul>
-<li>The EVOLVE! Summit is more than a conference — it's where the Central European HR community comes together to shape the future.</li>
-<li>AI in HR is no longer theoretical — it's practical, and the best companies are already using it wisely.</li>
+<li>The EVOLVE! Summit is more than a conference — it's a solid gathering point for the Central European HR community.</li>
+<li>AI in HR is moving from theory to practice — more companies are experimenting, though few have it fully figured out.</li>
 <li>Face-to-face networking remains irreplaceable, especially for understanding real customer needs.</li>
 <li>If you work in HR or talent acquisition, mark your calendar: the next EVOLVE! Summit is on <strong>5 November 2026</strong>.</li>
 </ul>
 <p><em>See you in Brno!</em></p>
 `,
     content_cz: `
-<p class="lead"><strong>V listopadu 2025 jsme se jako tým Behavera vydali do Brna</strong> na EVOLVE! Summit — největší HR a talent acquisition festival ve střední Evropě. Nebyla to pro nás jen další konference. Byla to příležitost setkat se osobně s našimi zákazníky, klíčovými partnery a na vlastní uši slyšet, co HR lídry v Česku a na Slovensku skutečně trápí.</p>
-<p>Konference proběhla v ikonickém SONO Centru v srdci Brna a přilákala stovky HR profesionálů, recruiterů, people & culture lídrů a technologických inovátorů. <strong>Energie byla od prvního okamžiku elektrizující.</strong></p>
+<p class="lead"><strong>V listopadu 2025 jsme se jako tým Behavera vydali do Brna</strong> na EVOLVE! Summit — jeden z největších HR a recruitment eventů ve střední Evropě. Nebyla to pro nás jen další konference — chtěli jsme se osobně potkat se zákazníky i partnery a slyšet na vlastní uši, co HR lídry v Česku a na Slovensku trápí.</p>
+<p>Konference proběhla v SONO Centru v Brně a přilákala stovky HR profesionálů, recruiterů a people & culture lídrů.</p>
 
 <h2>Greg Savage a světová liga speakerů</h2>
 <p>Hlavní stage zahájil <strong>keynote speaker Greg Savage</strong> — jeden z 20 nejvlivnějších HR lídrů na světě a zakladatel The Savage Recruitment Academy. Jeho přednáška připomněla všem přítomným, proč lidský prvek v náboru nemůže být nikdy nahrazen, bez ohledu na to, jak mocná se umělá inteligence stane.</p>
@@ -1373,7 +1373,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Živá hudba a atmosféra, jakou jinde nezažijete</h2>
 <p>Jedna věc, kterou se EVOLVE! Summit odlišuje od jakékoli jiné HR konference, je atmosféra. Organizátoři — Michal Toman a Vladimír Klescht z Engage Advisory — vybudovali něco, co se cítí víc jako festival než firemní akce.</p>
-<p><strong>Živá hudba byla fenomenální.</strong> Mezi bloky přednášek se SONO Centrum proměnilo v živý koncertní prostor s energií, která udržovala celý den v tempu a vytvářela ideální kulisy pro hlubší rozhovory. Přidejte stand-up comedy Jiřího Charváta a expertní moderování Veroniky Práškové, Petra Skondroanise a Evy Vacíkové — a dostanete akci, která zapojí hlavu i srdce.</p>
+<p><strong>Živá hudba příjemně zpestřila den.</strong> Mezi bloky přednášek se SONO Centrum proměnilo v živý koncertní prostor, který udržoval celý den v tempu a vytvářel příjemné kulisy pro hlubší rozhovory. Přidejte stand-up comedy Jiřího Charváta a moderování Veroniky Práškové, Petra Skondroanise a Evy Vacíkové — a dostanete akci, kde se dalo i trochu vydechnout.</p>
 
 <h2>Co nám řekli naši zákazníci</h2>
 <p>Nejcennější část každé konference není to, co zaznívá na pódiu — jsou to rozhovory, které probíhají mezi přednáškami. <strong>Posadili jsme se s desítkami partnerů a zákazníků</strong> a naslouchali. Tady je to, co jsme slyšeli nejčastěji:</p>
@@ -1383,12 +1383,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <li><strong>Employer branding</strong> už není volitelný — je to otázka přežití</li>
 <li><strong>Adopce AI v HR</strong> se zrychluje, ale důvěra a transparentnost jsou nepřekročitelné</li>
 </ul>
-<p><em>Každý jediný z těchto bodů</em> potvrdil, proč jsme Behaveru vybudovali tak, jak jsme ji vybudovali — a dal nám jasný směr, co budovat dál.</p>
+<p><em>Tyto rozhovory</em> nám daly užitečný pohled na to, kam se people analytics ubírá — a kde ještě vidíme prostor ke zlepšení.</p>
 
 <h2>Co si z toho odnést</h2>
 <ul>
-<li>EVOLVE! Summit je víc než konference — je to místo, kde se středoevropská HR komunita schází, aby formovala budoucnost.</li>
-<li>AI v HR už není teorie — je to praxe a nejlepší firmy ji už využívají chytře.</li>
+<li>EVOLVE! Summit je víc než konference — je to solidní místo, kde se středoevropská HR komunita potkává.</li>
+<li>AI v HR se posouvá od teorie k praxi — víc firem experimentuje, i když málokdo to má plně vyřešené.</li>
 <li>Osobní networking je nenahraditelný, zejména pro pochopení skutečných potřeb zákazníků.</li>
 <li>Pokud pracujete v HR nebo talent acquisition, poznamenejte si datum: další EVOLVE! Summit se koná <strong>5. listopadu 2026</strong>.</li>
 </ul>
@@ -1421,21 +1421,21 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>What manufacturing HR leaders actually told us</h2>
 <p>We spent four days walking the exhibition halls, but the best conversations happened at the coffee stands and in the quiet corners between pavilions. <strong>Here\u0027s what we heard most often:</strong></p>
 <ul>
-<li>"We lose 30–40% of new hires within the first 6 months — and we have no idea why."</li>
+<li>"About one in five new hires walks out within six months — and we don't really know why."</li>
 <li>"Our people don\u0027t have corporate email. How are we supposed to survey them?"</li>
 <li>"Turnover costs us more than any machine upgrade, but nobody tracks it."</li>
 <li>"The guys on the floor won\u0027t fill out a 20-minute questionnaire. Ever."</li>
 </ul>
 <p>Sound familiar? If you manage a manufacturing team, you\u0027ve probably said at least one of these yourself.</p>
 
-<h2>65% response rate — even on the shop floor</h2>
+<h2>Getting real answers — even on the shop floor</h2>
 <p>This is where we could actually help. Echo Pulse by Behavera was built to work for everyone — not just people behind desks.</p>
 <p>The survey takes <strong>under 3 minutes</strong>. It works on any phone — no app download, no company email required. Just a simple link or QR code posted in the break room, locker area, or on a notice board. The conversational format feels natural, not like a corporate audit.</p>
-<p>And the results speak for themselves: <strong>even in blue-collar environments, we consistently achieve over 65% response rates</strong>. That\u0027s not a theoretical number — it\u0027s what our manufacturing clients actually see.</p>
+<p>And the results speak for themselves: <strong>in blue-collar environments, we typically see response rates around 50%</strong>. That\u0027s not where we\u0027d like it to be yet, but compared to traditional long-form surveys it\u0027s a meaningful step forward.</p>
 <p>Why does it work? Because people want to be heard. They just need a tool that respects their time and their reality.</p>
 
 <h2>From data to the production floor</h2>
-<p>Getting responses is step one. What matters is what you do with them. Echo Pulse gives production managers and HR teams <strong>instant, automated dashboards</strong> that show:</p>
+<p>Getting responses is step one. What matters is what you do with them. Echo Pulse gives production managers and HR teams <strong>clear, readable dashboards</strong> that show:</p>
 <ul>
 <li>Which shifts or departments have the lowest satisfaction</li>
 <li>Where workload is becoming a risk for burnout or turnover</li>
@@ -1446,13 +1446,13 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Why this matters for Czech manufacturing</h2>
 <p>The Czech Republic is an industrial powerhouse. Manufacturing accounts for roughly 25% of GDP and employs over a million people. But the sector is facing a structural talent shortage that\u0027s only getting worse.</p>
-<p><strong>Every unnecessary resignation costs money</strong> — recruitment, training, lost productivity, team disruption. In manufacturing, where onboarding a skilled CNC operator can take 3–6 months, the real cost of turnover is staggering.</p>
-<p>Companies that invest in understanding their people — even (and especially) those without a laptop — will have a decisive competitive advantage. Not because it\u0027s fashionable, but because it\u0027s math.</p>
+<p><strong>Every unnecessary resignation costs money</strong> — recruitment, training, lost productivity, team disruption. In manufacturing, where onboarding a skilled CNC operator can take 3–6 months, the real cost of turnover adds up fast.</p>
+<p>Companies that invest in understanding their people — even (and especially) those without a laptop — will have a real advantage. Not because it\u0027s fashionable, but because the numbers add up.</p>
 
 <h2>Takeaways</h2>
 <ul>
-<li>Blue-collar engagement is the biggest untapped opportunity in Czech industry.</li>
-<li>Short, mobile-first surveys with 65%+ response rates make real feedback possible — even on the shop floor.</li>
+<li>Blue-collar engagement remains an underserved area in Czech industry.</li>
+<li>Short, mobile-first surveys make real feedback possible — even on the shop floor.</li>
 <li>Data-driven people decisions aren\u0027t just for corporate HQs — production managers need them too.</li>
 <li>If you want to reduce turnover, start by actually listening to your people. It takes 3 minutes.</li>
 </ul>
@@ -1470,22 +1470,21 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>Co nám skutečně řekli HR lídři z výroby</h2>
 <p>Čtyři dny jsme procházeli výstavní haly, ale ty nejlepší rozhovory se odehrávaly u kávových stánků a v tichých zákoutích mezi pavilony. <strong>Tady je to, co jsme slyšeli nejčastěji:</strong></p>
 <ul>
-<li>„Ztratíme 30–40 % nováčků během prvních 6 měsíců — a nemáme ponětí proč."</li>
+<li>„Zhruba každý pátý nováček nám odejde během prvního půlroku — a pořádně nevíme proč."</li>
 <li>„Naši lidé nemají firemní e-mail. Jak je máme vůbec oslovit?"</li>
 <li>„Fluktuace nás stojí víc než jakýkoli upgrade strojů, ale nikdo to nesleduje."</li>
 <li>„Kluci na hale Vám 20minutový dotazník nikdy nevyplní. Prostě nikdy."</li>
 </ul>
 <p>Zní Vám to povědomě? Pokud řídíte výrobní tým, minimálně jednu z těchto vět jste určitě řekli sami.</p>
 
-<h2>65% návratnost odpovědí — i na dílně</h2>
+<h2>Skutečné odpovědi — i na dílně</h2>
 <p>A přesně tady jsme mohli pomoci. Echo Pulse od Behavery byl vytvořen tak, aby fungoval pro všechny — nejen pro lidi za pracovním stolem.</p>
 <p>Průzkum zabere <strong>méně než 3 minuty</strong>. Funguje na jakémkoli telefonu — žádná instalace aplikace, žádný firemní e-mail. Stačí jednoduchý odkaz nebo QR kód vyvěšený v šatně, na jídelně nebo na nástěnce. Konverzační formát působí přirozeně, ne jako firemní audit.</p>
-<blockquote>📊 I u dělnických pozic dosahujeme přes 65% návratnost odpovědí — a to bez firemního e-mailu, jen s QR kódem na nástěnce.</blockquote>
-<p>A výsledky mluví za sebe: <strong>i v prostředí dělnických pozic konzistentně dosahujeme přes 65% návratnost odpovědí</strong>. To není teoretické číslo — je to realita našich klientů z výroby.</p>
+<p>A výsledky mluví za sebe: <strong>u dělnických pozic se návratnost obvykle pohybuje kolem 50 %</strong>. Není to sto procent, ale oproti klasickým dvacetistránkovým dotazníkům je to znatelný posun.</p>
 <p>Proč to funguje? Protože lidé chtějí být slyšet. Potřebují jen nástroj, který respektuje jejich čas a jejich realitu.</p>
 
 <h2>Od dat k výrobní hale</h2>
-<p>Získat odpovědi je první krok. Důležité je, co s nimi uděláte. Echo Pulse dává vedoucím výroby a HR týmům <strong>okamžité, automatizované přehledy</strong>, které ukazují:</p>
+<p>Získat odpovědi je první krok. Důležité je, co s nimi uděláte. Echo Pulse dává vedoucím výroby a HR týmům <strong>okamžité, přehledné dashboardy</strong>, které ukazují:</p>
 <ul>
 <li><strong>Které směny nebo oddělení</strong> mají nejnižší spokojenost</li>
 <li><strong>Kde se pracovní zátěž</strong> stává rizikem pro vyhoření nebo odchod</li>
@@ -1496,13 +1495,13 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Proč je to klíčové pro český průmysl</h2>
 <p>Česká republika je průmyslovou velmocí. Výroba tvoří zhruba 25 % HDP a zaměstnává přes milion lidí. Ale sektor čelí strukturálnímu nedostatku talentů, který se jen zhoršuje.</p>
-<p><strong>Každý zbytečný odchod stojí peníze</strong> — nábor, zaškolení, ztráta produktivity, narušení týmu. Ve výrobě, kde zaučení kvalifikovaného CNC operátora trvá 3–6 měsíců, jsou skutečné náklady fluktuace ohromující.</p>
-<p>Firmy, které investují do pochopení svých lidí — i (a zejména) těch bez notebooku — budou mít rozhodující konkurenční výhodu. Ne proto, že je to trendy, ale proto, že je to prostě matematika.</p>
+<p><strong>Každý zbytečný odchod stojí peníze</strong> — nábor, zaškolení, ztráta produktivity, narušení týmu. Ve výrobě, kde zaučení kvalifikovaného CNC operátora trvá 3–6 měsíců, jsou skutečné náklady fluktuace značné.</p>
+<p>Firmy, které investují do pochopení svých lidí — i (a zejména) těch bez notebooku — budou na tom výrazně lépe. Ne proto, že je to trendy, ale proto, že se jim to prostě vyplatí.</p>
 
 <h2>Co si z toho odnést</h2>
 <ul>
-<li>Angažovanost dělnických pozic je největší nevyužitá příležitost v českém průmyslu.</li>
-<li>Krátké, mobilní průzkumy s 65%+ návratností umožňují reálnou zpětnou vazbu — i na dílně.</li>
+<li>Angažovanost dělnických pozic je stále podchycená oblast v českém průmyslu.</li>
+<li>Krátké, mobilní průzkumy umožňují reálnou zpětnou vazbu — i na dílně.</li>
 <li>Datová rozhodnutí o lidech nejsou jen pro korporátní centrály — potřebují je i vedoucí výroby.</li>
 <li>Chcete snížit fluktuaci? Začněte tím, že svým lidem skutečně nasloucháte. Zabere to 3 minuty.</li>
 </ul>
@@ -1521,10 +1520,10 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'Innovation Week AI 2025: Why Startups Need Pulse Check-Ins More Than Corporates',
     title_cz: 'Innovation Week AI 2025: Proč startupy potřebují pulse check-iny víc než korporáty',
     slug: 'innovation-week-ai-2025-startup-team-health',
-    excerpt: 'Two days at CSOB Campus in Prague among 15,000 innovators. We came to show startups and scale-ups how regular anonymous pulse check-ins protect team health during rapid growth \u0027 because in a small team, one toxic person can threaten the entire project.',
-    excerpt_cz: 'Dva dny na ČSOB Campusu v Praze mezi 15 000 inovátory. Přijeli jsme ukázat startupům a scale-upům, jak pravidelné anonymní pulse check-iny chrání zdraví týmu při dynamickém růstu — protože v malém týmu stačí jeden toxický člověk a může to ohrozit celý projekt.',
+    excerpt: 'Two days at CSOB Campus in Prague among thousands of innovators. We talked to startup founders and scale-up leaders about a challenge nobody measures: team health during rapid growth \u0027 because in a small team, one difficult person can threaten the entire project.',
+    excerpt_cz: 'Dva dny na ČSOB Campusu v Praze mezi tisíci inovátory. Bavili jsme se s foundery a lídry scale-upů o tématu, které málokdo měří: zdraví týmu při rychlém růstu — protože v malém týmu stačí jeden problémový člověk a může to ohrozit celý projekt.',
     content: `
-<p class="lead"><strong>Innovation Week 2025 in Prague was everything you\u0027d expect</strong> from Europe\u0027s largest innovation and AI event — 350+ speakers, four stages, 15,000 attendees, and two intense days of pitches, talks, and networking at the ČSOB Campus. What you might not expect is what the most impactful conversations were actually about: <strong>people.</strong></p>
+<p class="lead"><strong>Innovation Week 2025 in Prague was everything you\u0027d expect</strong> from one of Central Europe\u0027s biggest innovation events — 350+ speakers, four stages, 15,000 attendees, and two intense days of pitches, talks, and networking at the ČSOB Campus. What you might not expect is what the most impactful conversations were actually about: <strong>people.</strong></p>
 <p>More specifically, how fast-growing startups and scale-ups are losing their best talent — not because of bad products, but because of blind spots in team dynamics that nobody measured until it was too late.</p>
 
 <h2>Why we came to Innovation Week</h2>
@@ -1543,15 +1542,13 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>One toxic person can threaten the entire project</h2>
 <p>In a corporation with 500 employees, a difficult individual can blend into the crowd. Frustrating, but survivable. In a startup with 8 people? <strong>There\u0027s nowhere to hide.</strong></p>
-<p>Research from Harvard Business School shows that a single toxic employee can reduce surrounding team productivity by <strong>30–40%</strong>. In a small team where everyone depends on everyone, the damage compounds fast — missed deadlines, growing resentment, silent disengagement, and eventually, resignations that cascade.</p>
+<p>Research from Harvard Business School shows that a single toxic employee can measurably drag down the performance of everyone around them</strong>. In a small team where everyone depends on everyone, the damage compounds fast — missed deadlines, growing resentment, silent disengagement, and eventually, resignations that cascade.</p>
 <p>The problem isn\u0027t that founders don\u0027t care. They do — passionately. The problem is that they often lack the data to see what\u0027s happening before it becomes a crisis. By the time someone says "I\u0027m leaving," the damage is already done.</p>
 
 <h2>Why regular pulse check-ins work in dynamic environments</h2>
 <p>Traditional engagement surveys are designed for stable organizations. Annual or quarterly questionnaires assume that teams, roles, and priorities stay roughly the same between measurements. <strong>In a startup, that assumption is absurd.</strong></p>
 <p>Echo Pulse by Behavera takes a different approach: short, anonymous check-ins that take <strong>under 3 minutes</strong>, run weekly or bi-weekly, and cover the dimensions that matter most in fast-changing teams — communication, psychological safety, recognition, workload, and trust in leadership.</p>
 <p>Because the check-ins are anonymous and conversational, people say what they actually think — not what they think the founder wants to hear. And because they run regularly, you see <strong>trends, not just snapshots</strong>.</p>
-
-<blockquote>📊 Companies with regular pulse check-ins detect team friction 4× faster than those relying on annual surveys — and our clients in fast-growing companies see 25–30% lower early-stage turnover.</blockquote>
 
 <h2>What the dashboard actually shows a founder</h2>
 <p>Imagine you\u0027re a CEO of a 25-person SaaS company. Your engineering team doubled last quarter. Everything seems fine — sprint velocity is up, product is shipping. But Echo Pulse shows:</p>
@@ -1569,11 +1566,11 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Takeaways</h2>
 <ul>
-<li>In small teams, one toxic individual can reduce productivity by 30–40% and trigger cascading resignations.</li>
+<li>In small teams, one difficult individual can drag down the performance of an entire team — and trigger cascading departures.</li>
 <li>Annual surveys are archaeology in a startup context — regular anonymous pulse check-ins give you real-time signal.</li>
 <li>The hardest scaling phase (10→50 people) is where most cultural damage happens undetected.</li>
 <li>3-minute anonymous check-ins give founders concrete data to act on — before problems become resignations.</li>
-<li>People are your product\u0027s infrastructure. Monitor them at least as well as your servers.</li>
+<li>People aren\u0027t a secondary concern. If you monitor your infrastructure, it makes sense to keep an eye on team health too.</li>
 </ul>
 <p>Innovation Week 2026 takes place <strong>October 1–3 at ČSOB Campus, Prague</strong>. We\u0027ll be there again. Will you?</p>
 `,
@@ -1597,15 +1594,13 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Jeden toxický člověk může ohrozit celý projekt</h2>
 <p>V korporátu s 500 zaměstnanci se problémový jedinec může ztratit v davu. Nepříjemné, ale přežitelné. Ve startupu s 8 lidmi? <strong>Není kam se schovat.</strong></p>
-<p>Výzkum Harvard Business School ukazuje, že jediný toxický zaměstnanec může snížit produktivitu okolního týmu o <strong>30–40 %</strong>. V malém týmu, kde je každý závislý na každém, se škody násobí — zmeškané deadliny, narůstající frustrace, tichý disengagement a nakonec kaskádovité odchody.</p>
+<p>Výzkum Harvard Business School ukazuje, že jediný toxický zaměstnanec může citelně ovlivnit výkon celého okolí</strong>. V malém týmu, kde je každý závislý na každém, se škody násobí — zmeškané deadliny, narůstající frustrace, tichý disengagement a nakonec kaskádovité odchody.</p>
 <p>Problém není v tom, že by to founderům bylo jedno. Záleží jim — enormně. Problém je, že často nemají data, aby viděli, co se děje, dříve než se to stane krizí. Když někdo řekne „odcházím," škoda je už hotová.</p>
 
 <h2>Proč pravidelné pulse check-iny fungují v dynamickém prostředí</h2>
 <p>Tradiční engagement průzkumy jsou navrženy pro stabilní organizace. Roční nebo čtvrtletní dotazníky předpokládají, že týmy, role a priority zůstávají mezi měřeními v zásadě stejné. <strong>Ve startupu je takový předpoklad absurdní.</strong></p>
 <p>Echo Pulse od Behavery funguje jinak: krátké, anonymní check-iny, které zaberou <strong>méně než 3 minuty</strong>, probíhají týdně nebo dvoutýdně a pokrývají dimenze, které jsou v rychle se měnících týmech klíčové — komunikace, psychologická bezpečnost, uznání, pracovní zátěž a důvěra ve vedení.</p>
 <p>Protože jsou check-iny anonymní a konverzační, lidé říkají, co si skutečně myslí — ne to, co si myslí, že founder chce slyšet. A protože běží pravidelně, vidíte <strong>trendy, ne jen momentky</strong>.</p>
-
-<blockquote>📊 Firmy s pravidelnými pulse check-iny odhalí týmové tření 4× rychleji než firmy spoléhající na roční průzkumy — a naši klienti v rychle rostoucích firmách dosahují o 25–30 % nižší fluktuace v prvním roce.</blockquote>
 
 <h2>Co dashboard ukáže founderovi v praxi</h2>
 <p>Představte si, že jste CEO 25členné SaaS firmy. Váš engineering tým se za poslední kvartál zdvojnásobil. Zdánlivě všechno jede — sprint velocity roste, produkt se dodává. Ale Echo Pulse ukazuje:</p>
@@ -1623,11 +1618,11 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Co si z toho odnést</h2>
 <ul>
-<li>V malém týmu může jeden toxický člověk snížit produktivitu o 30–40 % a spustit kaskádu odchodů.</li>
+<li>V malém týmu může jeden toxický člověk stáhnout výkon celého týmu a spustit řetěz odchodů.</li>
 <li>Roční průzkumy jsou v kontextu startupu archeologie — pravidelné anonymní pulse check-iny dávají signál v reálném čase.</li>
 <li>Nejtěžší fáze škálování (10→50 lidí) je ta, kde většina kulturních škod vzniká bez povšimnutí.</li>
 <li>Tříminutové anonymní check-iny dávají founderům konkrétní data k akci — dříve než se problémy změní v výpovědi.</li>
-<li>Lidé jsou infrastruktura Vašeho produktu. Monitorujte je minimálně tak dobře jako své servery.</li>
+<li>Lidé nejsou vedlejší položka. Když monitorujete infrastrukturu, dává smysl sledovat i zdraví týmu.</li>
 </ul>
 <p>Innovation Week 2026 se koná <strong>1.–3. října na ČSOB Campusu v Praze</strong>. My tam budeme. A Vy?</p>
 `,
