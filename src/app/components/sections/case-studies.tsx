@@ -129,6 +129,17 @@ export function CaseStudiesSection() {
     }
   }, []);
 
+  // Sync modal state with browser back/forward navigation
+  useEffect(() => {
+    const onPopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('case');
+      setSelectedCaseSlug(slug);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
   useEffect(() => {
     if (!selectedCaseSlug) return;
 
