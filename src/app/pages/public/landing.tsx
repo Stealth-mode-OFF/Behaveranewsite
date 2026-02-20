@@ -10,6 +10,7 @@ import { useSEO } from "@/app/hooks/use-seo";
 import { useSchemaOrg } from "@/app/hooks/use-schema-org";
 import { useLanguage } from "@/app/contexts/language-context";
 import { SITE_ORIGIN } from "@/lib/urls";
+import { HOME_SECTION_IDS } from "@/app/config/routes";
 
 type LazyComponent<TProps = Record<string, unknown>> = ComponentType<TProps>;
 
@@ -29,6 +30,10 @@ function lazyNamed<TProps = Record<string, unknown>>(
 const CaseStudiesSection = lazyNamed(
   () => import("@/app/components/sections/case-studies"),
   "CaseStudiesSection"
+);
+const AboutUnfoldSection = lazyNamed(
+  () => import("@/app/components/sections/about-unfold"),
+  "AboutUnfoldSection"
 );
 const FAQ = lazyNamed(
   () => import("@/app/components/sections/faq"),
@@ -80,7 +85,6 @@ const RoleSelection = lazyNamed(
   "RoleSelection"
 );
 
-
 export function LandingPage() {
   const { language } = useLanguage();
   const { openSignup, openDemo } = useModal();
@@ -88,37 +92,64 @@ export function LandingPage() {
   // Auto-open modals or scroll to section based on URL params
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+
     if (params.get('signup') === '1') {
       openSignup('direct_link');
       window.history.replaceState({}, '', '/');
-    } else if (params.get('demo') === '1') {
+      return;
+    }
+
+    if (params.get('demo') === '1') {
       openDemo('direct_link');
       window.history.replaceState({}, '', '/');
-    } else if (params.get('scroll')) {
-      const target = params.get('scroll');
+      return;
+    }
+
+    const target = params.get('scroll');
+    const shouldOpenAbout = params.get('open') === HOME_SECTION_IDS.about || target === HOME_SECTION_IDS.about;
+
+    if (target || shouldOpenAbout) {
       window.history.replaceState({}, '', '/');
-      // Small delay to let lazy sections render
+      // Small delay to let lazy sections render.
       setTimeout(() => {
-        const el = target ? document.getElementById(target) : null;
-        el?.scrollIntoView({ behavior: 'smooth' });
-      }, 600);
+        if (target && target !== HOME_SECTION_IDS.about) {
+          const el = document.getElementById(target);
+          el?.scrollIntoView({ behavior: 'smooth' });
+        }
+        if (shouldOpenAbout) {
+          window.dispatchEvent(new Event('behavera:about:open'));
+        }
+      }, 650);
+      return;
+    }
+
+    // Support hash deep links like /#about so they can also unfold.
+    if (window.location.hash === `#${HOME_SECTION_IDS.about}`) {
+      setTimeout(() => {
+        window.dispatchEvent(new Event('behavera:about:open'));
+      }, 650);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const seo = pageSEO.home[language] || pageSEO.home.en;
   const [bannerVisible, setBannerVisible] = useState(() => {
-    try { return sessionStorage.getItem("announcement_dismissed") !== "1"; } catch { return true; }
+    try {
+      return sessionStorage.getItem("announcement_dismissed") !== "1";
+    } catch {
+      return true;
+    }
   });
   const handleBannerVisibility = useCallback((v: boolean) => setBannerVisible(v), []);
   const topOffset = bannerVisible ? ANNOUNCEMENT_BAR_HEIGHT : 0;
-  
-	  useSEO({
-	    title: seo.title,
-	    description: seo.description,
-	    keywords: seo.keywords.join(', '),
-	    ogType: 'website',
-	    canonicalUrl: `${SITE_ORIGIN}/`,
-	  });
-  
+
+  useSEO({
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords.join(', '),
+    ogType: 'website',
+    canonicalUrl: `${SITE_ORIGIN}/`,
+  });
+
   // Inject Schema.org JSON-LD for AI discoverability
   useSchemaOrg();
 
@@ -131,7 +162,7 @@ export function LandingPage() {
         <LazySection>
           <Hero />
         </LazySection>
-        
+
         {/* 2. SOCIAL PROOF — Client logos */}
         <LazySection>
           <LogoMarquee />
@@ -141,7 +172,7 @@ export function LandingPage() {
         <LazySection>
           <StatsBar />
         </LazySection>
-        
+
         {/* 3. PROBLEM — Build pain awareness */}
         <LazySection>
           <ProblemSection />
@@ -160,6 +191,11 @@ export function LandingPage() {
         {/* 6. SOCIAL PROOF — Real client results */}
         <LazySection>
           <CaseStudiesSection />
+        </LazySection>
+
+        {/* 6b. ABOUT — unfold on demand */}
+        <LazySection>
+          <AboutUnfoldSection />
         </LazySection>
 
         {/* 7. PERSONALIZATION — Role-based value */}

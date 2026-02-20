@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type RefObject } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
 import { sanitizeHtml, extractHeadingsFromHtml, type BlogHeading } from '@/lib/sanitize';
@@ -72,6 +72,8 @@ function scrollToHeading(id: string) {
 
 export function BlogPostPage() {
   const { slug } = useParams();
+  const location = useLocation();
+  const isEmbed = new URLSearchParams(location.search).get('embed') === '1';
   const [post, setPost] = useState<BlogPost | null>(null);
   const [allPosts, setAllPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -259,15 +261,17 @@ export function BlogPostPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-background-primary">
-      <Header />
-      <main className="flex-1 pt-24 pb-20">
+      {!isEmbed && <Header />}
+      <main className={isEmbed ? 'flex-1 py-8' : 'flex-1 pt-24 pb-20'}>
         <div className="max-w-[1240px] mx-auto px-4 md:px-6">
-          <div className="mb-8">
-            <Link to={ROUTES.blog} className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-primary transition-colors group">
-              <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-0.5 transition-transform" />
-              {t.blog.backToList}
-            </Link>
-          </div>
+          {!isEmbed && (
+            <div className="mb-8">
+              <Link to={ROUTES.blog} className="inline-flex items-center text-sm font-medium text-brand-text-muted hover:text-brand-primary transition-colors group">
+                <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-0.5 transition-transform" />
+                {t.blog.backToList}
+              </Link>
+            </div>
+          )}
 
           <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-10 xl:gap-14 items-start">
             <article ref={articleRef} className="max-w-3xl" aria-label={localizedPost.title}>
@@ -456,7 +460,7 @@ export function BlogPostPage() {
           </div>
         </div>
 
-        {relatedPosts.length > 0 && (
+        {!isEmbed && relatedPosts.length > 0 && (
           <section className="max-w-5xl mx-auto px-4 mt-16">
             <h2 className="text-xl font-bold text-brand-text-primary mb-7">
               {t.blog.relatedLabel}
@@ -487,7 +491,7 @@ export function BlogPostPage() {
           </section>
         )}
       </main>
-      <Footer />
+      {!isEmbed && <Footer />}
     </div>
   );
 }

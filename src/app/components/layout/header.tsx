@@ -7,7 +7,7 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
 import { BEHAVERA_LOGIN_URL, ECHO_PULSE_TRY_URL } from "@/lib/urls";
 import { trackLoginClick } from "@/lib/analytics";
-import { NAV_ITEMS, ROUTES, homeAnchor } from "@/app/config/routes";
+import { HOME_SECTION_IDS, NAV_ITEMS, ROUTES, homeAnchor } from "@/app/config/routes";
 
 export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -88,6 +88,12 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
     }
   };
 
+  const triggerAboutUnfold = () => {
+    window.dispatchEvent(new Event('behavera:about:open'));
+  };
+
+  const aboutLinkTarget = `${ROUTES.home}?scroll=${HOME_SECTION_IDS.about}&open=${HOME_SECTION_IDS.about}`;
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -134,9 +140,19 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           <Link to={ROUTES.blog} className={navLinkClass}>
             {blogLabel}
           </Link>
-          <Link to={ROUTES.team} className={navLinkClass}>
-            {aboutLabel}
-          </Link>
+          {isHome ? (
+            <button
+              type="button"
+              className={navLinkClass}
+              onClick={triggerAboutUnfold}
+            >
+              {aboutLabel}
+            </button>
+          ) : (
+            <Link to={aboutLinkTarget} className={navLinkClass}>
+              {aboutLabel}
+            </Link>
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -221,13 +237,26 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               >
                 {blogLabel}
               </Link>
-              <Link
-                to={ROUTES.team}
-                className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {aboutLabel}
-              </Link>
+              {isHome ? (
+                <button
+                  type="button"
+                  className="py-3 text-left text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setTimeout(() => triggerAboutUnfold(), 350);
+                  }}
+                >
+                  {aboutLabel}
+                </button>
+              ) : (
+                <Link
+                  to={aboutLinkTarget}
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {aboutLabel}
+                </Link>
+              )}
 
               <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
                 <a
