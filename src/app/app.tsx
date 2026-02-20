@@ -52,6 +52,9 @@ const SolutionPage = lazy(() =>
 const OnboardingPage = lazy(() =>
   import("./pages/public/onboarding").then((module) => ({ default: module.OnboardingPage }))
 );
+const NonprofitPage = lazy(() =>
+  import("./pages/public/nonprofit").then((module) => ({ default: module.NonprofitPage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -149,6 +152,9 @@ function App() {
                     {/* Marketing short-links */}
                     <Route path="/demo" element={<Navigate to="/?demo=1" replace />} />
                     <Route path="/engagement" element={<Navigate to="/?scroll=radar" replace />} />
+
+                    {/* Nonprofit campaign — Givt × Behavera (no nav link) */}
+                    <Route path="/pro-neziskovky" element={<NonprofitPage />} />
 
                     {/* Admin Routes */}
                     {adminEnabled ? (
