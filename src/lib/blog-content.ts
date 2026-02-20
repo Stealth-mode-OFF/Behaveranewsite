@@ -1301,4 +1301,104 @@ export const BLOG_POSTS: BlogPost[] = [
     status: 'published' as const,
   },
 
+  /* ───────────────────────── 18 ───────────────────────── */
+  {
+    id: '18',
+    title: 'EVOLVE! Summit 2025: Where HR Meets the Future',
+    title_cz: 'EVOLVE! Summit 2025: Jak jsme jako Behavera zažili největší HR festival ve střední Evropě',
+    slug: 'evolve-summit-2025-behavera-report',
+    excerpt: 'In November 2025, we attended the EVOLVE! Summit in Brno — the biggest HR & Talent Acquisition festival in Europe. Keynote speaker Greg Savage, live music, powerful networking, and honest conversations about the future of HR and AI. Here\u0027s our report from the event...',
+    excerpt_cz: 'V listopadu 2025 jsme se vydali do brněnského SONO Centra na EVOLVE! Summit — největší HR a recruitment festival v Evropě. Keynote speaker Greg Savage, živá hudba, silný networking a upřímné rozhovory o budoucnosti HR a AI. Přinášíme Vám krátkou reportáž...',
+    content: `
+<p class="lead"><strong>In November 2025, our Behavera team traveled to Brno</strong> for the EVOLVE! Summit — the largest HR and talent acquisition festival in Central Europe. For us, it wasn't just another conference. It was a chance to reconnect with our customers, meet key partners face-to-face, and hear firsthand what's truly keeping HR leaders up at night.</p>
+<p>Held at the iconic SONO Centrum in the heart of Brno, the event brought together hundreds of HR professionals, recruiters, people & culture leaders, and technology innovators. <strong>The energy was electric from the very first moment.</strong></p>
+
+<h2>Greg Savage and world-class speakers</h2>
+<p>The main stage opened with <strong>keynote speaker Greg Savage</strong> — one of the top 20 HR leaders worldwide and founder of The Savage Recruitment Academy. His talk reminded every person in the room why the human element in recruitment can never be replaced, no matter how powerful AI becomes.</p>
+<p>The speaker lineup was equally impressive: Johnny Campbell (CEO of SocialTalent), Bill Boorman, Ivana Brutenic, Mick Griffin, and over 20 other thought leaders from across Europe. Topics ranged from employer branding and social recruiting to leadership development and the psychology of workplace culture.</p>
+<p><em>The presentations weren't the usual corporate slides and rehearsed scripts.</em> They were honest, sometimes raw conversations about the real challenges HR teams face every day.</p>
+
+<h2>Networking that actually matters</h2>
+<p>If you've ever been to EVOLVE!, you know their networking sessions are legendary. Lucie Halušková, the summit's dedicated "Networking Pro," made sure <strong>nobody stood alone in a corner</strong>. From structured speed-networking rounds to relaxed conversations over coffee, the connections formed here were genuine and valuable.</p>
+<p>For us at Behavera, this was the highlight. We reconnected with existing customers — HR directors and people & culture managers from companies we work with daily. But hearing their challenges in person, away from emails and dashboards, gave us a completely different perspective.</p>
+<p><em>What surprised us most</em> was how consistent the themes were across industries: employee engagement remains the top priority, followed closely by retention and meaningful use of data in people decisions.</p>
+
+<h2>AI in HR: the conversation everyone wanted to have</h2>
+<p>If there was one topic that dominated the hallway conversations, it was <strong>artificial intelligence</strong>. Not the hype, but the practical reality: How do you use AI in recruitment without losing the human touch? How do you automate repetitive HR tasks without making employees feel like numbers?</p>
+<p>Several speakers addressed AI head-on. The consensus was clear — AI is a tool, not a replacement. The companies that will win the talent war are those that use AI to free up time for what truly matters: listening to people, understanding their needs, and building cultures where people want to stay.</p>
+<p>This resonated deeply with our own approach at Behavera, where <strong>AI powers the analysis</strong> but the insights always serve human decision-making.</p>
+
+<h2>Live music and the EVOLVE! atmosphere</h2>
+<p>One thing that sets EVOLVE! Summit apart from any other HR conference is the atmosphere. The organizers — Michal Toman and Vladimír Klescht from Engage Advisory — have built something that feels more like a festival than a corporate event.</p>
+<p><strong>The live music was phenomenal.</strong> Between sessions, the SONO Centrum transformed into a live venue with performances that kept the energy high and created the perfect backdrop for deeper conversations. Add stand-up comedy from Jiří Charvát and expert moderation by Veronika Prášková, Petr Skondrojanis, and Eva Vacíková — and you get an event that engages both your mind and your soul.</p>
+
+<h2>What our customers told us</h2>
+<p>The most valuable part of any conference isn't what's on stage — it's the conversations that happen between sessions. <strong>We sat down with dozens of partners and customers</strong> and listened. Here's what we heard most often:</p>
+<ul>
+<li>Employee engagement measurement needs to be faster, simpler, and more actionable</li>
+<li>Leaders want data they can act on immediately, not quarterly reports that arrive too late</li>
+<li>Employer branding is no longer optional — it's survival</li>
+<li>AI adoption in HR is accelerating, but trust and transparency are non-negotiable</li>
+</ul>
+<p><em>Every single one of these points</em> reinforced why we built Behavera the way we did — and gave us clear direction for what to build next.</p>
+
+<h2>Takeaways</h2>
+<ul>
+<li>The EVOLVE! Summit is more than a conference — it's where the Central European HR community comes together to shape the future.</li>
+<li>AI in HR is no longer theoretical — it's practical, and the best companies are already using it wisely.</li>
+<li>Face-to-face networking remains irreplaceable, especially for understanding real customer needs.</li>
+<li>If you work in HR or talent acquisition, mark your calendar: the next EVOLVE! Summit is on <strong>5 November 2026</strong>.</li>
+</ul>
+<p><em>See you in Brno!</em></p>
+`,
+    content_cz: `
+<p class="lead"><strong>V listopadu 2025 jsme se jako tým Behavera vydali do Brna</strong> na EVOLVE! Summit — největší HR a talent acquisition festival ve střední Evropě. Nebyla to pro nás jen další konference. Byla to příležitost setkat se osobně s našimi zákazníky, klíčovými partnery a na vlastní uši slyšet, co HR lídry v Česku a na Slovensku skutečně trápí.</p>
+<p>Konference proběhla v ikonickém SONO Centru v srdci Brna a přilákala stovky HR profesionálů, recruiterů, people & culture lídrů a technologických inovátorů. <strong>Energie byla od prvního okamžiku elektrizující.</strong></p>
+
+<h2>Greg Savage a světová liga speakerů</h2>
+<p>Hlavní stage zahájil <strong>keynote speaker Greg Savage</strong> — jeden z 20 nejvlivnějších HR lídrů na světě a zakladatel The Savage Recruitment Academy. Jeho přednáška připomněla všem přítomným, proč lidský prvek v náboru nemůže být nikdy nahrazen, bez ohledu na to, jak mocná se umělá inteligence stane.</p>
+<p>Line-up speakerů byl mimořádný: Johnny Campbell (CEO SocialTalent), Bill Boorman, Ivana Brutenic, Mick Griffin a více než 20 dalších thought leaderů z celé Evropy. Témata sahala od employer brandingu a social recruitingu přes rozvoj leadershipu až po psychologii firemní kultury.</p>
+<blockquote>📊 Více než 20 mezinárodních speakerů na jednom pódiu — od employer brandingu přes AI až po psychologii firemní kultury.</blockquote>
+<p><em>Prezentace nebyly typické firemní slajdy a nacvičené proslovy.</em> Byly to upřímné, místy až drsně otevřené rozhovory o skutečných výzvách, kterým HR týmy čelí každý den.</p>
+
+<h2>Networking, který má skutečný smysl</h2>
+<p>Pokud jste už někdy na EVOLVE! byli, víte, že jejich networkingové bloky jsou legendární. Lucie Halušková, oficiální „Networking Pro" summitu, se postarala o to, aby <strong>nikdo nezůstal sám v koutě</strong>. Od strukturovaných speed-networking kol po uvolněné rozhovory u kávy — spojení, která zde vznikla, byla autentická a cenná.</p>
+<p>Pro nás v Behaveře to byl jednoznačný vrchol celé akce. Znovu jsme se potkali s existujícími zákazníky — HR řediteli a people & culture manažery z firem, se kterými denně spolupracujeme. Ale slyšet jejich výzvy osobně, mimo e-maily a dashboardy, nám dalo zcela jiný pohled na věc.</p>
+<p><em>Co nás nejvíce překvapilo</em>, byla konzistence témat napříč obory: angažovanost zaměstnanců zůstává prioritou číslo jedna, hned za ní retence a smysluplné využívání dat v people rozhodnutích.</p>
+
+<h2>AI v HR: téma, o kterém chtěl mluvit každý</h2>
+<p>Pokud existovalo jedno téma, které ovládlo kuloárové rozhovory, byla to <strong>umělá inteligence</strong>. Nikoli hype, ale praktická realita: Jak AI využít v náboru, aniž byste ztratili lidský přístup? Jak automatizovat opakující se HR procesy, aniž by se zaměstnanci cítili jako čísla?</p>
+<p>Hned několik přednášejících se AI věnovalo přímo. Konsenzus byl jasný — AI je nástroj, nikoli náhrada. Firmy, které vyhrají boj o talenty, budou ty, které AI využijí k tomu, aby uvolnily čas na to, co opravdu záleží: naslouchání lidem, pochopení jejich potřeb a budování kulturou, kde chtějí lidé zůstat.</p>
+<p>To hluboce rezonovalo s naším přístupem v Behaveře, kde <strong>AI pohání analýzu</strong>, ale výstupy vždy slouží lidskému rozhodování.</p>
+
+<h2>Živá hudba a atmosféra, jakou jinde nezažijete</h2>
+<p>Jedna věc, kterou se EVOLVE! Summit odlišuje od jakékoli jiné HR konference, je atmosféra. Organizátoři — Michal Toman a Vladimír Klescht z Engage Advisory — vybudovali něco, co se cítí víc jako festival než firemní akce.</p>
+<p><strong>Živá hudba byla fenomenální.</strong> Mezi bloky přednášek se SONO Centrum proměnilo v živý koncertní prostor s energií, která udržovala celý den v tempu a vytvářela ideální kulisy pro hlubší rozhovory. Přidejte stand-up comedy Jiřího Charváta a expertní moderování Veroniky Práškové, Petra Skondroanise a Evy Vacíkové — a dostanete akci, která zapojí hlavu i srdce.</p>
+
+<h2>Co nám řekli naši zákazníci</h2>
+<p>Nejcennější část každé konference není to, co zaznívá na pódiu — jsou to rozhovory, které probíhají mezi přednáškami. <strong>Posadili jsme se s desítkami partnerů a zákazníků</strong> a naslouchali. Tady je to, co jsme slyšeli nejčastěji:</p>
+<ul>
+<li><strong>Měření angažovanosti</strong> musí být rychlejší, jednodušší a okamžitě použitelné</li>
+<li><strong>Lídři chtějí data</strong>, podle kterých mohou jednat hned — ne kvartální reporty, které přijdou pozdě</li>
+<li><strong>Employer branding</strong> už není volitelný — je to otázka přežití</li>
+<li><strong>Adopce AI v HR</strong> se zrychluje, ale důvěra a transparentnost jsou nepřekročitelné</li>
+</ul>
+<p><em>Každý jediný z těchto bodů</em> potvrdil, proč jsme Behaveru vybudovali tak, jak jsme ji vybudovali — a dal nám jasný směr, co budovat dál.</p>
+
+<h2>Co si z toho odnést</h2>
+<ul>
+<li>EVOLVE! Summit je víc než konference — je to místo, kde se středoevropská HR komunita schází, aby formovala budoucnost.</li>
+<li>AI v HR už není teorie — je to praxe a nejlepší firmy ji už využívají chytře.</li>
+<li>Osobní networking je nenahraditelný, zejména pro pochopení skutečných potřeb zákazníků.</li>
+<li>Pokud pracujete v HR nebo talent acquisition, poznamenejte si datum: další EVOLVE! Summit se koná <strong>5. listopadu 2026</strong>.</li>
+</ul>
+<p><em>Uvidíme se v Brně!</em></p>
+`,
+    coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200',
+    author: BLOG_AUTHORS[2],
+    publishedAt: '2025-11-18T00:00:00.000Z',
+    tags: ['Events', 'Future of Work'],
+    status: 'published' as const,
+  },
+
 ];
