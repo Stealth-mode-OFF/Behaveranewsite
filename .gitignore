@@ -6,3 +6,4 @@ dist
 .vite/
 supabase/.temp/
 .env.vercel
+test-results/

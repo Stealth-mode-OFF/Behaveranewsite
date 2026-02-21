@@ -47,7 +47,7 @@ export function ProblemSection() {
       <div className="container-default">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -80,7 +80,7 @@ export function ProblemSection() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Large Feature Cell (spans 2 cols) */}
           <motion.div
@@ -177,7 +177,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProp
     <div className={cn(
       "h-full rounded-3xl p-4 md:p-6 flex flex-col justify-start border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
       accent || "bg-brand-background-secondary",
-      size === "large" ? "min-h-[180px] lg:min-h-[200px]" : "min-h-[140px]"
+      size === "large" ? "min-h-[160px] lg:min-h-[180px]" : "min-h-[120px]"
     )}>
       <div className="mb-4 flex justify-center">
         <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
@@ -190,7 +190,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProp
         {/* Animated Counter */}
         <div className={cn(
           "font-bold tracking-tight mb-2 transition-colors",
-          size === "large" ? "text-display" : "text-3xl md:text-4xl",
+          size === "large" ? "text-h2" : "text-h3",
           valueColor || "text-brand-text-primary"
         )}>
           {item?.value || ""}

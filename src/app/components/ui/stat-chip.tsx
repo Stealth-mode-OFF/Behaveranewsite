@@ -1,14 +1,15 @@
 import { cn } from "./utils";
 import type { LucideIcon } from "lucide-react";
+import { chipTokens } from "@/app/design/tokens";
 
 /**
- * StatChip — supporting proof metric, NOT a dominant element.
+ * StatChip — lightweight proof pill, NOT a dominant element.
  *
  * Rules:
- * - Fixed height (h-8), compact padding, caption typography
- * - Subtle background, no thick borders, no large shadows
- * - Bold number but NOT huge — must never compete with core KPIs
- *   (50,000+ / 80%+ / 2 min in StatsBar)
+ * - Natural height via py-1.5 (no h-* + py-* combo that inflates)
+ * - Caption typography, no large fonts
+ * - Subtle background, thin border, no heavy shadows
+ * - Must never compete with core KPIs (50 000+ / 80%+ / 2 min)
  *
  * Usage: proof chips below logo marquee (+37%, +25%, 60%)
  */
@@ -23,15 +24,16 @@ interface StatChipProps {
 export function StatChip({ icon: Icon, metric, label, company, className }: StatChipProps) {
   return (
     <div
+      data-testid="proof-chip"
       className={cn(
-        "flex items-center gap-2 h-8 px-3 rounded-lg",
-        "bg-brand-background-secondary/60 border border-brand-border/50",
+        chipTokens.sm,
+        "bg-brand-background-secondary/60 border border-brand-border/40",
         "transition-colors hover:bg-brand-background-secondary",
         className,
       )}
     >
-      <Icon className="w-3.5 h-3.5 text-brand-primary/60 shrink-0" />
-      <span className="text-caption font-bold text-brand-text-primary whitespace-nowrap">
+      <Icon className="w-3 h-3 text-brand-primary/50 shrink-0" />
+      <span className="text-caption font-semibold text-brand-text-primary whitespace-nowrap">
         {metric}
       </span>
       <span className="text-caption text-brand-text-muted truncate">

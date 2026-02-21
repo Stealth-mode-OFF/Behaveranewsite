@@ -55,7 +55,7 @@ export function DashboardPreview() {
       <div className="container-default relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}

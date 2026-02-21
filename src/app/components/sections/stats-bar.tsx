@@ -167,10 +167,10 @@ export function StatsBar() {
                 transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                 className="text-center px-6 md:px-10"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/5 mb-4">
-                  <Icon className="w-6 h-6 text-brand-primary" />
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-primary/5 mb-3">
+                  <Icon className="w-5 h-5 text-brand-primary" />
                 </div>
-                <div className="text-display text-brand-text-primary mb-2">
+                <div className="text-h2 text-brand-text-primary mb-2">
                   <AnimatedCounter 
                     end={stat.value} 
                     suffix={stat.suffix} 

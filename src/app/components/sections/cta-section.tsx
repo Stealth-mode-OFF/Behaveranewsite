@@ -62,7 +62,7 @@ export function CtaSection() {
   const c = copy[language] || copy.en;
 
   return (
-    <section className="relative min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520]">
+    <section className="relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520]">
       
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -73,7 +73,7 @@ export function CtaSection() {
             opacity: [0.3, 0.5, 0.3],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-brand-accent/20 rounded-full blur-[150px]"
+          className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-brand-accent/20 rounded-full blur-[150px]"
         />
         <motion.div
           animate={{ 
@@ -81,7 +81,7 @@ export function CtaSection() {
             opacity: [0.2, 0.4, 0.2],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-500/20 rounded-full blur-[150px]"
+          className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-violet-500/20 rounded-full blur-[150px]"
         />
         
         {/* Grid pattern overlay */}
@@ -96,7 +96,7 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-10"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8"
           >
             <Sparkles className="w-4 h-4 text-brand-accent" />
             <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-white">

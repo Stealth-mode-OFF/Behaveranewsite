@@ -46,7 +46,7 @@ export function TrustCenter() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-10 md:mb-12"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-primary font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
             <ShieldCheck className="w-3.5 h-3.5" />

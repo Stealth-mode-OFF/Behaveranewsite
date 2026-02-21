@@ -106,12 +106,12 @@
   --space-7: 96px;
   --space-8: 128px;
   
-  /* Section spacing tokens — generous Fathom-style breathing room */
-  --section-padding-y: 148px;
-  --section-padding-y-md: 112px;
-  --section-padding-y-sm: 80px;
-  --section-padding-y-compact: 48px;
-  --section-padding-y-compact-md: 64px;
+  /* Section spacing tokens — controlled, executive rhythm */
+  --section-padding-y: 96px;
+  --section-padding-y-md: 80px;
+  --section-padding-y-sm: 56px;
+  --section-padding-y-compact: 40px;
+  --section-padding-y-compact-md: 48px;
   --section-max-width: 1200px;
   --section-max-width-narrow: 800px;
   --section-max-width-wide: 1400px;
