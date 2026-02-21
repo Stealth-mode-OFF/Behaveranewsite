@@ -135,6 +135,7 @@ function App() {
                     <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
                     <Route path="/changelog" element={<ChangelogPage />} />
                     <Route path="/team" element={<Navigate to="/#about" replace />} />
+                    <Route path="/about" element={<Navigate to="/#about" replace />} />
 
                     {/* Comparison SEO landing pages */}
                     <Route path="/echo-pulse-vs-google-forms" element={<ComparisonGoogleFormsPage />} />

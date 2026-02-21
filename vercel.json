@@ -8,6 +8,7 @@
     { "source": "/demo", "destination": "/?demo=1", "permanent": false },
     { "source": "/engagement", "destination": "/?scroll=radar", "permanent": false },
     { "source": "/team", "destination": "/#about", "permanent": false },
+    { "source": "/about", "destination": "/#about", "permanent": false },
     { "source": "/blog", "destination": "/#blog", "permanent": false }
   ],
   "rewrites": [
