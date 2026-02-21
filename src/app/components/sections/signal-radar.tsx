@@ -777,7 +777,7 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
       <div className="relative min-h-[100px] flex items-center">
         <button
           onClick={prev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
+          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
           aria-label="Previous"
         >
           <ChevronDown className="w-3.5 h-3.5 rotate-90" />
@@ -803,23 +803,25 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
 
         <button
           onClick={next}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
+          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
           aria-label="Next"
         >
           <ChevronDown className="w-3.5 h-3.5 -rotate-90" />
         </button>
       </div>
 
-      <div className="flex items-center justify-center gap-1 mt-3">
+      <div className="flex items-center justify-center gap-1.5 mt-3">
         {items.map((_, i) => (
           <button
             key={i}
             onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-            className={`h-1 rounded-full transition-all cursor-pointer ${
-              i === idx ? 'bg-brand-accent w-4' : 'bg-brand-border w-1.5 hover:bg-brand-text-muted/40'
-            }`}
+            className="min-w-[24px] min-h-[24px] flex items-center justify-center cursor-pointer"
             aria-label={`Testimonial ${i + 1}`}
-          />
+          >
+            <span className={`block h-1 rounded-full transition-all ${
+              i === idx ? 'bg-brand-accent w-4' : 'bg-brand-border w-1.5 hover:bg-brand-text-muted/40'
+            }`} />
+          </button>
         ))}
       </div>
     </div>

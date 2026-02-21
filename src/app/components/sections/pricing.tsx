@@ -206,12 +206,12 @@ export function PurchaseSection() {
                   <Users className="w-5 h-5 text-brand-primary" />
                   {t.purchase.configTitle}
                 </h3>
-                <p className="text-[13px] text-brand-text-muted mb-8">
+                <p className="text-[13px] text-brand-text-muted mb-6 md:mb-8">
                   {pc.noCard}
                 </p>
                 
                 {/* Slider */}
-                <div className="mb-10">
+                <div className="mb-8 md:mb-10">
                   <div className="flex justify-between items-end mb-4">
                     <label className="text-caption font-bold text-brand-text-secondary uppercase tracking-wider">{t.purchase.companySizeLabel}</label>
                     <motion.div 

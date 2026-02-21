@@ -155,7 +155,7 @@ export function StatsBar() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.03),transparent_70%)]" />
       
       <div className="container-default relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 md:divide-x divide-brand-border">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 md:divide-x divide-brand-border">
           {items.map((stat, idx) => {
             const Icon = stat.icon;
             return (
@@ -165,7 +165,7 @@ export function StatsBar() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="text-center px-6 md:px-10"
+                className="text-center px-6 md:px-10 py-5 md:py-0 rounded-2xl md:rounded-none bg-brand-background-secondary/60 md:bg-transparent"
               >
                 <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-primary/5 mb-3">
                   <Icon className="w-5 h-5 text-brand-primary" />

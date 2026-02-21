@@ -129,13 +129,14 @@ export function Hero() {
     setActiveSlide(index);
   }, [activeSlide]);
 
-  // Auto-advance: 7s on mobile (calmer), 5s on desktop
+  // Auto-advance: disabled on mobile (calm), 5s on desktop
   useEffect(() => {
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    if (isMobile) return; // No autoplay on mobile — calm, focused experience
     const timer = setInterval(() => {
       setDirection(1);
       setActiveSlide((prev) => (prev + 1) % slideCount);
-    }, isMobile ? 7000 : 5000);
+    }, 5000);
     return () => clearInterval(timer);
   }, [slideCount]);
 
@@ -203,8 +204,8 @@ export function Hero() {
               {c.subtitle}
             </p>
 
-            {/* Carousel dots — subtle on mobile */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-6 md:mb-8 mt-1">
+            {/* Carousel dots — hidden on mobile for calm focus, visible on md+ */}
+            <div className="hidden md:flex items-center justify-center lg:justify-start gap-2 mb-6 md:mb-8 mt-1">
               {c.headlines.map((_: HeroHeadline, idx: number) => (
                 <button
                   key={idx}
@@ -250,8 +251,8 @@ export function Hero() {
               </Button>
             </motion.div>
 
-            {/* Micro-copy */}
-            <p className="text-xs text-brand-text-muted mb-2 md:mb-3">{c.ctaMicro}</p>
+            {/* Micro-copy — extra breathing room on mobile before next block */}
+            <p className="text-xs text-brand-text-muted mb-6 md:mb-3">{c.ctaMicro}</p>
           </div>
 
           {/* Right column: Device Stage */}
