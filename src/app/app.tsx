@@ -1,5 +1,5 @@
 import { Component, Suspense, lazy, type ErrorInfo, type ReactNode } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LanguageProvider } from "./contexts/language-context";
 import { ModalProvider } from "./contexts/modal-context";
 import { AuthProvider } from "@/lib/auth-context";
@@ -48,6 +48,9 @@ const OnboardingPage = lazy(() =>
 const NonprofitPage = lazy(() =>
   import("./pages/public/nonprofit").then((module) => ({ default: module.NonprofitPage }))
 );
+const BlogPage = lazy(() =>
+  import("./pages/public/blog").then((module) => ({ default: module.BlogPage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -70,12 +73,6 @@ const CaseStudyList = lazy(() =>
 const CaseStudyEditor = lazy(() =>
   import("./pages/admin/case-study-editor").then((module) => ({ default: module.CaseStudyEditor }))
 );
-
-/** Redirect /blog/:slug → /?post=slug so the homepage blog modal opens */
-function BlogSlugRedirect() {
-  const { slug } = useParams<{ slug: string }>();
-  return <Navigate to={`/?post=${slug}`} replace />;
-}
 
 // Error Boundary
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
@@ -128,8 +125,8 @@ function App() {
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                     <Route path="/ochrana-osobnich-udaju" element={<Navigate to="/privacy-policy" replace />} />
 
-                    <Route path="/blog" element={<Navigate to="/#blog" replace />} />
-                    <Route path="/blog/:slug" element={<BlogSlugRedirect />} />
+                    <Route path="/blog" element={<BlogPage />} />
+                    <Route path="/blog/:slug" element={<BlogPage />} />
 
                     <Route path="/case-studies" element={<CaseStudiesPage />} />
                     <Route path="/case-studies/:slug" element={<CaseStudyPage />} />

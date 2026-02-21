@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
 import { Header } from '@/app/components/layout/header';
@@ -10,9 +10,10 @@ import { useSEO } from '@/app/hooks/use-seo';
 import { useLanguage } from '@/app/contexts/language-context';
 import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPosts } from '@/app/hooks/use-localized-post';
-import { motion } from 'framer-motion';
-import { ArrowRight, Clock, BookOpen } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Clock, BookOpen, Search, X, Sparkles } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
+import { BlogReaderModal } from '@/app/components/blog-reader-modal';
 
 /** Estimate reading time from HTML content */
 function estimateReadingTime(html: string): number {
@@ -22,13 +23,45 @@ function estimateReadingTime(html: string): number {
 }
 
 export function BlogPage() {
+  const { slug } = useParams<{ slug?: string }>();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const { t, language } = useLanguage();
   const { openBooking } = useModal();
   const locale = language === 'cz' ? cs : language === 'de' ? de : enUS;
 
   const readLabel = language === 'cz' ? 'min čtení' : language === 'de' ? 'Min. Lesezeit' : 'min read';
+
+  const i18n = {
+    cz: {
+      all: 'Vše',
+      readArticle: 'Číst článek',
+      search: 'Hledat články…',
+      noResults: 'Žádné články neodpovídají vašemu hledání.',
+      clearFilters: 'Zobrazit vše',
+      articlesCount: (n: number) => `${n} ${n === 1 ? 'článek' : n < 5 ? 'články' : 'článků'}`,
+    },
+    en: {
+      all: 'All',
+      readArticle: 'Read article',
+      search: 'Search articles…',
+      noResults: 'No articles match your search.',
+      clearFilters: 'Show all',
+      articlesCount: (n: number) => `${n} article${n !== 1 ? 's' : ''}`,
+    },
+    de: {
+      all: 'Alle',
+      readArticle: 'Artikel lesen',
+      search: 'Artikel suchen…',
+      noResults: 'Keine Artikel gefunden.',
+      clearFilters: 'Alle anzeigen',
+      articlesCount: (n: number) => `${n} Artikel`,
+    },
+  };
+  const ui = i18n[language] || i18n.en;
 
   useSEO({
     title: t.blog.seoTitle,
@@ -40,21 +73,35 @@ export function BlogPage() {
   useEffect(() => {
     CmsService.getPosts().then(data => {
       setPosts(data.filter(Boolean).filter(p => p.status === 'published'));
+      setLoading(false);
     });
   }, []);
 
-  // Extract unique tags
+  // Extract unique tags with counts
   const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    posts.forEach(p => p.tags?.forEach(tag => tags.add(tag)));
-    return Array.from(tags).sort();
+    const tagMap = new Map<string, number>();
+    posts.forEach(p => p.tags?.forEach(tag => tagMap.set(tag, (tagMap.get(tag) || 0) + 1)));
+    return Array.from(tagMap.entries()).sort((a, b) => b[1] - a[1]);
   }, [posts]);
 
-  // Filter posts by tag
+  // Filter posts by tag and search query
   const filteredPosts = useMemo(() => {
-    if (!activeTag) return posts;
-    return posts.filter(p => p.tags?.includes(activeTag));
-  }, [posts, activeTag]);
+    let result = posts;
+    if (activeTag) {
+      result = result.filter(p => p.tags?.includes(activeTag));
+    }
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      result = result.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        (p.title_cz && p.title_cz.toLowerCase().includes(q)) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        (p.excerpt_cz && p.excerpt_cz.toLowerCase().includes(q)) ||
+        p.tags?.some(tag => tag.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [posts, activeTag, searchQuery]);
 
   // Localize titles / excerpts / content to active language
   const localizedPosts = useLocalizedPosts(filteredPosts);
@@ -87,7 +134,7 @@ export function BlogPage() {
       <main className="flex-1 pt-24 pb-20">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Page header */}
-          <div className="text-center mb-14 space-y-4">
+          <div className="text-center mb-10 space-y-4">
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -105,51 +152,92 @@ export function BlogPage() {
             </motion.p>
           </div>
 
-          {/* Tag filters */}
-          {allTags.length > 0 && (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.15 }}
-              className="flex flex-wrap justify-center gap-2 mb-14"
-            >
-              <button
-                onClick={() => setActiveTag(null)}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                  activeTag === null
-                    ? 'bg-brand-primary text-white shadow-sm'
-                    : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
-                }`}
-              >
-                {language === 'cz' ? 'Vše' : language === 'de' ? 'Alle' : 'All'}
-              </button>
-              {allTags.map(tag => (
+          {/* Search + Tag filters bar */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15 }}
+            className="mb-12"
+          >
+            {/* Search bar */}
+            <div className="flex items-center justify-center mb-5">
+              <div className="relative w-full max-w-md">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted pointer-events-none" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder={ui.search}
+                  className="w-full pl-10 pr-10 py-2.5 rounded-full border border-brand-border bg-white text-sm text-brand-text-primary placeholder:text-brand-text-muted focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary/40 transition-all"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Tag pills */}
+            {allTags.length > 0 && (
+              <div className="flex flex-wrap justify-center gap-2">
                 <button
-                  key={tag}
-                  onClick={() => setActiveTag(tag)}
+                  onClick={() => setActiveTag(null)}
                   className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                    activeTag === tag
+                    activeTag === null
                       ? 'bg-brand-primary text-white shadow-sm'
                       : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
                   }`}
                 >
-                  {tag}
+                  {ui.all}
                 </button>
-              ))}
-            </motion.div>
-          )}
+                {allTags.map(([tag, count]) => (
+                  <button
+                    key={tag}
+                    onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                      activeTag === tag
+                        ? 'bg-brand-primary text-white shadow-sm'
+                        : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
+                    }`}
+                  >
+                    {tag}
+                    <span className="ml-1.5 text-[11px] opacity-60">{count}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Results count */}
+            {!loading && (activeTag || searchQuery) && (
+              <div className="text-center mt-4 text-sm text-brand-text-muted">
+                {ui.articlesCount(localizedPosts.length)}
+                {(activeTag || searchQuery) && (
+                  <button
+                    onClick={() => { setActiveTag(null); setSearchQuery(''); }}
+                    className="ml-2 text-brand-primary hover:underline"
+                  >
+                    {ui.clearFilters}
+                  </button>
+                )}
+              </div>
+            )}
+          </motion.div>
 
           {/* Featured post — hero style */}
-          {featuredPost && (
+          {!loading && featuredPost && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="mb-14"
             >
-              <Link 
-                to={`/blog/${featuredPost.slug}`}
-                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10"
+              <button
+                onClick={() => navigate(`/blog/${featuredPost.slug}`)}
+                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10 w-full text-left cursor-pointer"
               >
                 <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden relative">
@@ -189,50 +277,72 @@ export function BlogPage() {
                         </div>
                       </div>
                       <span className="text-white/40 group-hover:text-brand-accent transition-colors text-sm flex items-center gap-1.5">
-                        {language === 'cz' ? 'Číst článek' : language === 'de' ? 'Artikel lesen' : 'Read article'}
+                        {ui.readArticle}
                         <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </button>
+            </motion.div>
+          )}
+
+          {/* Empty state */}
+          {!loading && localizedPosts.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-20"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-primary/5 mb-5">
+                <Search className="w-7 h-7 text-brand-primary/40" />
+              </div>
+              <p className="text-brand-text-secondary text-lg mb-4">{ui.noResults}</p>
+              <button
+                onClick={() => { setActiveTag(null); setSearchQuery(''); }}
+                className="text-brand-primary font-medium hover:underline"
+              >
+                {ui.clearFilters}
+              </button>
             </motion.div>
           )}
 
           {/* Post grid with mid-page CTA */}
-          <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
-            {remainingPosts.map((post, idx) => (
-              <Fragment key={post.id}>
-                {/* Insert editorial CTA after 3rd post */}
-                {idx === 3 && (
-                  <div className="md:col-span-2 lg:col-span-3">
-                    <div className="relative overflow-hidden rounded-xl bg-brand-background-secondary border border-brand-border p-8 md:p-10 my-2">
-                      <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                        <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/10 shrink-0">
-                          <BookOpen className="w-5 h-5 text-brand-primary" />
+          {!loading && remainingPosts.length > 0 && (
+            <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
+              {remainingPosts.map((post, idx) => (
+                <Fragment key={post.id}>
+                  {/* Insert editorial CTA after 3rd post */}
+                  {idx === 3 && (
+                    <div className="md:col-span-2 lg:col-span-3">
+                      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-brand-primary/5 via-brand-background-secondary to-brand-primary/5 border border-brand-primary/10 p-8 md:p-10 my-2">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(var(--brand-primary-rgb,124,58,237),0.06),transparent_70%)]" />
+                        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-primary/10 shrink-0">
+                            <Sparkles className="w-6 h-6 text-brand-primary" />
+                          </div>
+                          <div className="flex-1 text-center md:text-left">
+                            <h3 className="text-lg md:text-xl font-semibold text-brand-text-primary mb-1.5">{cta.title}</h3>
+                            <p className="text-sm text-brand-text-secondary leading-relaxed">{cta.desc}</p>
+                          </div>
+                          <Button onClick={openBooking} size="lg" className="shrink-0 h-12 px-8 text-sm bg-brand-primary hover:bg-brand-primary/90 text-white shadow-md shadow-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/30 transition-all">
+                            {cta.cta}
+                            <ArrowRight className="w-4 h-4 ml-1.5" />
+                          </Button>
                         </div>
-                        <div className="flex-1 text-center md:text-left">
-                          <h3 className="text-lg md:text-xl font-semibold text-brand-text-primary mb-1.5">{cta.title}</h3>
-                          <p className="text-sm text-brand-text-secondary leading-relaxed">{cta.desc}</p>
-                        </div>
-                        <Button onClick={openBooking} variant="outline" size="lg" className="shrink-0 h-11 px-7 text-sm border-brand-primary/20 hover:bg-brand-primary hover:text-white hover:border-brand-primary">
-                          {cta.cta}
-                          <ArrowRight className="w-4 h-4 ml-1.5" />
-                        </Button>
                       </div>
                     </div>
-                  </div>
-                )}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ delay: Math.min(idx * 0.05, 0.3) }}
-                >
-                  <Link 
-                    to={`/blog/${post.slug}`}
-                    className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
+                  )}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ delay: Math.min(idx * 0.05, 0.3) }}
                   >
+                    <button
+                      onClick={() => navigate(`/blog/${post.slug}`)}
+                      className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300 text-left w-full cursor-pointer"
+                    >
                     <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
                       {post.coverImage && (
                         <img 
@@ -269,14 +379,26 @@ export function BlogPage() {
                         </span>
                       </div>
                     </div>
-                  </Link>
-                </motion.div>
-              </Fragment>
-            ))}
-          </div>
+</button>
+                  </motion.div>
+                </Fragment>
+              ))}
+            </div>
+          )}
         </div>
       </main>
       <Footer />
+
+      {/* Blog reader modal overlay */}
+      <AnimatePresence>
+        {slug && posts.length > 0 && (
+          <BlogReaderModal
+            slug={slug}
+            allPosts={posts}
+            onClose={() => navigate('/blog')}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
