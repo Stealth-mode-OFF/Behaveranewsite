@@ -140,7 +140,7 @@ export function PurchaseSection() {
              <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
              {t.purchase.badge}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
+          <h2 className="text-h2 text-brand-text-primary mb-4">
             {t.purchase.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {t.purchase.titleHighlight}
@@ -346,7 +346,7 @@ export function PurchaseSection() {
                       key={`price-${basePrice}`}
                       initial={{ opacity: 0.5, y: 5 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-5xl md:text-6xl font-bold text-white tracking-tight"
+                      className="text-display text-white"
                     >
                       {isEur ? `€${animatedBase}` : animatedBase}
                     </motion.span>
@@ -400,7 +400,7 @@ export function PurchaseSection() {
                 </div>
                 
                 <div className="mt-8 relative space-y-3">
-                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 text-[16px] group" size="lg">
+                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 group" size="lg">
                     <a href="https://www.behavera.com/start" target="_blank" rel="noopener noreferrer">
                       <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                       {pc.ctaPrimary}

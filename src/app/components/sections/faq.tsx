@@ -80,7 +80,7 @@ export function FAQ() {
             <HelpCircle className="w-3.5 h-3.5" />
             {language === 'cz' ? 'Časté otázky' : language === 'de' ? 'Häufige Fragen' : 'FAQ'}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary mb-4 tracking-tight">
+          <h2 className="text-h2 text-brand-text-primary mb-4">
             {t.faq?.title || "Remove risks,"}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {t.faq?.titleHighlight || " not just questions"}

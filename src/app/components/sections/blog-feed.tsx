@@ -148,7 +148,7 @@ export function BlogFeedSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight mb-4"
+            className="text-h2 text-brand-text-primary mb-4"
           >
             {text.title}{' '}
             <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">

@@ -175,7 +175,7 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -18 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.05] font-display"
+                  className="text-h1 text-brand-text-primary"
                 >
                   {headline.text}
                   {headline.highlight && <br />}
@@ -220,7 +220,7 @@ export function Hero() {
               transition={{ duration: 0.3, delay: 0.15 }}
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
-              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
+              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
                 <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
                   <Play className="w-4 h-4 mr-2 fill-current" />
                   {c.primaryCta}
@@ -231,7 +231,7 @@ export function Hero() {
                 onClick={() => openBooking('hero')}
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 rounded-2xl"
+                className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5"
               >
                 {c.secondaryCta}
                 <ArrowRight className="w-4 h-4 ml-2" />

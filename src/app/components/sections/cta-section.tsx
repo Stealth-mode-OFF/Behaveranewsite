@@ -110,7 +110,7 @@ export function CtaSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]"
+            className="text-h2 text-white mb-6"
           >
             {c.headline}
             <br />
@@ -141,26 +141,28 @@ export function CtaSection() {
             {/* Two buttons row */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Primary CTA — Objednat pro celou firmu (bílé) */}
-              <a
-                href="https://www.behavera.com/start"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 h-12 sm:h-14 px-6 sm:px-8 rounded-[var(--button-radius)] bg-white text-brand-primary font-semibold text-sm sm:text-base hover:bg-white/90 transition-all shadow-2xl shadow-white/10 hover:shadow-white/20 w-full sm:w-auto"
-              >
-                {c.primaryCta}
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              <Button asChild variant="inverse" size="lg" className="w-full sm:w-auto shadow-2xl shadow-white/10 hover:shadow-white/20">
+                <a
+                  href="https://www.behavera.com/start"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {c.primaryCta}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </Button>
 
               {/* Secondary CTA — Otestovat 1 tým zdarma (fialové) */}
-              <a
-                href="https://app.behavera.com/echo-pulse/try"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 h-12 sm:h-14 px-6 sm:px-8 rounded-[var(--button-radius)] bg-white/10 border border-white/30 text-white font-semibold text-sm sm:text-base hover:bg-white/20 transition-all w-full sm:w-auto"
-              >
-                {c.secondaryCta}
-                <ArrowRight className="w-4 h-4" />
-              </a>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white">
+                <a
+                  href="https://app.behavera.com/echo-pulse/try"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {c.secondaryCta}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </Button>
             </div>
 
             {/* Microcopy row */}

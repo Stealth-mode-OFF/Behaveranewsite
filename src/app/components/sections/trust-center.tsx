@@ -52,7 +52,7 @@ export function TrustCenter() {
             <ShieldCheck className="w-3.5 h-3.5" />
             {copy.badge}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight mb-4">
+          <h2 className="text-h2 text-brand-text-primary mb-4">
             {copy.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {copy.titleHighlight}

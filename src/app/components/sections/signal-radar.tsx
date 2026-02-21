@@ -208,7 +208,7 @@ export function SignalRadar() {
             </span>
           </div>
 
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4 leading-[1.15]">
+          <h2 className="text-h2 text-brand-text-primary mb-4">
             {c.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {c.titleHighlight}
@@ -222,7 +222,7 @@ export function SignalRadar() {
 
         {/* ═══════════ HOW IT WORKS — 3 Steps ═══════════ */}
         <div className="mb-16">
-          <h3 className="text-lg sm:text-xl font-bold text-brand-text-primary text-center mb-8">
+          <h3 className="text-h4 font-bold text-brand-text-primary text-center mb-8">
             {c.stepsTitle}
           </h3>
 
@@ -247,7 +247,7 @@ export function SignalRadar() {
                   <div className="text-[11px] font-mono font-bold text-brand-accent tracking-[0.15em] uppercase mb-3">
                     0{i + 1}
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-brand-primary mb-2">{step.title}</h4>
+                  <h4 className="text-h4 text-brand-primary mb-2">{step.title}</h4>
                   <p className="text-[13px] text-brand-text-body leading-relaxed">{step.desc}</p>
                 </motion.div>
               );
@@ -258,7 +258,7 @@ export function SignalRadar() {
         {/* ═══════════ 8 TOPIC CARDS — Responsive Grid ═══════════ */}
         <div className="mb-16">
           <div className="text-center mb-10">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-brand-text-primary mb-4">
+            <h3 className="text-h3 text-brand-text-primary mb-4">
               {c.topicsTitle}
             </h3>
             <p className="text-base text-brand-text-body max-w-2xl mx-auto leading-relaxed mb-5">
@@ -284,7 +284,7 @@ export function SignalRadar() {
                 <Brain className="w-5 h-5 text-brand-primary" />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-brand-text-primary">
+                <h3 className="text-h4 text-brand-text-primary">
                   {c.compTitle}
                 </h3>
                 <div className="flex items-center gap-2 mt-1">
@@ -334,7 +334,7 @@ export function SignalRadar() {
                     </div>
                   </div>
 
-                  <h4 className="font-bold text-[15px] text-brand-primary mb-3">{adv.title}</h4>
+                  <h4 className="text-h4 text-brand-primary mb-3">{adv.title}</h4>
 
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">

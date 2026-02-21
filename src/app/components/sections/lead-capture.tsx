@@ -130,7 +130,7 @@ export function LeadCaptureSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary mb-4">
+          <h2 className="text-h2 text-brand-text-primary mb-4">
             {txt.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {txt.titleHighlight}

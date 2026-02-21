@@ -117,7 +117,7 @@ export function RoleSelection() {
           viewport={{ once: true }}
           className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-h2 text-white mb-4">
             {t.roleSelection?.title || "Everyone sees the company"}
             <span className="bg-gradient-to-r from-brand-accent to-brand-accent/60 bg-clip-text text-transparent">
               {t.roleSelection?.titleHighlight || " from a different angle."}
@@ -203,7 +203,7 @@ export function RoleSelection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 tracking-tight">
+                <h3 className="text-h3 text-white mb-4">
                   {activeRoleData.title}
                 </h3>
 

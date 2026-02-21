@@ -58,7 +58,7 @@ export function ProblemSection() {
               <div className="w-2 h-2 bg-brand-error rounded-full animate-pulse" />
               {t.problems?.badge || "The Problem"}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-text-primary leading-[1.15]">
+            <h2 className="text-h2 text-brand-text-primary">
               {t.problems?.title || "People don't leave"}
               <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
                 {t.problems?.titleHighlight || " overnight."}
@@ -190,7 +190,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProp
         {/* Animated Counter */}
         <div className={cn(
           "font-bold tracking-tight mb-2 transition-colors",
-          size === "large" ? "text-4xl sm:text-5xl md:text-6xl lg:text-7xl" : "text-3xl sm:text-4xl md:text-5xl",
+          size === "large" ? "text-display" : "text-3xl md:text-4xl",
           valueColor || "text-brand-text-primary"
         )}>
           {item?.value || ""}

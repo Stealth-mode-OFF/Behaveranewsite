@@ -67,7 +67,7 @@ export function DashboardPreview() {
               <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
               {t.dashboard?.badge}
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text-primary tracking-tight leading-[1.15]">
+            <h2 className="text-h2 text-brand-text-primary">
               {t.dashboard?.title}
               <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-3">{t.dashboard?.titleHighlight}</span>
             </h2>
