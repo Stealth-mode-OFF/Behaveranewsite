@@ -15,6 +15,8 @@ import growRangersLogo from "@/assets/clients/grow-rangers.png";
 import logo365 from "@/assets/clients/365.svg";
 import expandoLogo from "@/assets/clients/expando.svg";
 
+import { StatChip } from "@/app/components/ui/stat-chip";
+
 // Export logos for reuse in other components
 export const clientLogos = [
   { name: "PwC", src: pwcLogo },
@@ -131,27 +133,17 @@ function ProofChips({ language }: { language: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.15 }}
-      className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8"
+      className="flex flex-wrap items-center justify-center gap-2 mt-6"
     >
-      {items.map((chip, idx) => {
-        const Icon = chip.icon;
-        return (
-          <div
-            key={idx}
-            className="flex items-center gap-3 px-4 py-3 rounded-xl border border-brand-border bg-brand-background-secondary/50"
-          >
-            <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-brand-primary/5 shrink-0">
-              <Icon className="w-4 h-4 text-brand-primary" />
-            </div>
-            <div className="min-w-0">
-              <div className="text-lg font-bold text-brand-text-primary leading-tight">{chip.metric}</div>
-              <div className="text-xs text-brand-text-muted leading-snug truncate">
-                {chip.label} — <span className="font-medium">{chip.company}</span>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+      {items.map((chip, idx) => (
+        <StatChip
+          key={idx}
+          icon={chip.icon}
+          metric={chip.metric}
+          label={chip.label}
+          company={chip.company}
+        />
+      ))}
     </motion.div>
   );
 }

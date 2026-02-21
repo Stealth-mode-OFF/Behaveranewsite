@@ -216,8 +216,6 @@ export function AboutUnfoldSection() {
         >
           <Button
             onClick={() => openBooking('about_unfold_demo')}
-            size="lg"
-            className="h-12 px-8 text-base"
           >
             {text.demoCta}
             <ArrowRight className="w-4 h-4 ml-2" />

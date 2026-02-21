@@ -220,7 +220,7 @@ export function Hero() {
               transition={{ duration: 0.3, delay: 0.15 }}
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
-              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
+              <Button asChild size="lg" className="w-full sm:w-auto shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
                 <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
                   <Play className="w-4 h-4 mr-2 fill-current" />
                   {c.primaryCta}
@@ -231,7 +231,7 @@ export function Hero() {
                 onClick={() => openBooking('hero')}
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5"
+                className="w-full sm:w-auto border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5"
               >
                 {c.secondaryCta}
                 <ArrowRight className="w-4 h-4 ml-2" />

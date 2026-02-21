@@ -141,7 +141,7 @@ export function CtaSection() {
             {/* Two buttons row */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Primary CTA — Objednat pro celou firmu (bílé) */}
-              <Button asChild variant="inverse" size="lg" className="w-full sm:w-auto shadow-2xl shadow-white/10 hover:shadow-white/20">
+              <Button asChild variant="inverse" className="w-full sm:w-auto shadow-2xl shadow-white/10 hover:shadow-white/20">
                 <a
                   href="https://www.behavera.com/start"
                   target="_blank"
@@ -153,7 +153,7 @@ export function CtaSection() {
               </Button>
 
               {/* Secondary CTA — Otestovat 1 tým zdarma (fialové) */}
-              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white">
+              <Button asChild variant="outline" className="w-full sm:w-auto border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white">
                 <a
                   href="https://app.behavera.com/echo-pulse/try"
                   target="_blank"

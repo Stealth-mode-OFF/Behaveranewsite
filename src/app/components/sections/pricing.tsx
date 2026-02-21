@@ -400,7 +400,7 @@ export function PurchaseSection() {
                 </div>
                 
                 <div className="mt-8 relative space-y-3">
-                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 h-14 group" size="lg">
+                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 group">
                     <a href="https://www.behavera.com/start" target="_blank" rel="noopener noreferrer">
                       <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                       {pc.ctaPrimary}
@@ -412,7 +412,7 @@ export function PurchaseSection() {
                     href="https://app.behavera.com/echo-pulse/try"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center text-[12px] text-white/50 hover:text-white transition-colors underline underline-offset-2"
+                    className="block w-full text-center text-caption text-white/50 hover:text-white transition-colors underline underline-offset-2"
                   >
                     {pc.ctaSecondary}
                   </a>

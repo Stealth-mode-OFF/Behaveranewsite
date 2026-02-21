@@ -96,6 +96,7 @@
 
   /* SPACING SYSTEM (0-8 Scale) - Enhanced breathing room */
   --space-0: 0px;
+  --space-05: 4px;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -111,7 +112,9 @@
   --section-padding-y-sm: 80px;
   --section-padding-y-compact: 48px;
   --section-padding-y-compact-md: 64px;
-  --section-max-width: 1120px;
+  --section-max-width: 1200px;
+  --section-max-width-narrow: 800px;
+  --section-max-width-wide: 1400px;
 
   /* RADIUS SYSTEM */
   --radius-sm: 8px;
@@ -522,16 +525,34 @@
     padding-right: var(--space-3);
   }
 
+  .container-narrow {
+    max-width: var(--section-max-width-narrow);
+    margin: 0 auto;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
+  .container-wide {
+    max-width: var(--section-max-width-wide);
+    margin: 0 auto;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+
   /* Responsive container padding */
   @media (min-width: 768px) {
-    .container-default {
+    .container-default,
+    .container-narrow,
+    .container-wide {
       padding-left: var(--space-4);
       padding-right: var(--space-4);
     }
   }
 
   @media (min-width: 1024px) {
-    .container-default {
+    .container-default,
+    .container-narrow,
+    .container-wide {
       padding-left: var(--space-5);
       padding-right: var(--space-5);
     }

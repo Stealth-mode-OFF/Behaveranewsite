@@ -213,7 +213,7 @@ export function RoleSelection() {
                 </p>
 
                 {/* CTA */}
-                <Button asChild size="lg" className="bg-white text-brand-primary hover:bg-white/90 h-12 px-6 font-semibold rounded-xl">
+                <Button asChild className="bg-white text-brand-primary hover:bg-white/90 font-semibold">
                   <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
                     {activeRoleData.cta}
                     <ArrowRight className="w-4 h-4 ml-2" />

@@ -218,8 +218,7 @@ export function LeadCaptureSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting || isSuccess}
-                  className="h-12 px-6 text-sm font-semibold shrink-0 w-full sm:w-auto"
-                  size="lg"
+                  className="shrink-0 w-full sm:w-auto"
                 >
                   {isSubmitting ? (
                     <Loader2 className="w-4 h-4 animate-spin" />
