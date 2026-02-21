@@ -1,14 +1,12 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { CmsService } from '@/lib/cms-service';
 import { BlogPost } from '@/lib/types';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { format, type Locale } from 'date-fns';
 import { cs, de, enUS } from 'date-fns/locale';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Clock, BookOpen, ChevronDown, X, Sparkles } from 'lucide-react';
-import { Button } from '@/app/components/ui/button';
+import { ArrowRight, Clock, ChevronDown, X, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/app/contexts/language-context';
-import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPosts } from '@/app/hooks/use-localized-post';
 
 /** Estimate reading time from HTML content */
@@ -18,7 +16,8 @@ function estimateReadingTime(html: string): number {
   return Math.max(1, Math.ceil(words / 200));
 }
 
-const INITIAL_VISIBLE = 4;
+const BLOG_SECTION_ID = 'blog';
+const INITIAL_VISIBLE_SECONDARY_POSTS = 3;
 
 const translations = {
   cz: {
@@ -31,6 +30,7 @@ const translations = {
     readLabel: 'min čtení',
     defaultTag: 'Článek',
     openArticle: 'Číst článek',
+    openFeatured: 'Otevřít hlavní článek',
   },
   en: {
     badge: 'Blog',
@@ -42,6 +42,7 @@ const translations = {
     readLabel: 'min read',
     defaultTag: 'Article',
     openArticle: 'Read article',
+    openFeatured: 'Open featured article',
   },
   de: {
     badge: 'Blog',
@@ -53,6 +54,7 @@ const translations = {
     readLabel: 'Min. Lesezeit',
     defaultTag: 'Artikel',
     openArticle: 'Artikel lesen',
+    openFeatured: 'Top-Artikel öffnen',
   },
 };
 
@@ -102,9 +104,12 @@ export function BlogFeedSection() {
   }, [selectedSlug]);
 
   const localizedPosts = useLocalizedPosts(posts);
-
-  const visiblePosts = isExpanded ? localizedPosts : localizedPosts.slice(0, INITIAL_VISIBLE);
-  const hasMore = localizedPosts.length > INITIAL_VISIBLE;
+  const featuredPost = localizedPosts[0] || null;
+  const secondaryPosts = localizedPosts.slice(1);
+  const visibleSecondaryPosts = isExpanded
+    ? secondaryPosts
+    : secondaryPosts.slice(0, INITIAL_VISIBLE_SECONDARY_POSTS);
+  const hasMore = secondaryPosts.length > INITIAL_VISIBLE_SECONDARY_POSTS;
 
   const selectedPost = useMemo(
     () => localizedPosts.find((p) => p.slug === selectedSlug) || null,
@@ -128,10 +133,10 @@ export function BlogFeedSection() {
   if (localizedPosts.length === 0) return null;
 
   return (
-    <section id="blog" className="section-spacing bg-brand-background-primary">
+    <section id={BLOG_SECTION_ID} className="section-spacing bg-brand-background-primary">
       <div className="container-default max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-14 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -166,67 +171,112 @@ export function BlogFeedSection() {
           </motion.p>
         </div>
 
-        {/* Post Grid — 2 columns */}
-        <div className="grid gap-6 md:grid-cols-2">
-          {visiblePosts.map((post, idx) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: Math.min(idx * 0.08, 0.3) }}
+        {featuredPost && (
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8 md:mb-10"
+          >
+            <button
+              type="button"
+              onClick={() => openArticleModal(featuredPost.slug)}
+              className="group block w-full text-left overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] via-[#1a0a42] to-[#25115d] border border-white/10 shadow-[0_30px_80px_-50px_rgba(34,14,87,0.8)]"
             >
-              <button
-                type="button"
-                onClick={() => openArticleModal(post.slug)}
-                className="group w-full text-left flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
-              >
-                <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
-                  {post.coverImage && (
+              <div className="grid md:grid-cols-2">
+                <div className="aspect-[16/10] md:aspect-auto overflow-hidden relative">
+                  {featuredPost.coverImage && (
                     <img
-                      src={post.coverImage}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      src={featuredPost.coverImage}
+                      alt={featuredPost.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-85"
                       loading="lazy"
                       decoding="async"
                     />
                   )}
-                  <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-brand-primary text-[11px] font-semibold uppercase tracking-wider shadow-sm">
-                      {post.tags?.[0] || text.defaultTag}
+                </div>
+                <div className="p-6 md:p-8 lg:p-10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="px-3 py-1 rounded-full bg-white/10 text-brand-accent text-xs font-bold uppercase tracking-wider">
+                      {featuredPost.tags?.[0] || text.defaultTag}
+                    </span>
+                    <span className="text-white/45 text-xs flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {estimateReadingTime(featuredPost.content)} {text.readLabel}
                     </span>
                   </div>
-                </div>
-                <div className="flex-1 p-5 flex flex-col">
-                  <h3 className="text-lg font-bold text-brand-text-primary mb-2.5 group-hover:text-brand-primary transition-colors line-clamp-2 leading-snug">
-                    {post.title}
+
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 group-hover:text-brand-accent transition-colors leading-tight">
+                    {featuredPost.title}
                   </h3>
-                  <p className="text-brand-text-secondary text-[13px] leading-relaxed mb-5 line-clamp-3 flex-1">
-                    {post.excerpt}
+                  <p className="text-white/65 text-sm leading-relaxed line-clamp-4 mb-6">
+                    {featuredPost.excerpt}
                   </p>
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-brand-border/60">
-                    <div className="flex items-center gap-2">
-                      {post.author?.avatar && (
-                        <img
-                          src={post.author.avatar}
-                          alt={post.author.name}
-                          className="w-6 h-6 rounded-full"
-                        />
-                      )}
-                      <span className="text-xs text-brand-text-muted font-medium">
-                        {post.author?.name}
+
+                  <span className="inline-flex items-center gap-2 text-sm text-white/70 group-hover:text-brand-accent transition-colors font-semibold">
+                    {text.openFeatured}
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
+              </div>
+            </button>
+          </motion.div>
+        )}
+
+        {/* 3 small cards by default */}
+        {secondaryPosts.length > 0 && (
+          <div className="grid gap-6 md:grid-cols-3">
+            {visibleSecondaryPosts.map((post, idx) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ delay: Math.min(idx * 0.08, 0.24) }}
+              >
+                <button
+                  type="button"
+                  onClick={() => openArticleModal(post.slug)}
+                  className="group w-full text-left flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
+                >
+                  <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
+                    {post.coverImage && (
+                      <img
+                        src={post.coverImage}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-brand-primary text-[11px] font-semibold uppercase tracking-wider shadow-sm">
+                        {post.tags?.[0] || text.defaultTag}
                       </span>
                     </div>
-                    <span className="text-[11px] text-brand-text-muted flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {estimateReadingTime(post.content)} {text.readLabel}
-                    </span>
                   </div>
-                </div>
-              </button>
-            </motion.div>
-          ))}
-        </div>
+                  <div className="flex-1 p-5 flex flex-col">
+                    <h3 className="text-base font-bold text-brand-text-primary mb-2.5 group-hover:text-brand-primary transition-colors line-clamp-2 leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="text-brand-text-secondary text-[13px] leading-relaxed mb-5 line-clamp-3 flex-1">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-brand-border/60">
+                      <span className="text-xs text-brand-text-muted font-medium truncate pr-2">
+                        {post.author?.name}
+                      </span>
+                      <span className="text-[11px] text-brand-text-muted flex items-center gap-1 whitespace-nowrap">
+                        <Clock className="w-3 h-3" />
+                        {estimateReadingTime(post.content)} {text.readLabel}
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Show More / Less */}
         {hasMore && (
@@ -358,11 +408,8 @@ function BlogArticleModal({
               </div>
             )}
 
-            {/* Content */}
-            <div
-              className="blog-article-content"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
+            {/* Article Content */}
+            <div className="blog-article-content" dangerouslySetInnerHTML={{ __html: html }} />
           </div>
         </div>
       </motion.div>

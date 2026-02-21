@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Target, ShieldCheck } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -30,6 +31,7 @@ const TEAM: TeamMember[] = [
 ];
 
 const SECTION_ID = 'about';
+const INITIAL_VISIBLE_TEAM_MEMBERS = 4;
 
 const PILLAR_ICONS = [Zap, Target, ShieldCheck] as const;
 
@@ -48,6 +50,8 @@ const translations = {
       { title: 'Důvěra', desc: 'Anonymita a GDPR jako výchozí standard.' },
     ],
     demoCta: 'Domluvit konzultaci',
+    showMoreTeam: 'Zobrazit celý tým',
+    showLessTeam: 'Zobrazit méně',
   },
   en: {
     badge: 'About Us',
@@ -63,6 +67,8 @@ const translations = {
       { title: 'Trust', desc: 'Anonymity and GDPR by default.' },
     ],
     demoCta: 'Book a consultation',
+    showMoreTeam: 'Show full team',
+    showLessTeam: 'Show less',
   },
   de: {
     badge: 'Über uns',
@@ -78,6 +84,8 @@ const translations = {
       { title: 'Vertrauen', desc: 'Anonymität und DSGVO als Standard.' },
     ],
     demoCta: 'Beratung buchen',
+    showMoreTeam: 'Ganzes Team anzeigen',
+    showLessTeam: 'Weniger anzeigen',
   },
 };
 
@@ -94,7 +102,10 @@ const itemVariants = {
 export function AboutUnfoldSection() {
   const { language } = useLanguage();
   const { openBooking } = useModal();
+  const [isTeamExpanded, setIsTeamExpanded] = useState(false);
   const text = translations[language] || translations.en;
+  const visibleTeam = isTeamExpanded ? TEAM : TEAM.slice(0, INITIAL_VISIBLE_TEAM_MEMBERS);
+  const hasMoreTeam = TEAM.length > INITIAL_VISIBLE_TEAM_MEMBERS;
 
   return (
     <section id={SECTION_ID} className="section-spacing bg-white">
@@ -175,7 +186,7 @@ export function AboutUnfoldSection() {
           viewport={{ once: true }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-8 md:gap-y-10 max-w-4xl mx-auto mb-12 md:mb-16"
         >
-          {TEAM.map((member) => (
+          {visibleTeam.map((member) => (
             <motion.div
               key={member.name}
               variants={itemVariants}
@@ -206,6 +217,23 @@ export function AboutUnfoldSection() {
             </motion.div>
           ))}
         </motion.div>
+
+        {hasMoreTeam && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex justify-center -mt-4 mb-12 md:mb-16"
+          >
+            <button
+              type="button"
+              onClick={() => setIsTeamExpanded((prev) => !prev)}
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-brand-border bg-white text-sm font-semibold text-brand-text-primary hover:border-brand-primary/35 hover:text-brand-primary transition-colors"
+            >
+              {isTeamExpanded ? text.showLessTeam : text.showMoreTeam}
+            </button>
+          </motion.div>
+        )}
 
         {/* ── CTA ──────────────────────────────────────────────── */}
         <motion.div
