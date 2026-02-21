@@ -1,0 +1,166 @@
+---
+title: "Je to opravdu anonymní? Co přesně vidí HR, CEO a manažer"
+slug: je-to-opravdu-anonymni
+persona: HR
+funnel: BOFU
+reading_time_min: 9
+primary_cta: Otestovat 1 tým zdarma
+meta_description: "Detailní vysvětlení anonymity v Echo Pulse: co vidí zaměstnanec, manažer, HR a CEO. Prahy anonymity, GDPR soulad a technické zabezpečení."
+published_at: 2026-04-06
+---
+
+# Je to opravdu anonymní? Co přesně vidí HR, CEO a manažer
+
+„Je to fakt anonymní?" — tahle otázka padne pokaždé. Od zaměstnanců, kteří zvažují, jestli odpovědět upřímně. Od manažerů, kteří se bojí, že uvidí příliš mnoho. Od HR, které potřebuje vědět, co říct auditorovi. Tady je kompletní odpověď.
+
+## Co si z toho odnést
+
+- Co přesně vidí každá role (zaměstnanec, manažer, HR, CEO) — tabulka.
+- Jak fungují prahy anonymity a proč existují.
+- Jak je anonymita technicky zajištěná a co říká GDPR.
+
+## Proč to řeší právě teď
+
+Důvěra v anonymitu je podmínka č. 1 pro upřímné odpovědi. Pokud zaměstnanci nevěří, že je pulse anonymní, buď neodpoví, nebo odpovídají strategicky (vše 4/5, prázdné otevřené odpovědi). Bez upřímnosti jsou data bezcenná.
+
+## Co vidí každá role
+
+### Matice viditelnosti
+
+| Datový bod | Zaměstnanec | Manažer | HR | CEO |
+|-----------|------------|---------|-----|-----|
+| Vlastní odpovědi | ✅ (jen své) | ❌ | ❌ | ❌ |
+| Individuální odpovědi ostatních | ❌ | ❌ | ❌ | ❌ |
+| Agregované skóre týmu | ❌ | ✅ (svůj tým, min. 5 odpovědí) | ✅ (všechny týmy) | ✅ (celá firma) |
+| Otevřené odpovědi | ❌ | ✅ (anonymizované, min. 5 odpovědí) | ✅ (anonymizované) | ❌ (jen souhrny) |
+| Trend v čase | ❌ | ✅ (svůj tým) | ✅ (všechny týmy) | ✅ (celá firma) |
+| Segmentace (role, seniorita) | ❌ | ❌ | ✅ (při 5+ v segmentu) | ❌ |
+| Export raw dat | ❌ | ❌ | ❌ | ❌ |
+
+**Klíčové pravidlo: nikdo nikdy nevidí individuální odpovědi jiné osoby.**
+
+## Prahy anonymity
+
+### Jak prahy fungují
+
+Práh anonymity = minimální počet respondentů, pod kterým se data nezobrazí. V Echo Pulse je práh nastaven na **5 odpovědí**.
+
+| Situace | Co se stane |
+|---------|------------|
+| Tým 12 lidí, odpovědělo 8 | Manažer vidí agregované skóre + anonymizované otevřené odpovědi |
+| Tým 12 lidí, odpověděli 4 | Manažer nevidí nic — „Nedostatečný počet odpovědí" |
+| Segmentace: 3 seniorní v týmu 12 | Segment se nezobrazí — pod prahem |
+| Otevřené odpovědi: 4 z 12 napsaly komentář | Komentáře se nezobrazí — pod prahem |
+
+### Proč práh 5
+
+- Pod 5 odpovědí je staticky i prakticky snadné identifikovat respondenta.
+- Práh 5 je oborový standard (Gallup, Culture Amp, Peakon používají práh 5) [1].
+- GDPR Recitál 26 definuje anonymitu tak, že identifikace nesmí být „přiměřeně pravděpodobná" — práh 5 tento standard splňuje [2].
+
+### Edge case: malý tým
+
+| Velikost týmu | Řešení |
+|--------------|--------|
+| 5–7 lidí | Funguje, ale HR vidí pouze celotýmové výsledky, žádná segmentace |
+| 3–4 lidi | Pulse pro tým nespustíte — pod prahem |
+| 1–2 lidi | Nelze — pulse je týmový nástroj |
+
+## Technické zabezpečení
+
+### Co se děje s daty
+
+| Krok | Co se stane |
+|------|------------|
+| Vyplnění | Odpověď se odešle, identifikátor slouží jen k deduplikaci (1 odpověď na osobu) |
+| Uložení | Odpovědi se ukládají bez vazby na konkrétního uživatele v analytickém modelu |
+| Zobrazení | Výsledky se zobrazují pouze agregovaně, nikdy individuálně |
+| Export | Export obsahuje pouze agregovaná data — nikdy raw odpovědi |
+
+### Co technicky nemůže udělat ani administrátor
+
+- Zobrazit individuální odpovědi.
+- Přiřadit odpověď ke konkrétnímu zaměstnanci.
+- Exportovat raw data s identifikátory.
+- Snížit práh anonymity pod 5.
+
+## GDPR soulad
+
+### Proč pulse pod GDPR funguje
+
+| GDPR požadavek | Jak je splněn |
+|----------------|--------------|
+| Právní základ | Oprávněný zájem zaměstnavatele (čl. 6 odst. 1 písm. f) — měření engagementu je legitimní zájem |
+| Minimalizace dat | Sbíráme jen odpovědi na otázky — žádné metadata (čas vyplnění, zařízení, IP) |
+| Anonymizace | Agregace (práh 5+), žádná vazba odpověď → osoba v analytickém modelu |
+| Právo na výmaz | Zaměstnanec může požádat o smazání — ale anonymizovaná data nelze zpětně přiřadit |
+| DPO informování | Doporučujeme informovat DPO před spuštěním — ne souhlas, ale informování |
+
+### Co říct DPO
+
+> „Zavádíme anonymní pulse survey. Data sbíráme na základě oprávněného zájmu (čl. 6/1f). Odpovědi se agregují s prahem 5, individuální odpovědi nejsou přístupné nikomu. Zpracovatel (Behavera) má DPA. Chcete vidět nastavení?"
+
+### Recitál 26 GDPR
+
+> *Zásady ochrany údajů by se proto neměly vztahovat na anonymní informace, tedy na informace, které se nevztahují k identifikované či identifikovatelné fyzické osobě, ani na osobní údaje, které byly anonymizovány tak, že subjekt údajů není nebo již není identifikovatelný.* [2]
+
+Pulse s prahem 5+ a bez vazby odpověď → osoba spadá pod tuto definici.
+
+## Co říct zaměstnancům
+
+### Komunikační šablona (email/Slack)
+
+> **Předmět: Jak funguje anonymita v pulse survey**
+>
+> Chtěli bychom vysvětlit, jak pulse funguje, protože víme, že anonymita je pro vás důležitá.
+>
+> **Co se děje s vaší odpovědí:**
+> - Nikdo — ani váš manažer, ani HR, ani CEO — nevidí vaši individuální odpověď.
+> - Manažer vidí pouze průměrné skóre za tým, a to jen když odpoví minimálně 5 lidí.
+> - Otevřené komentáře se zobrazují pouze anonymně a pouze při 5+ odpovědích.
+> - Raw data nejsou exportovatelná.
+>
+> **Co to znamená pro vás:** Odpovídejte upřímně. Vaše odpověď je cenná přesně proto, že je anonymní — nikdo neví, kdo co napsal. Díky tomu můžeme pracovat s reálnými daty, ne s tím, co si myslíme, že chceme slyšet.
+
+### Na co se ptají zaměstnanci (a co odpovědět)
+
+| Otázka | Odpověď |
+|--------|---------|
+| „Vidí můj manažer, co jsem napsal/a?" | Ne. Vidí jen průměr za tým (5+ odpovědí). |
+| „Co když jsme v týmu jen 4?" | Pulse se pro váš tým nespustí — pod prahem anonymity. |
+| „Co když napíšu něco kritického?" | Komentář se zobrazí anonymně. Nikdo neví, kdo ho napsal. |
+| „Může někdo zjistit, že jsem neodpověděl/a?" | Systém eviduje, kdo dostal pozvánku, ale ne kdo odpověděl. HR nevidí, kdo konkrétně neodpověděl. |
+| „Co když je v komentáři jasné, kdo to psal?" | Toto je reálné riziko u malých týmů. Pište obecněji, pokud se obáváte: „Komunikace by mohla být lepší" místo konkrétního příběhu. |
+
+## Příklad z praxe
+
+*Ilustrační scénář:* IT firma v Brně, 95 zaměstnanců. Před spuštěním pulse měl HR manažer meeting s DPO a právním oddělením. Připravili interní dokument „Anonymita pulse — jak to funguje" (1 strana A4). Dokument dostali všichni zaměstnanci emailem + byl přístupný na intranetu. Na prvním kole účast: 78 %. O 2 kola později se jeden zaměstnanec zeptal: „Fakt nevidíte, kdo to je?" HR poslal screenshot dashboardu — žádná jména, jen průměry. Účast dalšího kola: 82 %. Transparentnost v anonymitě zvýšila důvěru.
+
+## Časté otázky
+
+**Může zaměstnavatel změnit práh anonymity?**
+V Echo Pulse ne. Práh 5 je pevně nastavený a nelze ho snížit. Tím chráníme zaměstnance i v situaci, kdy by zaměstnavatel chtěl práh obejít.
+
+**Je pulse GDPR-compliant i bez souhlasu zaměstnanců?**
+Ano — právní základ je oprávněný zájem (čl. 6/1f), ne souhlas. Souhlas u zaměstnaneckého poměru není vhodný právní základ, protože zaměstnanec je ve slabší pozici a souhlas by nebyl „svobodný" ve smyslu GDPR [2].
+
+**Co když zaměstnanec chce vidět svá data?**
+Může požádat o přístup podle čl. 15 GDPR. Uvidí, že odpovědi jsou anonymizované — ale individuální odpovědi není možné zpětně dohledat.
+
+**Jak je to s IP adresami?**
+Echo Pulse neloguje IP adresy respondentů. Logujeme pouze to, že odpověď přišla — ne odkud.
+
+**Může manažer poznat respondenta podle stylu psaní?**
+Teoreticky ano — to je limit jakéhokoli anonymního systému. Proto doporučujeme u malých týmů psát komentáře obecněji. Systém to technicky zajistit nemůže, ale minimalizujeme riziko prahem 5+ a tím, že manažer nevidí jednotlivé odpovědi u týmů pod prahem.
+
+## Závěr
+
+Anonymita v pulse není binární „je / není" — je to spektrum opatření, která dohromady vytvářejí prostředí, kde lidé odpovídají upřímně. Práh 5, žádné individuální zobrazení, žádný export raw dat, žádné logování IP. Ale nejsilnější garance anonymity není technická — je to zkušenost zaměstnanců, že po upřímné zpětné vazbě se skutečně něco změnilo a nikdo nebyl postižen.
+
+Chcete si vyzkoušet, jak anonymita funguje v praxi? Otestujte Echo Pulse na jednom týmu — zdarma.
+
+## Zdroje
+
+[1] Gallup. *State of the Global Workplace 2023*. https://www.gallup.com/workplace/349484/state-of-the-global-workplace.aspx. Přístup: 2026-02-21.
+
+[2] Nařízení Evropského parlamentu a Rady (EU) 2016/679 (GDPR), Recitál 26. https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX%3A32016R0679. Přístup: 2026-02-21.
