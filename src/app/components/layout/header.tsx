@@ -109,7 +109,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           : "bg-transparent py-5"
       )}
     >
-      <div className="container-default flex items-center justify-between">
+      <div className="container-default flex items-center justify-between relative z-50">
         {/* ── Logo ── */}
         <Link
           to="/"
@@ -227,90 +227,79 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
       {/* ── Mobile menu ── */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-white/98 backdrop-blur-xl z-40 flex flex-col pt-28 px-6"
-            id="mobile-navigation"
-          >
-            <div className="flex flex-col gap-1">
-              {navItems.map((item) =>
-                isHome ? (
-                  <a
-                    key={item.id}
-                    href={`#${item.id}`}
-                    className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setMobileMenuOpen(false);
-                      setTimeout(() => scrollTo(item.id), 350);
-                    }}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.id}
-                    to={`/#${item.id}`}
-                    className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-              {isHome ? (
-                <a
-                  href="#blog"
-                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setMobileMenuOpen(false);
-                    setTimeout(() => scrollTo('blog'), 350);
-                  }}
-                >
-                  {blogLabel}
-                </a>
-              ) : (
-                <Link
-                  to="/#blog"
-                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {blogLabel}
-                </Link>
-              )}
-              {isHome ? (
-                <a
-                  href="#about"
-                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setMobileMenuOpen(false);
-                    setTimeout(() => scrollTo('about'), 350);
-                  }}
-                >
-                  {aboutLabel}
-                </a>
-              ) : (
-                <Link
-                  to="/#about"
-                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {aboutLabel}
-                </Link>
-              )}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+              onClick={() => setMobileMenuOpen(false)}
+              aria-hidden="true"
+            />
 
-              <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
+            {/* Panel — slides from right */}
+            <motion.nav
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.35, ease: [0.32, 0.72, 0, 1] }}
+              className="fixed top-0 right-0 bottom-0 w-[min(85vw,360px)] bg-white shadow-2xl z-40 flex flex-col pt-24 pb-8 px-8 overflow-y-auto"
+              id="mobile-navigation"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation"
+            >
+              <div className="flex flex-col items-end gap-0.5">
+                {[
+                  ...navItems.map((item) => ({ id: item.id, label: item.label, type: 'section' as const })),
+                  { id: 'blog', label: blogLabel, type: 'section' as const },
+                  { id: 'about', label: aboutLabel, type: 'section' as const },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.08 + idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {isHome ? (
+                      <a
+                        href={`#${item.id}`}
+                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setMobileMenuOpen(false);
+                          setTimeout(() => scrollTo(item.id), 350);
+                        }}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <Link
+                        to={`/#${item.id}`}
+                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.35 }}
+                className="mt-auto pt-8 border-t border-brand-border/40 flex flex-col gap-3"
+              >
                 <a
                   href="https://app.behavera.com/echo-pulse/try"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full h-12 flex items-center justify-center rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base"
+                  className="w-full h-12 flex items-center justify-center rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base transition-colors"
                 >
                   {ctaLabel}
                 </a>
@@ -318,7 +307,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   href={BEHAVERA_LOGIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 flex items-center justify-center text-sm font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                  className="w-full h-12 flex items-center justify-center rounded-full border border-brand-border text-sm font-medium text-brand-text-secondary hover:text-brand-text-primary hover:border-brand-primary/40 transition-colors"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     trackLoginClick("header_mobile");
@@ -326,9 +315,9 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                 >
                   {loginLabel}
                 </a>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </motion.nav>
+          </>
         )}
       </AnimatePresence>
     </motion.header>
