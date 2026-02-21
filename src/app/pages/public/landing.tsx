@@ -83,6 +83,10 @@ const AboutUnfoldSection = lazyNamed(
   () => import("@/app/components/sections/about-unfold"),
   "AboutUnfoldSection"
 );
+const BlogFeedSection = lazyNamed(
+  () => import("@/app/components/sections/blog-feed"),
+  "BlogFeedSection"
+);
 
 
 export function LandingPage() {
@@ -171,7 +175,12 @@ export function LandingPage() {
           <AboutUnfoldSection />
         </LazySection>
 
-        {/* 8. PERSONALIZATION — Role-based value */}
+        {/* 8. BLOG — Latest articles with popup reader */}
+        <LazySection>
+          <BlogFeedSection />
+        </LazySection>
+
+        {/* 9. PERSONALIZATION — Role-based value */}
         <LazySection>
           <RoleSelection />
         </LazySection>
