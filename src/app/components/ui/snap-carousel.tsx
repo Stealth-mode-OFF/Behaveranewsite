@@ -167,10 +167,10 @@ export function SnapCarousel({
         ))}
       </div>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows – hidden on mobile, appear on desktop hover */}
       <button
         type="button" onClick={goPrev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-brand-border/30 flex items-center justify-center text-brand-text-secondary hover:text-brand-primary hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-brand-border/30 items-center justify-center text-brand-text-secondary hover:text-brand-primary hover:bg-white transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-brand-primary"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-5 h-5" />
@@ -178,36 +178,39 @@ export function SnapCarousel({
 
       <button
         type="button" onClick={goNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-brand-border/30 flex items-center justify-center text-brand-text-secondary hover:text-brand-primary hover:bg-white transition-all opacity-0 group-hover:opacity-100"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-brand-border/30 items-center justify-center text-brand-text-secondary hover:text-brand-primary hover:bg-white transition-all opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-brand-primary"
         aria-label="Next slide"
       >
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      {/* Dot Navigation with Progress */}
-      <div className="flex items-center justify-center gap-3 mt-8">
+      {/* Dot Navigation with Progress — WCAG 24×24 minimum touch targets */}
+      <div className="flex items-center justify-center gap-3 mt-6 md:mt-8">
         {/* Dots */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           {slides.map((_, index) => (
             <button
               key={index}
               type="button" onClick={() => goToSlide(index)}
               className={cn(
-                "relative w-2 h-2 rounded-full transition-all duration-300",
-                activeIndex === index
-                  ? "w-8 bg-brand-primary"
-                  : "bg-brand-border hover:bg-brand-text-muted"
+                "relative min-w-[24px] min-h-[24px] flex items-center justify-center rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-brand-primary",
               )}
               aria-label={`Go to slide ${index + 1}`}
               aria-current={activeIndex === index ? 'true' : 'false'}
             >
+              <span className={cn(
+                "block rounded-full transition-all duration-300",
+                activeIndex === index
+                  ? "w-8 h-2 bg-brand-primary"
+                  : "w-2 h-2 bg-brand-border hover:bg-brand-text-muted"
+              )} />
               {/* Progress indicator for active slide */}
               {activeIndex === index && isAutoPlaying && !isHovered && (
                 <motion.div
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: autoplayInterval / 1000, ease: "linear" }}
-                  className="absolute inset-0 bg-brand-accent rounded-full origin-left"
+                  className="absolute left-1/2 -translate-x-1/2 w-8 h-2 bg-brand-accent rounded-full origin-left"
                   key={`progress-${index}-${activeIndex}`}
                 />
               )}
@@ -215,10 +218,10 @@ export function SnapCarousel({
           ))}
         </div>
 
-        {/* Play/Pause button */}
+        {/* Play/Pause button — WCAG 24×24 minimum */}
         <button
           type="button" onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className="w-8 h-8 rounded-full border border-brand-border flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary transition-all"
+          className="min-w-[24px] min-h-[24px] w-8 h-8 rounded-full border border-brand-border flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary transition-all focus-visible:ring-2 focus-visible:ring-brand-primary"
           aria-label={isAutoPlaying ? "Pause autoplay" : "Resume autoplay"}
         >
           {isAutoPlaying ? (

@@ -1,7 +1,8 @@
-import { AlertTriangle, TrendingDown, EyeOff, ZapOff, ArrowRight, type LucideIcon } from "lucide-react";
+import { AlertTriangle, TrendingDown, EyeOff, ZapOff, ArrowRight, ChevronDown, type LucideIcon } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/app/components/ui/utils";
+import { useState } from "react";
 
 /**
  * Problem Section - Bento Grid Style
@@ -170,35 +171,84 @@ type BentoCellProps = {
   size: "large" | "medium";
   accent?: string;
   valueColor?: string;
+  detailLabel?: string;
 };
 
-function BentoCell({ item, icon: Icon, size, accent, valueColor }: BentoCellProps) {
+function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel = "Zobrazit detail" }: BentoCellProps) {
+  const [expanded, setExpanded] = useState(false);
+  const { language } = useLanguage();
+  const descText = item?.desc || "";
+  // Only show expand/collapse if description is long enough to warrant it
+  const hasLongDesc = descText.length > 80;
+
   return (
     <div className={cn(
       "h-full rounded-3xl p-4 md:p-6 flex flex-col justify-start border border-brand-border/50 group hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300",
       accent || "bg-brand-background-secondary",
-      size === "large" ? "min-h-[160px] lg:min-h-[180px]" : "min-h-[120px]"
+      size === "large" ? "min-h-[140px] md:min-h-[160px] lg:min-h-[180px]" : "min-h-[110px] md:min-h-[120px]"
     )}>
-      <div className="mb-4 flex justify-center">
-        <Icon className="w-6 h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
+      <div className="mb-3 md:mb-4 flex justify-center">
+        <Icon className="w-5 h-5 md:w-6 md:h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
       </div>
       
       <div className="text-left">
-        <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-2">
+        <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-1.5 md:mb-2">
           {item?.title || ""}
         </span>
         {/* Animated Counter */}
         <div className={cn(
-          "font-bold tracking-tight mb-2 transition-colors",
+          "font-bold tracking-tight mb-1.5 md:mb-2 transition-colors",
           size === "large" ? "text-h2" : "text-h3",
           valueColor || "text-brand-text-primary"
         )}>
           {item?.value || ""}
         </div>
         
-        <p className="text-base text-brand-text-secondary leading-relaxed">
-          {item?.desc || ""}
+        {/* Desktop: always show full text. Mobile: progressive disclosure */}
+        <p className="hidden md:block text-base text-brand-text-secondary leading-relaxed">
+          {descText}
         </p>
+        
+        {/* Mobile: truncated with expand */}
+        <div className="md:hidden">
+          {hasLongDesc ? (
+            <>
+              <AnimatePresence initial={false}>
+                {expanded ? (
+                  <motion.p
+                    key="full"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-sm text-brand-text-secondary leading-relaxed overflow-hidden"
+                  >
+                    {descText}
+                  </motion.p>
+                ) : (
+                  <motion.p
+                    key="short"
+                    className="text-sm text-brand-text-secondary leading-relaxed line-clamp-2"
+                  >
+                    {descText}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+              <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-brand-primary hover:text-brand-accent transition-colors min-h-[24px]"
+              >
+                {expanded ? (language === 'cz' ? 'Skrýt' : language === 'de' ? 'Weniger' : 'Less') : detailLabel}
+                <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", expanded && "rotate-180")} />
+              </button>
+            </>
+          ) : (
+            <p className="text-sm text-brand-text-secondary leading-relaxed">
+              {descText}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

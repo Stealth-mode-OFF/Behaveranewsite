@@ -1,7 +1,7 @@
 import { BlogPost, CaseStudy, Author } from './types';
 import { supabase as supabaseClient } from './supabase';
 import { adminEnabled } from './config';
-import { BLOG_POSTS, BLOG_AUTHORS } from './blog-content';
+import { BLOG_MDX_POSTS, BLOG_MDX_AUTHORS } from './blog-mdx-content';
 
 type AuthorRow = {
   id: string;
@@ -134,9 +134,9 @@ function getMergedCaseStudies(): CaseStudy[] {
 }
 
 // Seed content — displayed when CMS (Supabase) is not configured
-const DEFAULT_AUTHORS: Author[] = BLOG_AUTHORS;
+const DEFAULT_AUTHORS: Author[] = BLOG_MDX_AUTHORS;
 
-const DEFAULT_POSTS: BlogPost[] = BLOG_POSTS.map((post) => ({
+const DEFAULT_POSTS: BlogPost[] = BLOG_MDX_POSTS.map((post) => ({
   ...post,
   conversionPrimary: post.conversionPrimary ?? 'balanced',
 }));

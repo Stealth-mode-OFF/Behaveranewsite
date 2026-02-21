@@ -170,7 +170,7 @@ export function StatsBar() {
                 <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-primary/5 mb-3">
                   <Icon className="w-5 h-5 text-brand-primary" />
                 </div>
-                <div className="text-h2 text-brand-text-primary mb-2">
+                <div className="text-h2 text-brand-text-primary mb-2" style={{ fontVariantNumeric: 'tabular-nums' }}>
                   <AnimatedCounter 
                     end={stat.value} 
                     suffix={stat.suffix} 

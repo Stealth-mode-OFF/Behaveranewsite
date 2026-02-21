@@ -174,6 +174,8 @@ export function Footer() {
                   src="/logo-behavera.png"
                   alt="Behavera"
                   className="h-6 w-auto brightness-0 invert"
+                  width={103}
+                  height={24}
                 />
               </Link>
               

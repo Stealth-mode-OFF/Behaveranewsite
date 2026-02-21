@@ -51,15 +51,54 @@ export function LogoMarquee() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-center mb-6"
+          className="flex justify-center mb-5 md:mb-6"
         >
           <h2 className="text-center text-sm font-medium text-brand-text-muted uppercase tracking-widest">
             {title[language] || title.en}
           </h2>
         </motion.div>
         
-        {/* Marquee Container */}
-        <div className="relative marquee-container">
+        {/* Mobile: 2-row calm logo grid */}
+        <div className="md:hidden">
+          <div className="grid grid-cols-4 gap-x-2 gap-y-3 items-center justify-items-center">
+            {clientLogos.slice(0, 8).map((logo, index) => (
+              <div
+                key={index}
+                className="w-[72px] h-[32px] flex items-center justify-center"
+              >
+                <img
+                  src={logo.src}
+                  alt={`${logo.name} logo`}
+                  className="max-w-full max-h-full w-auto h-auto object-contain grayscale opacity-50"
+                  loading="lazy"
+                  width={72}
+                  height={32}
+                />
+              </div>
+            ))}
+          </div>
+          {/* Overflow row for remaining logos */}
+          <div className="flex items-center justify-center gap-4 mt-3">
+            {clientLogos.slice(8).map((logo, index) => (
+              <div
+                key={`extra-${index}`}
+                className="w-[64px] h-[28px] flex items-center justify-center"
+              >
+                <img
+                  src={logo.src}
+                  alt={`${logo.name} logo`}
+                  className="max-w-full max-h-full w-auto h-auto object-contain grayscale opacity-50"
+                  loading="lazy"
+                  width={64}
+                  height={28}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Marquee */}
+        <div className="hidden md:block relative marquee-container">
           {/* Gradient Masks */}
           <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
@@ -68,12 +107,14 @@ export function LogoMarquee() {
             <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll shrink-0">
               {clientLogos.map((logo, index) => (
                 <li key={index} className="shrink-0">
-                  <div className="w-[100px] md:w-[120px] h-[36px] md:h-[44px] flex items-center justify-center">
+                  <div className="w-[120px] h-[44px] flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt={`${logo.name} logo`}
                       className="max-w-full max-h-full w-auto h-auto object-contain grayscale opacity-60 transition-all duration-300"
                       loading="lazy"
+                      width={120}
+                      height={44}
                     />
                   </div>
                 </li>
@@ -82,12 +123,14 @@ export function LogoMarquee() {
             <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll shrink-0" aria-hidden="true">
               {clientLogos.map((logo, index) => (
                 <li key={`duplicate-${index}`} className="shrink-0">
-                  <div className="w-[100px] md:w-[120px] h-[36px] md:h-[44px] flex items-center justify-center">
+                  <div className="w-[120px] h-[44px] flex items-center justify-center">
                     <img
                       src={logo.src}
                       alt=""
                       className="max-w-full max-h-full w-auto h-auto object-contain grayscale opacity-60 transition-all duration-300"
                       loading="lazy"
+                      width={120}
+                      height={44}
                     />
                   </div>
                 </li>
@@ -96,7 +139,7 @@ export function LogoMarquee() {
           </div>
         </div>
 
-        {/* Proof Chips — verifiable case study outcomes */}
+        {/* Proof Chips — tighter on mobile */}
         <ProofChips language={language} />
       </div>
     </section>
@@ -133,7 +176,7 @@ function ProofChips({ language }: { language: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.15 }}
-      className="flex flex-wrap items-center justify-center gap-2 mt-6"
+      className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-5 md:mt-6"
     >
       {items.map((chip, idx) => (
         <StatChip

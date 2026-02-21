@@ -179,7 +179,7 @@ export function CaseStudiesSection() {
           </p>
         </motion.div>
 
-        {/* Mobile: Horizontal Carousel */}
+        {/* Mobile: Horizontal Carousel — swipe-first, no prev/next buttons */}
         <div className="md:hidden relative">
           <div 
             ref={carouselRef}
@@ -207,43 +207,24 @@ export function CaseStudiesSection() {
             ))}
           </div>
 
+          {/* Subtle progress dots only — no prev/next arrows on mobile */}
           {studies.length > 1 && (
-            <div className="flex justify-center items-center gap-4 mt-4">
-              <button
-                onClick={() => scrollToCard(Math.max(activeIndex - 1, 0))}
-                disabled={activeIndex === 0}
-                className={cn(
-                  "p-2 rounded-full border border-brand-border bg-white shadow-sm transition-all",
-                  activeIndex === 0 ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-background-secondary hover:shadow-md"
-                )}
-                aria-label="Previous"
-              >
-                <ChevronLeft className="w-5 h-5 text-brand-primary" />
-              </button>
-              <div className="flex gap-2">
-                {studies.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => scrollToCard(index)}
-                    className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-300",
-                      index === activeIndex ? "w-6 bg-brand-primary" : "bg-brand-border hover:bg-brand-accent"
-                    )}
-                    aria-label={`Go to ${index + 1}`}
-                  />
-                ))}
-              </div>
-              <button
-                onClick={() => scrollToCard(Math.min(activeIndex + 1, studies.length - 1))}
-                disabled={activeIndex === studies.length - 1}
-                className={cn(
-                  "p-2 rounded-full border border-brand-border bg-white shadow-sm transition-all",
-                  activeIndex === studies.length - 1 ? "opacity-40 cursor-not-allowed" : "hover:bg-brand-background-secondary hover:shadow-md"
-                )}
-                aria-label="Next"
-              >
-                <ChevronRight className="w-5 h-5 text-brand-primary" />
-              </button>
+            <div className="flex justify-center items-center gap-1.5 mt-3">
+              {studies.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToCard(index)}
+                  className={cn(
+                    "rounded-full transition-all duration-300 min-w-[24px] min-h-[24px] flex items-center justify-center",
+                  )}
+                  aria-label={`Go to case study ${index + 1}`}
+                >
+                  <span className={cn(
+                    "block rounded-full transition-all duration-300",
+                    index === activeIndex ? "w-5 h-1.5 bg-brand-primary" : "w-1.5 h-1.5 bg-brand-border"
+                  )} />
+                </button>
+              ))}
             </div>
           )}
         </div>
@@ -361,6 +342,9 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             src={study.coverImage || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200'}
             alt={study.clientName}
             className="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            width={600}
+            height={420}
           />
           {/* Dark gradient overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />

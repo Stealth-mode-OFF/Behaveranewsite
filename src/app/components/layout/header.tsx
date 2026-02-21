@@ -120,6 +120,8 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
             src="/logo-behavera.png"
             alt="Behavera"
             className="h-7 w-auto"
+            width={120}
+            height={28}
           />
         </Link>
 

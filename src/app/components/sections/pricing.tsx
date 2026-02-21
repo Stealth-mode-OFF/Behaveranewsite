@@ -201,7 +201,7 @@ export function PurchaseSection() {
             <div className="grid lg:grid-cols-5 gap-0">
               
               {/* LEFT: Configuration (3 cols) */}
-              <div className="lg:col-span-3 p-8 md:p-10">
+              <div className="lg:col-span-3 p-5 sm:p-8 md:p-10">
                 <h3 className="text-xl font-bold text-brand-text-primary mb-2 flex items-center gap-2">
                   <Users className="w-5 h-5 text-brand-primary" />
                   {t.purchase.configTitle}
@@ -274,7 +274,7 @@ export function PurchaseSection() {
                   </div>
                   
                   {/* Scale Labels */}
-                  <div className="flex justify-between text-xs text-brand-text-muted font-medium mt-1">
+                  <div className="flex justify-between text-[11px] sm:text-xs text-brand-text-muted font-medium mt-1 px-0.5">
                     <span>10</span>
                     <span>100</span>
                     <span>200</span>
@@ -309,7 +309,7 @@ export function PurchaseSection() {
               </div>
 
               {/* RIGHT: Summary (2 cols) */}
-              <div className="lg:col-span-2 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-primary-hover p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
+              <div className="lg:col-span-2 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-primary-hover p-5 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
                 {/* Decorative elements */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.04] rounded-full -translate-y-1/2 translate-x-1/2" />
                 <div className="absolute bottom-20 left-0 w-32 h-32 bg-white/[0.03] rounded-full -translate-x-1/2" />

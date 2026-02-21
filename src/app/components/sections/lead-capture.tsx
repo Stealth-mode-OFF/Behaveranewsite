@@ -235,10 +235,10 @@ export function LeadCaptureSection() {
                 <p className="text-[13px] text-brand-error bg-brand-error/5 rounded-lg px-3 py-2">{txt.error}</p>
               )}
 
-              <label className="flex items-center justify-center gap-2 cursor-pointer group">
+              <label className="flex items-start justify-center gap-2.5 cursor-pointer group py-1">
                 <input
                   type="checkbox"
-                  className="h-3.5 w-3.5 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
+                  className="h-4 w-4 mt-0.5 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer shrink-0"
                   {...register("marketingConsent")}
                 />
                 <span className="text-[11px] text-brand-text-muted leading-relaxed group-hover:text-brand-text-secondary transition-colors">
