@@ -13,13 +13,6 @@
     <priority>0.3</priority>
   </url>
   
-  <!-- Blog -->
-  <url>
-    <loc>https://www.behavera.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
   <!-- Case Studies -->
   <url>
     <loc>https://www.behavera.com/case-studies</loc>

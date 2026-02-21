@@ -148,12 +148,38 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               </Link>
             )
           )}
-          <Link to="/blog" className={navLinkClass}>
-            {blogLabel}
-          </Link>
-          <Link to="/team" className={navLinkClass}>
-            {aboutLabel}
-          </Link>
+          {isHome ? (
+            <a
+              href="#blog"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('blog');
+              }}
+              className={navLinkClass}
+            >
+              {blogLabel}
+            </a>
+          ) : (
+            <Link to="/#blog" className={navLinkClass}>
+              {blogLabel}
+            </Link>
+          )}
+          {isHome ? (
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('about');
+              }}
+              className={navLinkClass}
+            >
+              {aboutLabel}
+            </a>
+          ) : (
+            <Link to="/#about" className={navLinkClass}>
+              {aboutLabel}
+            </Link>
+          )}
         </nav>
 
         {/* ── Right actions ── */}
@@ -233,20 +259,48 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   </Link>
                 )
               )}
-              <Link
-                to="/blog"
-                className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {blogLabel}
-              </Link>
-              <Link
-                to="/team"
-                className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {aboutLabel}
-              </Link>
+              {isHome ? (
+                <a
+                  href="#blog"
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    setTimeout(() => scrollTo('blog'), 350);
+                  }}
+                >
+                  {blogLabel}
+                </a>
+              ) : (
+                <Link
+                  to="/#blog"
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {blogLabel}
+                </Link>
+              )}
+              {isHome ? (
+                <a
+                  href="#about"
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    setTimeout(() => scrollTo('about'), 350);
+                  }}
+                >
+                  {aboutLabel}
+                </a>
+              ) : (
+                <Link
+                  to="/#about"
+                  className="py-3 text-[28px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {aboutLabel}
+                </Link>
+              )}
 
               <div className="mt-8 pt-8 border-t border-brand-border/60 flex flex-col gap-3">
                 <a

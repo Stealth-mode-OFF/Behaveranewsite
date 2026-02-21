@@ -1,5 +1,5 @@
 import { Component, Suspense, lazy, type ErrorInfo, type ReactNode } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import { LanguageProvider } from "./contexts/language-context";
 import { ModalProvider } from "./contexts/modal-context";
 import { AuthProvider } from "@/lib/auth-context";
@@ -22,12 +22,7 @@ const TermsPage = lazy(() =>
 const PrivacyPolicyPage = lazy(() =>
   import("./pages/public/privacy-policy").then((module) => ({ default: module.PrivacyPolicyPage }))
 );
-const BlogPage = lazy(() =>
-  import("./pages/public/blog").then((module) => ({ default: module.BlogPage }))
-);
-const BlogPostPage = lazy(() =>
-  import("./pages/public/blog-post").then((module) => ({ default: module.BlogPostPage }))
-);
+
 const CaseStudiesPage = lazy(() =>
   import("./pages/public/case-studies").then((module) => ({ default: module.CaseStudiesPage }))
 );
@@ -40,9 +35,7 @@ const NotFoundPage = lazy(() =>
 const ChangelogPage = lazy(() =>
   import("./pages/public/changelog").then((module) => ({ default: module.ChangelogPage }))
 );
-const TeamPage = lazy(() =>
-  import("./pages/public/team").then((module) => ({ default: module.TeamPage }))
-);
+
 const ComparisonGoogleFormsPage = lazy(() =>
   import("./pages/public/comparison-google-forms").then((module) => ({ default: module.ComparisonGoogleFormsPage }))
 );
@@ -77,6 +70,12 @@ const CaseStudyList = lazy(() =>
 const CaseStudyEditor = lazy(() =>
   import("./pages/admin/case-study-editor").then((module) => ({ default: module.CaseStudyEditor }))
 );
+
+/** Redirect /blog/:slug → /?post=slug so the homepage blog modal opens */
+function BlogSlugRedirect() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/?post=${slug}`} replace />;
+}
 
 // Error Boundary
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
@@ -129,13 +128,13 @@ function App() {
                     <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                     <Route path="/ochrana-osobnich-udaju" element={<Navigate to="/privacy-policy" replace />} />
 
-                    <Route path="/blog" element={<BlogPage />} />
-                    <Route path="/blog/:slug" element={<BlogPostPage />} />
+                    <Route path="/blog" element={<Navigate to="/#blog" replace />} />
+                    <Route path="/blog/:slug" element={<BlogSlugRedirect />} />
 
                     <Route path="/case-studies" element={<CaseStudiesPage />} />
                     <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
                     <Route path="/changelog" element={<ChangelogPage />} />
-                    <Route path="/team" element={<TeamPage />} />
+                    <Route path="/team" element={<Navigate to="/#about" replace />} />
 
                     {/* Comparison SEO landing pages */}
                     <Route path="/echo-pulse-vs-google-forms" element={<ComparisonGoogleFormsPage />} />

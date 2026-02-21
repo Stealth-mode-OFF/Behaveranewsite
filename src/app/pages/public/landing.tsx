@@ -102,12 +102,27 @@ export function LandingPage() {
     } else if (params.get('demo') === '1') {
       openDemo('direct_link');
       window.history.replaceState({}, '', '/');
+    } else if (params.get('post')) {
+      // Redirect from /blog/:slug — scroll to blog section, modal opens via blog-feed
+      setTimeout(() => {
+        const el = document.getElementById('blog');
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }, 600);
     } else if (params.get('scroll')) {
       const target = params.get('scroll');
       window.history.replaceState({}, '', '/');
       // Small delay to let lazy sections render
       setTimeout(() => {
         const el = target ? document.getElementById(target) : null;
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }, 600);
+    }
+
+    // Handle hash navigation (e.g. /#about, /#blog from other pages)
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
         el?.scrollIntoView({ behavior: 'smooth' });
       }, 600);
     }

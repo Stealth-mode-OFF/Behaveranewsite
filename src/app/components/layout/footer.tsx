@@ -91,21 +91,21 @@ export function Footer() {
 
   const companyLinks = {
     cz: [
-      { label: "O nás", href: "/team" },
+      { label: "O nás", href: anchor("#about") },
       { label: "Případové studie", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog", href: anchor("#blog") },
       { label: "Changelog", href: "/changelog" },
     ],
     en: [
-      { label: "About", href: "/team" },
+      { label: "About", href: anchor("#about") },
       { label: "Case Studies", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog", href: anchor("#blog") },
       { label: "Changelog", href: "/changelog" },
     ],
     de: [
-      { label: "Über uns", href: "/team" },
+      { label: "Über uns", href: anchor("#about") },
       { label: "Fallstudien", href: "/case-studies" },
-      { label: "Blog", href: "/blog" },
+      { label: "Blog", href: anchor("#blog") },
       { label: "Changelog", href: "/changelog" },
     ],
   };
