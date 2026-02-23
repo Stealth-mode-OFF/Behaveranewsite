@@ -426,6 +426,44 @@ export default async function handler(request: Request): Promise<Response> {
       console.warn('Slack notification failed:', err);
     }
 
+    // ─── 4. Export to Google Sheets (fire & forget) ───
+    try {
+      const sheetsWebhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+      if (sheetsWebhookUrl) {
+        const totalMembers = payload.teams.reduce((s, t) => s + t.members.length, 0);
+        const sheetsPayload = {
+          companyName: payload.companyName,
+          companyId: payload.companyId || null,
+          billingInterval: payload.billingInterval || 'yearly',
+          employeeCount: payload.employeeCount || totalMembers || 0,
+          repName: payload.repName,
+          repEmail: payload.repEmail,
+          adminName: payload.adminName || null,
+          adminEmail: payload.adminEmail || null,
+          billingEmail: payload.billingEmail || null,
+          oauthProvider: payload.oauthProvider || null,
+          status: 'new',
+          submissionId,
+          pipedrivePersonId: pipedriveResult.personId,
+          pipedriveLeadId: pipedriveResult.leadId,
+          createdAt: new Date().toISOString(),
+          teams: payload.teams.map((t) => ({
+            name: t.name,
+            leaderEmail: t.leaderEmail || '',
+            members: t.members.map((m) => ({ name: m.name || '', email: m.email })),
+          })),
+        };
+        // Don't await — fire and forget so user doesn't wait
+        fetch(sheetsWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetsPayload),
+        }).catch((err) => console.warn('Google Sheets export failed:', err));
+      }
+    } catch (err) {
+      console.warn('Google Sheets export failed:', err);
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
