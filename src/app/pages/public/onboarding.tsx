@@ -50,6 +50,7 @@ import {
 // InviteTeammates step removed — OAuth import merged into Teams step
 import { useAresLookup, type AresResult } from "@/app/hooks/use-ares-lookup";
 import { parseContactsFile, CSV_ACCEPT, type ParsedContact } from "@/app/utils/csv-parser";
+import { toast } from "sonner";
 
 /* ─── Types ─── */
 type OnboardingFormData = {
@@ -800,6 +801,27 @@ export function OnboardingPage() {
   const goNext = async () => {
     const isValid = await validateStep(currentStep);
     if (!isValid) return;
+
+    // Step 1 (teams): validate min 3 members per team + leader set
+    if (currentStep === 1 && teams.length > 0) {
+      const teamErrors: string[] = [];
+      for (const t of teams) {
+        if (t.members.length > 0 && t.members.length < 3) {
+          teamErrors.push(`${t.name}: ${language === 'cz' ? 'minimálně 3 členové' : language === 'de' ? 'mindestens 3 Mitglieder' : 'minimum 3 members'}`);
+        }
+        if (t.members.length > 0 && !t.leaderEmail) {
+          teamErrors.push(`${t.name}: ${language === 'cz' ? 'nastavte Team Leadera' : language === 'de' ? 'Teamleiter festlegen' : 'set a Team Leader'}`);
+        }
+      }
+      if (teamErrors.length > 0) {
+        toast.error(teamErrors.join('\n'), {
+          duration: 5000,
+          description: language === 'cz' ? 'Opravte chyby v týmech' : language === 'de' ? 'Beheben Sie die Teamfehler' : 'Fix team errors',
+        });
+        return;
+      }
+    }
+
     setDirection(1);
     setCurrentStep((s: number) => Math.min(s + 1, STEPS.length - 1));
   };
@@ -840,6 +862,7 @@ export function OnboardingPage() {
           id: t.id,
           name: t.name,
           leaderEmail: t.leaderEmail,
+          resultRecipients: t.resultRecipients || [],
           members: t.members.map((m) => ({
             name: m.name,
             email: m.email,

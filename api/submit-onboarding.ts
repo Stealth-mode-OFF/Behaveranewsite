@@ -27,6 +27,7 @@ interface TeamPayload {
   name: string;
   leaderEmail: string;
   members: TeamMember[];
+  resultRecipients?: string[];
 }
 
 interface OnboardingPayload {
@@ -373,6 +374,7 @@ export default async function handler(request: Request): Promise<Response> {
           submission_id: submissionId,
           name: team.name,
           leader_email: team.leaderEmail || null,
+          result_recipients: team.resultRecipients || [],
           sort_order: i,
         },
         supabaseUrl,
