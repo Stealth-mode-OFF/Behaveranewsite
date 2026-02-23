@@ -48,6 +48,12 @@ const OnboardingPage = lazy(() =>
 const NonprofitPage = lazy(() =>
   import("./pages/public/nonprofit").then((module) => ({ default: module.NonprofitPage }))
 );
+const ScanQrPage = lazy(() =>
+  import("./pages/public/scan-qr").then((module) => ({ default: module.ScanQrPage }))
+);
+const ProNeziskovkyPage = lazy(() =>
+  import("./pages/public/pro-neziskovky").then((module) => ({ default: module.ProNeziskovkyPage }))
+);
 const BlogPage = lazy(() =>
   import("./pages/public/blog").then((module) => ({ default: module.BlogPage }))
 );
@@ -151,7 +157,11 @@ function App() {
                     <Route path="/engagement" element={<Navigate to="/?scroll=radar" replace />} />
 
                     {/* Nonprofit campaign — Givt × Behavera (no nav link) */}
-                    <Route path="/pro-neziskovky" element={<NonprofitPage />} />
+                    <Route path="/pro-neziskovky" element={<ProNeziskovkyPage />} />
+
+                    {/* Event QR lead capture (kiosk + mobile) */}
+                    <Route path="/scan_QR" element={<ScanQrPage />} />
+                    <Route path="/scan-qr" element={<ScanQrPage />} />
 
                     {/* Admin Routes */}
                     {adminEnabled ? (
