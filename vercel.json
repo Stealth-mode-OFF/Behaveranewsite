@@ -3,15 +3,50 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "redirects": [
-    { "source": "/podminky-pouzivani-sluzby", "destination": "/terms", "permanent": true },
-    { "source": "/ochrana-osobnich-udaju", "destination": "/privacy-policy", "permanent": true },
-    { "source": "/demo", "destination": "/?demo=1", "permanent": false },
-    { "source": "/engagement", "destination": "/?scroll=radar", "permanent": false },
-    { "source": "/team", "destination": "/#about", "permanent": false },
-    { "source": "/about", "destination": "/#about", "permanent": false },
-    { "source": "/blog", "destination": "/#blog", "permanent": false }
+    {
+      "source": "/podminky-pouzivani-sluzby",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/ochrana-osobnich-udaju",
+      "destination": "/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/demo",
+      "destination": "/?demo=1",
+      "permanent": false
+    },
+    {
+      "source": "/engagement",
+      "destination": "/?scroll=radar",
+      "permanent": false
+    },
+    {
+      "source": "/team",
+      "destination": "/#about",
+      "permanent": false
+    },
+    {
+      "source": "/about",
+      "destination": "/#about",
+      "permanent": false
+    },
+    {
+      "source": "/blog",
+      "destination": "/#blog",
+      "permanent": false
+    }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/"
+    }
   ]
 }
