@@ -26,14 +26,9 @@ import {
   Users,
   MessageCircle,
   Shield,
-  Sparkles,
-  Heart,
-  Zap,
   ArrowRight,
-  Star,
   Search,
   Clock,
-  PartyPopper,
   User,
   Mail,
   Phone,
@@ -58,32 +53,32 @@ const PRIVACY_URL = "/privacy-policy";
 /* ══ Chip option data ════════════════════════ */
 
 const EMPLOYEES_OPTIONS = [
-  { value: "1-49", label: "1–49", icon: "🏢", sub: "Malá firma" },
-  { value: "50-199", label: "50–199", icon: "🏬", sub: "Střední firma" },
-  { value: "200-999", label: "200–999", icon: "🏭", sub: "Velká firma" },
-  { value: "1000+", label: "1\u00a0000+", icon: "🌍", sub: "Enterprise" },
+  { value: "1-49", label: "1–49", sub: "Malá firma" },
+  { value: "50-199", label: "50–199", sub: "Střední firma" },
+  { value: "200-999", label: "200–999", sub: "Velká firma" },
+  { value: "1000+", label: "1\u00a0000+", sub: "Enterprise" },
 ] as const;
 
 const FEEDBACK_OPTIONS = [
-  { value: "no", label: "Zatím ne", icon: "🤔", sub: "Ale zajímá mě to" },
-  { value: "ad_hoc", label: "Občas", icon: "📋", sub: "Ad hoc průzkumy" },
-  { value: "quarterly", label: "Čtvrtletně", icon: "📅", sub: "Pravidelně" },
-  { value: "monthly_plus", label: "Měsíčně+", icon: "⚡", sub: "Pokročilí" },
+  { value: "no", label: "Zatím ne", sub: "Ale zajímá mě to" },
+  { value: "ad_hoc", label: "Občas", sub: "Ad hoc průzkumy" },
+  { value: "quarterly", label: "Čtvrtletně", sub: "Pravidelně" },
+  { value: "monthly_plus", label: "Měsíčně+", sub: "Pokročilí" },
 ] as const;
 
 const ROLE_OPTIONS = [
-  { value: "decision_maker", label: "Rozhoduji", icon: "✅", sub: "Mám to v rukou" },
-  { value: "co_decision_maker", label: "Spolurozhoduji", icon: "🤝", sub: "Jsem u toho" },
-  { value: "connector", label: "Propojím", icon: "🔗", sub: "Znám správného člověka" },
+  { value: "decision_maker", label: "Rozhoduji", sub: "Mám to v rukou" },
+  { value: "co_decision_maker", label: "Spolurozhoduji", sub: "Jsem u toho" },
+  { value: "connector", label: "Propojím", sub: "Znám správného člověka" },
 ] as const;
 
 /* Random thank-you messages */
 const THANK_YOU_MESSAGES = [
-  { title: "Paráda, díky! 🎉", sub: "Už se na to koukáme. Ozveme se brzy." },
-  { title: "Super, máme to! ✌️", sub: "Ozveme se — bez spamu, slíbujeme." },
-  { title: "Děkujeme! 💪", sub: "Jste v dobrých rukou." },
-  { title: "Hotovo! 🚀", sub: "Teď si užijte zbytek eventu." },
-  { title: "Výborně! ✨", sub: "Ukázku vám pošleme co nejdřív." },
+  { title: "Paráda, díky!", sub: "Už se na to koukáme. Ozveme se brzy." },
+  { title: "Super, máme to!", sub: "Ozveme se — bez spamu, slíbujeme." },
+  { title: "Děkujeme!", sub: "Jste v dobrých rukou." },
+  { title: "Hotovo!", sub: "Teď si užijte zbytek eventu." },
+  { title: "Výborně!", sub: "Ukázku vám pošleme co nejdřív." },
 ];
 
 /* ══ Offline queue helpers ═════════════════ */
@@ -399,7 +394,7 @@ function ChipGroup({
   onChange,
   isKiosk,
 }: {
-  options: readonly { value: string; label: string; icon?: string; sub?: string }[];
+  options: readonly { value: string; label: string; sub?: string }[];
   value: string;
   onChange: (v: string) => void;
   isKiosk: boolean;
@@ -428,22 +423,15 @@ function ChipGroup({
                 <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
             )}
-            <div className="flex items-center gap-3">
-              {opt.icon && (
-                <span className={`${isKiosk ? "text-2xl" : "text-xl"} shrink-0 transition-transform duration-200 ${selected ? "scale-110" : "group-hover:scale-105"}`}>
-                  {opt.icon}
-                </span>
-              )}
-              <div className="min-w-0">
-                <div className={`font-semibold leading-tight ${isKiosk ? "text-base" : "text-sm"} ${selected ? "text-brand-primary" : "text-brand-text-primary"}`}>
-                  {opt.label}
-                </div>
-                {opt.sub && (
-                  <div className={`text-[11px] leading-tight mt-0.5 ${selected ? "text-brand-primary/60" : "text-brand-text-muted"}`}>
-                    {opt.sub}
-                  </div>
-                )}
+            <div className="min-w-0">
+              <div className={`font-semibold leading-tight ${isKiosk ? "text-base" : "text-sm"} ${selected ? "text-brand-primary" : "text-brand-text-primary"}`}>
+                {opt.label}
               </div>
+              {opt.sub && (
+                <div className={`text-[11px] leading-tight mt-0.5 ${selected ? "text-brand-primary/60" : "text-brand-text-muted"}`}>
+                  {opt.sub}
+                </div>
+              )}
             </div>
           </button>
         );
@@ -726,26 +714,19 @@ export function ScanQrPage() {
             <div className="bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.04] border border-brand-border/60 overflow-hidden">
 
               {/* Card header */}
-              <div className="relative bg-gradient-to-r from-brand-primary via-brand-primary to-[#3D2175] px-6 py-6 overflow-hidden">
-                {/* Decorative circles */}
-                <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/[0.05]" />
-                <div className="absolute -bottom-4 -left-4 w-20 h-20 rounded-full bg-white/[0.03]" />
-
-                <div className="relative z-10">
-                  {eventName && (
-                    <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/95 text-[11px] font-semibold rounded-full px-3 py-1 mb-3 border border-white/10">
-                      <Sparkles className="w-3 h-3" />
-                      {eventName}
-                    </div>
-                  )}
-                  <h1 className={`font-display font-bold text-white leading-tight tracking-tight ${isKiosk ? "text-2xl" : "text-xl"}`}>
-                    Chci ukázku Echo Pulse <span className="inline-block" style={{ animation: "pulse 2s ease-in-out infinite" }}>⚡</span>
-                  </h1>
-                  <p className={`text-white/75 mt-2 leading-relaxed ${isKiosk ? "text-sm" : "text-[13px]"}`}>
-                    60 vteřin a máte jasno. Bez spamu — jen konkrétní ukázku,
-                    jak měřit engagement.
-                  </p>
-                </div>
+              <div className="bg-gradient-to-r from-brand-primary via-brand-primary to-[#3D2175] px-6 py-6">
+                {eventName && (
+                  <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/95 text-[11px] font-semibold rounded-full px-3 py-1 mb-3 border border-white/10">
+                    {eventName}
+                  </div>
+                )}
+                <h1 className={`font-display font-bold text-white leading-tight tracking-tight ${isKiosk ? "text-2xl" : "text-xl"}`}>
+                  Chci ukázku Echo Pulse
+                </h1>
+                <p className={`text-white/75 mt-2 leading-relaxed ${isKiosk ? "text-sm" : "text-[13px]"}`}>
+                  60 vteřin a máte jasno. Bez spamu — jen konkrétní ukázku,
+                  jak měřit engagement.
+                </p>
               </div>
 
               {/* Card body */}
@@ -762,7 +743,7 @@ export function ScanQrPage() {
                     <ConfettiCanvas />
                     <div className="relative z-10 space-y-4">
                       <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/25">
-                        <PartyPopper className="w-9 h-9 text-white" />
+                        <Check className="w-9 h-9 text-white" strokeWidth={2.5} />
                       </div>
                       <div>
                         <h2 className={`font-display font-bold text-brand-text-primary ${isKiosk ? "text-2xl" : "text-xl"}`}>
@@ -814,7 +795,7 @@ export function ScanQrPage() {
                     </div>
                     <div>
                       <h2 className={`font-display font-bold text-amber-900 ${isKiosk ? "text-2xl" : "text-xl"}`}>
-                        Uloženo offline ✔️
+                        Uloženo offline
                       </h2>
                       <p className="text-sm text-amber-700 mt-1">
                         Odešlu, jakmile bude internet. Klid, nic se neztrácí.
@@ -1092,7 +1073,6 @@ export function ScanQrPage() {
                         {/* Error */}
                         {status === "error" && errorMsg && (
                           <div className="text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3 border border-red-200/80 flex items-center gap-2 animate-in fade-in shake duration-300">
-                            <span className="shrink-0">⚠️</span>
                             {errorMsg}
                           </div>
                         )}
@@ -1133,7 +1113,7 @@ export function ScanQrPage() {
                   )}
                 </div>
                 <div className="flex items-center gap-1 text-[11px] text-brand-text-muted/30">
-                  <Heart className="w-3 h-3" /> Behavera
+                  Behavera
                 </div>
               </div>
             </div>
@@ -1147,7 +1127,7 @@ export function ScanQrPage() {
                 <Clock className="w-3.5 h-3.5" /> 60s formulář
               </span>
               <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
-                <Zap className="w-3.5 h-3.5" /> Bez spamu
+                <Shield className="w-3.5 h-3.5" /> Bez spamu
               </span>
             </div>
           </div>

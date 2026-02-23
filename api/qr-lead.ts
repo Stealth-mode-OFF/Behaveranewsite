@@ -212,8 +212,8 @@ async function saveToSupabase(
   payload: QrLeadPayload,
   createdAt: string,
 ): Promise<void> {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!supabaseUrl || !supabaseKey) {
     console.log("Supabase not configured, skipping backup");
     return;
@@ -317,8 +317,14 @@ export default async function handler(request: Request): Promise<Response> {
       );
     }
 
-    /* ── Supabase backup (fire & forget) ─────── */
-    saveToSupabase(payload, createdAt);
+    /* ── Supabase backup (await — this is our safety net) ── */
+    let supabaseSaved = false;
+    try {
+      await saveToSupabase(payload, createdAt);
+      supabaseSaved = true;
+    } catch (e) {
+      console.warn("Supabase save failed:", e);
+    }
 
     /* ── Person: find or create ───────────────── */
     const displayName = payload.contact_name || payload.company;
@@ -429,6 +435,20 @@ export default async function handler(request: Request): Promise<Response> {
     );
   } catch (error) {
     console.error("qr-lead error:", error);
+
+    /* If Supabase saved the lead, return 200 anyway — the lead isn't lost */
+    if (supabaseSaved) {
+      console.warn("Pipedrive failed but Supabase backup succeeded — returning 200");
+      return new Response(
+        JSON.stringify({
+          success: true,
+          pipedriveError: error instanceof Error ? error.message : "Unknown",
+          fallback: "supabase",
+        }),
+        { status: 200, headers: cors },
+      );
+    }
+
     return new Response(
       JSON.stringify({
         error: "Nepodařilo se odeslat",
