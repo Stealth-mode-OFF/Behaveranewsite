@@ -280,6 +280,8 @@ export default async function handler(request: Request): Promise<Response> {
     });
   }
 
+  let supabaseSaved = false;
+
   try {
     const payload: QrLeadPayload = await request.json();
     const createdAt = new Date().toISOString();
@@ -318,7 +320,6 @@ export default async function handler(request: Request): Promise<Response> {
     }
 
     /* ── Supabase backup (await — this is our safety net) ── */
-    let supabaseSaved = false;
     try {
       await saveToSupabase(payload, createdAt);
       supabaseSaved = true;
