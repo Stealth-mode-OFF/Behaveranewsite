@@ -1516,7 +1516,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
   // Article 20 – Innovation Week AI 2025
   {
-    id: 20,
+    id: '20',
     title: 'Innovation Week AI 2025: Why Startups Need Pulse Check-Ins More Than Corporates',
     title_cz: 'Innovation Week AI 2025: Proč startupy potřebují pulse check-iny víc než korporáty',
     slug: 'innovation-week-ai-2025-startup-team-health',
@@ -1635,7 +1635,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
   // Article 21 – DigiFest 2025
   {
-    id: 21,
+    id: '21',
     title: 'DigiFest 2025: How Are Your People Really Doing?',
     title_cz: 'DigiFest 2025: Jak na tom vlastně jsou Vaši lidé?',
     slug: 'digifest-2025-ai-tools-team-health-sme',
@@ -1722,7 +1722,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
   /* ───────────────────────── 22 ───────────────────────── */
   {
-    id: 22,
+    id: '22',
     title: 'Events 2026: Where to Find Us This Year',
     title_cz: 'Akce 2026: Kde se s námi letos potkáte',
     slug: 'events-2026-kde-nas-potkate',
