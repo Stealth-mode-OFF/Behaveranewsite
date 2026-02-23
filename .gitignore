@@ -7,3 +7,4 @@ dist
 supabase/.temp/
 .env.vercel
 test-results/
+.env.supabase
