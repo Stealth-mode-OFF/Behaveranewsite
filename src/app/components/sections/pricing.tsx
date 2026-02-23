@@ -127,7 +127,11 @@ export function PurchaseSection() {
   const animatedSavings = useAnimatedNumber(yearlySavings);
 
   return (
-    <section className="section-spacing bg-white relative overflow-hidden" id="pricing">
+    <section className="section-spacing bg-brand-background-secondary/25 relative overflow-hidden" id="pricing">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-10 left-[8%] h-44 w-44 rounded-full bg-brand-accent/10 blur-3xl" />
+        <div className="absolute top-1/3 right-[6%] h-56 w-56 rounded-full bg-brand-primary/6 blur-3xl" />
+      </div>
       <div className="container-default relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -136,7 +140,7 @@ export function PurchaseSection() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+          <div className="section-badge text-brand-text-muted/90">
              <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
              {t.purchase.badge}
           </div>
@@ -156,11 +160,11 @@ export function PurchaseSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-5xl mx-auto"
+          className="max-w-5xl mx-auto section-shell p-4 sm:p-6 md:p-8"
         >
           {/* Billing Toggle — centered above the card */}
           <div className="flex justify-center mb-8">
-            <div className="relative flex bg-white p-1.5 rounded-2xl shadow-lg shadow-brand-primary/[0.06] border border-brand-border">
+            <div className="relative flex surface-elevated p-1.5 rounded-2xl shadow-lg shadow-brand-primary/[0.08]">
               <button 
                 onClick={() => { setBillingInterval('monthly'); setJustSwitched(true); trackPricingBillingToggle('monthly'); }}
                 className={cn(
@@ -197,7 +201,7 @@ export function PurchaseSection() {
           </div>
 
           {/* Main pricing card */}
-          <div className="bg-white rounded-3xl shadow-2xl shadow-brand-primary/[0.08] border border-brand-border/50 overflow-hidden">
+          <div className="surface-elevated rounded-3xl shadow-2xl shadow-brand-primary/[0.10] overflow-hidden">
             <div className="grid lg:grid-cols-5 gap-0">
               
               {/* LEFT: Configuration (3 cols) */}
@@ -350,7 +354,7 @@ export function PurchaseSection() {
                     >
                       {isEur ? `€${animatedBase}` : animatedBase}
                     </motion.span>
-                    <span className="text-lg font-medium text-white/60">{isEur ? '' : 'Kč'} {t.purchase.perMonthLabel}</span>
+                    <span className="text-lg font-medium text-white/60">{t.purchase.perMonthLabel}</span>
                   </div>
                   
                   {/* Price per person detail */}
@@ -400,7 +404,7 @@ export function PurchaseSection() {
                 </div>
                 
                 <div className="mt-8 relative space-y-3">
-                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 group">
+                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 group btn-shine">
                     <a href="https://www.behavera.com/start" target="_blank" rel="noopener noreferrer">
                       <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                       {pc.ctaPrimary}

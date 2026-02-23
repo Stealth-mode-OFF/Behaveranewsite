@@ -232,9 +232,9 @@ export function NonprofitPage() {
                   <img src={veronikaImg} alt="Veronika Nováková" className="w-10 h-10 rounded-full object-cover" />
                   <div className="text-left">
                     <p className="text-sm font-semibold text-brand-text-primary">Veronika Nováková</p>
-                    <a href="tel:+420605839456" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
+                    <a href="tel:+420775922506" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
                       <Phone className="w-3 h-3" />
-                      +420 605 839 456
+                      +420 775 922 506
                     </a>
                   </div>
                 </div>
@@ -306,9 +306,9 @@ export function NonprofitPage() {
               <div>
                 <p className="text-sm font-semibold text-brand-text-primary">Veronika Nováková</p>
                 <p className="text-xs text-brand-text-muted mb-0.5">Customer Success</p>
-                <a href="tel:+420605839456" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
+                <a href="tel:+420775922506" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
                   <Phone className="w-3 h-3" />
-                  +420 605 839 456
+                  +420 775 922 506
                 </a>
               </div>
             </motion.div>

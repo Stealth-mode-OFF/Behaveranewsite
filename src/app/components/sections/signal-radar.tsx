@@ -187,7 +187,11 @@ export function SignalRadar() {
   };
 
   return (
-    <section className="section-spacing bg-brand-background-secondary/30 relative overflow-hidden" id="radar">
+    <section className="section-spacing bg-white relative overflow-hidden" id="radar">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-[6%] h-52 w-52 rounded-full bg-brand-accent/8 blur-3xl" />
+        <div className="absolute bottom-16 right-[8%] h-64 w-64 rounded-full bg-brand-primary/6 blur-3xl" />
+      </div>
       <div className="container-default relative z-10">
 
         {/* ═══════════ HEADER ═══════════ */}
@@ -198,7 +202,7 @@ export function SignalRadar() {
           transition={{ duration: 0.5 }}
           className="text-center max-w-3xl mx-auto mb-10 md:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-primary font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+          <div className="section-badge text-brand-primary bg-white/90 backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary" />
@@ -221,7 +225,7 @@ export function SignalRadar() {
         </motion.div>
 
         {/* ═══════════ HOW IT WORKS — 3 Steps ═══════════ */}
-        <div className="mb-16">
+        <div className="mb-16 section-shell-soft p-5 sm:p-6 md:p-8">
           <h3 className="text-h4 font-bold text-brand-text-primary text-center mb-8">
             {c.stepsTitle}
           </h3>
@@ -239,7 +243,7 @@ export function SignalRadar() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.15 }}
-                  className="relative z-10 bg-white rounded-2xl p-6 sm:p-7 border border-brand-primary/8 shadow-sm hover:shadow-lg transition-all text-center group"
+                  className="relative z-10 surface-elevated rounded-2xl p-6 sm:p-7 hover:shadow-lg transition-all text-center group"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-brand-primary mx-auto mb-4 flex items-center justify-center shadow-lg shadow-brand-primary/20 group-hover:scale-105 transition-transform">
                     <StepIcon className="w-6 h-6 text-white" />
@@ -271,13 +275,13 @@ export function SignalRadar() {
         </div>
 
         {/* ═══════════ COMPARISON + TESTIMONIALS — side by side ═══════════ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start section-shell-soft p-4 sm:p-5 md:p-6">
 
         {/* WHY NOT GOOGLE FORMS */}
         <div>
           <button
             onClick={() => setCompOpen(!compOpen)}
-            className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-white border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 transition-all group cursor-pointer"
+            className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl surface-elevated hover:shadow-md hover:border-brand-primary/20 transition-all group cursor-pointer"
           >
             <div className="flex items-center gap-4 text-left">
               <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0">
@@ -326,7 +330,7 @@ export function SignalRadar() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: i * 0.08 }}
-                  className="bg-white rounded-2xl p-5 border border-brand-primary/8 shadow-sm hover:shadow-md transition-all group"
+                  className="surface-elevated rounded-2xl p-5 hover:shadow-md transition-all group"
                 >
                   <div className="flex items-start mb-4">
                     <div className="w-9 h-9 rounded-lg bg-brand-background-secondary flex items-center justify-center shrink-0 group-hover:bg-brand-primary transition-colors">
@@ -360,7 +364,7 @@ export function SignalRadar() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="rounded-2xl border border-brand-border/60 bg-white p-6 sm:p-8 md:p-10 shadow-sm"
+          className="rounded-2xl surface-elevated p-6 sm:p-8 md:p-10"
         >
           <QuickScanTestimonials lang={language} />
         </motion.div>

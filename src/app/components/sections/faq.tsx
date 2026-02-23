@@ -18,6 +18,7 @@ import { trackFaqCategoryChanged, trackFaqItemToggled } from "@/lib/analytics";
 type FAQCategory = {
   id: string;
   label: string;
+  shortLabel: string;
   icon: ReactNode;
 };
 
@@ -34,10 +35,30 @@ export function FAQ() {
 
   // Categories
   const categories: FAQCategory[] = [
-    { id: "all", label: language === 'cz' ? "Vše" : language === 'de' ? "Alle" : "All", icon: <BarChart className="w-4 h-4" /> },
-    { id: "product", label: language === 'cz' ? "Produkt" : language === 'de' ? "Produkt" : "Product", icon: <Zap className="w-4 h-4" /> },
-    { id: "privacy", label: language === 'cz' ? "Bezpečnost" : language === 'de' ? "Sicherheit" : "Privacy", icon: <Shield className="w-4 h-4" /> },
-    { id: "implementation", label: language === 'cz' ? "Nasazení" : language === 'de' ? "Einführung" : "Implementation", icon: <Users className="w-4 h-4" /> },
+    {
+      id: "all",
+      label: language === 'cz' ? "Vše" : language === 'de' ? "Alle" : "All",
+      shortLabel: language === 'cz' ? "Vše" : language === 'de' ? "Alle" : "All",
+      icon: <BarChart className="w-4 h-4" />,
+    },
+    {
+      id: "product",
+      label: language === 'cz' ? "Produkt" : language === 'de' ? "Produkt" : "Product",
+      shortLabel: language === 'cz' ? "Produkt" : language === 'de' ? "Produkt" : "Produkt",
+      icon: <Zap className="w-4 h-4" />,
+    },
+    {
+      id: "privacy",
+      label: language === 'cz' ? "Bezpečnost" : language === 'de' ? "Sicherheit" : "Privacy",
+      shortLabel: language === 'cz' ? "Data" : language === 'de' ? "Daten" : "Privacy",
+      icon: <Shield className="w-4 h-4" />,
+    },
+    {
+      id: "implementation",
+      label: language === 'cz' ? "Nasazení" : language === 'de' ? "Einführung" : "Implementation",
+      shortLabel: language === 'cz' ? "Setup" : language === 'de' ? "Setup" : "Setup",
+      icon: <Users className="w-4 h-4" />,
+    },
   ];
 
   // Map FAQ items to categories (basic heuristic based on content)
@@ -66,8 +87,13 @@ export function FAQ() {
   };
 
   return (
-    <section className="section-spacing bg-brand-background-secondary/30" id="faq">
-      <div className="container-default max-w-[900px]">
+    <section className="section-spacing bg-brand-background-secondary/20 relative overflow-hidden" id="faq">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-8 left-[8%] h-40 w-40 rounded-full bg-brand-accent/8 blur-3xl" />
+        <div className="absolute bottom-6 right-[10%] h-52 w-52 rounded-full bg-brand-primary/6 blur-3xl" />
+      </div>
+      <div className="container-default max-w-[980px] relative">
+        <div className="section-shell px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12">
         
         {/* Header */}
         <motion.div
@@ -76,7 +102,7 @@ export function FAQ() {
           viewport={{ once: true }}
           className="text-center mb-10 md:mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+          <div className="section-badge text-brand-text-muted/90">
             <HelpCircle className="w-3.5 h-3.5" />
             {language === 'cz' ? 'Časté otázky' : language === 'de' ? 'Häufige Fragen' : 'FAQ'}
           </div>
@@ -99,7 +125,7 @@ export function FAQ() {
           transition={{ delay: 0.1 }}
           className="flex justify-center mb-10"
         >
-          <div className="inline-flex p-1.5 bg-white border border-brand-border rounded-2xl shadow-sm max-w-full overflow-x-auto">
+          <div className="inline-flex p-1.5 surface-elevated rounded-2xl max-w-full overflow-x-auto chip-scroll gap-1">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
@@ -111,7 +137,7 @@ export function FAQ() {
                     trackFaqCategoryChanged(cat.id);
                   }}
                   className={cn(
-                    "relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2",
+                    "relative px-3.5 sm:px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap",
                     isActive 
                       ? "text-white" 
                       : "text-brand-text-secondary hover:text-brand-primary"
@@ -126,6 +152,7 @@ export function FAQ() {
                   )}
                   <span className="relative z-10 flex items-center gap-2">
                     {cat.icon}
+                    <span className="sm:hidden text-[12px]">{cat.shortLabel}</span>
                     <span className="hidden sm:inline">{cat.label}</span>
                   </span>
                 </button>
@@ -175,12 +202,13 @@ export function FAQ() {
           </p>
           <a
             href="mailto:support@behavera.com"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-brand-border rounded-xl text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 surface-elevated surface-elevated-hover rounded-xl text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all"
           >
             <Mail className="w-4 h-4" />
             {t.faq?.contact || "Contact us"}
           </a>
         </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -196,12 +224,12 @@ type FAQAccordionItemProps = {
 function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionItemProps) {
   return (
     <div className={cn(
-      "bg-white rounded-2xl border transition-all duration-300",
-      isOpen ? "border-brand-primary/30 shadow-lg shadow-brand-primary/5" : "border-brand-border hover:border-brand-primary/20"
+      "surface-elevated rounded-2xl transition-all duration-300",
+      isOpen ? "border-brand-primary/30 shadow-lg shadow-brand-primary/10" : "hover:border-brand-primary/20"
     )}>
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-6 text-left"
+        className="w-full flex items-center justify-between p-5 sm:p-6 text-left"
         aria-expanded={isOpen}
       >
         <span className={cn(

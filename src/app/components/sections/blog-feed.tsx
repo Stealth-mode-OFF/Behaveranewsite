@@ -133,8 +133,12 @@ export function BlogFeedSection() {
   if (localizedPosts.length === 0) return null;
 
   return (
-    <section id={BLOG_SECTION_ID} className="section-spacing bg-brand-background-primary">
-      <div className="container-default max-w-6xl">
+    <section id={BLOG_SECTION_ID} className="section-spacing bg-brand-background-secondary/20 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-8 left-[10%] h-40 w-40 rounded-full bg-brand-accent/8 blur-3xl" />
+        <div className="absolute bottom-10 right-[8%] h-56 w-56 rounded-full bg-brand-primary/6 blur-3xl" />
+      </div>
+      <div className="container-default max-w-6xl relative">
         {/* Header */}
         <div className="text-center mb-14 md:mb-16">
           <motion.div
@@ -142,7 +146,7 @@ export function BlogFeedSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-primary/20 bg-brand-primary/[0.04] px-3 py-1.5 mb-4">
+            <span className="section-badge bg-white/85 backdrop-blur-sm border-brand-primary/15 text-brand-primary mb-4">
               <Sparkles className="w-3.5 h-3.5 text-brand-primary" />
               <span className="text-[11px] uppercase tracking-[0.14em] font-semibold text-brand-primary">
                 {text.badge}
@@ -171,6 +175,7 @@ export function BlogFeedSection() {
           </motion.p>
         </div>
 
+        <div className="section-shell-soft p-4 sm:p-6 md:p-8">
         {featuredPost && (
           <motion.div
             initial={{ opacity: 0, y: 18 }}
@@ -181,7 +186,7 @@ export function BlogFeedSection() {
             <button
               type="button"
               onClick={() => openArticleModal(featuredPost.slug)}
-              className="group block w-full text-left overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] via-[#1a0a42] to-[#25115d] border border-white/10 shadow-[0_30px_80px_-50px_rgba(34,14,87,0.8)]"
+              className="group block w-full text-left overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] via-[#1a0a42] to-[#25115d] border border-white/10 shadow-[0_30px_80px_-50px_rgba(34,14,87,0.8)] transition-transform duration-300 hover:-translate-y-0.5"
             >
               <div className="grid md:grid-cols-2">
                 <div className="aspect-[16/10] md:aspect-auto overflow-hidden relative">
@@ -237,7 +242,7 @@ export function BlogFeedSection() {
                 <button
                   type="button"
                   onClick={() => openArticleModal(post.slug)}
-                  className="group w-full text-left flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300"
+                  className="group w-full text-left flex flex-col h-full surface-elevated surface-elevated-hover rounded-2xl overflow-hidden"
                 >
                   <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
                     {post.coverImage && (
@@ -284,7 +289,7 @@ export function BlogFeedSection() {
             <button
               type="button"
               onClick={() => setIsExpanded((prev) => !prev)}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-brand-border bg-white text-sm font-semibold text-brand-text-primary hover:border-brand-primary/35 hover:text-brand-primary transition-colors"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-full surface-elevated text-sm font-semibold text-brand-text-primary hover:border-brand-primary/35 hover:text-brand-primary transition-colors"
             >
               {isExpanded ? text.showLess : text.showMore}
               <ChevronDown
@@ -293,6 +298,7 @@ export function BlogFeedSection() {
             </button>
           </div>
         )}
+        </div>
       </div>
 
       {/* Article Popup Modal */}

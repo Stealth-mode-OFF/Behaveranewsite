@@ -147,12 +147,15 @@ export function Hero() {
     <section
       id="hero"
       data-hero-ctas
-      className="relative min-h-screen flex flex-col justify-center pt-24 pb-8 md:pt-32 md:pb-16 overflow-hidden"
+      className="relative isolate min-h-screen flex flex-col justify-center pt-24 pb-8 md:pt-32 md:pb-16 overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-background-secondary via-white to-brand-background-secondary -z-20" />
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-[15%] left-[15%] w-[600px] h-[600px] bg-brand-primary/[0.03] rounded-full blur-[120px]" />
+        <div className="absolute top-[12%] left-[12%] w-[620px] h-[620px] bg-brand-primary/[0.035] rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute top-[8%] right-[6%] w-[360px] h-[360px] bg-brand-accent/[0.08] rounded-full blur-[90px] animate-float" />
+        <div className="absolute bottom-[8%] left-[35%] w-[420px] h-[220px] bg-brand-accent/[0.05] rounded-full blur-[80px]" />
+        <div className="absolute inset-x-0 top-[38%] h-px bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent" />
       </div>
 
       <div className="container-default relative z-10">
@@ -165,7 +168,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-brand-border shadow-sm mb-5 md:mb-8"
+              className="section-badge bg-white/90 backdrop-blur-sm shadow-sm border-brand-border/80 text-brand-text-muted mb-5 md:mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-brand-success animate-pulse" />
               <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-text-muted">
@@ -229,7 +232,7 @@ export function Hero() {
               transition={{ duration: 0.3, delay: 0.15 }}
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
-              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
+              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all btn-shine">
                 <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
                   <Play className="w-4 h-4 mr-2 fill-current" />
                   {c.primaryCta}
@@ -255,7 +258,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 justify-center"
+              className="mx-auto inline-flex max-w-5xl flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 rounded-2xl border border-brand-border/70 bg-white/70 px-3 py-3 sm:px-5 backdrop-blur-sm shadow-[0_12px_35px_-30px_rgba(45,27,105,0.25)]"
             >
               <div className="flex items-center gap-2 text-sm font-semibold text-brand-primary">
                 <Users className="w-4 h-4" />
@@ -276,7 +279,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full"
+            className="relative w-full drop-shadow-[0_25px_45px_rgba(45,27,105,0.16)]"
           >
             <DeviceFrame type="macbook" className="w-full max-w-[1400px] mx-auto">
               <AnimatedDashboardContent 
