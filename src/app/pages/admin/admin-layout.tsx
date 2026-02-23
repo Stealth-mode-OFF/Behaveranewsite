@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
-import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2, Users } from 'lucide-react';
+import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2, Users, Target, QrCode, ExternalLink } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 import { cn } from '@/app/components/ui/utils';
@@ -93,6 +93,32 @@ export function AdminLayout() {
         <Users className="w-4 h-4 transition-transform group-hover:scale-110" />
         Onboardings
       </NavLink>
+      <NavLink
+        to="/admin/leads"
+        className={({ isActive }) =>
+          cn(
+            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group",
+            isActive 
+              ? "bg-brand-primary/10 text-brand-primary shadow-sm" 
+              : "text-brand-text-secondary hover:bg-brand-background-secondary hover:text-brand-primary"
+          )
+        }
+      >
+        <Target className="w-4 h-4 transition-transform group-hover:scale-110" />
+        Leady
+      </NavLink>
+
+      <div className="text-xs font-semibold text-brand-text-muted/60 uppercase tracking-wider px-3 mb-2 mt-6">Nástroje</div>
+      <a
+        href="/scan-qr"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group text-brand-text-secondary hover:bg-brand-background-secondary hover:text-brand-primary"
+      >
+        <QrCode className="w-4 h-4 transition-transform group-hover:scale-110" />
+        QR Signup
+        <ExternalLink className="w-3 h-3 ml-auto opacity-40 group-hover:opacity-70" />
+      </a>
     </div>
   );
 
