@@ -79,6 +79,9 @@ const CaseStudyList = lazy(() =>
 const CaseStudyEditor = lazy(() =>
   import("./pages/admin/case-study-editor").then((module) => ({ default: module.CaseStudyEditor }))
 );
+const OnboardingsPage = lazy(() =>
+  import("./pages/admin/onboardings").then((module) => ({ default: module.OnboardingsPage }))
+);
 
 // Error Boundary
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean; error: Error | null }> {
@@ -177,6 +180,8 @@ function App() {
                           <Route path="case-studies" element={<CaseStudyList />} />
                           <Route path="case-studies/new" element={<CaseStudyEditor />} />
                           <Route path="case-studies/edit/:id" element={<CaseStudyEditor />} />
+
+                          <Route path="onboardings" element={<OnboardingsPage />} />
                         </Route>
                       </>
                     ) : (

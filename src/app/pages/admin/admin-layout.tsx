@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
-import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2 } from 'lucide-react';
+import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2, Users } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 import { cn } from '@/app/components/ui/utils';
@@ -76,6 +76,22 @@ export function AdminLayout() {
       >
         <Briefcase className="w-4 h-4 transition-transform group-hover:scale-110" />
         Case Studies
+      </NavLink>
+
+      <div className="text-xs font-semibold text-brand-text-muted/60 uppercase tracking-wider px-3 mb-2 mt-6">Sales</div>
+      <NavLink
+        to="/admin/onboardings"
+        className={({ isActive }) =>
+          cn(
+            "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 group",
+            isActive 
+              ? "bg-brand-primary/10 text-brand-primary shadow-sm" 
+              : "text-brand-text-secondary hover:bg-brand-background-secondary hover:text-brand-primary"
+          )
+        }
+      >
+        <Users className="w-4 h-4 transition-transform group-hover:scale-110" />
+        Onboardings
       </NavLink>
     </div>
   );
