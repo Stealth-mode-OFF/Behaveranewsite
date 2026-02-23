@@ -1,3 +1,4 @@
+// v2
 /**
  * Vercel Edge Function: QR / Event Lead Capture
  *
