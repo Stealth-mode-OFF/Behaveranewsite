@@ -67,7 +67,7 @@ interface PipedriveSearchResult {
 /* ── Pipedrive helpers ─────────────────────────── */
 
 function getPipedriveUrl(endpoint: string): string {
-  const apiKey = process.env.PIPEDRIVE_API_KEY;
+  const apiKey = process.env.PIPEDRIVE_API_TOKEN || process.env.PIPEDRIVE_API_KEY;
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || "behavera";
   if (!apiKey) throw new Error("PIPEDRIVE_API_KEY not configured");
   const sep = endpoint.includes("?") ? "&" : "?";

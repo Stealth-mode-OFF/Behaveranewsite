@@ -31,6 +31,7 @@ import {
   Filter,
   TrendingUp,
   AlertCircle,
+  Heart,
 } from 'lucide-react';
 import { cn } from '@/app/components/ui/utils';
 import { toast } from 'sonner';
@@ -147,12 +148,14 @@ function FrequencyBadge({ freq }: { freq: string }) {
 function SourceBadge({ source }: { source: string }) {
   if (!source) return <span className="text-xs text-brand-text-muted">\u2014</span>;
   const isQR = source.toLowerCase().includes('qr') || source.toLowerCase().includes('scan') || source.toLowerCase().includes('event');
+  const isNonprofit = source.toLowerCase().includes('neziskov');
+  const bg = isNonprofit ? 'bg-green-50 text-green-700 border-green-200'
+    : isQR ? 'bg-purple-50 text-purple-700 border-purple-200'
+    : 'bg-sky-50 text-sky-700 border-sky-200';
+  const Icon = isNonprofit ? Heart : isQR ? QrCode : Globe;
   return (
-    <Badge variant="outline" className={cn(
-      'text-xs font-medium border',
-      isQR ? 'bg-purple-50 text-purple-700 border-purple-200' : 'bg-sky-50 text-sky-700 border-sky-200'
-    )}>
-      {isQR ? <QrCode className="w-3 h-3 mr-1" /> : <Globe className="w-3 h-3 mr-1" />}
+    <Badge variant="outline" className={cn('text-xs font-medium border', bg)}>
+      <Icon className="w-3 h-3 mr-1" />
       {source}
     </Badge>
   );
@@ -211,6 +214,8 @@ export function LeadsPage() {
   const today = new Date().toDateString();
   const todayLeads = leads.filter(l => new Date(l.created_at).toDateString() === today).length;
   const todayEvents = eventLeads.filter(l => new Date(l.created_at).toDateString() === today).length;
+  const nonprofitLeads = leads.filter(l => l.source?.toLowerCase().includes('neziskov'));
+  const nonprofitCount = nonprofitLeads.length;
 
   const q = search.toLowerCase().trim();
 
@@ -308,8 +313,9 @@ export function LeadsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
         <StatCard icon={Target} label="Web leady" value={leads.length} sub={todayLeads > 0 ? `+${todayLeads} dnes` : undefined} />
+        <StatCard icon={Heart} label="Neziskovky" value={nonprofitCount} sub={nonprofitCount > 0 ? `${Math.round(nonprofitCount / Math.max(leads.length, 1) * 100)}%` : undefined} />
         <StatCard icon={QrCode} label="Event leady (QR)" value={eventLeads.length} sub={todayEvents > 0 ? `+${todayEvents} dnes` : undefined} />
         <StatCard icon={TrendingUp} label="Celkem" value={leads.length + eventLeads.length} />
         <StatCard icon={Calendar} label="Posledn\u00ED lead" value={

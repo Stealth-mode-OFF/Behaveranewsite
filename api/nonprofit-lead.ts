@@ -40,7 +40,7 @@ interface PipedriveSearchResult {
 /* ── Pipedrive helpers ─────────────────────────── */
 
 function getPipedriveUrl(endpoint: string): string {
-  const apiKey = process.env.PIPEDRIVE_API_KEY;
+  const apiKey = process.env.PIPEDRIVE_API_TOKEN || process.env.PIPEDRIVE_API_KEY;
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || "behavera";
 
   if (!apiKey) throw new Error("PIPEDRIVE_API_KEY not configured");
@@ -173,8 +173,8 @@ async function sendSlackNotification(payload: {
 /* ── Supabase backup ───────────────────────────── */
 
 async function saveToSupabase(payload: NonprofitLeadPayload): Promise<void> {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     console.log("Supabase not configured, skipping backup");
@@ -236,6 +236,8 @@ export default async function handler(request: Request): Promise<Response> {
     );
   }
 
+  let supabaseSaved = false;
+
   try {
     const payload: NonprofitLeadPayload = await request.json();
 
@@ -247,8 +249,14 @@ export default async function handler(request: Request): Promise<Response> {
       );
     }
 
-    /* ── Supabase backup (fire & forget) ─────── */
-    saveToSupabase(payload);
+    /* ── Supabase backup (await — safety net) ── */
+    let supabaseSaved = false;
+    try {
+      await saveToSupabase(payload);
+      supabaseSaved = true;
+    } catch (e) {
+      console.warn("Supabase save failed:", e);
+    }
 
     /* ── Person: find or create ───────────────── */
     let personId = await findPersonByEmail(payload.email);
@@ -347,6 +355,18 @@ export default async function handler(request: Request): Promise<Response> {
     );
   } catch (error) {
     console.error("nonprofit-lead error:", error);
+
+    if (supabaseSaved) {
+      console.warn("Pipedrive failed but Supabase backup succeeded — returning 200");
+      return new Response(
+        JSON.stringify({
+          success: true,
+          pipedriveError: error instanceof Error ? error.message : "Unknown",
+          fallback: "supabase",
+        }),
+        { status: 200, headers: corsHeaders },
+      );
+    }
 
     return new Response(
       JSON.stringify({

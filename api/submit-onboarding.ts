@@ -89,7 +89,7 @@ async function pipedriveRequest<T>(
   method: 'GET' | 'POST' | 'PUT' = 'GET',
   body?: Record<string, unknown>
 ): Promise<T> {
-  const apiKey = process.env.PIPEDRIVE_API_KEY;
+  const apiKey = process.env.PIPEDRIVE_API_TOKEN || process.env.PIPEDRIVE_API_KEY;
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || 'behavera';
   if (!apiKey) throw new Error('PIPEDRIVE_API_KEY not configured');
 
@@ -126,7 +126,7 @@ async function findPersonByEmail(email: string): Promise<number | null> {
 }
 
 async function createPipedriveLead(payload: OnboardingPayload) {
-  if (!process.env.PIPEDRIVE_API_KEY) return { personId: null, leadId: null };
+  if (!process.env.PIPEDRIVE_API_TOKEN && !process.env.PIPEDRIVE_API_KEY) return { personId: null, leadId: null };
 
   const totalMembers = payload.teams.reduce((s, t) => s + t.members.length, 0);
   const name = payload.repName || payload.repEmail.split('@')[0];
@@ -314,8 +314,8 @@ export default async function handler(request: Request): Promise<Response> {
     );
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     return new Response(

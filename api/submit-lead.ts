@@ -42,7 +42,7 @@ async function pipedriveRequest<T>(
   method: 'GET' | 'POST' | 'PUT' = 'GET',
   body?: Record<string, unknown>
 ): Promise<T> {
-  const apiKey = process.env.PIPEDRIVE_API_KEY;
+  const apiKey = process.env.PIPEDRIVE_API_TOKEN || process.env.PIPEDRIVE_API_KEY;
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || 'behavera';
   
   if (!apiKey) {
@@ -91,8 +91,8 @@ async function findPersonByEmail(email: string): Promise<number | null> {
 
 // Save to Supabase as backup
 async function saveToSupabase(payload: LeadPayload): Promise<void> {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   
   if (!supabaseUrl || !supabaseKey) {
     console.log('Supabase not configured, skipping backup');
