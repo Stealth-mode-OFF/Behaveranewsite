@@ -1,4 +1,8 @@
-import { useState } from 'react';
+/**
+ * AboutUnfoldSection — landing page team overview (deployed version)
+ * 7 members visible. Jiří is NOT a co-founder.
+ * Only Igor K and Dušan have the co-founder badge.
+ */
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, Target, ShieldCheck } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -18,20 +22,20 @@ type TeamMember = {
   role: string;
   image: string;
   founder?: boolean;
+  investor?: boolean;
 };
 
 const TEAM: TeamMember[] = [
-  { name: 'Jiří Valena', role: 'CEO', image: jiriImg, founder: true },
-  { name: 'Igor Kubíček', role: 'Head of Product, Co-founder', image: igorImg, founder: true },
-  { name: 'Dušan Švancara', role: 'CTO, Co-founder', image: dusanImg, founder: true },
+  { name: 'Jiří Valena', role: 'CEO', image: jiriImg },
+  { name: 'Igor Kubíček', role: 'Head of Product', image: igorImg, founder: true },
+  { name: 'Dušan Švancara', role: 'CTO', image: dusanImg, founder: true },
   { name: 'Jana Šrámková', role: 'Go-to-Market', image: janaImg },
   { name: 'Veronika Nováková', role: 'Customer Success', image: veronikaImg },
   { name: 'Josef Hofman', role: 'Sales', image: josefImg },
-  { name: 'Igor Třeslín', role: 'Investor & Advisor', image: igorTreslinImg },
+  { name: 'Igor Třeslín', role: 'Investor & Advisor', image: igorTreslinImg, investor: true },
 ];
 
 const SECTION_ID = 'about';
-const INITIAL_VISIBLE_TEAM_MEMBERS = 4;
 
 const PILLAR_ICONS = [Zap, Target, ShieldCheck] as const;
 
@@ -50,15 +54,15 @@ const translations = {
       { title: 'Důvěra', desc: 'Anonymita a GDPR jako výchozí standard.' },
     ],
     demoCta: 'Domluvit konzultaci',
-    showMoreTeam: 'Zobrazit celý tým',
-    showLessTeam: 'Zobrazit méně',
+    founderBadge: 'Co-founder',
+    investorBadge: 'Investor',
   },
   en: {
     badge: 'About Us',
     title: 'The Team Behind',
     highlight: 'Behavera',
     subtitle:
-      'A compact senior team combining deep expertise in HR, technology, and B2B sales. We help companies understand their people before it\'s too late.',
+      "A compact senior team combining deep expertise in HR, technology, and B2B sales. We help companies understand their people before it's too late.",
     story:
       'We help leadership teams detect silent risk signals before they turn into turnover, burnout, or performance drops. We combine AI pulse surveys, behavioral data, and concrete action guidance for managers.',
     pillars: [
@@ -67,8 +71,8 @@ const translations = {
       { title: 'Trust', desc: 'Anonymity and GDPR by default.' },
     ],
     demoCta: 'Book a consultation',
-    showMoreTeam: 'Show full team',
-    showLessTeam: 'Show less',
+    founderBadge: 'Co-founder',
+    investorBadge: 'Investor',
   },
   de: {
     badge: 'Über uns',
@@ -84,16 +88,17 @@ const translations = {
       { title: 'Vertrauen', desc: 'Anonymität und DSGVO als Standard.' },
     ],
     demoCta: 'Beratung buchen',
-    showMoreTeam: 'Ganzes Team anzeigen',
-    showLessTeam: 'Weniger anzeigen',
+    founderBadge: 'Mitgründer',
+    investorBadge: 'Investor',
   },
 };
 
-/* ── Stagger children animation ────────────────────────────── */
+/* ── Stagger children animation ── */
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } },
 };
+
 const itemVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
@@ -102,16 +107,13 @@ const itemVariants = {
 export function AboutUnfoldSection() {
   const { language } = useLanguage();
   const { openBooking } = useModal();
-  const [isTeamExpanded, setIsTeamExpanded] = useState(false);
   const text = translations[language] || translations.en;
-  const visibleTeam = isTeamExpanded ? TEAM : TEAM.slice(0, INITIAL_VISIBLE_TEAM_MEMBERS);
-  const hasMoreTeam = TEAM.length > INITIAL_VISIBLE_TEAM_MEMBERS;
 
   return (
     <section id={SECTION_ID} className="section-spacing bg-white">
       <div className="container-default">
 
-        {/* ── Header (centered, matching other sections) ────────── */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -135,7 +137,7 @@ export function AboutUnfoldSection() {
           </p>
         </motion.div>
 
-        {/* ── Mission statement ─────────────────────────────────── */}
+        {/* Mission statement */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +150,7 @@ export function AboutUnfoldSection() {
           </p>
         </motion.div>
 
-        {/* ── 3 Pillars ────────────────────────────────────────── */}
+        {/* 3 Pillars */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -178,7 +180,7 @@ export function AboutUnfoldSection() {
           })}
         </motion.div>
 
-        {/* ── Team Grid ────────────────────────────────────────── */}
+        {/* Team Grid — all 7 members visible */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -186,14 +188,18 @@ export function AboutUnfoldSection() {
           viewport={{ once: true }}
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-8 md:gap-y-10 max-w-4xl mx-auto mb-12 md:mb-16"
         >
-          {visibleTeam.map((member) => (
+          {TEAM.map((member) => (
             <motion.div
               key={member.name}
               variants={itemVariants}
               className="group flex flex-col items-center text-center"
             >
               <div className="relative mb-3">
-                <div className="w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-2 ring-brand-border group-hover:ring-brand-accent/50 transition-all duration-300 shadow-sm">
+                <div className={`w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-2 transition-all duration-300 shadow-sm ${
+                  member.investor
+                    ? 'ring-amber-500/30 group-hover:ring-amber-500/60'
+                    : 'ring-brand-border group-hover:ring-brand-accent/50'
+                }`}>
                   <img
                     src={member.image}
                     alt={member.name}
@@ -206,38 +212,28 @@ export function AboutUnfoldSection() {
                 </div>
                 {member.founder && (
                   <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-brand-primary text-[9px] font-bold uppercase tracking-wider text-white whitespace-nowrap">
-                    Co-founder
+                    {text.founderBadge}
+                  </div>
+                )}
+                {member.investor && (
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded-full bg-amber-500 text-[9px] font-bold uppercase tracking-wider text-white whitespace-nowrap">
+                    {text.investorBadge}
                   </div>
                 )}
               </div>
               <div className="text-sm font-semibold text-brand-text-primary leading-tight">
                 {member.name}
               </div>
-              <div className="text-xs text-brand-text-muted mt-0.5">
+              <div className={`text-xs mt-0.5 ${
+                member.investor ? 'text-amber-600 dark:text-amber-400' : 'text-brand-text-muted'
+              }`}>
                 {member.role}
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {hasMoreTeam && (
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center -mt-4 mb-12 md:mb-16"
-          >
-            <button
-              type="button"
-              onClick={() => setIsTeamExpanded((prev) => !prev)}
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-full border border-brand-border bg-white text-sm font-semibold text-brand-text-primary hover:border-brand-primary/35 hover:text-brand-primary transition-colors"
-            >
-              {isTeamExpanded ? text.showLessTeam : text.showMoreTeam}
-            </button>
-          </motion.div>
-        )}
-
-        {/* ── CTA ──────────────────────────────────────────────── */}
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -245,6 +241,7 @@ export function AboutUnfoldSection() {
           className="flex justify-center"
         >
           <Button
+            size="lg"
             onClick={() => openBooking('about_unfold_demo')}
           >
             {text.demoCta}
