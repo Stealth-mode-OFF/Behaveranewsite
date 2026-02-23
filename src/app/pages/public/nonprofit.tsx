@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, type FormEvent, type ChangeEvent, type K
 import { motion } from "framer-motion";
 import { Heart, Send, CheckCircle2, Phone, Shield, Clock, Users, Sparkles } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
-import janaImg from "@/assets/team/jana.webp";
+import veronikaImg from "@/assets/team/veronika.webp";
 
 /* ───────────────────────────────────────────────────
  *  /pro-neziskovky — Givt × Behavera landing page
@@ -229,12 +229,12 @@ export function NonprofitPage() {
                   Brzy se Vám ozveme a vše připravíme.
                 </p>
                 <div className="flex items-center justify-center gap-3 pt-5 border-t border-brand-border">
-                  <img src={janaImg} alt="Jana Šrámková" className="w-10 h-10 rounded-full object-cover" />
+                  <img src={veronikaImg} alt="Veronika Nováková" className="w-10 h-10 rounded-full object-cover" />
                   <div className="text-left">
-                    <p className="text-sm font-semibold text-brand-text-primary">Jana Šrámková</p>
-                    <a href="tel:+420727850587" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
+                    <p className="text-sm font-semibold text-brand-text-primary">Veronika Nováková</p>
+                    <a href="tel:+420605839456" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
                       <Phone className="w-3 h-3" />
-                      +420 727 850 587
+                      +420 605 839 456
                     </a>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ export function NonprofitPage() {
             )}
           </motion.div>
 
-          {/* Jana contact — below form */}
+          {/* Veronika contact — below form */}
           {!sent && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -302,13 +302,13 @@ export function NonprofitPage() {
               transition={{ duration: 0.4, delay: 0.3 }}
               className="flex items-center justify-center gap-3 mt-6"
             >
-              <img src={janaImg} alt="Jana Šrámková" className="w-10 h-10 rounded-full object-cover" />
+              <img src={veronikaImg} alt="Veronika Nováková" className="w-10 h-10 rounded-full object-cover" />
               <div>
-                <p className="text-sm font-semibold text-brand-text-primary">Jana Šrámková</p>
-                <p className="text-xs text-brand-text-muted mb-0.5">Go-to-Market & Partnerships</p>
-                <a href="tel:+420727850587" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
+                <p className="text-sm font-semibold text-brand-text-primary">Veronika Nováková</p>
+                <p className="text-xs text-brand-text-muted mb-0.5">Customer Success</p>
+                <a href="tel:+420605839456" className="inline-flex items-center gap-1 text-xs text-brand-accent hover:text-brand-primary transition-colors">
                   <Phone className="w-3 h-3" />
-                  +420 727 850 587
+                  +420 605 839 456
                 </a>
               </div>
             </motion.div>
