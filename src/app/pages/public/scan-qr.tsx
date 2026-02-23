@@ -31,6 +31,12 @@ import {
   Zap,
   ArrowRight,
   Star,
+  Search,
+  Clock,
+  PartyPopper,
+  User,
+  Mail,
+  Phone,
 } from "lucide-react";
 
 /* ───────────────────────────────────────────────────
@@ -48,44 +54,39 @@ import {
 const ENDPOINT = "/api/qr-lead";
 const QUEUE_KEY = "behavera_qr_lead_queue";
 const PRIVACY_URL = "/privacy-policy";
-const BOOKING_URL =
-  (typeof import.meta !== "undefined" &&
-    (import.meta as unknown as Record<string, Record<string, string>>).env
-      ?.VITE_BOOKING_URL) ||
-  "https://calendly.com/josef-hofman-behavera";
 
-/* ── Enums / Options ───────────────────────────── */
+/* ══ Chip option data ════════════════════════ */
 
 const EMPLOYEES_OPTIONS = [
-  { value: "1-49", label: "1\u201349", icon: "\U0001F3E2", sub: "Mal\u00E1 firma" },
-  { value: "50-199", label: "50\u2013199", icon: "\U0001F3EC", sub: "St\u0159edn\u00ED firma" },
-  { value: "200-999", label: "200\u2013999", icon: "\U0001F3ED", sub: "Velk\u00E1 firma" },
-  { value: "1000+", label: "1\u00A0000+", icon: "\U0001F30D", sub: "Enterprise" },
+  { value: "1-49", label: "1–49", icon: "🏢", sub: "Malá firma" },
+  { value: "50-199", label: "50–199", icon: "🏬", sub: "Střední firma" },
+  { value: "200-999", label: "200–999", icon: "🏭", sub: "Velká firma" },
+  { value: "1000+", label: "1\u00a0000+", icon: "🌍", sub: "Enterprise" },
 ] as const;
 
 const FEEDBACK_OPTIONS = [
-  { value: "no", label: "Zat\u00EDm ne", icon: "\U0001F914", sub: "Ale zaj\u00EDm\u00E1 m\u011B to" },
-  { value: "ad_hoc", label: "Ob\u010Das", icon: "\U0001F4CB", sub: "Ad hoc pr\u016Fzkumy" },
-  { value: "quarterly", label: "\u010Ctvrtletn\u011B", icon: "\U0001F4C5", sub: "Pravideln\u011B" },
-  { value: "monthly_plus", label: "M\u011Bs\u00ED\u010Dn\u011B+", icon: "\u26A1", sub: "Pokro\u010Dil\u00ED" },
+  { value: "no", label: "Zatím ne", icon: "🤔", sub: "Ale zajímá mě to" },
+  { value: "ad_hoc", label: "Občas", icon: "📋", sub: "Ad hoc průzkumy" },
+  { value: "quarterly", label: "Čtvrtletně", icon: "📅", sub: "Pravidelně" },
+  { value: "monthly_plus", label: "Měsíčně+", icon: "⚡", sub: "Pokročilí" },
 ] as const;
 
 const ROLE_OPTIONS = [
-  { value: "decision_maker", label: "Rozhoduji", icon: "\u2705", sub: "M\u00E1m to v rukou" },
-  { value: "co_decision_maker", label: "Spolurozhoduji", icon: "\U0001F91D", sub: "Jsem u toho" },
-  { value: "connector", label: "Propoj\u00EDm", icon: "\U0001F517", sub: "Zn\u00E1m spr\u00E1vn\u00E9ho \u010Dlov\u011Bka" },
+  { value: "decision_maker", label: "Rozhoduji", icon: "✅", sub: "Mám to v rukou" },
+  { value: "co_decision_maker", label: "Spolurozhoduji", icon: "🤝", sub: "Jsem u toho" },
+  { value: "connector", label: "Propojím", icon: "🔗", sub: "Znám správného člověka" },
 ] as const;
 
-/* Fun thank-you messages (random pick) */
+/* Random thank-you messages */
 const THANK_YOU_MESSAGES = [
-  { title: "Par\u00E1da, d\u00EDky!", sub: "U\u017E se na to kouk\u00E1me. \u2615" },
-  { title: "Super, m\u00E1me to!", sub: "Ozveme se \u2014 bez spamu, sl\u00EDbujeme. \u270C\uFE0F" },
-  { title: "D\u011Bkujeme!", sub: "Jste v dobr\u00FDch rukou. \U0001F4AA" },
-  { title: "Hotovo!", sub: "Te\u010F si u\u017Eijte zbytek eventu. \U0001F389" },
-  { title: "V\u00FDborn\u011B!", sub: "Uk\u00E1zku v\u00E1m po\u0161leme co nejd\u0159\u00EDv. \U0001F680" },
+  { title: "Paráda, díky! 🎉", sub: "Už se na to koukáme. Ozveme se brzy." },
+  { title: "Super, máme to! ✌️", sub: "Ozveme se — bez spamu, slíbujeme." },
+  { title: "Děkujeme! 💪", sub: "Jste v dobrých rukou." },
+  { title: "Hotovo! 🚀", sub: "Teď si užijte zbytek eventu." },
+  { title: "Výborně! ✨", sub: "Ukázku vám pošleme co nejdřív." },
 ];
 
-/* ── Offline queue helpers ───────────────────────── */
+/* ══ Offline queue helpers ═════════════════ */
 
 interface QueuedLead {
   payload: Record<string, unknown>;
@@ -122,11 +123,8 @@ async function flushQueue(): Promise<number> {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(item.payload),
       });
-      if (res.ok) {
-        sent++;
-      } else {
-        remaining.push(item);
-      }
+      if (res.ok) sent++;
+      else remaining.push(item);
     } catch {
       remaining.push(item);
     }
@@ -135,7 +133,7 @@ async function flushQueue(): Promise<number> {
   return sent;
 }
 
-/* ── Phone formatter ───────────────────────────── */
+/* ══ Phone formatter ═══════════════════ */
 
 function formatPhone(raw?: string): string | undefined {
   if (!raw) return undefined;
@@ -146,7 +144,7 @@ function formatPhone(raw?: string): string | undefined {
   return `+420${digits}`;
 }
 
-/* ── Detect iPad ───────────────────────────────── */
+/* ══ iPad detect ═════════════════════ */
 
 function isIPad(): boolean {
   if (typeof navigator === "undefined") return false;
@@ -156,7 +154,7 @@ function isIPad(): boolean {
   );
 }
 
-/* ── Source params from URL ────────────────────── */
+/* ══ Source params from URL ══════════════ */
 
 function useSourceParams() {
   const [params] = useSearchParams();
@@ -180,7 +178,7 @@ function useSourceParams() {
   };
 }
 
-/* ── ARES Company Autocomplete hook ──── */
+/* ══ ARES Company Autocomplete ════════════ */
 
 interface AresResult {
   ico: string;
@@ -211,13 +209,15 @@ function useAresAutocomplete() {
       const controller = new AbortController();
       abortRef.current = controller;
       try {
-        const res = await fetch(`/api/ares-lookup?q=${encodeURIComponent(query.trim())}`, {
-          signal: controller.signal,
-        });
+        const res = await fetch(
+          `/api/ares-lookup?q=${encodeURIComponent(query.trim())}`,
+          { signal: controller.signal },
+        );
         if (!res.ok) throw new Error("ARES error");
         const data = await res.json();
-        setResults(data.results || []);
-        setOpen((data.results || []).length > 0);
+        const r = data.results || [];
+        setResults(r);
+        setOpen(r.length > 0);
       } catch (e) {
         if ((e as Error).name !== "AbortError") {
           setResults([]);
@@ -229,68 +229,160 @@ function useAresAutocomplete() {
     }, 300);
   }, []);
 
-  const close = useCallback(() => {
-    setOpen(false);
+  const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      if (abortRef.current) abortRef.current.abort();
+    };
   }, []);
 
   return { results, loading, open, search, close };
 }
 
-/* ── Confetti burst (CSS-only, lightweight) ── */
+/* ══ Connectivity hook (reactive) ══════════ */
 
-function ConfettiBurst() {
-  const particles = Array.from({ length: 20 }, (_, i) => {
-    const angle = (i / 20) * 360;
-    const distance = 60 + Math.random() * 80;
-    const size = 4 + Math.random() * 6;
-    const colors = ["#7c3aed", "#06b6d4", "#f59e0b", "#10b981", "#ec4899", "#3b82f6"];
-    const color = colors[i % colors.length];
-    const delay = Math.random() * 0.3;
-    return (
-      <span
-        key={i}
-        className="absolute rounded-full opacity-0"
-        style={{
-          width: size,
-          height: size,
-          backgroundColor: color,
-          left: "50%",
-          top: "50%",
-          animation: `confetti-burst 0.8s ease-out ${delay}s forwards`,
-          // @ts-expect-error CSS custom properties
-          "--tx": `${Math.cos((angle * Math.PI) / 180) * distance}px`,
-          "--ty": `${Math.sin((angle * Math.PI) / 180) * distance}px`,
-        }}
-      />
-    );
-  });
-
-  return <div className="absolute inset-0 pointer-events-none overflow-hidden">{particles}</div>;
+function useOnlineStatus() {
+  const [online, setOnline] = useState(
+    typeof navigator !== "undefined" ? navigator.onLine : true,
+  );
+  useEffect(() => {
+    const on = () => setOnline(true);
+    const off = () => setOnline(false);
+    window.addEventListener("online", on);
+    window.addEventListener("offline", off);
+    return () => {
+      window.removeEventListener("online", on);
+      window.removeEventListener("offline", off);
+    };
+  }, []);
+  return online;
 }
 
-/* ── Progress dots ─────────────────────────── */
+/* ══ Confetti component ══════════════════ */
 
-function StepProgress({ current, total }: { current: number; total: number }) {
+function ConfettiCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    const W = 400;
+    const H = 300;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    const colors = ["#7c3aed", "#06b6d4", "#f59e0b", "#10b981", "#ec4899", "#3b82f6", "#8b5cf6", "#f97316"];
+    const particles: {
+      x: number; y: number; vx: number; vy: number;
+      size: number; color: string; rotation: number; spin: number;
+      opacity: number; shape: number;
+    }[] = [];
+
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: W / 2,
+        y: H / 2 - 20,
+        vx: (Math.random() - 0.5) * 12,
+        vy: Math.random() * -10 - 3,
+        size: 3 + Math.random() * 5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rotation: Math.random() * 360,
+        spin: (Math.random() - 0.5) * 15,
+        opacity: 1,
+        shape: Math.floor(Math.random() * 3), // 0=rect, 1=circle, 2=triangle
+      });
+    }
+
+    let frame = 0;
+    const maxFrames = 90;
+
+    function draw() {
+      if (frame >= maxFrames) return;
+      frame++;
+      ctx!.clearRect(0, 0, W, H);
+
+      for (const p of particles) {
+        p.vy += 0.25; // gravity
+        p.vx *= 0.98; // air resistance
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rotation += p.spin;
+        p.opacity = Math.max(0, 1 - frame / maxFrames);
+
+        ctx!.save();
+        ctx!.globalAlpha = p.opacity;
+        ctx!.translate(p.x, p.y);
+        ctx!.rotate((p.rotation * Math.PI) / 180);
+        ctx!.fillStyle = p.color;
+
+        if (p.shape === 0) {
+          ctx!.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+        } else if (p.shape === 1) {
+          ctx!.beginPath();
+          ctx!.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+          ctx!.fill();
+        } else {
+          ctx!.beginPath();
+          ctx!.moveTo(0, -p.size / 2);
+          ctx!.lineTo(p.size / 2, p.size / 2);
+          ctx!.lineTo(-p.size / 2, p.size / 2);
+          ctx!.closePath();
+          ctx!.fill();
+        }
+        ctx!.restore();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    requestAnimationFrame(draw);
+  }, []);
+
   return (
-    <div className="flex items-center gap-2 justify-center mb-6">
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ width: "100%", height: "100%" }}
+    />
+  );
+}
+
+/* ══ Step indicator ═════════════════════ */
+
+function StepIndicator({ current, total }: { current: number; total: number }) {
+  return (
+    <div className="flex items-center justify-center gap-3 mb-8">
       {Array.from({ length: total }, (_, i) => {
-        const step = i + 1;
-        const isActive = step === current;
-        const isDone = step < current;
+        const s = i + 1;
+        const done = s < current;
+        const active = s === current;
         return (
-          <div key={i} className="flex items-center gap-2">
-            <div
-              className={`
-                w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500
-                ${isDone ? "bg-green-500 text-white scale-90" : ""}
-                ${isActive ? "bg-brand-primary text-white scale-110 shadow-lg shadow-brand-primary/30" : ""}
-                ${!isDone && !isActive ? "bg-brand-background-secondary text-brand-text-muted" : ""}
-              `}
-            >
-              {isDone ? <Check className="w-4 h-4" /> : step}
+          <div key={i} className="flex items-center gap-3">
+            <div className="flex flex-col items-center gap-1">
+              <div
+                className={`
+                  w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold
+                  transition-all duration-500 ease-out
+                  ${done ? "bg-green-500 text-white shadow-md shadow-green-500/25" : ""}
+                  ${active ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30 ring-4 ring-brand-primary/10" : ""}
+                  ${!done && !active ? "bg-brand-background-secondary text-brand-text-muted border border-brand-border" : ""}
+                `}
+              >
+                {done ? <Check className="w-4 h-4" /> : s}
+              </div>
+              <span className={`text-[10px] font-medium transition-colors duration-300 ${active ? "text-brand-primary" : "text-brand-text-muted/60"}`}>
+                {s === 1 ? "Kontakt" : "Upresnení"}
+              </span>
             </div>
             {i < total - 1 && (
-              <div className={`w-8 h-0.5 rounded-full transition-all duration-500 ${isDone ? "bg-green-500" : "bg-brand-border"}`} />
+              <div className={`w-12 h-[2px] rounded-full transition-all duration-500 mb-5 ${done ? "bg-green-500" : "bg-brand-border"}`} />
             )}
           </div>
         );
@@ -299,7 +391,7 @@ function StepProgress({ current, total }: { current: number; total: number }) {
   );
 }
 
-/* ── Premium chip group ─────────────────── */
+/* ══ Chip selector ═════════════════════ */
 
 function ChipGroup({
   options,
@@ -313,7 +405,7 @@ function ChipGroup({
   isKiosk: boolean;
 }) {
   return (
-    <div className={`grid gap-2 ${options.length <= 3 ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2"}`}>
+    <div className={`grid gap-2.5 ${options.length <= 3 ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2"}`}>
       {options.map((opt) => {
         const selected = value === opt.value;
         return (
@@ -322,28 +414,32 @@ function ChipGroup({
             type="button"
             onClick={() => onChange(opt.value)}
             className={`
-              relative rounded-2xl border-2 text-left transition-all duration-200 select-none group
+              relative rounded-xl border-2 text-left transition-all duration-200 select-none group
               ${isKiosk ? "p-4" : "p-3"}
               ${
                 selected
-                  ? "border-brand-primary bg-brand-primary/5 shadow-md shadow-brand-primary/10 scale-[1.02]"
-                  : "border-brand-border/60 bg-white hover:border-brand-primary/40 hover:shadow-sm active:scale-[0.98]"
+                  ? "border-brand-primary bg-gradient-to-br from-brand-primary/[0.06] to-brand-primary/[0.02] shadow-md shadow-brand-primary/10"
+                  : "border-brand-border bg-white hover:border-brand-primary/30 hover:bg-brand-background-secondary/50 active:scale-[0.97]"
               }
             `}
           >
             {selected && (
-              <div className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-brand-primary rounded-full flex items-center justify-center shadow-sm">
-                <Check className="w-3 h-3 text-white" />
+              <div className="absolute -top-2 -right-2 w-5 h-5 bg-brand-primary rounded-full flex items-center justify-center shadow-md shadow-brand-primary/30 animate-in zoom-in-50 duration-200">
+                <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
             )}
-            <div className="flex items-center gap-2.5">
-              {opt.icon && <span className={`${isKiosk ? "text-xl" : "text-lg"} shrink-0`}>{opt.icon}</span>}
+            <div className="flex items-center gap-3">
+              {opt.icon && (
+                <span className={`${isKiosk ? "text-2xl" : "text-xl"} shrink-0 transition-transform duration-200 ${selected ? "scale-110" : "group-hover:scale-105"}`}>
+                  {opt.icon}
+                </span>
+              )}
               <div className="min-w-0">
                 <div className={`font-semibold leading-tight ${isKiosk ? "text-base" : "text-sm"} ${selected ? "text-brand-primary" : "text-brand-text-primary"}`}>
                   {opt.label}
                 </div>
                 {opt.sub && (
-                  <div className={`text-[11px] leading-tight mt-0.5 ${selected ? "text-brand-primary/70" : "text-brand-text-muted"}`}>
+                  <div className={`text-[11px] leading-tight mt-0.5 ${selected ? "text-brand-primary/60" : "text-brand-text-muted"}`}>
                     {opt.sub}
                   </div>
                 )}
@@ -356,24 +452,61 @@ function ChipGroup({
   );
 }
 
-/* ═══════════════════════════════════════════════════
+/* ══ Custom checkbox ════════════════════ */
+
+function Checkbox({
+  checked,
+  onChange,
+  children,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="flex items-start gap-3 cursor-pointer select-none group py-1.5">
+      <div
+        className={`
+          mt-0.5 w-[18px] h-[18px] rounded-[5px] border-2 flex items-center justify-center shrink-0
+          transition-all duration-200 ease-out
+          ${checked
+            ? "bg-brand-primary border-brand-primary shadow-sm shadow-brand-primary/20"
+            : "border-brand-border-strong bg-white group-hover:border-brand-primary/50"
+          }
+        `}
+      >
+        {checked && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
+      </div>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="sr-only"
+      />
+      {children}
+    </label>
+  );
+}
+
+/* ═════════════════════════════════════════════════
  *  MAIN COMPONENT
- * ═══════════════════════════════════════════════════ */
+ * ═════════════════════════════════════════════════ */
 
 export function ScanQrPage() {
   const [searchParams] = useSearchParams();
   const { openBooking } = useModal();
   const sourceParams = useSourceParams();
+  const isOnline = useOnlineStatus();
 
-  /* ── Mode ── */
+  /* Mode */
   const [isKiosk, setIsKiosk] = useState(
     () => searchParams.get("mode") === "kiosk" || isIPad(),
   );
 
-  /* ── Step ── */
+  /* Step */
   const [step, setStep] = useState(1);
 
-  /* ── Form state ── */
+  /* Form state */
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -385,12 +518,12 @@ export function ScanQrPage() {
   const [consentMarketing, setConsentMarketing] = useState(false);
   const [honeypot, setHoneypot] = useState("");
 
-  /* ── ARES autocomplete ── */
+  /* ARES autocomplete */
   const ares = useAresAutocomplete();
   const companyInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  /* ── Submission state ── */
+  /* Submission */
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error" | "queued"
   >("idle");
@@ -398,16 +531,16 @@ export function ScanQrPage() {
   const [queueCount, setQueueCount] = useState(0);
   const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [thankYou] = useState(() =>
-    THANK_YOU_MESSAGES[Math.floor(Math.random() * THANK_YOU_MESSAGES.length)]
+    THANK_YOU_MESSAGES[Math.floor(Math.random() * THANK_YOU_MESSAGES.length)],
   );
 
   useSEO({
-    title: "Behavera \u2014 Chci uk\u00E1zku Echo Pulse",
+    title: "Behavera — Chci ukázku Echo Pulse",
     description:
-      "60 vte\u0159in a m\u00E1te uk\u00E1zku n\u00E1stroje, kter\u00FD m\u011B\u0159\u00ED engagement va\u0161ich lid\u00ED. Bez spamu, sl\u00EDbujeme.",
+      "60 vteřin a máte ukázku nástroje, který měří engagement vašich lidí. Bez spamu, slíbujeme.",
   });
 
-  /* ── Close ARES on outside click ── */
+  /* Close ARES dropdown on outside click */
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -423,66 +556,52 @@ export function ScanQrPage() {
     return () => document.removeEventListener("mousedown", handler);
   }, [ares]);
 
-  /* ── Offline queue flush ── */
+  /* Offline queue flush */
   useEffect(() => {
-    const onOnline = () => {
+    const flush = () => {
+      if (!navigator.onLine) return;
       flushQueue().then((sent) => {
         if (sent > 0) setQueueCount(getQueue().length);
       });
     };
-    window.addEventListener("online", onOnline);
-
-    if (navigator.onLine) onOnline();
-
-    const interval = setInterval(() => {
-      if (navigator.onLine) {
-        flushQueue().then((sent) => {
-          if (sent > 0) setQueueCount(getQueue().length);
-        });
-      }
-    }, 30_000);
-
+    window.addEventListener("online", flush);
+    flush();
+    const interval = setInterval(flush, 30_000);
     setQueueCount(getQueue().length);
-
     return () => {
-      window.removeEventListener("online", onOnline);
+      window.removeEventListener("online", flush);
       clearInterval(interval);
     };
   }, []);
 
-  /* ── Build payload ── */
-  const buildPayload = useCallback(() => {
-    return {
-      company: company.trim(),
-      email: email.trim().toLowerCase(),
-      phone: formatPhone(phone),
-      contact_name: contactName.trim() || undefined,
-      phone_required: isKiosk,
-      employees_bucket: employeesBucket,
-      feedback_frequency: feedbackFreq,
-      decision_role: decisionRole,
-      consent_contact: consentContact,
-      consent_marketing: consentMarketing,
-      consent_privacy_url: PRIVACY_URL,
-      consent_version: "v1",
-      source: {
-        page: "behavera.com/scan_QR",
-        ...sourceParams,
-      },
-      client: {
-        user_agent: navigator.userAgent,
-        locale: navigator.language,
-        tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      },
-      _hp: honeypot,
-    };
-  }, [
+  /* Build payload */
+  const buildPayload = useCallback(() => ({
+    company: company.trim(),
+    email: email.trim().toLowerCase(),
+    phone: formatPhone(phone),
+    contact_name: contactName.trim() || undefined,
+    phone_required: isKiosk,
+    employees_bucket: employeesBucket,
+    feedback_frequency: feedbackFreq,
+    decision_role: decisionRole,
+    consent_contact: consentContact,
+    consent_marketing: consentMarketing,
+    consent_privacy_url: PRIVACY_URL,
+    consent_version: "v1",
+    source: { page: "behavera.com/scan_QR", ...sourceParams },
+    client: {
+      user_agent: navigator.userAgent,
+      locale: navigator.language,
+      tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    },
+    _hp: honeypot,
+  }), [
     company, email, phone, contactName, isKiosk,
     employeesBucket, feedbackFreq, decisionRole,
     consentContact, consentMarketing, honeypot, sourceParams,
   ]);
 
-  /* ── Reset form ── */
+  /* Reset */
   const resetForm = useCallback(() => {
     setStep(1);
     setCompany("");
@@ -500,13 +619,21 @@ export function ScanQrPage() {
     if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
   }, []);
 
-  /* ── Submit ── */
+  /* Submit */
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("sending");
     setErrorMsg("");
 
     const payload = buildPayload();
+
+    if (!navigator.onLine) {
+      pushQueue(payload);
+      setQueueCount(getQueue().length);
+      setStatus("queued");
+      if (isKiosk) resetTimerRef.current = setTimeout(resetForm, 6_000);
+      return;
+    }
 
     try {
       const res = await fetch(ENDPOINT, {
@@ -517,29 +644,29 @@ export function ScanQrPage() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Chyba p\u0159i odes\u00EDl\u00E1n\u00ED");
+        throw new Error(data.error || "Chyba při odesílání");
       }
 
       setStatus("success");
-
-      if (isKiosk) {
-        resetTimerRef.current = setTimeout(resetForm, 10_000);
-      }
-    } catch {
-      pushQueue(payload);
-      setQueueCount(getQueue().length);
-      setStatus("queued");
-
-      if (isKiosk) {
-        resetTimerRef.current = setTimeout(resetForm, 6_000);
+      if (isKiosk) resetTimerRef.current = setTimeout(resetForm, 10_000);
+    } catch (err) {
+      if (!navigator.onLine || (err instanceof TypeError && err.message === "Failed to fetch")) {
+        pushQueue(payload);
+        setQueueCount(getQueue().length);
+        setStatus("queued");
+        if (isKiosk) resetTimerRef.current = setTimeout(resetForm, 6_000);
+      } else {
+        setErrorMsg((err as Error).message || "Něco se pokazilo. Zkuste to znovu.");
+        setStatus("error");
       }
     }
   };
 
-  /* ── Validation ── */
+  /* Validation */
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
   const step1Valid =
     company.trim().length > 0 &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) &&
+    emailValid &&
     (!isKiosk || phone.trim().length > 0);
 
   const step2Valid =
@@ -548,160 +675,176 @@ export function ScanQrPage() {
     decisionRole !== "" &&
     consentContact;
 
-  /* ── Styles ── */
+  /* Input classes using design tokens */
   const inputCls = `
-    w-full rounded-2xl border-2 border-brand-border/60 bg-white text-brand-text-primary
-    placeholder:text-brand-text-muted/40
-    focus:outline-none focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary
-    transition-all duration-200 shadow-sm
-    ${isKiosk ? "px-5 py-4 text-base min-h-[56px]" : "px-4 py-3.5 text-sm min-h-[48px]"}
+    w-full bg-white text-brand-text-primary border
+    placeholder:text-brand-text-muted/50
+    focus:outline-none focus:ring-[3px] focus:ring-brand-primary/15 focus:border-brand-primary
+    transition-all duration-200
+    ${isKiosk
+      ? "rounded-xl border-brand-border px-5 py-4 text-base min-h-[56px]"
+      : "rounded-[var(--form-field-radius)] border-brand-border px-4 py-3 text-[16px] min-h-[var(--form-field-height)]"
+    }
   `;
-  const labelCls = `block font-semibold text-brand-text-primary mb-1.5 ${
-    isKiosk ? "text-base" : "text-sm"
+  const labelCls = `flex items-center gap-1.5 font-semibold text-brand-text-primary mb-2 ${
+    isKiosk ? "text-base" : "text-[var(--form-label-size)]"
   }`;
 
-  /* ── Event badge ── */
   const eventName = sourceParams.event;
 
   /* ═══ RENDER ═══ */
   return (
     <>
       {!isKiosk && <Header />}
-      <main className={isKiosk ? "min-h-screen bg-gradient-to-br from-white via-brand-background-secondary/30 to-brand-primary/5" : "pt-24"}>
-        <section className={`${isKiosk ? "px-6 py-8" : "section-spacing"}`}>
-          <div className={`mx-auto ${isKiosk ? "max-w-[600px]" : "container-default max-w-[520px]"}`}>
 
-            {/* ── Kiosk toggle ── */}
-            <div className="flex items-center justify-between mb-4">
-              <div />
-              <label className="inline-flex items-center gap-2 text-xs text-brand-text-muted/50 cursor-pointer select-none opacity-60 hover:opacity-100 transition-opacity">
+      <main className={`${isKiosk ? "min-h-screen bg-gradient-to-br from-brand-background-secondary via-white to-brand-primary/[0.03]" : "pt-24 pb-16"}`}>
+        <section className={isKiosk ? "px-6 py-8" : "py-12 px-4"}>
+          <div className={`mx-auto ${isKiosk ? "max-w-[600px]" : "max-w-[500px]"}`}>
+
+            {/* Kiosk toggle (hidden UI) */}
+            <div className="flex items-center justify-end mb-3">
+              <label className="inline-flex items-center gap-1.5 text-[11px] text-brand-text-muted/30 cursor-pointer select-none hover:text-brand-text-muted/60 transition-colors">
                 <input
                   type="checkbox"
                   checked={isKiosk}
                   onChange={(e) => setIsKiosk(e.target.checked)}
-                  className="rounded border-brand-border"
+                  className="rounded border-brand-border w-3 h-3"
                 />
                 Kiosk
               </label>
             </div>
 
-            {/* ── Offline queue badge ── */}
+            {/* Offline queue notice */}
             {queueCount > 0 && (
-              <div className="mb-4 flex items-center gap-2 rounded-2xl bg-amber-50 border border-amber-200 px-4 py-2.5 text-xs text-amber-800 shadow-sm">
-                <WifiOff className="w-3.5 h-3.5 shrink-0" />
-                {queueCount} lead{queueCount > 1 ? "\u016F" : ""} \u010Dek\u00E1 na odesl\u00E1n\u00ED
+              <div className="mb-4 flex items-center gap-2.5 rounded-xl bg-amber-50 border border-amber-200/80 px-4 py-3 text-xs text-amber-800 animate-in fade-in slide-in-from-top-2 duration-300">
+                <WifiOff className="w-4 h-4 shrink-0 text-amber-500" />
+                <span>{queueCount} {queueCount === 1 ? "lead čeká" : "leadů čeká"} na odeslání</span>
               </div>
             )}
 
-            {/* ──── CARD WRAPPER ──── */}
-            <div className="bg-white rounded-3xl shadow-xl shadow-brand-primary/5 border border-brand-border/40 overflow-hidden">
+            {/* ════ MAIN CARD ════ */}
+            <div className="bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.04] border border-brand-border/60 overflow-hidden">
 
-              {/* Card header with gradient */}
-              <div className="bg-gradient-to-r from-brand-primary/5 via-brand-accent/5 to-brand-primary/5 px-6 py-5 border-b border-brand-border/30">
-                {eventName && (
-                  <div className="inline-flex items-center gap-1.5 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-full px-3 py-1 mb-3">
-                    <Sparkles className="w-3 h-3" />
-                    {eventName}
-                  </div>
-                )}
-                <h1 className={`font-bold tracking-tight leading-tight ${isKiosk ? "text-2xl" : "text-xl"}`}>
-                  Chci uk{"\u00E1"}zku Echo Pulse{" "}
-                  <span className="inline-block animate-bounce">{"\u26A1"}</span>
-                </h1>
-                <p className={`text-brand-text-muted mt-1.5 leading-relaxed ${isKiosk ? "text-sm" : "text-[13px]"}`}>
-                  60 vte{"\u0159"}in a m{"\u00E1"}te jasno. Bez spamu {"\u2014"} jen konkr{"\u00E9"}tn{"\u00ED"} uk{"\u00E1"}zku, jak m{"\u011B\u0159"}it engagement.
-                </p>
+              {/* Card header */}
+              <div className="relative bg-gradient-to-r from-brand-primary via-brand-primary to-[#3D2175] px-6 py-6 overflow-hidden">
+                {/* Decorative circles */}
+                <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/[0.05]" />
+                <div className="absolute -bottom-4 -left-4 w-20 h-20 rounded-full bg-white/[0.03]" />
+
+                <div className="relative z-10">
+                  {eventName && (
+                    <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/95 text-[11px] font-semibold rounded-full px-3 py-1 mb-3 border border-white/10">
+                      <Sparkles className="w-3 h-3" />
+                      {eventName}
+                    </div>
+                  )}
+                  <h1 className={`font-display font-bold text-white leading-tight tracking-tight ${isKiosk ? "text-2xl" : "text-xl"}`}>
+                    Chci ukázku Echo Pulse <span className="inline-block" style={{ animation: "pulse 2s ease-in-out infinite" }}>⚡</span>
+                  </h1>
+                  <p className={`text-white/75 mt-2 leading-relaxed ${isKiosk ? "text-sm" : "text-[13px]"}`}>
+                    60 vteřin a máte jasno. Bez spamu — jen konkrétní ukázku,
+                    jak měřit engagement.
+                  </p>
+                </div>
               </div>
 
+              {/* Card body */}
               <div className="p-6">
 
-                {/* Progress */}
+                {/* Step indicator (only during form) */}
                 {(status === "idle" || status === "sending" || status === "error") && (
-                  <StepProgress current={step} total={2} />
+                  <StepIndicator current={step} total={2} />
                 )}
 
-                {/* ── SUCCESS ── */}
+                {/* ══ SUCCESS ══ */}
                 {status === "success" && (
-                  <div className="relative text-center space-y-5 py-4 animate-in fade-in zoom-in-95 duration-500">
-                    <ConfettiBurst />
-                    <div className="relative z-10">
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200/50">
-                        <Check className="w-8 h-8 text-green-600" />
+                  <div className="relative text-center py-6 animate-in fade-in zoom-in-95 duration-500">
+                    <ConfettiCanvas />
+                    <div className="relative z-10 space-y-4">
+                      <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/25">
+                        <PartyPopper className="w-9 h-9 text-white" />
                       </div>
-                      <h2 className={`font-bold text-brand-text-primary ${isKiosk ? "text-2xl" : "text-xl"}`}>
-                        {thankYou.title}
-                      </h2>
-                      <p className="text-sm text-brand-text-muted mt-1.5">{thankYou.sub}</p>
+                      <div>
+                        <h2 className={`font-display font-bold text-brand-text-primary ${isKiosk ? "text-2xl" : "text-xl"}`}>
+                          {thankYou.title}
+                        </h2>
+                        <p className="text-sm text-brand-text-muted mt-1">{thankYou.sub}</p>
+                      </div>
 
-                      <div className="mt-6 space-y-3">
-                        <p className="text-xs text-brand-text-muted/70">
-                          Chcete rovnou 15minutovou uk{"\u00E1"}zku na{"\u017E"}ivo?
-                        </p>
-                        <Button
-                          onClick={() => openBooking("scan_qr_success")}
-                          size={isKiosk ? "lg" : "default"}
-                          className="inline-flex items-center gap-2 shadow-md shadow-brand-primary/20"
-                        >
-                          <Calendar className="w-4 h-4" />
-                          Domluvit uk{"\u00E1"}zku
-                          <ArrowRight className="w-4 h-4" />
-                        </Button>
+                      <div className="pt-4 space-y-3">
+                        <div className="inline-block bg-brand-background-secondary rounded-xl px-5 py-3">
+                          <p className="text-xs text-brand-text-muted mb-2">
+                            Chcete rovnou 15min ukázku naživo?
+                          </p>
+                          <Button
+                            onClick={() => openBooking("scan_qr_success")}
+                            size={isKiosk ? "lg" : "default"}
+                            className="gap-2"
+                          >
+                            <Calendar className="w-4 h-4" />
+                            Domluvit ukázku
+                            <ArrowRight className="w-4 h-4" />
+                          </Button>
+                        </div>
+
                         {isKiosk && (
                           <div>
-                            <Button variant="ghost" onClick={resetForm} className="text-brand-text-muted gap-1.5">
+                            <button
+                              onClick={resetForm}
+                              className="inline-flex items-center gap-1.5 text-sm text-brand-text-muted hover:text-brand-primary transition-colors mt-2"
+                            >
                               <RotateCcw className="w-3.5 h-3.5" />
-                              Dal{"\u0161\u00ED"} kontakt
-                            </Button>
+                              Další kontakt
+                            </button>
+                            <p className="text-[11px] text-brand-text-muted/40 mt-3">
+                              Automatický reset za pár sekund…
+                            </p>
                           </div>
                         )}
                       </div>
-
-                      {isKiosk && (
-                        <p className="text-[11px] text-brand-text-muted/50 mt-4">
-                          Automatick{"\u00FD"} reset za p{"\u00E1"}r sekund{"\u2026"}
-                        </p>
-                      )}
                     </div>
                   </div>
                 )}
 
-                {/* ── QUEUED (offline) ── */}
+                {/* ══ QUEUED (offline) ══ */}
                 {status === "queued" && (
-                  <div className="text-center space-y-4 py-4 animate-in fade-in duration-500">
-                    <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-amber-200/50">
-                      <WifiOff className="w-8 h-8 text-amber-600" />
+                  <div className="text-center py-6 space-y-4 animate-in fade-in duration-500">
+                    <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-amber-500/25">
+                      <WifiOff className="w-9 h-9 text-white" />
                     </div>
-                    <h2 className={`font-bold text-amber-900 ${isKiosk ? "text-2xl" : "text-xl"}`}>
-                      Ulo{"\u017E"}eno offline {"\u2714\uFE0F"}
-                    </h2>
-                    <p className="text-sm text-amber-700">
-                      Ode{"\u0161"}lu, jakmile bude internet. Klid, nic se neztr{"\u00E1"}c{"\u00ED"}.
-                    </p>
+                    <div>
+                      <h2 className={`font-display font-bold text-amber-900 ${isKiosk ? "text-2xl" : "text-xl"}`}>
+                        Uloženo offline ✔️
+                      </h2>
+                      <p className="text-sm text-amber-700 mt-1">
+                        Odešlu, jakmile bude internet. Klid, nic se neztrácí.
+                      </p>
+                    </div>
                     {isKiosk && (
-                      <Button variant="outline" onClick={resetForm} className="gap-1.5">
+                      <button
+                        onClick={resetForm}
+                        className="inline-flex items-center gap-1.5 text-sm text-amber-700 hover:text-amber-900 transition-colors"
+                      >
                         <RotateCcw className="w-3.5 h-3.5" />
-                        Dal{"\u0161\u00ED"} kontakt
-                      </Button>
+                        Další kontakt
+                      </button>
                     )}
                   </div>
                 )}
 
-                {/* ── FORM ── */}
+                {/* ══ FORM ══ */}
                 {(status === "idle" || status === "sending" || status === "error") && (
                   <form onSubmit={handleSubmit} noValidate>
 
-                    {/* STEP 1: Contact info */}
+                    {/* STEP 1 */}
                     {step === 1 && (
-                      <div className="space-y-4 animate-in fade-in slide-in-from-right-4 duration-300">
-                        <p className="text-xs text-brand-text-muted text-center mb-1">
-                          {"\u2460"} Kdo jste?
-                        </p>
+                      <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" key="step1">
 
-                        {/* Company with ARES autocomplete */}
+                        {/* Company with ARES */}
                         <div className="relative">
                           <label htmlFor="qr-company" className={labelCls}>
-                            <Building2 className="w-3.5 h-3.5 inline mr-1.5 opacity-50" />
-                            Firma
+                            <Building2 className="w-4 h-4 text-brand-text-muted" />
+                            Firma <span className="text-brand-primary text-xs">*</span>
                           </label>
                           <div className="relative">
                             <input
@@ -710,6 +853,7 @@ export function ScanQrPage() {
                               type="text"
                               required
                               autoComplete="off"
+                              autoFocus={!isKiosk}
                               value={company}
                               onChange={(e: ChangeEvent<HTMLInputElement>) => {
                                 setCompany(e.target.value);
@@ -718,11 +862,14 @@ export function ScanQrPage() {
                               onFocus={() => {
                                 if (company.trim().length >= 2) ares.search(company);
                               }}
-                              placeholder={"Za\u010Dn\u011Bte ps\u00E1t n\u00E1zev firmy\u2026"}
+                              placeholder="Začněte psát název firmy…"
                               className={inputCls}
                             />
                             {ares.loading && (
-                              <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted animate-spin" />
+                              <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-primary animate-spin" />
+                            )}
+                            {!ares.loading && company.length >= 2 && (
+                              <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted/30" />
                             )}
                           </div>
 
@@ -730,11 +877,12 @@ export function ScanQrPage() {
                           {ares.open && ares.results.length > 0 && (
                             <div
                               ref={dropdownRef}
-                              className="absolute z-50 w-full mt-1.5 bg-white rounded-2xl border-2 border-brand-primary/20 shadow-xl shadow-brand-primary/10 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+                              className="absolute z-50 w-full mt-1 bg-white rounded-xl border border-brand-border shadow-xl shadow-brand-primary/[0.08] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
                             >
-                              <div className="px-3 py-1.5 bg-brand-primary/5 border-b border-brand-border/30">
-                                <span className="text-[10px] font-semibold text-brand-primary uppercase tracking-wider">
-                                  {"\U0001F50D"} Nalezeno v ARES
+                              <div className="px-3 py-2 bg-brand-background-secondary/70 border-b border-brand-border/50 flex items-center gap-1.5">
+                                <Search className="w-3 h-3 text-brand-primary" />
+                                <span className="text-[10px] font-bold text-brand-primary uppercase tracking-wider">
+                                  Nalezeno v ARES
                                 </span>
                               </div>
                               {ares.results.map((r, i) => (
@@ -747,16 +895,16 @@ export function ScanQrPage() {
                                     document.getElementById("qr-email")?.focus();
                                   }}
                                   className={`
-                                    w-full text-left px-4 py-3 hover:bg-brand-primary/5 transition-colors
-                                    ${i < ares.results.length - 1 ? "border-b border-brand-border/20" : ""}
+                                    w-full text-left px-4 py-3 hover:bg-brand-primary/[0.04] transition-colors cursor-pointer
+                                    ${i < ares.results.length - 1 ? "border-b border-brand-border/30" : ""}
                                   `}
                                 >
-                                  <div className="font-medium text-sm text-brand-text-primary">{r.name}</div>
+                                  <div className="font-medium text-sm text-brand-text-primary leading-snug">{r.name}</div>
                                   <div className="flex items-center gap-2 mt-0.5">
-                                    <span className="text-[11px] text-brand-text-muted">I{"\u010C"}O: {r.ico}</span>
+                                    <span className="text-[11px] text-brand-text-muted font-mono">IČO {r.ico}</span>
                                     {r.address && (
                                       <>
-                                        <span className="text-brand-border">{"\u00B7"}</span>
+                                        <span className="text-brand-border">·</span>
                                         <span className="text-[11px] text-brand-text-muted truncate">{r.address}</span>
                                       </>
                                     )}
@@ -770,18 +918,16 @@ export function ScanQrPage() {
                         {/* Contact name */}
                         <div>
                           <label htmlFor="qr-contact" className={labelCls}>
-                            <Star className="w-3.5 h-3.5 inline mr-1.5 opacity-50" />
-                            Va{"\u0161"}e jm{"\u00E9"}no
+                            <User className="w-4 h-4 text-brand-text-muted" />
+                            Vaše jméno
                           </label>
                           <input
                             id="qr-contact"
                             type="text"
                             autoComplete="name"
                             value={contactName}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                              setContactName(e.target.value)
-                            }
-                            placeholder={"Jan Nov\u00E1k"}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setContactName(e.target.value)}
+                            placeholder="Jan Novák"
                             className={inputCls}
                           />
                         </div>
@@ -789,7 +935,8 @@ export function ScanQrPage() {
                         {/* Email */}
                         <div>
                           <label htmlFor="qr-email" className={labelCls}>
-                            E-mail <span className="text-brand-primary">*</span>
+                            <Mail className="w-4 h-4 text-brand-text-muted" />
+                            E-mail <span className="text-brand-primary text-xs">*</span>
                           </label>
                           <input
                             id="qr-email"
@@ -798,18 +945,24 @@ export function ScanQrPage() {
                             autoComplete="email"
                             inputMode="email"
                             value={email}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                              setEmail(e.target.value)
-                            }
-                            placeholder="jan@acme.cz"
-                            className={inputCls}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                            placeholder="jan@firma.cz"
+                            className={`${inputCls} ${email && !emailValid ? "border-brand-error/60 focus:ring-brand-error/15 focus:border-brand-error" : ""}`}
                           />
+                          {email && !emailValid && (
+                            <p className="text-xs text-brand-error mt-1.5 ml-1">Zadejte platný e-mail</p>
+                          )}
                         </div>
 
                         {/* Phone */}
                         <div>
                           <label htmlFor="qr-phone" className={labelCls}>
-                            Telefon{isKiosk ? <span className="text-brand-primary"> *</span> : <span className="text-brand-text-muted font-normal text-xs ml-1">(voliteln{"\u00E9"})</span>}
+                            <Phone className="w-4 h-4 text-brand-text-muted" />
+                            Telefon
+                            {isKiosk
+                              ? <span className="text-brand-primary text-xs">*</span>
+                              : <span className="text-brand-text-muted font-normal text-xs ml-1">(volitelné)</span>
+                            }
                           </label>
                           <input
                             id="qr-phone"
@@ -818,9 +971,7 @@ export function ScanQrPage() {
                             autoComplete="tel"
                             inputMode="tel"
                             value={phone}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                              setPhone(e.target.value)
-                            }
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
                             placeholder="+420 777 123 456"
                             className={inputCls}
                           />
@@ -837,45 +988,45 @@ export function ScanQrPage() {
                           />
                         </div>
 
-                        <Button
-                          type="button"
-                          disabled={!step1Valid}
-                          onClick={() => setStep(2)}
-                          size={isKiosk ? "lg" : "default"}
-                          className="w-full inline-flex items-center justify-center gap-2 mt-2 shadow-md shadow-brand-primary/20 transition-all duration-200 hover:shadow-lg"
-                        >
-                          {"Pokra\u010Dovat"}
-                          <ChevronRight className="w-4 h-4" />
-                        </Button>
+                        <div className="pt-2 space-y-3">
+                          <Button
+                            type="button"
+                            disabled={!step1Valid}
+                            onClick={() => setStep(2)}
+                            size={isKiosk ? "lg" : "default"}
+                            className="w-full gap-2"
+                          >
+                            Pokračovat
+                            <ChevronRight className="w-4 h-4" />
+                          </Button>
 
-                        <p className="text-center text-[11px] text-brand-text-muted/50 mt-2">
-                          {"\U0001F512"} {"Bezpe\u010Dn\u011B. \u017D\u00E1dn\u00FD spam, \u017E\u00E1dn\u00E9 sd\u00EDlen\u00ED."}
-                        </p>
+                          <p className="text-center text-[11px] text-brand-text-muted/50 flex items-center justify-center gap-1.5">
+                            <Shield className="w-3 h-3" />
+                            Bezpečně. Žádný spam, žádné sdílení.
+                          </p>
+                        </div>
                       </div>
                     )}
 
-                    {/* STEP 2: Qualification + GDPR */}
+                    {/* STEP 2 */}
                     {step === 2 && (
-                      <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300">
-                        <p className="text-xs text-brand-text-muted text-center mb-1">
-                          {"\u2461"} {"Rychl\u00E9 zac\u00EDlen\u00ED"}
-                        </p>
+                      <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" key="step2">
 
-                        {/* Back button */}
+                        {/* Back */}
                         <button
                           type="button"
                           onClick={() => setStep(1)}
-                          className="inline-flex items-center gap-1.5 text-sm text-brand-text-muted hover:text-brand-primary transition-colors group"
+                          className="inline-flex items-center gap-1 text-sm text-brand-text-muted hover:text-brand-primary transition-colors group -mt-1"
                         >
                           <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-                          {"Zp\u011Bt"}
+                          Zpět
                         </button>
 
-                        {/* Q1: Employees */}
+                        {/* Employees */}
                         <div>
                           <p className={labelCls}>
-                            <Users className="w-3.5 h-3.5 inline mr-1.5 opacity-50" />
-                            {"Po\u010Det zam\u011Bstnanc\u016F"} <span className="text-brand-primary">*</span>
+                            <Users className="w-4 h-4 text-brand-text-muted" />
+                            Počet zaměstnanců <span className="text-brand-primary text-xs">*</span>
                           </p>
                           <ChipGroup
                             options={EMPLOYEES_OPTIONS}
@@ -885,11 +1036,11 @@ export function ScanQrPage() {
                           />
                         </div>
 
-                        {/* Q2: Feedback */}
+                        {/* Feedback */}
                         <div>
                           <p className={labelCls}>
-                            <MessageCircle className="w-3.5 h-3.5 inline mr-1.5 opacity-50" />
-                            {"Sb\u00EDr\u00E1te zp\u011Btnou vazbu?"} <span className="text-brand-primary">*</span>
+                            <MessageCircle className="w-4 h-4 text-brand-text-muted" />
+                            Sbíráte zpětnou vazbu? <span className="text-brand-primary text-xs">*</span>
                           </p>
                           <ChipGroup
                             options={FEEDBACK_OPTIONS}
@@ -899,11 +1050,11 @@ export function ScanQrPage() {
                           />
                         </div>
 
-                        {/* Q3: Decision role */}
+                        {/* Role */}
                         <div>
                           <p className={labelCls}>
-                            <Shield className="w-3.5 h-3.5 inline mr-1.5 opacity-50" />
-                            {"Va\u0161e role v rozhodnut\u00ED"} <span className="text-brand-primary">*</span>
+                            <Shield className="w-4 h-4 text-brand-text-muted" />
+                            Vaše role <span className="text-brand-primary text-xs">*</span>
                           </p>
                           <ChipGroup
                             options={ROLE_OPTIONS}
@@ -913,80 +1064,59 @@ export function ScanQrPage() {
                           />
                         </div>
 
-                        {/* Divider */}
-                        <div className="border-t border-brand-border/30 pt-4">
-                          <p className="text-xs text-brand-text-muted/60 mb-3 font-medium">
-                            {"\U0001F4DD"} Formality (GDPR)
-                          </p>
-
-                          {/* GDPR: consent_contact */}
-                          <label className="flex items-start gap-3 cursor-pointer select-none mb-3 group">
-                            <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all ${consentContact ? "bg-brand-primary border-brand-primary" : "border-brand-border group-hover:border-brand-primary/50"}`}>
-                              {consentContact && <Check className="w-3 h-3 text-white" />}
-                            </div>
-                            <input
-                              type="checkbox"
-                              checked={consentContact}
-                              onChange={(e) => setConsentContact(e.target.checked)}
-                              className="sr-only"
-                            />
+                        {/* GDPR */}
+                        <div className="border-t border-brand-border/40 pt-5">
+                          <Checkbox checked={consentContact} onChange={setConsentContact}>
                             <span className="text-xs text-brand-text-body leading-relaxed">
-                              {"Souhlas\u00EDm se zpracov\u00E1n\u00EDm \u00FAdaj\u016F za \u00FA\u010Delem nav\u00E1z\u00E1n\u00ED kontaktu."}{" "}
+                              Souhlasím se zpracováním údajů za účelem navázání kontaktu.{" "}
                               <a
                                 href={PRIVACY_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="underline hover:text-brand-primary transition-colors"
+                                className="underline text-brand-primary/80 hover:text-brand-primary transition-colors"
                               >
-                                {"Z\u00E1sady ochrany"}
+                                Zásady ochrany
                               </a>{" "}
-                              <span className="text-brand-primary font-semibold">*</span>
+                              <span className="text-brand-primary font-bold">*</span>
                             </span>
-                          </label>
+                          </Checkbox>
 
-                          {/* GDPR: consent_marketing */}
-                          <label className="flex items-start gap-3 cursor-pointer select-none group">
-                            <div className={`mt-0.5 w-5 h-5 rounded-md border-2 flex items-center justify-center shrink-0 transition-all ${consentMarketing ? "bg-brand-primary border-brand-primary" : "border-brand-border group-hover:border-brand-primary/50"}`}>
-                              {consentMarketing && <Check className="w-3 h-3 text-white" />}
-                            </div>
-                            <input
-                              type="checkbox"
-                              checked={consentMarketing}
-                              onChange={(e) => setConsentMarketing(e.target.checked)}
-                              className="sr-only"
-                            />
+                          <Checkbox checked={consentMarketing} onChange={setConsentMarketing}>
                             <span className="text-xs text-brand-text-body leading-relaxed">
-                              {"Pos\u00EDlejte mi ob\u010Das tipy a pozv\u00E1nky (\u017E\u00E1dn\u00FD spam, je to 1\u20132\u00D7 m\u011Bs\u00ED\u010Dn\u011B)."}
+                              Posílejte mi občas tipy a pozvánky
+                              <span className="text-brand-text-muted"> (1–2× měsíčně, žádný spam)</span>
                             </span>
-                          </label>
+                          </Checkbox>
                         </div>
 
                         {/* Error */}
-                        {status === "error" && (
-                          <div className="text-sm text-red-600 bg-red-50 rounded-2xl px-4 py-3 border border-red-200 flex items-center gap-2">
-                            <span className="shrink-0">{"\u26A0\uFE0F"}</span>
+                        {status === "error" && errorMsg && (
+                          <div className="text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3 border border-red-200/80 flex items-center gap-2 animate-in fade-in shake duration-300">
+                            <span className="shrink-0">⚠️</span>
                             {errorMsg}
                           </div>
                         )}
 
-                        <Button
-                          type="submit"
-                          disabled={!step2Valid || status === "sending"}
-                          size={isKiosk ? "lg" : "default"}
-                          className="w-full inline-flex items-center justify-center gap-2 mt-1 shadow-md shadow-brand-primary/20 transition-all duration-200 hover:shadow-lg"
-                        >
-                          {status === "sending" ? (
-                            <>
-                              <Loader2 className="w-4 h-4 animate-spin" />
-                              {"Odes\u00EDl\u00E1m\u2026"}
-                            </>
-                          ) : (
-                            <>
-                              <Send className="w-4 h-4" />
-                              {"Odeslat a z\u00EDskat uk\u00E1zku"}
-                            </>
-                          )}
-                        </Button>
+                        <div className="pt-1">
+                          <Button
+                            type="submit"
+                            disabled={!step2Valid || status === "sending"}
+                            size={isKiosk ? "lg" : "default"}
+                            className="w-full gap-2"
+                          >
+                            {status === "sending" ? (
+                              <>
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                                Odesílám…
+                              </>
+                            ) : (
+                              <>
+                                <Send className="w-4 h-4" />
+                                Odeslat a získat ukázku
+                              </>
+                            )}
+                          </Button>
+                        </div>
                       </div>
                     )}
                   </form>
@@ -994,43 +1124,37 @@ export function ScanQrPage() {
               </div>
 
               {/* Card footer */}
-              <div className="px-6 py-3 bg-brand-background-secondary/30 border-t border-brand-border/20 flex items-center justify-between">
+              <div className="px-6 py-2.5 bg-brand-background-secondary/40 border-t border-brand-border/30 flex items-center justify-between">
                 <div className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/50">
-                  {navigator.onLine ? (
-                    <>
-                      <Wifi className="w-3 h-3 text-green-500" /> Online
-                    </>
+                  {isOnline ? (
+                    <><Wifi className="w-3 h-3 text-green-500" /> Online</>
                   ) : (
-                    <>
-                      <WifiOff className="w-3 h-3 text-amber-500" /> Offline
-                    </>
+                    <><WifiOff className="w-3 h-3 text-amber-500" /> Offline</>
                   )}
                 </div>
-                <div className="flex items-center gap-1 text-[11px] text-brand-text-muted/40">
-                  <Heart className="w-3 h-3" />
-                  Behavera
+                <div className="flex items-center gap-1 text-[11px] text-brand-text-muted/30">
+                  <Heart className="w-3 h-3" /> Behavera
                 </div>
               </div>
             </div>
 
-            {/* Trust badges below card */}
-            <div className="mt-6 flex items-center justify-center gap-4 text-[11px] text-brand-text-muted/40">
-              <span className="flex items-center gap-1"><Shield className="w-3 h-3" /> GDPR compliant</span>
-              <span className="flex items-center gap-1"><Zap className="w-3 h-3" /> {"60s formul\u00E1\u0159"}</span>
-              <span className="flex items-center gap-1"><Star className="w-3 h-3" /> Bez spamu</span>
+            {/* Trust badges */}
+            <div className="mt-5 flex items-center justify-center gap-5 flex-wrap">
+              <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
+                <Shield className="w-3.5 h-3.5" /> GDPR
+              </span>
+              <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
+                <Clock className="w-3.5 h-3.5" /> 60s formulář
+              </span>
+              <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
+                <Zap className="w-3.5 h-3.5" /> Bez spamu
+              </span>
             </div>
           </div>
         </section>
       </main>
-      {!isKiosk && <Footer />}
 
-      {/* Confetti animation keyframes */}
-      <style>{`
-        @keyframes confetti-burst {
-          0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-          100% { opacity: 0; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.5); }
-        }
-      `}</style>
+      {!isKiosk && <Footer />}
     </>
   );
 }
