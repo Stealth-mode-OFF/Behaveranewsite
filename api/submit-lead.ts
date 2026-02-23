@@ -8,7 +8,7 @@
  * 4. Stores in Supabase as backup
  * 
  * Environment variables required:
- * - PIPEDRIVE_API_KEY
+ * - PIPEDRIVE_API_TOKEN (preferred) or PIPEDRIVE_API_KEY
  * - PIPEDRIVE_COMPANY_DOMAIN (optional, defaults to 'behavera')
  * - SUPABASE_URL (optional, for backup storage)
  * - SUPABASE_SERVICE_KEY (optional, for backup storage)
@@ -46,7 +46,7 @@ async function pipedriveRequest<T>(
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || 'behavera';
   
   if (!apiKey) {
-    throw new Error('PIPEDRIVE_API_KEY not configured');
+    throw new Error('PIPEDRIVE_API_TOKEN not configured');
   }
 
   const url = `https://${domain}.pipedrive.com/api/v1${endpoint}${endpoint.includes('?') ? '&' : '?'}api_token=${apiKey}`;
@@ -95,7 +95,7 @@ async function saveToSupabase(payload: LeadPayload): Promise<void> {
   const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
   
   if (!supabaseUrl || !supabaseKey) {
-    console.log('Supabase not configured, skipping backup');
+    console.warn('Supabase not configured, skipping backup');
     return;
   }
 
@@ -177,7 +177,6 @@ export default async function handler(request: Request): Promise<Response> {
     if (personId) {
       // Person exists - update their info if we have more data
       isExisting = true;
-      console.log(`Found existing person: ${personId}`);
       
       // Optionally update phone if provided and not set
       if (payload.phone) {

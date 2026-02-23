@@ -92,11 +92,10 @@ export default async function handler(request: Request): Promise<Response> {
         console.warn('Supabase invitations error:', e);
       }
     } else {
-      console.log('Supabase not configured — invitations stored in memory only');
+      console.warn('Supabase not configured — invitations stored in memory only');
     }
 
-    // TODO: In production, trigger actual email invites via Resend / SendGrid / etc.
-    // For now, we just store the intent. The onboarding team handles outreach.
+    // NOTE: We currently store invitation intent only; the onboarding team handles manual outreach.
 
     return new Response(
       JSON.stringify({

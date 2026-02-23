@@ -13,7 +13,7 @@
  *
  * Env vars (already on Vercel):
  *   SUPABASE_URL, SUPABASE_SERVICE_KEY,
- *   PIPEDRIVE_API_KEY, PIPEDRIVE_COMPANY_DOMAIN,
+ *   PIPEDRIVE_API_TOKEN (preferred) or PIPEDRIVE_API_KEY, PIPEDRIVE_COMPANY_DOMAIN,
  *   SLACK_WEBHOOK_URL (optional)
  */
 
@@ -22,9 +22,9 @@ export const config = { runtime: "edge" };
 /* ── Pipedrive helpers ─────────────────────────── */
 
 function getPipedriveUrl(endpoint: string): string {
-  const apiKey = process.env.PIPEDRIVE_API_KEY;
+  const apiKey = process.env.PIPEDRIVE_API_TOKEN || process.env.PIPEDRIVE_API_KEY;
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || "behavera";
-  if (!apiKey) throw new Error("PIPEDRIVE_API_KEY not configured");
+  if (!apiKey) throw new Error("PIPEDRIVE_API_TOKEN not configured");
   const sep = endpoint.includes("?") ? "&" : "?";
   return `https://${domain}.pipedrive.com/api/v1${endpoint}${sep}api_token=${apiKey}`;
 }
@@ -144,8 +144,8 @@ export default async function handler(request: Request): Promise<Response> {
     );
   }
 
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
     return new Response(
@@ -154,9 +154,9 @@ export default async function handler(request: Request): Promise<Response> {
     );
   }
 
-  if (!process.env.PIPEDRIVE_API_KEY) {
+  if (!process.env.PIPEDRIVE_API_TOKEN && !process.env.PIPEDRIVE_API_KEY) {
     return new Response(
-      JSON.stringify({ error: "PIPEDRIVE_API_KEY not configured" }),
+      JSON.stringify({ error: "PIPEDRIVE_API_TOKEN not configured" }),
       { status: 500, headers },
     );
   }

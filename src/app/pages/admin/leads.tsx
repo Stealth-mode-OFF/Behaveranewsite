@@ -191,7 +191,11 @@ export function LeadsPage() {
     setLoading(true);
     setError(null);
     try {
-      const token = supabase.authToken || 'local-admin';
+      let token = 'local-admin';
+      if (supabase) {
+        const { data: { session } } = await supabase.auth.getSession();
+        token = session?.access_token || 'local-admin';
+      }
       const res = await fetch('/api/admin-leads', {
         headers: { Authorization: `Bearer ${token}` },
       });

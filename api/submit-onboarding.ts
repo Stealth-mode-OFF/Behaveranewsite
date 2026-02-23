@@ -7,7 +7,7 @@
  * Environment variables required:
  * - SUPABASE_URL
  * - SUPABASE_SERVICE_KEY
- * - PIPEDRIVE_API_KEY (optional — lead creation skipped if missing)
+ * - PIPEDRIVE_API_TOKEN (preferred) or PIPEDRIVE_API_KEY (optional — lead creation skipped if missing)
  * - PIPEDRIVE_COMPANY_DOMAIN (optional, defaults to 'behavera')
  * - SLACK_WEBHOOK_URL (optional — Slack notification skipped if missing)
  */
@@ -91,7 +91,7 @@ async function pipedriveRequest<T>(
 ): Promise<T> {
   const apiKey = process.env.PIPEDRIVE_API_TOKEN || process.env.PIPEDRIVE_API_KEY;
   const domain = process.env.PIPEDRIVE_COMPANY_DOMAIN || 'behavera';
-  if (!apiKey) throw new Error('PIPEDRIVE_API_KEY not configured');
+  if (!apiKey) throw new Error('PIPEDRIVE_API_TOKEN not configured');
 
   const sep = endpoint.includes('?') ? '&' : '?';
   const url = `https://${domain}.pipedrive.com/api/v1${endpoint}${sep}api_token=${apiKey}`;
