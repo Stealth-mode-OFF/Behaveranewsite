@@ -9,14 +9,12 @@ import heroDashboardCz from "@/assets/hero/hero-dashboard-cz.webp";
 import heroDashboardEn from "@/assets/hero/hero-dashboard-en.webp";
 
 /**
- * Hero — Sharp, conversion-focused with rotating headline.
+ * Hero — Centered stacked layout with large dashboard image.
  *
- * Mobile-first: calm, thumb-friendly, minimal above fold.
- * Desktop: two-column hero, denser proof, product credibility above fold.
- *
+ * Copy centered on top, large MacBook device frame below.
  * Three rotating headlines targeted at CEO & HR.
  * Only the h1 rotates — subtitle, CTAs, trust line stay fixed.
- * Auto-advances every 7s on mobile (calmer) / 5s on desktop.
+ * Auto-advances every 5s on desktop; calm (no autoplay) on mobile.
  */
 
 /* ─── Carousel headline type ─── */
@@ -149,7 +147,7 @@ export function Hero() {
     <section
       id="hero"
       data-hero-ctas
-      className="relative flex flex-col justify-center pt-20 pb-6 md:pt-28 md:pb-12 lg:pt-32 lg:pb-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center pt-24 pb-8 md:pt-32 md:pb-16 overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-background-secondary via-white to-brand-background-secondary -z-20" />
@@ -158,11 +156,10 @@ export function Hero() {
       </div>
 
       <div className="container-default relative z-10">
-        {/* Desktop: two-column layout (copy left, device right) */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-12 xl:gap-16">
+        <div className="flex flex-col items-center gap-10 lg:gap-14">
           
-          {/* Left column: Copy */}
-          <div className="text-center lg:text-left lg:flex-1 lg:max-w-xl xl:max-w-2xl">
+          {/* Copy — Centered */}
+          <div className="text-center max-w-3xl mx-auto">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -177,7 +174,7 @@ export function Hero() {
             </motion.div>
 
             {/* Rotating headline — only h1 changes, rest stays static */}
-            <div className="min-h-[100px] sm:min-h-[130px] md:min-h-[160px] lg:min-h-[140px] flex flex-col justify-start mb-4 md:mb-6">
+            <div className="min-h-[120px] sm:min-h-[140px] md:min-h-[180px] flex flex-col justify-start mb-4 md:mb-6">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.h1
                   key={activeSlide}
@@ -186,7 +183,7 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -18 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-h1 text-brand-text-primary"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.08] font-display"
                 >
                   {headline.text}
                   {headline.highlight && <br />}
@@ -200,12 +197,11 @@ export function Hero() {
             </div>
 
             {/* Static subtitle — shorter line-clamp on mobile */}
-            <p className="text-base md:text-lg lg:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-3 md:mb-4 line-clamp-3 md:line-clamp-none">
+            <p className="text-base md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-4">
               {c.subtitle}
             </p>
 
-            {/* Carousel dots — hidden on mobile for calm focus, visible on md+ */}
-            <div className="hidden md:flex items-center justify-center lg:justify-start gap-2 mb-6 md:mb-8 mt-1">
+            <div className="flex items-center justify-center gap-2 mb-8 md:mb-10 mt-2">
               {c.headlines.map((_: HeroHeadline, idx: number) => (
                 <button
                   key={idx}
@@ -216,24 +212,24 @@ export function Hero() {
                   <span
                     className={`block rounded-full transition-all duration-300 ${
                       idx === activeSlide
-                        ? "w-6 h-1.5 md:w-8 md:h-2 bg-brand-primary"
-                        : "w-1.5 h-1.5 md:w-2 md:h-2 bg-brand-primary/25 group-hover:bg-brand-primary/50"
+                        ? "w-8 h-2 bg-brand-primary"
+                        : "w-2 h-2 bg-brand-primary/25 group-hover:bg-brand-primary/50"
                     }`}
                   />
                 </button>
               ))}
             </div>
 
-            {/* CTAs — ref for IntersectionObserver in StickyMobileCta */}
+            {/* CTAs */}
             <motion.div
               ref={ctaRef}
               data-hero-ctas
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.15 }}
-              className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 mb-5 md:mb-8 justify-center lg:justify-start"
+              className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
-              <Button asChild size="lg" className="w-full sm:w-auto shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all min-h-[48px]">
+              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all">
                 <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
                   <Play className="w-4 h-4 mr-2 fill-current" />
                   {c.primaryCta}
@@ -244,26 +240,45 @@ export function Hero() {
                 onClick={() => openBooking('hero')}
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 min-h-[48px]"
+                className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 rounded-2xl min-h-[48px]"
               >
                 {c.secondaryCta}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </motion.div>
 
-            {/* Micro-copy — extra breathing room on mobile before next block */}
-            <p className="text-xs text-brand-text-muted mb-6 md:mb-3">{c.ctaMicro}</p>
+            {/* Micro-copy + Trust */}
+            <p className="text-xs text-brand-text-muted mb-3">{c.ctaMicro}</p>
+            <p className="text-xs font-medium text-brand-text-muted/80 mb-6">{c.proofLine}</p>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 justify-center"
+            >
+              <div className="flex items-center gap-2 text-sm font-semibold text-brand-primary">
+                <Users className="w-4 h-4" />
+                <span>{c.socialProof}</span>
+              </div>
+              <span className="hidden sm:inline text-brand-border">|</span>
+              {c.trust.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-brand-text-muted">
+                  <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-primary/70 shrink-0" />
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right column: Device Stage */}
+          {/* Dashboard image — Centered, full width, large */}
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full mt-6 lg:mt-0 lg:flex-1 lg:max-w-[600px] xl:max-w-[680px]"
-            style={{ aspectRatio: `${heroImage.width} / ${heroImage.height}` }}
+            className="relative w-full"
           >
-            <DeviceFrame type="macbook" className="w-full mx-auto">
+            <DeviceFrame type="macbook" className="w-full max-w-[1400px] mx-auto">
               <AnimatedDashboardContent 
                 imageSrc={heroImage.src} 
                 imageAlt={language === 'cz' ? "Behavera Dashboard - Rizikové signály a týmová analytika" : language === 'de' ? "Behavera Dashboard - Risikosignale und Team-Analytics" : "Behavera Dashboard - Risk signals and team analytics"}
@@ -274,29 +289,6 @@ export function Hero() {
             </DeviceFrame>
           </motion.div>
         </div>
-
-        {/* Below hero: Proof + trust — on mobile this is pushed below the dashboard image */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.25 }}
-          className="mt-6 md:mt-10 text-center"
-        >
-          <p className="text-xs font-medium text-brand-text-muted/80 mb-4 hidden md:block">{c.proofLine}</p>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6 justify-center">
-            <div className="flex items-center gap-2 text-sm font-semibold text-brand-primary">
-              <Users className="w-4 h-4" />
-              <span>{c.socialProof}</span>
-            </div>
-            <span className="hidden sm:inline text-brand-border">|</span>
-            {c.trust.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-brand-text-muted">
-                <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-primary/70 shrink-0" />
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );
