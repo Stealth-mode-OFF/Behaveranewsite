@@ -250,7 +250,6 @@ export default async function handler(request: Request): Promise<Response> {
     }
 
     /* ── Supabase backup (await — safety net) ── */
-    let supabaseSaved = false;
     try {
       await saveToSupabase(payload);
       supabaseSaved = true;
