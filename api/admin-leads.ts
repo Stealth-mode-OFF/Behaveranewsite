@@ -142,14 +142,17 @@ export default async function handler(req: Request): Promise<Response> {
     });
   }
 
-  // ── Fetch both tables in parallel ──
+  // ── Fetch both tables in parallel (event_leads may not exist yet) ──
   try {
-    const [leads, eventLeads] = await Promise.all([
+    const [leads, eventLeads] = await Promise.allSettled([
       supabaseGet('leads', SUPABASE_URL, SUPABASE_KEY, 'select=*&order=created_at.desc'),
       supabaseGet('event_leads', SUPABASE_URL, SUPABASE_KEY, 'select=*&order=created_at.desc'),
     ]);
 
-    return new Response(JSON.stringify({ leads, eventLeads }), {
+    return new Response(JSON.stringify({
+      leads: leads.status === 'fulfilled' ? leads.value : [],
+      eventLeads: eventLeads.status === 'fulfilled' ? eventLeads.value : [],
+    }), {
       status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
