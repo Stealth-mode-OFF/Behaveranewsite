@@ -1,6 +1,6 @@
 /**
  * AboutUnfoldSection — landing page team overview (deployed version)
- * 7 members visible. Jiří is NOT a co-founder.
+ * 6 members visible. Jiří is NOT a co-founder.
  * Only Igor K and Dušan have the co-founder badge.
  */
 import { motion } from 'framer-motion';
@@ -15,7 +15,6 @@ import dusanImg from '@/assets/team/dusan.webp';
 import janaImg from '@/assets/team/jana.webp';
 import veronikaImg from '@/assets/team/veronika.webp';
 import josefImg from '@/assets/team/josef.webp';
-import igorTreslinImg from '@/assets/team/igor-treslin.webp';
 
 type TeamMember = {
   name: string;
@@ -32,7 +31,6 @@ const TEAM: TeamMember[] = [
   { name: 'Jana Šrámková', role: 'Go-to-Market', image: janaImg },
   { name: 'Veronika Nováková', role: 'Customer Success', image: veronikaImg },
   { name: 'Josef Hofman', role: 'Sales', image: josefImg },
-  { name: 'Igor Třeslín', role: 'Investor & Advisor', image: igorTreslinImg, investor: true },
 ];
 
 const SECTION_ID = 'about';
