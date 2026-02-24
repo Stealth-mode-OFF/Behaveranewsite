@@ -33,7 +33,7 @@ export function Hero() {
       badge: "Pro CEO a HR, kteří nechtějí hádat",
       headlines: [
         {
-          text: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
+          text: <>Vaši nejlepší lidé přemýšlejí o&nbsp;odchodu.{" "}<span className="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
           highlight: "",
         },
         {
