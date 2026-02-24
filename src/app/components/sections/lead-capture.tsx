@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 
-import { Loader2, ArrowRight, Check, Download } from "lucide-react";
+import { Loader2, ArrowRight, Check, Download, BookOpen } from "lucide-react";
 import { submitLead } from "@/app/utils/lead";
 import { useLanguage } from "@/app/contexts/language-context";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
@@ -41,61 +41,46 @@ export function LeadCaptureSection() {
 
   const copy = {
     cz: {
-      title: "Než začnete měřit, ",
-      titleHighlight: "pochopte proč lidé odcházejí",
-      subtitle: "Stáhněte si 2 e-booky plné dat a konkrétních strategií z českých firem. Zjistěte, co stojí za fluktuací — a jak ji zastavit dřív, než přijdete o klíčové lidi.",
-      benefits: [
-        "Proč odcházejí i z dobrých firem — a co s tím",
-        "Tvrdá čísla: jen 2 z 10 zaměstnanců jsou skutečně motivovaní",
-        "Konkrétní kroky, které můžete zavést tento měsíc",
-      ],
-      emailLabel: "Pracovní email",
+      badge: "2 e-booky zdarma",
+      title: "Data a strategie ",
+      titleHighlight: "proti fluktuaci",
+      subtitle: "Proč lidé odcházejí i z dobrých firem a co s tím. Konkrétní čísla a kroky z českého trhu.",
       emailPlaceholder: "jan.novak@firma.cz",
-      submit: "Stáhnout e-booky zdarma",
+      submit: "Stáhnout zdarma",
       consent: "Souhlasím se zasíláním tipů a novinek. Odhlásit se můžete kdykoliv.",
       privacy: "Odesláním souhlasíte se zpracováním osobních údajů.",
-      successTitle: "Hotovo! Stahování začalo.",
-      successSub: "Pokud se stahování nespustilo automaticky:",
+      successTitle: "E-booky se stahují",
+      successSub: "Nestáhlo se? Klikněte na název:",
       error: "Něco se pokazilo. Zkuste to znovu.",
       dl: "Stáhnout",
     },
     en: {
-      title: "Before you start measuring, ",
-      titleHighlight: "understand why people leave",
-      subtitle: "Download 2 e-books packed with data and proven retention strategies. Learn what really drives turnover — and how to stop it before you lose your best people.",
-      benefits: [
-        "Why people leave even good companies — and what to do",
-        "Hard data: only 2 in 10 employees are truly motivated",
-        "Actionable steps you can implement this month",
-      ],
-      emailLabel: "Work email",
+      badge: "2 free e-books",
+      title: "Data & strategies ",
+      titleHighlight: "to reduce turnover",
+      subtitle: "Why people leave good companies and what to do about it. Real numbers and actionable steps.",
       emailPlaceholder: "john.smith@company.com",
-      submit: "Download e-books free",
+      submit: "Download free",
       consent: "I agree to receive occasional tips and product news. Unsubscribe anytime.",
       privacy: "By submitting you agree to our privacy policy.",
-      successTitle: "Done! Download started.",
-      successSub: "If it didn't start automatically:",
+      successTitle: "Your e-books are downloading",
+      successSub: "Didn't start? Click the title:",
       error: "Something went wrong. Please try again.",
       dl: "Download",
     },
     de: {
-      title: "Bevor Sie messen, ",
-      titleHighlight: "verstehen Sie warum Mitarbeiter gehen",
-      subtitle: "Laden Sie 2 E-Books voller Daten und bewährter Retentionsstrategien herunter. Erfahren Sie, was Fluktuation wirklich antreibt — und wie Sie sie stoppen, bevor Sie Ihre besten Leute verlieren.",
-      benefits: [
-        "Warum Mitarbeiter selbst gute Unternehmen verlassen — und was hilft",
-        "Harte Zahlen: Nur 2 von 10 Mitarbeitern sind wirklich motiviert",
-        "Konkrete Schritte, die Sie noch diesen Monat umsetzen können",
-      ],
-      emailLabel: "Geschäftliche E-Mail",
+      badge: "2 kostenlose E-Books",
+      title: "Daten & Strategien ",
+      titleHighlight: "gegen Fluktuation",
+      subtitle: "Warum Mitarbeiter gute Unternehmen verlassen und was dagegen hilft. Konkrete Zahlen und Maßnahmen.",
       emailPlaceholder: "max.mustermann@firma.de",
-      submit: "E-Books kostenlos herunterladen",
+      submit: "Kostenlos herunterladen",
       consent: "Ich stimme dem Erhalt von Tipps und Neuigkeiten zu. Abmeldung jederzeit möglich.",
       privacy: "Mit dem Absenden stimmen Sie unserer Datenschutzerklärung zu.",
-      successTitle: "Fertig! Download gestartet.",
-      successSub: "Falls der Download nicht automatisch gestartet ist:",
+      successTitle: "Die E-Books werden heruntergeladen",
+      successSub: "Nicht gestartet? Klicken Sie auf den Titel:",
       error: "Etwas ist schief gelaufen. Bitte erneut versuchen.",
-      dl: "Herunterladen",
+      dl: "Download",
     },
   };
 
@@ -122,7 +107,7 @@ export function LeadCaptureSection() {
 
   return (
     <section className="section-spacing bg-brand-background-secondary" id="lead-capture">
-      <div className="container-default max-w-2xl text-center">
+      <div className="container-default max-w-xl text-center">
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -130,78 +115,65 @@ export function LeadCaptureSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
         >
-          <h2 className="text-h2 text-brand-text-primary mb-4">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+            <BookOpen className="w-3.5 h-3.5 text-brand-primary" />
+            {txt.badge}
+          </div>
+
+          <h2 className="text-h2 text-brand-text-primary mb-3">
             {txt.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
               {txt.titleHighlight}
             </span>
           </h2>
-          <p className="text-body text-brand-text-secondary leading-relaxed mb-8 max-w-lg mx-auto">
+          <p className="text-body text-brand-text-secondary leading-relaxed mb-8 max-w-md mx-auto">
             {txt.subtitle}
           </p>
         </motion.div>
 
-        {/* E-book cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          {EBOOKS.map((eb, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: i * 0.1 }}
-              className="bg-white rounded-xl p-5 border border-brand-border/60 shadow-sm text-left flex items-start gap-4"
-            >
-              <div className="w-10 h-10 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
-                <Download className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-brand-text-primary mb-0.5">{eb.title}</p>
-                <p className="text-[12px] text-brand-text-muted">PDF · {eb.size}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Form / Success */}
+        {/* Single card with form or success */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-          className="max-w-md mx-auto"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-brand-border/60 max-w-md mx-auto"
         >
           {isSuccess ? (
-            <div className="bg-white rounded-2xl p-6 shadow-sm border border-brand-border/60">
-              <div className="flex items-center justify-center gap-2.5 mb-3">
-                <div className="w-8 h-8 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center shrink-0">
-                  <Check className="w-4 h-4" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-base font-bold text-brand-text-primary">{txt.successTitle}</h3>
+            <div>
+              <div className="w-10 h-10 bg-brand-success/10 text-brand-success rounded-full flex items-center justify-center mx-auto mb-3">
+                <Check className="w-5 h-5" strokeWidth={2.5} />
               </div>
-              <p className="text-[13px] text-brand-text-muted mb-4">{txt.successSub}</p>
-              <div className="space-y-2.5">
+              <p className="text-base font-bold text-brand-text-primary mb-1">{txt.successTitle}</p>
+              <p className="text-[13px] text-brand-text-muted mb-5">{txt.successSub}</p>
+              <div className="space-y-2">
                 {EBOOKS.map((eb, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => { downloadFile(eb.file, `${eb.title}.pdf`); trackEbookDownload(eb.title, 'manual'); }}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl border border-brand-border hover:border-brand-primary/30 hover:bg-brand-background-secondary transition-all group text-left"
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-brand-background-secondary hover:bg-brand-primary/5 border border-transparent hover:border-brand-primary/20 transition-all group text-left cursor-pointer"
                   >
-                    <div className="w-9 h-9 rounded-lg bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:bg-brand-primary group-hover:text-white transition-all">
-                      <Download className="w-4 h-4" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-brand-text-primary truncate">{eb.title}</p>
-                      <p className="text-[11px] text-brand-text-muted">PDF · {eb.size}</p>
-                    </div>
-                    <span className="text-xs font-medium text-brand-primary shrink-0">{txt.dl}</span>
+                    <span className="text-sm font-medium text-brand-text-primary group-hover:text-brand-primary transition-colors">{eb.title}</span>
+                    <Download className="w-4 h-4 text-brand-text-muted group-hover:text-brand-primary transition-colors shrink-0" />
                   </button>
                 ))}
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {/* Ebook names as subtle list */}
+              <div className="flex flex-col gap-1.5 mb-2">
+                {EBOOKS.map((eb, i) => (
+                  <div key={i} className="flex items-center gap-2 text-left">
+                    <Download className="w-3.5 h-3.5 text-brand-primary shrink-0" />
+                    <span className="text-[13px] text-brand-text-secondary">{eb.title}</span>
+                    <span className="text-[11px] text-brand-text-muted">({eb.size})</span>
+                  </div>
+                ))}
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1 min-w-0">
                   <Input
