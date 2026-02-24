@@ -33,15 +33,15 @@ export function Hero() {
       badge: "Pro CEO a HR, kteří nechtějí hádat",
       headlines: [
         {
-          text: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
+          text: <>Vaši nejlepší lidé<br className="hidden md:block" />{' '}přemýšlejí o odchodu.{" "}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
           highlight: "",
         },
         {
-          text: <>Kde se ztrácí výkon<br className="hidden md:block" />{' '}a vzniká tření{' '}</>,
+          text: <>Kde se ztrácí výkon a vzniká tření</>,
           highlight: "mezi vašimi týmy?",
         },
         {
-          text: <>Tichá demotivace stojí víc{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">než hlasitý odchod.</span></>,
+          text: <>Tichá demotivace stojí <span className="whitespace-nowrap">víc než</span><br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">hlasitý odchod.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -65,11 +65,11 @@ export function Hero() {
           highlight: "thinking about leaving.",
         },
         {
-          text: <>Where performance drops<br className="hidden md:block" />{' '}and friction builds{' '}</>,
+          text: <>Where performance drops and friction builds</>,
           highlight: "between your teams?",
         },
         {
-          text: <>Silent demotivation costs more{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">than a loud resignation.</span></>,
+          text: <>Silent demotivation costs <span className="whitespace-nowrap">more than</span><br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">a loud resignation.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -93,11 +93,11 @@ export function Hero() {
           highlight: "über einen Wechsel nach.",
         },
         {
-          text: <>Wo Leistung verloren geht<br className="hidden md:block" />{' '}und Reibung entsteht{' '}</>,
+          text: <>Wo Leistung verloren geht und Reibung entsteht</>,
           highlight: "zwischen Ihren Teams?",
         },
         {
-          text: <>Stille Demotivation kostet mehr{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">als eine laute Kündigung.</span></>,
+          text: <>Stille Demotivation kostet <span className="whitespace-nowrap">mehr als</span><br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">eine laute Kündigung.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
