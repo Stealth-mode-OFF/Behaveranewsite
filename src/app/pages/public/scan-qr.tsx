@@ -8,8 +8,6 @@ import {
 } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "@/app/contexts/modal-context";
-import { Header } from "@/app/components/layout/header";
-import { Footer } from "@/app/components/layout/footer";
 import { Button } from "@/app/components/ui/button";
 import { useSEO } from "@/app/hooks/use-seo";
 import {
@@ -393,14 +391,20 @@ function ChipGroup({
   value,
   onChange,
   isKiosk,
+  compact,
 }: {
   options: readonly { value: string; label: string; sub?: string }[];
   value: string;
   onChange: (v: string) => void;
   isKiosk: boolean;
+  compact: boolean;
 }) {
+  const gridClass = options.length <= 3
+    ? (compact ? "grid-cols-3" : "grid-cols-1 sm:grid-cols-3")
+    : (compact ? "grid-cols-4" : "grid-cols-2");
+
   return (
-    <div className={`grid gap-2.5 ${options.length <= 3 ? "grid-cols-1 sm:grid-cols-3" : "grid-cols-2"}`}>
+    <div className={`grid ${compact ? "gap-1.5" : "gap-2.5"} ${gridClass}`}>
       {options.map((opt) => {
         const selected = value === opt.value;
         return (
@@ -410,7 +414,7 @@ function ChipGroup({
             onClick={() => onChange(opt.value)}
             className={`
               relative rounded-xl border-2 text-left transition-all duration-200 select-none group
-              ${isKiosk ? "p-4" : "p-3"}
+              ${compact ? "p-2" : isKiosk ? "p-4" : "p-3"}
               ${
                 selected
                   ? "border-brand-primary bg-gradient-to-br from-brand-primary/[0.06] to-brand-primary/[0.02] shadow-md shadow-brand-primary/10"
@@ -419,15 +423,15 @@ function ChipGroup({
             `}
           >
             {selected && (
-              <div className="absolute -top-2 -right-2 w-5 h-5 bg-brand-primary rounded-full flex items-center justify-center shadow-md shadow-brand-primary/30 animate-in zoom-in-50 duration-200">
+              <div className={`absolute ${compact ? "-top-1 -right-1 w-4 h-4" : "-top-2 -right-2 w-5 h-5"} bg-brand-primary rounded-full flex items-center justify-center shadow-md shadow-brand-primary/30 animate-in zoom-in-50 duration-200`}>
                 <Check className="w-3 h-3 text-white" strokeWidth={3} />
               </div>
             )}
             <div className="min-w-0">
-              <div className={`font-semibold leading-tight ${isKiosk ? "text-base" : "text-sm"} ${selected ? "text-brand-primary" : "text-brand-text-primary"}`}>
+              <div className={`font-semibold leading-tight ${compact ? "text-[11px]" : isKiosk ? "text-base" : "text-sm"} ${selected ? "text-brand-primary" : "text-brand-text-primary"}`}>
                 {opt.label}
               </div>
-              {opt.sub && (
+              {!compact && opt.sub && (
                 <div className={`text-[11px] leading-tight mt-0.5 ${selected ? "text-brand-primary/60" : "text-brand-text-muted"}`}>
                   {opt.sub}
                 </div>
@@ -521,12 +525,26 @@ export function ScanQrPage() {
   const [thankYou] = useState(() =>
     THANK_YOU_MESSAGES[Math.floor(Math.random() * THANK_YOU_MESSAGES.length)],
   );
+  const [viewportHeight, setViewportHeight] = useState<number>(() =>
+    typeof window !== "undefined" ? window.innerHeight : 900,
+  );
 
   useSEO({
     title: "Behavera — Chci ukázku Echo Pulse",
     description:
       "60 vteřin a máte ukázku nástroje, který měří engagement vašich lidí. Bez spamu, slíbujeme.",
   });
+
+  useEffect(() => {
+    const updateViewport = () => setViewportHeight(window.innerHeight);
+    updateViewport();
+    window.addEventListener("resize", updateViewport);
+    window.addEventListener("orientationchange", updateViewport);
+    return () => {
+      window.removeEventListener("resize", updateViewport);
+      window.removeEventListener("orientationchange", updateViewport);
+    };
+  }, []);
 
   /* Close ARES dropdown on outside click */
   useEffect(() => {
@@ -679,18 +697,18 @@ export function ScanQrPage() {
   }`;
 
   const eventName = sourceParams.event;
+  const compactLayout = viewportHeight < 860;
+  const ultraCompact = viewportHeight < 740;
 
   /* ═══ RENDER ═══ */
   return (
     <>
-      {!isKiosk && <Header />}
-
-      <main className={`${isKiosk ? "min-h-screen bg-gradient-to-br from-brand-background-secondary via-white to-brand-primary/[0.03]" : "pt-24 pb-16"}`}>
-        <section className={isKiosk ? "px-6 py-8" : "py-12 px-4"}>
-          <div className={`mx-auto ${isKiosk ? "max-w-[600px]" : "max-w-[500px]"}`}>
+      <main className="h-[100dvh] overflow-hidden bg-gradient-to-br from-brand-background-secondary via-white to-brand-primary/[0.03]">
+        <section className={`h-full px-3 sm:px-4 ${compactLayout ? "py-2" : "py-4"}`}>
+          <div className={`mx-auto h-full flex flex-col justify-center ${isKiosk ? "max-w-[720px]" : "max-w-[620px]"}`}>
 
             {/* Kiosk toggle (hidden UI) */}
-            <div className="flex items-center justify-end mb-3">
+            <div className={`flex items-center justify-end ${compactLayout ? "mb-1" : "mb-3"}`}>
               <label className="inline-flex items-center gap-1.5 text-[11px] text-brand-text-muted/30 cursor-pointer select-none hover:text-brand-text-muted/60 transition-colors">
                 <input
                   type="checkbox"
@@ -704,37 +722,39 @@ export function ScanQrPage() {
 
             {/* Offline queue notice */}
             {queueCount > 0 && (
-              <div className="mb-4 flex items-center gap-2.5 rounded-xl bg-amber-50 border border-amber-200/80 px-4 py-3 text-xs text-amber-800 animate-in fade-in slide-in-from-top-2 duration-300">
+              <div className={`flex items-center gap-2.5 rounded-xl bg-amber-50 border border-amber-200/80 text-xs text-amber-800 animate-in fade-in slide-in-from-top-2 duration-300 ${compactLayout ? "mb-2 px-3 py-2" : "mb-4 px-4 py-3"}`}>
                 <WifiOff className="w-4 h-4 shrink-0 text-amber-500" />
                 <span>{queueCount} {queueCount === 1 ? "lead čeká" : "leadů čeká"} na odeslání</span>
               </div>
             )}
 
             {/* ════ MAIN CARD ════ */}
-            <div className="bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.04] border border-brand-border/60 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.04] border border-brand-border/60 overflow-hidden flex flex-col">
 
               {/* Card header */}
-              <div className="bg-gradient-to-r from-brand-primary via-brand-primary to-[#3D2175] px-6 py-6">
+              <div className={`bg-gradient-to-r from-brand-primary via-brand-primary to-[#3D2175] px-5 ${compactLayout ? "py-3" : "py-5"}`}>
                 {eventName && (
-                  <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/95 text-[11px] font-semibold rounded-full px-3 py-1 mb-3 border border-white/10">
+                  <div className={`inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm text-white/95 text-[11px] font-semibold rounded-full px-3 py-1 border border-white/10 ${compactLayout ? "mb-2" : "mb-3"}`}>
                     {eventName}
                   </div>
                 )}
-                <h1 className={`font-display font-bold text-white leading-tight tracking-tight ${isKiosk ? "text-2xl" : "text-xl"}`}>
+                <h1 className={`font-display font-bold text-white leading-tight tracking-tight ${compactLayout ? "text-lg" : isKiosk ? "text-2xl" : "text-xl"}`}>
                   Chci ukázku Echo Pulse
                 </h1>
-                <p className={`text-white/75 mt-2 leading-relaxed ${isKiosk ? "text-sm" : "text-[13px]"}`}>
+                <p className={`text-white/75 leading-relaxed ${compactLayout ? "text-[12px] mt-1" : isKiosk ? "text-sm mt-2" : "text-[13px] mt-2"}`}>
                   60 vteřin a máte jasno. Bez spamu — jen konkrétní ukázku,
                   jak měřit engagement.
                 </p>
               </div>
 
               {/* Card body */}
-              <div className="p-6">
+              <div className={`${compactLayout ? "p-3" : "p-5"} flex-1`}>
 
                 {/* Step indicator (only during form) */}
                 {(status === "idle" || status === "sending" || status === "error") && (
-                  <StepIndicator current={step} total={2} />
+                  <div className={compactLayout ? "mb-2" : "mb-0"}>
+                    <StepIndicator current={step} total={2} />
+                  </div>
                 )}
 
                 {/* ══ SUCCESS ══ */}
@@ -819,7 +839,7 @@ export function ScanQrPage() {
 
                     {/* STEP 1 */}
                     {step === 1 && (
-                      <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" key="step1">
+                      <div className={`${compactLayout ? "space-y-3" : "space-y-5"} animate-in fade-in slide-in-from-right-4 duration-300`} key="step1">
 
                         {/* Company with ARES */}
                         <div className="relative">
@@ -844,7 +864,7 @@ export function ScanQrPage() {
                                 if (company.trim().length >= 2) ares.search(company);
                               }}
                               placeholder="Začněte psát název firmy…"
-                              className={inputCls}
+                              className={`${inputCls} ${compactLayout ? "py-2.5 min-h-[46px]" : ""}`}
                             />
                             {ares.loading && (
                               <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-primary animate-spin" />
@@ -909,7 +929,7 @@ export function ScanQrPage() {
                             value={contactName}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setContactName(e.target.value)}
                             placeholder="Jan Novák"
-                            className={inputCls}
+                            className={`${inputCls} ${compactLayout ? "py-2.5 min-h-[46px]" : ""}`}
                           />
                         </div>
 
@@ -928,7 +948,7 @@ export function ScanQrPage() {
                             value={email}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                             placeholder="jan@firma.cz"
-                            className={`${inputCls} ${email && !emailValid ? "border-brand-error/60 focus:ring-brand-error/15 focus:border-brand-error" : ""}`}
+                            className={`${inputCls} ${compactLayout ? "py-2.5 min-h-[46px]" : ""} ${email && !emailValid ? "border-brand-error/60 focus:ring-brand-error/15 focus:border-brand-error" : ""}`}
                           />
                           {email && !emailValid && (
                             <p className="text-xs text-brand-error mt-1.5 ml-1">Zadejte platný e-mail</p>
@@ -954,7 +974,7 @@ export function ScanQrPage() {
                             value={phone}
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
                             placeholder="+420 777 123 456"
-                            className={inputCls}
+                            className={`${inputCls} ${compactLayout ? "py-2.5 min-h-[46px]" : ""}`}
                           />
                         </div>
 
@@ -969,7 +989,7 @@ export function ScanQrPage() {
                           />
                         </div>
 
-                        <div className="pt-2 space-y-3">
+                        <div className={`${compactLayout ? "pt-1 space-y-2" : "pt-2 space-y-3"}`}>
                           <Button
                             type="button"
                             disabled={!step1Valid}
@@ -991,7 +1011,7 @@ export function ScanQrPage() {
 
                     {/* STEP 2 */}
                     {step === 2 && (
-                      <div className="space-y-5 animate-in fade-in slide-in-from-right-4 duration-300" key="step2">
+                      <div className={`${compactLayout ? "space-y-3" : "space-y-5"} animate-in fade-in slide-in-from-right-4 duration-300`} key="step2">
 
                         {/* Back */}
                         <button
@@ -1014,6 +1034,7 @@ export function ScanQrPage() {
                             value={employeesBucket}
                             onChange={setEmployeesBucket}
                             isKiosk={isKiosk}
+                            compact={compactLayout}
                           />
                         </div>
 
@@ -1028,6 +1049,7 @@ export function ScanQrPage() {
                             value={feedbackFreq}
                             onChange={setFeedbackFreq}
                             isKiosk={isKiosk}
+                            compact={compactLayout}
                           />
                         </div>
 
@@ -1042,13 +1064,14 @@ export function ScanQrPage() {
                             value={decisionRole}
                             onChange={setDecisionRole}
                             isKiosk={isKiosk}
+                            compact={compactLayout}
                           />
                         </div>
 
                         {/* GDPR */}
-                        <div className="border-t border-brand-border/40 pt-5">
+                        <div className={`border-t border-brand-border/40 ${compactLayout ? "pt-3" : "pt-5"}`}>
                           <Checkbox checked={consentContact} onChange={setConsentContact}>
-                            <span className="text-xs text-brand-text-body leading-relaxed">
+                            <span className={`${compactLayout ? "text-[11px]" : "text-xs"} text-brand-text-body leading-relaxed`}>
                               Souhlasím se zpracováním údajů za účelem navázání kontaktu.{" "}
                               <a
                                 href={PRIVACY_URL}
@@ -1063,7 +1086,7 @@ export function ScanQrPage() {
                           </Checkbox>
 
                           <Checkbox checked={consentMarketing} onChange={setConsentMarketing}>
-                            <span className="text-xs text-brand-text-body leading-relaxed">
+                            <span className={`${compactLayout ? "text-[11px]" : "text-xs"} text-brand-text-body leading-relaxed`}>
                               Posílejte mi občas tipy a pozvánky
                               <span className="text-brand-text-muted"> (1–2× měsíčně, žádný spam)</span>
                             </span>
@@ -1077,7 +1100,7 @@ export function ScanQrPage() {
                           </div>
                         )}
 
-                        <div className="pt-1">
+                        <div className={compactLayout ? "pt-0" : "pt-1"}>
                           <Button
                             type="submit"
                             disabled={!step2Valid || status === "sending"}
@@ -1119,22 +1142,22 @@ export function ScanQrPage() {
             </div>
 
             {/* Trust badges */}
-            <div className="mt-5 flex items-center justify-center gap-5 flex-wrap">
-              <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
-                <Shield className="w-3.5 h-3.5" /> GDPR
-              </span>
-              <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
-                <Clock className="w-3.5 h-3.5" /> 60s formulář
-              </span>
-              <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
-                <Shield className="w-3.5 h-3.5" /> Bez spamu
-              </span>
-            </div>
+            {!ultraCompact && (
+              <div className={`${compactLayout ? "mt-2" : "mt-5"} flex items-center justify-center gap-5 flex-wrap`}>
+                <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
+                  <Shield className="w-3.5 h-3.5" /> GDPR
+                </span>
+                <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
+                  <Clock className="w-3.5 h-3.5" /> 60s formulář
+                </span>
+                <span className="flex items-center gap-1.5 text-[11px] text-brand-text-muted/40">
+                  <Shield className="w-3.5 h-3.5" /> Bez spamu
+                </span>
+              </div>
+            )}
           </div>
         </section>
       </main>
-
-      {!isKiosk && <Footer />}
     </>
   );
 }
