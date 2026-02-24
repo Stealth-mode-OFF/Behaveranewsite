@@ -311,6 +311,11 @@ async function saveToLeadsTable(
   }
 }
 
+/* ── Handler ───────────────────────────────────── */
+
+export default async function handler(request: Request): Promise<Response> {
+  const cors = {
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",
