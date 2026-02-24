@@ -718,10 +718,10 @@ export function ScanQrPage() {
     <>
       <main className="h-[100dvh] overflow-hidden bg-gradient-to-br from-brand-background-secondary via-white to-brand-primary/[0.03]">
         <section className={`h-full px-3 sm:px-4 ${compactLayout ? "py-2" : "py-4"}`}>
-          <div className="mx-auto h-full flex flex-col justify-center max-w-[620px] lg:max-w-[960px]">
+          <div className="mx-auto h-full flex flex-col justify-center max-w-[620px] lg:max-w-[1040px]">
 
             {/* Two-column layout: form + QR panel */}
-            <div className="flex items-stretch gap-8">
+            <div className="flex items-center gap-10 lg:gap-12">
             <div className="flex-1 min-w-0 flex flex-col">
 
             {/* Offline queue notice */}
@@ -1162,39 +1162,43 @@ export function ScanQrPage() {
             </div>{/* end form column */}
 
             {/* QR Panel — visible on tablet landscape + desktop only */}
-            <div className="hidden lg:flex flex-col items-center justify-center min-w-[280px] shrink-0">
-              <div className="relative bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.08] border border-brand-border/60 overflow-hidden text-center">
-                {/* Top accent bar */}
-                <div className="h-1 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary" />
+            <div className="hidden lg:flex w-[300px] shrink-0 self-stretch">
+              <div className="relative bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.06] border border-brand-border/50 overflow-hidden flex flex-col w-full">
+                {/* Top accent line */}
+                <div className="h-[3px] bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary/60" />
 
-                <div className="p-8">
-                  <div className="inline-flex items-center gap-2.5 text-brand-primary mb-6">
-                    <div className="w-9 h-9 rounded-full bg-brand-primary/[0.08] flex items-center justify-center">
-                      <Smartphone className="w-5 h-5" />
+                <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+                  {/* Header */}
+                  <div className="flex items-center gap-2.5 mb-7">
+                    <div className="w-8 h-8 rounded-lg bg-brand-primary/[0.06] flex items-center justify-center">
+                      <Smartphone className="w-[18px] h-[18px] text-brand-primary" />
                     </div>
-                    <span className="font-display font-bold text-[17px] tracking-tight">Vyplňte na mobilu</span>
+                    <span className="font-display font-bold text-[15px] tracking-tight text-brand-text-primary">Vyplňte na mobilu</span>
                   </div>
 
-                  <div className="bg-gradient-to-br from-brand-background-secondary/80 to-white p-5 rounded-xl border border-brand-border/40 inline-flex">
+                  {/* QR Code */}
+                  <div className="bg-gradient-to-br from-brand-background-secondary/60 to-white p-4 rounded-xl border border-brand-border/30">
                     <QRCodeSVG
                       value={qrUrl}
-                      size={176}
+                      size={160}
                       level="M"
                       fgColor="#2D1B69"
                       bgColor="transparent"
                     />
                   </div>
 
-                  <p className="text-[13px] text-brand-text-body mt-6 leading-relaxed font-medium">
+                  {/* Instructions */}
+                  <p className="text-[13px] text-brand-text-body mt-6 leading-relaxed font-medium text-center">
                     Naskenujte fotoaparátem
                   </p>
-                  <p className="text-[12px] text-brand-text-muted mt-1">
-                    a vyplňte pohodlně na svém telefonu
+                  <p className="text-[11px] text-brand-text-muted mt-1 text-center">
+                    a vyplňte pohodlně na telefonu
                   </p>
                 </div>
 
-                <div className="px-8 py-3 bg-brand-background-secondary/40 border-t border-brand-border/30">
-                  <p className="text-[11px] text-brand-text-muted/40 font-mono tracking-wide">
+                {/* Footer */}
+                <div className="px-6 py-2.5 bg-brand-background-secondary/30 border-t border-brand-border/20 text-center">
+                  <p className="text-[10px] text-brand-text-muted/35 font-mono tracking-wider">
                     cz.behavera.com/scan-qr
                   </p>
                 </div>
