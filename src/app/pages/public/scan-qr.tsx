@@ -3,9 +3,11 @@ import {
   useEffect,
   useCallback,
   useRef,
+  useMemo,
   type FormEvent,
   type ChangeEvent,
 } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "@/app/contexts/modal-context";
 import { Button } from "@/app/components/ui/button";
@@ -30,6 +32,7 @@ import {
   User,
   Mail,
   Phone,
+  Smartphone,
 } from "lucide-react";
 
 /* ───────────────────────────────────────────────────
@@ -491,9 +494,7 @@ export function ScanQrPage() {
   const isOnline = useOnlineStatus();
 
   /* Mode */
-  const [isKiosk, setIsKiosk] = useState(
-    () => searchParams.get("mode") === "kiosk" || isIPad(),
-  );
+  const isKiosk = searchParams.get("mode") === "kiosk" || isIPad();
 
   /* Step */
   const [step, setStep] = useState(1);
@@ -700,25 +701,28 @@ export function ScanQrPage() {
   const compactLayout = viewportHeight < 860;
   const ultraCompact = viewportHeight < 740;
 
+  /* Build QR code URL preserving tracking params */
+  const qrUrl = useMemo(() => {
+    const base = "https://cz.behavera.com/scan-qr";
+    const p = new URLSearchParams();
+    if (sourceParams.src) p.set("src", sourceParams.src);
+    if (sourceParams.rep) p.set("rep", sourceParams.rep);
+    if (sourceParams.booth) p.set("booth", sourceParams.booth);
+    if (sourceParams.event) p.set("event", sourceParams.event);
+    const qs = p.toString();
+    return qs ? `${base}?${qs}` : base;
+  }, [sourceParams]);
+
   /* ═══ RENDER ═══ */
   return (
     <>
       <main className="h-[100dvh] overflow-hidden bg-gradient-to-br from-brand-background-secondary via-white to-brand-primary/[0.03]">
         <section className={`h-full px-3 sm:px-4 ${compactLayout ? "py-2" : "py-4"}`}>
-          <div className={`mx-auto h-full flex flex-col justify-center ${isKiosk ? "max-w-[720px]" : "max-w-[620px]"}`}>
+          <div className="mx-auto h-full flex flex-col justify-center max-w-[620px] lg:max-w-[960px]">
 
-            {/* Kiosk toggle (hidden UI) */}
-            <div className={`flex items-center justify-end ${compactLayout ? "mb-1" : "mb-3"}`}>
-              <label className="inline-flex items-center gap-1.5 text-[11px] text-brand-text-muted/30 cursor-pointer select-none hover:text-brand-text-muted/60 transition-colors">
-                <input
-                  type="checkbox"
-                  checked={isKiosk}
-                  onChange={(e) => setIsKiosk(e.target.checked)}
-                  className="rounded border-brand-border w-3 h-3"
-                />
-                Kiosk
-              </label>
-            </div>
+            {/* Two-column layout: form + QR panel */}
+            <div className="flex items-stretch gap-8">
+            <div className="flex-1 min-w-0 flex flex-col">
 
             {/* Offline queue notice */}
             {queueCount > 0 && (
@@ -1155,6 +1159,49 @@ export function ScanQrPage() {
                 </span>
               </div>
             )}
+            </div>{/* end form column */}
+
+            {/* QR Panel — visible on tablet landscape + desktop only */}
+            <div className="hidden lg:flex flex-col items-center justify-center min-w-[280px] shrink-0">
+              <div className="relative bg-white rounded-2xl shadow-lg shadow-brand-primary/[0.08] border border-brand-border/60 overflow-hidden text-center">
+                {/* Top accent bar */}
+                <div className="h-1 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary" />
+
+                <div className="p-8">
+                  <div className="inline-flex items-center gap-2.5 text-brand-primary mb-6">
+                    <div className="w-9 h-9 rounded-full bg-brand-primary/[0.08] flex items-center justify-center">
+                      <Smartphone className="w-5 h-5" />
+                    </div>
+                    <span className="font-display font-bold text-[17px] tracking-tight">Vyplňte na mobilu</span>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-brand-background-secondary/80 to-white p-5 rounded-xl border border-brand-border/40 inline-flex">
+                    <QRCodeSVG
+                      value={qrUrl}
+                      size={176}
+                      level="M"
+                      fgColor="#2D1B69"
+                      bgColor="transparent"
+                    />
+                  </div>
+
+                  <p className="text-[13px] text-brand-text-body mt-6 leading-relaxed font-medium">
+                    Naskenujte fotoaparátem
+                  </p>
+                  <p className="text-[12px] text-brand-text-muted mt-1">
+                    a vyplňte pohodlně na svém telefonu
+                  </p>
+                </div>
+
+                <div className="px-8 py-3 bg-brand-background-secondary/40 border-t border-brand-border/30">
+                  <p className="text-[11px] text-brand-text-muted/40 font-mono tracking-wide">
+                    cz.behavera.com/scan-qr
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            </div>{/* end flex row */}
           </div>
         </section>
       </main>
