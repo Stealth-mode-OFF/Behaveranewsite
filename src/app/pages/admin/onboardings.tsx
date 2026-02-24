@@ -83,7 +83,7 @@ async function copyText(text: string, label: string) {
 }
 
 function formatDate(iso: string): string {
-  if (!iso) return '\u2013';
+  if (!iso) return '–';
   const d = new Date(iso);
   return d.toLocaleDateString('cs-CZ', {
     day: '2-digit',
@@ -93,7 +93,7 @@ function formatDate(iso: string): string {
 }
 
 function formatDateTime(iso: string): string {
-  if (!iso) return '\u2013';
+  if (!iso) return '–';
   const d = new Date(iso);
   return d.toLocaleDateString('cs-CZ', {
     day: '2-digit',
@@ -108,26 +108,67 @@ function timeAgo(iso: string): string {
   if (!iso) return '';
   const diff = Date.now() - new Date(iso).getTime();
   const mins = Math.floor(diff / 60000);
-  if (mins < 60) return `p\u0159ed ${mins} min`;
+  if (mins < 60) return `před ${mins} min`;
   const hours = Math.floor(mins / 60);
-  if (hours < 24) return `p\u0159ed ${hours}h`;
+  if (hours < 24) return `před ${hours}h`;
   const days = Math.floor(hours / 24);
-  if (days === 1) return 'v\u010Dera';
-  if (days < 7) return `p\u0159ed ${days} dny`;
+  if (days === 1) return 'včera';
+  if (days < 7) return `před ${days} dny`;
   return formatDate(iso);
 }
 
+const unicodeEscapePattern = /\\u[0-9a-fA-F]{4}/;
+
+function decodeUnicodeEscapes(value: string): string {
+  if (!unicodeEscapePattern.test(value)) return value;
+  return value.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex: string) =>
+    String.fromCharCode(parseInt(hex, 16))
+  );
+}
+
+function normalizeText<T extends string | null | undefined>(value: T): T {
+  if (typeof value !== 'string') return value;
+  return decodeUnicodeEscapes(value) as T;
+}
+
+function normalizeCompanyData(company: CompanyData): CompanyData {
+  return {
+    ...company,
+    companyName: normalizeText(company.companyName) || '',
+    ico: normalizeText(company.ico) || '',
+    repName: normalizeText(company.repName) || '',
+    repEmail: normalizeText(company.repEmail) || '',
+    adminName: normalizeText(company.adminName) || '',
+    adminEmail: normalizeText(company.adminEmail) || '',
+    billingEmail: normalizeText(company.billingEmail) || '',
+    billingInterval: normalizeText(company.billingInterval) || '',
+    oauthProvider: normalizeText(company.oauthProvider) || '',
+    status: normalizeText(company.status) || '',
+    teams: company.teams.map((team) => ({
+      ...team,
+      name: normalizeText(team.name) || '',
+      leaderEmail: normalizeText(team.leaderEmail) || '',
+      members: team.members.map((member) => ({
+        ...member,
+        email: normalizeText(member.email) || '',
+        firstName: normalizeText(member.firstName) || '',
+        lastName: normalizeText(member.lastName) || '',
+      })),
+    })),
+  };
+}
+
 const statusConfig: Record<string, { label: string; color: string; bg: string }> = {
-  new: { label: 'Nov\u00fd', color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200' },
-  contacted: { label: 'Kontaktov\u00e1n', color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
+  new: { label: 'Nový', color: 'text-blue-700', bg: 'bg-blue-50 border-blue-200' },
+  contacted: { label: 'Kontaktován', color: 'text-amber-700', bg: 'bg-amber-50 border-amber-200' },
   onboarding: { label: 'Onboarding', color: 'text-violet-700', bg: 'bg-violet-50 border-violet-200' },
-  active: { label: 'Aktivn\u00ed', color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
-  rejected: { label: 'Odm\u00edtnuto', color: 'text-red-700', bg: 'bg-red-50 border-red-200' },
+  active: { label: 'Aktivní', color: 'text-emerald-700', bg: 'bg-emerald-50 border-emerald-200' },
+  rejected: { label: 'Odmítnuto', color: 'text-red-700', bg: 'bg-red-50 border-red-200' },
 };
 
 function StatusBadge({ status }: { status: string }) {
   const cfg = statusConfig[status] || {
-    label: status || '\u2013',
+    label: status || '–',
     color: 'text-gray-600',
     bg: 'bg-gray-50 border-gray-200',
   };
@@ -181,12 +222,12 @@ function StatCard({
 /* ─── CSV Export ─── */
 function exportCSV(companies: CompanyData[]) {
   const rows = [
-    ['Firma', 'I\u010cO', 'Z\u00e1stupce', 'Email z\u00e1stupce', 'Admin', 'Admin email', 'Faktura\u010dn\u00ed email', 'Zam\u011bstnanc\u016f', 'T\u00fdm\u016f', '\u010clen\u016f', 'Pl\u00e1n', 'Cena/m\u011bs', 'OAuth', 'Status', 'Datum'].join(';'),
+    ['Firma', 'IČO', 'Zástupce', 'Email zástupce', 'Admin', 'Admin email', 'Fakturační email', 'Zaměstnanců', 'Týmů', 'Členů', 'Plán', 'Cena/měs', 'OAuth', 'Status', 'Datum'].join(';'),
     ...companies.map((c) =>
       [
         c.companyName, c.ico, c.repName, c.repEmail, c.adminName, c.adminEmail,
         c.billingEmail, c.employeeCount, c.teams.length, countMembers(c),
-        c.billingInterval === 'yearly' ? 'Ro\u010dn\u00ed' : 'M\u011bs\u00ed\u010dn\u00ed',
+        c.billingInterval === 'yearly' ? 'Roční' : 'Měsíční',
         c.totalPrice, c.oauthProvider || '',
         statusConfig[c.status]?.label || c.status, formatDate(c.createdAt),
       ].join(';')
@@ -199,12 +240,12 @@ function exportCSV(companies: CompanyData[]) {
   a.download = `onboardings-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   URL.revokeObjectURL(url);
-  toast.success('CSV exportov\u00e1no');
+  toast.success('CSV exportováno');
 }
 
 /* ─── Clickable Email ─── */
 function EmailLink({ email, className }: { email: string; className?: string }) {
-  if (!email) return <span className="text-brand-text-muted">{'\u2013'}</span>;
+  if (!email) return <span className="text-brand-text-muted">{'–'}</span>;
   return (
     <a
       href={`mailto:${email}`}
@@ -271,7 +312,7 @@ function TeamCard({ team, defaultExpanded = false }: { team: TeamData; defaultEx
             <span className="font-semibold text-brand-text-primary">{team.name}</span>
             <span className="text-xs text-brand-text-muted ml-2">
               {team.members.length}{' '}
-              {team.members.length === 1 ? '\u010dlen' : team.members.length < 5 ? '\u010dlenov\u00e9' : '\u010dlen\u016f'}
+              {team.members.length === 1 ? 'člen' : team.members.length < 5 ? 'členové' : 'členů'}
             </span>
           </div>
           {leader && (
@@ -283,7 +324,7 @@ function TeamCard({ team, defaultExpanded = false }: { team: TeamData; defaultEx
         </div>
         {emails.length > 0 && (
           <div className="flex items-center gap-2 shrink-0" onClick={(e) => e.stopPropagation()}>
-            <CopyBtn text={emails.join('\n')} label={`${emails.length} email\u016f (${team.name})`} size="sm" />
+            <CopyBtn text={emails.join('\n')} label={`${emails.length} emailů (${team.name})`} size="sm" />
             <span className="text-[10px] text-brand-text-muted hidden sm:inline">emaily</span>
           </div>
         )}
@@ -292,13 +333,13 @@ function TeamCard({ team, defaultExpanded = false }: { team: TeamData; defaultEx
       {expanded && (
         <div className="border-t border-brand-border/30">
           {team.members.length === 0 ? (
-            <div className="px-4 py-6 text-sm text-brand-text-muted text-center italic">{'\u017d\u00e1dn\u00ed \u010dlenov\u00e9'}</div>
+            <div className="px-4 py-6 text-sm text-brand-text-muted text-center italic">{'Žádní členové'}</div>
           ) : (
             <Table>
               <TableHeader>
                 <TableRow className="bg-slate-50/50">
                   <TableHead className="w-10 pl-4">#</TableHead>
-                  <TableHead>{'Jm\u00e9no'}</TableHead>
+                  <TableHead>{'Jméno'}</TableHead>
                   <TableHead>Email</TableHead>
                   <TableHead className="w-20 text-center">Role</TableHead>
                 </TableRow>
@@ -381,7 +422,7 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
             className="flex items-center gap-1.5 text-sm text-brand-text-muted hover:text-brand-primary mb-2 transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-            {`Zp\u011bt na seznam`}
+            {`Zpět na seznam`}
           </button>
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-primary to-brand-primary/70 flex items-center justify-center shadow-sm">
@@ -389,18 +430,18 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
             </div>
             <div>
               <h1 className="text-2xl font-bold text-brand-text-primary leading-tight">
-                {company.companyName || `Bez n\u00e1zvu`}
+                {company.companyName || `Bez názvu`}
               </h1>
               <div className="flex items-center gap-2 mt-1 text-sm text-brand-text-muted flex-wrap">
                 {company.ico && (
                   <span className="flex items-center gap-1">
                     <Hash className="w-3 h-3" />
-                    {`I\u010cO ${company.ico}`}
+                    {`IČO ${company.ico}`}
                   </span>
                 )}
-                <span>{'\u00b7'}</span>
+                <span>{'·'}</span>
                 <StatusBadge status={company.status} />
-                <span>{'\u00b7'}</span>
+                <span>{'·'}</span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3 h-3" />
                   {timeAgo(company.createdAt)}
@@ -416,9 +457,9 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
             className="gap-1.5 text-xs"
             onClick={() => {
               const membersCsv = company.teams.flatMap((t) =>
-                t.members.map((m) => `${m.firstName} ${m.lastName};${m.email};${t.name};${m.isLeader ? 'Leader' : '\u010clen'}`)
+                t.members.map((m) => `${m.firstName} ${m.lastName};${m.email};${t.name};${m.isLeader ? 'Leader' : 'Člen'}`)
               );
-              const csv = [`Jm\u00e9no;Email;T\u00fdm;Role`, ...membersCsv].join('\n');
+              const csv = [`Jméno;Email;Tým;Role`, ...membersCsv].join('\n');
               const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
               const url = URL.createObjectURL(blob);
               const a = document.createElement('a');
@@ -426,7 +467,7 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
               a.download = `${company.companyName.replace(/\s+/g, '-')}-members.csv`;
               a.click();
               URL.revokeObjectURL(url);
-              toast.success(`CSV t\u00fdm\u016f exportov\u00e1no`);
+              toast.success(`CSV týmů exportováno`);
             }}
           >
             <Download className="w-3.5 h-3.5" />
@@ -436,50 +477,50 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
             size="sm"
             className="gap-1.5 text-xs"
             disabled={uniqueEmails.length === 0}
-            onClick={() => copyText(uniqueEmails.join('\n'), `${uniqueEmails.length} email\u016f`)}
+            onClick={() => copyText(uniqueEmails.join('\n'), `${uniqueEmails.length} emailů`)}
           >
             <Mail className="w-3.5 h-3.5" />
-            {`Kop\u00edrovat ${uniqueEmails.length} email\u016f`}
+            {`Kopírovat ${uniqueEmails.length} emailů`}
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatCard icon={Users} label={`T\u00fdm\u016f`} value={company.teams.length} />
-        <StatCard icon={UserCircle} label={`\u010clen\u016f celkem`} value={members} />
-        <StatCard icon={Building2} label={`Zam\u011bstnanc\u016f (uv\u00e1d\u011bno)`} value={company.employeeCount || '\u2013'} />
+        <StatCard icon={Users} label={`Týmů`} value={company.teams.length} />
+        <StatCard icon={UserCircle} label={`Členů celkem`} value={members} />
+        <StatCard icon={Building2} label={`Zaměstnanců (uváděno)`} value={company.employeeCount || '–'} />
         <StatCard
           icon={TrendingUp}
-          label={company.billingInterval === 'yearly' ? `Ro\u010dn\u00ed pl\u00e1n` : `M\u011bs\u00ed\u010dn\u00ed pl\u00e1n`}
-          value={company.totalPrice ? `${company.totalPrice.toLocaleString('cs-CZ')} K\u010d` : '\u2013'}
+          label={company.billingInterval === 'yearly' ? `Roční plán` : `Měsíční plán`}
+          value={company.totalPrice ? `${company.totalPrice.toLocaleString('cs-CZ')} Kč` : '–'}
         />
       </div>
 
       <Card className="border-brand-border/50 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-brand-text-primary uppercase tracking-wide">
-            {`Kontaktn\u00ed \u00fadaje`}
+            {`Kontaktní údaje`}
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1 divide-y sm:divide-y-0">
-            <InfoRow icon={UserCircle} label={`Z\u00e1stupce firmy`}>
-              <div className="font-medium">{company.repName || '\u2013'}</div>
+            <InfoRow icon={UserCircle} label={`Zástupce firmy`}>
+              <div className="font-medium">{company.repName || '–'}</div>
               <EmailLink email={company.repEmail} className="text-xs" />
             </InfoRow>
             <InfoRow icon={Shield} label="Admin platformy">
-              <div className="font-medium">{company.adminName || '\u2013'}</div>
+              <div className="font-medium">{company.adminName || '–'}</div>
               <EmailLink email={company.adminEmail} className="text-xs" />
             </InfoRow>
-            <InfoRow icon={Receipt} label={`Faktura\u010dn\u00ed email`}>
+            <InfoRow icon={Receipt} label={`Fakturační email`}>
               <EmailLink email={company.billingEmail} className="text-sm" />
             </InfoRow>
             {company.oauthProvider && (
-              <InfoRow icon={ExternalLink} label={`P\u0159ipojen\u00ed`}>
+              <InfoRow icon={ExternalLink} label={`Připojení`}>
                 <Badge variant="secondary" className="text-xs capitalize">{company.oauthProvider}</Badge>
               </InfoRow>
             )}
-            <InfoRow icon={Calendar} label={`Odesl\u00e1no`}>
+            <InfoRow icon={Calendar} label={`Odesláno`}>
               {formatDateTime(company.createdAt)}
             </InfoRow>
           </div>
@@ -489,14 +530,14 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-bold text-brand-text-primary">
-            {`T\u00fdmy`}
+            {`Týmy`}
             <span className="text-sm font-normal text-brand-text-muted ml-2">({company.teams.length})</span>
           </h2>
         </div>
         {company.teams.length === 0 ? (
           <div className="rounded-xl border border-dashed border-brand-border/50 p-8 text-center text-brand-text-muted">
             <Users className="w-8 h-8 mx-auto mb-2 opacity-30" />
-            {`\u017d\u00e1dn\u00e9 t\u00fdmy`}
+            {`Žádné týmy`}
           </div>
         ) : (
           <div className="space-y-3">
@@ -580,7 +621,7 @@ function CompanyList({
         <div>
           <h1 className="text-2xl font-bold text-brand-text-primary">Onboardings</h1>
           <p className="text-sm text-brand-text-muted mt-0.5">
-            {`P\u0159ehled v\u0161ech registrac\u00ed a onboarding proces\u016f`}
+            {`Přehled všech registrací a onboarding procesů`}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -597,11 +638,11 @@ function CompanyList({
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard icon={Building2} label="Firem celkem" value={stats.unique} />
-        <StatCard icon={Hash} label={`Odesl\u00e1n\u00ed`} value={stats.total} />
-        <StatCard icon={Users} label={`\u010clen\u016f celkem`} value={stats.members} />
+        <StatCard icon={Hash} label={`Odeslání`} value={stats.total} />
+        <StatCard icon={Users} label={`Členů celkem`} value={stats.members} />
         <StatCard
           icon={AlertCircle}
-          label={`Nov\u00fdch (\u010dek\u00e1 na kontakt)`}
+          label={`Nových (čeká na kontakt)`}
           value={stats.newCount}
           accent={stats.newCount > 0 ? 'bg-blue-500' : undefined}
         />
@@ -612,7 +653,7 @@ function CompanyList({
           {['all', 'new', 'contacted', 'onboarding', 'active', 'rejected'].map((s) => {
             const count = statusCounts[s] || 0;
             if (s !== 'all' && count === 0) return null;
-            const label = s === 'all' ? `V\u0161e` : statusConfig[s]?.label || s;
+            const label = s === 'all' ? `Vše` : statusConfig[s]?.label || s;
             return (
               <button
                 key={s}
@@ -633,15 +674,15 @@ function CompanyList({
         <div className="relative flex-1 w-full sm:max-w-xs ml-auto">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted" />
           <Input
-            placeholder={`Hledat firmu, I\u010cO, jm\u00e9no\u2026`}
+            placeholder={`Hledat firmu, IČO, jméno…`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-10 h-9 bg-white border-brand-border/60 text-sm"
           />
         </div>
         <div className="flex items-center gap-1 text-xs text-brand-text-muted shrink-0">
-          {`\u0158adit:`}
-          {([['date', 'Datum'], ['name', `N\u00e1zev`], ['members', `\u010clenov\u00e9`]] as const).map(([key, label]) => (
+          {`Řadit:`}
+          {([['date', 'Datum'], ['name', `Název`], ['members', `Členové`]] as const).map(([key, label]) => (
             <button
               key={key}
               onClick={() => setSortBy(key)}
@@ -660,7 +701,7 @@ function CompanyList({
         <div className="rounded-xl border border-dashed border-brand-border/50 p-12 text-center">
           <Search className="w-8 h-8 mx-auto mb-3 text-brand-text-muted/30" />
           <p className="text-brand-text-muted">
-            {search || statusFilter !== 'all' ? `\u017d\u00e1dn\u00e9 v\u00fdsledky pro aktu\u00e1ln\u00ed filtr` : `Zat\u00edm \u017e\u00e1dn\u00e1 data`}
+            {search || statusFilter !== 'all' ? `Žádné výsledky pro aktuální filtr` : `Zatím žádná data`}
           </p>
         </div>
       ) : (
@@ -685,15 +726,15 @@ function CompanyList({
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-semibold text-brand-text-primary truncate">
-                      {c.companyName || `Bez n\u00e1zvu`}
+                      {c.companyName || `Bez názvu`}
                     </span>
                     <StatusBadge status={c.status} />
                   </div>
                   <div className="flex items-center gap-3 mt-1 text-xs text-brand-text-muted flex-wrap">
-                    {c.ico && <span className="flex items-center gap-1"><Hash className="w-3 h-3" />{`I\u010cO ${c.ico}`}</span>}
+                    {c.ico && <span className="flex items-center gap-1"><Hash className="w-3 h-3" />{`IČO ${c.ico}`}</span>}
                     <span className="flex items-center gap-1">
                       <Users className="w-3 h-3" />
-                      {`${c.teams.length} t\u00fdm\u016f \u00b7 ${members} \u010dlen\u016f`}
+                      {`${c.teams.length} týmů · ${members} členů`}
                     </span>
                     {c.repName && <span className="hidden sm:flex items-center gap-1"><UserCircle className="w-3 h-3" />{c.repName}</span>}
                   </div>
@@ -702,7 +743,7 @@ function CompanyList({
                   <span className="text-xs text-brand-text-muted">{timeAgo(c.createdAt)}</span>
                   {c.totalPrice > 0 && (
                     <span className="text-xs font-semibold text-brand-text-primary">
-                      {`${c.totalPrice.toLocaleString('cs-CZ')} K\u010d/m\u011bs`}
+                      {`${c.totalPrice.toLocaleString('cs-CZ')} Kč/měs`}
                     </span>
                   )}
                 </div>
@@ -716,16 +757,16 @@ function CompanyList({
       {deduped.length < filtered.length && (
         <details className="mt-2">
           <summary className="text-xs text-brand-text-muted cursor-pointer hover:text-brand-primary transition-colors">
-            {`Zobrazit v\u0161echna odesl\u00e1n\u00ed (${filtered.length} celkem, ${filtered.length - deduped.length} duplicitn\u00edch)`}
+            {`Zobrazit všechna odeslání (${filtered.length} celkem, ${filtered.length - deduped.length} duplicitních)`}
           </summary>
           <div className="mt-3 rounded-xl border border-brand-border/40 overflow-hidden">
             <Table>
               <TableHeader>
                 <TableRow className="bg-slate-50/50">
                   <TableHead>Firma</TableHead>
-                  <TableHead>{`Z\u00e1stupce`}</TableHead>
-                  <TableHead>{`T\u00fdm\u016f`}</TableHead>
-                  <TableHead>{`\u010clen\u016f`}</TableHead>
+                  <TableHead>{`Zástupce`}</TableHead>
+                  <TableHead>{`Týmů`}</TableHead>
+                  <TableHead>{`Členů`}</TableHead>
                   <TableHead>Datum</TableHead>
                 </TableRow>
               </TableHeader>
@@ -781,9 +822,9 @@ export function OnboardingsPage() {
         throw new Error((body as { error?: string }).error || `HTTP ${res.status}`);
       }
       const data: CompanyData[] = await res.json();
-      setCompanies(data);
+      setCompanies(data.map(normalizeCompanyData));
     } catch (err) {
-      setError(err instanceof Error ? err.message : `Na\u010d\u00edt\u00e1n\u00ed selhalo`);
+      setError(err instanceof Error ? err.message : `Načítání selhalo`);
     } finally {
       setLoading(false);
     }
@@ -800,7 +841,7 @@ export function OnboardingsPage() {
           <div className="w-12 h-12 rounded-full border-2 border-brand-primary/20" />
           <Loader2 className="w-12 h-12 text-brand-primary animate-spin absolute inset-0" />
         </div>
-        <span className="text-sm text-brand-text-muted">{`Na\u010d\u00edt\u00e1m onboardings\u2026`}</span>
+        <span className="text-sm text-brand-text-muted">{`Načítám onboardings…`}</span>
       </div>
     );
   }
@@ -812,7 +853,7 @@ export function OnboardingsPage() {
           <AlertCircle className="w-7 h-7 text-red-500" />
         </div>
         <div className="text-center">
-          <p className="font-medium text-brand-text-primary">{`Nepoda\u0159ilo se na\u010d\u00edst data`}</p>
+          <p className="font-medium text-brand-text-primary">{`Nepodařilo se načíst data`}</p>
           <p className="text-sm text-red-500 mt-1 max-w-md">{error}</p>
         </div>
         <Button variant="outline" size="sm" onClick={fetchData} className="gap-1.5">

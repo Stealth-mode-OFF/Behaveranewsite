@@ -36,7 +36,7 @@ import {
 import { cn } from '@/app/components/ui/utils';
 import { toast } from 'sonner';
 
-/* \u2500\u2500\u2500 Types \u2500\u2500\u2500 */
+/* ─── Types ─── */
 interface Lead {
   id: string;
   email: string;
@@ -72,7 +72,7 @@ interface EventLead {
 
 type TabFilter = 'all' | 'website' | 'event';
 
-/* \u2500\u2500\u2500 Helpers \u2500\u2500\u2500 */
+/* ─── Helpers ─── */
 function formatDate(iso: string): string {
   try {
     return new Intl.DateTimeFormat('cs-CZ', {
@@ -98,7 +98,21 @@ function formatDateShort(iso: string): string {
   }
 }
 
-/* \u2500\u2500\u2500 Tiny components \u2500\u2500\u2500 */
+const unicodeEscapePattern = /\\u[0-9a-fA-F]{4}/;
+
+function decodeUnicodeEscapes(value: string): string {
+  if (!unicodeEscapePattern.test(value)) return value;
+  return value.replace(/\\u([0-9a-fA-F]{4})/g, (_, hex: string) =>
+    String.fromCharCode(parseInt(hex, 16))
+  );
+}
+
+function normalizeText<T extends string | null | undefined>(value: T): T {
+  if (typeof value !== 'string') return value;
+  return decodeUnicodeEscapes(value) as T;
+}
+
+/* ─── Tiny components ─── */
 function CopyBtn({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
@@ -136,17 +150,17 @@ function RoleBadge({ role }: { role: string }) {
 
 function FrequencyBadge({ freq }: { freq: string }) {
   const map: Record<string, { label: string; cls: string }> = {
-    no: { label: 'Ned\u011Bl\u00E1 pulzy', cls: 'bg-red-50 text-red-700 border-red-200' },
+    no: { label: 'Nedělá pulzy', cls: 'bg-red-50 text-red-700 border-red-200' },
     ad_hoc: { label: 'Ad hoc', cls: 'bg-amber-50 text-amber-700 border-amber-200' },
-    quarterly: { label: '\u010Ctvrtletn\u011B', cls: 'bg-blue-50 text-blue-700 border-blue-200' },
-    monthly_plus: { label: 'M\u011Bs\u00ED\u010Dn\u011B+', cls: 'bg-green-50 text-green-700 border-green-200' },
+    quarterly: { label: 'Čtvrtletně', cls: 'bg-blue-50 text-blue-700 border-blue-200' },
+    monthly_plus: { label: 'Měsíčně+', cls: 'bg-green-50 text-green-700 border-green-200' },
   };
   const info = map[freq] || { label: freq, cls: 'bg-gray-100 text-gray-700 border-gray-200' };
   return <Badge variant="outline" className={cn('text-xs font-medium border', info.cls)}>{info.label}</Badge>;
 }
 
 function SourceBadge({ source }: { source: string }) {
-  if (!source) return <span className="text-xs text-brand-text-muted">\u2014</span>;
+  if (!source) return <span className="text-xs text-brand-text-muted">—</span>;
   const isQR = source.toLowerCase().includes('qr') || source.toLowerCase().includes('scan') || source.toLowerCase().includes('event');
   const isNonprofit = source.toLowerCase().includes('neziskov');
   const bg = isNonprofit ? 'bg-green-50 text-green-700 border-green-200'
@@ -178,7 +192,7 @@ function StatCard({ icon: Icon, label, value, sub, className }: { icon: typeof U
   );
 }
 
-/* \u2500\u2500\u2500 Main Component \u2500\u2500\u2500 */
+/* ─── Main Component ─── */
 export function LeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [eventLeads, setEventLeads] = useState<EventLead[]>([]);
@@ -201,12 +215,42 @@ export function LeadsPage() {
       });
       if (!res.ok) throw new Error(`API ${res.status}`);
       const data = await res.json();
-      setLeads(data.leads || []);
-      setEventLeads(data.eventLeads || []);
+
+      const normalizedLeads = (data.leads || []).map((lead: Lead): Lead => ({
+        ...lead,
+        email: normalizeText(lead.email) || '',
+        name: normalizeText(lead.name),
+        first_name: normalizeText(lead.first_name),
+        last_name: normalizeText(lead.last_name),
+        phone: normalizeText(lead.phone),
+        company: normalizeText(lead.company),
+        company_size: normalizeText(lead.company_size),
+        role: normalizeText(lead.role),
+        source: normalizeText(lead.source) || '',
+      }));
+
+      const normalizedEventLeads = (data.eventLeads || []).map((lead: EventLead): EventLead => ({
+        ...lead,
+        email: normalizeText(lead.email) || '',
+        company: normalizeText(lead.company) || '',
+        phone: normalizeText(lead.phone),
+        contact_name: normalizeText(lead.contact_name),
+        employees_bucket: normalizeText(lead.employees_bucket) || '',
+        feedback_frequency: normalizeText(lead.feedback_frequency) || '',
+        decision_role: normalizeText(lead.decision_role) || '',
+        source_page: normalizeText(lead.source_page),
+        source_src: normalizeText(lead.source_src),
+        source_rep: normalizeText(lead.source_rep),
+        source_booth: normalizeText(lead.source_booth),
+        source_event: normalizeText(lead.source_event),
+      }));
+
+      setLeads(normalizedLeads);
+      setEventLeads(normalizedEventLeads);
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       setError(msg);
-      toast.error('Chyba p\u0159i na\u010D\u00EDt\u00E1n\u00ED lead\u016F: ' + msg);
+      toast.error('Chyba při načítání leadů: ' + msg);
     } finally {
       setLoading(false);
     }
@@ -214,7 +258,7 @@ export function LeadsPage() {
 
   useEffect(() => { fetchLeads(); }, [fetchLeads]);
 
-  /* \u2500\u2500 Derived data \u2500\u2500 */
+  /* ── Derived data ── */
   const today = new Date().toDateString();
   const todayLeads = leads.filter(l => new Date(l.created_at).toDateString() === today).length;
   const todayEvents = eventLeads.filter(l => new Date(l.created_at).toDateString() === today).length;
@@ -245,10 +289,10 @@ export function LeadsPage() {
 
   const totalFiltered = filteredLeads.length + filteredEventLeads.length;
 
-  /* \u2500\u2500 CSV export \u2500\u2500 */
+  /* ── CSV export ── */
   const exportCSV = useCallback(() => {
     const rows: string[][] = [];
-    rows.push(['Typ', 'Email', 'Jm\u00E9no', 'Firma', 'Telefon', 'Zdroj', 'Role', 'Velikost', 'Frekvence pulz\u016F', 'D\u00E1tum']);
+    rows.push(['Typ', 'Email', 'Jméno', 'Firma', 'Telefon', 'Zdroj', 'Role', 'Velikost', 'Frekvence pulzů', 'Dátum']);
 
     filteredLeads.forEach(l => {
       const name = [l.first_name, l.last_name].filter(Boolean).join(' ') || l.name || '';
@@ -267,15 +311,15 @@ export function LeadsPage() {
     a.download = `behavera-leads-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
-    toast.success('CSV exportov\u00E1no');
+    toast.success('CSV exportováno');
   }, [filteredLeads, filteredEventLeads]);
 
-  /* \u2500\u2500 Loading / Error states \u2500\u2500 */
+  /* ── Loading / Error states ── */
   if (loading) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3">
         <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
-        <p className="text-sm text-brand-text-muted">Na\u010D\u00EDt\u00E1m leady\u2026</p>
+        <p className="text-sm text-brand-text-muted">Načítám leady…</p>
       </div>
     );
   }
@@ -297,7 +341,7 @@ export function LeadsPage() {
         <div>
           <h1 className="text-2xl font-bold text-brand-text-primary tracking-tight">Leady</h1>
           <p className="text-sm text-brand-text-muted mt-1">
-            V\u0161echny kontakty z webu i event\u016F \u2022 celkem {leads.length + eventLeads.length}
+            Všechny kontakty z webu i eventů • celkem {leads.length + eventLeads.length}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -322,14 +366,14 @@ export function LeadsPage() {
         <StatCard icon={Heart} label="Neziskovky" value={nonprofitCount} sub={nonprofitCount > 0 ? `${Math.round(nonprofitCount / Math.max(leads.length, 1) * 100)}%` : undefined} />
         <StatCard icon={QrCode} label="Event leady (QR)" value={eventLeads.length} sub={todayEvents > 0 ? `+${todayEvents} dnes` : undefined} />
         <StatCard icon={TrendingUp} label="Celkem" value={leads.length + eventLeads.length} />
-        <StatCard icon={Calendar} label="Posledn\u00ED lead" value={
+        <StatCard icon={Calendar} label="Poslední lead" value={
           leads.length + eventLeads.length > 0
             ? formatDateShort(
                 [...leads, ...eventLeads]
                   .map(l => l.created_at)
                   .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())[0]
               )
-            : '\u2014'
+            : '—'
         } />
       </div>
 
@@ -340,13 +384,13 @@ export function LeadsPage() {
           <Input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Hledej email, firmu, jm\u00E9no\u2026"
+            placeholder="Hledej email, firmu, jméno…"
             className="pl-9 h-9"
           />
         </div>
         <div className="flex gap-1 bg-brand-background-secondary rounded-lg p-0.5">
           {([
-            ['all', 'V\u0161e', null] as const,
+            ['all', 'Vše', null] as const,
             ['website', 'Web', Globe] as const,
             ['event', 'Event', QrCode] as const,
           ]).map(([key, label, Icn]) => (
@@ -372,7 +416,7 @@ export function LeadsPage() {
           ))}
         </div>
         {q && (
-          <span className="text-xs text-brand-text-muted">{totalFiltered} v\u00FDsledk\u016F</span>
+          <span className="text-xs text-brand-text-muted">{totalFiltered} výsledků</span>
         )}
       </div>
 
@@ -398,7 +442,7 @@ export function LeadsPage() {
                     <TableHead className="text-xs font-semibold hidden lg:table-cell">Pulzy</TableHead>
                     <TableHead className="text-xs font-semibold hidden xl:table-cell">Event / Zdroj</TableHead>
                     <TableHead className="text-xs font-semibold hidden md:table-cell">Souhlas</TableHead>
-                    <TableHead className="text-xs font-semibold text-right">D\u00E1tum</TableHead>
+                    <TableHead className="text-xs font-semibold text-right">Dátum</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -475,7 +519,7 @@ export function LeadsPage() {
                     <TableHead className="text-xs font-semibold hidden md:table-cell">Velikost</TableHead>
                     <TableHead className="text-xs font-semibold hidden lg:table-cell">Role</TableHead>
                     <TableHead className="text-xs font-semibold hidden lg:table-cell">Zdroj</TableHead>
-                    <TableHead className="text-xs font-semibold text-right">D\u00E1tum</TableHead>
+                    <TableHead className="text-xs font-semibold text-right">Dátum</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -501,18 +545,18 @@ export function LeadsPage() {
                               <span className="text-sm">{l.company}</span>
                             </div>
                           ) : (
-                            <span className="text-xs text-brand-text-muted">\u2014</span>
+                            <span className="text-xs text-brand-text-muted">—</span>
                           )}
                         </TableCell>
                         <TableCell className="hidden md:table-cell">
                           {l.company_size ? (
                             <Badge variant="outline" className="text-xs">{l.company_size}</Badge>
                           ) : (
-                            <span className="text-xs text-brand-text-muted">\u2014</span>
+                            <span className="text-xs text-brand-text-muted">—</span>
                           )}
                         </TableCell>
                         <TableCell className="hidden lg:table-cell">
-                          <span className="text-sm text-brand-text-secondary">{l.role || '\u2014'}</span>
+                          <span className="text-sm text-brand-text-secondary">{l.role || '—'}</span>
                         </TableCell>
                         <TableCell className="hidden lg:table-cell">
                           <SourceBadge source={l.source} />
@@ -535,9 +579,9 @@ export function LeadsPage() {
         <Card>
           <CardContent className="py-16 text-center">
             <Filter className="w-10 h-10 text-brand-text-muted/40 mx-auto mb-3" />
-            <p className="font-medium text-brand-text-secondary">\u017D\u00E1dn\u00E9 leady</p>
+            <p className="font-medium text-brand-text-secondary">Žádné leady</p>
             <p className="text-sm text-brand-text-muted mt-1">
-              {q ? `Nic neodpov\u00EDd\u00E1 hled\u00E1n\u00ED "${q}"` : 'Zat\u00EDm tu nic nen\u00ED.'}
+              {q ? `Nic neodpovídá hledání "${q}"` : 'Zatím tu nic není.'}
             </p>
           </CardContent>
         </Card>
@@ -550,27 +594,27 @@ export function LeadsPage() {
             <QrCode className="w-6 h-6 text-purple-600" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-brand-text-primary">QR Signup str\u00E1nka</h3>
+            <h3 className="font-semibold text-brand-text-primary">QR Signup stránka</h3>
             <p className="text-sm text-brand-text-muted mt-0.5">
-              Pou\u017Eij tyhle odkazy pro z\u00EDtrej\u0161\u00ED event. M\u016F\u017Ee\u0161 p\u0159idat parametry <code className="text-xs bg-white px-1 py-0.5 rounded">?event=HR-Summit&amp;rep=Josef&amp;booth=A12</code>
+              Použij tyhle odkazy pro zítřejší event. Můžeš přidat parametry <code className="text-xs bg-white px-1 py-0.5 rounded">?event=HR-Summit&amp;rep=Josef&amp;booth=A12</code>
             </p>
             <div className="flex flex-wrap gap-2 mt-3">
               <a href="/scan-qr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-purple-700 bg-white px-3 py-1.5 rounded-md border border-purple-200 hover:bg-purple-50 transition-colors">
-                <Globe className="w-3.5 h-3.5" />Mobiln\u00ED verze
+                <Globe className="w-3.5 h-3.5" />Mobilní verze
                 <ExternalLink className="w-3 h-3 opacity-50" />
               </a>
               <a href="/scan-qr?mode=kiosk" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm text-purple-700 bg-white px-3 py-1.5 rounded-md border border-purple-200 hover:bg-purple-50 transition-colors">
-                <QrCode className="w-3.5 h-3.5" />Kiosk m\u00F3d
+                <QrCode className="w-3.5 h-3.5" />Kiosk mód
                 <ExternalLink className="w-3 h-3 opacity-50" />
               </a>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.origin + '/scan-qr');
-                  toast.success('URL zkop\u00EDrov\u00E1na');
+                  toast.success('URL zkopírována');
                 }}
                 className="inline-flex items-center gap-1.5 text-sm text-brand-text-muted bg-white px-3 py-1.5 rounded-md border border-brand-border hover:bg-brand-background-secondary transition-colors"
               >
-                <Copy className="w-3.5 h-3.5" />Kop\u00EDrovat URL
+                <Copy className="w-3.5 h-3.5" />Kopírovat URL
               </button>
             </div>
           </div>
