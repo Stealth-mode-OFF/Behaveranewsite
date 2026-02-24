@@ -93,7 +93,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>That's where most new leaders get stuck. You can't be in every conversation. You can't read every mood. And people won't always tell you the truth face-to-face, especially if they're struggling.</p>
 <p><strong>Echo Pulse by Behavera</strong> solves exactly this. It's a short, anonymous micro-conversation that takes your team 90 seconds to complete — and instantly shows you where the energy is, where the friction is, and what to do about it. No guesswork. No long surveys. Just clear signals and AI-powered recommendations for your next 1:1.</p>
 <p>Think of it as GPS for your leadership: it shows where you are, where you're headed, and warns you about potholes before you hit them.</p>
-<p><strong>👉 <strong><a href="https://app.behavera.com/echo-pulse/try">Try Echo Pulse free on one team</a></strong></strong></p>
+<p><strong>👉 <a href="https://app.behavera.com/echo-pulse/try">Try Echo Pulse free on one team</a></strong></p>
 `,
     content_cz: `
 <p>Léta jste byli tím, na koho se všichni obraceli. Specialista, který ví, jak věci fungují. Pak přišla nabídka: <em>„Nechcete vést tým?"</em></p>
@@ -137,7 +137,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>A přesně tady se většina nových lídrů zasekne. Nemůžete být u každého rozhovoru. Nemůžete číst každou náladu. A lidé vám ne vždy řeknou pravdu tváří v tvář — zvlášť když se trápí.</p>
 <p><strong>Echo Pulse od Behavery</strong> řeší přesně tohle. Je to krátký, anonymní mikro-rozhovor, který vašemu týmu zabere 90 sekund — a okamžitě vám ukáže, kde je energie, kde drhne spolupráce a co s tím konkrétně udělat. Žádné tipování. Žádné dlouhé dotazníky. Jen jasné signály a AI doporučení pro vaše příští 1:1.</p>
 <p>Představte si to jako GPS pro vaše vedení: ukazuje, kde jste, kam jedete, a varuje před dírami na cestě dřív, než je vidíte v číslech.</p>
-<p><strong>👉 <strong><a href="https://app.behavera.com/echo-pulse/try">Vyzkoušejte Echo Pulse zdarma na jednom týmu</a></strong></strong></p>
+<p><strong>👉 <a href="https://app.behavera.com/echo-pulse/try">Vyzkoušejte Echo Pulse zdarma na jednom týmu</a></strong></p>
 `,
     content_de: `
 <p>Sie waren der Experte, an den sich alle wandten. Die Person, auf die alle zählten, wenn es kompliziert wurde. Dann kam die Frage: <em>„Möchten Sie ein Team leiten?"</em></p>
@@ -572,16 +572,14 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt_cz: 'Změna může být katalyzátorem růstu, ale bez struktury může vést k neúspěchu. Když Valxon, rostoucí B2B společnost s 15 zaměstnanci, která se specializuje na reklamní zboží na míru, prošla změnou ve vedení, nový CEO Karel Poplstein byl odhodlán podpořit tým v této tranzici. On a jeho tým vedoucích...',
     content: `
 <h2>Finding Clarity with Behavera</h2>
-<p class="lead">Rather than making assumptions, Valxon’s new leadership turned to Behavera’s</p>
-<h2>Key context</h2>
-<p><strong>Engagement Survey to diagnose the core issues affecting their workforce</strong>. Choosing to run the survey non-anonymously, they aimed to foster open conversations and better understand what each employee needed to thrive. This approach helped leadership tailor solutions to individuals, ensuring that improvements were both meaningful and effective. The results confirmed their concerns but also provided a surprising revelation: employees were still engaged. They simply lacked the right conditions to work effectively. “From the countless complaints we heard from our people, we thought the situation was desperate.</p>
+<p class="lead">Rather than making assumptions, Valxon’s new leadership turned to Behavera’s <strong>Engagement Survey to diagnose the core issues affecting their workforce</strong>. Choosing to run the survey non-anonymously, they aimed to foster open conversations and better understand what each employee needed to thrive. This approach helped leadership tailor solutions to individuals, ensuring that improvements were both meaningful and effective. The results confirmed their concerns but also provided a surprising revelation: employees were still engaged. They simply lacked the right conditions to work effectively. “From the countless complaints we heard from our people, we thought the situation was desperate.</p>
 <p><strong>Despite the results showing issues in the areas of rewards</strong>, stress, overload, and support, the outcome was a relief. Our people are still engaged; we just need to give them the right support to perform at their best. We can do this!” – Karel Poplstein, CEO The key insight was that dissatisfaction often masked deeper issues. Employees sometimes expressed frustration through pay concerns, but the real problems might lie in the excessive workload, lack of direction, and overall instability and chaos.</p>
 <p><em>Rather than focusing on surface-level complaints</em>, Valxon identified and addressed the underlying challenges —such as the need for better workload management, flexibility, and clear expectations and processes.</p>
 <p><em>Furthermore, Valxon was able to make targeted plans and actions to truly enhance employee satisfaction</em>. “It opened our eyes. For example, we thought we were quite flexible, but a home office policy of max one day a week just didn’t do it. Now, we have remote work rules that allow employees to arrange hybrid schedules directly with their leaders. And we’re already noticing a shift in employee attitudes—when you invest in your people, they invest back in you.” – Karel Poplstein, CEO Further analysis</p>
 <p>revealed that employees were not just unhappy with workload and flexibility but also felt disconnected from company goals due to ineffective communication.</p>
 <p>They lacked a clear sense of direction and purpose within the organization. This disconnect made it difficult for them to stay motivated and productive. Some employees even began hindering their work, worsening the situation even further. It was clear to Karel and his leaders that addressing employees' concerns and working conditions is as essential as solving any customers and business issues.</p>
-<h2>What this means in practice</h2>
-<p><strong>Taking Immediate Action Armed with these insights</strong>, Valxon’s leadership took swift action.</p>
+<h2>Taking immediate action</h2>
+<p><strong>Armed with these insights</strong>, Valxon’s leadership took swift action.</p>
 <p>"There was nothing to wait for . We had data that was unshakable, so we made a Q1 plan with goals and started with changes right away," said Karel Poplstein, CEO. They structured regular one-on-one meetings between managers and employees more effectively and put an emphasis on their outcomes to clarify roles, expectations, and priorities with employees. Leadership also introduced tools to streamline processes, reducing unnecessary workload and automating repetitive tasks .</p>
 <p>To further support teams, they plan to empower managers with dedicated budgets to enhance working conditions and give them greater autonomy and flexibility in decision-making , ensuring each employee's needs are met. Communication transparency became a priority, with Behavera’s results openly discussed in all-hands meetings . This approach demonstrated to employees that leadership was actively using the data to implement meaningful changes. Alongside these structural adjustments, Valxon also re-designed an employee recognition system , where individual goals (KPIs) are now tied to quarterly bonuses and are aligned with the company's overall OKRs.</p>
 <p>These goals are no longer random "nice to have" tasks but are meaningful and clearly demonstrate how they contribute to the company’s overall strategy. At the same time, company goals and values were promoted through town halls, newsletters, and leadership engagement sessions , providing employees with a renewed sense of purpose and direction. Future Plans: A Commitment to Employees Valxon is also taking proactive steps to prevent future issues by refining its hiring process .</p>
@@ -589,6 +587,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Additionally, leadership plans to release the Engagement Survey regularly—once per quarter—to monitor employee satisfaction and address emerging concerns proactively. Valxon is determined to keep the momentum going. By the end of Q1, they aim to raise their well-being index score from current 7.7 to average 8.2. To achieve this, they plan to: Develop Individualized Growth Plans: The Office Day - a simulation game - will be used to evaluate employee competencies and leadership potential, guiding tailored development paths. Enhance Leadership Skills:</p>
 <p>Leverage insights from the Game Changer to identify competency gaps in managers, aligning these findings with team cultural preferences , business strategy, and company goals. Use this data-driven approach to create targeted development plans that address priority areas for improvement and maximize leadership potential. Sustain a Culture of Open Feedback & Adaptability: Leadership will continue to involve employees in shaping workplace improvements based on data-driven insights. Find Out Yourself What Your Employees Are Really Asking For Employee dissatisfaction doesn’t mean guessing—it means listening, as Valxon proved once again.</p>
 <p>Their experience presents an important lesson for any organization: salary demands might be a signal, not the root problem. Employees sometimes seek higher pay as compensation for stress, unclear expectations, or a lack of recognition, rather than addressing these issues directly. By looking at the bigger picture and using data-driven insights, Valxon was able to implement changes paving the way towards improved workplace conditions and employee satisfaction. Will they reach their goals? What will the true impact of these changes be? Stay tuned for the upcoming case study to find out.</p>
+<h2>Takeaways</h2>
+<ul>
+<li>Salary complaints can mask deeper issues — overload, chaos, and lack of direction</li>
+<li>A non-anonymous survey revealed employees were still engaged — they just lacked the right conditions</li>
+<li>Data enabled rapid, targeted changes in processes and communication</li>
+</ul>
 <p>If your company is facing similar challenges, take the first step with Behavera’s Engagement Survey . The insights you gain could redefine your approach to employee performance and unlock long-term success of your business.</p>
 `,
     content_cz: `
@@ -743,11 +747,11 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt_cz: 'Pro některé leadery jsou 1:1 meetingy oblíbenou součástí jejich práce a jiní leadeři bojují s tím, jak je pořádně uchopit. Ať už jste zelenáči nebo mazáci, máme pro vás praktické tipy od zkušených leaderů. Co jim funguje? Nahlédněte pod pokličku jejich práce s lidmi.',
     content: `
 <p class="lead"><strong>Why do 1:1 meetings</strong>? There are leaders who may see them as wasted time not spent on &#x27;real work&#x27;. However, the opposite is true, 1:1s are one of the cornerstones to building trust and good relationships within a team.</p>
-<h2>Key context</h2>
+<h2>Why 1:1 meetings directly impact performance</h2>
 <p><strong>They have a direct impact on engagement and loyalty because they make people feel that they are being heard and their concerns are respected</strong>. It&#x27;s also an opportunity to talk through obstacles, thereby increasing productivity.</p>
-<h2>What this means in practice</h2>
+<h2>Team satisfaction is priority number one</h2>
 <p><strong>Keeping your team happy and engaged is one of the main roles of a leader</strong>, which is why 1:1s are one of the best tools to achieve this.</p>
-<h2>Recommended next step</h2>
+<h2>What experienced leaders say</h2>
 <p><em>"From a team leader's perspective</em>, I quite like these meetings, I enjoy them, I enjoy pushing people, pushing myself, and I enjoy seeing progress," revealed our very own Dušan Murčo . How often should you do 1:1s? It depends on the size of the team , the agenda , and whether you work in remote or office mode. "Personally, I prefer a weekly structure because since we are not in the same office, I have time to see how</p>
 <p><em>people in the team are doing and what they are experiencing not only at work</em>, but also outside of work.</p>
 <p>It helps me better understand the unspoken things—their personality and often the reasons behind their attitudes or decisions . So I definitely recommend it, especially in a remote environment," explained Eva Kianičková , Head of Customer Care in CEE, Websupport/Loopia. Jakub Žilinčan , VP of Global Marketing, Berlin Brands Group, spends 4-6 hours per week on 1:1 and uses different types of meetings depending on the agenda.</p>
@@ -766,6 +770,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>However, they will need to know what the priorities are (for example, to follow the Eisenhower Principle or any of the other methods) and what the context of the tasks is in order to be able to work independently. Juniors and newbies need to be given more support without micromanaging them. In addition to the meeting notes, it will be nice to create specific assignments with tasks and guide them to be able to handle the tasks on their own like their more senior colleagues.</p>
 <p>What do you actually ask the team? Good questions are essential. Without them, the conversation may stall and you won't get what's on your agenda resolved. "I would add topic areas. I always have a set of questions ready that track well-being , because that's the bottom line for me on a 1:1. I ask them, if necessary to spark discussion, at every meeting.</p>
 <p>However, in addition to these, I also prepare topics for discussion that are driven by either the time of year, the current needs of the business, or significant changes," Igor Dudinsky , Chief Executive Officer, Enkon.</p>
+<h2>Takeaways</h2>
+<ul>
+<li>1:1 meetings are an opportunity to understand your people’s needs — not just check KPIs</li>
+<li>Take notes and follow through on outcomes — otherwise people lose trust in the process</li>
+<li>Prepare topic areas covering well-being, development, and feedback</li>
+</ul>
 <p>We are preparing a practical assistant for leaders that will recommend quality questions for different situations. Think of it as the secret weapon of effective leaders. Want to be one of the first to try the assistant? Leave us an email and we'll get back to you as soon as it's ready. Behavera Assistant for Leaders Leaders, how do you do 1:1 meetings? Share your experiences with colleagues in the comments on LinkedIn and forward this article to colleagues because sharing is caring.</p>
 `,
     content_cz: `
@@ -842,6 +852,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Work plays a significant role in an individual's well-being. In this sense, the company also contributes to the well-being of the individual. However, the role of the company is not to solve all the problems of individuals, but to create a safe environment and conditions such that the impact of work on well-being is positive.</p>
 <p>It is very important to respect everyone's privacy. A company can be a platform where those who want to open up can do so. The least managers can do is to take a genuine interest in how their people are doing. Within their means, they can be accommodating to individuals in difficult times and provide them with support.</p>
 <h2>6) Well-being is the same across the company</h2>
+<h2>Takeaways</h2>
+<ul>
+<li>Non-anonymous surveys yield richer, more actionable data</li>
+<li>Measure well-being at least quarterly for meaningful trends</li>
+<li>Address well-being proactively — don’t wait for a crisis</li>
+</ul>
 <p>The opposite is true. There are individuals, teams, or branches where the state of well-being can vary dramatically and needs to be approached individually.</p>
 <h2>Our Well-being Index measures the top 12 factors</h2>
 <p>behind the risk of burnout, loss of engagement, reduced productivity, or risk of quitting. This will tell you in which areas and how much people are calling for help. In the report, you can also see how the individual teams or branches are doing. You can easily see where they need help and where things are in good health. Would you like to get your feet wet with well-being solutions?</p>
@@ -914,13 +930,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Now you know how to take care of yourself, let's look at how to support your team. We recommend sticking to three principles: Have a genuine interest – regular team meetings, 1:1 meetings, and informal chats on Slack or Teams. In addition to face-to-face meetings, use well-being tools . "Use intuition, but also use data," Dušan recommends. This is because you can uncover the reality that people are too afraid to talk about face-to-face early on.</p>
 <p>Research by Deloitte [1] revealed that only 56% of employees believe that leaders actually care about their well-being, while 91% of leaders think they care enough. This is why we need to do regular well-being surveys and base our decisions on data, not assumptions. Be present – be there for your people and be visible. Make it easy for your team to find you anytime, write to you, or call you further, Dušan recommends. Create a safe space – build trust through vulnerability.</p>
 <p>Show that it's okay to make mistakes or feel bad. Be understanding, but also work to improve over the long term, advises Dušan. Companies with high levels of trust have 76% higher levels of engagement, 74% lower levels of stress, 56% higher levels of cooperation, 50% higher levels of productivity, and 27% lower levels of turnover [3] .</p>
-<h2>Key context</h2>
+<h2>Takeaways</h2>
+<ul>
+<li>89% of leaders have well-being as a priority, but they themselves are at risk of burnout</li>
+<li>Prioritize time off for family, sports, and deep work first on your calendar</li>
+<li>Companies with high trust have 76% higher engagement and 50% higher productivity</li>
+</ul>
+<h3>Measure your team’s well-being</h3>
 <p>How are you doing with your well-being at your team?</p>
 <p><em>Try our free Well-being Index for the first 10 employees</em>. You can send us questions and comments at hello@behavera.com.</p>
-<h2>Sources:</h2>
-<p>[1] Deloitte.com,</p>
-<h2>The C-suite&#x27;s role in well-being</h2>
-<p>, authors Steve Hatfield, Jen Fisher, and Paul H. Silverglate [2] Forbes.com, Arianna Huffington: Putting Empathy Into Action Yet Again, author Dan Pontefract [3] Hbr.org, The Neuroscience of Trust, author Paul J. Zak</p>
+<h3>Sources:</h3>
+<p>[1] Deloitte.com, <em>The C-suite’s role in well-being</em>, authors Steve Hatfield, Jen Fisher, and Paul H. Silverglate<br>[2] Forbes.com, <em>Arianna Huffington: Putting Empathy Into Action Yet Again</em>, author Dan Pontefract<br>[3] Hbr.org, <em>The Neuroscience of Trust</em>, author Paul J. Zak</p>
 `,
     content_cz: `
 <p class="lead">Proč je well-being leaderů v ohrožení?</p>
@@ -945,10 +965,10 @@ export const BLOG_POSTS: BlogPost[] = [
 <li>Jako první v kalendáři prioritizujte volno pro rodinu, sport a hlubokou práci</li>
 <li>Firmy s vysokou důvěrou mají o 76 % vyšší angažovanost a o 50 % vyšší produktivitu</li>
 </ul>
-<h2>Změřte well-being ve Vašem týmu</h2>
+<h3>Změřte well-being ve Vašem týmu</h3>
 <p>Jak jste na tom s well-beingem vy?</p>
 <p><em>Vyzkoušejte náš Well-being Index zdarma pro prvních 10 zaměstnanců</em>. Dotazy a připomínky nám můžete zaslat na hello(at)behavera.com.</p>
-<h2>Zdroje:</h2>
+<h3>Zdroje:</h3>
 <p>[1] Deloitte.com, <em>The C-suite's role in well-being</em>, autoři Steve Hatfield, Jen Fisher a Paul H. Silverglate<br>[2] Forbes.com, <em>Arianna Huffington: Putting Empathy Into Action Yet Again</em>, autor Dan Pontefract<br>[3] Hbr.org, <em>The Neuroscience of Trust</em>, autor Paul J. Zak</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200',
@@ -1001,6 +1021,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>hrexchangenetwork.com HR Virtual Summit</p>
 <p><strong>How about giving yourself a whole month</strong> packed with inspiration that you can tap into whenever it suits you? The biggest international virtual HR event of the year has selected experts on HR, education, corporate culture, psychology, leadership, hybrid workplaces, recruitment, attrition, burnout, well-being, team management, talent acquisition, employer branding, and more. It&#x27;s free to attend, what a steal!</p>
 <p>When: 14 November - 14 December 2023 Where: Online Website:</p>
+<h2>Takeaways</h2>
+<ul>
+<li>Follow international HR conferences to stay ahead of industry trends</li>
+<li>Most events offer virtual attendance — no need to travel</li>
+<li>Topics like well-being, hybrid work, and engagement dominate the agenda</li>
+</ul>
 <p>bamboohr.com Have we forgotten an event that should definitely be on this list? Email us at marketing(at)behavera.com and we&#x27;ll add it!</p>
 `,
     content_cz: `
@@ -1069,7 +1095,6 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>A quick conversation with our chatbot Echo will give the respondent the opportunity to rate their current motivation and happiness. Completely online, also available on mobile. No need to download the app or learn how to use it. It couldn&#x27;t be simpler.</p>
 <p>Chatbot ECHO</p>
 <h2>Personalized insights with science-based recommendations</h2>
-<h2>Key context</h2>
 <p>Well-being Index is like having a data analyst and a behavioral psychologist inside a computer evaluating the results in real-time. The ECHO chatbot asks respondents questions tailored by our science team and in the background maps the</p>
 <p>top 12 factors behind the risk of burnout, loss of engagement, reduced productivity, or risk of quitting.</p>
 <p><strong>Team leaders and HR professionals then have access to a report</strong> where the data collected are analyzed and accompanied by practical recommendations based on behavioral science. All in real-time, without having to pay extra for expensive consultations or attend lengthy training programs. In the report, you will find the overall Well-being Score for the company, the TOP 3 risk factors, and profiles of individuals, teams, and branches. This allows you to make better decisions and prioritize changes.</p>
@@ -1077,6 +1102,12 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Managers, team leaders, and HR professionals can sign up here, and then it's just a few steps away: Let your people know that you'd like to start monitoring the level of well-being in the company to find out what's on their minds so you can create a better environment. Focus on creating a sense of safety. When employees know that the results will not be used against them, but to improve their well-being, they will take a more positive approach to the research. We recommend making participation voluntary;</p>
 <p>well-being is a sensitive topic for some people and they should not be pressured to participate. When you collect the results, share them with everyone, along with plans for improvement.</p>
 <p>Transparency and openness help build trust. Open the floor to questions and suggestions. Involve volunteers in the change process. Then share the progress of changes, including successes and failures. Effort is more valuable than perfect results. Don't forget to repeat the survey. We recommend having employees chat with our ECHO chatbot at least once a quarter. You will then be able to track how your well-being score is evolving over time and therefore how the changes you have put in place are working.</p>
+<h2>Takeaways</h2>
+<ul>
+<li>A chatbot replaces boring surveys with engaging conversations</li>
+<li>The Well-being Index measures 12 key factors behind burnout, engagement, and turnover risk</li>
+<li>Repeat the survey at least once a quarter to track trends over time</li>
+</ul>
 <p>Do you have any questions about the Behavera Well-being Index? Email us at hello@behavera.com and we'll be happy to help.</p>
 `,
     content_cz: `
@@ -1131,7 +1162,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><strong>Through our research, we found that</strong> well-being has so far been important for only a third of companies and 30% of them considered it a TOP priority. However,</p>
 <p><strong>50% of HR professionals</strong></p>
 <p>said their primary focus at the moment is on employee retention due to how difficult it is to find quality candidates in the market and how costly high turnover is. Well-being was one of the most recurring issues that they are actively looking for an answer to and a viable solution. How to start effectively addressing well-being?</p>
-<h2>Key context</h2>
+<h2>Back up well-being decisions with data</h2>
 <p><strong>Systemic changes will be a challenge for the company, so it</strong> needs to support its decisions with data on the current state of employee well-being. This allows leaders to identify which employees are at risk, prioritize changes, and monitor how new solutions are working through</p>
 <p>regular surveys . Well-being is like a marathon. You have a long way to go and you need to strategically adapt your running to that. And the most important thing is not to give up after a few kilometers. Is measuring well-being suitable for everyone? Yes, but it is not a foolproof solution, especially in companies where employee trust in their leaders is low.</p>
 <p>According to research from McKinsey, only 30% of employees [5] feel comfortable enough to open up a conversation about their well-being and mental health. So again, companies need to start with themselves, and the first adepts to tackle well-being are their leaders.</p>
@@ -1140,9 +1171,15 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>direct impact on people's well-being for several reasons [5]: From a workplace-centric to worker-centric world: Relationships and social connections at work are key to well-being. A safe and supportive environment contributes to greater mental resilience and increases productivity. From a static and fixed to a dynamic and fluid workplace:</p>
 <p>Employees with more autonomy and accountability for their outputs are better able to manage their energy. For example, when they have the freedom to go for a walk or exercise after lunch, they return to their afternoon block of work with more vigor and a better ability to focus.</p>
 <p><strong>From office work to work from anywhere:</strong> It&#x27;s a matter of preference. Previously, working from anywhere used to be the domain of digital nomads and freelancers, but the hybrid work model has also allowed many more employees to choose where they work.</p>
+<h2>Takeaways</h2>
+<ul>
+<li>Well-being requires a systemic solution — yoga classes alone won’t fix overwork</li>
+<li>Back up your decisions with data from regular well-being surveys</li>
+<li>The hybrid work model contributes positively to employee well-being</li>
+</ul>
 <p>Would you like to learn more about Behavera Well-being Index and how it can help you improve the well-being of your employees?</p>
 <p>Learn more here .</p>
-<h2>Sources:</h2>
+<h3>Sources:</h3>
 <p>[1]+[5] Weforum.org, The priority for workplaces in the new normal? Wellbeing, author Liz Hilton Segel [2] Mckinsey.com, McKinsey Health Institute (MHI) global survey [3]+[4] Weforum.org, Addressing employee burnout: Are you solving the right problem?</p>
 <p>, author Jacqueline Brassey [5] Weforum.org, Restoring employee wellbeing for the new world of work, author Marie Puybaraud</p>
 `,
@@ -1171,7 +1208,7 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>Chcete se dozvědět více o Behavera Well-being Indexu a o tom, jak vám může pomoci zlepšit well-being vašich zaměstnanců?</p>
 <p>Více informací se dozvíte zde .</p>
-<h2>Zdroje:</h2>
+<h3>Zdroje:</h3>
 <p>[1]+[5] Weforum.org, <em>The priority for workplaces in the new normal? Wellbeing</em>, autor Liz Hilton Segel<br>[2] Mckinsey.com, <em>McKinsey Health Institute (MHI) global survey</em><br>[3]+[4] Weforum.org, <em>Addressing employee burnout: Are you solving the right problem?</em>, autor Jacqueline Brassey<br>[5] Weforum.org, <em>Restoring employee wellbeing for the new world of work</em>, autor Marie Puybaraud</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200',
@@ -1221,7 +1258,13 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>Even a small budget can come a long way. Instead of costly external training, look for potential tutors within your talent pool. Training and mentoring is a win-win for both parties, employees can learn new skills, and the trainer or mentor can gain valuable experience and develop their skills. And maybe even earn a little extra money or get an interesting bonus.</p>
 <p>What works in a remote setting for your team?</p>
 <p>Share it with us on LinkedIn and make us happy if you recommend the article to your colleagues.</p>
-<h2>Sources:</h2>
+<h2>Takeaways</h2>
+<ul>
+<li>Communicate often and listen to feedback — up to 66% of people would leave over poor communication</li>
+<li>Build relationships on trust, not control</li>
+<li>Establish work-life balance as a core company value</li>
+</ul>
+<h3>Sources:</h3>
 <p>[1] Forbes.com, 66% Of People Would Quit If They Feel Unappreciated, author Victor Lipman [2] Gallup.com, What Millennials Want From Work and Life, author Amy Adkins</p>
 `,
     content_cz: `
@@ -1263,7 +1306,7 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>Co funguje v remote nastavení vašemu týmu?</p>
 <p>Podělte se s námi na LinkedInu a uděláte nám radost, když článek doporučíte i kolegům.</p>
-<h2>Zdroje:</h2>
+<h3>Zdroje:</h3>
 <p>[1] Forbes.com, 66% Of People Would Quit If They Feel Unappreciated, autor Victor Lipman [2] Gallup.com, What Millennials Want From Work and Life, autor Amy Adkins</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&q=80&w=1200',
@@ -1288,14 +1331,24 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>Regina Hartley: Why the best hire might not have the perfect resume</h2>
 <p><strong>Imagine you put out an ad and two candidates apply</strong>. The first one has a top degree from a prestigious university, speaks several languages, and has the required experience. And then you get someone who has inconsistent work experience, only a high school diploma, but whose cover letter radiates with passion for the position. Which candidate has more potential to succeed?</p>
 <p><em>The answer may not be what you think</em>. Regina Hartley has a great TED Talk about bias in recruiting. And we would just add that bias can be prevented by screening candidates with online assessments. The results will help you get a better idea of what competencies a person really has. Regardless of what they have listed on their CV.</p>
-<h2>Key context</h2>
-<p><em>“Choose an underrated candidate whose secret weapon is passion and ambition.” – Regina Hartley Simon Sinek</em>: How great leaders inspire action What distinguishes exceptional leaders from average ones? Why do we naturally follow some of them and the others don&#x27;t inspire us to take action? Simon Sinek looked into this and found that there are two kinds of leaders–– those who are leaders and those who lead us.</p>
+<p><em>“Choose an underrated candidate whose secret weapon is passion and ambition.”</em> – Regina Hartley</p>
+<h2>Simon Sinek: How great leaders inspire action</h2>
+<p>What distinguishes exceptional leaders from average ones? Why do we naturally follow some of them and the others don&#x27;t inspire us to take action? Simon Sinek looked into this and found that there are two kinds of leaders – those who are leaders and those who lead us.</p>
 <p>Leaders come from a position of authority and power. And those who lead inspire us with their WHY. We follow them because we want to, not because we have to. This principle then applies beautifully not only to leading people, but also to communicating with customers.</p>
-<p>“People don&#x27;t buy what you do, but why you do it.” – Simon Sinek Adam Grant: Are you a giver or a taker? According to Grant, you&#x27;ll find three types of people in every company:</p>
-<p>giver, receiver, and matchmaker. Which group do the most successful and productive employees belong to? The answer may surprise you. In his TED Talk, Adam Grant offered several practical tips on how to create the ideal environment for these ideal employees and how to protect them (from themselves and others).</p>
-<p>“The most meaningful way to succeed is to help others succeed.” – Adam Grant Matt Mullenweg: Why working from home is good for business According to recent surveys, remote workers are 13% more productive than office commuters. Why? It's due to their work environment, which they can customize to suit their needs. According to Mullenweg, employee autonomy is one of the competitive advantages for companies.</p>
-<p>In his TED Talk, he passed on plenty of great tips on what to look for if you want to succeed in remote mode too. “Talent and intelligence can be found in all people in the world. But not everyone has equal opportunity.” – Matt Mullenweg Which ideas from the TED talks resonated with you the most?</p>
-<p>Join the discussion on LinkedIn and make us happy by sharing the article with your colleagues.</p>
+<p><em>“People don&#x27;t buy what you do, but why you do it.”</em> – Simon Sinek</p>
+<h2>Adam Grant: Are you a giver or a taker?</h2>
+<p>According to Grant, you&#x27;ll find three types of people in every company: giver, receiver, and matchmaker. Which group do the most successful and productive employees belong to? The answer may surprise you. In his TED Talk, Adam Grant offered several practical tips on how to create the ideal environment for these ideal employees and how to protect them (from themselves and others).</p>
+<p><em>“The most meaningful way to succeed is to help others succeed.”</em> – Adam Grant</p>
+<h2>Matt Mullenweg: Why working from home is good for business</h2>
+<p>According to recent surveys, remote workers are 13% more productive than office commuters. Why? It’s due to their work environment, which they can customize to suit their needs. According to Mullenweg, employee autonomy is one of the competitive advantages for companies.</p>
+<p>In his TED Talk, he passed on plenty of great tips on what to look for if you want to succeed in remote mode too. <em>“Talent and intelligence can be found in all people in the world. But not everyone has equal opportunity.”</em> – Matt Mullenweg</p>
+<h2>Takeaways</h2>
+<ul>
+<li>Competency-based hiring reveals potential that CVs miss</li>
+<li>“People don’t buy what you do, but why you do it” – inspiration beats authority</li>
+<li>Remote employees are 13% more productive than office commuters</li>
+</ul>
+<p>Which ideas from the TED talks resonated with you the most? Join the discussion on LinkedIn and make us happy by sharing the article with your colleagues.</p>
 `,
     content_cz: `
 <h2>Rainer Strack: Překvapující krize zaměstnanosti v roce 2030</h2>
@@ -1336,8 +1389,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>1. Recruitment based on competencies instead of experience and education</h2>
 <p class="lead"><strong>A CV will tell you about past experience</strong>, but you won&#x27;t know what potential a candidate really has. And that&#x27;s what</p>
 <p><strong>work competencies, which are the sum of the behaviors</strong>, knowledge, skills, abilities, attitudes, and values needed for the job, will reveal.</p>
-<h2>Companies are beginning to</h2>
-<p><strong>modernize their recruitment process and online assessments are growing in popularity</strong>. They take away a lot of paperwork for HR professionals and managers, such as devising and assessing tasks for candidates. It makes the whole process more efficient, fair, and flexible. How can Behavera help you with this trend? Reach out to us at hello(at)behavera.com.</p>
+<p><strong>Companies are beginning to modernize their recruitment process and online assessments are growing in popularity</strong>. They take away a lot of paperwork for HR professionals and managers, such as devising and assessing tasks for candidates. It makes the whole process more efficient, fair, and flexible. How can Behavera help you with this trend? Reach out to us at hello(at)behavera.com.</p>
 <h2>2. Digital skills as the most in-demand abilities</h2>
 <p><em>Using and mastering technology will be one of the most needed skills in the labor market in 2025 [1]</em>, the World Economic Forum said. All industries are going through a digital transformation, and virtually every company is becoming technological as a result [2]. Among other things, this will result in 50% [3] of employees having to requalify in the next few years.</p>
 <p><em>The new trend in employability will no longer just be about soft skills such as communication</em>, collaboration, critical thinking, and emotional intelligence. These will be joined by digital skills and the associated adaptability to rapid change.</p>
@@ -1349,8 +1401,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <h2>4. Work instead of employment</h2>
 <p>Long gone are the days when a person entered a job where they stayed for 40 years before retiring with a gold watch for loyalty. Today, the average person stays in a job</p>
 <p>for 4.2 years [6] and that time will only get shorter as Generation Z enters the workforce. However, this will be influenced not just by a desire for change on the part of employees, but by rapidly becoming obsolete skills or the very irrelevance of a given position, for example, due to automation, digitalization, or artificial intelligence.</p>
-<h2>Thus, one trend will be to</h2>
-<p>hire workers to perform specific work [7] on a project instead of a job with a strict job description. Employers will therefore need to have an overview of what competencies they will need for projects and who in their proven network has them––or which ones they will need to find and hire on the market.</p>
+<p>Thus, one trend will be to hire workers to perform specific work [7] on a project instead of a job with a strict job description. Employers will therefore need to have an overview of what competencies they will need for projects and who in their proven network has them––or which ones they will need to find and hire on the market.</p>
 <h2>5. Well-being as a standard and not just a benefit</h2>
 <p>Inflation, the war in Ukraine, the pandemic, the digitalization frenzy, and the general fear of the future are</p>
 <p>taking their toll on the mental health of all of us. It&#x27;s no wonder that the term &#x27;quiet quitting&#x27; is trending on social media right now, with people looking for relief from overwork and, conversely, companies worried about low productivity.</p>
@@ -1358,7 +1409,13 @@ export const BLOG_POSTS: BlogPost[] = [
 <p>So the trend will be to educate managers about employee well-being and use HR technology to help identify the problem and recommend what managers should do. An affordable solution to having a psychologist and data analyst on the computer available 24/7.</p>
 <p>What do you think about these five trends in HR? Do you think they are changes for the better that will solve some of the current challenges? Or are they just developments that will disappear as quickly as they appeared? Share your vision of the future with us on</p>
 <p>LinkedIn and make us happy when you share the article with your colleagues.</p>
-<h2>Sources:</h2>
+<h2>Takeaways</h2>
+<ul>
+<li>Competency-based hiring will replace CV-based screening</li>
+<li>50% of employees will need to reskill in the coming years</li>
+<li>Well-being will shift from a perk to a standard — companies need systemic solutions</li>
+</ul>
+<h3>Sources:</h3>
 <p>[1] Weforum.org, Five key trends shaping the new world of work, author Segun Ogunwale [2] Forbes.com, Why Every Company Is A Technology Company, author Stephenie Stone [3] Europass.com, Dovednosti budoucnosti [4] BBC.co.uk, What the war for worker talent really looks like, author Alex Christian [5] Forbes.com, The Remote Trend Of Working Two Jobs At The Same Time Without Both Companies Knowing, author Jack Kelly [6] Weforum.org, Skill, re-skill and re-skill again. How to keep up with the future of work, author Stephane Kasriel [7] LinkedIn.com, Skills are the New Currency, author Ryan Roslansky</p>
 `,
     content_cz: `
@@ -1389,7 +1446,7 @@ export const BLOG_POSTS: BlogPost[] = [
 <li>Well-being se z benefitu stane standardem – firmy potřebují systémové řešení.</li>
 </ul>
 <p>Co říkáte na těchto pět trendů v HR? Jsou to podle vás změny k lepšímu, které vyřeší některé současné výzvy? Nebo to jsou jen výdobytky, které zmizí tak rychle jak se jen objevily? Podělte se s námi o svou vizi budoucnosti na LinkedInu a uděláte nám radost, když článek nasdílíte se svými kolegy.</p>
-<h2>Zdroje:</h2>
+<h3>Zdroje:</h3>
 <p>[1] Weforum.org, Five key trends shaping the new world of work, autor Segun Ogunwale [2] Forbes.com, Why Every Company Is A Technology Company, autor Stephenie Stone [3] Europass.com, Dovednosti budoucnosti [4] BBC.co.uk, What the war for worker talent really looks like, autor Alex Christian [5] Forbes.com, The Remote Trend Of Working Two Jobs At The Same Time Without Both Companies Knowing, autor Jack Kelly [6] Weforum.org, Skill, re-skill and re-skill again. How to keep up with the future of work, autor Stephane Kasriel [7] LinkedIn.com, Skills are the New Currency, autor Ryan Roslansky</p>
 `,
     coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
@@ -1425,14 +1482,17 @@ export const BLOG_POSTS: BlogPost[] = [
 <p><em>We don't want to preach a people-first approach as a one-size-fits-all solution to all company problems</em>. Instead, we would like to open a discussion on how to build better companies and how to bring humanity back to work in an era of digital boom. We believe our society needs a change in approach to the workplace like new shoes.</p>
 <p><em>We may be in for a few uncomfortable blisters</em>, but the pandemic has revealed that no one wants to walk in those worn-out shoes anymore. A people-first reputation helps you attract qualified candidates and retain the best employees People want to work where they feel good. Happy employees and good old-fashioned chatter work best to attract candidates. Whether you're a good or bad employer, people will talk about you––in person or on social media, your reputation will precede you.</p>
 <p>Changing your approach to people-first is a long-term investment, and building a reputation works like compound interest. It&#x27;s pennies in the beginning, but it will pay for itself many times over in time. How?</p>
-<h2>You will become a sought-after company</h2>
-<p>where the best want to work. You won&#x27;t need such a big recruitment budget.</p>
-<h2>Because people will be happier at your company</h2>
-<p>, they won&#x27;t leave as often. High turnover is expensive, but that won&#x27;t be your problem.</p>
+<p><strong>You will become a sought-after company</strong> where the best want to work. You won&#x27;t need such a big recruitment budget. <strong>Because people will be happier at your company</strong>, they won&#x27;t leave as often. High turnover is expensive, but that won&#x27;t be your problem.</p>
 <p>With top talent, you&#x27;ll have better products and services. Customers will seek you out and your marketing and sales costs will go down.</p>
 <p>What do you think about the idea of a people-first approach?</p>
 <p>Let&#x27;s connect on LinkedIn and you will make us happy if you share the article with your colleagues.</p>
-<h2>Sources:</h2>
+<h2>Takeaways</h2>
+<ul>
+<li>The people-first approach brings humanity back to business — and drives long-term profit</li>
+<li>A people-first reputation saves costs on hiring and reduces turnover</li>
+<li>Build your company culture from day one — on values, not slogans</li>
+</ul>
+<h3>Sources:</h3>
 <p>[1] Behavera.com: The Biggest HR challenges of 2022, our research [2] Forbes.com: The Power of Putting People First, author Rasmus Hougaard [3] PwC.com:</p>
 <p>Global Workforce Hopes and Fears Survey 2022, author unknown</p>
 `,
@@ -1463,7 +1523,7 @@ export const BLOG_POSTS: BlogPost[] = [
 </ul>
 <p>Co říkáte na myšlenku people-first přístupu?</p>
 <p><em>Pojďme se spojit na LinkedInu</em> a uděláte nám radost, když se o článek podělíte se svými kolegy.</p>
-<h2>Zdroje:</h2>
+<h3>Zdroje:</h3>
 <p><em>[1] Behavera.com</em>: Největší výzvy HR v roce 2022, náš výzkum [2] Forbes.com: The Power of Putting People First, autor Rasmus Hougaard [3] PwC.com:</p>
 <p>Global Workforce Hopes and Fears Survey 2022, autor neznámý</p>
 `,
@@ -1715,7 +1775,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>One toxic person can threaten the entire project</h2>
 <p>In a corporation with 500 employees, a difficult individual can blend into the crowd. Frustrating, but survivable. In a startup with 8 people? <strong>There\u0027s nowhere to hide.</strong></p>
-<p>Research from Harvard Business School shows that a single toxic employee can measurably drag down the performance of everyone around them</strong>. In a small team where everyone depends on everyone, the damage compounds fast — missed deadlines, growing resentment, silent disengagement, and eventually, resignations that cascade.</p>
+<p>Research from Harvard Business School shows that a single toxic employee can measurably drag down the performance of everyone around them. In a small team where everyone depends on everyone, the damage compounds fast — missed deadlines, growing resentment, silent disengagement, and eventually, resignations that cascade.</p>
 <p>The problem isn\u0027t that founders don\u0027t care. They do — passionately. The problem is that they often lack the data to see what\u0027s happening before it becomes a crisis. By the time someone says "I\u0027m leaving," the damage is already done.</p>
 
 <h2>Why regular pulse check-ins work in dynamic environments</h2>
@@ -1767,7 +1827,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 <h2>Jeden toxický člověk může ohrozit celý projekt</h2>
 <p>V korporátu s 500 zaměstnanci se problémový jedinec může ztratit v davu. Nepříjemné, ale přežitelné. Ve startupu s 8 lidmi? <strong>Není kam se schovat.</strong></p>
-<p>Výzkum Harvard Business School ukazuje, že jediný toxický zaměstnanec může citelně ovlivnit výkon celého okolí</strong>. V malém týmu, kde je každý závislý na každém, se škody násobí — zmeškané deadliny, narůstající frustrace, tichý disengagement a nakonec kaskádovité odchody.</p>
+<p>Výzkum Harvard Business School ukazuje, že jediný toxický zaměstnanec může citelně ovlivnit výkon celého okolí. V malém týmu, kde je každý závislý na každém, se škody násobí — zmeškané deadliny, narůstající frustrace, tichý disengagement a nakonec kaskádovité odchody.</p>
 <p>Problém není v tom, že by to founderům bylo jedno. Záleží jim — enormně. Problém je, že často nemají data, aby viděli, co se děje, dříve než se to stane krizí. Když někdo řekne „odcházím," škoda je už hotová.</p>
 
 <h2>Proč pravidelné pulse check-iny fungují v dynamickém prostředí</h2>
