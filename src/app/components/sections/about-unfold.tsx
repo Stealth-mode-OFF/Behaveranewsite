@@ -2,11 +2,11 @@
  * AboutUnfoldSection — landing page team overview
  * Leadership row (CEO, Head of Product, CTO) always visible.
  * Remaining team revealed via "Show more" toggle.
- * 7 members total. Only Igor K and Dušan have the co-founder badge.
+ * 6 members total. Only Igor K and Dušan have the co-founder badge.
  */
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Zap, Target, ShieldCheck, ChevronDown, Linkedin } from 'lucide-react';
+import { ArrowRight, ChevronDown, Linkedin } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { useLanguage } from '@/app/contexts/language-context';
 import { useModal } from '@/app/contexts/modal-context';
@@ -17,7 +17,6 @@ import dusanImg from '@/assets/team/dusan.webp';
 import janaImg from '@/assets/team/jana.webp';
 import veronikaImg from '@/assets/team/veronika.webp';
 import josefImg from '@/assets/team/josef.webp';
-import igorTreslinImg from '@/assets/team/igor-treslin.webp';
 
 /* ── Types ────────────────────────────────────────────────── */
 type TeamMember = {
@@ -26,7 +25,6 @@ type TeamMember = {
   image: string;
   linkedin: string;
   founder?: boolean;
-  investor?: boolean;
 };
 
 /* ── Team data ────────────────────────────────────────────── */
@@ -40,7 +38,6 @@ const REST_OF_TEAM: TeamMember[] = [
   { name: 'Jana Šrámková', role: 'Go-to-Market', image: janaImg, linkedin: 'https://www.linkedin.com/in/jana-sramkova-b291a772/' },
   { name: 'Veronika Nováková', role: 'Customer Success', image: veronikaImg, linkedin: 'https://www.linkedin.com/in/veronika-novakova-9a5553b0/' },
   { name: 'Josef Hofman', role: 'Sales', image: josefImg, linkedin: 'https://www.linkedin.com/in/josef-hofman-950393391/' },
-  { name: 'Igor Třeslín', role: 'Investor & Advisor', image: igorTreslinImg, linkedin: 'https://www.linkedin.com/in/igor-treslin/', investor: true },
 ];
 
 /* ── Short bios per language ──────────────────────────────── */
@@ -52,7 +49,6 @@ const bios: Record<string, Record<string, string>> = {
     'Jana Šrámková': 'Najde cestu k zákazníkovi. Na kole i v dealu.',
     'Veronika Nováková': 'Propojuje lidi s produktem.',
     'Josef Hofman': 'Kajakář. Směr drží i v jednání.',
-    'Igor Třeslín': 'Investor a poradce. Byznys DNA.',
   },
   en: {
     'Jiří Valena': 'Ex-hockey player. Now scores in B2B.',
@@ -61,7 +57,6 @@ const bios: Record<string, Record<string, string>> = {
     'Jana Šrámková': 'Finds the path. On bike and in deals.',
     'Veronika Nováková': 'Connects people with product.',
     'Josef Hofman': 'Kayaker. Keeps direction in deals too.',
-    'Igor Třeslín': 'Investor & advisor. Business DNA.',
   },
   de: {
     'Jiří Valena': 'Ex-Eishockeyspieler. Punktet jetzt im B2B.',
@@ -70,12 +65,10 @@ const bios: Record<string, Record<string, string>> = {
     'Jana Šrámková': 'Findet den Weg. Auf dem Rad und im Deal.',
     'Veronika Nováková': 'Verbindet Menschen mit dem Produkt.',
     'Josef Hofman': 'Kajakfahrer. Hält auch im Deal den Kurs.',
-    'Igor Třeslín': 'Investor & Berater. Business-DNA.',
   },
 };
 
 const SECTION_ID = 'about';
-const PILLAR_ICONS = [Zap, Target, ShieldCheck] as const;
 
 /* ── Translations ─────────────────────────────────────────── */
 const translations = {
@@ -87,16 +80,10 @@ const translations = {
       'Malý seniorní tým, který kombinuje zkušenosti z HR, technologií a B2B prodeje. Pomáháme firmám porozumět svým lidem dřív, než je pozdě.',
     story:
       'Pomáháme vedení firem zachytit tiché signály v týmech dřív, než přerostou ve fluktuaci, vyhoření nebo výkonový propad. Kombinujeme AI pulse, behaviorální data a jasné akční kroky pro manažery.',
-    pillars: [
-      { title: 'Rychlost', desc: 'Signál z týmu během minut, ne čtvrtletí.' },
-      { title: 'Praktičnost', desc: 'Každý insight má konkrétní doporučení.' },
-      { title: 'Důvěra', desc: 'Anonymita a GDPR jako výchozí standard.' },
-    ],
     showMore: 'Zobrazit celý tým',
     showLess: 'Skrýt',
     demoCta: 'Domluvit konzultaci',
     founderBadge: 'Co-founder',
-    investorBadge: 'Investor',
   },
   en: {
     badge: 'About Us',
@@ -106,16 +93,10 @@ const translations = {
       "A compact senior team combining deep expertise in HR, technology, and B2B sales. We help companies understand their people before it's too late.",
     story:
       'We help leadership teams detect silent risk signals before they turn into turnover, burnout, or performance drops. We combine AI pulse surveys, behavioral data, and concrete action guidance for managers.',
-    pillars: [
-      { title: 'Speed', desc: 'Team signal in minutes, not quarters.' },
-      { title: 'Practicality', desc: 'Every insight maps to a clear action.' },
-      { title: 'Trust', desc: 'Anonymity and GDPR by default.' },
-    ],
     showMore: 'Show full team',
     showLess: 'Show less',
     demoCta: 'Book a consultation',
     founderBadge: 'Co-founder',
-    investorBadge: 'Investor',
   },
   de: {
     badge: 'Über uns',
@@ -125,16 +106,10 @@ const translations = {
       'Ein kompaktes Senior-Team mit Expertise in HR, Technologie und B2B-Vertrieb. Wir helfen Unternehmen, ihre Mitarbeiter besser zu verstehen.',
     story:
       'Wir helfen Führungsteams, stille Risikosignale frühzeitig zu erkennen, bevor sie zu Fluktuation, Burnout oder Leistungseinbruch werden. Mit AI-Pulse, Verhaltensdaten und klaren Handlungsschritten.',
-    pillars: [
-      { title: 'Geschwindigkeit', desc: 'Team-Signale in Minuten statt Quartalen.' },
-      { title: 'Praktikabilität', desc: 'Jeder Insight führt zu klaren Maßnahmen.' },
-      { title: 'Vertrauen', desc: 'Anonymität und DSGVO als Standard.' },
-    ],
     showMore: 'Ganzes Team anzeigen',
     showLess: 'Weniger anzeigen',
     demoCta: 'Beratung buchen',
     founderBadge: 'Mitgründer',
-    investorBadge: 'Investor',
   },
 };
 
@@ -154,32 +129,19 @@ function MemberCard({
   member,
   bio,
   founderLabel,
-  investorLabel,
 }: {
   member: TeamMember;
   bio: string;
   founderLabel: string;
-  investorLabel: string;
 }) {
-  const isInv = member.investor;
   return (
     <motion.div
       variants={fadeUp}
-      className={`group relative flex flex-col items-center text-center p-5 md:p-6 rounded-2xl border bg-white/60 backdrop-blur-sm hover:shadow-xl transition-all duration-300 ${
-        isInv
-          ? 'border-amber-200/60 hover:border-amber-400/50 hover:shadow-amber-100/40'
-          : 'border-brand-border/30 hover:border-brand-primary/30 hover:shadow-brand-primary/5'
-      }`}
+      className="group relative flex flex-col items-center text-center p-5 md:p-6 rounded-2xl border bg-white/60 backdrop-blur-sm hover:shadow-xl transition-all duration-300 border-brand-border/30 hover:border-brand-primary/30 hover:shadow-brand-primary/5"
     >
       {/* Photo */}
       <div className="relative mb-4">
-        <div
-          className={`w-22 h-22 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-offset-2 ring-offset-white transition-all duration-300 ${
-            isInv
-              ? 'ring-amber-400/40 group-hover:ring-amber-500/70'
-              : 'ring-brand-border/30 group-hover:ring-brand-primary/50'
-          }`}
-        >
+        <div className="w-22 h-22 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-offset-2 ring-offset-white transition-all duration-300 ring-brand-border/30 group-hover:ring-brand-primary/50">
           <img
             src={member.image}
             alt={member.name}
@@ -195,18 +157,13 @@ function MemberCard({
             {founderLabel}
           </span>
         )}
-        {isInv && (
-          <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-amber-500 text-[9px] font-bold uppercase tracking-wider text-white whitespace-nowrap shadow-sm">
-            {investorLabel}
-          </span>
-        )}
       </div>
 
       {/* Info */}
       <h3 className="text-sm font-bold text-brand-text-primary leading-tight">
         {member.name}
       </h3>
-      <p className={`text-xs font-semibold mt-0.5 ${isInv ? 'text-amber-600' : 'text-brand-primary'}`}>
+      <p className="text-xs font-semibold mt-0.5 text-brand-primary">
         {member.role}
       </p>
       {bio && (
@@ -286,36 +243,6 @@ export function AboutUnfoldSection() {
           </p>
         </motion.div>
 
-        {/* ── 3 Pillars ───────────────────────────────────── */}
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid sm:grid-cols-3 gap-4 md:gap-6 mb-16 md:mb-20"
-        >
-          {PILLAR_ICONS.map((Icon, index) => {
-            const pillar = text.pillars[index];
-            return (
-              <motion.div
-                key={pillar.title}
-                variants={fadeUp}
-                className="group rounded-2xl border border-brand-border bg-brand-background-secondary/40 p-6 md:p-7 hover:border-brand-primary/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-xl bg-brand-primary/[0.08] flex items-center justify-center mb-4 group-hover:bg-brand-primary/[0.14] transition-colors">
-                  <Icon className="w-5 h-5 text-brand-primary" />
-                </div>
-                <h3 className="text-base font-bold text-brand-text-primary mb-1.5">
-                  {pillar.title}
-                </h3>
-                <p className="text-sm text-brand-text-muted leading-relaxed">
-                  {pillar.desc}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
-
         {/* ── Leadership row (always visible) ──────────────── */}
         <div ref={gridRef}>
           <motion.div
@@ -331,7 +258,6 @@ export function AboutUnfoldSection() {
                 member={m}
                 bio={langBios[m.name] || ''}
                 founderLabel={text.founderBadge}
-                investorLabel={text.investorBadge}
               />
             ))}
           </motion.div>
@@ -352,7 +278,7 @@ export function AboutUnfoldSection() {
                 variants={stagger}
                 initial="hidden"
                 animate="visible"
-                className="grid grid-cols-2 sm:grid-cols-4 gap-5 md:gap-6 max-w-4xl mx-auto mt-5"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6 max-w-3xl mx-auto mt-5"
               >
                 {REST_OF_TEAM.map((m) => (
                   <MemberCard
@@ -360,7 +286,6 @@ export function AboutUnfoldSection() {
                     member={m}
                     bio={langBios[m.name] || ''}
                     founderLabel={text.founderBadge}
-                    investorLabel={text.investorBadge}
                   />
                 ))}
               </motion.div>
