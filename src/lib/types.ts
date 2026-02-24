@@ -17,6 +17,12 @@ export type BlogPost = {
   excerpt_cz?: string;
   /** Czech HTML content */
   content_cz?: string;
+  /** German title (optional — falls back to `title`) */
+  title_de?: string;
+  /** German excerpt */
+  excerpt_de?: string;
+  /** German HTML content */
+  content_de?: string;
   coverImage?: string;
   author: Author;
   publishedAt: string;

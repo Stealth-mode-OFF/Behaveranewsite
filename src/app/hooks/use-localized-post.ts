@@ -11,12 +11,13 @@ export function useLocalizedPost(post: BlogPost | null) {
   if (!post) return null;
 
   const isCz = language === 'cz';
+  const isDe = language === 'de';
 
   return {
     ...post,
-    title: (isCz && post.title_cz) || post.title,
-    excerpt: (isCz && post.excerpt_cz) || post.excerpt,
-    content: (isCz && post.content_cz) || post.content,
+    title: (isDe && post.title_de) || (isCz && post.title_cz) || post.title,
+    excerpt: (isDe && post.excerpt_de) || (isCz && post.excerpt_cz) || post.excerpt,
+    content: (isDe && post.content_de) || (isCz && post.content_cz) || post.content,
   };
 }
 
@@ -24,11 +25,12 @@ export function useLocalizedPost(post: BlogPost | null) {
 export function useLocalizedPosts(posts: BlogPost[]) {
   const { language } = useLanguage();
   const isCz = language === 'cz';
+  const isDe = language === 'de';
 
   return posts.map((post) => ({
     ...post,
-    title: (isCz && post.title_cz) || post.title,
-    excerpt: (isCz && post.excerpt_cz) || post.excerpt,
-    content: (isCz && post.content_cz) || post.content,
+    title: (isDe && post.title_de) || (isCz && post.title_cz) || post.title,
+    excerpt: (isDe && post.excerpt_de) || (isCz && post.excerpt_cz) || post.excerpt,
+    content: (isDe && post.content_de) || (isCz && post.content_cz) || post.content,
   }));
 }
