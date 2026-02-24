@@ -41,7 +41,7 @@ export function Hero() {
           highlight: "mezi vašimi týmy?",
         },
         {
-          text: <>Tichá demotivace stojí víc<br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">než hlasitý odchod.</span></>,
+          text: <>Tichá demotivace stojí víc{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">než hlasitý odchod.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -69,7 +69,7 @@ export function Hero() {
           highlight: "between your teams?",
         },
         {
-          text: <>Silent demotivation costs more<br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">than a loud resignation.</span></>,
+          text: <>Silent demotivation costs more{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">than a loud resignation.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -97,7 +97,7 @@ export function Hero() {
           highlight: "zwischen Ihren Teams?",
         },
         {
-          text: <>Stille Demotivation kostet mehr<br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">als eine laute Kündigung.</span></>,
+          text: <>Stille Demotivation kostet mehr{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">als eine laute Kündigung.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -162,7 +162,7 @@ export function Hero() {
         <div className="flex flex-col items-center gap-10 lg:gap-14">
           
           {/* Copy — Centered */}
-          <div className="text-center max-w-3xl mx-auto">
+          <div className="text-center max-w-4xl mx-auto">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -186,7 +186,7 @@ export function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -18 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.08] font-display"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.08] font-display text-balance"
                 >
                   {headline.text}
                   {headline.highlight && <br />}
