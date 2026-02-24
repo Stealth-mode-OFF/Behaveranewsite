@@ -260,11 +260,57 @@ async function saveToSupabase(
   }
 }
 
-/* ── Handler ───────────────────────────────────── */
+/* ── Supabase dual-write → leads table (admin) ── */
 
-export default async function handler(request: Request): Promise<Response> {
-  const cors = {
-    "Access-Control-Allow-Origin": "*",
+async function saveToLeadsTable(
+  payload: QrLeadPayload,
+  createdAt: string,
+): Promise<void> {
+  const supabaseUrl =
+    process.env.SUPABASE_URL ||
+    process.env.VITE_SUPABASE_URL ||
+    process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_KEY ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !supabaseKey) return;
+
+  const src = payload.source;
+  const source = [
+    src?.page || "behavera.com/scan_QR",
+    src?.event ? `event:${src.event}` : null,
+    src?.booth ? `booth:${src.booth}` : null,
+    src?.rep ? `rep:${src.rep}` : null,
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
+  try {
+    const res = await fetch(`${supabaseUrl}/rest/v1/leads`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: supabaseKey,
+        Authorization: `Bearer ${supabaseKey}`,
+        Prefer: "return=minimal",
+      },
+      body: JSON.stringify({
+        email: payload.email,
+        name: payload.contact_name || null,
+        phone: payload.phone || null,
+        company: payload.company,
+        company_size: payload.employees_bucket || null,
+        role: roleLabels[payload.decision_role] || payload.decision_role || null,
+        source,
+        created_at: createdAt,
+      }),
+    });
+    if (!res.ok) console.warn("Supabase leads-table write failed:", res.status);
+  } catch (e) {
+    console.warn("Supabase leads-table error:", e);
+  }
+}
+
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Content-Type": "application/json",
@@ -321,7 +367,8 @@ export default async function handler(request: Request): Promise<Response> {
 
     /* ── Supabase backup (await — this is our safety net) ── */
     try {
-      await saveToSupabase(payload, createdAt);
+      await saveToSupabase(payload, createdAt);   // → event_leads (detailed)
+      await saveToLeadsTable(payload, createdAt); // → leads (admin-visible)
       supabaseSaved = true;
     } catch (e) {
       console.warn("Supabase save failed:", e);
