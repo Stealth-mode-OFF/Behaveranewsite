@@ -123,7 +123,7 @@ export function AdminLayout() {
   );
 
   return (
-    <div className="min-h-screen bg-brand-background-secondary/30 flex font-sans">
+    <div className="min-h-screen bg-brand-background-secondary/30 flex font-sans overflow-x-hidden">
       {/* Sidebar - Desktop */}
       <aside className="hidden md:flex flex-col w-72 bg-white border-r border-brand-border/60 fixed inset-y-0 z-50 shadow-sm">
         <div className="h-16 flex items-center px-6 border-b border-brand-border/40">
