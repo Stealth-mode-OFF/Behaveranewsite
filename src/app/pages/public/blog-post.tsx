@@ -21,6 +21,7 @@ import { useSEO } from '@/app/hooks/use-seo';
 import { useLanguage } from '@/app/contexts/language-context';
 import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPost, useLocalizedPosts } from '@/app/hooks/use-localized-post';
+import { getResponsiveImageProps } from '@/lib/image-helpers';
 import { Button } from '@/app/components/ui/button';
 import {
   trackBlogCtaClick,
@@ -116,6 +117,7 @@ export function BlogPostPage() {
     keywords: post?.tags?.join(', ') || t.blog.seoKeywords,
     ogType: 'article',
     ogImage: post?.coverImage,
+    canonicalUrl: slug ? `https://cz.behavera.com/blog/${slug}` : undefined,
   });
 
   const sanitizedContent = useMemo(() => {
@@ -289,7 +291,16 @@ export function BlogPostPage() {
 
                 <div className="flex items-center gap-3 pb-7 border-b border-brand-border/60">
                   {post.author.avatar && (
-                    <img src={post.author.avatar} alt={post.author.name} className="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                    <img
+                      {...getResponsiveImageProps(post.author.avatar, {
+                        widths: [80, 120],
+                        sizes: '40px',
+                      })}
+                      alt={post.author.name}
+                      className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   )}
                   <div>
                     <div className="text-sm font-semibold text-brand-text-primary">{post.author.name}</div>
@@ -302,7 +313,17 @@ export function BlogPostPage() {
 
               {post.coverImage && (
                 <div className="rounded-xl overflow-hidden shadow-lg mb-10 aspect-[2/1]">
-                  <img src={post.coverImage} alt={localizedPost.title} className="w-full h-full object-cover" />
+                  <img
+                    {...getResponsiveImageProps(post.coverImage, {
+                      widths: [720, 960, 1280, 1600],
+                      sizes: '(max-width: 1024px) 100vw, 960px',
+                    })}
+                    alt={localizedPost.title}
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
+                  />
                 </div>
               )}
 
