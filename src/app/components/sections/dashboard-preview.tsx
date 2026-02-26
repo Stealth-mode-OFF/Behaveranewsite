@@ -15,10 +15,14 @@ import { FeatureGrid } from "@/app/components/ui/snap-carousel";
  * - Feature grid below
  */
 export function DashboardPreview() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+  // Pick video + poster per language (EN/DE share the English recording)
+  const videoSrc = language === "cz" ? "/dashboard-demo.mp4" : "/dashboard-demo-en.mp4";
+  const posterSrc = language === "cz" ? "/dashboard-demo-poster.webp" : "/dashboard-demo-en-poster.webp";
 
   // Auto-play when in view
   useEffect(() => {
@@ -102,10 +106,10 @@ export function DashboardPreview() {
               loop
               playsInline
               preload="metadata"
-              poster="/dashboard-demo-poster.webp"
+              poster={posterSrc}
               className="w-full h-auto block"
             >
-              <source src="/dashboard-demo.mp4" type="video/mp4" />
+              <source src={videoSrc} type="video/mp4" />
             </video>
           </DeviceFrame>
         </motion.div>
