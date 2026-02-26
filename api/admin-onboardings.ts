@@ -15,7 +15,7 @@ export const config = { runtime: 'edge' };
 /* ─── CORS headers ─── */
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Methods': 'GET, PATCH, OPTIONS',
   'Access-Control-Allow-Headers': 'Authorization, Content-Type',
 };
 
@@ -113,7 +113,7 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response(null, { status: 204, headers: corsHeaders });
   }
 
-  if (req.method !== 'GET') {
+  if (req.method !== 'GET' && req.method !== 'PATCH') {
     return new Response(JSON.stringify({ error: 'Method not allowed' }), {
       status: 405,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -176,7 +176,46 @@ export default async function handler(req: Request): Promise<Response> {
     });
   }
 
-  // ── Fetch data ──
+  // ── PATCH: update onboarding status ──
+  if (req.method === 'PATCH') {
+    try {
+      const body = await req.json() as { id: string; status: string };
+      const validStatuses = ['new', 'contacted', 'onboarding', 'active', 'rejected'];
+      if (!body.id || !body.status || !validStatuses.includes(body.status)) {
+        return new Response(JSON.stringify({ error: 'Missing id or invalid status' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      const url = `${SUPABASE_URL}/rest/v1/onboarding_submissions?id=eq.${body.id}`;
+      const res = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal',
+        },
+        body: JSON.stringify({ status: body.status, updated_at: new Date().toISOString() }),
+      });
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Supabase PATCH failed: ${res.status} ${text}`);
+      }
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      return new Response(JSON.stringify({ error: msg }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+  }
+
+  // ── GET: Fetch data ──
   try {
     // Get all submissions
     const submissions = (await supabaseGet(

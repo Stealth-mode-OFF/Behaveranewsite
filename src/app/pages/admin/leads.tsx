@@ -32,6 +32,8 @@ import {
   TrendingUp,
   AlertCircle,
   Heart,
+  CheckSquare,
+  Square,
 } from 'lucide-react';
 import { cn } from '@/app/components/ui/utils';
 import { toast } from 'sonner';
@@ -49,6 +51,7 @@ interface Lead {
   role: string | null;
   source: string;
   created_at: string;
+  processed: boolean;
 }
 
 interface EventLead {
@@ -68,9 +71,11 @@ interface EventLead {
   source_booth: string | null;
   source_event: string | null;
   created_at: string;
+  processed: boolean;
 }
 
 type TabFilter = 'all' | 'website' | 'event';
+type ProcessedFilter = 'all' | 'unprocessed' | 'processed';
 
 /* ─── Helpers ─── */
 function formatDate(iso: string): string {
@@ -200,6 +205,40 @@ export function LeadsPage() {
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [tab, setTab] = useState<TabFilter>('all');
+  const [processedFilter, setProcessedFilter] = useState<ProcessedFilter>('all');
+
+  /* ── Toggle processed ── */
+  const toggleProcessed = useCallback(async (id: string, table: 'leads' | 'event_leads', current: boolean) => {
+    const newVal = !current;
+    // Optimistic update
+    if (table === 'leads') {
+      setLeads(prev => prev.map(l => l.id === id ? { ...l, processed: newVal } : l));
+    } else {
+      setEventLeads(prev => prev.map(l => l.id === id ? { ...l, processed: newVal } : l));
+    }
+    try {
+      let token = 'local-admin';
+      if (supabase) {
+        const { data: { session } } = await supabase.auth.getSession();
+        token = session?.access_token || 'local-admin';
+      }
+      const res = await fetch('/api/admin-leads', {
+        method: 'PATCH',
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, table, processed: newVal }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      toast.success(newVal ? 'Označeno jako zpracované' : 'Označeno jako nezpracované');
+    } catch {
+      // Revert on error
+      if (table === 'leads') {
+        setLeads(prev => prev.map(l => l.id === id ? { ...l, processed: current } : l));
+      } else {
+        setEventLeads(prev => prev.map(l => l.id === id ? { ...l, processed: current } : l));
+      }
+      toast.error('Nepodařilo se změnit stav');
+    }
+  }, []);
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -270,22 +309,26 @@ export function LeadsPage() {
   const filteredLeads = useMemo(() => {
     if (tab === 'event') return [];
     return leads.filter(l => {
+      if (processedFilter === 'processed' && !l.processed) return false;
+      if (processedFilter === 'unprocessed' && l.processed) return false;
       if (!q) return true;
       return [l.email, l.name, l.first_name, l.last_name, l.company, l.source, l.phone].some(
         v => v && v.toLowerCase().includes(q)
       );
     });
-  }, [leads, q, tab]);
+  }, [leads, q, tab, processedFilter]);
 
   const filteredEventLeads = useMemo(() => {
     if (tab === 'website') return [];
     return eventLeads.filter(l => {
+      if (processedFilter === 'processed' && !l.processed) return false;
+      if (processedFilter === 'unprocessed' && l.processed) return false;
       if (!q) return true;
       return [l.email, l.company, l.contact_name, l.source_event, l.source_rep, l.phone].some(
         v => v && v.toLowerCase().includes(q)
       );
     });
-  }, [eventLeads, q, tab]);
+  }, [eventLeads, q, tab, processedFilter]);
 
   const totalFiltered = filteredLeads.length + filteredEventLeads.length;
 
@@ -415,6 +458,34 @@ export function LeadsPage() {
             </button>
           ))}
         </div>
+        <div className="flex gap-1 bg-brand-background-secondary rounded-lg p-0.5">
+          {([
+            ['all', 'Nezpracované', null, leads.filter(l => !l.processed).length + eventLeads.filter(l => !l.processed).length] as const,
+            ['unprocessed', '⏳ Čeká', null, leads.filter(l => !l.processed).length + eventLeads.filter(l => !l.processed).length] as const,
+            ['processed', '✅ Hotovo', null, leads.filter(l => l.processed).length + eventLeads.filter(l => l.processed).length] as const,
+          ]).map(([key, label, , count]) => (
+            <button
+              key={key}
+              onClick={() => setProcessedFilter(key as ProcessedFilter)}
+              className={cn(
+                'px-3 py-1.5 text-xs font-medium rounded-md transition-all flex items-center gap-1.5',
+                processedFilter === key
+                  ? 'bg-white shadow-sm text-brand-primary'
+                  : 'text-brand-text-muted hover:text-brand-text-primary'
+              )}
+            >
+              {label}
+              {key !== 'all' && (
+                <span className={cn(
+                  'ml-0.5 text-[10px] px-1.5 py-0.5 rounded-full',
+                  processedFilter === key ? 'bg-brand-primary/10 text-brand-primary' : 'bg-brand-background-secondary text-brand-text-muted'
+                )}>
+                  {count}
+                </span>
+              )}
+            </button>
+          ))}
+        </div>
         {q && (
           <span className="text-xs text-brand-text-muted">{totalFiltered} výsledků</span>
         )}
@@ -435,6 +506,7 @@ export function LeadsPage() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-brand-background-secondary/50">
+                    <TableHead className="text-xs font-semibold w-10">✓</TableHead>
                     <TableHead className="text-xs font-semibold">Kontakt</TableHead>
                     <TableHead className="text-xs font-semibold">Firma</TableHead>
                     <TableHead className="text-xs font-semibold hidden md:table-cell">Velikost</TableHead>
@@ -447,7 +519,16 @@ export function LeadsPage() {
                 </TableHeader>
                 <TableBody>
                   {filteredEventLeads.map(l => (
-                    <TableRow key={l.id} className="hover:bg-brand-background-secondary/30 transition-colors">
+                    <TableRow key={l.id} className={cn('hover:bg-brand-background-secondary/30 transition-colors', l.processed && 'bg-green-50/60')}>
+                      <TableCell>
+                        <button
+                          onClick={() => toggleProcessed(l.id, 'event_leads', l.processed)}
+                          className="text-brand-text-muted hover:text-brand-primary transition-colors"
+                          title={l.processed ? 'Označit jako nezpracované' : 'Označit jako zpracované'}
+                        >
+                          {l.processed ? <CheckSquare className="w-4 h-4 text-green-600" /> : <Square className="w-4 h-4" />}
+                        </button>
+                      </TableCell>
                       <TableCell>
                         <div className="space-y-0.5">
                           {l.contact_name && <div className="text-sm font-medium text-brand-text-primary">{l.contact_name}</div>}
@@ -514,6 +595,7 @@ export function LeadsPage() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-brand-background-secondary/50">
+                    <TableHead className="text-xs font-semibold w-10">✓</TableHead>
                     <TableHead className="text-xs font-semibold">Kontakt</TableHead>
                     <TableHead className="text-xs font-semibold">Firma</TableHead>
                     <TableHead className="text-xs font-semibold hidden md:table-cell">Velikost</TableHead>
@@ -526,7 +608,16 @@ export function LeadsPage() {
                   {filteredLeads.map(l => {
                     const name = [l.first_name, l.last_name].filter(Boolean).join(' ') || l.name || '';
                     return (
-                      <TableRow key={l.id} className="hover:bg-brand-background-secondary/30 transition-colors">
+                      <TableRow key={l.id} className={cn('hover:bg-brand-background-secondary/30 transition-colors', l.processed && 'bg-green-50/60')}>
+                        <TableCell>
+                          <button
+                            onClick={() => toggleProcessed(l.id, 'leads', l.processed)}
+                            className="text-brand-text-muted hover:text-brand-primary transition-colors"
+                            title={l.processed ? 'Označit jako nezpracované' : 'Označit jako zpracované'}
+                          >
+                            {l.processed ? <CheckSquare className="w-4 h-4 text-green-600" /> : <Square className="w-4 h-4" />}
+                          </button>
+                        </TableCell>
                         <TableCell>
                           <div className="space-y-0.5">
                             {name && <div className="text-sm font-medium text-brand-text-primary">{name}</div>}

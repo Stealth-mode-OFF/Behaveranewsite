@@ -185,6 +185,59 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+/* ─── Status Select (clickable dropdown) ─── */
+function StatusSelect({ status, onStatusChange }: { status: string; onStatusChange: (newStatus: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const cfg = statusConfig[status] || {
+    label: status || '–',
+    color: 'text-gray-600',
+    bg: 'bg-gray-50 border-gray-200',
+  };
+  const statuses = Object.entries(statusConfig);
+
+  return (
+    <div className="relative inline-block">
+      <button
+        onClick={(e) => { e.stopPropagation(); setOpen(!open); }}
+        className={cn(
+          'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border cursor-pointer hover:ring-2 hover:ring-brand-primary/20 transition-all',
+          cfg.bg,
+          cfg.color
+        )}
+        title="Změnit status"
+      >
+        {cfg.label}
+        <ChevronDown className="w-3 h-3" />
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={(e) => { e.stopPropagation(); setOpen(false); }} />
+          <div className="absolute top-full left-0 mt-1 z-50 bg-white rounded-lg shadow-lg border border-brand-border/50 py-1 min-w-[140px]">
+            {statuses.map(([key, val]) => (
+              <button
+                key={key}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (key !== status) onStatusChange(key);
+                  setOpen(false);
+                }}
+                className={cn(
+                  'w-full text-left px-3 py-1.5 text-xs font-medium hover:bg-slate-50 transition-colors flex items-center gap-2',
+                  key === status && 'bg-slate-100'
+                )}
+              >
+                <span className={cn('w-2 h-2 rounded-full', val.bg.split(' ')[0])} />
+                {val.label}
+                {key === status && <Check className="w-3 h-3 ml-auto text-brand-primary" />}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function countMembers(c: CompanyData) {
   return c.teams.reduce((sum, t) => sum + t.members.length, 0);
 }
@@ -408,7 +461,7 @@ function InfoRow({ icon: Icon, label, children }: {
 /* ════════════════════════════════════════════════════════════════════
    COMPANY DETAIL VIEW
    ════════════════════════════════════════════════════════════════════ */
-function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () => void }) {
+function CompanyDetail({ company, onBack, onStatusChange }: { company: CompanyData; onBack: () => void; onStatusChange: (id: string, newStatus: string) => void }) {
   const allEmails = company.teams.flatMap((t) => t.members.map((m) => m.email)).filter(Boolean);
   const uniqueEmails = [...new Set(allEmails)];
   const members = countMembers(company);
@@ -440,7 +493,7 @@ function CompanyDetail({ company, onBack }: { company: CompanyData; onBack: () =
                   </span>
                 )}
                 <span>{'·'}</span>
-                <StatusBadge status={company.status} />
+                <StatusSelect status={company.status} onStatusChange={(s) => onStatusChange(company.id, s)} />
                 <span>{'·'}</span>
                 <span className="flex items-center gap-1">
                   <Clock className="w-3 h-3" />
@@ -558,10 +611,12 @@ function CompanyList({
   companies,
   onSelect,
   onRefresh,
+  onStatusChange,
 }: {
   companies: CompanyData[];
   onSelect: (c: CompanyData) => void;
   onRefresh: () => void;
+  onStatusChange: (id: string, newStatus: string) => void;
 }) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -728,7 +783,7 @@ function CompanyList({
                     <span className="font-semibold text-brand-text-primary truncate">
                       {c.companyName || `Bez názvu`}
                     </span>
-                    <StatusBadge status={c.status} />
+                    <StatusSelect status={c.status} onStatusChange={(s) => onStatusChange(c.id, s)} />
                   </div>
                   <div className="flex items-center gap-3 mt-1 text-xs text-brand-text-muted flex-wrap">
                     {c.ico && <span className="flex items-center gap-1"><Hash className="w-3 h-3" />{`IČO ${c.ico}`}</span>}
@@ -834,6 +889,41 @@ export function OnboardingsPage() {
     fetchData();
   }, [fetchData]);
 
+  /* ── Status change handler ── */
+  const handleStatusChange = useCallback(async (id: string, newStatus: string) => {
+    // Optimistic update
+    setCompanies(prev => prev.map(c => c.id === id ? { ...c, status: newStatus } : c));
+    if (selected && selected.id === id) {
+      setSelected(prev => prev ? { ...prev, status: newStatus } : prev);
+    }
+    try {
+      let token = '';
+      if (supabase) {
+        const { data } = await supabase.auth.getSession();
+        token = data.session?.access_token || '';
+      }
+      if (!token) {
+        const stored = sessionStorage.getItem('behavera_admin_session');
+        if (stored) token = 'local-admin';
+      }
+      const res = await fetch('/api/admin-onboardings', {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      const label = statusConfig[newStatus]?.label || newStatus;
+      toast.success(`Status změněn na: ${label}`);
+    } catch {
+      // Revert
+      fetchData();
+      toast.error('Nepodařilo se změnit status');
+    }
+  }, [selected, fetchData]);
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-24 gap-3">
@@ -865,8 +955,8 @@ export function OnboardingsPage() {
   }
 
   if (selected) {
-    return <CompanyDetail company={selected} onBack={() => setSelected(null)} />;
+    return <CompanyDetail company={selected} onBack={() => setSelected(null)} onStatusChange={handleStatusChange} />;
   }
 
-  return <CompanyList companies={companies} onSelect={setSelected} onRefresh={fetchData} />;
+  return <CompanyList companies={companies} onSelect={setSelected} onRefresh={fetchData} onStatusChange={handleStatusChange} />;
 }
