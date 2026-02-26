@@ -331,8 +331,8 @@ export default async function handler(request: Request): Promise<Response> {
     });
 
     /* ── Slack notification ───────────────────── */
-    // Don't await — fire & forget so user doesn't wait
-    sendSlackNotification({
+    // Must await on Vercel Edge Runtime — unawaited promises are killed when Response is returned
+    await sendSlackNotification({
       name: payload.name,
       email: payload.email,
       phone: payload.phone,

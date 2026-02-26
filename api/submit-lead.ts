@@ -167,8 +167,8 @@ export default async function handler(request: Request): Promise<Response> {
       || payload.firstName
       || payload.email.split('@')[0];
 
-    // Save to Supabase as backup (async, don't wait)
-    saveToSupabase({ ...payload, source });
+    // Save to Supabase as backup (must await on Vercel Edge Runtime)
+    await saveToSupabase({ ...payload, source });
 
     // 1. Check for existing person (deduplicate)
     let personId = await findPersonByEmail(payload.email);
