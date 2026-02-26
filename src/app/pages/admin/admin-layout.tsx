@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/lib/auth-context';
-import { LayoutPřehled, FileText, Briefcase, LogOut, Menu, Loader2, Users, Target, QrCode, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, FileText, Briefcase, LogOut, Menu, Loader2, Users, Target, QrCode, ExternalLink } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
-import { Sheet, SheetObsah, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/app/components/ui/sheet';
 import { cn } from '@/app/components/ui/utils';
 
 export function AdminLayout() {
@@ -44,7 +44,7 @@ export function AdminLayout() {
           )
         }
       >
-        <LayoutPřehled className="w-4 h-4 transition-transform group-hover:scale-110" />
+        <LayoutDashboard className="w-4 h-4 transition-transform group-hover:scale-110" />
         Přehled
       </NavLink>
 
@@ -170,7 +170,7 @@ export function AdminLayout() {
                  <Menu className="w-5 h-5" />
                </Button>
              </SheetTrigger>
-             <SheetObsah side="left" className="w-72 p-0 border-r border-brand-border/60">
+             <SheetContent side="left" className="w-72 p-0 border-r border-brand-border/60">
                 <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                <div className="h-16 flex items-center px-6 border-b border-brand-border/40 bg-brand-background-primary">
                   <span className="text-lg font-bold text-brand-text-primary">Behavera</span>
@@ -186,7 +186,7 @@ export function AdminLayout() {
                       </Button>
                   </div>
                 </div>
-             </SheetObsah>
+             </SheetContent>
            </Sheet>
         </header>
 
