@@ -1,17 +1,17 @@
 import { useLanguage } from "@/app/contexts/language-context";
 import { motion } from "framer-motion";
 import { TrendingUp, Heart, BarChart3 } from "lucide-react";
-import pwcLogo from "@/assets/clients/pwc.png";
-import vodafoneLogo from "@/assets/clients/vodafone.png";
-import notinoLogo from "@/assets/clients/notino.png";
-import o2Logo from "@/assets/clients/o2.png";
-import lidlLogo from "@/assets/clients/lidl.png";
-import prusaLogo from "@/assets/clients/prusa.png";
-import teyaLogo from "@/assets/clients/teya.png";
-import martinusLogo from "@/assets/clients/martinus.png";
-import startupjobsLogo from "@/assets/clients/startupjobs.png";
-import raynetLogo from "@/assets/clients/raynet.png";
-import growRangersLogo from "@/assets/clients/grow-rangers.png";
+import pwcLogo from "@/assets/clients/pwc.webp";
+import vodafoneLogo from "@/assets/clients/vodafone.webp";
+import notinoLogo from "@/assets/clients/notino.webp";
+import o2Logo from "@/assets/clients/o2.webp";
+import lidlLogo from "@/assets/clients/lidl.webp";
+import prusaLogo from "@/assets/clients/prusa.webp";
+import teyaLogo from "@/assets/clients/teya.webp";
+import martinusLogo from "@/assets/clients/martinus.webp";
+import startupjobsLogo from "@/assets/clients/startupjobs.webp";
+import raynetLogo from "@/assets/clients/raynet.webp";
+import growRangersLogo from "@/assets/clients/grow-rangers.webp";
 import logo365 from "@/assets/clients/365.svg";
 import expandoLogo from "@/assets/clients/expando.svg";
 

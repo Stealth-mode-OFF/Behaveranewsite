@@ -5,6 +5,7 @@ import { sanitizeHtml, extractHeadingsFromHtml, type BlogHeading } from '@/lib/s
 import { useLanguage } from '@/app/contexts/language-context';
 import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPost, useLocalizedPosts } from '@/app/hooks/use-localized-post';
+import { getResponsiveImageProps } from '@/lib/image-helpers';
 import { format } from 'date-fns';
 import { cs, de, enUS } from 'date-fns/locale';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -367,9 +368,14 @@ export function BlogReaderModal({ slug, allPosts, onClose }: BlogReaderModalProp
                 <div className="flex items-center gap-3 pb-6 border-b border-brand-border/50">
                   {currentPost.author?.avatar && (
                     <img
-                      src={currentPost.author.avatar}
+                      {...getResponsiveImageProps(currentPost.author.avatar, {
+                        widths: [72, 96],
+                        sizes: '36px',
+                      })}
                       alt={currentPost.author.name}
                       className="w-9 h-9 rounded-full border-2 border-white shadow-sm"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                   <div>
@@ -388,9 +394,14 @@ export function BlogReaderModal({ slug, allPosts, onClose }: BlogReaderModalProp
               {currentPost.coverImage && (
                 <div className="rounded-xl overflow-hidden shadow-md mb-8 aspect-[2/1]">
                   <img
-                    src={currentPost.coverImage}
+                    {...getResponsiveImageProps(currentPost.coverImage, {
+                      widths: [720, 960, 1280],
+                      sizes: '(max-width: 1024px) 100vw, 900px',
+                    })}
                     alt={localizedPost.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}

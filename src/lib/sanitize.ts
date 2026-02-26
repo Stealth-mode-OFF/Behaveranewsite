@@ -20,7 +20,7 @@ const ALLOWED_TAGS = [
   "img",
 ];
 
-const ALLOWED_ATTR = ["href", "target", "rel", "src", "alt", "title", "class", "id"];
+const ALLOWED_ATTR = ["href", "target", "rel", "src", "alt", "title", "class", "id", "loading", "decoding", "fetchpriority", "srcset", "sizes", "width", "height"];
 
 export type BlogHeading = {
   id: string;
@@ -124,6 +124,26 @@ function addHeadingIds(html: string): string {
   return root.innerHTML;
 }
 
+function addImageAttributes(html: string): string {
+  if (typeof window === "undefined") {
+    return html;
+  }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div id="root">${html}</div>`, "text/html");
+  const root = doc.getElementById("root");
+  if (!root) return html;
+
+  const images = root.querySelectorAll("img");
+  images.forEach((img) => {
+    if (!img.getAttribute("loading")) img.setAttribute("loading", "lazy");
+    if (!img.getAttribute("decoding")) img.setAttribute("decoding", "async");
+    if (!img.getAttribute("fetchpriority")) img.setAttribute("fetchpriority", "low");
+  });
+
+  return root.innerHTML;
+}
+
 export function extractHeadingsFromHtml(html: string): BlogHeading[] {
   if (typeof window === "undefined") return [];
 
@@ -146,7 +166,8 @@ export const sanitizeHtml = (dirty: string): string => {
   if (typeof window === "undefined") return dirty;
   const cleaned = cleanBlogContent(dirty);
   const withHeadingIds = addHeadingIds(cleaned);
-  return DOMPurify.sanitize(withHeadingIds, {
+  const withImageAttrs = addImageAttributes(withHeadingIds);
+  return DOMPurify.sanitize(withImageAttrs, {
     ALLOWED_TAGS,
     ALLOWED_ATTR,
   });

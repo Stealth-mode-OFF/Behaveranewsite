@@ -5,6 +5,7 @@ import { sanitizeHtml, extractHeadingsFromHtml } from '@/lib/sanitize';
 import { useLanguage } from '@/app/contexts/language-context';
 import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPost, useLocalizedPosts } from '@/app/hooks/use-localized-post';
+import { getResponsiveImageProps } from '@/lib/image-helpers';
 import { format } from 'date-fns';
 import { cs, de, enUS } from 'date-fns/locale';
 import {
@@ -61,9 +62,14 @@ function SidebarArticleCard({
       <div className="flex gap-3">
         {post.coverImage && (
           <img
-            src={post.coverImage}
+            {...getResponsiveImageProps(post.coverImage, {
+              widths: [160, 240, 320],
+              sizes: '64px',
+            })}
             alt=""
             className="w-16 h-12 rounded-lg object-cover shrink-0"
+            loading="lazy"
+            decoding="async"
           />
         )}
         <div className="flex-1 min-w-0">

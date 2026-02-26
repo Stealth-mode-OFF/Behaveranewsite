@@ -7,6 +7,7 @@ import { Header } from '@/app/components/layout/header';
 import { Footer } from '@/app/components/layout/footer';
 import { ArrowLeft, Building2 } from 'lucide-react';
 import { useLanguage } from '@/app/contexts/language-context';
+import { getResponsiveImageProps } from '@/lib/image-helpers';
 import { useSEO } from '@/app/hooks/use-seo';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { motion } from 'framer-motion';
@@ -148,10 +149,15 @@ export function CaseStudyPage() {
                 <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/60 via-brand-primary/40 to-brand-primary/80 z-10" />
                 {study.coverImage && (
                     <img
-                      src={study.coverImage}
+                      {...getResponsiveImageProps(study.coverImage, {
+                        widths: [960, 1280, 1600, 2000],
+                        sizes: '100vw',
+                      })}
                       alt=""
                       className="absolute inset-0 w-full h-full object-cover"
                       loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                     />
                 )}
                 <motion.div

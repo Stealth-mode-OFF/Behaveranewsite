@@ -5,28 +5,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
 import { useLanguage } from "@/app/contexts/language-context";
+import { getResponsiveImageProps } from "@/lib/image-helpers";
 import { cn } from "@/app/components/ui/utils";
 
 // Logo imports
-import effectixLogo from "@/assets/clients/effectix.png";
-import growRangersLogo from "@/assets/clients/grow-rangers.png";
-import hajdukPartnersLogo from "@/assets/clients/hajduk-partners.png";
-import lidlLogo from "@/assets/clients/lidl.png";
-import martinusLogo from "@/assets/clients/martinus.png";
-import medevioLogo from "@/assets/clients/medevio.png";
-import notinoLogo from "@/assets/clients/notino.png";
-import o2Logo from "@/assets/clients/o2.png";
-import optimioLogo from "@/assets/clients/optimio.png";
-import prusaLogo from "@/assets/clients/prusa.png";
-import pwcLogo from "@/assets/clients/pwc.png";
-import raynetLogo from "@/assets/clients/raynet.png";
-import socialmindLogo from "@/assets/clients/socialmind.png";
-import sprinxLogo from "@/assets/clients/sprinx.png";
-import startupjobsLogo from "@/assets/clients/startupjobs.png";
-import teyaLogo from "@/assets/clients/teya.png";
-import valxonLogo from "@/assets/clients/valxon.png";
-import vodafoneLogo from "@/assets/clients/vodafone.png";
-import websupportLogo from "@/assets/clients/websupport.png";
+import effectixLogo from "@/assets/clients/effectix.webp";
+import growRangersLogo from "@/assets/clients/grow-rangers.webp";
+import hajdukPartnersLogo from "@/assets/clients/hajduk-partners.webp";
+import lidlLogo from "@/assets/clients/lidl.webp";
+import martinusLogo from "@/assets/clients/martinus.webp";
+import medevioLogo from "@/assets/clients/medevio.webp";
+import notinoLogo from "@/assets/clients/notino.webp";
+import o2Logo from "@/assets/clients/o2.webp";
+import optimioLogo from "@/assets/clients/optimio.webp";
+import prusaLogo from "@/assets/clients/prusa.webp";
+import pwcLogo from "@/assets/clients/pwc.webp";
+import raynetLogo from "@/assets/clients/raynet.webp";
+import socialmindLogo from "@/assets/clients/socialmind.webp";
+import sprinxLogo from "@/assets/clients/sprinx.webp";
+import startupjobsLogo from "@/assets/clients/startupjobs.webp";
+import teyaLogo from "@/assets/clients/teya.webp";
+import valxonLogo from "@/assets/clients/valxon.webp";
+import vodafoneLogo from "@/assets/clients/vodafone.webp";
+import websupportLogo from "@/assets/clients/websupport.webp";
 import logo365 from "@/assets/clients/365.svg";
 import expandoLogo from "@/assets/clients/expando.svg";
 
@@ -339,10 +340,17 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
         >
           {/* Full-bleed photo */}
           <img
-            src={study.coverImage || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200'}
+            {...getResponsiveImageProps(
+              study.coverImage || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200',
+              {
+                widths: [640, 960, 1280],
+                sizes: '(max-width: 768px) 100vw, 50vw',
+              },
+            )}
             alt={study.clientName}
             className="absolute inset-0 w-full h-full object-cover"
             loading="lazy"
+            decoding="async"
             width={600}
             height={420}
           />
@@ -358,6 +366,8 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                     src={logo}
                     alt={study.clientName}
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               ) : (
@@ -430,7 +440,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             <div className="relative z-10 flex items-center gap-3 mb-4 pb-3 border-b border-brand-border/30">
               {logo ? (
                 <div className="w-9 h-9 rounded-lg bg-white shadow-sm border border-brand-border/30 flex items-center justify-center p-1.5 shrink-0">
-                  <img src={logo} alt={study.clientName} className="w-full h-full object-contain" />
+                  <img src={logo} alt={study.clientName} className="w-full h-full object-contain" loading="lazy" decoding="async" />
                 </div>
               ) : (
                 <div className={cn("w-9 h-9 rounded-lg bg-gradient-to-br flex items-center justify-center shrink-0", gradient)}>

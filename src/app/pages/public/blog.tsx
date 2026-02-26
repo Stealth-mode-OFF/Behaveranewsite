@@ -15,6 +15,7 @@ import { ArrowRight, Clock, BookOpen, Search, X, Sparkles } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { BlogReaderModal } from '@/app/components/blog-reader-modal';
 import { BlogReaderPage } from '@/app/components/blog-reader-page';
+import { getResponsiveImageProps } from '@/lib/image-helpers';
 
 /** Estimate reading time from HTML content */
 function estimateReadingTime(html: string): number {
@@ -271,10 +272,16 @@ export function BlogPage() {
                 <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden relative">
                     {featuredPost.coverImage && (
-                      <img 
-                        src={featuredPost.coverImage} 
-                        alt={featuredPost.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80" 
+                      <img
+                        {...getResponsiveImageProps(featuredPost.coverImage, {
+                          widths: [640, 960, 1280, 1600],
+                          sizes: '(max-width: 1024px) 100vw, 50vw',
+                        })}
+                        alt={featuredPost.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
                       />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0d0520]/40 lg:block hidden" />
@@ -298,7 +305,16 @@ export function BlogPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         {featuredPost.author.avatar && (
-                          <img src={featuredPost.author.avatar} alt={featuredPost.author.name} className="w-8 h-8 rounded-full border-2 border-white/20" />
+                          <img
+                            {...getResponsiveImageProps(featuredPost.author.avatar, {
+                              widths: [64, 96],
+                              sizes: '32px',
+                            })}
+                            alt={featuredPost.author.name}
+                            className="w-8 h-8 rounded-full border-2 border-white/20"
+                            loading="lazy"
+                            decoding="async"
+                          />
                         )}
                         <div>
                           <span className="text-xs text-white/70 font-medium block">{featuredPost.author.name}</span>
@@ -374,10 +390,15 @@ export function BlogPage() {
                     >
                     <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
                       {post.coverImage && (
-                        <img 
-                          src={post.coverImage} 
-                          alt={post.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        <img
+                          {...getResponsiveImageProps(post.coverImage, {
+                            widths: [480, 720, 960, 1200],
+                            sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
+                          })}
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                       <div className="absolute top-3 left-3">
@@ -396,7 +417,16 @@ export function BlogPage() {
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-brand-border/60">
                         <div className="flex items-center gap-2">
                           {post.author.avatar && (
-                            <img src={post.author.avatar} alt={post.author.name} className="w-6 h-6 rounded-full" />
+                            <img
+                              {...getResponsiveImageProps(post.author.avatar, {
+                                widths: [48, 72],
+                                sizes: '24px',
+                              })}
+                              alt={post.author.name}
+                              className="w-6 h-6 rounded-full"
+                              loading="lazy"
+                              decoding="async"
+                            />
                           )}
                           <span className="text-xs text-brand-text-muted font-medium">
                             {post.author.name}
