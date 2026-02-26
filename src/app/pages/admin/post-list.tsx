@@ -24,7 +24,7 @@ export function PostList() {
       setPosts(data);
       setFilteredPosts(data);
     } catch {
-      toast.error('Failed to load posts');
+      toast.error('Nepodařilo se načíst články');
     } finally {
       setIsLoading(false);
     }
@@ -45,13 +45,13 @@ export function PostList() {
   }, [searchQuery, posts]);
 
   const handleDelete = async (id: string) => {
-      if(!confirm("Are you sure you want to delete this post?")) return;
+      if(!confirm("Opravdu chcete smazat tento článek?")) return;
       try {
           await CmsService.deletePost(id);
-          toast.success("Post deleted");
+          toast.success("Článek smazán");
           loadPosts();
       } catch {
-          toast.error("Failed to delete");
+          toast.error("Smazání selhalo");
       }
   };
 
@@ -59,13 +59,13 @@ export function PostList() {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h1 className="text-3xl font-bold tracking-tight text-brand-text-primary">Blog Posts</h1>
-            <p className="text-brand-text-secondary">Manage your articles and insights.</p>
+            <h1 className="text-3xl font-bold tracking-tight text-brand-text-primary">Články</h1>
+            <p className="text-brand-text-secondary">Správa článků a příspěvků.</p>
         </div>
         <Button asChild className="bg-brand-primary hover:bg-brand-primary-hover shadow-md">
           <Link to="/admin/posts/new">
             <Plus className="w-4 h-4 mr-2" />
-            Create New
+            Nový článek
           </Link>
         </Button>
       </div>
@@ -75,7 +75,7 @@ export function PostList() {
             <div className="relative flex-1 max-w-sm">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted" />
                 <Input 
-                    placeholder="Search posts..." 
+                    placeholder="Hledat články…" 
                     className="pl-9 border-brand-border/60 focus:ring-brand-primary/20 bg-white" 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -89,11 +89,11 @@ export function PostList() {
             <Table>
             <TableHeader className="bg-brand-background-secondary/30">
                 <TableRow className="border-brand-border/40 hover:bg-transparent">
-                <TableHead className="font-semibold text-brand-text-secondary">Title</TableHead>
-                <TableHead className="font-semibold text-brand-text-secondary">Author</TableHead>
-                <TableHead className="font-semibold text-brand-text-secondary">Status</TableHead>
-                <TableHead className="font-semibold text-brand-text-secondary">Published</TableHead>
-                <TableHead className="text-right font-semibold text-brand-text-secondary">Actions</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Název</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Autor</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Stav</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Publikováno</TableHead>
+                <TableHead className="text-right font-semibold text-brand-text-secondary">Akce</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -103,13 +103,13 @@ export function PostList() {
                         <div className="flex justify-center mb-2">
                              <div className="w-6 h-6 border-2 border-brand-primary/30 border-t-brand-primary rounded-full animate-spin" />
                         </div>
-                        Loading content...
+                        Načítám…
                     </TableCell>
                 </TableRow>
                 ) : filteredPosts.length === 0 ? (
                 <TableRow>
                     <TableCell colSpan={5} className="text-center py-12 text-brand-text-muted">
-                        No posts found matching your criteria.
+                        Žádné články neodpovídají hledání.
                     </TableCell>
                 </TableRow>
                 ) : (
@@ -142,16 +142,16 @@ export function PostList() {
                     <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                             <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-brand-primary hover:bg-brand-primary/10" asChild>
-                                <Link to={`/blog/${post.slug}`} target="_blank" title="View Live">
+                                <Link to={`/blog/${post.slug}`} target="_blank" title="Zobrazit">
                                     <Eye className="w-4 h-4" />
                                 </Link>
                             </Button>
                         <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-brand-primary hover:bg-brand-primary/10" asChild>
-                            <Link to={`/admin/posts/edit/${post.id}`} title="Edit">
+                            <Link to={`/admin/posts/edit/${post.id}`} title="Upravit">
                             <Pencil className="w-4 h-4" />
                             </Link>
                         </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(post.id)} title="Delete">
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(post.id)} title="Smazat">
                             <Trash2 className="w-4 h-4" />
                         </Button>
                         </div>

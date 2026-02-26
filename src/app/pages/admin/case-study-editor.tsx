@@ -68,7 +68,7 @@ export function CaseStudyEditor() {
             setValue('cardSummary', study.cardSummary || '');
             setValue('cardSummary_cz', study.cardSummary_cz || '');
         } else {
-            toast.error('Case study not found');
+            toast.error('Případová studie nenalezena');
             navigate('/admin/case-studies');
         }
       });
@@ -80,15 +80,15 @@ export function CaseStudyEditor() {
     try {
       if (isEditing && id) {
         await CmsService.updateCaseStudy(id, data);
-        toast.success('Case Study updated');
+        toast.success('Případová studie byla upravena');
       } else {
         await CmsService.createCaseStudy(data);
-        toast.success('Case Study created');
+        toast.success('Případová studie byla vytvořena');
       }
       navigate('/admin/case-studies');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
-      toast.error(`Failed to save: ${message}`);
+      toast.error(`Uložení selhalo: ${message}`);
     } finally {
       setIsLoading(false);
     }
@@ -108,7 +108,7 @@ export function CaseStudyEditor() {
           }`}
         >
           <Globe className="w-3 h-3" />
-          {lang === 'en' ? 'English' : 'Čeština'}
+          {lang === 'en' ? 'Angličtina' : 'Čeština'}
         </button>
       ))}
     </div>
@@ -123,17 +123,17 @@ export function CaseStudyEditor() {
           </Button>
           <div>
               <h1 className="text-xl font-bold tracking-tight text-brand-text-primary">
-                {isEditing ? 'Edit Case Study' : 'New Case Study'}
+                {isEditing ? 'Upravit případovou studii' : 'Nová případová studie'}
               </h1>
               <p className="text-xs text-brand-text-muted">
-                  Share a client success story
+                  Sdílejte úspěšný příběh klienta
               </p>
           </div>
         </div>
         <div className="flex items-center gap-3">
             <Button onClick={handleSubmit(onSubmit)} disabled={isLoading} className="bg-brand-primary hover:bg-brand-primary-hover shadow-md min-w-[120px]">
                 <Save className="w-4 h-4 mr-2" />
-                {isLoading ? 'Saving...' : 'Save Study'}
+                {isLoading ? 'Ukládám…' : 'Uložit studii'}
             </Button>
         </div>
       </div>
@@ -144,25 +144,25 @@ export function CaseStudyEditor() {
             <Card className="border-brand-border/60 shadow-sm">
                 <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 pb-4">
                     <CardTitle className="text-base font-semibold text-brand-text-secondary flex items-center gap-2">
-                        <Briefcase className="w-4 h-4" /> Client & Overview
+                        <Briefcase className="w-4 h-4" /> Klient a přehled
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Client Name</Label>
+                            <Label className="text-brand-text-secondary">Název klienta</Label>
                             <Input {...register('clientName', { required: true })} placeholder="Acme Corp" className="border-brand-border/60 focus:ring-brand-primary/20" />
                         </div>
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Industry (EN)</Label>
-                            <Input {...register('industry')} placeholder="Tech, Health, etc." className="border-brand-border/60 focus:ring-brand-primary/20" />
+                            <Label className="text-brand-text-secondary">Odvětví (EN)</Label>
+                            <Input {...register('industry')} placeholder="Technologie, zdravotnictví, apod." className="border-brand-border/60 focus:ring-brand-primary/20" />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Case Study Title (EN)</Label>
-                            <Input {...register('title', { required: true })} placeholder="How we saved..." className="border-brand-border/60 focus:ring-brand-primary/20 font-medium text-lg" />
+                            <Label className="text-brand-text-secondary">Název studie (EN)</Label>
+                            <Input {...register('title', { required: true })} placeholder="Jak jsme…" className="border-brand-border/60 focus:ring-brand-primary/20 font-medium text-lg" />
                         </div>
                         <div className="space-y-2">
                             <Label className="text-brand-text-secondary">Název (CZ)</Label>
@@ -179,41 +179,41 @@ export function CaseStudyEditor() {
 
             <Card className="border-brand-border/60 shadow-sm">
                 <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 pb-4 flex flex-row items-center justify-between space-y-0">
-                    <CardTitle className="text-base font-semibold text-brand-text-secondary">The Story</CardTitle>
+                    <CardTitle className="text-base font-semibold text-brand-text-secondary">Příběh</CardTitle>
                     <LangTabs />
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
                     {langTab === 'en' ? (
                       <>
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">The Challenge (EN)</Label>
+                            <Label className="text-brand-text-secondary">Výzva (EN)</Label>
                             <Textarea 
                                 {...register('challenge')} 
-                                placeholder="Describe the problem the client faced..." 
+                                placeholder="Popište problém, kterému klient čelil…" 
                                 className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">The Solution (EN)</Label>
+                            <Label className="text-brand-text-secondary">Řešení (EN)</Label>
                             <Textarea 
                                 {...register('solution')} 
-                                placeholder="How did Behavera solve it?" 
+                                placeholder="Jak Behavera problém vyřešila?" 
                                 className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20" 
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Card Summary (EN)</Label>
+                            <Label className="text-brand-text-secondary">Shrnutí na kartě (EN)</Label>
                             <Textarea 
                                 {...register('cardSummary')} 
-                                placeholder="Short summary for the card back..." 
+                                placeholder="Krátké shrnutí pro zadní stranu karty…" 
                                 className="min-h-[80px] border-brand-border/60 focus:ring-brand-primary/20" 
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Full Detailed Content (EN)</Label>
+                            <Label className="text-brand-text-secondary">Kompletní obsah (EN)</Label>
                             <div className="prose-editor min-h-[300px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
                                 <Controller
                                 name="content"
@@ -224,7 +224,7 @@ export function CaseStudyEditor() {
                                         value={field.value} 
                                         onChange={field.onChange} 
                                         className="h-[250px] mb-12"
-                                        placeholder="Tell the full story..."
+                                        placeholder="Napište celý příběh…"
                                     />
                                 )}
                                 />
@@ -288,7 +288,7 @@ export function CaseStudyEditor() {
         <div className="space-y-6">
             <Card className="border-brand-border/60 shadow-sm">
                 <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 py-4">
-                    <CardTitle className="text-sm font-semibold text-brand-text-secondary uppercase tracking-wider">Publishing</CardTitle>
+                    <CardTitle className="text-sm font-semibold text-brand-text-secondary uppercase tracking-wider">Publikování</CardTitle>
                 </CardHeader>
                 <CardContent className="p-6 space-y-4">
                 <div className="space-y-2">
@@ -299,11 +299,11 @@ export function CaseStudyEditor() {
                     render={({ field }) => (
                         <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger className="border-brand-border/60 focus:ring-brand-primary/20">
-                            <SelectValue placeholder="Select status" />
+                            <SelectValue placeholder="Vyberte stav" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="draft">Draft</SelectItem>
-                            <SelectItem value="published">Published</SelectItem>
+                            <SelectItem value="draft">Koncept</SelectItem>
+                            <SelectItem value="published">Publikováno</SelectItem>
                         </SelectContent>
                         </Select>
                     )}
@@ -320,7 +320,7 @@ export function CaseStudyEditor() {
                 </div>
 
                 <div className="space-y-3 pt-4 border-t border-brand-border/40">
-                     <Label className="text-brand-text-secondary text-sm">Cover Image</Label>
+                     <Label className="text-brand-text-secondary text-sm">Hlavní obrázek</Label>
                      <div className="relative">
                         <Input 
                             {...register('coverImage')} 
@@ -337,26 +337,26 @@ export function CaseStudyEditor() {
 
             <Card className="border-brand-border/60 shadow-sm bg-brand-primary/5 border-brand-primary/20">
                 <CardHeader className="py-4 border-b border-brand-primary/10 flex flex-row items-center justify-between space-y-0">
-                    <CardTitle className="text-sm font-bold text-brand-primary uppercase tracking-wider">Key Results</CardTitle>
+                    <CardTitle className="text-sm font-bold text-brand-primary uppercase tracking-wider">Klíčové výsledky</CardTitle>
                     <Button type="button" variant="ghost" size="sm" onClick={() => append({ label: '', value: '' })} className="h-6 w-6 p-0 rounded-full hover:bg-brand-primary/20 text-brand-primary">
                         <Plus className="w-4 h-4" />
                     </Button>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
                     {fields.length === 0 && (
-                        <p className="text-xs text-brand-text-muted text-center italic py-2">Add metrics to highlight success</p>
+                        <p className="text-xs text-brand-text-muted text-center italic py-2">Přidejte metriky pro zvýraznění úspěchu</p>
                     )}
                     {fields.map((field, index) => (
                         <div key={field.id} className="flex gap-2 items-start animate-in slide-in-from-right-2 duration-300">
                             <div className="flex-1 space-y-1">
                                 <Input 
                                     {...register(`results.${index}.value` as const)} 
-                                    placeholder="Value (e.g. 30%)" 
+                                    placeholder="Hodnota (např. 30 %)" 
                                     className="h-8 text-sm font-bold text-brand-primary border-brand-primary/20 focus:border-brand-primary bg-white" 
                                 />
                                 <Input 
                                     {...register(`results.${index}.label` as const)} 
-                                    placeholder="Label (e.g. ROI)" 
+                                    placeholder="Popisek (např. ROI)" 
                                     className="h-7 text-xs border-brand-border/60 bg-white/50" 
                                 />
                             </div>

@@ -23,20 +23,20 @@ export function CaseStudyList() {
       setStudies(data);
       setFilteredStudies(data);
     } catch {
-      toast.error('Failed to load case studies');
+      toast.error('Nepodařilo se načíst případové studie');
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleDelete = async (study: CaseStudy) => {
-    if (!window.confirm(`Delete "${study.clientName}"? This cannot be undone.`)) return;
+    if (!window.confirm(`Opravdu smazat "${study.clientName}"? Tuto akci nelze vrátit.`)) return;
     try {
       await CmsService.deleteCaseStudy(study.id);
-      toast.success(`Deleted: ${study.clientName}`);
+      toast.success(`Smazáno: ${study.clientName}`);
       loadStudies();
     } catch {
-      toast.error('Failed to delete case study');
+      toast.error('Smazání selhalo');
     }
   };
 
@@ -58,13 +58,13 @@ export function CaseStudyList() {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-            <h1 className="text-3xl font-bold tracking-tight text-brand-text-primary">Case Studies</h1>
-            <p className="text-brand-text-secondary">Showcase your success stories and client results.</p>
+            <h1 className="text-3xl font-bold tracking-tight text-brand-text-primary">Případové studie</h1>
+            <p className="text-brand-text-secondary">Správa případových studií a úspěšných příběhů.</p>
         </div>
         <Button asChild className="bg-brand-primary hover:bg-brand-primary-hover shadow-md">
           <Link to="/admin/case-studies/new">
             <Plus className="w-4 h-4 mr-2" />
-            Create New
+            Nová studie
           </Link>
         </Button>
       </div>
@@ -74,7 +74,7 @@ export function CaseStudyList() {
             <div className="relative flex-1 max-w-sm">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted" />
                 <Input 
-                    placeholder="Search clients or titles..." 
+                    placeholder="Hledat klienta nebo název…" 
                     className="pl-9 border-brand-border/60 focus:ring-brand-primary/20 bg-white" 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -88,11 +88,11 @@ export function CaseStudyList() {
             <Table>
             <TableHeader className="bg-brand-background-secondary/30">
                 <TableRow className="border-brand-border/40 hover:bg-transparent">
-                <TableHead className="font-semibold text-brand-text-secondary">Client</TableHead>
-                <TableHead className="font-semibold text-brand-text-secondary">Title</TableHead>
-                <TableHead className="font-semibold text-brand-text-secondary">Industry</TableHead>
-                <TableHead className="font-semibold text-brand-text-secondary">Status</TableHead>
-                <TableHead className="text-right font-semibold text-brand-text-secondary">Actions</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Klient</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Název</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Odvětví</TableHead>
+                <TableHead className="font-semibold text-brand-text-secondary">Stav</TableHead>
+                <TableHead className="text-right font-semibold text-brand-text-secondary">Akce</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -102,13 +102,13 @@ export function CaseStudyList() {
                         <div className="flex justify-center mb-2">
                              <div className="w-6 h-6 border-2 border-brand-primary/30 border-t-brand-primary rounded-full animate-spin" />
                         </div>
-                        Loading case studies...
+                        Načítám…
                     </TableCell>
                 </TableRow>
                 ) : filteredStudies.length === 0 ? (
                 <TableRow>
                     <TableCell colSpan={5} className="text-center py-12 text-brand-text-muted">
-                        No case studies found.
+                        Žádné případové studie nenalezeny.
                     </TableCell>
                 </TableRow>
                 ) : (
@@ -136,16 +136,16 @@ export function CaseStudyList() {
                     <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                             <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-brand-primary hover:bg-brand-primary/10" asChild>
-                                <Link to={`/case-studies/${study.slug}`} target="_blank" title="View Live">
+                                <Link to={`/case-studies/${study.slug}`} target="_blank" title="Zobrazit">
                                     <Eye className="w-4 h-4" />
                                 </Link>
                             </Button>
                         <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-brand-primary hover:bg-brand-primary/10" asChild>
-                            <Link to={`/admin/case-studies/edit/${study.id}`} title="Edit">
+                            <Link to={`/admin/case-studies/edit/${study.id}`} title="Upravit">
                             <Pencil className="w-4 h-4" />
                             </Link>
                         </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(study)} title="Delete">
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-brand-text-muted hover:text-red-600 hover:bg-red-50" onClick={() => handleDelete(study)} title="Smazat">
                             <Trash2 className="w-4 h-4" />
                         </Button>
                         </div>

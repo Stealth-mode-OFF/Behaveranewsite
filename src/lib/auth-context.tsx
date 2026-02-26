@@ -2,11 +2,6 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { supabase } from './supabase';
 import type { User } from '@supabase/supabase-js';
 
-/* ─── Local fallback credentials (used when Supabase is not configured) ─── */
-const LOCAL_ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'admin@behavera.com';
-const LOCAL_ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'admin123';
-const LOCAL_SESSION_KEY = 'behavera_admin_session';
-
 type AuthContextType = {
   isAuthenticated: boolean;
   user: User | null;
@@ -33,18 +28,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!useSupabase) {
-      // Local fallback: check sessionStorage
-      const stored = sessionStorage.getItem(LOCAL_SESSION_KEY);
-      if (stored) {
-        try {
-          setUser(JSON.parse(stored));
-        } catch { /* ignore */ }
-      }
+      setUser(null);
       setIsLoading(false);
       return;
     }
 
-    // Supabase auth
     supabase!.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       setIsLoading(false);
@@ -59,14 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     if (!useSupabase) {
-      // Local fallback auth
-      if (email === LOCAL_ADMIN_EMAIL && password === LOCAL_ADMIN_PASSWORD) {
-        const fakeUser = { id: 'local-admin', email, role: 'admin' } as unknown as User;
-        setUser(fakeUser);
-        sessionStorage.setItem(LOCAL_SESSION_KEY, JSON.stringify(fakeUser));
-        return { success: true };
-      }
-      return { success: false, error: 'Invalid email or password' };
+      return { success: false, error: 'Autentizace není nakonfigurována' };
     }
 
     const { error } = await supabase!.auth.signInWithPassword({ email, password });
@@ -79,7 +60,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     if (!useSupabase) {
       setUser(null);
-      sessionStorage.removeItem(LOCAL_SESSION_KEY);
       return;
     }
     await supabase!.auth.signOut();

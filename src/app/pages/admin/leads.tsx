@@ -396,7 +396,7 @@ export function LeadsPage() {
           </Button>
           <a href="/scan-qr" target="_blank" rel="noopener noreferrer">
             <Button size="sm" className="gap-1.5 bg-brand-primary hover:bg-brand-primary/90">
-              <QrCode className="w-3.5 h-3.5" />QR Signup
+              <QrCode className="w-3.5 h-3.5" />QR registrace
               <ExternalLink className="w-3 h-3 opacity-60" />
             </Button>
           </a>
@@ -460,7 +460,7 @@ export function LeadsPage() {
         </div>
         <div className="flex gap-1 bg-brand-background-secondary rounded-lg p-0.5">
           {([
-            ['all', 'Nezpracované', null, leads.filter(l => !l.processed).length + eventLeads.filter(l => !l.processed).length] as const,
+            ['all', 'Vše', null, null] as const,
             ['unprocessed', '⏳ Čeká', null, leads.filter(l => !l.processed).length + eventLeads.filter(l => !l.processed).length] as const,
             ['processed', '✅ Hotovo', null, leads.filter(l => l.processed).length + eventLeads.filter(l => l.processed).length] as const,
           ]).map(([key, label, , count]) => (
@@ -685,7 +685,7 @@ export function LeadsPage() {
             <QrCode className="w-6 h-6 text-purple-600" />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-brand-text-primary">QR Signup stránka</h3>
+            <h3 className="font-semibold text-brand-text-primary">QR registrace stránka</h3>
             <p className="text-sm text-brand-text-muted mt-0.5">
               Použij tyhle odkazy pro zítřejší event. Můžeš přidat parametry <code className="text-xs bg-white px-1 py-0.5 rounded">?event=HR-Summit&amp;rep=Josef&amp;booth=A12</code>
             </p>

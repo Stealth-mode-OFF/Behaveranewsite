@@ -65,15 +65,15 @@ export function PostEditor() {
     try {
       if (isEditing && id) {
         await CmsService.updatePost(id, data);
-        toast.success('Post updated successfully');
+        toast.success('Článek byl upraven');
       } else {
         await CmsService.createPost(data);
-        toast.success('Post created successfully');
+        toast.success('Článek byl vytvořen');
       }
       navigate('/admin/posts');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unknown error';
-      toast.error(`Failed to save post: ${message}`);
+      toast.error(`Uložení článku selhalo: ${message}`);
     } finally {
       setIsLoading(false);
     }
@@ -93,7 +93,7 @@ export function PostEditor() {
           }`}
         >
           <Globe className="w-3 h-3" />
-          {lang === 'en' ? 'English' : 'Čeština'}
+          {lang === 'en' ? 'Angličtina' : 'Čeština'}
         </button>
       ))}
     </div>
@@ -108,20 +108,20 @@ export function PostEditor() {
           </Button>
           <div>
               <h1 className="text-xl font-bold tracking-tight text-brand-text-primary">
-                {isEditing ? 'Edit Post' : 'New Post'}
+                {isEditing ? 'Upravit článek' : 'Nový článek'}
               </h1>
               <p className="text-xs text-brand-text-muted">
-                  {isEditing ? 'Make changes to your article' : 'Drafting a new insight'}
+                  {isEditing ? 'Upravte obsah článku' : 'Vytváříte nový článek'}
               </p>
           </div>
         </div>
         <div className="flex items-center gap-3">
             <Button variant="outline" className="hidden sm:flex" disabled>
-                <Eye className="w-4 h-4 mr-2" /> Preview
+                <Eye className="w-4 h-4 mr-2" /> Náhled
             </Button>
             <Button onClick={handleSubmit(onSubmit)} disabled={isLoading} className="bg-brand-primary hover:bg-brand-primary-hover shadow-md min-w-[120px]">
                 <Save className="w-4 h-4 mr-2" />
-                {isLoading ? 'Saving...' : 'Save Post'}
+                {isLoading ? 'Ukládám…' : 'Uložit článek'}
             </Button>
         </div>
       </div>
@@ -131,24 +131,24 @@ export function PostEditor() {
         <div className="space-y-6">
             <Card className="border-brand-border/60 shadow-sm overflow-hidden">
                 <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 flex flex-row items-center justify-between space-y-0">
-                    <CardTitle className="text-base font-semibold text-brand-text-secondary">Article Content</CardTitle>
+                    <CardTitle className="text-base font-semibold text-brand-text-secondary">Obsah článku</CardTitle>
                     <LangTabs />
                 </CardHeader>
                 <CardContent className="p-6 space-y-6">
                     {langTab === 'en' ? (
                       <>
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Title (EN)</Label>
+                            <Label className="text-brand-text-secondary">Název (EN)</Label>
                             <Input 
                                 {...register('title', { required: true })} 
-                                placeholder="Enter a catchy title..." 
+                                placeholder="Zadejte chytlavý název…" 
                                 className="text-lg font-medium border-brand-border/60 focus:ring-brand-primary/20 h-12"
                             />
-                            {errors.title && <span className="text-brand-error text-xs">Title is required</span>}
+                            {errors.title && <span className="text-brand-error text-xs">Název je povinný</span>}
                         </div>
                     
                         <div className="space-y-2">
-                            <Label className="text-brand-text-secondary">Body Content (EN)</Label>
+                            <Label className="text-brand-text-secondary">Obsah (EN)</Label>
                             <div className="prose-editor min-h-[500px] border border-brand-border/60 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-brand-primary/20 transition-all">
                                 <Controller
                                 name="content"
@@ -159,7 +159,7 @@ export function PostEditor() {
                                         value={field.value} 
                                         onChange={field.onChange} 
                                         className="h-[450px] mb-12"
-                                        placeholder="Write your story here..."
+                                        placeholder="Napište článek sem…"
                                     />
                                 )}
                                 />
@@ -202,19 +202,19 @@ export function PostEditor() {
 
             <Card className="border-brand-border/60 shadow-sm">
                  <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 flex flex-row items-center justify-between space-y-0">
-                    <CardTitle className="text-base font-semibold text-brand-text-secondary">SEO & Excerpt</CardTitle>
+                    <CardTitle className="text-base font-semibold text-brand-text-secondary">SEO a výtah</CardTitle>
                     <LangTabs />
                 </CardHeader>
                 <CardContent className="p-6">
                     {langTab === 'en' ? (
                       <div className="space-y-2">
-                        <Label className="text-brand-text-secondary">Excerpt (EN)</Label>
+                        <Label className="text-brand-text-secondary">Výtah (EN)</Label>
                         <Textarea 
                             {...register('excerpt')} 
-                            placeholder="Short summary for list views and SEO..." 
+                            placeholder="Krátké shrnutí pro výpis a SEO…" 
                             className="min-h-[100px] border-brand-border/60 focus:ring-brand-primary/20 resize-none" 
                         />
-                        <p className="text-xs text-brand-text-muted text-right">Recommended: 150-160 characters</p>
+                        <p className="text-xs text-brand-text-muted text-right">Doporučeno: 150-160 znaků</p>
                       </div>
                     ) : (
                       <div className="space-y-2">
@@ -235,22 +235,22 @@ export function PostEditor() {
         <div className="space-y-6">
           <Card className="border-brand-border/60 shadow-sm">
             <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 py-4">
-                <CardTitle className="text-sm font-semibold text-brand-text-secondary uppercase tracking-wider">Publishing</CardTitle>
+                <CardTitle className="text-sm font-semibold text-brand-text-secondary uppercase tracking-wider">Publikování</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-4">
               <div className="space-y-2">
-                <Label className="text-brand-text-secondary text-sm">Status</Label>
+                <Label className="text-brand-text-secondary text-sm">Stav</Label>
                 <Controller
                   name="status"
                   control={control}
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="border-brand-border/60 focus:ring-brand-primary/20">
-                        <SelectValue placeholder="Select status" />
+                        <SelectValue placeholder="Vyberte stav" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="draft">Draft</SelectItem>
-                        <SelectItem value="published">Published</SelectItem>
+                        <SelectItem value="draft">Koncept</SelectItem>
+                        <SelectItem value="published">Publikováno</SelectItem>
                       </SelectContent>
                     </Select>
                   )}
@@ -258,7 +258,7 @@ export function PostEditor() {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-brand-text-secondary text-sm">URL Slug</Label>
+                <Label className="text-brand-text-secondary text-sm">URL slug</Label>
                 <Input 
                     {...register('slug')} 
                     placeholder="url-friendly-slug" 
@@ -270,15 +270,15 @@ export function PostEditor() {
 
           <Card className="border-brand-border/60 shadow-sm">
             <CardHeader className="bg-brand-background-secondary/10 border-b border-brand-border/40 py-4">
-                <CardTitle className="text-sm font-semibold text-brand-text-secondary uppercase tracking-wider">Media</CardTitle>
+                <CardTitle className="text-sm font-semibold text-brand-text-secondary uppercase tracking-wider">Média</CardTitle>
             </CardHeader>
             <CardContent className="p-6 space-y-4">
               <div className="space-y-3">
-                <Label className="text-brand-text-secondary text-sm">Cover Image</Label>
+                <Label className="text-brand-text-secondary text-sm">Hlavní obrázek</Label>
                 <div className="border-2 border-dashed border-brand-border hover:border-brand-primary/40 rounded-lg p-6 flex flex-col items-center justify-center text-center transition-colors cursor-pointer bg-brand-background-secondary/20">
                     <ImageIcon className="w-8 h-8 text-brand-text-muted mb-2" />
-                    <span className="text-xs text-brand-text-secondary font-medium">Click to upload</span>
-                    <span className="text-[10px] text-brand-text-muted mt-1">or drag and drop</span>
+                    <span className="text-xs text-brand-text-secondary font-medium">Klikněte pro nahrání</span>
+                    <span className="text-[10px] text-brand-text-muted mt-1">nebo přetáhněte sem</span>
                 </div>
                 <div className="relative">
                     <Input 
@@ -291,7 +291,7 @@ export function PostEditor() {
                     </div>
                 </div>
                 <p className="text-[10px] text-brand-text-muted leading-tight">
-                    Paste an image URL or configure Supabase Storage to enable direct uploads.
+                    Vložte URL obrázku nebo nastavte Supabase Storage pro přímé nahrávání.
                 </p>
               </div>
             </CardContent>

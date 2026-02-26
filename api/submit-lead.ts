@@ -24,6 +24,7 @@ interface LeadPayload {
   companySize?: string;
   role?: string;
   source?: string;
+  _hp?: string;
 }
 
 interface PipedriveSearchResult {
@@ -151,9 +152,19 @@ export default async function handler(request: Request): Promise<Response> {
   try {
     const payload: LeadPayload = await request.json();
 
+    if (payload._hp) {
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: corsHeaders });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     // Validate required fields
     if (!payload.email) {
       return new Response(JSON.stringify({ error: 'Email is required' }), { status: 400, headers: corsHeaders });
+    }
+
+    if (!emailRegex.test(payload.email)) {
+      return new Response(JSON.stringify({ error: 'Invalid email format' }), { status: 400, headers: corsHeaders });
     }
 
     // Normalize source - always include behavera.com

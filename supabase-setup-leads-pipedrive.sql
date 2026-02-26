@@ -42,3 +42,26 @@ BEGIN
 END $$;
 
 SELECT 'Pipedrive + processed columns added to leads & event_leads ✅' AS message;
+
+-- ── admin_audit_log table ──
+CREATE TABLE IF NOT EXISTS admin_audit_log (
+  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  email text NOT NULL,
+  endpoint text NOT NULL,
+  method text NOT NULL,
+  timestamp timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS admin_audit_log_email_idx ON admin_audit_log(email);
+CREATE INDEX IF NOT EXISTS admin_audit_log_timestamp_idx ON admin_audit_log(timestamp DESC);
+
+ALTER TABLE admin_audit_log ENABLE ROW LEVEL SECURITY;
+
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE tablename = 'admin_audit_log' AND policyname = 'Service role full access'
+  ) THEN
+    CREATE POLICY "Service role full access" ON admin_audit_log FOR ALL TO service_role USING (true) WITH CHECK (true);
+  END IF;
+END $$;

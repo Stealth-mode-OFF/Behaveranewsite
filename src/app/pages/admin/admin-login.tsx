@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 
 export function AdminLogin() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setHeslo] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export function AdminLogin() {
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     if (!email || !password) {
-      toast.error('Please enter email and password');
+      toast.error('Zadejte email a heslo');
       return;
     }
     setIsLoading(true);
@@ -31,13 +31,13 @@ export function AdminLogin() {
     try {
       const result = await login(email, password);
       if (result.success) {
-        toast.success('Welcome back');
+        toast.success('Vítejte zpět');
         navigate('/admin');
       } else {
-        toast.error(result.error || 'Invalid credentials');
+        toast.error(result.error || 'Neplatné přihlašovací údaje');
       }
     } catch {
-      toast.error('Authentication service unavailable');
+      toast.error('Služba ověření je nedostupná');
     } finally {
       setIsLoading(false);
     }
@@ -57,8 +57,8 @@ export function AdminLogin() {
             <Lock className="w-8 h-8 text-brand-primary" />
           </div>
           <div className="space-y-1">
-            <CardTitle className="text-2xl font-bold text-brand-text-primary">Admin Portal</CardTitle>
-            <CardDescription className="text-brand-text-muted">Sign in with your Supabase account</CardDescription>
+            <CardTitle className="text-2xl font-bold text-brand-text-primary">Administrace</CardTitle>
+            <CardDescription className="text-brand-text-muted">Přihlaste se svým účtem</CardDescription>
           </div>
         </CardHeader>
         <CardContent>
@@ -68,7 +68,7 @@ export function AdminLogin() {
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted" />
                 <Input
                   type="email"
-                  placeholder="Email address"
+                  placeholder="E-mailová adresa"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={isLoading}
@@ -78,9 +78,9 @@ export function AdminLogin() {
               </div>
               <Input
                 type="password"
-                placeholder="Password"
+                placeholder="Heslo"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setHeslo(e.target.value)}
                 disabled={isLoading}
                 className="h-12 border-brand-border focus:ring-brand-primary/20 transition-all bg-white"
                 autoComplete="current-password"
@@ -91,7 +91,7 @@ export function AdminLogin() {
                 className="w-full h-12 text-base font-semibold bg-brand-primary hover:bg-brand-primary-hover transition-all shadow-md hover:shadow-lg" 
                 disabled={isLoading}
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {isLoading ? 'Přihlašuji…' : 'Přihlásit se'}
               {!isLoading && <ArrowRight className="w-4 h-4 ml-2" />}
             </Button>
           </form>

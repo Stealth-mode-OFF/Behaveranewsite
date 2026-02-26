@@ -50,6 +50,7 @@ interface OnboardingPayload {
 
   // Teams (Step 3)
   teams: TeamPayload[];
+  _hp?: string;
 }
 
 /* ─── Supabase helpers ─── */
@@ -327,10 +328,22 @@ export default async function handler(request: Request): Promise<Response> {
   try {
     const payload: OnboardingPayload = await request.json();
 
+    if ((payload as { _hp?: string })._hp) {
+      return new Response(JSON.stringify({ success: true, submissionId: 'ok' }), { status: 200, headers: corsHeaders });
+    }
+
     // Validate required fields
     if (!payload.repEmail || !payload.companyName) {
       return new Response(
         JSON.stringify({ error: 'Email and company name are required' }),
+        { status: 400, headers: corsHeaders }
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(payload.repEmail)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid email format' }),
         { status: 400, headers: corsHeaders }
       );
     }
