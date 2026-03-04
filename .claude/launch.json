@@ -4,8 +4,8 @@
     {
       "name": "vite-dev",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["vite"],
-      "port": 5173
+      "runtimeArgs": ["vite", "--port", "5199", "--host", "127.0.0.1"],
+      "port": 5199
     },
     {
       "name": "vite-preview",

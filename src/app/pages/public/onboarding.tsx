@@ -51,6 +51,9 @@ import {
 import { useAresLookup, type AresResult } from "@/app/hooks/use-ares-lookup";
 import { parseContactsFile, CSV_ACCEPT, type ParsedContact } from "@/app/utils/csv-parser";
 import { toast } from "sonner";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("pk_test_51T7Bp6Rq27QBJtVSvx0Z8vDBVWXEaLQDDXCMF099R0SpjDJY4B2d2iNwNiNvf3IhQpz4d7DJf1IutbdkeD6sQjcX003PTS8i2N");
 
 /* ─── Types ─── */
 type OnboardingFormData = {
@@ -62,7 +65,7 @@ type OnboardingFormData = {
   adminName: string;
   adminEmail: string;
   employeeCount: number;
-  billingInterval: "monthly" | "yearly";
+  billingInterval: "monthly" | "yearly" | "custom";
   agreedToTerms: boolean;
 };
 
@@ -70,7 +73,7 @@ type OnboardingFormData = {
 const STEPS = [
   { id: "company", icon: Building2 },
   { id: "teams", icon: Users },
-  { id: "confirm", icon: CreditCard },
+  { id: "signup", icon: Rocket },
 ] as const;
 
 /* ─── Motivational step micro-copy ─── */
@@ -180,7 +183,7 @@ const copy = {
   cz: {
     pageTitle: "Vytvořte si Behavera účet",
     pageSubtitle: "Zabere to méně než 2 minuty",
-    steps: ["Společnost", "Týmy", "Potvrzení"],
+    steps: ["Společnost", "Týmy", "Registrace"],
     s0Title: "Základní údaje",
     s0Subtitle: "Tyto údaje použijeme k nastavení vašeho účtu a fakturace.",
     companyName: "Název společnosti",
@@ -230,45 +233,45 @@ const copy = {
     loadingContacts: "Načítám adresář…",
     errorOAuth: "Nepodařilo se propojit. Zkuste to znovu.",
     errorOAuthNotConfigured: "Přihlášení přes Google/Microsoft ještě není aktivní. Přeskočte a přidejte zaměstnance ručně.",
-    s2Title: "Potvrzení & spuštění",
-    s2Subtitle: "Zkontrolujte údaje a potvrďte vytvoření účtu.",
+    s2Title: "Vyberte si plán",
+    s2Subtitle: "Zvolte plán, který vyhovuje vaší firmě.",
     summaryCompany: "Společnost",
     summaryRep: "Zástupce",
     summaryAdmin: "Administrátor",
     summaryTeams: "Týmy",
     summaryMembers: "členů",
     employeeCount: "Počet zaměstnanců",
-    employeeCountHelper: "Kolik lidí bude Behavera používat?",
-    plan: "Ceník",
-    monthly: "Měsíčně",
+    employeeCountPlaceholder: "Minimálně 5",
+    employeeCountHelper: "Kolik lidí bude Behavera používat (vyplňovat Pulz nebo přistupovat k výsledkům)?",
+    planOptions: "Plán",
+    annual: "Roční plán",
+    annualRecommended: "DOPORUČENO",
+    annualDesc: "Nejlepší hodnota\nRoční fakturace, bez skrytých poplatků",
+    monthly: "Měsíční plán",
+    monthlyDesc: "Flexibilní, bez závazku",
+    custom: "Individuální plán",
+    customDesc: "Potřebujete speciální podmínky? Ozveme se vám.",
+    customSelected: "Budeme vás kontaktovat s individuální nabídkou do 24 hodin.",
     yearly: "Ročně",
     saveTag: "Ušetřete 20 %",
     pricePerPerson: "za osobu / měsíc",
     termsAgree: "Souhlasím s",
     termsLink: "Obchodními podmínkami",
-    termsAnd: "a",
-    privacyLink: "Ochranou osobních údajů",
-    guarantee: "30denní garance vrácení peněz. Bez otázek.",
+    guarantee: "30denní garance vrácení peněz. Pokud se rozhodnete, že Behavera není pro vás, vrátíme vám peníze — bez otázek.",
+    legalNote: "Níže potvrzujete plán, cenu a podmínky spolupráce. Odesláním formuláře uzavíráte smlouvu. Pokud jste obdrželi individuální nabídku, potvrzujete podmínky v ní uvedené.",
     adjustLater: "Počet zaměstnanců můžete kdykoli upravit.",
     billingStarts: "Fakturace začíná až po aktivaci.",
     teamsConfigLater: "Týmy můžete přidat nebo změnit i později.",
     submit: "Vytvořit účet",
-    submitting: ["Vytvářím účet…", "Ukládám týmy…", "Nastavuji fakturaci…", "Připravuji vše…", "Hotovo ✓"],
-    doneTitle: "Vše je připravené!",
-    doneSubtitle: "Zkontrolujte si údaje naposledy a spusťte Behavera.",
-    doneButton: "Spustit firemní dashboard",
-    doneValueReminder: "První přehledy o vašich týmech uvidíte do 1 hodiny.",
-    doneTrustCancel: "Zrušit kdykoli",
-    doneTrustNoContract: "Bez dlouhodobé smlouvy",
-    doneTeamsLater: "Týmy nakonfigurujete kdykoli v dashboardu.",
-    successTitle: "Máte to! 🎉",
-    successSubtitle: "Váš Behavera účet je připravený. Tady je, co se stane dál:",
+    submitting: ["Vytvářím účet…", "Ukládám týmy…", "Připravuji platbu…", "Otevírám platební bránu…", "Hotovo ✓"],
+    successTitle: "Děkujeme! 🎉",
+    successSubtitle: "Vaše registrace proběhla úspěšně. Tady je, co se stane dál:",
     successCta: "Zpět na hlavní stránku",
     successTimeline: [
-      { icon: "mail", title: "Pozvánka odeslána", desc: "Admin obdrží email s přístupovými údaji." },
-      { icon: "phone", title: "Ozveme se do 1h", desc: "Provedeme vás úvodním nastavením." },
-      { icon: "rocket", title: "Spuštění do 24h", desc: "První pulz poběží ještě dnes nebo zítra." },
-      { icon: "sparkles", title: "Data do 7 dní", desc: "První insights a doporučení pro váš tým." },
+      { icon: "mail", title: "Potvrzení odesláno", desc: "Na váš email jsme odeslali potvrzení registrace." },
+      { icon: "phone", title: "Ozveme se vám", desc: "Náš tým vás bude kontaktovat do 24 hodin." },
+      { icon: "rocket", title: "Společně nastavíme", desc: "Provedeme vás úvodním nastavením a spuštěním." },
+      { icon: "sparkles", title: "Insights do 7 dní", desc: "První přehledy a doporučení pro váš tým." },
     ],
     successQuote: "\"Nejlepší rozhodnutí za posledních 12 měsíců.\"",
     successQuoteAuthor: "— HR ředitelka, 200+ zaměstnanců",
@@ -279,7 +282,7 @@ const copy = {
   en: {
     pageTitle: "Create your Behavera account",
     pageSubtitle: "Takes less than 2 minutes",
-    steps: ["Company", "Teams", "Confirm"],
+    steps: ["Company", "Teams", "Sign up"],
     s0Title: "Basic details",
     s0Subtitle: "We use these details to set up your account and billing.",
     companyName: "Company name",
@@ -329,44 +332,44 @@ const copy = {
     loadingContacts: "Importing directory…",
     errorOAuth: "Connection failed. Please try again.",
     errorOAuthNotConfigured: "Google/Microsoft sign-in is not yet active. Skip and add employees manually.",
-    s2Title: "Confirm & launch",
-    s2Subtitle: "Review the details and confirm account creation.",
+    s2Title: "Choose your plan",
+    s2Subtitle: "Select the plan that fits your company.",
     summaryCompany: "Company",
     summaryRep: "Representative",
     summaryAdmin: "Admin",
     summaryTeams: "Teams",
     summaryMembers: "members",
     employeeCount: "Number of employees",
-    employeeCountHelper: "How many people will use Behavera?",
-    plan: "Pricing",
-    monthly: "Monthly",
+    employeeCountPlaceholder: "Minimum is 5",
+    employeeCountHelper: "How many people will use Behavera (answer Pulse or access the results)?",
+    planOptions: "Plan options",
+    annual: "Annual plan",
+    annualRecommended: "RECOMMENDED",
+    annualDesc: "Best value\nAnnual billing, no hidden fees",
+    monthly: "Monthly plan",
+    monthlyDesc: "Flexible option with no commitment",
+    custom: "Custom plan",
+    customDesc: "Need special terms? We'll get in touch.",
+    customSelected: "We'll contact you with a custom offer within 24 hours.",
     yearly: "Yearly",
     saveTag: "Save 20%",
-    pricePerPerson: "per person / month",
+    pricePerPerson: "per employee / month",
     termsAgree: "I agree to the",
     termsLink: "Terms of Service",
-    termsAnd: "and",
-    privacyLink: "Privacy Policy",
-    guarantee: "30-day money-back guarantee. No questions asked.",
+    guarantee: "30-day money-back guarantee. If you decide Behavera isn't for you, we'll refund you — no questions asked.",
+    legalNote: "Below you confirm the plan, price, and terms for our cooperation. By submitting this form, you enter into the agreement. If you received a custom offer from us, you confirm the terms stated there.",
     adjustLater: "You can adjust the number of employees anytime.",
     billingStarts: "Billing starts after activation.",
     teamsConfigLater: "You can add or change teams later.",
     submit: "Create account",
-    submitting: ["Creating account…", "Saving teams…", "Setting up billing…", "Preparing everything…", "Done ✓"],
-    doneTitle: "Everything is ready!",
-    doneSubtitle: "Review your details one last time and launch Behavera.",
-    doneButton: "Launch company dashboard",
-    doneValueReminder: "Your first team insights will be visible within 1 hour.",
-    doneTrustCancel: "Cancel anytime",
-    doneTrustNoContract: "No long-term contract",
-    doneTeamsLater: "You can configure teams anytime in your dashboard.",
-    successTitle: "You're in! 🎉",
-    successSubtitle: "Your Behavera account is ready. Here's what happens next:",
+    submitting: ["Creating account…", "Saving teams…", "Preparing payment…", "Opening checkout…", "Done ✓"],
+    successTitle: "Thank you! 🎉",
+    successSubtitle: "Your registration was successful. Here's what happens next:",
     successCta: "Back to homepage",
     successTimeline: [
-      { icon: "mail", title: "Invite sent", desc: "Admin will receive an email with access credentials." },
-      { icon: "phone", title: "We'll call within 1h", desc: "We'll walk you through the initial setup." },
-      { icon: "rocket", title: "Live within 24h", desc: "First pulse goes out today or tomorrow." },
+      { icon: "mail", title: "Confirmation sent", desc: "We've sent a confirmation to your email." },
+      { icon: "phone", title: "We'll be in touch", desc: "Our team will contact you within 24 hours." },
+      { icon: "rocket", title: "Setup together", desc: "We'll walk you through setup and launch." },
       { icon: "sparkles", title: "Insights in 7 days", desc: "First recommendations for your team." },
     ],
     successQuote: "\"Best decision we made in the last 12 months.\"",
@@ -378,7 +381,7 @@ const copy = {
   de: {
     pageTitle: "Erstellen Sie Ihr Behavera Konto",
     pageSubtitle: "Dauert weniger als 2 Minuten",
-    steps: ["Unternehmen", "Teams", "Bestätigung"],
+    steps: ["Unternehmen", "Teams", "Registrierung"],
     s0Title: "Grunddaten",
     s0Subtitle: "Wir verwenden diese Daten für Ihr Konto und die Abrechnung.",
     companyName: "Firmenname",
@@ -428,44 +431,44 @@ const copy = {
     loadingContacts: "Verzeichnis wird importiert…",
     errorOAuth: "Verbindung fehlgeschlagen. Bitte erneut versuchen.",
     errorOAuthNotConfigured: "Google/Microsoft-Anmeldung ist noch nicht aktiv. Überspringen Sie und fügen Sie Mitarbeiter manuell hinzu.",
-    s2Title: "Bestätigen & starten",
-    s2Subtitle: "Überprüfen Sie die Details und bestätigen Sie die Kontoerstellung.",
+    s2Title: "Wählen Sie Ihren Plan",
+    s2Subtitle: "Wählen Sie den Plan, der zu Ihrem Unternehmen passt.",
     summaryCompany: "Unternehmen",
     summaryRep: "Vertreter",
     summaryAdmin: "Admin",
     summaryTeams: "Teams",
     summaryMembers: "Mitglieder",
     employeeCount: "Anzahl der Mitarbeiter",
-    employeeCountHelper: "Wie viele Personen werden Behavera nutzen?",
-    plan: "Preise",
-    monthly: "Monatlich",
+    employeeCountPlaceholder: "Minimum 5",
+    employeeCountHelper: "Wie viele Personen werden Behavera nutzen (Pulse beantworten oder Ergebnisse einsehen)?",
+    planOptions: "Planoptionen",
+    annual: "Jahresplan",
+    annualRecommended: "EMPFOHLEN",
+    annualDesc: "Bestes Preis-Leistungs-Verhältnis\nJährliche Abrechnung, keine versteckten Gebühren",
+    monthly: "Monatsplan",
+    monthlyDesc: "Flexibel und ohne Bindung",
+    custom: "Individueller Plan",
+    customDesc: "Brauchen Sie Sonderkonditionen? Wir melden uns.",
+    customSelected: "Wir kontaktieren Sie innerhalb von 24 Stunden mit einem individuellen Angebot.",
     yearly: "Jährlich",
     saveTag: "20 % sparen",
-    pricePerPerson: "pro Person / Monat",
+    pricePerPerson: "pro Mitarbeiter / Monat",
     termsAgree: "Ich stimme den",
     termsLink: "Nutzungsbedingungen",
-    termsAnd: "und der",
-    privacyLink: "Datenschutzerklärung",
-    guarantee: "30 Tage Geld-zurück-Garantie. Ohne Fragen.",
+    guarantee: "30 Tage Geld-zurück-Garantie. Wenn Behavera nicht das Richtige für Sie ist, erstatten wir Ihnen den Betrag — ohne Fragen.",
+    legalNote: "Nachfolgend bestätigen Sie Plan, Preis und Kooperationsbedingungen. Mit dem Absenden gehen Sie eine Vereinbarung ein. Falls Sie ein individuelles Angebot erhalten haben, bestätigen Sie die dort genannten Konditionen.",
     adjustLater: "Anzahl der Mitarbeiter jederzeit anpassbar.",
     billingStarts: "Abrechnung beginnt nach der Aktivierung.",
     teamsConfigLater: "Teams können Sie später hinzufügen oder ändern.",
     submit: "Konto erstellen",
-    submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Abrechnung wird eingerichtet…", "Alles wird vorbereitet…", "Fertig ✓"],
-    doneTitle: "Alles ist bereit!",
-    doneSubtitle: "Überprüfen Sie Ihre Angaben ein letztes Mal und starten Sie.",
-    doneButton: "Unternehmens-Dashboard starten",
-    doneValueReminder: "Erste Team-Insights sind innerhalb von 1 Stunde sichtbar.",
-    doneTrustCancel: "Jederzeit kündbar",
-    doneTrustNoContract: "Kein Langzeitvertrag",
-    doneTeamsLater: "Teams können Sie jederzeit im Dashboard konfigurieren.",
-    successTitle: "Geschafft! 🎉",
-    successSubtitle: "Ihr Behavera Konto ist bereit. Das passiert als Nächstes:",
+    submitting: ["Konto wird erstellt…", "Teams werden gespeichert…", "Zahlung wird vorbereitet…", "Checkout wird geöffnet…", "Fertig ✓"],
+    successTitle: "Vielen Dank! 🎉",
+    successSubtitle: "Ihre Registrierung war erfolgreich. Das passiert als Nächstes:",
     successCta: "Zurück zur Startseite",
     successTimeline: [
-      { icon: "mail", title: "Einladung versendet", desc: "Admin erhält eine E-Mail mit Zugangsdaten." },
-      { icon: "phone", title: "Anruf innerhalb 1h", desc: "Wir führen Sie durch die Ersteinrichtung." },
-      { icon: "rocket", title: "Live in 24h", desc: "Erste Pulsmessung läuft heute oder morgen." },
+      { icon: "mail", title: "Bestätigung gesendet", desc: "Wir haben eine Bestätigung an Ihre E-Mail gesendet." },
+      { icon: "phone", title: "Wir melden uns", desc: "Unser Team kontaktiert Sie innerhalb von 24 Stunden." },
+      { icon: "rocket", title: "Gemeinsam einrichten", desc: "Wir führen Sie durch die Einrichtung und den Start." },
       { icon: "sparkles", title: "Insights in 7 Tagen", desc: "Erste Empfehlungen für Ihr Team." },
     ],
     successQuote: "\"Die beste Entscheidung der letzten 12 Monate.\"",
@@ -537,6 +540,9 @@ export function OnboardingPage() {
   const [submitPhase, setSubmitPhase] = useState(0);
   const [teams, setTeams] = useState<Team[]>(draft?.teams ?? []);
 
+  // Stripe embedded checkout
+  const [checkoutClientSecret, setCheckoutClientSecret] = useState<string | null>(null);
+  const checkoutContainerRef = useRef<HTMLDivElement>(null);
 
   // OAuth contacts
   const {
@@ -660,6 +666,59 @@ export function OnboardingPage() {
     saveDraft({ currentStep });
   }, [currentStep, isSuccess, isDone]);
 
+  // Handle Stripe redirect back (success/cancel)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("success") === "true") {
+      clearDraft();
+      setIsSuccess(true);
+      window.history.replaceState({}, "", "/start");
+    }
+    if (params.get("canceled") === "true") {
+      toast.error(
+        language === "cz"
+          ? "Platba byla zrušena. Můžete to zkusit znovu."
+          : language === "de"
+            ? "Zahlung abgebrochen. Versuchen Sie es erneut."
+            : "Payment was canceled. You can try again."
+      );
+      setCurrentStep(2);
+      window.history.replaceState({}, "", "/start");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Mount Stripe Embedded Checkout when clientSecret is available
+  useEffect(() => {
+    if (!checkoutClientSecret || !checkoutContainerRef.current) return;
+
+    let checkoutInstance: { unmount: () => void; destroy: () => void } | null = null;
+
+    (async () => {
+      const stripe = await stripePromise;
+      if (!stripe || !checkoutContainerRef.current) return;
+
+      const secret = checkoutClientSecret;
+      const checkout = await stripe.initEmbeddedCheckout({
+        fetchClientSecret: () => Promise.resolve(secret),
+        onComplete: () => {
+          checkout.destroy();
+          setCheckoutClientSecret(null);
+          clearDraft();
+          setIsSuccess(true);
+        },
+      });
+
+      checkoutInstance = checkout;
+      checkout.mount(checkoutContainerRef.current);
+    })();
+
+    return () => {
+      if (checkoutInstance) {
+        checkoutInstance.destroy();
+      }
+    };
+  }, [checkoutClientSecret]);
+
   const billingInterval = watch("billingInterval");
   const employeeCount = watch("employeeCount");
 
@@ -761,21 +820,25 @@ export function OnboardingPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  /* ─── Auto-set employee count from actual team members ─── */
+  /* ─── Suggest employee count from team members (if they imported teams) ─── */
   const computedFromTeams = useMemo(() => {
     let total = 0;
     for (const team of teams) {
       if (team.leaderEmail?.trim()) total++;
       total += team.members.length;
     }
-    return Math.max(total, 10);
+    return total;
   }, [teams]);
 
   useEffect(() => {
-    if (currentStep === 2) {
-      setValue("employeeCount", computedFromTeams);
+    // Only pre-fill if they actually built teams AND haven't manually entered a count
+    if (currentStep === 2 && computedFromTeams >= 5) {
+      const current = getValues("employeeCount");
+      if (!current || current === 50) {
+        setValue("employeeCount", computedFromTeams);
+      }
     }
-  }, [currentStep, computedFromTeams, setValue]);
+  }, [currentStep, computedFromTeams, setValue, getValues]);
 
   /* ─── Step validation ─── */
   const validateStep = useCallback(
@@ -790,7 +853,7 @@ export function OnboardingPage() {
           "adminEmail",
         ],
         1: [],
-        2: ["employeeCount", "agreedToTerms"],
+        2: ["agreedToTerms"],
       };
       if (!fieldsByStep[step] || fieldsByStep[step].length === 0) return true;
       return await trigger(fieldsByStep[step]);
@@ -836,16 +899,12 @@ export function OnboardingPage() {
     setIsSubmitting(true);
     setSubmitPhase(0);
 
-    // Progress through visual phases — realistic for hundreds of employees
-    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 2500);
-    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 5500);
-    const phaseTimer3 = setTimeout(() => setSubmitPhase(3), 8000);
+    const phaseTimer1 = setTimeout(() => setSubmitPhase(1), 2000);
+    const phaseTimer2 = setTimeout(() => setSubmitPhase(2), 4000);
 
-    // Minimum visual processing time — money is involved, don't rush
-    const minDelay = new Promise((r) => setTimeout(r, 10000));
+    const minDelay = new Promise((r) => setTimeout(r, 5000));
 
     try {
-      // Send COMPLETE onboarding data (company, teams, members, OAuth info)
       const fullPayload = {
         companyName: data.companyName,
         companyId: data.companyId || undefined,
@@ -880,9 +939,10 @@ export function OnboardingPage() {
         minDelay,
       ]);
 
+      let submissionId: string | null = null;
+
       if (!res.ok) {
         console.warn("Onboarding API failed, falling back to basic lead");
-        // Fallback: at least save basic lead to Pipedrive
         const totalMembers = teams.reduce(
           (sum, t) => sum + t.members.length,
           0
@@ -894,118 +954,64 @@ export function OnboardingPage() {
           companySize: String(data.employeeCount),
           source: `onboarding:${data.billingInterval}:${totalMembers}members:${teams.length}teams:${oauthProvider || "manual"}`,
         });
+      } else {
+        const result = await res.json();
+        submissionId = result.submissionId || null;
       }
 
       trackLeadSubmitted("onboarding");
+
+      // ─── Stripe Embedded Checkout for paid plans ───
+      if (data.billingInterval !== "custom" && submissionId) {
+        setSubmitPhase(3); // "Preparing payment..."
+        try {
+          const checkoutRes = await fetch("/api/create-checkout-session", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              submissionId,
+              billingInterval: data.billingInterval,
+              employeeCount: data.employeeCount,
+              currency: isEur ? "eur" : "czk",
+              customerEmail: data.repEmail,
+              companyName: data.companyName,
+            }),
+          });
+
+          const checkout = await checkoutRes.json();
+          if (checkout.clientSecret) {
+            clearTimeout(phaseTimer1);
+            clearTimeout(phaseTimer2);
+            setIsSubmitting(false);
+            setCheckoutClientSecret(checkout.clientSecret);
+            return; // Modal will take over from here
+          }
+        } catch (err) {
+          console.warn("Stripe checkout failed, showing success anyway:", err);
+          // Fall through to success screen if Stripe fails
+        }
+      }
+
+      // Custom plan or Stripe unavailable — show success directly
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
-      clearTimeout(phaseTimer3);
-      setSubmitPhase(4);
+      setSubmitPhase(4); // "Done ✓"
       await new Promise((r) => setTimeout(r, 1000));
       clearDraft();
       setIsSubmitting(false);
-      setIsDone(true);
+      setIsSuccess(true);
     } catch {
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
-      clearTimeout(phaseTimer3);
       setSubmitPhase(4);
       await new Promise((r) => setTimeout(r, 1000));
       clearDraft();
       setIsSubmitting(false);
-      setIsDone(true);
+      setIsSuccess(true);
     }
   };
 
-  /* ─── "Done" confirmation screen — user must click to celebrate ─── */
-  if (isDone && !isSuccess) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-brand-background via-white to-brand-background-secondary flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-md text-center space-y-8"
-        >
-          {/* Big checkmark */}
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.2 }}
-            className="mx-auto w-20 h-20 rounded-full bg-brand-success/10 flex items-center justify-center"
-          >
-            <Check className="w-10 h-10 text-brand-success" strokeWidth={3} />
-          </motion.div>
-
-          <div>
-            <h1 className="text-2xl font-bold text-brand-text-primary mb-2">
-              {txt.doneTitle}
-            </h1>
-            <p className="text-[14px] text-brand-text-muted">
-              {txt.doneSubtitle}
-            </p>
-          </div>
-
-          {/* Summary chips */}
-          <div className="flex flex-wrap justify-center gap-2 text-[12px]">
-            <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
-              {watch("companyName")}
-            </span>
-            <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
-              {watch("employeeCount")} {txt.summaryMembers}
-            </span>
-            {teams.length > 0 ? (
-              <span className="px-3 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary font-semibold">
-                {teams.length} {txt.summaryTeams.toLowerCase()}
-              </span>
-            ) : (
-              <span className="px-3 py-1.5 rounded-full bg-brand-background-muted text-brand-text-muted font-medium">
-                {txt.doneTeamsLater}
-              </span>
-            )}
-            <span className="px-3 py-1.5 rounded-full bg-brand-success/10 text-brand-success font-semibold">
-              {watch("billingInterval") === "yearly" ? txt.yearly : txt.monthly}
-            </span>
-          </div>
-
-          {/* Value reminder */}
-          <p className="text-[13px] font-medium text-brand-text-secondary">
-            {txt.doneValueReminder}
-          </p>
-
-          {/* THE button */}
-          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-            <Button
-              type="button"
-              onClick={() => setIsSuccess(true)}
-              className="h-14 px-12 text-[16px] font-bold shadow-xl shadow-brand-primary/25 bg-gradient-to-r from-brand-primary to-brand-primary-hover w-full"
-            >
-              <Rocket className="w-5 h-5 mr-2" />
-              {txt.doneButton}
-            </Button>
-          </motion.div>
-
-          {/* Trust strip — 3 reassurance items */}
-          <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-brand-text-muted">
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-brand-success" />
-              <span>{txt.guarantee.replace('. No questions asked.', '').replace('. Bez otázek.', '').replace('. Ohne Fragen.', '')}</span>
-            </div>
-            <span className="text-brand-border">·</span>
-            <div className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-brand-success" />
-              <span>{txt.doneTrustCancel}</span>
-            </div>
-            <span className="text-brand-border">·</span>
-            <div className="flex items-center gap-1.5">
-              <Check className="w-3.5 h-3.5 text-brand-success" />
-              <span>{txt.doneTrustNoContract}</span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
+  /* ─── Skip "Done" intermediate — go straight to success ─── */
 
   /* ─── Success screen ─── */
   if (isSuccess) {
@@ -1712,9 +1718,9 @@ export function OnboardingPage() {
                     </div>
                   )}
 
-                  {/* ═════════ STEP 2 — Confirm ═════════ */}
+                  {/* ═════════ STEP 2 — Sign up ═════════ */}
                   {currentStep === 2 && (
-                    <ConfirmStep
+                    <SignupStep
                       txt={txt}
                       language={language}
                       isEur={isEur}
@@ -1722,9 +1728,8 @@ export function OnboardingPage() {
                       yearlyPrice={yearlyPrice}
                       register={register}
                       watch={watch}
-                      getValues={getValues}
+                      setValue={setValue}
                       errors={errors}
-                      teams={teams}
                     />
                   )}
                 </motion.div>
@@ -1814,7 +1819,7 @@ export function OnboardingPage() {
           </div>
           <div className="flex items-center gap-1.5">
             <Gift className="w-3.5 h-3.5 text-brand-warning" />
-            <span>{txt.guarantee}</span>
+            <span>{language === "cz" ? "30denní garance" : language === "de" ? "30 Tage Garantie" : "30-day guarantee"}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Lock className="w-3.5 h-3.5 text-brand-primary" />
@@ -1826,12 +1831,77 @@ export function OnboardingPage() {
           </div>
         </motion.div>
       </main>
+
+      {/* ─── Stripe Embedded Checkout Modal ─── */}
+      <AnimatePresence>
+        {checkoutClientSecret && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => {
+                setCheckoutClientSecret(null);
+                toast.info(
+                  language === "cz"
+                    ? "Platba byla zrušena. Můžete to zkusit znovu."
+                    : language === "de"
+                      ? "Zahlung abgebrochen. Versuchen Sie es erneut."
+                      : "Payment was canceled. You can try again."
+                );
+              }}
+            />
+            {/* Modal container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[600px] max-h-[90vh] mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+            >
+              {/* Modal header */}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-brand-border/50 bg-gradient-to-r from-brand-primary/5 to-transparent">
+                <div className="flex items-center gap-2">
+                  <Lock className="w-4 h-4 text-brand-primary" />
+                  <span className="text-[15px] font-semibold text-brand-text-primary">
+                    {language === "cz" ? "Zabezpečená platba" : language === "de" ? "Sichere Zahlung" : "Secure Payment"}
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    setCheckoutClientSecret(null);
+                    toast.info(
+                      language === "cz"
+                        ? "Platba byla zrušena. Můžete to zkusit znovu."
+                        : language === "de"
+                          ? "Zahlung abgebrochen. Versuchen Sie es erneut."
+                          : "Payment was canceled. You can try again."
+                    );
+                  }}
+                  className="text-brand-text-muted hover:text-brand-text-primary transition-colors p-1 rounded-lg hover:bg-brand-border/30"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+              {/* Stripe checkout iframe */}
+              <div className="flex-1 overflow-y-auto p-1" ref={checkoutContainerRef} />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-/* ─── Confirmation step sub-component ─── */
-function ConfirmStep({
+/* ─── Sign-up step sub-component — premium Behavera design ─── */
+function SignupStep({
   txt,
   language,
   isEur,
@@ -1839,9 +1909,8 @@ function ConfirmStep({
   yearlyPrice,
   register,
   watch,
-  getValues,
+  setValue,
   errors,
-  teams,
 }: {
   txt: (typeof copy)[keyof typeof copy];
   language: string;
@@ -1850,180 +1919,328 @@ function ConfirmStep({
   yearlyPrice: number;
   register: UseFormRegister<OnboardingFormData>;
   watch: UseFormWatch<OnboardingFormData>;
-  getValues: UseFormGetValues<OnboardingFormData>;
+  setValue: (name: keyof OnboardingFormData, value: unknown, options?: { shouldValidate?: boolean }) => void;
   errors: FieldErrors<OnboardingFormData>;
-  teams: Team[];
 }) {
-  const vals = getValues();
   const currentInterval = watch("billingInterval");
   const currentCount = watch("employeeCount");
-  const currentPricePerPerson =
-    currentInterval === "monthly" ? monthlyPrice : yearlyPrice;
-  const monthlyTotal = currentPricePerPerson * currentCount;
-  const annualTotal = monthlyTotal * 12;
-  const totalMembers = teams.reduce(
-    (sum: number, t: Team) => sum + t.members.length,
-    0
-  );
+  const currency = isEur ? "€" : "Kč";
+  const validCount = currentCount >= 5 ? currentCount : 0;
+  const selectedPrice = currentInterval === "yearly" ? yearlyPrice : monthlyPrice;
+  const monthlyTotal = validCount * selectedPrice;
+  const annualSaving = validCount * (monthlyPrice - yearlyPrice) * 12;
+
+  const l = {
+    teamSize: language === "cz" ? "Velikost týmu" : language === "de" ? "Teamgröße" : "Team size",
+    people: language === "cz" ? "lidí" : language === "de" ? "Personen" : "people",
+    perMonth: language === "cz" ? "/ měsíc" : language === "de" ? "/ Monat" : "/ month",
+    totalMonthly: language === "cz" ? "Celkem měsíčně" : language === "de" ? "Gesamt monatlich" : "Total monthly",
+    youSave: language === "cz" ? "S ročním plánem ušetříte" : language === "de" ? "Mit dem Jahresplan sparen Sie" : "You save with annual plan",
+    perYear: language === "cz" ? "/ rok" : language === "de" ? "/ Jahr" : "/ year",
+    orCustom: language === "cz" ? "nebo" : language === "de" ? "oder" : "or",
+  };
 
   return (
     <div className="space-y-7">
-      {/* Summary cards */}
-      <div className="grid sm:grid-cols-2 gap-3">
-        <SummaryCard
-          icon={<Building2 className="w-4 h-4" />}
-          label={txt.summaryCompany}
-          value={vals.companyName}
-          sub={`IČO: ${vals.companyId}`}
-        />
-        <SummaryCard
-          icon={<Crown className="w-4 h-4" />}
-          label={txt.summaryRep}
-          value={vals.repName}
-          sub={vals.repEmail}
-        />
-        <SummaryCard
-          icon={<LayoutDashboard className="w-4 h-4" />}
-          label={txt.summaryAdmin}
-          value={vals.adminName}
-          sub={vals.adminEmail}
-        />
-        <SummaryCard
-          icon={<Users className="w-4 h-4" />}
-          label={txt.summaryTeams}
-          value={`${teams.length} ${teams.length === 1 ? "team" : "teams"}`}
-          sub={`${totalMembers} ${txt.summaryMembers}`}
-        />
-      </div>
-
-      {/* Hint when no teams configured */}
-      {teams.length === 0 && (
-        <p className="text-[11px] text-brand-text-muted flex items-center gap-1.5 -mt-4">
-          <Check className="w-3 h-3 text-brand-success" />
-          {txt.teamsConfigLater}
-        </p>
-      )}
-
-      {/* Employee count slider */}
+      {/* ── Employee count ── */}
       <div>
         <label className="block text-[13px] font-semibold text-brand-text-primary mb-1">
-          {txt.employeeCount}{" "}
-          <span className="text-brand-error">*</span>
+          {txt.employeeCount} <span className="text-brand-error">*</span>
         </label>
-        <p className="text-[11px] text-brand-text-muted mb-3">
+        <p className="text-[11px] text-brand-text-muted mb-2">
           {txt.employeeCountHelper}
         </p>
-        <div className="flex items-center gap-4">
-          <input
-            type="range"
-            min="10"
-            max="350"
-            step="5"
-            {...register("employeeCount", { valueAsNumber: true })}
-            className="flex-1 h-2 appearance-none cursor-pointer bg-brand-border rounded-full
-              [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-brand-primary [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-grab
-              [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-[3px] [&::-moz-range-thumb]:border-brand-primary [&::-moz-range-thumb]:cursor-grab"
-          />
-          <div className="text-xl font-bold font-mono text-brand-primary min-w-[56px] text-right">
-            {currentCount}
+        <div className="flex items-center gap-3">
+          <div className="relative max-w-[160px]">
+            <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted pointer-events-none" />
+            <Input
+              type="number"
+              min="5"
+              placeholder={txt.employeeCountPlaceholder}
+              className="h-12 pl-10 text-[16px] font-semibold"
+              {...register("employeeCount", {
+                valueAsNumber: true,
+                min: { value: 5, message: "Minimum 5" },
+              })}
+            />
           </div>
-        </div>
-        <div className="flex justify-between text-[11px] text-brand-text-muted mt-1 px-1">
-          <span>10</span>
-          <span>100</span>
-          <span>200</span>
-          <span>350+</span>
-        </div>
-        <p className="text-[11px] text-brand-text-muted mt-2 flex items-center gap-1">
-          <Check className="w-3 h-3 text-brand-success" />
-          {txt.adjustLater}
-        </p>
-      </div>
-
-      {/* Billing toggle + price */}
-      <div className="rounded-xl border border-brand-border/60 p-5 bg-gradient-to-r from-brand-background-secondary/50 to-transparent">
-        <div className="flex items-center justify-between mb-4">
-          <h4 className="text-[14px] font-bold text-brand-text-primary">
-            {txt.plan}
-          </h4>
-          <div className="flex bg-brand-background-muted p-1 rounded-lg border border-brand-border">
-            <label
-              className={cn(
-                "px-3 py-1.5 rounded-md text-[12px] font-bold cursor-pointer transition-all",
-                currentInterval === "monthly"
-                  ? "bg-brand-primary text-white shadow-sm"
-                  : "text-brand-text-muted hover:text-brand-primary"
-              )}
+          {validCount > 0 && (
+            <motion.span
+              initial={{ opacity: 0, x: -5 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-[13px] text-brand-text-muted"
             >
-              <input
-                type="radio"
-                value="monthly"
-                className="sr-only"
-                {...register("billingInterval")}
-              />
-              {txt.monthly}
-            </label>
-            <label
-              className={cn(
-                "px-3 py-1.5 rounded-md text-[12px] font-bold cursor-pointer transition-all flex items-center gap-1.5",
-                currentInterval === "yearly"
-                  ? "bg-brand-primary text-white shadow-sm"
-                  : "text-brand-text-muted hover:text-brand-primary"
-              )}
-            >
-              <input
-                type="radio"
-                value="yearly"
-                className="sr-only"
-                {...register("billingInterval")}
-              />
-              {txt.yearly}
-              <span
-                className={cn(
-                  "text-[10px] px-1.5 py-0.5 rounded-full font-bold",
-                  currentInterval === "yearly"
-                    ? "bg-white/20 text-white"
-                    : "bg-brand-success/10 text-brand-success"
-                )}
-              >
-                {txt.saveTag}
-              </span>
-            </label>
-          </div>
+              {validCount} {l.people}
+            </motion.span>
+          )}
         </div>
-        <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-bold text-brand-text-primary font-mono">
-            {isEur
-              ? `\u20AC${monthlyTotal.toLocaleString()}`
-              : `${monthlyTotal.toLocaleString()} K\u010D`}
-          </span>
-          <span className="text-[13px] text-brand-text-muted">
-            / {txt.monthly.toLowerCase()}
-          </span>
-        </div>
-        <p className="text-[12px] text-brand-text-muted mt-1">
-          {isEur
-            ? `\u20AC${currentPricePerPerson}`
-            : `${currentPricePerPerson} K\u010D`}{" "}
-          {txt.pricePerPerson} × {currentCount}
-        </p>
-        {currentInterval === "yearly" && (
-          <p className="text-[12px] font-semibold text-brand-success mt-1">
-            {isEur
-              ? `= \u20AC${annualTotal.toLocaleString()}`
-              : `= ${annualTotal.toLocaleString()} K\u010D`}{" "}
-            / {language === "cz" ? "rok" : language === "de" ? "Jahr" : "year"}
+        {errors.employeeCount && (
+          <p className="text-[12px] text-brand-error flex items-center gap-1 mt-1.5">
+            <AlertCircle className="w-3 h-3" />
+            {errors.employeeCount.message}
           </p>
         )}
-        <p className="text-[11px] text-brand-text-muted mt-2 flex items-center gap-1">
-          <Check className="w-3 h-3 text-brand-success" />
-          {txt.billingStarts}
+      </div>
+
+      {/* ── Plan cards ── */}
+      <div>
+        <label className="block text-[13px] font-semibold text-brand-text-primary mb-3">
+          {txt.planOptions} <span className="text-brand-error">*</span>
+        </label>
+
+        <div className="grid sm:grid-cols-2 gap-3 mb-3">
+          {/* ── Annual plan ── */}
+          <motion.button
+            type="button"
+            whileHover={{ y: -3, boxShadow: "0 12px 24px -4px rgba(124, 58, 237, 0.15)" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => setValue("billingInterval", "yearly", { shouldValidate: true })}
+            className={cn(
+              "relative rounded-2xl border-2 p-5 text-left transition-all cursor-pointer overflow-hidden",
+              currentInterval === "yearly"
+                ? "border-brand-primary bg-gradient-to-br from-brand-primary/[0.06] via-white to-brand-accent/[0.04] shadow-lg shadow-brand-primary/10 ring-1 ring-brand-primary/20"
+                : "border-brand-border/50 bg-white hover:border-brand-primary/30"
+            )}
+          >
+            {/* Corner ribbon */}
+            <div className="absolute -top-px -right-px">
+              <div className="bg-gradient-to-r from-brand-primary to-brand-accent text-white text-[9px] font-bold uppercase tracking-widest px-5 py-1 rounded-bl-xl rounded-tr-xl shadow-sm">
+                {txt.annualRecommended}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className={cn(
+                "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
+                currentInterval === "yearly" ? "border-brand-primary bg-brand-primary" : "border-brand-border"
+              )}>
+                {currentInterval === "yearly" && (
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                  </motion.div>
+                )}
+              </div>
+              <span className="text-[15px] font-bold text-brand-text-primary">{txt.annual}</span>
+            </div>
+
+            <div className="ml-[30px]">
+              <div className="flex items-baseline gap-1">
+                <span className="text-3xl font-extrabold text-brand-text-primary tracking-tight">
+                  {currency === "Kč" ? yearlyPrice : yearlyPrice}
+                </span>
+                <span className="text-[13px] text-brand-text-muted font-medium">
+                  {currency === "Kč" ? ` Kč` : ``}
+                </span>
+                {currency !== "Kč" && <span className="text-[15px] font-semibold text-brand-text-muted">{currency}</span>}
+              </div>
+              <p className="text-[12px] text-brand-text-muted -mt-0.5 mb-3">
+                {txt.pricePerPerson}
+              </p>
+              <div className="space-y-1.5">
+                <p className="text-[12px] text-brand-text-secondary flex items-center gap-2">
+                  <span className="w-4 h-4 rounded-full bg-brand-warning/15 flex items-center justify-center shrink-0">
+                    <Zap className="w-2.5 h-2.5 text-brand-warning" />
+                  </span>
+                  {(txt.annualDesc || "").split("\n")[0]}
+                </p>
+                <p className="text-[12px] text-brand-text-secondary flex items-center gap-2">
+                  <span className="w-4 h-4 rounded-full bg-brand-success/15 flex items-center justify-center shrink-0">
+                    <Check className="w-2.5 h-2.5 text-brand-success" />
+                  </span>
+                  {(txt.annualDesc || "").split("\n")[1]}
+                </p>
+              </div>
+            </div>
+
+            {/* Savings badge */}
+            {currentInterval === "yearly" && validCount >= 5 && (
+              <motion.div
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-3 ml-[30px] inline-flex items-center gap-1.5 text-[11px] font-bold text-brand-success bg-brand-success/10 px-3 py-1.5 rounded-lg"
+              >
+                <Sparkles className="w-3 h-3" />
+                {l.youSave} {currency === "Kč" ? `${annualSaving.toLocaleString("cs-CZ")} Kč` : `${currency}${annualSaving}`} {l.perYear}
+              </motion.div>
+            )}
+          </motion.button>
+
+          {/* ── Monthly plan ── */}
+          <motion.button
+            type="button"
+            whileHover={{ y: -3 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => setValue("billingInterval", "monthly", { shouldValidate: true })}
+            className={cn(
+              "relative rounded-2xl border-2 p-5 text-left transition-all cursor-pointer",
+              currentInterval === "monthly"
+                ? "border-brand-primary bg-gradient-to-br from-brand-primary/[0.04] to-white shadow-lg shadow-brand-primary/10 ring-1 ring-brand-primary/20"
+                : "border-brand-border/50 bg-white hover:border-brand-primary/30"
+            )}
+          >
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className={cn(
+                "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
+                currentInterval === "monthly" ? "border-brand-primary bg-brand-primary" : "border-brand-border"
+              )}>
+                {currentInterval === "monthly" && (
+                  <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                  </motion.div>
+                )}
+              </div>
+              <span className="text-[15px] font-bold text-brand-text-primary">{txt.monthly}</span>
+            </div>
+
+            <div className="ml-[30px]">
+              <div className="flex items-baseline gap-1">
+                <span className="text-3xl font-extrabold text-brand-text-primary tracking-tight">
+                  {monthlyPrice}
+                </span>
+                <span className="text-[13px] text-brand-text-muted font-medium">
+                  {currency === "Kč" ? ` Kč` : ``}
+                </span>
+                {currency !== "Kč" && <span className="text-[15px] font-semibold text-brand-text-muted">{currency}</span>}
+              </div>
+              <p className="text-[12px] text-brand-text-muted -mt-0.5 mb-3">
+                {txt.pricePerPerson}
+              </p>
+              <p className="text-[12px] text-brand-text-secondary flex items-center gap-2">
+                <span className="w-4 h-4 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+                  <Check className="w-2.5 h-2.5 text-brand-primary" />
+                </span>
+                {txt.monthlyDesc}
+              </p>
+            </div>
+          </motion.button>
+        </div>
+
+        {/* ── Divider ── */}
+        <div className="flex items-center gap-3 my-2">
+          <div className="flex-1 h-px bg-brand-border/30" />
+          <span className="text-[10px] font-bold text-brand-text-muted uppercase tracking-widest">{l.orCustom}</span>
+          <div className="flex-1 h-px bg-brand-border/30" />
+        </div>
+
+        {/* ── Custom plan ── */}
+        <motion.button
+          type="button"
+          whileHover={{ y: -2 }}
+          whileTap={{ scale: 0.99 }}
+          onClick={() => setValue("billingInterval", "custom", { shouldValidate: true })}
+          className={cn(
+            "w-full relative rounded-2xl border-2 p-5 text-left transition-all cursor-pointer",
+            currentInterval === "custom"
+              ? "border-brand-accent bg-gradient-to-r from-brand-accent/[0.06] to-brand-primary/[0.03] shadow-lg shadow-brand-accent/10 ring-1 ring-brand-accent/20"
+              : "border-brand-border/50 bg-white hover:border-brand-accent/30"
+          )}
+        >
+          <div className="flex items-center gap-2.5">
+            <div className={cn(
+              "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
+              currentInterval === "custom" ? "border-brand-accent bg-brand-accent" : "border-brand-border"
+            )}>
+              {currentInterval === "custom" && (
+                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                  <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                </motion.div>
+              )}
+            </div>
+            <span className="text-[15px] font-bold text-brand-text-primary">{txt.custom}</span>
+            <div className="ml-auto w-8 h-8 rounded-xl bg-brand-accent/10 flex items-center justify-center">
+              <Phone className="w-4 h-4 text-brand-accent" />
+            </div>
+          </div>
+          <p className="text-[12px] text-brand-text-muted mt-1.5 ml-[30px]">
+            {txt.customDesc}
+          </p>
+        </motion.button>
+
+        <AnimatePresence>
+          {currentInterval === "custom" && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden"
+            >
+              <div className="mt-3 p-4 rounded-xl bg-gradient-to-r from-brand-accent/5 to-brand-primary/5 border border-brand-accent/20 flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <Phone className="w-4 h-4 text-brand-accent" />
+                </div>
+                <p className="text-[13px] text-brand-text-secondary leading-relaxed">
+                  {txt.customSelected}
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* ── Live price summary (only for non-custom plans) ── */}
+      <AnimatePresence>
+        {currentInterval !== "custom" && validCount >= 5 && (
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            className="rounded-2xl bg-gradient-to-br from-brand-primary/[0.06] via-white to-brand-accent/[0.04] border border-brand-primary/15 p-5"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[12px] font-semibold text-brand-text-muted uppercase tracking-wider">{l.totalMonthly}</span>
+              <div className="flex items-center gap-1.5 text-[11px] text-brand-text-muted">
+                <Users className="w-3 h-3" />
+                {validCount} × {currency === "Kč" ? `${selectedPrice} Kč` : `${currency}${selectedPrice}`}
+              </div>
+            </div>
+            <motion.p
+              key={monthlyTotal}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="text-2xl font-extrabold text-brand-text-primary tracking-tight"
+            >
+              {currency === "Kč"
+                ? `${monthlyTotal.toLocaleString("cs-CZ")} Kč`
+                : `${currency}${monthlyTotal.toLocaleString()}`}
+              <span className="text-[14px] font-semibold text-brand-text-muted ml-1">{l.perMonth}</span>
+            </motion.p>
+            {currentInterval === "monthly" && annualSaving > 0 && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.15 }}
+                className="text-[11px] text-brand-primary font-semibold mt-1.5 flex items-center gap-1"
+              >
+                <Sparkles className="w-3 h-3" />
+                {l.youSave} {currency === "Kč" ? `${annualSaving.toLocaleString("cs-CZ")} Kč` : `${currency}${annualSaving}`} {l.perYear}
+              </motion.p>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Guarantee ── */}
+      <div className="rounded-2xl bg-gradient-to-r from-brand-success/[0.06] to-brand-success/[0.02] border border-brand-success/15 p-4 flex items-start gap-3">
+        <div className="w-8 h-8 rounded-xl bg-brand-success/10 flex items-center justify-center shrink-0 mt-0.5">
+          <ShieldCheck className="w-4 h-4 text-brand-success" />
+        </div>
+        <p className="text-[13px] text-brand-text-secondary leading-relaxed">
+          <span className="font-bold text-brand-text-primary">
+            {language === "cz" ? "30denní garance vrácení peněz." : language === "de" ? "30 Tage Geld-zurück-Garantie." : "30-day money-back guarantee."}
+          </span>{" "}
+          {txt.guarantee.replace(/^30[^.]+\.\s*/, "")}
         </p>
       </div>
 
-      {/* Terms */}
-      <div className="space-y-3">
-        <label className="flex items-start gap-3 cursor-pointer group">
+      {/* ── Legal note ── */}
+      <p className="text-[11px] text-brand-text-muted/70 leading-relaxed">
+        {txt.legalNote}
+      </p>
+
+      {/* ── Terms checkbox ── */}
+      <div className="space-y-2">
+        <label className="flex items-start gap-3 cursor-pointer group p-3 -mx-3 rounded-xl hover:bg-brand-primary/[0.02] transition-colors">
           <input
             type="checkbox"
             className="mt-0.5 h-5 w-5 rounded border-brand-border text-brand-primary focus:ring-brand-primary/30 cursor-pointer"
@@ -2032,21 +2249,13 @@ function ConfirmStep({
           <span className="text-[13px] text-brand-text-secondary leading-relaxed group-hover:text-brand-text-primary transition-colors">
             {txt.termsAgree}{" "}
             <a
-              href="https://www.behavera.com/podminky-pouzivani-sluzby"
+              href="https://www.behavera.com/terms"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover"
+              className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover font-semibold"
+              onClick={(e) => e.stopPropagation()}
             >
               {txt.termsLink}
-            </a>{" "}
-            {txt.termsAnd}{" "}
-            <a
-              href="https://www.behavera.com/ochrana-osobnich-udaju"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand-primary underline underline-offset-2 hover:text-brand-primary-hover"
-            >
-              {txt.privacyLink}
             </a>
           </span>
         </label>
@@ -2061,36 +2270,3 @@ function ConfirmStep({
   );
 }
 
-/* ─── Summary card ─── */
-function SummaryCard({
-  icon,
-  label,
-  value,
-  sub,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string;
-  sub: string;
-}) {
-  return (
-    <motion.div
-      whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}
-      transition={{ duration: 0.2 }}
-      className="rounded-xl border border-brand-border/50 bg-white p-4 flex items-start gap-3 cursor-default"
-    >
-      <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-primary/10 to-brand-primary/5 text-brand-primary flex items-center justify-center shrink-0">
-        {icon}
-      </div>
-      <div className="min-w-0">
-        <p className="text-[11px] font-semibold text-brand-text-muted uppercase tracking-wider">
-          {label}
-        </p>
-        <p className="text-[14px] font-bold text-brand-text-primary truncate">
-          {value}
-        </p>
-        <p className="text-[12px] text-brand-text-muted truncate">{sub}</p>
-      </div>
-    </motion.div>
-  );
-}
