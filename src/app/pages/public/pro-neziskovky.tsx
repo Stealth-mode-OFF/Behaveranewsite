@@ -150,6 +150,9 @@ export function ProNeziskovkyPage() {
                 Pomáháme neziskovým organizacím porozumět svým týmům, předcházet vyhoření
                 a budovat prostředí, kde lidé zůstávají a podávají svůj nejlepší výkon.
               </p>
+              <div className="inline-flex items-center mt-6 px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 text-sm font-semibold border border-emerald-200">
+                Časově omezená nabídka: první 3 měsíce zdarma!
+              </div>
             </motion.div>
           </div>
         </section>

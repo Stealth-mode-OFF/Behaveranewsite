@@ -494,7 +494,7 @@ function SignalDetailPanel({
             <MessageCircle className="w-3 h-3" />
             {chatLabel}
           </div>
-          <div className="bg-gradient-to-br from-brand-background-secondary to-brand-background-secondary/60 rounded-xl rounded-tl-sm px-4 py-3.5 text-sm text-brand-text-secondary leading-relaxed italic border border-brand-border/30">
+          <div className="bg-gradient-to-br from-brand-background-secondary to-brand-background-secondary/60 rounded-xl rounded-tl-sm px-4 py-3.5 text-[13px] text-brand-text-secondary leading-relaxed italic border border-brand-border/30">
             {card.sampleQ}
           </div>
         </div>
@@ -502,11 +502,11 @@ function SignalDetailPanel({
         {/* CEO insight */}
         <div className="px-6 pb-5">
           <div className="bg-brand-background-secondary/50 rounded-xl p-3.5 border border-brand-border/40">
-            <div className="text-badge font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center gap-1.5">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-brand-text-muted mb-1.5 flex items-center gap-1.5">
               <Sparkles className="w-3 h-3" />
               {ceoLabel}
             </div>
-            <p className="text-caption text-brand-text-secondary leading-relaxed font-medium">
+            <p className="text-[12px] text-brand-text-secondary leading-relaxed font-medium">
               {card.ceoInsight}
             </p>
           </div>
@@ -698,7 +698,7 @@ function TopicCarousel({
 
                   {/* Description */}
                   <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30 text-center min-h-[88px] flex items-center justify-center">
-                    <p className="text-caption text-brand-text-body leading-relaxed line-clamp-4">
+                    <p className="text-[12px] text-brand-text-body leading-relaxed line-clamp-4">
                       {card.desc}
                     </p>
                   </div>
@@ -706,11 +706,11 @@ function TopicCarousel({
                   {/* CEO insight */}
                   <div className="mt-auto">
                     <div className="bg-white/80 rounded-lg p-3 border border-brand-border/30 text-center">
-                      <div className="text-badge font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center justify-center gap-1">
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.08em] text-brand-text-muted mb-1.5 flex items-center justify-center gap-1">
                         <Sparkles className="w-2.5 h-2.5" />
                         {ceoLabel}
                       </div>
-                      <p className="text-caption text-brand-text-secondary leading-relaxed font-medium line-clamp-3">
+                      <p className="text-[12px] text-brand-text-secondary leading-relaxed font-medium line-clamp-3">
                         {card.ceoInsight}
                       </p>
                     </div>
