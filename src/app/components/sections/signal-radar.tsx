@@ -83,7 +83,7 @@ const copy: Record<string, TCopy> = {
     subtitle: "Žádné formuláře. Zaměstnanci odpovídají v krátkém AI chatu \u2014 ověřené otázky, které mluví lidsky. 80 %+ lidí reálně a rádo odpovídá.",
     stepsTitle: "Jak to funguje",
     steps: [
-      { title: "Pulse Check se sám rozešle", desc: "Nastavíte jednou, dál běží automaticky. Slack, Teams nebo e-mail — bez práce navíc." },
+      { title: "Pulse Check se sám rozešle", desc: "Nastavíte jednou, dál běží automaticky. Slack, WhatsApp - připravujeme, nebo e-mail — bez práce navíc." },
       { title: "2min AI konverzace", desc: "Chatbot pokládá ověřené otázky navrženými psychology. Přirozeně, jako rozhovor s kolegou." },
       { title: "Výsledky v dashboardu", desc: "Okamžitý přehled, trendy v čase, AI doporučení k akci." },
     ],
@@ -123,7 +123,7 @@ const copy: Record<string, TCopy> = {
     subtitle: "No forms. Employees respond in a short AI-powered chat \u2014 tested questions that feel human. 80%+ actually enjoy answering.",
     stepsTitle: "How it works",
     steps: [
-      { title: "Pulse Check sends itself", desc: "Set it up once, it runs automatically. Slack, Teams, or email — zero extra work." },
+      { title: "Pulse Check sends itself", desc: "Set it up once, it runs automatically. Slack, WhatsApp (coming soon), or email — zero extra work." },
       { title: "2-min AI conversation", desc: "A chatbot asks psychologist-designed questions. Natural, like talking to a colleague." },
       { title: "Results in dashboard", desc: "Instant overview, trends over time, AI-powered action recommendations." },
     ],
@@ -163,7 +163,7 @@ const copy: Record<string, TCopy> = {
     subtitle: "Keine Formulare. Mitarbeiter antworten in einem kurzen AI-Chat \u2014 getestete Fragen, die menschlich klingen. 80 %+ antworten gerne.",
     stepsTitle: "So funktioniert es",
     steps: [
-      { title: "Pulse Check sendet sich selbst", desc: "Einmal einrichten, läuft automatisch. Slack, Teams oder E-Mail — kein Mehraufwand." },
+      { title: "Pulse Check sendet sich selbst", desc: "Einmal einrichten, läuft automatisch. Slack, WhatsApp (in Vorbereitung) oder E-Mail — kein Mehraufwand." },
       { title: "2-Min AI-Gespräch", desc: "Ein Chatbot stellt von Psychologen validierte Fragen. Natürlich, wie ein Gespräch mit einem Kollegen." },
       { title: "Ergebnisse im Dashboard", desc: "Sofortiger Überblick, Trends und KI-gestützte Handlungsempfehlungen." },
     ],
