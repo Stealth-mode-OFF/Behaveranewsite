@@ -15,8 +15,7 @@ type LazyComponent<TProps = Record<string, unknown>> = ComponentType<TProps>;
 
 // Helper to load named exports via React.lazy without repeating boilerplate.
 function lazyNamed<TProps = Record<string, unknown>>(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  importer: () => Promise<any>,
+  importer: () => Promise<Record<string, unknown>>,
   exportName: string
 ) {
   return lazy(() =>

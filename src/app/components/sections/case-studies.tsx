@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Building2, ChevronLeft, ChevronRight, ChevronDown, Sparkles, Quote, TrendingUp } from "lucide-react";
+import { ArrowRight, Building2, ChevronDown, Sparkles, Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CmsService } from "@/lib/cms-service";
 import { CaseStudy } from "@/lib/types";
 import { useLanguage } from "@/app/contexts/language-context";
 import { getResponsiveImageProps } from "@/lib/image-helpers";
 import { cn } from "@/app/components/ui/utils";
+
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 // Logo imports
 import effectixLogo from "@/assets/clients/effectix.webp";
@@ -155,7 +157,7 @@ export function CaseStudiesSection() {
   if (studies.length === 0) return null;
 
   return (
-    <section className="section-spacing bg-brand-background-secondary/30" id="case-studies">
+    <section className="section-spacing bg-white" id="case-studies">
       <div className="container-default">
         
         {/* Header */}
@@ -163,9 +165,10 @@ export function CaseStudiesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10 md:mb-12"
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
+          className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
+          <div className="section-badge">
             <span className="w-2 h-2 rounded-full bg-brand-success animate-pulse" />
             {t.badge}
           </div>
@@ -175,7 +178,7 @@ export function CaseStudiesSection() {
               {t.titleHighlight}
             </span>
           </h2>
-          <p className="text-lg text-brand-text-secondary max-w-lg mx-auto">
+          <p className="text-body-lg text-brand-text-secondary max-w-lg mx-auto mb-10 md:mb-14">
             {t.subtitle}
           </p>
         </motion.div>
@@ -198,10 +201,10 @@ export function CaseStudiesSection() {
               <motion.div
                 key={study.id}
                 className="case-study-card flex-shrink-0 w-[85%] snap-center"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.05, duration: 0.3, ease: MOTION_EASE }}
               >
                 <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} isMobile language={language} />
               </motion.div>
@@ -211,12 +214,13 @@ export function CaseStudiesSection() {
           {/* Subtle progress dots only — no prev/next arrows on mobile */}
           {studies.length > 1 && (
             <div className="flex justify-center items-center gap-1.5 mt-3">
-              {studies.map((_, index) => (
+              {studies.map((study, index) => (
                 <button
-                  key={index}
+                  key={study.id}
+                  type="button"
                   onClick={() => scrollToCard(index)}
                   className={cn(
-                    "rounded-full transition-all duration-300 min-w-[24px] min-h-[24px] flex items-center justify-center",
+                    "rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center",
                   )}
                   aria-label={`Go to case study ${index + 1}`}
                 >
@@ -241,7 +245,7 @@ export function CaseStudiesSection() {
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                  transition={{ duration: 0.4, delay: index < 3 ? index * 0.1 : (index - 3) * 0.1 + 0.1, layout: { duration: 0.3 } }}
+                  transition={{ duration: 0.3, delay: index < 3 ? index * 0.05 : (index - 3) * 0.05 + 0.1, ease: MOTION_EASE, layout: { duration: 0.3 } }}
                 >
                   <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} language={language} />
                 </motion.div>
@@ -250,8 +254,9 @@ export function CaseStudiesSection() {
           </motion.div>
 
           {hasMoreStudies && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-10">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, ease: MOTION_EASE }} className="flex justify-center mt-10">
               <button
+                type="button"
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={cn(
                   "group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 transition-all duration-300",
@@ -265,7 +270,7 @@ export function CaseStudiesSection() {
                 </span>
                 <motion.div
                   animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.3, ease: MOTION_EASE }}
                   className="w-8 h-8 rounded-full bg-brand-primary flex items-center justify-center"
                 >
                   <ChevronDown className="w-5 h-5 text-white" />
@@ -305,18 +310,12 @@ const accentDots = [
   "bg-amber-500",
 ];
 
-const tagColors = [
-  "bg-violet-100 text-violet-700 border-violet-200",
-  "bg-blue-100 text-blue-700 border-blue-200",
-  "bg-amber-100 text-amber-700 border-amber-200",
-];
-
 function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const gradient = gradients[index % gradients.length];
   const accentDot = accentDots[index % accentDots.length];
-  const tagColor = tagColors[index % tagColors.length];
   const logo = LOGO_MAP[study.clientName];
+  const industryFallback = language === 'cz' ? "Firma" : language === 'de' ? "Unternehmen" : "Enterprise";
 
   return (
     <div
@@ -325,6 +324,16 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
       onMouseEnter={() => !isMobile && setFlipped(true)}
       onMouseLeave={() => !isMobile && setFlipped(false)}
       onClick={() => isMobile && setFlipped(!flipped)}
+      onKeyDown={(e) => {
+        if (!isMobile) return;
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setFlipped((prev) => !prev);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${study.clientName} case study`}
     >
       <div
         className="relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0.2,0.2,1)]"
@@ -368,6 +377,8 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                     className="w-full h-full object-contain"
                     loading="lazy"
                     decoding="async"
+                    width={64}
+                    height={64}
                   />
                 </div>
               ) : (
@@ -398,7 +409,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                 {study.clientName}
               </h3>
               <span className="text-sm text-white/70 font-medium">
-                {language === 'cz' && study.industry_cz ? study.industry_cz : study.industry || "Enterprise"}
+                {language === 'cz' && study.industry_cz ? study.industry_cz : study.industry || industryFallback}
               </span>
 
               {/* Tags */}
@@ -407,7 +418,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                   {study.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white"
+                      className="text-badge font-semibold px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-white"
                     >
                       {tag}
                     </span>
@@ -417,7 +428,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             </div>
 
             {/* Flip hint */}
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-white/50 mt-4">
+            <div className="flex items-center justify-center gap-1.5 text-badge text-white/50 mt-4">
               <Sparkles className="w-3 h-3" />
               <span>{flipHint}</span>
             </div>
@@ -440,7 +451,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             <div className="relative z-10 flex items-center gap-3 mb-4 pb-3 border-b border-brand-border/30">
               {logo ? (
                 <div className="w-9 h-9 rounded-lg bg-white shadow-sm border border-brand-border/30 flex items-center justify-center p-1.5 shrink-0">
-                  <img src={logo} alt={study.clientName} className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                  <img src={logo} alt={study.clientName} className="w-full h-full object-contain" loading="lazy" decoding="async" width={36} height={36} />
                 </div>
               ) : (
                 <div className={cn("w-9 h-9 rounded-lg bg-gradient-to-br flex items-center justify-center shrink-0", gradient)}>
@@ -449,7 +460,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
               )}
               <div className="min-w-0">
                 <span className="text-sm font-bold text-brand-text-primary block truncate">{study.clientName}</span>
-                <span className="text-[11px] text-brand-text-muted">{language === 'cz' && study.industry_cz ? study.industry_cz : study.industry || "Enterprise"}</span>
+                <span className="text-badge text-brand-text-muted">{language === 'cz' && study.industry_cz ? study.industry_cz : study.industry || industryFallback}</span>
               </div>
             </div>
 
@@ -460,7 +471,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
                   <div className={cn("w-1.5 h-1.5 rounded-full mt-1.5 shrink-0", accentDot)} />
                   <div>
                     <div className="text-base font-bold text-brand-text-primary leading-tight">{r.value}</div>
-                    <div className="text-[10px] text-brand-text-muted leading-tight">{r.label}</div>
+                    <div className="text-badge text-brand-text-muted leading-tight">{r.label}</div>
                   </div>
                 </div>
               ))}
@@ -470,7 +481,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
             <div className="relative z-10 flex-1 flex flex-col min-h-0">
               <div className="flex items-start gap-2 mb-2">
                 <Quote className="w-3.5 h-3.5 text-brand-accent shrink-0 mt-0.5" />
-                <p className="text-[12px] text-brand-text-secondary leading-relaxed line-clamp-4">
+                <p className="text-caption text-brand-text-secondary leading-relaxed line-clamp-4">
                   {language === 'cz' && study.cardSummary_cz ? study.cardSummary_cz : study.cardSummary ? study.cardSummary : study.challenge}
                 </p>
               </div>

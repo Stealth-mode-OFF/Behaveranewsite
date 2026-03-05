@@ -1,15 +1,16 @@
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useMotionValue, animate } from "framer-motion";
 import { Check, ShieldCheck, Star, Users, Zap, Sparkles, ArrowRight, Gift, Clock, Rocket, Heart } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { cn } from "@/app/components/ui/utils";
 import { useLanguage } from "@/app/contexts/language-context";
 import { trackPricingBillingToggle, trackPricingSliderChanged } from "@/lib/analytics";
 
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 /* ─── Animated counter hook ─── */
 function useAnimatedNumber(value: number, duration = 0.5) {
   const motionVal = useMotionValue(value);
-  const rounded = useTransform(motionVal, (v) => Math.round(v).toLocaleString());
   const [display, setDisplay] = useState(value.toLocaleString());
   
   useEffect(() => {
@@ -101,7 +102,6 @@ export function PurchaseSection() {
   const { t, language } = useLanguage();
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'yearly'>('yearly');
   const [employeeCount, setEmployeeCount] = useState(50);
-  const [justSwitched, setJustSwitched] = useState(false);
   
   const pc = pricingCopy[language] || pricingCopy.en;
   const isEur = language === 'en' || language === 'de';
@@ -137,8 +137,8 @@ export function PurchaseSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-10"
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
+          className="text-center max-w-3xl mx-auto"
         >
           <div className="section-badge text-brand-text-muted/90">
              <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
@@ -150,7 +150,7 @@ export function PurchaseSection() {
               {t.purchase.titleHighlight}
             </span>
           </h2>
-          <p className="text-body text-brand-text-secondary">
+          <p className="text-body text-brand-text-secondary mb-10 md:mb-14">
             {t.purchase.subtitle}
           </p>
         </motion.div>
@@ -159,14 +159,14 @@ export function PurchaseSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.05, ease: MOTION_EASE }}
           className="max-w-5xl mx-auto section-shell p-4 sm:p-6 md:p-8"
         >
           {/* Billing Toggle — centered above the card */}
           <div className="flex justify-center mb-8">
             <div className="relative flex surface-elevated p-1.5 rounded-2xl shadow-lg shadow-brand-primary/[0.08]">
               <button 
-                onClick={() => { setBillingInterval('monthly'); setJustSwitched(true); trackPricingBillingToggle('monthly'); }}
+                onClick={() => { setBillingInterval('monthly'); trackPricingBillingToggle('monthly'); }}
                 className={cn(
                   "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10",
                   billingInterval === 'monthly' 
@@ -177,7 +177,7 @@ export function PurchaseSection() {
                 {t.purchase.billingMonthly}
               </button>
               <button 
-                onClick={() => { setBillingInterval('yearly'); setJustSwitched(true); trackPricingBillingToggle('yearly'); }}
+                onClick={() => { setBillingInterval('yearly'); trackPricingBillingToggle('yearly'); }}
                 className={cn(
                   "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 flex items-center gap-2",
                   billingInterval === 'yearly' 
@@ -190,7 +190,8 @@ export function PurchaseSection() {
                   <motion.span
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold text-white bg-gradient-to-r from-brand-success to-emerald-500 rounded-full shadow-md shadow-brand-success/30 ml-1"
+                    transition={{ duration: 0.3, ease: MOTION_EASE }}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 text-badge font-bold text-white bg-gradient-to-r from-brand-success to-emerald-500 rounded-full shadow-md shadow-brand-success/30 ml-1"
                   >
                     <Gift className="w-3 h-3" />
                     -20%
@@ -210,7 +211,7 @@ export function PurchaseSection() {
                   <Users className="w-5 h-5 text-brand-primary" />
                   {t.purchase.configTitle}
                 </h3>
-                <p className="text-[13px] text-brand-text-muted mb-6 md:mb-8">
+                <p className="text-caption text-brand-text-muted mb-6 md:mb-8">
                   {pc.noCard}
                 </p>
                 
@@ -278,7 +279,7 @@ export function PurchaseSection() {
                   </div>
                   
                   {/* Scale Labels */}
-                  <div className="flex justify-between text-[11px] sm:text-xs text-brand-text-muted font-medium mt-1 px-0.5">
+                  <div className="flex justify-between text-badge sm:text-caption text-brand-text-muted font-medium mt-1 px-0.5">
                     <span>10</span>
                     <span>100</span>
                     <span>200</span>
@@ -288,24 +289,24 @@ export function PurchaseSection() {
 
                 {/* All-inclusive features */}
                 <div>
-                  <h4 className="text-[13px] font-bold text-brand-text-primary mb-4 flex items-center gap-2">
+                  <h4 className="text-caption font-bold text-brand-text-primary mb-4 flex items-center gap-2">
                     <Sparkles className="w-4 h-4 text-brand-warning" />
                     {pc.allInclusive}
                   </h4>
                   <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
                     {pc.extraFeatures.map((feature: string, i: number) => (
                       <motion.div 
-                        key={i} 
+                        key={feature} 
                         className="flex items-start gap-2.5"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.05 * i, duration: 0.3 }}
+                        transition={{ delay: 0.05 * i, duration: 0.3, ease: MOTION_EASE }}
                       >
                         <div className="w-4.5 h-4.5 rounded-full bg-brand-success/10 flex items-center justify-center shrink-0 mt-0.5">
                           <Check className="w-3 h-3 text-brand-success" />
                         </div>
-                        <span className="text-[13px] text-brand-text-secondary leading-snug">{feature}</span>
+                        <span className="text-caption text-brand-text-secondary leading-snug">{feature}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -325,7 +326,8 @@ export function PurchaseSection() {
                     <motion.div
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-accent/20 border border-brand-accent/30 text-brand-accent rounded-full text-[11px] font-bold mb-5"
+                      transition={{ duration: 0.3, ease: MOTION_EASE }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-accent/20 border border-brand-accent/30 text-brand-accent rounded-full text-badge font-bold mb-5"
                     >
                       <Star className="w-3 h-3 fill-current" />
                       {pc.popularBadge}
@@ -334,12 +336,12 @@ export function PurchaseSection() {
                   
                   <div className="flex items-center gap-2 mb-6">
                     <Zap className="w-4 h-4 text-brand-accent" />
-                    <span className="text-xs font-bold text-white/70 uppercase tracking-widest">{t.purchase.estimatedLabel}</span>
+                    <span className="text-badge font-bold text-white/70 uppercase tracking-widest">{t.purchase.estimatedLabel}</span>
                   </div>
                   
                   {/* Per-person price */}
                   <div className="mb-1">
-                    <span className="text-[15px] text-white/50">
+                    <span className="text-body-sm text-white/50">
                       {isEur ? `€${pricePerPerson}` : `${pricePerPerson} Kč`} {pc.perPerson} {pc.perMonth}
                     </span>
                   </div>
@@ -358,7 +360,7 @@ export function PurchaseSection() {
                   </div>
                   
                   {/* Price per person detail */}
-                  <p className="text-[12px] text-white/40 mb-4">
+                  <p className="text-caption text-white/40 mb-4">
                     × {billableEmployees} {t.purchase.employeesLabel}
                   </p>
                   
@@ -404,7 +406,7 @@ export function PurchaseSection() {
                 </div>
                 
                 <div className="mt-8 relative space-y-3">
-                  <Button asChild className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 group btn-shine">
+                  <Button asChild size="default" className="w-full bg-white text-brand-primary hover:bg-white/90 font-bold shadow-xl shadow-black/10 group btn-shine">
                     <a href="https://www.behavera.com/start" target="_blank" rel="noopener noreferrer">
                       <Rocket className="w-5 h-5 mr-2 group-hover:animate-bounce" />
                       {pc.ctaPrimary}
@@ -423,7 +425,7 @@ export function PurchaseSection() {
                   
                   {/* Bottom trust */}
                   <div className="pt-5 border-t border-white/10">
-                    <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] text-white/60">
+                    <div className="flex flex-wrap items-center justify-center gap-4 text-badge text-white/60">
                       <div className="flex items-center gap-1.5">
                         <ShieldCheck className="w-3.5 h-3.5 text-brand-accent" />
                         <span>GDPR</span>
@@ -448,7 +450,7 @@ export function PurchaseSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            transition={{ delay: 0.1, duration: 0.5, ease: MOTION_EASE }}
             className="mt-8 max-w-lg mx-auto text-center"
           >
             <div className="px-6 py-4 rounded-2xl bg-brand-success/[0.06] border border-brand-success/15">
@@ -456,10 +458,10 @@ export function PurchaseSection() {
                 <Heart className="w-4 h-4 text-brand-success" />
                 <span className="text-sm font-bold text-brand-success">{pc.roiTitle}</span>
               </div>
-              <p className="text-[13px] text-brand-text-secondary leading-relaxed">
+              <p className="text-caption text-brand-text-secondary leading-relaxed">
                 {pc.roiDesc}
               </p>
-              <p className="text-[11px] text-brand-text-muted mt-1.5">{pc.roiSource}</p>
+              <p className="text-badge text-brand-text-muted mt-1.5">{pc.roiSource}</p>
             </div>
           </motion.div>
         </motion.div>

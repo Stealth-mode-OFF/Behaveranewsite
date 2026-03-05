@@ -18,6 +18,8 @@ import expandoLogo from "@/assets/clients/expando.svg";
 
 import { StatChip } from "@/app/components/ui/stat-chip";
 
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 // Export logos for reuse in other components
 export const clientLogos = [
   { name: "PwC", src: pwcLogo },
@@ -52,6 +54,7 @@ export function LogoMarquee() {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
           className="flex justify-center mb-5 md:mb-6"
         >
           <h2 className="text-center text-sm font-medium text-brand-text-muted uppercase tracking-widest">
@@ -62,9 +65,9 @@ export function LogoMarquee() {
         {/* Mobile: 2-row calm logo grid */}
         <div className="md:hidden">
           <div className="grid grid-cols-4 gap-x-2 gap-y-3 items-center justify-items-center">
-            {clientLogos.slice(0, 8).map((logo, index) => (
+            {clientLogos.slice(0, 8).map((logo) => (
               <div
-                key={index}
+                key={logo.name}
                 className="w-[72px] h-[32px] flex items-center justify-center"
               >
                 <img
@@ -80,9 +83,9 @@ export function LogoMarquee() {
           </div>
           {/* Overflow row for remaining logos */}
           <div className="flex items-center justify-center gap-4 mt-3">
-            {clientLogos.slice(8).map((logo, index) => (
+            {clientLogos.slice(8).map((logo) => (
               <div
-                key={`extra-${index}`}
+                key={`extra-${logo.name}`}
                 className="w-[64px] h-[28px] flex items-center justify-center"
               >
                 <img
@@ -106,8 +109,8 @@ export function LogoMarquee() {
           
           <div className="w-full inline-flex flex-nowrap overflow-hidden">
             <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll shrink-0">
-              {clientLogos.map((logo, index) => (
-                <li key={index} className="shrink-0">
+              {clientLogos.map((logo) => (
+                <li key={logo.name} className="shrink-0">
                   <div className="w-[120px] h-[44px] flex items-center justify-center">
                     <img
                       src={logo.src}
@@ -122,8 +125,8 @@ export function LogoMarquee() {
               ))}
             </ul>
             <ul className="flex items-center [&_li]:mx-6 md:[&_li]:mx-10 animate-infinite-scroll shrink-0" aria-hidden="true">
-              {clientLogos.map((logo, index) => (
-                <li key={`duplicate-${index}`} className="shrink-0">
+              {clientLogos.map((logo) => (
+                <li key={`duplicate-${logo.name}`} className="shrink-0">
                   <div className="w-[120px] h-[44px] flex items-center justify-center">
                     <img
                       src={logo.src}
@@ -217,16 +220,16 @@ function StatsRow({ language }: { language: string }) {
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.1 }}
+      transition={{ duration: 0.5, delay: 0.05, ease: MOTION_EASE }}
       className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14 mt-6 md:mt-8 py-4 border-t border-brand-border/50"
     >
-      {items.map((stat, idx) => {
+      {items.map((stat) => {
         const Icon = stat.icon;
         return (
-          <div key={idx} className="text-center">
+          <div key={stat.label} className="text-center">
             <div className="flex items-center justify-center gap-1.5 mb-1">
               <Icon className="w-4 h-4 text-brand-primary/60" />
-              <span className="text-xl sm:text-2xl font-bold text-brand-text-primary" style={{ fontVariantNumeric: 'tabular-nums' }}>
+              <span className="text-xl sm:text-2xl font-bold text-brand-text-primary tabular-nums">
                 <AnimatedCounter
                   end={stat.value}
                   suffix={stat.suffix}
@@ -235,7 +238,7 @@ function StatsRow({ language }: { language: string }) {
                 />
               </span>
             </div>
-            <span className="text-[11px] sm:text-xs font-medium text-brand-text-muted uppercase tracking-wider">
+            <span className="text-badge sm:text-caption font-medium text-brand-text-muted uppercase tracking-wider">
               {stat.label}
             </span>
           </div>
@@ -274,12 +277,12 @@ function ProofChips({ language }: { language: string }) {
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.15 }}
+      transition={{ duration: 0.5, delay: 0.1, ease: MOTION_EASE }}
       className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-5 md:mt-6"
     >
-      {items.map((chip, idx) => (
+      {items.map((chip) => (
         <StatChip
-          key={idx}
+          key={chip.company}
           icon={chip.icon}
           metric={chip.metric}
           label={chip.label}

@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { motion } from 'framer-motion';
 import { cn } from './utils';
 
 interface DeviceFrameProps {
@@ -143,10 +142,7 @@ export function AnimatedDashboardContent({
   fetchPriority?: "auto" | "high" | "low";
 }) {
   return (
-    <motion.img
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, delay: 0.3 }}
+    <img
       src={imageSrc}
       alt={imageAlt}
       width={width}

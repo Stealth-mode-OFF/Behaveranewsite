@@ -3,6 +3,9 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/app/components/ui/utils";
 import { useState } from "react";
+import { Button } from "@/app/components/ui/button";
+
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
  * Problem Section - Bento Grid Style
@@ -44,41 +47,31 @@ export function ProblemSection() {
   ];
 
   return (
-    <section className="section-spacing bg-white text-brand-text-primary" id="problem">
+    <section className="section-spacing bg-brand-background-secondary text-brand-text-primary" id="problem">
       <div className="container-default">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-error font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
-              <div className="w-2 h-2 bg-brand-error rounded-full animate-pulse" />
-              {t.problems?.badge || "The Problem"}
-            </div>
-            <h2 className="text-h2 text-brand-text-primary">
-              {t.problems?.title || "People don't leave"}
-              <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
-                {t.problems?.titleHighlight || " overnight."}
-              </span>
-            </h2>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="max-w-md text-left md:text-right mt-8 md:mt-0"
-          >
-            <p className="text-lg text-brand-text-secondary leading-relaxed">
-              {t.problems?.subtitle || "These numbers represent the hidden costs of poor visibility."}
-            </p>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
+          className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
+        >
+          <div className="section-badge text-brand-error">
+            <span className="w-2 h-2 bg-brand-error rounded-full animate-pulse" />
+            {t.problems?.badge || "The Problem"}
+          </div>
+          <h2 className="text-h2 text-brand-text-primary mb-4">
+            {t.problems?.title || "People don't leave"}
+            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+              {t.problems?.titleHighlight || " overnight."}
+            </span>
+          </h2>
+          <p className="text-body-lg text-brand-text-secondary leading-relaxed mb-10 md:mb-14">
+            {t.problems?.subtitle || "These numbers represent the hidden costs of poor visibility."}
+          </p>
+        </motion.div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -88,7 +81,7 @@ export function ProblemSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: MOTION_EASE }}
             className="md:col-span-2 lg:col-span-2"
           >
             <BentoCell
@@ -106,7 +99,7 @@ export function ProblemSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
+              transition={{ delay: idx * 0.05, duration: 0.3, ease: MOTION_EASE }}
             >
               <BentoCell
                 item={items[cell.index]}
@@ -123,7 +116,7 @@ export function ProblemSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.15, duration: 0.3, ease: MOTION_EASE }}
           >
             <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
@@ -134,24 +127,25 @@ export function ProblemSection() {
               </div>
               
               <div className="relative z-10 text-left">
-                <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-white/60 block mb-2">
+                <span className="text-badge font-bold uppercase tracking-[0.12em] text-white/60 block mb-2">
                   {t.problems?.ctaBox?.label || "System Alert"}
                 </span>
                 <h4 className="text-lg font-bold tracking-tight mb-3">
                   {t.problems?.ctaBox?.title || "Don't wait until it's too late"}
                 </h4>
-                <p className="text-sm text-white/80 mb-4">
+                <p className="text-body-sm text-white/80 mb-4">
                   {t.problems?.ctaBox?.desc || "Get visibility before the damage is done."}
                 </p>
-                <a
-                  href="https://app.behavera.com/echo-pulse/try"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-brand-accent font-semibold inline-flex items-center group/btn"
-                >
-                  {language === 'cz' ? 'Otestovat zdarma' : language === 'de' ? 'Kostenlos testen' : 'Try for free'}
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </a>
+                <Button asChild size="default" variant="inverse" className="w-full sm:w-auto">
+                  <a
+                    href="https://app.behavera.com/echo-pulse/try"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {language === 'cz' ? 'Otestovat zdarma' : language === 'de' ? 'Kostenlos testen' : 'Try for free'}
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </a>
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -174,9 +168,10 @@ type BentoCellProps = {
   detailLabel?: string;
 };
 
-function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel = "Zobrazit detail" }: BentoCellProps) {
+function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: BentoCellProps) {
   const [expanded, setExpanded] = useState(false);
   const { language } = useLanguage();
+  const expandLabel = detailLabel || (language === 'cz' ? 'Zobrazit detail' : language === 'de' ? 'Details anzeigen' : 'Show details');
   const descText = item?.desc || "";
   // Only show expand/collapse if description is long enough to warrant it
   const hasLongDesc = descText.length > 80;
@@ -192,7 +187,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel = "
       </div>
       
       <div className="text-left">
-        <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-1.5 md:mb-2">
+        <span className="text-badge font-bold uppercase tracking-[0.12em] text-brand-text-muted block mb-1.5 md:mb-2">
           {item?.title || ""}
         </span>
         {/* Animated Counter */}
@@ -220,7 +215,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel = "
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.25 }}
+                    transition={{ duration: 0.3, ease: MOTION_EASE }}
                     className="text-sm text-brand-text-secondary leading-relaxed overflow-hidden"
                   >
                     {descText}
@@ -237,9 +232,10 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel = "
               <button
                 type="button"
                 onClick={() => setExpanded(!expanded)}
-                className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-brand-primary hover:text-brand-accent transition-colors min-h-[24px]"
+                aria-expanded={expanded}
+                className="mt-1.5 inline-flex items-center gap-1 text-caption font-semibold text-brand-primary hover:text-brand-accent transition-colors min-h-[44px]"
               >
-                {expanded ? (language === 'cz' ? 'Skrýt' : language === 'de' ? 'Weniger' : 'Less') : detailLabel}
+                {expanded ? (language === 'cz' ? 'Skrýt' : language === 'de' ? 'Weniger' : 'Less') : expandLabel}
                 <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", expanded && "rotate-180")} />
               </button>
             </>

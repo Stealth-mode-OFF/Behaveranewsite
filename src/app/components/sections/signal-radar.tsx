@@ -1,15 +1,42 @@
 import { useCallback, useState, useRef, useEffect, type ElementType, type MouseEvent as ReactMouseEvent } from "react";
 import {
-  Activity, Zap, Shield, Scale, Heart, Cpu, Briefcase, Award,
-  MessageCircle, Clock, BarChart3, Brain, ExternalLink, Sparkles,
+  Activity, Zap, Shield,
+  MessageCircle, BarChart3, Brain, Sparkles,
   Send, CheckCircle2, XCircle, TrendingUp, ChevronDown, Timer,
-  ChevronLeft, ChevronRight, X, Play, ArrowRight, Loader2
+  ChevronLeft, ChevronRight, X, Play, ArrowRight, Loader2,
 } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
-import { useModal } from "@/app/contexts/modal-context";
 import { motion, AnimatePresence } from "framer-motion";
-import { getPulseCheckUrl } from "@/lib/urls";
 import { trackPulseCheckOpen } from "@/lib/analytics";
+
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const UI_TEXT = {
+  cz: {
+    previous: "Předchozí",
+    next: "Další",
+    try: "Vyzkoušet",
+    loading: "Načítání…",
+    close: "Zavřít",
+    testimonial: "Reference",
+  },
+  en: {
+    previous: "Previous",
+    next: "Next",
+    try: "Try",
+    loading: "Loading…",
+    close: "Close",
+    testimonial: "Testimonial",
+  },
+  de: {
+    previous: "Zurück",
+    next: "Weiter",
+    try: "Testen",
+    loading: "Wird geladen…",
+    close: "Schließen",
+    testimonial: "Referenz",
+  },
+} as const;
 
 /* ─── Icons ─── */
 const topicIcons: Record<string, ElementType> = {
@@ -173,13 +200,11 @@ const copy: Record<string, TCopy> = {
 
 export function SignalRadar() {
   const { language } = useLanguage();
-  const { openBooking } = useModal();
   const [compOpen, setCompOpen] = useState(false);
   const [pulseEmbedUrl, setPulseEmbedUrl] = useState<string | null>(null);
 
   const c = copy[language] || copy.en;
-
-  const tryLink = getPulseCheckUrl(language);
+  const ui = UI_TEXT[language as keyof typeof UI_TEXT] || UI_TEXT.en;
 
   const openPulseEmbed = (url: string) => {
     setPulseEmbedUrl(url);
@@ -199,8 +224,8 @@ export function SignalRadar() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-10 md:mb-12"
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
+          className="text-center max-w-3xl mx-auto"
         >
           <div className="section-badge text-brand-primary bg-white/90 backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
@@ -219,7 +244,7 @@ export function SignalRadar() {
             </span>
           </h2>
 
-          <p className="text-lg text-brand-text-secondary leading-relaxed max-w-2xl mx-auto">
+          <p className="text-body-lg text-brand-text-secondary leading-relaxed max-w-2xl mx-auto mb-10 md:mb-14">
             {c.subtitle}
           </p>
         </motion.div>
@@ -238,21 +263,21 @@ export function SignalRadar() {
               const StepIcon = stepIcons[i];
               return (
                 <motion.div
-                  key={i}
+                  key={step.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.15 }}
+                  transition={{ duration: 0.3, delay: i * 0.05, ease: MOTION_EASE }}
                   className="relative z-10 surface-elevated rounded-2xl p-6 sm:p-7 hover:shadow-lg transition-all text-center group"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-brand-primary mx-auto mb-4 flex items-center justify-center shadow-lg shadow-brand-primary/20 group-hover:scale-105 transition-transform">
                     <StepIcon className="w-6 h-6 text-white" />
                   </div>
-                  <div className="text-[11px] font-mono font-bold text-brand-accent tracking-[0.15em] uppercase mb-3">
+                  <div className="text-badge font-mono font-bold text-brand-accent tracking-[0.15em] uppercase mb-3">
                     0{i + 1}
                   </div>
                   <h4 className="text-h4 text-brand-primary mb-2">{step.title}</h4>
-                  <p className="text-[13px] text-brand-text-body leading-relaxed">{step.desc}</p>
+                  <p className="text-caption text-brand-text-body leading-relaxed">{step.desc}</p>
                 </motion.div>
               );
             })}
@@ -265,13 +290,13 @@ export function SignalRadar() {
             <h3 className="text-h3 text-brand-text-primary mb-4">
               {c.topicsTitle}
             </h3>
-            <p className="text-base text-brand-text-body max-w-2xl mx-auto leading-relaxed mb-5">
+            <p className="text-body text-brand-text-body max-w-2xl mx-auto leading-relaxed mb-5">
               {c.topicsSubtitle}
             </p>
 
           </div>
 
-          <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} />
+          <TopicCarousel cards={c.topicCards} chatLabel={c.chatLabel} ceoLabel={c.ceoLabel} onOpenPulse={openPulseEmbed} language={language} />
         </div>
 
         {/* ═══════════ COMPARISON + TESTIMONIALS — side by side ═══════════ */}
@@ -280,6 +305,7 @@ export function SignalRadar() {
         {/* WHY NOT GOOGLE FORMS */}
         <div>
           <button
+            type="button"
             onClick={() => setCompOpen(!compOpen)}
             className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl surface-elevated hover:shadow-md hover:border-brand-primary/20 transition-all group cursor-pointer"
           >
@@ -299,7 +325,7 @@ export function SignalRadar() {
             </div>
             <motion.div
               animate={{ rotate: compOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: MOTION_EASE }}
               className="w-8 h-8 rounded-full bg-brand-background-secondary flex items-center justify-center shrink-0 group-hover:bg-brand-primary/10 transition-colors"
             >
               <ChevronDown className="w-5 h-5 text-brand-text-muted" />
@@ -312,7 +338,7 @@ export function SignalRadar() {
               height: compOpen ? 'auto' : 0,
               opacity: compOpen ? 1 : 0,
             }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: MOTION_EASE }}
             className="overflow-hidden"
           >
             <div className="pt-6">
@@ -325,11 +351,11 @@ export function SignalRadar() {
 
               return (
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 12 }}
+                  key={adv.title}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: i * 0.08 }}
+                  transition={{ duration: 0.3, delay: i * 0.05, ease: MOTION_EASE }}
                   className="surface-elevated rounded-2xl p-5 hover:shadow-md transition-all group"
                 >
                   <div className="flex items-start mb-4">
@@ -343,11 +369,11 @@ export function SignalRadar() {
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
                       <XCircle className="w-4 h-4 text-red-400 mt-0.5 shrink-0" />
-                      <span className="text-[13px] text-brand-text-muted leading-relaxed">{adv.oldWay}</span>
+                      <span className="text-caption text-brand-text-muted leading-relaxed">{adv.oldWay}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" />
-                      <span className="text-[13px] text-brand-primary font-semibold leading-relaxed">{adv.ourWay}</span>
+                      <span className="text-caption text-brand-primary font-semibold leading-relaxed">{adv.ourWay}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -363,7 +389,7 @@ export function SignalRadar() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
           className="rounded-2xl surface-elevated p-6 sm:p-8 md:p-10"
         >
           <QuickScanTestimonials lang={language} />
@@ -374,7 +400,7 @@ export function SignalRadar() {
       </div>
 
       {/* ═══════════ PULSE EMBED DIALOG ═══════════ */}
-      <PulseEmbedDialog url={pulseEmbedUrl} onClose={() => setPulseEmbedUrl(null)} />
+      <PulseEmbedDialog url={pulseEmbedUrl} onClose={() => setPulseEmbedUrl(null)} language={language} />
     </section>
   );
 }
@@ -386,22 +412,21 @@ type TopicCard = TCopy['topicCards'][number];
 /* ─── Signal Detail Side Panel ─── */
 function SignalDetailPanel({
   card,
-  cardNum,
   chatLabel,
   ceoLabel,
-  topicChip,
+  language,
   onClose,
   onOpenPulse,
 }: {
   card: TopicCard;
-  cardNum: number;
   chatLabel: string;
   ceoLabel: string;
-  topicChip: string;
+  language: string;
   onClose: () => void;
   onOpenPulse?: (url: string) => void;
 }) {
   const TopicIcon = topicIcons[card.key] || Activity;
+  const ui = UI_TEXT[language as keyof typeof UI_TEXT] || UI_TEXT.en;
 
   // Close on Escape
   useEffect(() => {
@@ -417,7 +442,7 @@ function SignalDetailPanel({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3, ease: MOTION_EASE }}
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
       onClick={onClose}
     >
@@ -429,7 +454,7 @@ function SignalDetailPanel({
         initial={{ opacity: 0, y: 24, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 16, scale: 0.97 }}
-        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.3, ease: MOTION_EASE }}
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-[420px] max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-brand-border/40"
         style={{ scrollbarWidth: 'none' }}
@@ -439,8 +464,10 @@ function SignalDetailPanel({
 
         {/* Close button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 w-8 h-8 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors z-10 cursor-pointer"
+          aria-label={ui.close}
+          className="absolute top-4 right-4 w-11 h-11 rounded-full bg-brand-background-secondary/80 hover:bg-brand-background-secondary flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors z-10 cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -463,7 +490,7 @@ function SignalDetailPanel({
 
         {/* Sample question */}
         <div className="px-6 pb-4">
-          <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-2 flex items-center gap-1.5">
+          <div className="text-badge font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-2 flex items-center gap-1.5">
             <MessageCircle className="w-3 h-3" />
             {chatLabel}
           </div>
@@ -475,11 +502,11 @@ function SignalDetailPanel({
         {/* CEO insight */}
         <div className="px-6 pb-5">
           <div className="bg-brand-background-secondary/50 rounded-xl p-3.5 border border-brand-border/40">
-            <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center gap-1.5">
+            <div className="text-badge font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center gap-1.5">
               <Sparkles className="w-3 h-3" />
               {ceoLabel}
             </div>
-            <p className="text-[13px] text-brand-text-secondary leading-relaxed font-medium">
+            <p className="text-caption text-brand-text-secondary leading-relaxed font-medium">
               {card.ceoInsight}
             </p>
           </div>
@@ -488,11 +515,12 @@ function SignalDetailPanel({
         {/* CTA */}
         <div className="px-6 pb-6">
           <button
+            type="button"
             onClick={() => {
               onClose();
               onOpenPulse?.(card.link);
             }}
-            className="flex items-center justify-center gap-2.5 w-full h-12 rounded-xl bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white font-semibold text-sm hover:shadow-lg hover:shadow-brand-primary/25 hover:-translate-y-0.5 transition-all cursor-pointer"
+            className="flex items-center justify-center gap-2.5 w-full min-h-[44px] h-12 rounded-xl bg-gradient-to-r from-brand-primary to-brand-primary/90 text-white font-semibold text-body-sm hover:shadow-lg hover:shadow-brand-primary/25 hover:-translate-y-0.5 transition-all cursor-pointer"
           >
             <Play className="w-4 h-4" />
             {card.name}
@@ -506,8 +534,9 @@ function SignalDetailPanel({
 
 /* ─── Pulse Embed Dialog — clean iframe popup ─── */
 
-function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () => void }) {
+function PulseEmbedDialog({ url, onClose, language }: { url: string | null; onClose: () => void; language: string }) {
   const [loading, setLoading] = useState(true);
+  const ui = UI_TEXT[language as keyof typeof UI_TEXT] || UI_TEXT.en;
 
   useEffect(() => {
     if (!url) return;
@@ -530,7 +559,7 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3, ease: MOTION_EASE }}
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
       onClick={onClose}
     >
@@ -542,14 +571,16 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
         initial={{ opacity: 0, y: 32, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.3, ease: MOTION_EASE }}
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-[500px] h-[min(90vh,900px)] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
       >
         {/* Close button only - no branding */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-white shadow-lg border border-brand-border/40 flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors cursor-pointer"
+          aria-label={ui.close}
+          className="absolute top-3 right-3 z-20 w-11 h-11 rounded-full bg-white/90 hover:bg-white shadow-lg border border-brand-border/40 flex items-center justify-center text-brand-text-muted hover:text-brand-text-primary transition-colors cursor-pointer"
         >
           <X className="w-4 h-4" />
         </button>
@@ -559,7 +590,7 @@ function PulseEmbedDialog({ url, onClose }: { url: string | null; onClose: () =>
           <div className="absolute inset-0 flex items-center justify-center bg-white z-10">
             <div className="flex flex-col items-center gap-3">
               <Loader2 className="w-8 h-8 text-brand-primary animate-spin" />
-              <span className="text-sm text-brand-text-muted">Loading…</span>
+              <span className="text-body-sm text-brand-text-muted">{ui.loading}</span>
             </div>
           </div>
         )}
@@ -585,17 +616,20 @@ function TopicCarousel({
   chatLabel,
   ceoLabel,
   onOpenPulse,
+  language,
 }: {
   cards: TopicCard[];
   chatLabel: string;
   ceoLabel: string;
   onOpenPulse: (url: string) => void;
+  language: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [selectedCard, setSelectedCard] = useState<{ card: TopicCard; num: number } | null>(null);
+  const [selectedCard, setSelectedCard] = useState<TopicCard | null>(null);
+  const ui = UI_TEXT[language as keyof typeof UI_TEXT] || UI_TEXT.en;
 
-  const handleCardBodyClick = (card: TopicCard, num: number) => {
-    setSelectedCard({ card, num });
+  const handleCardBodyClick = (card: TopicCard) => {
+    setSelectedCard(card);
   };
 
   const scrollBy = (dir: number) => {
@@ -609,16 +643,18 @@ function TopicCarousel({
       <div className="relative group/carousel">
         {/* Nav arrows */}
         <button
+          type="button"
           onClick={() => scrollBy(-1)}
           className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-brand-border shadow-xl flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
-          aria-label="Previous"
+          aria-label={ui.previous}
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
+          type="button"
           onClick={() => scrollBy(1)}
           className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white border border-brand-border shadow-xl flex items-center justify-center text-brand-text-muted hover:text-brand-primary hover:border-brand-primary/30 transition-all opacity-0 group-hover/carousel:opacity-100 cursor-pointer"
-          aria-label="Next"
+          aria-label={ui.next}
         >
           <ChevronRight className="w-6 h-6" />
         </button>
@@ -635,22 +671,22 @@ function TopicCarousel({
         >
           {cards.map((card, i) => {
             const TopicIcon = topicIcons[card.key] || Activity;
-            const cardNum = i + 1;
             const hasPulse = pulseCardKeys.has(card.key);
             const gradient = cardGradients[card.key] || 'from-white to-white';
             return (
               <motion.div
                 key={card.key}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.35, delay: i * 0.05 }}
+                transition={{ duration: 0.3, delay: i * 0.05, ease: MOTION_EASE }}
                 className={`shrink-0 w-[220px] sm:w-[240px] rounded-xl bg-gradient-to-br ${gradient} border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card`}
               >
                 {/* Clickable body — opens detail panel */}
-                <div
-                  className="flex-1 flex flex-col cursor-pointer px-4 pt-5 pb-4"
-                  onClick={() => handleCardBodyClick(card, cardNum)}
+                <button
+                  type="button"
+                  className="flex-1 flex flex-col cursor-pointer px-4 pt-5 pb-4 text-left"
+                  onClick={() => handleCardBodyClick(card)}
                 >
                   {/* Card header */}
                   <div className="flex flex-col items-center text-center gap-2 mb-4">
@@ -662,7 +698,7 @@ function TopicCarousel({
 
                   {/* Description */}
                   <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30 text-center min-h-[88px] flex items-center justify-center">
-                    <p className="text-[12px] text-brand-text-body leading-relaxed line-clamp-4">
+                    <p className="text-caption text-brand-text-body leading-relaxed line-clamp-4">
                       {card.desc}
                     </p>
                   </div>
@@ -670,25 +706,26 @@ function TopicCarousel({
                   {/* CEO insight */}
                   <div className="mt-auto">
                     <div className="bg-white/80 rounded-lg p-3 border border-brand-border/30 text-center">
-                      <div className="text-[9px] font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center justify-center gap-1">
+                      <div className="text-badge font-bold uppercase tracking-[0.12em] text-brand-text-muted mb-1.5 flex items-center justify-center gap-1">
                         <Sparkles className="w-2.5 h-2.5" />
                         {ceoLabel}
                       </div>
-                      <p className="text-[11px] text-brand-text-secondary leading-relaxed font-medium line-clamp-3">
+                      <p className="text-caption text-brand-text-secondary leading-relaxed font-medium line-clamp-3">
                         {card.ceoInsight}
                       </p>
                     </div>
                   </div>
-                </div>
+                </button>
 
                 {/* Bottom CTA — only pulse cards; spacer on others to keep alignment */}
                 {hasPulse ? (
                   <button
+                    type="button"
                     onClick={() => onOpenPulse(card.link)}
-                    className="flex items-center justify-center gap-2 px-4 py-2 border-t border-brand-primary/10 text-caption text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta"
+                    className="flex items-center justify-center gap-2 px-4 py-2 border-t border-brand-primary/10 text-caption text-brand-primary hover:bg-brand-primary/[0.04] transition-all cursor-pointer w-full group/cta min-h-[44px]"
                   >
                     <Play className="w-3 h-3" />
-                    <span>Vyzkoušet</span>
+                    <span>{ui.try}</span>
                     <ArrowRight className="w-3 h-3 group-hover/cta:translate-x-1 transition-transform" />
                   </button>
                 ) : (
@@ -704,11 +741,10 @@ function TopicCarousel({
       <AnimatePresence>
         {selectedCard && (
           <SignalDetailPanel
-            card={selectedCard.card}
-            cardNum={selectedCard.num}
+            card={selectedCard}
             chatLabel={chatLabel}
             ceoLabel={ceoLabel}
-            topicChip=""
+            language={language}
             onClose={() => setSelectedCard(null)}
             onOpenPulse={onOpenPulse}
           />
@@ -763,6 +799,7 @@ const testimonialsByLang: Record<string, Testimonial[]> = {
 function QuickScanTestimonials({ lang }: { lang: string }) {
   const items = testimonialsByLang[lang] || testimonialsByLang.en;
   const [idx, setIdx] = useState(0);
+  const ui = UI_TEXT[lang as keyof typeof UI_TEXT] || UI_TEXT.en;
 
   const next = useCallback((e: ReactMouseEvent) => {
     e.stopPropagation();
@@ -780,9 +817,10 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
     <div className="border-t border-brand-border/40 pt-5">
       <div className="relative min-h-[100px] flex items-center">
         <button
+          type="button"
           onClick={prev}
           className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
-          aria-label="Previous"
+          aria-label={ui.previous}
         >
           <ChevronDown className="w-3.5 h-3.5 rotate-90" />
         </button>
@@ -793,22 +831,23 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3, ease: MOTION_EASE }}
             className="px-10 text-center w-full"
           >
-            <p className="text-[13px] sm:text-sm text-brand-text-secondary leading-relaxed italic mb-3">
+            <p className="text-caption sm:text-body-sm text-brand-text-secondary leading-relaxed italic mb-3">
               &ldquo;{t.quote}&rdquo;
             </p>
-            <span className="text-xs text-brand-text-muted">
+            <span className="text-caption text-brand-text-muted">
               {t.name}, {t.role}{t.company ? ` · ${t.company}` : ''}
             </span>
           </motion.div>
         </AnimatePresence>
 
         <button
+          type="button"
           onClick={next}
           className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full border border-brand-border/60 hover:bg-brand-background-secondary items-center justify-center text-brand-text-muted transition-colors z-10 cursor-pointer"
-          aria-label="Next"
+          aria-label={ui.next}
         >
           <ChevronDown className="w-3.5 h-3.5 -rotate-90" />
         </button>
@@ -818,9 +857,10 @@ function QuickScanTestimonials({ lang }: { lang: string }) {
         {items.map((_, i) => (
           <button
             key={i}
+            type="button"
             onClick={(e) => { e.stopPropagation(); setIdx(i); }}
-            className="min-w-[24px] min-h-[24px] flex items-center justify-center cursor-pointer"
-            aria-label={`Testimonial ${i + 1}`}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center cursor-pointer"
+            aria-label={`${ui.testimonial} ${i + 1}`}
           >
             <span className={`block h-1 rounded-full transition-all ${
               i === idx ? 'bg-brand-accent w-4' : 'bg-brand-border w-1.5 hover:bg-brand-text-muted/40'

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { useModal } from "@/app/contexts/modal-context";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
@@ -10,6 +9,8 @@ import { useLanguage } from "@/app/contexts/language-context";
 import { submitLead } from "@/app/utils/lead";
 import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
 import { trackLeadSubmitted, trackEbookDownload } from "@/lib/analytics";
+
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -23,8 +24,7 @@ import { trackLeadSubmitted, trackEbookDownload } from "@/lib/analytics";
  */
 export function CtaSection() {
   const { openBooking } = useModal();
-  const { t, language } = useLanguage();
-  const navigate = useNavigate();
+  const { language } = useLanguage();
 
   const copy = {
     cz: {
@@ -68,7 +68,7 @@ export function CtaSection() {
   const c = copy[language] || copy.en;
 
   return (
-    <section className="relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520]">
+    <section id="lead-capture" className="relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520]">
       
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -78,7 +78,7 @@ export function CtaSection() {
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 8, repeat: Infinity, ease: MOTION_EASE }}
           className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-brand-accent/20 rounded-full blur-[150px]"
         />
         <motion.div
@@ -86,7 +86,7 @@ export function CtaSection() {
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          transition={{ duration: 10, repeat: Infinity, ease: MOTION_EASE, delay: 2 }}
           className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-violet-500/20 rounded-full blur-[150px]"
         />
         
@@ -102,12 +102,11 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8"
+            transition={{ duration: 0.5, ease: MOTION_EASE }}
+            className="section-badge section-badge-dark mb-8"
           >
             <Sparkles className="w-4 h-4 text-brand-accent" />
-            <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-white">
-              {c.badge}
-            </span>
+            <span>{c.badge}</span>
           </motion.div>
 
           {/* Headline */}
@@ -115,7 +114,7 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
+            transition={{ delay: 0.05, duration: 0.3, ease: MOTION_EASE }}
             className="text-h2 text-white mb-6"
           >
             {c.headline}
@@ -130,8 +129,8 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-base md:text-xl text-white/70 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed"
+            transition={{ delay: 0.1, duration: 0.3, ease: MOTION_EASE }}
+            className="text-body md:text-body-lg text-white/70 max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed"
           >
             {c.subheadline}
           </motion.p>
@@ -141,13 +140,13 @@ export function CtaSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
+            transition={{ delay: 0.15, duration: 0.3, ease: MOTION_EASE }}
             className="flex flex-col items-center justify-center gap-4 sm:gap-6 mb-8 sm:mb-12"
           >
             {/* Two buttons row */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {/* Primary CTA — Objednat pro celou firmu (bílé) */}
-              <Button asChild variant="inverse" className="w-full sm:w-auto shadow-2xl shadow-white/10 hover:shadow-white/20">
+              <Button asChild size="default" variant="inverse" className="w-full sm:w-auto shadow-2xl shadow-white/10 hover:shadow-white/20">
                 <a
                   href="https://www.behavera.com/start"
                   target="_blank"
@@ -159,7 +158,7 @@ export function CtaSection() {
               </Button>
 
               {/* Secondary CTA — Otestovat 1 tým zdarma (fialové) */}
-              <Button asChild variant="outline" className="w-full sm:w-auto border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white">
+              <Button asChild size="default" variant="outline" className="w-full sm:w-auto border-white/30 text-white bg-white/10 hover:bg-white/20 hover:text-white">
                 <a
                   href="https://app.behavera.com/echo-pulse/try"
                   target="_blank"
@@ -181,7 +180,7 @@ export function CtaSection() {
             <button
               type="button"
               onClick={() => openBooking('cta_section')}
-              className="text-sm text-white/60 underline underline-offset-4 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors cursor-pointer"
+              className="text-body-sm text-white/60 underline underline-offset-4 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors cursor-pointer min-h-[44px]"
             >
               {c.demoLink}
             </button>
@@ -189,10 +188,10 @@ export function CtaSection() {
 
           {/* Trust Indicators */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.2, duration: 0.5, ease: MOTION_EASE }}
             className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-white/60"
           >
             {c.trust.map((item, idx) => (
@@ -270,7 +269,7 @@ function EbookCapture({ language }: { language: string }) {
     },
   };
 
-  const txt = copy[language] || copy.en;
+  const txt = copy[language as keyof typeof copy] || copy.en;
 
   const onSubmit = async (data: LeadFormData) => {
     setIsSubmitting(true);
@@ -289,16 +288,16 @@ function EbookCapture({ language }: { language: string }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.25 }}
+      transition={{ delay: 0.25, duration: 0.3, ease: MOTION_EASE }}
       className="mt-12 sm:mt-16 pt-10 border-t border-white/10"
     >
-      <p className="text-sm text-white/50 mb-3">{txt.notReady}</p>
-      <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/15 mb-6">
+      <p className="text-body-sm text-white/50 mb-3">{txt.notReady}</p>
+      <div className="section-badge section-badge-dark mb-6">
         <BookOpen className="w-3.5 h-3.5 text-brand-accent" />
-        <span className="text-[11px] font-bold uppercase tracking-wider text-white/80">{txt.badge}</span>
+        <span>{txt.badge}</span>
       </div>
 
       {isSuccess ? (
@@ -313,9 +312,9 @@ function EbookCapture({ language }: { language: string }) {
                 key={i}
                 type="button"
                 onClick={() => { downloadFile(eb.file, `${eb.title}.pdf`); trackEbookDownload(eb.title, 'manual'); }}
-                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 transition-all text-left cursor-pointer"
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 transition-all text-left cursor-pointer min-h-[44px]"
               >
-                <span className="text-sm text-white/80">{eb.title}</span>
+                <span className="text-body-sm text-white/80">{eb.title}</span>
                 <Download className="w-3.5 h-3.5 text-white/50 shrink-0" />
               </button>
             ))}
@@ -333,10 +332,10 @@ function EbookCapture({ language }: { language: string }) {
                 {...register("email", validationRules.workEmail)}
               />
               {errors.email?.message && (
-                <p className="text-[11px] text-red-400 mt-1 text-left">{errors.email.message}</p>
+                <p className="text-badge text-red-400 mt-1 text-left">{errors.email.message}</p>
               )}
             </div>
-            <Button type="submit" disabled={isSubmitting} className="shrink-0 h-11">
+            <Button type="submit" size="sm" disabled={isSubmitting} className="shrink-0 min-h-[44px]">
               {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : (
                 <>{txt.submit} <ArrowRight className="w-3.5 h-3.5" /></>
               )}

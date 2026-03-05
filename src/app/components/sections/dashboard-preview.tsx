@@ -5,6 +5,8 @@ import { motion, useInView } from "framer-motion";
 import { DeviceFrame } from "@/app/components/ui/device-frame";
 import { FeatureGrid } from "@/app/components/ui/snap-carousel";
 
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 /**
  * Dashboard Preview — Real Dashboard Video
  * 
@@ -51,7 +53,7 @@ export function DashboardPreview() {
     .filter((feature) => feature.title);
 
   return (
-    <section className="section-spacing bg-white relative overflow-hidden" id="preview">
+    <section className="section-spacing bg-brand-background-secondary relative overflow-hidden" id="preview">
       
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-20" />
@@ -59,44 +61,33 @@ export function DashboardPreview() {
       <div className="container-default relative z-10">
         
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10 md:mb-14">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-xl"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-background-secondary text-brand-text-muted font-mono text-[11px] font-bold uppercase tracking-[0.15em] mb-6 border border-brand-border">
-              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-              {t.dashboard?.badge}
-            </div>
-            <h2 className="text-h2 text-brand-text-primary">
-              {t.dashboard?.title}
-              <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-3">{t.dashboard?.titleHighlight}</span>
-            </h2>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-md text-left md:text-right mt-8 md:mt-0"
-          >
-            <p className="text-lg text-brand-text-secondary leading-relaxed">
-              {t.dashboard?.subtitle}
-            </p>
-          </motion.div>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
+          className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
+        >
+          <div className="section-badge">
+            <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+            {t.dashboard?.badge}
+          </div>
+          <h2 className="text-h2 text-brand-text-primary mb-4">
+            {t.dashboard?.title}
+            <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-3">{t.dashboard?.titleHighlight}</span>
+          </h2>
+          <p className="text-body-lg text-brand-text-secondary leading-relaxed mb-10 md:mb-14">
+            {t.dashboard?.subtitle}
+          </p>
+        </motion.div>
 
         {/* MacBook Pro Video */}
         <motion.div
           ref={containerRef}
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
           className="mb-16 md:mb-24"
         >
           <DeviceFrame type="macbook" className="w-full max-w-[500px] sm:max-w-[640px] md:max-w-[800px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">

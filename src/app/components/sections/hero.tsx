@@ -24,6 +24,7 @@ interface HeroHeadline {
 }
 
 export function Hero() {
+  const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
   const { language } = useLanguage();
   const { openBooking } = useModal();
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -167,13 +168,11 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.3, ease: MOTION_EASE }}
               className="section-badge bg-white/90 backdrop-blur-sm shadow-sm border-brand-border/80 text-brand-text-muted mb-5 md:mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-brand-success animate-pulse" />
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brand-text-muted">
-                {c.badge}
-              </span>
+              <span>{c.badge}</span>
             </motion.div>
 
             {/* Rotating headline — only h1 changes, rest stays static */}
@@ -185,8 +184,8 @@ export function Hero() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.08] font-display text-balance"
+                  transition={{ duration: 0.5, ease: MOTION_EASE }}
+                  className="text-h1 font-extrabold tracking-[-0.03em] text-brand-text-primary leading-[1.08] text-balance"
                 >
                   {headline.text}
                   {headline.highlight && <br />}
@@ -200,7 +199,7 @@ export function Hero() {
             </div>
 
             {/* Static subtitle — shorter line-clamp on mobile */}
-            <p className="text-base md:text-xl text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-4">
+            <p className="text-body md:text-body-lg text-brand-text-body leading-relaxed max-w-2xl mx-auto mb-4">
               {c.subtitle}
             </p>
 
@@ -210,7 +209,7 @@ export function Hero() {
                   key={idx}
                   onClick={() => goToSlide(idx)}
                   aria-label={`Headline ${idx + 1}`}
-                  className="group relative p-1.5 min-w-[24px] min-h-[24px] flex items-center justify-center"
+                  className="group relative p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 >
                   <span
                     className={`block rounded-full transition-all duration-300 ${
@@ -224,15 +223,12 @@ export function Hero() {
             </div>
 
             {/* CTAs */}
-            <motion.div
+            <div
               ref={ctaRef}
               data-hero-ctas
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.15 }}
               className="flex flex-col sm:flex-row items-center gap-4 mb-8 justify-center"
             >
-              <Button asChild size="lg" className="w-full sm:w-auto h-14 px-8 text-base font-semibold rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all btn-shine">
+              <Button asChild size="lg" className="w-full sm:w-auto rounded-2xl shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/30 transition-all btn-shine">
                 <a href="https://app.behavera.com/echo-pulse/try" target="_blank" rel="noopener noreferrer">
                   <Play className="w-4 h-4 mr-2 fill-current" />
                   {c.primaryCta}
@@ -243,21 +239,18 @@ export function Hero() {
                 onClick={() => openBooking('hero')}
                 variant="outline"
                 size="lg"
-                className="w-full sm:w-auto h-14 px-6 text-base font-semibold border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 rounded-2xl min-h-[48px]"
+                className="w-full sm:w-auto border-brand-primary/20 text-brand-primary hover:bg-brand-primary/5 rounded-2xl"
               >
                 {c.secondaryCta}
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </motion.div>
+            </div>
 
             {/* Micro-copy + Trust */}
-            <p className="text-xs text-brand-text-muted mb-3">{c.ctaMicro}</p>
-            <p className="text-xs font-medium text-brand-text-muted/80 mb-6">{c.proofLine}</p>
+            <p className="text-caption text-brand-text-muted mb-3">{c.ctaMicro}</p>
+            <p className="text-caption font-medium text-brand-text-muted/80 mb-6">{c.proofLine}</p>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
+            <div
               className="mx-auto inline-flex max-w-5xl flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 rounded-2xl border border-brand-border/70 bg-white/70 px-3 py-3 sm:px-5 backdrop-blur-sm shadow-[0_12px_35px_-30px_rgba(45,27,105,0.25)]"
             >
               <div className="flex items-center gap-2 text-sm font-semibold text-brand-primary">
@@ -271,16 +264,11 @@ export function Hero() {
                   <span>{item.text}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           {/* Dashboard image — Centered, full width, large */}
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full drop-shadow-[0_25px_45px_rgba(45,27,105,0.16)]"
-          >
+          <div className="relative w-full drop-shadow-[0_25px_45px_rgba(45,27,105,0.16)]">
             <DeviceFrame type="macbook" className="w-full max-w-[1400px] mx-auto">
               <AnimatedDashboardContent 
                 imageSrc={heroImage.src} 
@@ -290,7 +278,7 @@ export function Hero() {
                 fetchPriority="high"
               />
             </DeviceFrame>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -4,6 +4,9 @@ import { ChevronDown, Mail, Shield, Zap, Users, BarChart, HelpCircle, ShieldChec
 import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
 import { trackFaqCategoryChanged, trackFaqItemToggled } from "@/lib/analytics";
+import { Button } from "@/app/components/ui/button";
+
+const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 /**
  * FAQ - Luxury Accordion with Categories
@@ -87,7 +90,7 @@ export function FAQ() {
   };
 
   return (
-    <section className="section-spacing bg-brand-background-secondary/20 relative overflow-hidden" id="faq">
+    <section className="section-spacing bg-white relative overflow-hidden" id="faq">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-8 left-[8%] h-40 w-40 rounded-full bg-brand-accent/8 blur-3xl" />
         <div className="absolute bottom-6 right-[10%] h-52 w-52 rounded-full bg-brand-primary/6 blur-3xl" />
@@ -100,7 +103,8 @@ export function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10 md:mb-12"
+          transition={{ duration: 0.5, ease: MOTION_EASE }}
+          className="text-center"
         >
           <div className="section-badge text-brand-text-muted/90">
             <HelpCircle className="w-3.5 h-3.5" />
@@ -112,7 +116,7 @@ export function FAQ() {
               {t.faq?.titleHighlight || " not just questions"}
             </span>
           </h2>
-          <p className="text-lg text-brand-text-secondary max-w-2xl mx-auto">
+          <p className="text-body-lg text-brand-text-secondary max-w-2xl mx-auto mb-10 md:mb-14">
             {t.faq?.desc || "Get answers to common questions about Behavera."}
           </p>
         </motion.div>
@@ -122,7 +126,7 @@ export function FAQ() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.05, duration: 0.3, ease: MOTION_EASE }}
           className="flex justify-center mb-10"
         >
           <div className="inline-flex p-1.5 surface-elevated rounded-2xl max-w-full overflow-x-auto chip-scroll gap-1">
@@ -131,13 +135,14 @@ export function FAQ() {
               return (
                 <button
                   key={cat.id}
+                  type="button"
                   onClick={() => {
                     setActiveCategory(cat.id);
                     setOpenItem(null);
                     trackFaqCategoryChanged(cat.id);
                   }}
                   className={cn(
-                    "relative px-3.5 sm:px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap",
+                    "relative px-3.5 sm:px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap",
                     isActive 
                       ? "text-white" 
                       : "text-brand-text-secondary hover:text-brand-primary"
@@ -147,12 +152,12 @@ export function FAQ() {
                     <motion.div
                       layoutId="faqCategoryBg"
                       className="absolute inset-0 bg-brand-primary rounded-xl"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      transition={{ duration: 0.3, ease: MOTION_EASE }}
                     />
                   )}
                   <span className="relative z-10 flex items-center gap-2">
                     {cat.icon}
-                    <span className="sm:hidden text-[12px]">{cat.shortLabel}</span>
+                    <span className="sm:hidden text-caption">{cat.shortLabel}</span>
                     <span className="hidden sm:inline">{cat.label}</span>
                   </span>
                 </button>
@@ -163,20 +168,20 @@ export function FAQ() {
 
         {/* FAQ Items */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1, duration: 0.5, ease: MOTION_EASE }}
           className="space-y-3"
         >
           <AnimatePresence mode="wait">
             {filteredItems.map((item, index) => (
               <motion.div
-                key={`${activeCategory}-${index}`}
+                key={`${activeCategory}-${item.q}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ delay: index * 0.05 }}
+                transition={{ delay: index * 0.05, duration: 0.3, ease: MOTION_EASE }}
               >
                 <FAQAccordionItem
                   question={item.q}
@@ -191,22 +196,21 @@ export function FAQ() {
 
         {/* Contact CTA */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.15, duration: 0.5, ease: MOTION_EASE }}
           className="mt-12 text-center"
         >
-          <p className="text-brand-text-secondary mb-4">
+          <p className="text-body text-brand-text-secondary mb-4">
             {language === 'cz' ? "Nenašli jste odpověď?" : language === 'de' ? "Keine Antwort gefunden?" : "Didn't find your answer?"}
           </p>
-          <a
-            href="mailto:support@behavera.com"
-            className="inline-flex items-center gap-2 px-6 py-3 surface-elevated surface-elevated-hover rounded-xl text-brand-primary font-semibold hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-all"
-          >
-            <Mail className="w-4 h-4" />
-            {t.faq?.contact || "Contact us"}
-          </a>
+          <Button asChild size="default" variant="outline" className="surface-elevated surface-elevated-hover rounded-xl">
+            <a href="mailto:support@behavera.com">
+              <Mail className="w-4 h-4" />
+              {t.faq?.contact || "Contact us"}
+            </a>
+          </Button>
         </motion.div>
 
         {/* Trust Badges */}
@@ -247,14 +251,14 @@ function TrustBadges({ language }: { language: string }) {
     ],
   };
 
-  const items = badges[language] || badges.en;
+  const items = badges[language as keyof typeof badges] || badges.en;
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.2 }}
+      transition={{ delay: 0.1, duration: 0.5, ease: MOTION_EASE }}
       className="mt-10 pt-8 border-t border-brand-border/40"
     >
       <div className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
@@ -267,7 +271,7 @@ function TrustBadges({ language }: { language: string }) {
               </div>
               <div>
                 <div className="text-xs font-bold text-brand-text-primary leading-tight">{badge.label}</div>
-                <div className="text-[10px] text-brand-text-muted leading-tight">{badge.sub}</div>
+                <div className="text-badge text-brand-text-muted leading-tight">{badge.sub}</div>
               </div>
             </div>
           );
@@ -284,6 +288,7 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
       isOpen ? "border-brand-primary/30 shadow-lg shadow-brand-primary/10" : "hover:border-brand-primary/20"
     )}>
       <button
+        type="button"
         onClick={onToggle}
         className="w-full flex items-center justify-between p-5 sm:p-6 text-left"
         aria-expanded={isOpen}
@@ -296,7 +301,7 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
         </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.3, ease: MOTION_EASE }}
           className={cn(
             "w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors",
             isOpen ? "bg-brand-primary text-white" : "bg-brand-background-secondary text-brand-text-muted"
@@ -312,7 +317,7 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.3, ease: MOTION_EASE }}
             className="overflow-hidden"
           >
             <div className="px-6 pb-6 pt-0">
