@@ -38,17 +38,9 @@ const PurchaseSection = lazyNamed(
   () => import("@/app/components/sections/pricing"),
   "PurchaseSection"
 );
-const TrustCenter = lazyNamed(
-  () => import("@/app/components/sections/trust-center"),
-  "TrustCenter"
-);
 const CtaSection = lazyNamed(
   () => import("@/app/components/sections/cta-section"),
   "CtaSection"
-);
-const LeadCaptureSection = lazyNamed(
-  () => import("@/app/components/sections/lead-capture"),
-  "LeadCaptureSection"
 );
 
 const Hero = lazyNamed(
@@ -59,13 +51,13 @@ const LogoMarquee = lazyNamed(
   () => import("@/app/components/sections/logo-marquee"),
   "LogoMarquee"
 );
-const StatsBar = lazyNamed(
-  () => import("@/app/components/sections/stats-bar"),
-  "StatsBar"
-);
 const ProblemSection = lazyNamed(
   () => import("@/app/components/sections/problem"),
   "ProblemSection"
+);
+const RoleSelection = lazyNamed(
+  () => import("@/app/components/sections/role-selection"),
+  "RoleSelection"
 );
 const SignalRadar = lazyNamed(
   () => import("@/app/components/sections/signal-radar"),
@@ -74,18 +66,6 @@ const SignalRadar = lazyNamed(
 const DashboardPreview = lazyNamed(
   () => import("@/app/components/sections/dashboard-preview"),
   "DashboardPreview"
-);
-const RoleSelection = lazyNamed(
-  () => import("@/app/components/sections/role-selection"),
-  "RoleSelection"
-);
-const AboutUnfoldSection = lazyNamed(
-  () => import("@/app/components/sections/about-unfold"),
-  "AboutUnfoldSection"
-);
-const BlogFeedSection = lazyNamed(
-  () => import("@/app/components/sections/blog-feed"),
-  "BlogFeedSection"
 );
 
 
@@ -102,12 +82,6 @@ export function LandingPage() {
     } else if (params.get('demo') === '1') {
       openDemo('direct_link');
       window.history.replaceState({}, '', '/');
-    } else if (params.get('post')) {
-      // Redirect from /blog/:slug — scroll to blog section, modal opens via blog-feed
-      setTimeout(() => {
-        const el = document.getElementById('blog');
-        el?.scrollIntoView({ behavior: 'smooth' });
-      }, 600);
     } else if (params.get('scroll')) {
       const target = params.get('scroll');
       window.history.replaceState({}, '', '/');
@@ -154,50 +128,35 @@ export function LandingPage() {
         <LazySection>
           <Hero />
         </LazySection>
-        
-        {/* 2. SOCIAL PROOF — Client logos */}
+
+        {/* 2. SOCIAL PROOF — Client logos + stat counters */}
         <LazySection>
           <LogoMarquee />
         </LazySection>
 
-        {/* 2b. CREDIBILITY — Animated stat counters */}
-        <LazySection>
-          <StatsBar />
-        </LazySection>
-        
         {/* 3. PROBLEM — Build pain awareness */}
         <LazySection>
           <ProblemSection />
         </LazySection>
 
-        {/* 4. HOW IT WORKS + WHAT WE MEASURE */}
+        {/* 4. PERSONALIZATION — Role-based value (moved up) */}
+        <LazySection>
+          <RoleSelection />
+        </LazySection>
+
+        {/* 5. HOW IT WORKS + WHAT WE MEASURE */}
         <LazySection>
           <SignalRadar />
         </LazySection>
 
-        {/* 5. VISUAL PROOF — See the dashboard in action */}
+        {/* 6. VISUAL PROOF — See the dashboard */}
         <LazySection>
           <DashboardPreview />
         </LazySection>
 
-        {/* 6. SOCIAL PROOF — Real client results */}
+        {/* 7. SOCIAL PROOF — Real client results */}
         <LazySection>
           <CaseStudiesSection />
-        </LazySection>
-
-        {/* 7. ABOUT — Meet the team (unfoldable) */}
-        <LazySection>
-          <AboutUnfoldSection />
-        </LazySection>
-
-        {/* 8. BLOG — Latest articles with popup reader */}
-        <LazySection>
-          <BlogFeedSection />
-        </LazySection>
-
-        {/* 9. PERSONALIZATION — Role-based value */}
-        <LazySection>
-          <RoleSelection />
         </LazySection>
 
         {/* 8. INVESTMENT — Pricing calculator */}
@@ -205,24 +164,14 @@ export function LandingPage() {
           <PurchaseSection />
         </LazySection>
 
-        {/* 8. OBJECTION HANDLING — FAQ */}
+        {/* 9. OBJECTION HANDLING — FAQ + trust badges */}
         <LazySection>
           <FAQ />
         </LazySection>
 
-        {/* 10. COMPLIANCE — GDPR, data handling */}
-        <LazySection>
-          <TrustCenter />
-        </LazySection>
-
-        {/* 11. FINAL CTA — Clear next step */}
+        {/* 10. FINAL CTA + lead capture */}
         <LazySection>
           <CtaSection />
-        </LazySection>
-
-        {/* 12. SOFT CAPTURE — E-book for undecided */}
-        <LazySection>
-          <LeadCaptureSection />
         </LazySection>
       </main>
       <Footer />

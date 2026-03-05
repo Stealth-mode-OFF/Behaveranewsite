@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Mail, Shield, Zap, Users, BarChart, HelpCircle } from "lucide-react";
+import { ChevronDown, Mail, Shield, Zap, Users, BarChart, HelpCircle, ShieldCheck, Lock, Globe, Server } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
 import { trackFaqCategoryChanged, trackFaqItemToggled } from "@/lib/analytics";
@@ -208,6 +208,9 @@ export function FAQ() {
             {t.faq?.contact || "Contact us"}
           </a>
         </motion.div>
+
+        {/* Trust Badges */}
+        <TrustBadges language={language} />
         </div>
       </div>
     </section>
@@ -220,6 +223,59 @@ type FAQAccordionItemProps = {
   isOpen: boolean;
   onToggle: () => void;
 };
+
+/* ─── Trust Badges ─── */
+function TrustBadges({ language }: { language: string }) {
+  const badges = {
+    cz: [
+      { icon: ShieldCheck, label: "GDPR", sub: "Plně v souladu" },
+      { icon: Lock, label: "Šifrování", sub: "AES-256 / TLS 1.3" },
+      { icon: Server, label: "EU hosting", sub: "Data v EU" },
+      { icon: Globe, label: "ISO 27001", sub: "Certifikováno" },
+    ],
+    en: [
+      { icon: ShieldCheck, label: "GDPR", sub: "Fully compliant" },
+      { icon: Lock, label: "Encrypted", sub: "AES-256 / TLS 1.3" },
+      { icon: Server, label: "EU hosting", sub: "Data stays in EU" },
+      { icon: Globe, label: "ISO 27001", sub: "Certified" },
+    ],
+    de: [
+      { icon: ShieldCheck, label: "DSGVO", sub: "Vollständig konform" },
+      { icon: Lock, label: "Verschlüsselt", sub: "AES-256 / TLS 1.3" },
+      { icon: Server, label: "EU-Hosting", sub: "Daten in der EU" },
+      { icon: Globe, label: "ISO 27001", sub: "Zertifiziert" },
+    ],
+  };
+
+  const items = badges[language] || badges.en;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.2 }}
+      className="mt-10 pt-8 border-t border-brand-border/40"
+    >
+      <div className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
+        {items.map((badge, idx) => {
+          const Icon = badge.icon;
+          return (
+            <div key={idx} className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-brand-primary/5 flex items-center justify-center">
+                <Icon className="w-4 h-4 text-brand-primary/70" />
+              </div>
+              <div>
+                <div className="text-xs font-bold text-brand-text-primary leading-tight">{badge.label}</div>
+                <div className="text-[10px] text-brand-text-muted leading-tight">{badge.sub}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+}
 
 function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionItemProps) {
   return (

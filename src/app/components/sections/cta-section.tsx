@@ -1,9 +1,15 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "@/app/contexts/modal-context";
 import { Button } from "@/app/components/ui/button";
-import { ArrowRight, Sparkles, Check } from "lucide-react";
+import { Input } from "@/app/components/ui/input";
+import { ArrowRight, Sparkles, Check, BookOpen, Download, Loader2 } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
+import { submitLead } from "@/app/utils/lead";
+import { validationRules, autocompleteAttributes } from "@/app/utils/validation";
+import { trackLeadSubmitted, trackEbookDownload } from "@/lib/analytics";
 
 /**
  * CTA Section - Full-width Dark Premium Design
@@ -197,11 +203,155 @@ export function CtaSection() {
             ))}
           </motion.div>
 
+          {/* Lead Capture — ebook download */}
+          <EbookCapture language={language} />
+
         </div>
       </div>
 
       {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/30 to-transparent" />
     </section>
+  );
+}
+
+/* ─── Ebook Lead Capture ─── */
+const EBOOKS = [
+  { file: "/ebooks/lide-odchazeji-z-dobrych-firem.pdf", title: "Lidé odcházejí z dobrých firem", size: "4.3 MB" },
+  { file: "/ebooks/motivovani-jen-2-z-10.pdf", title: "Motivováni jen 2 z 10", size: "4.1 MB" },
+];
+
+const downloadFile = (url: string, filename: string) => {
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  link.style.display = 'none';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+type LeadFormData = { email: string; marketingConsent: boolean };
+
+function EbookCapture({ language }: { language: string }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<LeadFormData>({
+    defaultValues: { marketingConsent: false },
+  });
+
+  const copy = {
+    cz: {
+      notReady: "Ještě nejste připraveni?",
+      badge: "2 e-booky zdarma",
+      emailPlaceholder: "jan.novak@firma.cz",
+      submit: "Stáhnout",
+      consent: "Souhlasím se zasíláním tipů a novinek.",
+      successTitle: "E-booky se stahují!",
+      dl: "Stáhnout",
+    },
+    en: {
+      notReady: "Not ready yet?",
+      badge: "2 free e-books",
+      emailPlaceholder: "john@company.com",
+      submit: "Download",
+      consent: "I agree to receive tips and news.",
+      successTitle: "Your e-books are downloading!",
+      dl: "Download",
+    },
+    de: {
+      notReady: "Noch nicht bereit?",
+      badge: "2 kostenlose E-Books",
+      emailPlaceholder: "max@firma.de",
+      submit: "Herunterladen",
+      consent: "Ich stimme dem Erhalt von Tipps zu.",
+      successTitle: "Die E-Books werden heruntergeladen!",
+      dl: "Download",
+    },
+  };
+
+  const txt = copy[language] || copy.en;
+
+  const onSubmit = async (data: LeadFormData) => {
+    setIsSubmitting(true);
+    submitLead({ email: data.email, source: 'ebook', marketingConsent: data.marketingConsent });
+    trackLeadSubmitted('ebook');
+    EBOOKS.forEach((eb, i) => {
+      setTimeout(() => {
+        downloadFile(eb.file, `${eb.title}.pdf`);
+        trackEbookDownload(eb.title, 'auto');
+      }, 100 + i * 500);
+    });
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    reset();
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.25 }}
+      className="mt-12 sm:mt-16 pt-10 border-t border-white/10"
+    >
+      <p className="text-sm text-white/50 mb-3">{txt.notReady}</p>
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/15 mb-6">
+        <BookOpen className="w-3.5 h-3.5 text-brand-accent" />
+        <span className="text-[11px] font-bold uppercase tracking-wider text-white/80">{txt.badge}</span>
+      </div>
+
+      {isSuccess ? (
+        <div className="max-w-sm mx-auto">
+          <div className="flex items-center justify-center gap-2 text-brand-accent mb-3">
+            <Check className="w-4 h-4" />
+            <span className="text-sm font-semibold">{txt.successTitle}</span>
+          </div>
+          <div className="space-y-2">
+            {EBOOKS.map((eb, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => { downloadFile(eb.file, `${eb.title}.pdf`); trackEbookDownload(eb.title, 'manual'); }}
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 transition-all text-left cursor-pointer"
+              >
+                <span className="text-sm text-white/80">{eb.title}</span>
+                <Download className="w-3.5 h-3.5 text-white/50 shrink-0" />
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit(onSubmit)} className="max-w-sm mx-auto space-y-3">
+          <div className="flex gap-2">
+            <div className="flex-1 min-w-0">
+              <Input
+                type="email"
+                autoComplete={autocompleteAttributes.email}
+                placeholder={txt.emailPlaceholder}
+                className="h-11 w-full bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-brand-accent"
+                {...register("email", validationRules.workEmail)}
+              />
+              {errors.email?.message && (
+                <p className="text-[11px] text-red-400 mt-1 text-left">{errors.email.message}</p>
+              )}
+            </div>
+            <Button type="submit" disabled={isSubmitting} className="shrink-0 h-11">
+              {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : (
+                <>{txt.submit} <ArrowRight className="w-3.5 h-3.5" /></>
+              )}
+            </Button>
+          </div>
+          <label className="flex items-center justify-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              className="h-3.5 w-3.5 rounded border-white/30 text-brand-accent focus:ring-brand-accent/30 cursor-pointer bg-transparent"
+              {...register("marketingConsent")}
+            />
+            <span className="text-[10px] text-white/40">{txt.consent}</span>
+          </label>
+        </form>
+      )}
+    </motion.div>
   );
 }

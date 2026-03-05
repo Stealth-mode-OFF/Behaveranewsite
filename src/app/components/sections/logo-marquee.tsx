@@ -1,6 +1,7 @@
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/app/contexts/language-context";
-import { motion } from "framer-motion";
-import { TrendingUp, Heart, BarChart3 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { TrendingUp, Heart, BarChart3, Users, Zap } from "lucide-react";
 import pwcLogo from "@/assets/clients/pwc.webp";
 import vodafoneLogo from "@/assets/clients/vodafone.webp";
 import notinoLogo from "@/assets/clients/notino.webp";
@@ -139,10 +140,108 @@ export function LogoMarquee() {
           </div>
         </div>
 
+        {/* Animated Stats Row */}
+        <StatsRow language={language} />
+
         {/* Proof Chips — tighter on mobile */}
         <ProofChips language={language} />
       </div>
     </section>
+  );
+}
+
+/* ─── Animated Counter ─── */
+function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: {
+  end: number; suffix?: string; prefix?: string; duration?: number;
+}) {
+  const [count, setCount] = useState(end);
+  const [blur, setBlur] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+    const startFrom = Math.round(end * 0.85);
+    setCount(startFrom);
+    setBlur(3);
+    const startTime = performance.now();
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      setCount(Math.round(startFrom + (end - startFrom) * eased));
+      setBlur(Math.max(0, 3 * (1 - progress / 0.6)));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+    setTimeout(() => requestAnimationFrame(animate), 120);
+  }, [inView, end, duration]);
+
+  return (
+    <span
+      ref={ref}
+      style={{ filter: blur > 0.1 ? `blur(${blur}px)` : undefined, transition: 'filter 0.1s' }}
+    >
+      {prefix}{count.toLocaleString()}{suffix}
+    </span>
+  );
+}
+
+/* ─── Stats Row ─── */
+type StatItem = { icon: typeof Users; value: number; prefix: string; suffix: string; label: string };
+
+function StatsRow({ language }: { language: string }) {
+  const stats: Record<string, StatItem[]> = {
+    cz: [
+      { icon: Users, value: 50000, prefix: "", suffix: "+", label: "otestovaných lidí" },
+      { icon: TrendingUp, value: 80, prefix: "", suffix: "%+", label: "návratnost" },
+      { icon: Zap, value: 2, prefix: "", suffix: " min", label: "na vyplnění" },
+    ],
+    en: [
+      { icon: Users, value: 50000, prefix: "", suffix: "+", label: "people assessed" },
+      { icon: TrendingUp, value: 80, prefix: "", suffix: "%+", label: "completion rate" },
+      { icon: Zap, value: 2, prefix: "", suffix: " min", label: "to complete" },
+    ],
+    de: [
+      { icon: Users, value: 50000, prefix: "", suffix: "+", label: "getestete Personen" },
+      { icon: TrendingUp, value: 80, prefix: "", suffix: "%+", label: "Rücklaufquote" },
+      { icon: Zap, value: 2, prefix: "", suffix: " Min", label: "zum Ausfüllen" },
+    ],
+  };
+
+  const items = stats[language] || stats.en;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14 mt-6 md:mt-8 py-4 border-t border-brand-border/50"
+    >
+      {items.map((stat, idx) => {
+        const Icon = stat.icon;
+        return (
+          <div key={idx} className="text-center">
+            <div className="flex items-center justify-center gap-1.5 mb-1">
+              <Icon className="w-4 h-4 text-brand-primary/60" />
+              <span className="text-xl sm:text-2xl font-bold text-brand-text-primary" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                <AnimatedCounter
+                  end={stat.value}
+                  suffix={stat.suffix}
+                  prefix={stat.prefix}
+                  duration={stat.value > 100 ? 3000 : 1800}
+                />
+              </span>
+            </div>
+            <span className="text-[11px] sm:text-xs font-medium text-brand-text-muted uppercase tracking-wider">
+              {stat.label}
+            </span>
+          </div>
+        );
+      })}
+    </motion.div>
   );
 }
 
