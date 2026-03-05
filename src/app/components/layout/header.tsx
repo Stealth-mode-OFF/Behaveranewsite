@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/app/components/ui/button";
 import { LanguageSwitcher } from "./language-switcher";
 import { useLanguage } from "@/app/contexts/language-context";
 import { cn } from "@/app/components/ui/utils";
+import { useModal } from "@/app/contexts/modal-context";
 import { BEHAVERA_LOGIN_URL } from "@/lib/urls";
 import { trackLoginClick } from "@/lib/analytics";
 
@@ -12,7 +14,9 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language } = useLanguage();
+  const { openDemo } = useModal();
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === "/";
 
   useEffect(() => {
@@ -146,9 +150,22 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               </Link>
             )
           )}
-          <Link to="/blog" className={navLinkClass}>
-            {blogLabel}
-          </Link>
+          {isHome ? (
+            <a
+              href="#blog"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo('blog');
+              }}
+              className={navLinkClass}
+            >
+              {blogLabel}
+            </a>
+          ) : (
+            <Link to="/#blog" className={navLinkClass}>
+              {blogLabel}
+            </Link>
+          )}
           {isHome ? (
             <a
               href="#about"
@@ -237,7 +254,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               <div className="flex flex-col items-end gap-0.5">
                 {[
                   ...navItems.map((item) => ({ id: item.id, label: item.label, type: 'section' as const })),
-                  { id: 'blog', label: blogLabel, type: 'route' as const, href: '/blog' },
+                  { id: 'blog', label: blogLabel, type: 'section' as const },
                   { id: 'about', label: aboutLabel, type: 'section' as const },
                 ].map((item, idx) => (
                   <motion.div
@@ -246,15 +263,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.08 + idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    {item.type === 'route' ? (
-                      <Link
-                        to={item.href}
-                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    ) : isHome ? (
+                    {isHome ? (
                       <a
                         href={`#${item.id}`}
                         className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
