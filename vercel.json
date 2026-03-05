@@ -32,11 +32,6 @@
       "source": "/about",
       "destination": "/#about",
       "permanent": false
-    },
-    {
-      "source": "/blog",
-      "destination": "/#blog",
-      "permanent": false
     }
   ],
   "rewrites": [

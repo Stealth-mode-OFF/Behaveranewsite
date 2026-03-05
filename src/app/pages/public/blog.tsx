@@ -11,10 +11,9 @@ import { useLanguage } from '@/app/contexts/language-context';
 import { useModal } from '@/app/contexts/modal-context';
 import { useLocalizedPosts } from '@/app/hooks/use-localized-post';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Clock, BookOpen, Search, X, Sparkles } from 'lucide-react';
+import { ArrowRight, Clock, Search, X, Sparkles } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { BlogReaderModal } from '@/app/components/blog-reader-modal';
-import { BlogReaderPage } from '@/app/components/blog-reader-page';
 import { getResponsiveImageProps } from '@/lib/image-helpers';
 
 /** Estimate reading time from HTML content */
@@ -86,20 +85,6 @@ export function BlogPage() {
         <main className="flex-1 pt-24 pb-20">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="py-20 text-center text-brand-text-muted">Načítám článek…</div>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (slug && posts.length > 0) {
-    return (
-      <div className="min-h-screen flex flex-col bg-brand-background-primary">
-        <Header />
-        <main className="flex-1 pt-24 pb-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <BlogReaderPage slug={slug} allPosts={posts} onBack={() => navigate('/blog')} />
           </div>
         </main>
         <Footer />
@@ -448,9 +433,9 @@ export function BlogPage() {
       </main>
       <Footer />
 
-      {/* Blog reader modal overlay (kept for future use) */}
+      {/* Blog reader modal overlay */}
       <AnimatePresence>
-        {false && slug && posts.length > 0 && (
+        {slug && posts.length > 0 && (
           <BlogReaderModal
             slug={slug}
             allPosts={posts}
