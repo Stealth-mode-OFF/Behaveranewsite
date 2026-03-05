@@ -368,6 +368,10 @@ export function TeamBuilder({
   // Manager banner dismissed
   const [managerBannerDismissed, setManagerBannerDismissed] = useState(false);
 
+  // Drag & drop
+  const [dragContact, setDragContact] = useState<{ contact: TeamContact; sourceTeamId: string | null } | null>(null);
+  const [dragOverTarget, setDragOverTarget] = useState<string | null>(null); // teamId or "pool"
+
   /* ─── Persist manual contacts ─── */
   useEffect(() => {
     try {
@@ -579,6 +583,72 @@ export function TeamBuilder({
     );
   };
 
+  /* ─── Drag & drop helpers ─── */
+  const handleDragStart = (contact: TeamContact, sourceTeamId: string | null) => {
+    setDragContact({ contact, sourceTeamId });
+  };
+
+  const handleDragOver = (e: React.DragEvent, targetId: string) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+    setDragOverTarget(targetId);
+  };
+
+  const handleDragLeave = (e: React.DragEvent, targetId: string) => {
+    const relatedTarget = e.relatedTarget as Node | null;
+    const currentTarget = e.currentTarget as Node;
+    if (relatedTarget && currentTarget.contains(relatedTarget)) return;
+    if (dragOverTarget === targetId) setDragOverTarget(null);
+  };
+
+  const handleDrop = (e: React.DragEvent, targetTeamId: string) => {
+    e.preventDefault();
+    setDragOverTarget(null);
+    if (!dragContact) return;
+    const { contact, sourceTeamId } = dragContact;
+    setDragContact(null);
+
+    // Same source = no-op
+    if (sourceTeamId === targetTeamId) return;
+
+    // Already in target team?
+    const targetTeam = teams.find((t) => t.id === targetTeamId);
+    if (targetTeam?.members.some((m) => m.email.toLowerCase() === contact.email.toLowerCase())) return;
+
+    updateTeams(
+      teams.map((t) => {
+        // Remove from source team
+        if (sourceTeamId && t.id === sourceTeamId) {
+          return {
+            ...t,
+            members: t.members.filter((m) => m.email !== contact.email),
+            leaderEmail: t.leaderEmail === contact.email ? "" : t.leaderEmail,
+            resultRecipients: t.resultRecipients.filter((e) => e !== contact.email),
+          };
+        }
+        // Add to target team
+        if (t.id === targetTeamId) {
+          return { ...t, members: [...t.members, contact] };
+        }
+        return t;
+      })
+    );
+  };
+
+  const handleDropToPool = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOverTarget(null);
+    if (!dragContact || !dragContact.sourceTeamId) { setDragContact(null); return; }
+    const { contact, sourceTeamId } = dragContact;
+    setDragContact(null);
+    removeMember(sourceTeamId, contact.email);
+  };
+
+  const handleDragEnd = () => {
+    setDragContact(null);
+    setDragOverTarget(null);
+  };
+
   const moveToManagerTeam = (fromTeamId: string, member: TeamContact) => {
     let targetTeam = teams.find((t) => isManagerTeamName(t.name));
     let newTeams = teams;
@@ -710,7 +780,15 @@ export function TeamBuilder({
       )}
 
       {/* ═══ Unassigned Pool (collapsible) ═══ */}
-      <div className="rounded-xl border border-brand-border/50 bg-white overflow-hidden shadow-sm">
+      <div
+        onDragOver={(e) => handleDragOver(e, "pool")}
+        onDragLeave={(e) => handleDragLeave(e, "pool")}
+        onDrop={handleDropToPool}
+        className={cn(
+          "rounded-xl border bg-white overflow-hidden shadow-sm transition-all",
+          dragOverTarget === "pool" ? "border-brand-primary ring-2 ring-brand-primary/20" : "border-brand-border/50"
+        )}
+      >
         {/* Pool header */}
         <button
           type="button"
@@ -831,10 +909,17 @@ export function TeamBuilder({
                       return (
                         <div
                           key={contact.email}
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.effectAllowed = "move";
+                            handleDragStart(contact, null);
+                          }}
+                          onDragEnd={handleDragEnd}
                           onClick={() => toggleSelect(contact.email)}
                           className={cn(
-                            "flex items-center gap-3 px-4 py-2 hover:bg-brand-background-secondary/50 transition-colors cursor-pointer group select-none",
-                            isSel && "bg-brand-primary/5"
+                            "flex items-center gap-3 px-4 py-2 hover:bg-brand-background-secondary/50 transition-colors cursor-grab active:cursor-grabbing group select-none",
+                            isSel && "bg-brand-primary/5",
+                            dragContact?.contact.email === contact.email && "opacity-40"
                           )}
                         >
                           <div
@@ -950,13 +1035,18 @@ export function TeamBuilder({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2 }}
+              onDragOver={(e) => handleDragOver(e, team.id)}
+              onDragLeave={(e) => handleDragLeave(e, team.id)}
+              onDrop={(e) => handleDrop(e, team.id)}
               className={cn(
                 "rounded-xl border bg-white overflow-hidden shadow-sm transition-all",
-                isManagerTeam
-                  ? "border-amber-300/60 ring-1 ring-amber-200/40"
-                  : warnings.length > 0
-                    ? "border-red-300/60 ring-1 ring-red-200/30"
-                    : "border-brand-border/50"
+                dragOverTarget === team.id
+                  ? "border-brand-primary ring-2 ring-brand-primary/20 bg-brand-primary/[0.02]"
+                  : isManagerTeam
+                    ? "border-amber-300/60 ring-1 ring-amber-200/40"
+                    : warnings.length > 0
+                      ? "border-red-300/60 ring-1 ring-red-200/30"
+                      : "border-brand-border/50"
               )}
             >
               {/* ─── Team card header ─── */}
@@ -1035,11 +1125,16 @@ export function TeamBuilder({
               {/* ─── Members list ─── */}
               <div className="divide-y divide-brand-border/20">
                 {team.members.length === 0 ? (
-                  <div className="py-8 px-4 text-center">
+                  <div className={cn(
+                    "py-8 px-4 text-center transition-colors",
+                    dragOverTarget === team.id && "bg-brand-primary/5"
+                  )}>
                     <div className="w-10 h-10 rounded-xl bg-brand-background-muted text-brand-text-muted/30 flex items-center justify-center mx-auto mb-2">
                       <UserPlus className="w-4 h-4" />
                     </div>
-                    <p className="text-[12px] text-brand-text-muted italic">{txt.emptyTeam}</p>
+                    <p className="text-[12px] text-brand-text-muted italic">
+                      {dragContact ? (language === "cz" ? "Přetáhněte sem" : language === "de" ? "Hierher ziehen" : "Drop here") : txt.emptyTeam}
+                    </p>
                   </div>
                 ) : (
                   <AnimatePresence mode="popLayout">
@@ -1051,11 +1146,20 @@ export function TeamBuilder({
                         <motion.div
                           key={member.email}
                           layout
+                          draggable
+                          onDragStart={(e) => {
+                            e.dataTransfer.effectAllowed = "move";
+                            handleDragStart(member, team.id);
+                          }}
+                          onDragEnd={handleDragEnd}
                           initial={{ opacity: 0, x: 12 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -12 }}
                           transition={{ duration: 0.15 }}
-                          className="flex items-center gap-2.5 px-4 py-2 hover:bg-brand-background-secondary/30 transition-colors group"
+                          className={cn(
+                            "flex items-center gap-2.5 px-4 py-2 hover:bg-brand-background-secondary/30 transition-colors group cursor-grab active:cursor-grabbing",
+                            dragContact?.contact.email === member.email && "opacity-40"
+                          )}
                         >
                           <ContactAvatar contact={member} size="sm" />
                           <div className="flex-1 min-w-0">

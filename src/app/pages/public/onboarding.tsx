@@ -10,6 +10,7 @@ import {
   Check,
   ChevronRight,
   ChevronLeft,
+  ChevronDown,
   ArrowRight,
   Loader2,
   ShieldCheck,
@@ -66,6 +67,7 @@ type OnboardingFormData = {
   adminEmail: string;
   employeeCount: number;
   billingInterval: "monthly" | "yearly" | "custom";
+  customNote: string;
   agreedToTerms: boolean;
 };
 
@@ -250,8 +252,10 @@ const copy = {
     monthly: "Měsíční plán",
     monthlyDesc: "Flexibilní, bez závazku",
     custom: "Individuální plán",
-    customDesc: "Potřebujete speciální podmínky? Ozveme se vám.",
-    customSelected: "Budeme vás kontaktovat s individuální nabídkou do 24 hodin.",
+    customDesc: "Popište, co potřebujete — nebo nám rovnou zavolejte.",
+    customPlaceholder: "Např. potřebujeme fakturaci na 3 entity, speciální SLA, napojení na interní systém…",
+    customPhone: "605 839 456",
+    customPhoneLabel: "Zavolejte a domluvíme se:",
     yearly: "Ročně",
     saveTag: "Ušetřete 20 %",
     pricePerPerson: "za osobu / měsíc",
@@ -271,7 +275,7 @@ const copy = {
       { icon: "mail", title: "Potvrzení odesláno", desc: "Na váš email jsme odeslali potvrzení registrace." },
       { icon: "phone", title: "Ozveme se vám", desc: "Náš tým vás bude kontaktovat do 24 hodin." },
       { icon: "rocket", title: "Společně nastavíme", desc: "Provedeme vás úvodním nastavením a spuštěním." },
-      { icon: "sparkles", title: "Insights do 7 dní", desc: "První přehledy a doporučení pro váš tým." },
+      { icon: "sparkles", title: "Výsledky do 2 hodin", desc: "Sběr dat zabere 3 minuty. Výsledky uvidíte do 2 hodin od ukončení." },
     ],
     successQuote: "\"Nejlepší rozhodnutí za posledních 12 měsíců.\"",
     successQuoteAuthor: "— HR ředitelka, 200+ zaměstnanců",
@@ -349,8 +353,10 @@ const copy = {
     monthly: "Monthly plan",
     monthlyDesc: "Flexible option with no commitment",
     custom: "Custom plan",
-    customDesc: "Need special terms? We'll get in touch.",
-    customSelected: "We'll contact you with a custom offer within 24 hours.",
+    customDesc: "Describe what you need — or just give us a call.",
+    customPlaceholder: "E.g. billing for multiple entities, custom SLA, integration with internal systems…",
+    customPhone: "605 839 456",
+    customPhoneLabel: "Call us and we'll figure it out:",
     yearly: "Yearly",
     saveTag: "Save 20%",
     pricePerPerson: "per employee / month",
@@ -370,7 +376,7 @@ const copy = {
       { icon: "mail", title: "Confirmation sent", desc: "We've sent a confirmation to your email." },
       { icon: "phone", title: "We'll be in touch", desc: "Our team will contact you within 24 hours." },
       { icon: "rocket", title: "Setup together", desc: "We'll walk you through setup and launch." },
-      { icon: "sparkles", title: "Insights in 7 days", desc: "First recommendations for your team." },
+      { icon: "sparkles", title: "Results in 2 hours", desc: "Data collection takes 3 minutes. Results are ready within 2 hours of completion." },
     ],
     successQuote: "\"Best decision we made in the last 12 months.\"",
     successQuoteAuthor: "— HR Director, 200+ employees",
@@ -448,8 +454,10 @@ const copy = {
     monthly: "Monatsplan",
     monthlyDesc: "Flexibel und ohne Bindung",
     custom: "Individueller Plan",
-    customDesc: "Brauchen Sie Sonderkonditionen? Wir melden uns.",
-    customSelected: "Wir kontaktieren Sie innerhalb von 24 Stunden mit einem individuellen Angebot.",
+    customDesc: "Beschreiben Sie, was Sie brauchen — oder rufen Sie uns an.",
+    customPlaceholder: "Z.B. Rechnungsstellung an mehrere Unternehmen, spezielles SLA, Integration mit internen Systemen…",
+    customPhone: "605 839 456",
+    customPhoneLabel: "Rufen Sie uns an:",
     yearly: "Jährlich",
     saveTag: "20 % sparen",
     pricePerPerson: "pro Mitarbeiter / Monat",
@@ -469,7 +477,7 @@ const copy = {
       { icon: "mail", title: "Bestätigung gesendet", desc: "Wir haben eine Bestätigung an Ihre E-Mail gesendet." },
       { icon: "phone", title: "Wir melden uns", desc: "Unser Team kontaktiert Sie innerhalb von 24 Stunden." },
       { icon: "rocket", title: "Gemeinsam einrichten", desc: "Wir führen Sie durch die Einrichtung und den Start." },
-      { icon: "sparkles", title: "Insights in 7 Tagen", desc: "Erste Empfehlungen für Ihr Team." },
+      { icon: "sparkles", title: "Ergebnisse in 2 Stunden", desc: "Die Datenerfassung dauert 3 Minuten. Ergebnisse sind innerhalb von 2 Stunden nach Abschluss verfügbar." },
     ],
     successQuote: "\"Die beste Entscheidung der letzten 12 Monate.\"",
     successQuoteAuthor: "— HR-Direktorin, 200+ Mitarbeitende",
@@ -630,6 +638,7 @@ export function OnboardingPage() {
       adminEmail: draft?.form?.adminEmail ?? "",
       employeeCount: draft?.form?.employeeCount ?? 50,
       billingInterval: draft?.form?.billingInterval ?? "yearly",
+      customNote: "",
       agreedToTerms: false,
     },
     mode: "onBlur",
@@ -721,6 +730,7 @@ export function OnboardingPage() {
 
   const billingInterval = watch("billingInterval");
   const employeeCount = watch("employeeCount");
+  const agreedToTerms = watch("agreedToTerms");
 
   // Derive domain from rep email
   const repEmail = watch("repEmail");
@@ -915,6 +925,7 @@ export function OnboardingPage() {
         adminEmail: data.adminEmail || undefined,
         employeeCount: data.employeeCount,
         billingInterval: data.billingInterval,
+        customNote: data.customNote || undefined,
         agreedToTerms: data.agreedToTerms,
         oauthProvider: oauthProvider || undefined,
         teams: teams.map((t) => ({
@@ -962,35 +973,34 @@ export function OnboardingPage() {
       trackLeadSubmitted("onboarding");
 
       // ─── Stripe Embedded Checkout for paid plans ───
-      if (data.billingInterval !== "custom" && submissionId) {
-        setSubmitPhase(3); // "Preparing payment..."
-        try {
-          const checkoutRes = await fetch("/api/create-checkout-session", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              submissionId,
-              billingInterval: data.billingInterval,
-              employeeCount: data.employeeCount,
-              currency: isEur ? "eur" : "czk",
-              customerEmail: data.repEmail,
-              companyName: data.companyName,
-            }),
-          });
-
-          const checkout = await checkoutRes.json();
-          if (checkout.clientSecret) {
-            clearTimeout(phaseTimer1);
-            clearTimeout(phaseTimer2);
-            setIsSubmitting(false);
-            setCheckoutClientSecret(checkout.clientSecret);
-            return; // Modal will take over from here
-          }
-        } catch (err) {
-          console.warn("Stripe checkout failed, showing success anyway:", err);
-          // Fall through to success screen if Stripe fails
-        }
-      }
+      // TODO: Re-enable when Stripe checkout is fully tested
+      // if (data.billingInterval !== "custom" && submissionId) {
+      //   setSubmitPhase(3);
+      //   try {
+      //     const checkoutRes = await fetch("/api/create-checkout-session", {
+      //       method: "POST",
+      //       headers: { "Content-Type": "application/json" },
+      //       body: JSON.stringify({
+      //         submissionId,
+      //         billingInterval: data.billingInterval,
+      //         employeeCount: data.employeeCount,
+      //         currency: isEur ? "eur" : "czk",
+      //         customerEmail: data.repEmail,
+      //         companyName: data.companyName,
+      //       }),
+      //     });
+      //     const checkout = await checkoutRes.json();
+      //     if (checkout.clientSecret) {
+      //       clearTimeout(phaseTimer1);
+      //       clearTimeout(phaseTimer2);
+      //       setIsSubmitting(false);
+      //       setCheckoutClientSecret(checkout.clientSecret);
+      //       return;
+      //     }
+      //   } catch (err) {
+      //     console.warn("Stripe checkout failed, showing success anyway:", err);
+      //   }
+      // }
 
       // Custom plan or Stripe unavailable — show success directly
       clearTimeout(phaseTimer1);
@@ -1000,14 +1010,13 @@ export function OnboardingPage() {
       clearDraft();
       setIsSubmitting(false);
       setIsSuccess(true);
-    } catch {
+    } catch (err) {
       clearTimeout(phaseTimer1);
       clearTimeout(phaseTimer2);
-      setSubmitPhase(4);
-      await new Promise((r) => setTimeout(r, 1000));
-      clearDraft();
+      console.error("Onboarding submission failed:", err);
       setIsSubmitting(false);
-      setIsSuccess(true);
+      setSubmitPhase(0);
+      toast.error(language === "cz" ? "Odeslání selhalo. Zkuste to prosím znovu." : language === "de" ? "Übermittlung fehlgeschlagen. Bitte versuchen Sie es erneut." : "Submission failed. Please try again.");
     }
   };
 
@@ -1774,8 +1783,8 @@ export function OnboardingPage() {
                 <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <Button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="h-12 px-10 text-[15px] font-bold shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/35 transition-shadow bg-gradient-to-r from-brand-primary to-brand-primary-hover"
+                    disabled={isSubmitting || !agreedToTerms}
+                    className="h-12 px-10 text-[15px] font-bold shadow-lg shadow-brand-primary/25 hover:shadow-xl hover:shadow-brand-primary/35 transition-shadow bg-gradient-to-r from-brand-primary to-brand-primary-hover disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
@@ -2122,38 +2131,26 @@ function SignupStep({
           <div className="flex-1 h-px bg-brand-border/30" />
         </div>
 
-        {/* ── Custom plan ── */}
+        {/* ── Custom plan (small, accordion rollout) ── */}
         <motion.button
           type="button"
-          whileHover={{ y: -2 }}
           whileTap={{ scale: 0.99 }}
-          onClick={() => setValue("billingInterval", "custom", { shouldValidate: true })}
+          onClick={() => setValue("billingInterval", currentInterval === "custom" ? "yearly" : "custom", { shouldValidate: true })}
           className={cn(
-            "w-full relative rounded-2xl border-2 p-5 text-left transition-all cursor-pointer",
+            "w-full relative rounded-xl border p-3 text-left transition-all cursor-pointer",
             currentInterval === "custom"
-              ? "border-brand-accent bg-gradient-to-r from-brand-accent/[0.06] to-brand-primary/[0.03] shadow-lg shadow-brand-accent/10 ring-1 ring-brand-accent/20"
-              : "border-brand-border/50 bg-white hover:border-brand-accent/30"
+              ? "border-brand-accent/40 bg-brand-accent/[0.04]"
+              : "border-brand-border/30 bg-white/60 hover:border-brand-accent/20"
           )}
         >
-          <div className="flex items-center gap-2.5">
-            <div className={cn(
-              "w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all",
-              currentInterval === "custom" ? "border-brand-accent bg-brand-accent" : "border-brand-border"
-            )}>
-              {currentInterval === "custom" && (
-                <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
-                  <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                </motion.div>
-              )}
-            </div>
-            <span className="text-[15px] font-bold text-brand-text-primary">{txt.custom}</span>
-            <div className="ml-auto w-8 h-8 rounded-xl bg-brand-accent/10 flex items-center justify-center">
-              <Phone className="w-4 h-4 text-brand-accent" />
-            </div>
+          <div className="flex items-center gap-2">
+            <Phone className="w-3.5 h-3.5 text-brand-accent/70 shrink-0" />
+            <span className="text-[13px] font-medium text-brand-text-secondary">{txt.custom}</span>
+            <ChevronDown className={cn(
+              "w-3.5 h-3.5 text-brand-text-muted ml-auto transition-transform",
+              currentInterval === "custom" && "rotate-180"
+            )} />
           </div>
-          <p className="text-[12px] text-brand-text-muted mt-1.5 ml-[30px]">
-            {txt.customDesc}
-          </p>
         </motion.button>
 
         <AnimatePresence>
@@ -2165,13 +2162,25 @@ function SignupStep({
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <div className="mt-3 p-4 rounded-xl bg-gradient-to-r from-brand-accent/5 to-brand-primary/5 border border-brand-accent/20 flex items-start gap-3">
-                <div className="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <Phone className="w-4 h-4 text-brand-accent" />
+              <div className="mt-2 space-y-2">
+                <p className="text-[11px] text-brand-text-muted px-1">{txt.customDesc}</p>
+                <textarea
+                  {...register("customNote")}
+                  placeholder={txt.customPlaceholder}
+                  rows={2}
+                  className="w-full rounded-lg border border-brand-border/40 bg-white px-3 py-2 text-[12px] text-brand-text-primary placeholder:text-brand-text-muted/40 focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent/40 resize-none transition-all"
+                />
+                <div className="px-3 py-2 rounded-lg bg-brand-accent/5 border border-brand-accent/15 flex items-center gap-2">
+                  <Phone className="w-3.5 h-3.5 text-brand-accent shrink-0" />
+                  <span className="text-[11px] text-brand-text-muted">{txt.customPhoneLabel}</span>
+                  <a
+                    href={`tel:+420${txt.customPhone.replace(/\s/g, "")}`}
+                    className="text-[13px] font-bold text-brand-accent hover:underline ml-auto"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {txt.customPhone}
+                  </a>
                 </div>
-                <p className="text-[13px] text-brand-text-secondary leading-relaxed">
-                  {txt.customSelected}
-                </p>
               </div>
             </motion.div>
           )}
