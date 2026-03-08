@@ -44,20 +44,18 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
           : "How it works",
     },
     {
-      id: "case-studies",
-      label:
-        language === "cz"
-          ? "Případové studie"
-          : language === "de"
-          ? "Fallstudien"
-          : "Case studies",
-    },
-    {
       id: "pricing",
       label:
         language === "cz" ? "Ceník" : language === "de" ? "Preise" : "Pricing",
     },
   ];
+
+  const caseStudiesLabel =
+    language === "cz"
+      ? "Případové studie"
+      : language === "de"
+      ? "Fallstudien"
+      : "Case studies";
 
   const blogLabel = "Blog";
   const aboutLabel =
@@ -150,22 +148,12 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               </Link>
             )
           )}
-          {isHome ? (
-            <a
-              href="#blog"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo('blog');
-              }}
-              className={navLinkClass}
-            >
-              {blogLabel}
-            </a>
-          ) : (
-            <Link to="/#blog" className={navLinkClass}>
-              {blogLabel}
-            </Link>
-          )}
+          <Link to="/case-studies" className={navLinkClass}>
+            {caseStudiesLabel}
+          </Link>
+          <Link to="/blog" className={navLinkClass}>
+            {blogLabel}
+          </Link>
           {isHome ? (
             <a
               href="#about"
@@ -252,11 +240,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
               aria-label="Navigation"
             >
               <div className="flex flex-col items-end gap-0.5">
-                {[
-                  ...navItems.map((item) => ({ id: item.id, label: item.label, type: 'section' as const })),
-                  { id: 'blog', label: blogLabel, type: 'section' as const },
-                  { id: 'about', label: aboutLabel, type: 'section' as const },
-                ].map((item, idx) => (
+                {navItems.map((item, idx) => (
                   <motion.div
                     key={item.id}
                     initial={{ opacity: 0, x: 30 }}
@@ -286,6 +270,53 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                     )}
                   </motion.div>
                 ))}
+                {[
+                  { to: '/case-studies', label: caseStudiesLabel },
+                  { to: '/blog', label: blogLabel },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={item.to}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.08 + (navItems.length + idx) * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Link
+                      to={item.to}
+                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  key="about"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.08 + (navItems.length + 2) * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {isHome ? (
+                    <a
+                      href="#about"
+                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMobileMenuOpen(false);
+                        setTimeout(() => scrollTo('about'), 350);
+                      }}
+                    >
+                      {aboutLabel}
+                    </a>
+                  ) : (
+                    <Link
+                      to="/#about"
+                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {aboutLabel}
+                    </Link>
+                  )}
+                </motion.div>
               </div>
 
               <motion.div
