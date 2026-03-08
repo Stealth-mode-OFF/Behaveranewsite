@@ -252,10 +252,10 @@ export function FeatureGrid({ features }: FeatureGridProps) {
       {features.map((feature, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="flex gap-6 items-start group"
         >
           <div className="w-14 h-14 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center shrink-0 text-brand-primary shadow-sm mt-1 group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary transition-all duration-300">

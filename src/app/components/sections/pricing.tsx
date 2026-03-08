@@ -461,7 +461,7 @@ export function PurchaseSection() {
               <p className="text-caption text-brand-text-secondary leading-relaxed">
                 {pc.roiDesc}
               </p>
-              <p className="text-badge text-brand-text-muted mt-1.5">{pc.roiSource}</p>
+              <p className="text-xs text-brand-text-muted/60 mt-2">{pc.roiSource}</p>
             </div>
           </motion.div>
         </motion.div>

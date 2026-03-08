@@ -49,16 +49,16 @@ const advantageIcons = [TrendingUp, BarChart3, Brain, Activity];
 /* Cards with a live Pulse demo */
 const pulseCardKeys = new Set(['quickScan', 'stress', 'values']);
 
-/* Subtle per-card gradient tints */
+/* Per-card gradient tints — vivid enough to differentiate */
 const cardGradients: Record<string, string> = {
-  quickScan: 'from-blue-50/60 to-white',
-  pay:       'from-emerald-50/60 to-white',
-  perks:     'from-pink-50/60 to-white',
-  tools:     'from-slate-50/60 to-white',
-  workload:  'from-amber-50/50 to-white',
-  recognition: 'from-violet-50/60 to-white',
-  stress:    'from-orange-50/50 to-white',
-  values:    'from-indigo-50/60 to-white',
+  quickScan: 'from-blue-100/80 to-blue-50/40',
+  pay:       'from-emerald-100/80 to-emerald-50/40',
+  perks:     'from-pink-100/80 to-pink-50/40',
+  tools:     'from-slate-100/80 to-slate-50/40',
+  workload:  'from-amber-100/80 to-amber-50/40',
+  recognition: 'from-violet-100/80 to-violet-50/40',
+  stress:    'from-orange-100/80 to-orange-50/40',
+  values:    'from-indigo-100/80 to-indigo-50/40',
 };
 
 /* ─── Copy ─── */
@@ -625,12 +625,7 @@ function TopicCarousel({
   language: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [selectedCard, setSelectedCard] = useState<TopicCard | null>(null);
   const ui = UI_TEXT[language as keyof typeof UI_TEXT] || UI_TEXT.en;
-
-  const handleCardBodyClick = (card: TopicCard) => {
-    setSelectedCard(card);
-  };
 
   const scrollBy = (dir: number) => {
     const el = scrollRef.current;
@@ -680,25 +675,23 @@ function TopicCarousel({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.3, delay: i * 0.05, ease: MOTION_EASE }}
-                className={`shrink-0 w-[220px] sm:w-[240px] rounded-xl bg-gradient-to-br ${gradient} border border-brand-primary/10 shadow-sm hover:shadow-md hover:border-brand-primary/20 hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col group/card`}
+                className={`shrink-0 w-[260px] sm:w-[280px] rounded-xl bg-gradient-to-br ${gradient} border border-brand-primary/15 shadow-sm hover:shadow-md hover:border-brand-primary/25 transition-all duration-300 overflow-hidden flex flex-col group/card`}
               >
-                {/* Clickable body — opens detail panel */}
-                <button
-                  type="button"
-                  className="flex-1 flex flex-col cursor-pointer px-4 pt-5 pb-4 text-left"
-                  onClick={() => handleCardBodyClick(card)}
+                {/* Card body — display only (no click) */}
+                <div
+                  className="flex-1 flex flex-col px-4 pt-5 pb-4"
                 >
                   {/* Card header */}
                   <div className="flex flex-col items-center text-center gap-2 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0">
-                      <TopicIcon className="w-5 h-5 text-brand-primary" />
+                    <div className="w-10 h-10 rounded-xl bg-brand-primary/15 flex items-center justify-center shrink-0">
+                      <TopicIcon className="w-5 h-5 text-brand-primary/90" />
                     </div>
-                    <h4 className="font-semibold text-sm text-brand-text-primary leading-tight group-hover/card:text-brand-primary transition-colors">{card.name}</h4>
+                    <h4 className="font-semibold text-sm text-brand-text-primary leading-tight">{card.name}</h4>
                   </div>
 
                   {/* Description */}
-                  <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30 text-center min-h-[88px] flex items-center justify-center">
-                    <p className="text-[12px] text-brand-text-body leading-relaxed line-clamp-4">
+                  <div className="bg-white/80 rounded-lg p-3 mb-3 border border-brand-border/30 text-center">
+                    <p className="text-[12.5px] text-brand-text-body leading-relaxed">
                       {card.desc}
                     </p>
                   </div>
@@ -710,12 +703,12 @@ function TopicCarousel({
                         <Sparkles className="w-2.5 h-2.5" />
                         {ceoLabel}
                       </div>
-                      <p className="text-[12px] text-brand-text-secondary leading-relaxed font-medium line-clamp-3">
+                      <p className="text-[12.5px] text-brand-text-secondary leading-relaxed font-medium">
                         {card.ceoInsight}
                       </p>
                     </div>
                   </div>
-                </button>
+                </div>
 
                 {/* Bottom CTA — only pulse cards; spacer on others to keep alignment */}
                 {hasPulse ? (
@@ -737,19 +730,6 @@ function TopicCarousel({
         </div>
       </div>
 
-      {/* Signal Detail Panel */}
-      <AnimatePresence>
-        {selectedCard && (
-          <SignalDetailPanel
-            card={selectedCard}
-            chatLabel={chatLabel}
-            ceoLabel={ceoLabel}
-            language={language}
-            onClose={() => setSelectedCard(null)}
-            onOpenPulse={onOpenPulse}
-          />
-        )}
-      </AnimatePresence>
     </>
   );
 }

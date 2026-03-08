@@ -157,34 +157,32 @@ export function LogoMarquee() {
 function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: {
   end: number; suffix?: string; prefix?: string; duration?: number;
 }) {
-  const [count, setCount] = useState(end);
-  const [blur, setBlur] = useState(0);
+  const startFrom = Math.round(end * 0.85);
+  const [count, setCount] = useState(startFrom);
+  const [blur, setBlur] = useState(2);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-50px" });
   const hasAnimated = useRef(false);
 
   useEffect(() => {
     if (!inView || hasAnimated.current) return;
     hasAnimated.current = true;
-    const startFrom = Math.round(end * 0.85);
-    setCount(startFrom);
-    setBlur(3);
     const startTime = performance.now();
     const animate = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.round(startFrom + (end - startFrom) * eased));
-      setBlur(Math.max(0, 3 * (1 - progress / 0.6)));
+      setBlur(Math.max(0, 2 * (1 - progress / 0.5)));
       if (progress < 1) requestAnimationFrame(animate);
     };
-    setTimeout(() => requestAnimationFrame(animate), 120);
-  }, [inView, end, duration]);
+    requestAnimationFrame(animate);
+  }, [inView, end, duration, startFrom]);
 
   return (
     <span
       ref={ref}
-      style={{ filter: blur > 0.1 ? `blur(${blur}px)` : undefined, transition: 'filter 0.1s' }}
+      style={{ filter: blur > 0.1 ? `blur(${blur}px)` : undefined, transition: 'filter 0.08s' }}
     >
       {prefix}{count.toLocaleString()}{suffix}
     </span>
@@ -221,7 +219,7 @@ function StatsRow({ language }: { language: string }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: 0.05, ease: MOTION_EASE }}
-      className="flex items-center justify-center gap-6 sm:gap-10 md:gap-14 mt-6 md:mt-8 py-4 border-t border-brand-border/50"
+      className="flex items-center justify-center gap-4 sm:gap-10 md:gap-14 mt-6 md:mt-8 py-4 border-t border-brand-border/50"
     >
       {items.map((stat) => {
         const Icon = stat.icon;
@@ -238,7 +236,7 @@ function StatsRow({ language }: { language: string }) {
                 />
               </span>
             </div>
-            <span className="text-badge sm:text-caption font-medium text-brand-text-muted uppercase tracking-wider">
+            <span className="text-[10px] sm:text-caption font-medium text-brand-text-muted uppercase tracking-wider">
               {stat.label}
             </span>
           </div>

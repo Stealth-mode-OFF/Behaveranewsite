@@ -105,7 +105,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
         "fixed left-0 right-0 transition-all duration-300",
         mobileMenuOpen ? "z-[60]" : "z-50",
         isScrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-brand-border/40 py-3"
+          ? "bg-white/95 backdrop-blur-xl border-b border-brand-border/40 py-3"
           : "bg-transparent py-5"
       )}
     >

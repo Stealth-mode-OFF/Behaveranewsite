@@ -111,31 +111,34 @@ export function ProblemSection() {
             </motion.div>
           ))}
 
-          {/* CTA Cell */}
+          {/* CTA Cell — full width on desktop second row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15, duration: 0.3, ease: MOTION_EASE }}
+            className="md:col-span-2 lg:col-span-4"
           >
-            <div className="h-full min-h-[200px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col justify-start text-white relative overflow-hidden group">
+            <div className="h-full min-h-[120px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:gap-8 justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
-              
-              <div className="relative z-10 mb-4 flex justify-center">
+
+              <div className="relative z-10 mb-4 lg:mb-0 flex justify-center lg:justify-start shrink-0">
                 <AlertTriangle className="w-6 h-6 text-brand-accent" />
               </div>
-              
-              <div className="relative z-10 text-left">
-                <span className="text-badge font-bold uppercase tracking-[0.12em] text-white/60 block mb-2">
+
+              <div className="relative z-10 text-left flex-1">
+                <span className="text-badge font-bold uppercase tracking-[0.12em] text-white/60 block mb-1">
                   {t.problems?.ctaBox?.label || "System Alert"}
                 </span>
-                <h4 className="text-lg font-bold tracking-tight mb-3">
+                <h4 className="text-lg font-bold tracking-tight mb-1.5">
                   {t.problems?.ctaBox?.title || "Don't wait until it's too late"}
                 </h4>
-                <p className="text-body-sm text-white/80 mb-4">
+                <p className="text-body-sm text-white/80">
                   {t.problems?.ctaBox?.desc || "Get visibility before the damage is done."}
                 </p>
+              </div>
+              <div className="relative z-10 mt-4 lg:mt-0 shrink-0">
                 <Button asChild size="default" variant="inverse" className="w-full sm:w-auto">
                   <a
                     href="https://app.behavera.com/echo-pulse/try"
@@ -172,7 +175,11 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
   const [expanded, setExpanded] = useState(false);
   const { language } = useLanguage();
   const expandLabel = detailLabel || (language === 'cz' ? 'Zobrazit detail' : language === 'de' ? 'Details anzeigen' : 'Show details');
-  const descText = item?.desc || "";
+  const rawDesc = item?.desc || "";
+  // Split out source citation from description
+  const sourceMatch = rawDesc.match(/\s*\[?(Zdroj|Source|Quelle):\s*([^\]]+)\]?\.?\s*$/i);
+  const descText = sourceMatch ? rawDesc.slice(0, sourceMatch.index).trim() : rawDesc;
+  const sourceText = sourceMatch ? `${sourceMatch[1]}: ${sourceMatch[2].trim()}` : null;
   // Only show expand/collapse if description is long enough to warrant it
   const hasLongDesc = descText.length > 80;
 
@@ -203,6 +210,9 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
         <p className="hidden md:block text-base text-brand-text-secondary leading-relaxed">
           {descText}
         </p>
+        {sourceText && (
+          <p className="hidden md:block text-xs text-brand-text-muted/60 mt-2">{sourceText}</p>
+        )}
         
         {/* Mobile: truncated with expand */}
         <div className="md:hidden">
@@ -210,16 +220,21 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
             <>
               <AnimatePresence initial={false}>
                 {expanded ? (
-                  <motion.p
+                  <motion.div
                     key="full"
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3, ease: MOTION_EASE }}
-                    className="text-sm text-brand-text-secondary leading-relaxed overflow-hidden"
+                    className="overflow-hidden"
                   >
-                    {descText}
-                  </motion.p>
+                    <p className="text-sm text-brand-text-secondary leading-relaxed">
+                      {descText}
+                    </p>
+                    {sourceText && (
+                      <p className="text-xs text-brand-text-muted/60 mt-1.5">{sourceText}</p>
+                    )}
+                  </motion.div>
                 ) : (
                   <motion.p
                     key="short"

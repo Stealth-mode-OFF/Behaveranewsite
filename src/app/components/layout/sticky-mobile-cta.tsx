@@ -75,9 +75,9 @@ export function StickyMobileCta() {
   const isVisible = !heroCtasVisible && !leadFormVisible && !inputFocused && !isDismissed;
 
   const labels = {
-    cz: { primary: 'Otestovat 1 tým zdarma', secondary: 'Rezervovat demo' },
-    en: { primary: 'Test 1 team for free', secondary: 'Book a demo' },
-    de: { primary: '1 Team kostenlos testen', secondary: 'Demo buchen' },
+    cz: { primary: '1 tým zdarma', secondary: 'Demo' },
+    en: { primary: 'Try free', secondary: 'Demo' },
+    de: { primary: 'Kostenlos testen', secondary: 'Demo' },
   };
   const l = labels[language] || labels.en;
 
@@ -90,8 +90,8 @@ export function StickyMobileCta() {
       aria-label="Quick actions"
     >
       <div
-        className="bg-white/95 backdrop-blur-md border-t border-brand-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-3 py-2.5"
-        style={{ paddingBottom: 'calc(10px + env(safe-area-inset-bottom, 0px))' }}
+        className="bg-white/90 backdrop-blur-xl border-t border-brand-border/30 shadow-[0_-2px_16px_rgba(0,0,0,0.06)] px-4 py-2"
+        style={{ paddingBottom: 'calc(8px + env(safe-area-inset-bottom, 0px))' }}
       >
         <div className="flex items-center gap-2">
           {/* Primary CTA */}
@@ -99,16 +99,16 @@ export function StickyMobileCta() {
             href="https://app.behavera.com/echo-pulse/try"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 h-[44px] flex items-center justify-center gap-1.5 rounded-xl bg-brand-primary text-white font-semibold text-[13px] hover:bg-brand-primary-hover active:scale-[0.98] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            className="flex-1 h-[42px] flex items-center justify-center gap-1.5 rounded-full bg-brand-primary text-white font-semibold text-sm hover:bg-brand-primary-hover active:scale-[0.97] transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
           >
-            <Play className="w-3.5 h-3.5 fill-current shrink-0" />
+            <Play className="w-3 h-3 fill-current shrink-0" />
             {l.primary}
           </a>
           {/* Secondary CTA */}
           <button
             type="button"
             onClick={() => openBooking('sticky_cta')}
-            className="h-[44px] px-3 flex items-center justify-center gap-1 rounded-xl border border-brand-primary/20 text-brand-primary font-semibold text-[13px] hover:bg-brand-primary/5 active:scale-[0.98] transition-all whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            className="h-[42px] px-5 flex items-center justify-center gap-1 rounded-full border border-brand-border/60 text-brand-text-primary font-medium text-sm hover:bg-brand-background-secondary active:scale-[0.97] transition-all whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
           >
             {l.secondary}
             <ArrowRight className="w-3.5 h-3.5 shrink-0" />
@@ -117,10 +117,10 @@ export function StickyMobileCta() {
           <button
             type="button"
             onClick={() => { setIsDismissed(true); trackStickyCtaDismissed(); }}
-            className="w-[36px] h-[36px] flex items-center justify-center rounded-full text-brand-text-muted/60 hover:text-brand-text-primary hover:bg-brand-background-secondary transition-colors shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            className="w-[34px] h-[34px] flex items-center justify-center rounded-full text-brand-text-muted/50 hover:text-brand-text-primary hover:bg-brand-background-secondary transition-colors shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
             aria-label="Dismiss"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3.5 h-3.5" />
           </button>
         </div>
       </div>
