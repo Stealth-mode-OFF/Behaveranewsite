@@ -77,7 +77,7 @@ export function RoleSelection() {
         "Actionable engagement insights"
       ],
       cta: t.roleSelection?.hr?.cta || "Learn more",
-      color: "bg-violet-500",
+      color: "bg-brand-accent-hover",
     },
     {
       id: "teamLeader",
@@ -95,18 +95,18 @@ export function RoleSelection() {
         "Concrete improvement actions"
       ],
       cta: t.roleSelection?.teamLeader?.cta || "Learn more",
-      color: "bg-amber-500",
+      color: "bg-brand-warning",
     },
   ];
 
   const activeRoleData = roles.find(r => r.id === activeRole) || roles[1];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-brand-primary to-[#1a0a3e] relative overflow-hidden">
+    <section className="section-spacing bg-gradient-to-b from-brand-primary to-brand-background-dark relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-accent/10 rounded-full blur-[150px]" />
       </div>
 
       <div className="container-default relative z-10">
@@ -151,7 +151,7 @@ export function RoleSelection() {
                   key={role.id}
                   onClick={() => { setActiveRole(role.id); trackRoleSelected(role.id); }}
                   className={cn(
-                    "relative px-4 sm:px-6 py-3 min-h-[44px] rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2",
+                    "relative px-4 sm:px-6 py-3 min-h-[44px] rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
                     isActive 
                       ? "text-brand-primary" 
                       : "text-white/60 hover:text-white"
@@ -168,7 +168,7 @@ export function RoleSelection() {
                   
                   <span className="relative z-10 flex items-center gap-2">
                     <Icon className={cn(
-                      "w-4 h-4 transition-colors",
+                      "w-4 h-4 transition-colors duration-200",
                       isActive ? "text-brand-primary" : ""
                     )} />
                     <span className="hidden sm:inline">{role.label}</span>

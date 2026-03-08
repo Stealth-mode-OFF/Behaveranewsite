@@ -68,7 +68,7 @@ export function CtaSection() {
   const c = copy[language] || copy.en;
 
   return (
-    <section id="lead-capture" className="relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-[#1a0a3e] to-[#0d0520]">
+    <section id="lead-capture" className="section-spacing relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-brand-background-dark to-brand-background-deep">
       
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -87,7 +87,7 @@ export function CtaSection() {
             opacity: [0.2, 0.4, 0.2],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: MOTION_EASE, delay: 2 }}
-          className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-violet-500/20 rounded-full blur-[150px]"
+          className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-brand-accent/20 rounded-full blur-[150px]"
         />
         
         {/* Grid pattern overlay */}
@@ -180,7 +180,7 @@ export function CtaSection() {
             <button
               type="button"
               onClick={() => openBooking('cta_section')}
-              className="text-body-sm text-white/60 underline underline-offset-4 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors cursor-pointer min-h-[44px]"
+              className="text-body-sm text-white/60 underline underline-offset-4 decoration-white/30 hover:text-white hover:decoration-white/60 transition-colors duration-200 cursor-pointer min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
             >
               {c.demoLink}
             </button>
@@ -312,7 +312,7 @@ function EbookCapture({ language }: { language: string }) {
                 key={i}
                 type="button"
                 onClick={() => { downloadFile(eb.file, `${eb.title}.pdf`); trackEbookDownload(eb.title, 'manual'); }}
-                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 transition-all text-left cursor-pointer min-h-[44px]"
+                className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 transition-all text-left cursor-pointer min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
               >
                 <span className="text-body-sm text-white/80">{eb.title}</span>
                 <Download className="w-3.5 h-3.5 text-white/50 shrink-0" />
@@ -332,7 +332,7 @@ function EbookCapture({ language }: { language: string }) {
                 {...register("email", validationRules.workEmail)}
               />
               {errors.email?.message && (
-                <p className="text-badge text-red-400 mt-1 text-left">{errors.email.message}</p>
+                <p className="text-badge text-brand-error mt-1 text-left">{errors.email.message}</p>
               )}
             </div>
             <Button type="submit" size="sm" disabled={isSubmitting} className="shrink-0 min-h-[44px]">

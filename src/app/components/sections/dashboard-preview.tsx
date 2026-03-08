@@ -88,7 +88,7 @@ export function DashboardPreview() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: MOTION_EASE }}
-          className="mb-16 md:mb-24"
+          className="mb-12 md:mb-16"
         >
           <DeviceFrame type="macbook" className="w-full max-w-[500px] sm:max-w-[640px] md:max-w-[800px] lg:max-w-[960px] xl:max-w-[1100px] mx-auto">
             <video

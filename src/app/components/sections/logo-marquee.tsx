@@ -57,9 +57,9 @@ export function LogoMarquee() {
           transition={{ duration: 0.5, ease: MOTION_EASE }}
           className="flex justify-center mb-5 md:mb-6"
         >
-          <h2 className="text-center text-sm font-medium text-brand-text-muted uppercase tracking-widest">
+          <p className="text-center text-sm font-medium text-brand-text-muted uppercase tracking-widest">
             {title[language] || title.en}
-          </h2>
+          </p>
         </motion.div>
         
         {/* Mobile: 2-row calm logo grid */}

@@ -79,10 +79,11 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
 
   /* ─── Shared nav-link class ─── */
   const navLinkClass = cn(
-    "text-[13px] font-medium transition-colors",
+    "text-[13px] font-medium transition-colors duration-200",
     isScrolled
       ? "text-brand-text-secondary hover:text-brand-primary"
-      : "text-brand-text-secondary/80 hover:text-brand-text-primary"
+      : "text-brand-text-secondary/80 hover:text-brand-text-primary",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
   );
 
   const scrollTo = (id: string) => {
@@ -111,7 +112,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
         {/* ── Logo ── */}
         <Link
           to="/"
-          className="flex items-center group"
+          className="flex items-center"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <img
@@ -181,7 +182,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackLoginClick("header_desktop")}
-            className="hidden lg:inline-flex text-[13px] font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors"
+            className="hidden lg:inline-flex text-[13px] font-medium text-brand-text-muted hover:text-brand-text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
           >
             {loginLabel}
           </a>
@@ -193,7 +194,8 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
             className={cn(
               "hidden lg:inline-flex items-center justify-center h-9 px-5 text-[13px] font-semibold rounded-full transition-all",
               "bg-brand-primary text-white hover:bg-brand-primary-hover",
-              isScrolled && "shadow-sm"
+              isScrolled && "shadow-sm",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
             )}
           >
             {ctaLabel}
@@ -201,9 +203,9 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
 
           <button
             type="button"
-            className="lg:hidden p-2 text-brand-text-primary transition-colors"
+            className="lg:hidden p-2 text-brand-text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? (language === 'cz' ? 'Zavřít menu' : language === 'de' ? 'Menü schließen' : 'Close menu') : (language === 'cz' ? 'Otevřít menu' : language === 'de' ? 'Menü öffnen' : 'Open menu')}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
           >
@@ -250,7 +252,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                     {isHome ? (
                       <a
                         href={`#${item.id}`}
-                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors duration-200"
                         onClick={(e) => {
                           e.preventDefault();
                           setMobileMenuOpen(false);
@@ -262,7 +264,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                     ) : (
                       <Link
                         to={`/#${item.id}`}
-                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                        className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors duration-200"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.label}
@@ -282,7 +284,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   >
                     <Link
                       to={item.to}
-                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors duration-200"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.label}
@@ -298,7 +300,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   {isHome ? (
                     <a
                       href="#about"
-                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors duration-200"
                       onClick={(e) => {
                         e.preventDefault();
                         setMobileMenuOpen(false);
@@ -310,7 +312,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   ) : (
                     <Link
                       to="/#about"
-                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors"
+                      className="block py-3 text-right text-[22px] font-semibold text-brand-text-primary tracking-tight hover:text-brand-primary transition-colors duration-200"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {aboutLabel}
@@ -330,7 +332,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full h-12 flex items-center justify-center rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base transition-colors"
+                  className="w-full h-12 flex items-center justify-center rounded-full bg-brand-primary hover:bg-brand-primary-hover text-white font-semibold text-base transition-colors duration-200"
                 >
                   {ctaLabel}
                 </a>
@@ -338,7 +340,7 @@ export function Header({ topOffset = 0 }: { topOffset?: number }) {
                   href={BEHAVERA_LOGIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full h-12 flex items-center justify-center rounded-full border border-brand-border text-sm font-medium text-brand-text-secondary hover:text-brand-text-primary hover:border-brand-primary/40 transition-colors"
+                  className="w-full h-12 flex items-center justify-center rounded-full border border-brand-border text-sm font-medium text-brand-text-secondary hover:text-brand-text-primary hover:border-brand-primary/40 transition-colors duration-200"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     trackLoginClick("header_mobile");

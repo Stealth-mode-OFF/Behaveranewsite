@@ -28,7 +28,7 @@ export function StatChip({ icon: Icon, metric, label, company, className }: Stat
       className={cn(
         chipTokens.sm,
         "bg-brand-background-secondary/60 border border-brand-border/40",
-        "transition-colors hover:bg-brand-background-secondary",
+        "transition-colors duration-200 hover:bg-brand-background-secondary",
         "max-w-[calc(100vw-2rem)] sm:max-w-none",
         className,
       )}

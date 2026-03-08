@@ -95,7 +95,7 @@ export function FAQ() {
         <div className="absolute top-8 left-[8%] h-40 w-40 rounded-full bg-brand-accent/8 blur-3xl" />
         <div className="absolute bottom-6 right-[10%] h-52 w-52 rounded-full bg-brand-primary/6 blur-3xl" />
       </div>
-      <div className="container-default max-w-[980px] relative">
+      <div className="container-default relative" style={{ maxWidth: '980px' }}>
         <div className="section-shell px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12">
         
         {/* Header */}
@@ -106,7 +106,7 @@ export function FAQ() {
           transition={{ duration: 0.5, ease: MOTION_EASE }}
           className="text-center"
         >
-          <div className="section-badge text-brand-text-muted/90">
+          <div className="section-badge">
             <HelpCircle className="w-3.5 h-3.5" />
             {language === 'cz' ? 'Časté otázky' : language === 'de' ? 'Häufige Fragen' : 'FAQ'}
           </div>
@@ -142,7 +142,7 @@ export function FAQ() {
                     trackFaqCategoryChanged(cat.id);
                   }}
                   className={cn(
-                    "relative px-3.5 sm:px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap",
+                    "relative px-3.5 sm:px-4 py-2.5 min-h-[44px] rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
                     isActive 
                       ? "text-white" 
                       : "text-brand-text-secondary hover:text-brand-primary"
@@ -208,7 +208,7 @@ export function FAQ() {
           <Button asChild size="default" variant="outline" className="surface-elevated surface-elevated-hover rounded-xl">
             <a href="mailto:support@behavera.com">
               <Mail className="w-4 h-4" />
-              {t.faq?.contact || "Contact us"}
+              {t.faq?.contact || (language === 'cz' ? 'Kontaktujte nás' : language === 'de' ? 'Kontaktieren Sie uns' : 'Contact us')}
             </a>
           </Button>
         </motion.div>
@@ -290,11 +290,11 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-5 sm:p-6 text-left"
+        className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
         aria-expanded={isOpen}
       >
         <span className={cn(
-          "text-lg font-semibold pr-4 transition-colors",
+          "text-lg font-semibold pr-4 transition-colors duration-200",
           isOpen ? "text-brand-primary" : "text-brand-text-primary"
         )}>
           {question}
@@ -303,7 +303,7 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: MOTION_EASE }}
           className={cn(
-            "w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors",
+            "w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200",
             isOpen ? "bg-brand-primary text-white" : "bg-brand-background-secondary text-brand-text-muted"
           )}
         >

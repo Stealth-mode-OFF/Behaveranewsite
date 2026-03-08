@@ -138,7 +138,7 @@ export function Footer() {
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-white/70 hover:text-white transition-colors inline-flex items-center gap-1"
+          className="text-sm text-white/70 hover:text-white transition-colors duration-200 inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
         >
           {item.label}
           <ArrowUpRight className="w-3 h-3" />
@@ -147,13 +147,13 @@ export function Footer() {
     }
     if (item.href.startsWith('#') || item.href.startsWith('/#')) {
       return (
-        <a href={item.href} className="text-sm text-white/70 hover:text-white transition-colors">
+        <a href={item.href} className="text-sm text-white/70 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2">
           {item.label}
         </a>
       );
     }
     return (
-      <Link to={item.href} className="text-sm text-white/70 hover:text-white transition-colors">
+      <Link to={item.href} className="text-sm text-white/70 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2">
         {item.label}
       </Link>
     );
@@ -187,7 +187,7 @@ export function Footer() {
               {/* CTA */}
               <Button 
                 onClick={() => openBooking('footer_cta')}
-                className="mb-6 rounded h-10 px-6 font-semibold text-sm bg-white text-brand-primary hover:bg-white/90 transition-colors inline-flex items-center gap-2"
+                className="mb-6 rounded h-10 px-6 font-semibold text-sm bg-white text-brand-primary hover:bg-white/90 transition-colors duration-200 inline-flex items-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
                 {txt.bookDemo}
@@ -200,7 +200,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackSocialClick('linkedin')}
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -210,7 +210,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackSocialClick('instagram')}
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -220,7 +220,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackSocialClick('facebook')}
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -266,15 +266,15 @@ export function Footer() {
               {/* Contact info */}
               <div className="mt-6 pt-4 border-t border-white/10 space-y-2">
                 <a 
-                  href="mailto:hello@behavera.com" 
-                  className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
+                  href="mailto:hello@behavera.com"
+                  className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                 >
                   <Mail className="w-3.5 h-3.5" />
                   hello@behavera.com
                 </a>
                 <a 
-                  href="tel:+420605839456" 
-                  className="text-sm text-white/70 hover:text-white transition-colors flex items-center gap-2"
+                  href="tel:+420605839456"
+                  className="text-sm text-white/70 hover:text-white transition-colors duration-200 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                 >
                   <Phone className="w-3.5 h-3.5" />
                   +420 605 839 456
@@ -295,7 +295,7 @@ export function Footer() {
             
             <div className="flex items-center gap-1.5">
               <span>{txt.madeWith}</span>
-              <span className="text-red-400">♥</span>
+              <span className="text-brand-error">♥</span>
               <span>{txt.inPrague}</span>
             </div>
           </div>

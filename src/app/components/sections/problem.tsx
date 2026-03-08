@@ -29,20 +29,20 @@ export function ProblemSection() {
       index: 0, 
       icon: EyeOff,
       size: "large" as const, // 2x2 on desktop
-      accent: "bg-gradient-to-br from-slate-50 to-slate-100",
+      accent: "bg-gradient-to-br from-brand-background-secondary to-brand-background-muted",
     },
     { 
       index: 1, 
       icon: ZapOff,
       size: "medium" as const,
-      accent: "bg-gradient-to-br from-red-50 to-rose-100",
+      accent: "bg-gradient-to-br from-red-50 to-red-100",
       valueColor: "text-brand-error",
     },
     { 
       index: 2, 
       icon: TrendingDown,
       size: "medium" as const,
-      accent: "bg-gradient-to-br from-amber-50 to-orange-100",
+      accent: "bg-gradient-to-br from-amber-50 to-amber-100",
     },
   ];
 
@@ -60,16 +60,16 @@ export function ProblemSection() {
         >
           <div className="section-badge text-brand-error">
             <span className="w-2 h-2 bg-brand-error rounded-full animate-pulse" />
-            {t.problems?.badge || "The Problem"}
+            {t.problems?.badge}
           </div>
           <h2 className="text-h2 text-brand-text-primary mb-4">
-            {t.problems?.title || "People don't leave"}
+            {t.problems?.title}
             <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
-              {t.problems?.titleHighlight || " overnight."}
+              {t.problems?.titleHighlight}
             </span>
           </h2>
           <p className="text-body-lg text-brand-text-secondary leading-relaxed mb-10 md:mb-14">
-            {t.problems?.subtitle || "These numbers represent the hidden costs of poor visibility."}
+            {t.problems?.subtitle}
           </p>
         </motion.div>
 
@@ -119,7 +119,7 @@ export function ProblemSection() {
             transition={{ delay: 0.15, duration: 0.3, ease: MOTION_EASE }}
             className="md:col-span-2 lg:col-span-4"
           >
-            <div className="h-full min-h-[120px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-[#1a0a3e] p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:gap-8 justify-start text-white relative overflow-hidden group">
+            <div className="h-full min-h-[120px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-brand-background-dark p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:gap-8 justify-start text-white relative overflow-hidden group">
               {/* Glow effect */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
 
@@ -129,13 +129,13 @@ export function ProblemSection() {
 
               <div className="relative z-10 text-left flex-1">
                 <span className="text-badge font-bold uppercase tracking-[0.12em] text-white/60 block mb-1">
-                  {t.problems?.ctaBox?.label || "System Alert"}
+                  {t.problems?.ctaBox?.label}
                 </span>
-                <h4 className="text-lg font-bold tracking-tight mb-1.5">
-                  {t.problems?.ctaBox?.title || "Don't wait until it's too late"}
+                <h4 className="text-h4 tracking-tight mb-1.5">
+                  {t.problems?.ctaBox?.title}
                 </h4>
                 <p className="text-body-sm text-white/80">
-                  {t.problems?.ctaBox?.desc || "Get visibility before the damage is done."}
+                  {t.problems?.ctaBox?.desc}
                 </p>
               </div>
               <div className="relative z-10 mt-4 lg:mt-0 shrink-0">
@@ -190,7 +190,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
       size === "large" ? "min-h-[140px] md:min-h-[160px] lg:min-h-[180px]" : "min-h-[110px] md:min-h-[120px]"
     )}>
       <div className="mb-3 md:mb-4 flex justify-center">
-        <Icon className="w-5 h-5 md:w-6 md:h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors" />
+        <Icon className="w-5 h-5 md:w-6 md:h-6 text-brand-text-muted group-hover:text-brand-primary transition-colors duration-200" />
       </div>
       
       <div className="text-left">
@@ -199,7 +199,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
         </span>
         {/* Animated Counter */}
         <div className={cn(
-          "font-bold tracking-tight mb-1.5 md:mb-2 transition-colors",
+          "font-bold tracking-tight mb-1.5 md:mb-2 transition-colors duration-200",
           size === "large" ? "text-h2" : "text-h3",
           valueColor || "text-brand-text-primary"
         )}>
@@ -248,7 +248,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
                 type="button"
                 onClick={() => setExpanded(!expanded)}
                 aria-expanded={expanded}
-                className="mt-1.5 inline-flex items-center gap-1 text-caption font-semibold text-brand-primary hover:text-brand-accent transition-colors min-h-[44px]"
+                className="mt-1.5 inline-flex items-center gap-1 text-caption font-semibold text-brand-primary hover:text-brand-accent transition-colors duration-200 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
               >
                 {expanded ? (language === 'cz' ? 'Skrýt' : language === 'de' ? 'Weniger' : 'Less') : expandLabel}
                 <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", expanded && "rotate-180")} />

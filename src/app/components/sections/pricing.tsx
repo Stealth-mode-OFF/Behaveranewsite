@@ -140,7 +140,7 @@ export function PurchaseSection() {
           transition={{ duration: 0.5, ease: MOTION_EASE }}
           className="text-center max-w-3xl mx-auto"
         >
-          <div className="section-badge text-brand-text-muted/90">
+          <div className="section-badge">
              <Star className="w-3.5 h-3.5 fill-current text-brand-warning" />
              {t.purchase.badge}
           </div>
@@ -168,9 +168,9 @@ export function PurchaseSection() {
               <button 
                 onClick={() => { setBillingInterval('monthly'); trackPricingBillingToggle('monthly'); }}
                 className={cn(
-                  "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10",
-                  billingInterval === 'monthly' 
-                    ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30" 
+                  "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
+                  billingInterval === 'monthly'
+                    ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30"
                     : "text-brand-text-secondary hover:text-brand-primary"
                 )}
               >
@@ -179,9 +179,9 @@ export function PurchaseSection() {
               <button 
                 onClick={() => { setBillingInterval('yearly'); trackPricingBillingToggle('yearly'); }}
                 className={cn(
-                  "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 flex items-center gap-2",
-                  billingInterval === 'yearly' 
-                    ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30" 
+                  "px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-sm font-bold transition-all duration-300 relative z-10 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
+                  billingInterval === 'yearly'
+                    ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/30"
                     : "text-brand-text-secondary hover:text-brand-primary"
                 )}
               >
@@ -191,7 +191,7 @@ export function PurchaseSection() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, ease: MOTION_EASE }}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 text-badge font-bold text-white bg-gradient-to-r from-brand-success to-emerald-500 rounded-full shadow-md shadow-brand-success/30 ml-1"
+                    className="inline-flex items-center gap-1 px-2 py-0.5 text-badge font-bold text-white bg-gradient-to-r from-brand-success to-brand-success rounded-full shadow-md shadow-brand-success/30 ml-1"
                   >
                     <Gift className="w-3 h-3" />
                     -20%
@@ -418,7 +418,7 @@ export function PurchaseSection() {
                     href="https://app.behavera.com/echo-pulse/try"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full text-center text-caption text-white/50 hover:text-white transition-colors underline underline-offset-2"
+                    className="block w-full text-center text-caption text-white/50 hover:text-white transition-colors duration-200 underline underline-offset-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                   >
                     {pc.ctaSecondary}
                   </a>

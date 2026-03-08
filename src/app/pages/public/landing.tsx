@@ -181,7 +181,7 @@ export function LandingPage() {
 
 function LazySection({ children }: { children: ReactNode }) {
   return (
-    <Suspense fallback={<div className="section-spacing" aria-hidden="true" />}>
+    <Suspense fallback={<div className="section-spacing min-h-[300px] animate-pulse bg-brand-background-secondary/50 rounded-2xl mx-4" aria-hidden="true" />}>
       {children}
     </Suspense>
   );

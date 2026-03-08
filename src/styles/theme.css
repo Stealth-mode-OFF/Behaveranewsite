@@ -15,6 +15,7 @@
   --brand-background-secondary: #F8F6FF; /* Subtle cool lavender */
   --brand-background-muted: #F0EBFF;     /* Light lavender */
   --brand-background-dark: #1A0F3C;      /* Deeper, richer dark */
+  --brand-background-deep: #0D0520;     /* Ultra-deep — CTA bottoms, dark gradients */
 
   /* Text Colors — near-black, minimal tinting */
   --brand-text-primary: #1C1237;   /* Warm deep purple-black for headings */
@@ -266,6 +267,7 @@
   --color-brand-secondary: var(--brand-background-secondary);
   --color-brand-text: var(--brand-text-primary);
   --color-brand-dark: var(--brand-background-dark);
+  --color-brand-deep: var(--brand-background-deep);
   --color-brand-accent: var(--brand-accent);
   
   /* Text on Dark - HIGH CONTRAST */

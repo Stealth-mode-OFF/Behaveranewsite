@@ -117,8 +117,8 @@ export function StickyMobileCta() {
           <button
             type="button"
             onClick={() => { setIsDismissed(true); trackStickyCtaDismissed(); }}
-            className="w-[34px] h-[34px] flex items-center justify-center rounded-full text-brand-text-muted/50 hover:text-brand-text-primary hover:bg-brand-background-secondary transition-colors shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-            aria-label="Dismiss"
+            className="w-[34px] h-[34px] flex items-center justify-center rounded-full text-brand-text-muted/50 hover:text-brand-text-primary hover:bg-brand-background-secondary transition-colors duration-200 shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
+            aria-label={language === 'cz' ? 'Zavřít' : language === 'de' ? 'Schließen' : 'Dismiss'}
           >
             <X className="w-3.5 h-3.5" />
           </button>

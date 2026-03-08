@@ -203,7 +203,7 @@ export function BlogPage() {
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-text-muted hover:text-brand-text-primary transition-colors"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-text-muted hover:text-brand-text-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -213,10 +213,10 @@ export function BlogPage() {
 
             {/* Tag pills */}
             {allTags.length > 0 && (
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-2 overflow-x-auto max-w-full">
                 <button
                   onClick={() => setActiveTag(null)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2 ${
                     activeTag === null
                       ? 'bg-brand-primary text-white shadow-sm'
                       : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
@@ -228,7 +228,7 @@ export function BlogPage() {
                   <button
                     key={tag}
                     onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2 ${
                       activeTag === tag
                         ? 'bg-brand-primary text-white shadow-sm'
                         : 'text-brand-text-secondary hover:text-brand-primary hover:bg-brand-primary/5 border border-brand-border'
@@ -267,7 +267,7 @@ export function BlogPage() {
             >
               <button
                 onClick={() => navigate(`/blog/${featuredPost.slug}`)}
-                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#0d0520] to-[#1e0a4e] border border-white/10 w-full text-left cursor-pointer"
+                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-background-deep to-brand-background-dark border border-white/10 w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
               >
                 <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden relative">
@@ -296,7 +296,7 @@ export function BlogPage() {
                         {estimateReadingTime(featuredPost.content)} {readLabel}
                       </span>
                     </div>
-                    <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-brand-accent transition-colors leading-tight">
+                    <h2 className="text-2xl lg:text-3xl font-bold text-white mb-4 group-hover:text-brand-accent transition-colors duration-200 leading-tight">
                       {featuredPost.title}
                     </h2>
                     <p className="text-white/60 text-sm leading-relaxed mb-6 line-clamp-3">
@@ -321,7 +321,7 @@ export function BlogPage() {
                           <span className="text-[11px] text-white/40">{format(new Date(featuredPost.publishedAt), 'd. MMM yyyy', { locale })}</span>
                         </div>
                       </div>
-                      <span className="text-white/40 group-hover:text-brand-accent transition-colors text-sm flex items-center gap-1.5">
+                      <span className="text-white/40 group-hover:text-brand-accent transition-colors duration-200 text-sm flex items-center gap-1.5">
                         {ui.readArticle}
                         <ArrowRight className="w-4 h-4" />
                       </span>
@@ -386,7 +386,7 @@ export function BlogPage() {
                   >
                     <button
                       onClick={() => navigate(`/blog/${post.slug}`)}
-                      className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300 text-left w-full cursor-pointer"
+                      className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-brand-border/50 hover:border-brand-primary/20 hover:shadow-lg hover:shadow-brand-primary/5 transition-all duration-300 text-left w-full cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                     >
                     <div className="aspect-[16/9] overflow-hidden bg-brand-background-secondary relative">
                       {post.coverImage && (

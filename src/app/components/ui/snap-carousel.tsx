@@ -193,7 +193,7 @@ export function SnapCarousel({
               key={index}
               type="button" onClick={() => goToSlide(index)}
               className={cn(
-                "relative min-w-[24px] min-h-[24px] flex items-center justify-center rounded-full transition-all duration-300 focus-visible:ring-2 focus-visible:ring-brand-primary",
+                "relative min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
               )}
               aria-label={`Go to slide ${index + 1}`}
               aria-current={activeIndex === index ? 'true' : 'false'}
@@ -258,11 +258,11 @@ export function FeatureGrid({ features }: FeatureGridProps) {
           transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
           className="flex gap-6 items-start group"
         >
-          <div className="w-14 h-14 rounded-xl bg-brand-background-secondary border border-brand-border flex items-center justify-center shrink-0 text-brand-primary shadow-sm mt-1 group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary transition-all duration-300">
+          <div className="w-14 h-14 rounded-2xl bg-brand-background-secondary border border-brand-border flex items-center justify-center shrink-0 text-brand-primary shadow-sm mt-1 group-hover:bg-brand-primary group-hover:text-white group-hover:border-brand-primary transition-all duration-300">
             {feature.icon}
           </div>
           <div>
-            <h3 className="font-bold text-brand-text-primary mb-3 text-lg group-hover:text-brand-primary transition-colors">
+            <h3 className="text-h4 text-brand-text-primary mb-3 group-hover:text-brand-primary transition-colors duration-200">
               {feature.title}
             </h3>
             <p className="text-base text-brand-text-secondary leading-relaxed">

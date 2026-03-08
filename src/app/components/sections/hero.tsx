@@ -169,7 +169,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, ease: MOTION_EASE }}
-              className="section-badge bg-white/90 backdrop-blur-sm shadow-sm border-brand-border/80 text-brand-text-muted mb-5 md:mb-8"
+              className="section-badge text-brand-text-muted mb-5 md:mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-brand-success animate-pulse" />
               <span>{c.badge}</span>
@@ -209,7 +209,7 @@ export function Hero() {
                   key={idx}
                   onClick={() => goToSlide(idx)}
                   aria-label={`Headline ${idx + 1}`}
-                  className="group relative p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="group relative p-1.5 min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2 rounded-full"
                 >
                   <span
                     className={`block rounded-full transition-all duration-300 ${

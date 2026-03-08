@@ -93,6 +93,7 @@ export function CaseStudiesSection() {
       showMore: "Zobrazit více případovek",
       showLess: "Zobrazit méně",
       flipHint: "Najeďte pro detail",
+      flipHintMobile: "Klepněte pro detail",
     },
     en: {
       badge: "Proven Results",
@@ -105,6 +106,7 @@ export function CaseStudiesSection() {
       showMore: "Show more case studies",
       showLess: "Show less",
       flipHint: "Hover for details",
+      flipHintMobile: "Tap for details",
     },
     de: {
       badge: "Bewährte Ergebnisse",
@@ -117,6 +119,7 @@ export function CaseStudiesSection() {
       showMore: "Mehr Fallstudien anzeigen",
       showLess: "Weniger anzeigen",
       flipHint: "Hover für Details",
+      flipHintMobile: "Tippen für Details",
     },
   };
 
@@ -206,7 +209,7 @@ export function CaseStudiesSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05, duration: 0.3, ease: MOTION_EASE }}
               >
-                <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHint} index={index} isMobile language={language} />
+                <FlipCard study={study} readMoreText={t.readMore} flipHint={t.flipHintMobile || t.flipHint} index={index} isMobile language={language} />
               </motion.div>
             ))}
           </div>
@@ -220,7 +223,7 @@ export function CaseStudiesSection() {
                   type="button"
                   onClick={() => scrollToCard(index)}
                   className={cn(
-                    "rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center",
+                    "rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2",
                   )}
                   aria-label={`Go to case study ${index + 1}`}
                 >
@@ -262,7 +265,8 @@ export function CaseStudiesSection() {
                   "group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border-2 transition-all duration-300",
                   "bg-gradient-to-br from-brand-background-secondary to-white",
                   "border-brand-border hover:border-brand-accent",
-                  "hover:shadow-lg hover:-translate-y-0.5"
+                  "hover:shadow-lg hover:-translate-y-0.5",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
                 )}
               >
                 <span className="text-brand-text-primary font-semibold">
@@ -299,15 +303,15 @@ type FlipCardProps = {
 };
 
 const gradients = [
-  "from-[#6D28D9] via-[#7C3AED] to-[#8B5CF6]",
-  "from-[#1E40AF] via-[#2563EB] to-[#3B82F6]",
-  "from-[#B45309] via-[#D97706] to-[#F59E0B]",
+  "from-violet-700 via-violet-600 to-violet-500",
+  "from-blue-800 via-blue-600 to-blue-500",
+  "from-amber-700 via-amber-600 to-amber-400",
 ];
 
 const accentDots = [
-  "bg-violet-500",
+  "bg-brand-accent-hover",
   "bg-blue-500",
-  "bg-amber-500",
+  "bg-brand-warning",
 ];
 
 function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: FlipCardProps) {
@@ -333,7 +337,7 @@ function FlipCard({ study, readMoreText, flipHint, index, isMobile, language }: 
       }}
       role="button"
       tabIndex={0}
-      aria-label={`${study.clientName} case study`}
+      aria-label={`${study.clientName} ${language === 'cz' ? 'případová studie' : language === 'de' ? 'Fallstudie' : 'case study'}`}
     >
       <div
         className="relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0.2,0.2,1)]"
