@@ -7,8 +7,8 @@
   --brand-primary-active: #120833;
 
   /* Accent: Bright lighter violet — energy, approachable */
-  --brand-accent: #9F7AEA;        /* Violet-400 — lighter complement */
-  --brand-accent-hover: #805AD5;  /* Violet-500 hover */
+  --brand-accent: #8B5CF6;        /* Violet-500 — vivid, punchy (was #9F7AEA = washed out) */
+  --brand-accent-hover: #7C3AED;  /* Violet-600 hover */
 
   /* Backgrounds — subtle purple warmth */
   --brand-background-primary: #FFFFFF;
@@ -21,7 +21,7 @@
   --brand-text-primary: #1C1237;   /* Warm deep purple-black for headings */
   --brand-text-secondary: #3B2D5E; /* Rich secondary text */
   --brand-text-body: #4D3D6B;      /* Body text - warmer purple-grey */
-  --brand-text-muted: #8A7DA0;     /* Softer muted text */
+  --brand-text-muted: #635B78;     /* Readable muted — 5.2:1 on white (was #8A7DA0 = 3.4:1 FAIL) */
 
   /* Font Families */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -529,6 +529,19 @@
 
   .chip-scroll::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Subtle noise texture — 2026 depth effect */
+  .noise-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
   }
 
   /* Readability guardrails */

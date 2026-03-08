@@ -130,7 +130,7 @@ export function PurchaseSection() {
     <section className="section-spacing bg-brand-background-secondary/25 relative overflow-hidden" id="pricing">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-10 left-[8%] h-44 w-44 rounded-full bg-brand-accent/10 blur-3xl" />
-        <div className="absolute top-1/3 right-[6%] h-56 w-56 rounded-full bg-brand-primary/6 blur-3xl" />
+        <div className="absolute top-1/3 right-[6%] h-56 w-56 rounded-full bg-brand-primary/[0.12] blur-3xl" />
       </div>
       <div className="container-default relative">
         <motion.div
@@ -461,7 +461,7 @@ export function PurchaseSection() {
               <p className="text-caption text-brand-text-secondary leading-relaxed">
                 {pc.roiDesc}
               </p>
-              <p className="text-xs text-brand-text-muted/60 mt-2">{pc.roiSource}</p>
+              <p className="text-xs text-brand-text-muted mt-2">{pc.roiSource}</p>
             </div>
           </motion.div>
         </motion.div>

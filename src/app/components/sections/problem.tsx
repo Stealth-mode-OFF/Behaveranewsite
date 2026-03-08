@@ -211,7 +211,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
           {descText}
         </p>
         {sourceText && (
-          <p className="hidden md:block text-xs text-brand-text-muted/60 mt-2">{sourceText}</p>
+          <p className="hidden md:block text-xs text-brand-text-muted mt-2">{sourceText}</p>
         )}
         
         {/* Mobile: truncated with expand */}
@@ -232,7 +232,7 @@ function BentoCell({ item, icon: Icon, size, accent, valueColor, detailLabel }: 
                       {descText}
                     </p>
                     {sourceText && (
-                      <p className="text-xs text-brand-text-muted/60 mt-1.5">{sourceText}</p>
+                      <p className="text-xs text-brand-text-muted mt-1.5">{sourceText}</p>
                     )}
                   </motion.div>
                 ) : (

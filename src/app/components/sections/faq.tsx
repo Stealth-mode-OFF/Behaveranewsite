@@ -90,10 +90,10 @@ export function FAQ() {
   };
 
   return (
-    <section className="section-spacing bg-white relative overflow-hidden" id="faq">
+    <section className="section-spacing bg-white relative overflow-hidden noise-texture" id="faq">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-8 left-[8%] h-40 w-40 rounded-full bg-brand-accent/8 blur-3xl" />
-        <div className="absolute bottom-6 right-[10%] h-52 w-52 rounded-full bg-brand-primary/6 blur-3xl" />
+        <div className="absolute top-8 left-[8%] h-40 w-40 rounded-full bg-brand-accent/[0.15] blur-3xl" />
+        <div className="absolute bottom-6 right-[10%] h-52 w-52 rounded-full bg-brand-primary/[0.12] blur-3xl" />
       </div>
       <div className="container-default relative" style={{ maxWidth: '980px' }}>
         <div className="section-shell px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12">
@@ -266,7 +266,7 @@ function TrustBadges({ language }: { language: string }) {
           const Icon = badge.icon;
           return (
             <div key={idx} className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-brand-primary/5 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-brand-primary/10 flex items-center justify-center">
                 <Icon className="w-4 h-4 text-brand-primary/70" />
               </div>
               <div>

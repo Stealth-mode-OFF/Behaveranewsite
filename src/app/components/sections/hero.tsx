@@ -151,11 +151,11 @@ export function Hero() {
       className="relative isolate min-h-screen flex flex-col justify-center pt-24 pb-8 md:pt-32 md:pb-16 overflow-hidden"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-background-secondary via-white to-brand-background-secondary -z-20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-background-secondary via-white to-brand-background-secondary -z-20 noise-texture" />
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-[12%] left-[12%] w-[620px] h-[620px] bg-brand-primary/[0.035] rounded-full blur-[120px] animate-float-slow" />
-        <div className="absolute top-[8%] right-[6%] w-[360px] h-[360px] bg-brand-accent/[0.08] rounded-full blur-[90px] animate-float" />
-        <div className="absolute bottom-[8%] left-[35%] w-[420px] h-[220px] bg-brand-accent/[0.05] rounded-full blur-[80px]" />
+        <div className="absolute top-[12%] left-[12%] w-[620px] h-[620px] bg-brand-primary/[0.06] rounded-full blur-[120px] animate-float-slow" />
+        <div className="absolute top-[8%] right-[6%] w-[360px] h-[360px] bg-brand-accent/[0.14] rounded-full blur-[90px] animate-float" />
+        <div className="absolute bottom-[8%] left-[35%] w-[420px] h-[220px] bg-brand-accent/[0.10] rounded-full blur-[80px]" />
         <div className="absolute inset-x-0 top-[38%] h-px bg-gradient-to-r from-transparent via-brand-accent/20 to-transparent" />
       </div>
 
@@ -248,7 +248,7 @@ export function Hero() {
 
             {/* Micro-copy + Trust */}
             <p className="text-caption text-brand-text-muted mb-3">{c.ctaMicro}</p>
-            <p className="text-caption font-medium text-brand-text-muted/80 mb-6">{c.proofLine}</p>
+            <p className="text-caption font-medium text-brand-text-muted mb-6">{c.proofLine}</p>
 
             <div
               className="mx-auto inline-flex max-w-5xl flex-wrap items-center justify-center gap-2 sm:gap-4 md:gap-6 rounded-2xl border border-brand-border/70 bg-white/70 px-3 py-3 sm:px-5 backdrop-blur-sm shadow-[0_12px_35px_-30px_rgba(45,27,105,0.25)]"

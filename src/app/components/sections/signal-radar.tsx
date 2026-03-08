@@ -214,8 +214,8 @@ export function SignalRadar() {
   return (
     <section className="section-spacing bg-white relative overflow-hidden" id="radar">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-[6%] h-52 w-52 rounded-full bg-brand-accent/8 blur-3xl" />
-        <div className="absolute bottom-16 right-[8%] h-64 w-64 rounded-full bg-brand-primary/6 blur-3xl" />
+        <div className="absolute top-10 left-[6%] h-52 w-52 rounded-full bg-brand-accent/[0.15] blur-3xl" />
+        <div className="absolute bottom-16 right-[8%] h-64 w-64 rounded-full bg-brand-primary/[0.12] blur-3xl" />
       </div>
       <div className="container-default relative z-10">
 
@@ -475,7 +475,7 @@ function SignalDetailPanel({
         {/* Header */}
         <div className="px-6 pt-6 pb-4">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-brand-primary/8 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-brand-primary/[0.15] flex items-center justify-center">
               <TopicIcon className="w-5 h-5 text-brand-primary" />
             </div>
             <div>
