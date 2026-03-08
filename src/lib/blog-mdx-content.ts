@@ -141,6 +141,7 @@ function toBlogPost(path: string, raw: string, index: number): BlogPost {
     gfm: true,
     breaks: false,
   }) as string;
+  const coverImage = frontmatter.cover_image?.trim() || FALLBACK_COVER_IMAGES[index % FALLBACK_COVER_IMAGES.length];
 
   return {
     id: `mdx-${String(index + 1).padStart(3, '0')}`,
@@ -151,7 +152,7 @@ function toBlogPost(path: string, raw: string, index: number): BlogPost {
     excerpt_cz: buildExcerpt(frontmatter, markdownBody),
     content: rendered,
     content_cz: rendered,
-    coverImage: FALLBACK_COVER_IMAGES[index % FALLBACK_COVER_IMAGES.length],
+    coverImage,
     author: BLOG_MDX_AUTHORS[0],
     publishedAt: parsePublishedAt(frontmatter),
     tags: buildTags(frontmatter),
