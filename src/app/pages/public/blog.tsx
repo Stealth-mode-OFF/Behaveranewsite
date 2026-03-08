@@ -79,34 +79,6 @@ export function BlogPage() {
     });
   }, []);
 
-  if (slug && loading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-brand-background-primary">
-        <Header />
-        <main className="flex-1 pt-24 pb-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="py-20 text-center text-brand-text-muted">Načítám článek…</div>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (slug && posts.length > 0) {
-    return (
-      <div className="min-h-screen flex flex-col bg-brand-background-primary">
-        <Header />
-        <main className="flex-1 pt-24 pb-20">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <BlogReaderPage slug={slug} allPosts={posts} onBack={() => navigate('/blog')} />
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
   // Extract unique tags with counts
   const allTags = useMemo(() => {
     const tagMap = new Map<string, number>();
@@ -135,6 +107,34 @@ export function BlogPage() {
 
   // Localize titles / excerpts / content to active language
   const localizedPosts = useLocalizedPosts(filteredPosts);
+
+  if (slug && loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-brand-background-primary">
+        <Header />
+        <main className="flex-1 pt-24 pb-20">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="py-20 text-center text-brand-text-muted">Načítám článek…</div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (slug && posts.length > 0) {
+    return (
+      <div className="min-h-screen flex flex-col bg-brand-background-primary">
+        <Header />
+        <main className="flex-1 pt-24 pb-20">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <BlogReaderPage slug={slug} allPosts={posts} onBack={() => navigate('/blog')} />
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   const featuredPost = localizedPosts[0];
   const remainingPosts = localizedPosts.slice(1);
