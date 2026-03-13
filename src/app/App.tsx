@@ -57,6 +57,9 @@ const ProNeziskovkyPage = lazy(() =>
 const BlogPage = lazy(() =>
   import("./pages/public/blog").then((module) => ({ default: module.BlogPage }))
 );
+const EchoPulsePage = lazy(() =>
+  import("./pages/public/echo-pulse").then((module) => ({ default: module.EchoPulsePage }))
+);
 
 const AdminLayout = lazy(() =>
   import("./pages/admin/admin-layout").then((module) => ({ default: module.AdminLayout }))
@@ -163,6 +166,9 @@ function App() {
                     {/* Self-service Sign Up */}
                     <Route path="/start" element={<OnboardingPage />} />
                     <Route path="/signup" element={<Navigate to="/?signup=1" replace />} />
+
+                    {/* Echo Pulse onboarding guide */}
+                    <Route path="/guide" element={<EchoPulsePage />} />
 
                     {/* Marketing short-links */}
                     <Route path="/demo" element={<Navigate to="/?demo=1" replace />} />

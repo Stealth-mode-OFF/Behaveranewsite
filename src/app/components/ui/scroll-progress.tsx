@@ -35,7 +35,7 @@ export function ScrollProgress() {
       aria-valuenow={Math.round(progress * 100)}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label="Reading progress"
+      aria-label="Průběh čtení"
     >
       <div
         className="h-full bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary transition-transform duration-100 ease-linear origin-left"
