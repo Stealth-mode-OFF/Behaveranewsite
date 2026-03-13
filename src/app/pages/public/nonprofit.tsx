@@ -161,7 +161,7 @@ export function NonprofitPage() {
             Lidé, kteří pomáhají druhým,
             <br className="hidden sm:block" />
             si zaslouží{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary">
+            <span className="text-gradient">
               aby o ně bylo postaráno.
             </span>
           </motion.h1>

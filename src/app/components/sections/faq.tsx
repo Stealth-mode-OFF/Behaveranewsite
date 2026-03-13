@@ -95,8 +95,8 @@ export function FAQ() {
         <div className="absolute top-8 left-[8%] h-40 w-40 rounded-full bg-brand-accent/[0.15] blur-3xl" />
         <div className="absolute bottom-6 right-[10%] h-52 w-52 rounded-full bg-brand-primary/[0.12] blur-3xl" />
       </div>
-      <div className="container-default relative" style={{ maxWidth: '980px' }}>
-        <div className="section-shell px-4 py-8 sm:px-6 sm:py-10 md:px-8 md:py-12">
+      <div className="container-default relative" style={{ maxWidth: '720px' }}>
+        <div className="section-shell px-4 py-6 sm:px-5 sm:py-8 md:px-6 md:py-10">
         
         {/* Header */}
         <motion.div
@@ -112,7 +112,7 @@ export function FAQ() {
           </div>
           <h2 className="text-h2 text-brand-text-primary mb-4">
             {t.faq?.title || "Remove risks,"}
-            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+            <span className="text-gradient">
               {t.faq?.titleHighlight || " not just questions"}
             </span>
           </h2>
@@ -290,11 +290,11 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
+        className="w-full flex items-center justify-between px-4 py-3.5 sm:px-5 sm:py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
         aria-expanded={isOpen}
       >
         <span className={cn(
-          "text-lg font-semibold pr-4 transition-colors duration-200",
+          "text-[15px] sm:text-base font-semibold pr-3 transition-colors duration-200",
           isOpen ? "text-brand-primary" : "text-brand-text-primary"
         )}>
           {question}
@@ -303,14 +303,14 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: MOTION_EASE }}
           className={cn(
-            "w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200",
+            "w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200",
             isOpen ? "bg-brand-primary text-white" : "bg-brand-background-secondary text-brand-text-muted"
           )}
         >
-          <ChevronDown className="w-4 h-4" />
+          <ChevronDown className="w-3.5 h-3.5" />
         </motion.div>
       </button>
-      
+
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -320,9 +320,9 @@ function FAQAccordionItem({ question, answer, isOpen, onToggle }: FAQAccordionIt
             transition={{ duration: 0.3, ease: MOTION_EASE }}
             className="overflow-hidden"
           >
-            <div className="px-6 pb-6 pt-0">
-              <div className="h-px bg-brand-border mb-4" />
-              <p className="text-brand-text-secondary leading-relaxed">
+            <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
+              <div className="h-px bg-brand-border mb-3" />
+              <p className="text-sm sm:text-[15px] text-brand-text-secondary leading-relaxed">
                 {answer}
               </p>
             </div>

@@ -34,7 +34,7 @@ export function Hero() {
       badge: "Pro CEO a HR, kteří nechtějí hádat",
       headlines: [
         {
-          text: <>Vaši nejlepší lidé přemýšlejí o&nbsp;odchodu.{" "}<span className="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">Vy to nevíte.</span></>,
+          text: <>Vaši nejlepší lidé přemýšlejí o&nbsp;odchodu.{" "}<span className="whitespace-nowrap text-gradient">Vy to nevíte.</span></>,
           highlight: "",
         },
         {
@@ -42,7 +42,7 @@ export function Hero() {
           highlight: "mezi vašimi týmy?",
         },
         {
-          text: <>Tichá demotivace stojí <span className="whitespace-nowrap">víc než</span><br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">hlasitý odchod.</span></>,
+          text: <>Tichá demotivace stojí <span className="whitespace-nowrap">víc než</span><br className="hidden md:block" />{' '}<span className="text-gradient">hlasitý odchod.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -70,7 +70,7 @@ export function Hero() {
           highlight: "between your teams?",
         },
         {
-          text: <>Silent demotivation costs <span className="whitespace-nowrap">more than</span><br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">a loud resignation.</span></>,
+          text: <>Silent demotivation costs <span className="whitespace-nowrap">more than</span><br className="hidden md:block" />{' '}<span className="text-gradient">a loud resignation.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -98,7 +98,7 @@ export function Hero() {
           highlight: "zwischen Ihren Teams?",
         },
         {
-          text: <>Stille Demotivation kostet <span className="whitespace-nowrap">mehr als</span><br className="hidden md:block" />{' '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-primary via-brand-accent to-brand-accent/70">eine laute Kündigung.</span></>,
+          text: <>Stille Demotivation kostet <span className="whitespace-nowrap">mehr als</span><br className="hidden md:block" />{' '}<span className="text-gradient">eine laute Kündigung.</span></>,
           highlight: "",
         },
       ] as HeroHeadline[],
@@ -190,7 +190,7 @@ export function Hero() {
                   {headline.text}
                   {headline.highlight && <br />}
                   {headline.highlight && (
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-primary">
+                    <span className="text-gradient">
                       {headline.highlight}
                     </span>
                   )}

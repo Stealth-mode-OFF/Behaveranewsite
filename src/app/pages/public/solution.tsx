@@ -323,7 +323,7 @@ export function SolutionPage() {
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
                 {page.hero.title}
-                <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+                <span className="text-gradient">
                   {page.hero.titleHighlight}
                 </span>
               </h1>

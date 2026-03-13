@@ -66,6 +66,10 @@ const DashboardPreview = lazyNamed(
   () => import("@/app/components/sections/dashboard-preview"),
   "DashboardPreview"
 );
+const AiPromptChecker = lazyNamed(
+  () => import("@/app/components/sections/ai-prompt-checker"),
+  "AiPromptChecker"
+);
 
 
 export function LandingPage() {
@@ -136,6 +140,11 @@ export function LandingPage() {
         {/* 3. PROBLEM — Build pain awareness */}
         <LazySection>
           <ProblemSection />
+        </LazySection>
+
+        {/* 3.5. AI PROMPT — Interactive engagement checker */}
+        <LazySection>
+          <AiPromptChecker />
         </LazySection>
 
         {/* 4. PERSONALIZATION — Role-based value (moved up) */}

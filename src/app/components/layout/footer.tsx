@@ -160,7 +160,7 @@ export function Footer() {
   };
   
   return (
-    <footer className="bg-brand-primary text-white">
+    <footer id="about" className="bg-brand-primary text-white">
       <div className="container-default max-w-6xl">
         {/* Main Footer Content */}
         <div className="py-12 md:py-16">

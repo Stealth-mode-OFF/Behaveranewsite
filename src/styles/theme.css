@@ -14,8 +14,8 @@
   --brand-background-primary: #FFFFFF;
   --brand-background-secondary: #F8F6FF; /* Subtle cool lavender */
   --brand-background-muted: #F0EBFF;     /* Light lavender */
-  --brand-background-dark: #1A0F3C;      /* Deeper, richer dark */
-  --brand-background-deep: #0D0520;     /* Ultra-deep — CTA bottoms, dark gradients */
+  --brand-background-dark: #1B1048;      /* Rich purple-dark (not muddy) */
+  --brand-background-deep: #0E0628;     /* Ultra-deep — CTA bottoms, dark gradients */
 
   /* Text Colors — near-black, minimal tinting */
   --brand-text-primary: #1C1237;   /* Warm deep purple-black for headings */
@@ -542,6 +542,15 @@
     pointer-events: none;
     z-index: 0;
     border-radius: inherit;
+  }
+
+  /* Gradient text — ONE definition, used everywhere.
+     Stays vibrant across the whole gradient (no dark muddy end). */
+  .text-gradient {
+    background: linear-gradient(135deg, #8B5CF6, #6366F1, #818CF8);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   /* Readability guardrails */

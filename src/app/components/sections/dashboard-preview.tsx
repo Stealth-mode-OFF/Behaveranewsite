@@ -74,7 +74,7 @@ export function DashboardPreview() {
           </div>
           <h2 className="text-h2 text-brand-text-primary mb-4">
             {t.dashboard?.title}
-            <span className="block bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent mt-3">{t.dashboard?.titleHighlight}</span>
+            <span className="block text-gradient mt-3">{t.dashboard?.titleHighlight}</span>
           </h2>
           <p className="text-body-lg text-brand-text-secondary leading-relaxed mb-10 md:mb-14">
             {t.dashboard?.subtitle}

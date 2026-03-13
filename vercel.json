@@ -34,9 +34,9 @@
       "permanent": false
     },
     {
-      "source": "/blog",
-      "destination": "/#blog",
-      "permanent": false
+      "source": "/blog/",
+      "destination": "/blog",
+      "permanent": true
     }
   ],
   "rewrites": [

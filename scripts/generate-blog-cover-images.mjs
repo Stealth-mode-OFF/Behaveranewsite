@@ -118,6 +118,7 @@ function buildCastingInstruction(index) {
 }
 
 function buildPrompt(item, post, index) {
+  if (item.prompt) return item.prompt;
   return [
     `Editorial photograph of ${item.concept}, modern Czech office with glass partitions and wood accents, soft natural window light, shallow depth of field, candid moment, 85mm lens, Prague 2026.`,
     `Article title: ${post.frontmatter.title || item.slug}.`,
@@ -207,6 +208,10 @@ async function updateCoverImageFrontmatter(postPath, coverImagePath) {
 async function validateManifest(manifest) {
   const seen = new Set();
   for (const item of manifest) {
+    if (!item.file || !item.slug || !item.output) {
+      throw new Error(`Manifest item is missing required fields: ${JSON.stringify(item)}`);
+    }
+
     if (seen.has(item.slug)) {
       throw new Error(`Duplicate slug in manifest: ${item.slug}`);
     }
@@ -214,6 +219,10 @@ async function validateManifest(manifest) {
 
     const postPath = path.join(blogDir, item.file);
     await fs.access(postPath);
+
+    if (!item.keep && !item.prompt && !item.concept) {
+      throw new Error(`Manifest item ${item.slug} must define either "prompt" or "concept", or be marked with "keep": true.`);
+    }
   }
 }
 
@@ -222,7 +231,19 @@ async function main() {
   const manifest = await loadManifest();
   await validateManifest(manifest);
 
+  const requestedItem = args.slug ? manifest.find((item) => item.slug === args.slug) : null;
+  if (args.slug && !requestedItem) {
+    throw new Error(`No manifest item found for slug "${args.slug}".`);
+  }
+  if (requestedItem?.keep) {
+    console.log(`Slug "${args.slug}" is marked with keep=true. No image generation is needed.`);
+    return;
+  }
+
+  const keepCount = manifest.filter((item) => item.keep).length;
+
   const filtered = manifest
+    .filter((item) => !item.keep)
     .filter((item) => !args.slug || item.slug === args.slug)
     .slice(0, args.limit || manifest.length);
 
@@ -233,15 +254,20 @@ async function main() {
   console.log(`Preparing ${filtered.length} blog cover image job(s).`);
   console.log(`Manifest: ${path.relative(rootDir, manifestPath)}`);
   console.log(`Delay between requests: ${args.delayMs} ms`);
+  if (keepCount > 0) {
+    console.log(`Skipping ${keepCount} manifest item(s) marked with keep=true.`);
+  }
 
   if (args.dryRun) {
-    for (const item of filtered) {
+    for (let index = 0; index < filtered.length; index += 1) {
+      const item = filtered[index];
       const post = await loadPost(item.file);
       const outputPath = path.join(publicDir, item.output);
-      console.log(`\n[DRY RUN] ${item.slug}`);
+      console.log(`
+[DRY RUN] ${item.slug}`);
       console.log(`  Source: ${path.relative(rootDir, post.path)}`);
       console.log(`  Output: ${path.relative(rootDir, outputPath)}`);
-      console.log(`  Prompt: ${buildPrompt(item, post, filtered.indexOf(item))}`);
+      console.log(`  Prompt: ${buildPrompt(item, post, index)}`);
     }
     return;
   }

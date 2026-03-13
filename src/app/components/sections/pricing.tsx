@@ -146,7 +146,7 @@ export function PurchaseSection() {
           </div>
           <h2 className="text-h2 text-brand-text-primary mb-4">
             {t.purchase.title}
-            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+            <span className="text-gradient">
               {t.purchase.titleHighlight}
             </span>
           </h2>
@@ -314,11 +314,11 @@ export function PurchaseSection() {
               </div>
 
               {/* RIGHT: Summary (2 cols) */}
-              <div className="lg:col-span-2 bg-gradient-to-br from-brand-primary via-brand-primary to-brand-primary-hover p-5 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
+              <div className="lg:col-span-2 p-5 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #2A1660 0%, #1E0F4D 100%)' }}>
                 {/* Decorative elements */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.04] rounded-full -translate-y-1/2 translate-x-1/2" />
-                <div className="absolute bottom-20 left-0 w-32 h-32 bg-white/[0.03] rounded-full -translate-x-1/2" />
-                <div className="absolute top-1/2 right-1/4 w-20 h-20 bg-brand-accent/10 rounded-full blur-xl" />
+                <div className="absolute top-0 right-0 w-40 h-40 bg-white/[0.06] rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-20 left-0 w-32 h-32 bg-white/[0.04] rounded-full -translate-x-1/2" />
+                <div className="absolute top-1/2 right-1/4 w-20 h-20 bg-violet-500/15 rounded-full blur-xl" />
                 
                 <div className="relative">
                   {/* Popular badge */}

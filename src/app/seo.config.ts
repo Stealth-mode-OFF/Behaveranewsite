@@ -94,11 +94,10 @@ export const pageSEO: Record<string, Record<string, SEOConfig>> = {
         'spokojenost zaměstnanců',
         'AI HR software',
         'Behavera',
-        'Behavera',
       ],
     },
     en: {
-      title: 'Behavera - Predict Turnover & Burnout Before It Happens | AI People Analytics',
+      title: 'Predict Turnover & Burnout Before It Happens | AI People Analytics',
       description: 'Predict employee turnover months in advance. AI platform measures 9 key work-life dimensions. 1-hour implementation. Used by Vodafone, O2, Lidl. Free 30-min consultation.',
       keywords: [
         'employee turnover prediction',
@@ -109,7 +108,6 @@ export const pageSEO: Record<string, Record<string, SEOConfig>> = {
         'retention software',
         'AI HR technology',
         'predictive HR analytics',
-        'Behavera',
         'Behavera',
       ],
     },

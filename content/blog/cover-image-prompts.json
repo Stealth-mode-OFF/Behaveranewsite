@@ -3,180 +3,210 @@
     "file": "01-kolik-vas-stoji-ticha-fluktuace.mdx",
     "slug": "kolik-vas-stoji-ticha-fluktuace",
     "output": "blog-covers/kolik-vas-stoji-ticha-fluktuace.webp",
-    "concept": "A Czech CEO at a wooden desk reviewing turnover cost sheets, calculator and pen nearby, with one empty office chair in the blurred background to symbolize silent attrition."
+    "concept": "ROI model — money leaking from a company",
+    "prompt": "A clean semi-flat editorial illustration of a large office building viewed from the side, with golden coins and banknotes quietly flowing out through cracks in the walls like water leaking from a dam. Some desks visible through windows are empty. The building is rendered in deep purple (#1e0a3c) and soft grey, the coins are warm orange-gold. Minimalist geometric style with subtle paper texture. Professional B2B SaaS aesthetic. Landscape 3:2 ratio. No text in the image. Avoid: cartoon style, people faces, realistic photography, cluttered composition."
   },
   {
     "file": "02-co-se-deje-3-mesice-pred-vypovedi.mdx",
     "slug": "co-se-deje-3-mesice-pred-vypovedi",
     "output": "blog-covers/co-se-deje-3-mesice-pred-vypovedi.webp",
-    "concept": "A team meeting in a modern office where one employee sits slightly withdrawn by the window while the manager notices subtle disengagement cues."
+    "concept": "Warning signals before resignation — a fading figure",
+    "prompt": "A clean semi-flat editorial illustration showing a row of 5 office worker silhouettes standing side by side. The rightmost figure is gradually fading and becoming transparent, dissolving into particles drifting away. A subtle countdown calendar with 3 months highlighted floats nearby. Deep purple (#1e0a3c) background, figures in white and soft grey, the fading figure transitions through warm orange to transparent. Minimalist geometric style. Landscape 3:2 ratio. No text in the image. Avoid: realistic faces, cartoon style, cluttered backgrounds, stock photo style."
   },
   {
     "file": "03-engagement-neni-spokojenost.mdx",
     "slug": "engagement-neni-spokojenost",
     "output": "blog-covers/engagement-neni-spokojenost.webp",
-    "concept": "Friendly office atmosphere with smiling colleagues, while one talented employee quietly packs a laptop and notebook, suggesting that satisfaction alone does not prevent departure."
+    "concept": "Satisfaction ≠ engagement — smiling mask hiding disengagement",
+    "prompt": "A clean semi-flat editorial illustration of two contrasting sides. Left side: a bright happy smiley face emoji (warm orange) sitting comfortably in a hammock. Right side: a dynamic figure actively climbing a steep mountain with determination and energy, rendered in deep purple (#1e0a3c). A subtle 'not equals' symbol divides them. Soft grey and white background with geometric shapes. The message: being comfortable is not the same as being engaged. Minimalist modern style. Landscape 3:2 ratio. No text in the image. Avoid: realistic people, stock photography, cartoon characters, cluttered design."
   },
   {
     "file": "04-manazer-dela-70-procent-engagementu.mdx",
     "slug": "manazer-dela-70-procent-engagementu",
     "output": "blog-covers/manazer-dela-70-procent-engagementu.webp",
-    "concept": "A direct manager leading a small team standup, with body language clearly shaping the room's energy and engagement."
+    "concept": "Manager as 70% of the engagement equation",
+    "prompt": "A clean semi-flat editorial illustration showing a large circular gauge or pie chart where 70% is filled with warm orange and deep purple (#1e0a3c). Inside the 70% segment stands a single manager figure with arms open, connected by thin lines to 6-8 smaller team member silhouettes arranged around them like a constellation. The remaining 30% is soft grey and empty. White background with subtle geometric grid pattern. Professional data visualization aesthetic. Landscape 3:2 ratio. No text in the image. Avoid: realistic faces, stock photography, cartoon style, 3D rendering."
   },
   {
     "file": "05-proc-rocni-pruzkumy-casto-nic-nezmeni.mdx",
     "slug": "proc-rocni-pruzkumy-casto-nic-nezmeni",
     "output": "blog-covers/proc-rocni-pruzkumy-casto-nic-nezmeni.webp",
-    "concept": "A thick annual survey report gathering dust on a conference table beside a neglected fruit bowl, symbolizing expensive reports that lead nowhere."
+    "concept": "Annual survey collecting dust — outdated data",
+    "prompt": "A clean semi-flat editorial illustration of a thick report document or binder labeled with a large calendar year badge, sitting on a shelf covered in visible cobwebs and dust. A small wilted plant grows next to it. Below the shelf, the real workplace continues dynamically — small figures moving, working, changing. Deep purple (#1e0a3c) shelf and document, warm orange accents on the cobwebs and dust, active figures in white on a soft grey background. Contrast between static report and dynamic reality. Minimalist style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, cartoon faces, cluttered composition."
   },
   {
     "file": "06-jak-nastavit-pulse-v-ceske-firme.mdx",
     "slug": "jak-nastavit-pulse-v-ceske-firme",
     "output": "blog-covers/jak-nastavit-pulse-v-ceske-firme.webp",
-    "concept": "HR and team leaders in a Czech office planning a pulse rollout with sticky notes, calendars, and a clean implementation board on the wall."
+    "concept": "Implementation blueprint — keep existing image",
+    "keep": true
   },
   {
     "file": "07-anonymita-a-duvera.mdx",
     "slug": "anonymita-a-duvera",
     "output": "blog-covers/anonymita-a-duvera.webp",
-    "concept": "An employee privately completing an anonymous survey on a phone in a calm workspace, with privacy and trust emphasized through composition and lighting."
+    "concept": "Anonymity and trust — shield protecting identity",
+    "prompt": "A clean semi-flat editorial illustration showing a large translucent shield or privacy screen in the center. Behind it, a person's silhouette is protected — their identity hidden. In front of the shield, data points and survey responses flow freely as abstract shapes. The shield glows with a warm orange rim, the silhouette is deep purple (#1e0a3c), and the data flows are white on a soft grey background. A small padlock icon sits at the top of the shield. Minimalist geometric style with subtle gradient. Landscape 3:2 ratio. No text in the image. Avoid: realistic faces, stock photography, cartoon style, dark moody tones."
   },
   {
     "file": "08-jak-dosahnout-70-80-procent-ucasti.mdx",
     "slug": "jak-dosahnout-70-80-procent-ucasti",
     "output": "blog-covers/jak-dosahnout-70-80-procent-ucasti.webp",
-    "concept": "A motivated office team naturally joining a quick feedback check-in on their devices, showing momentum and voluntary participation without pressure."
+    "concept": "High participation — crowd filling up a progress bar",
+    "prompt": "A clean semi-flat editorial illustration of a large horizontal progress bar filling up to approximately 78%. The filled portion is made up of dozens of tiny abstract human figure silhouettes, densely packed together, colored in deep purple (#1e0a3c) and warm orange. The unfilled portion is light grey with just a few scattered figures walking toward the group. White background with subtle geometric grid. The feeling is momentum and voluntary collective participation. Minimalist modern infographic style. Landscape 3:2 ratio. No text in the image. Avoid: realistic people, stock photography, cartoon faces, 3D rendering."
   },
   {
     "file": "09-co-delat-po-vysledcich-30denni-plan.mdx",
     "slug": "co-delat-po-vysledcich-30denni-akcni-plan",
     "output": "blog-covers/co-delat-po-vysledcich-30denni-akcni-plan.webp",
-    "concept": "An HR lead and manager mapping a clear 30-day action plan on a wall calendar with cards and colored markers after reviewing survey insights."
+    "concept": "30-day action plan — keep existing image",
+    "keep": true
   },
   {
     "file": "10-jak-pracovat-s-vysledky-s-manazery.mdx",
     "slug": "jak-pracovat-s-vysledky-s-manazery",
     "output": "blog-covers/jak-pracovat-s-vysledky-s-manazery.webp",
-    "concept": "An empathetic one-on-one between HR and a manager reviewing printed team insights together, with calm, non-defensive body language."
+    "concept": "Coaching managers through results — bridge between data and people",
+    "prompt": "A clean semi-flat editorial illustration showing two figures standing on opposite sides of a gap. On the left side: a stack of data charts, graphs and survey results in deep purple (#1e0a3c). On the right side: a group of small team member silhouettes in warm orange. A manager figure in the middle builds a bridge between the two sides, actively laying down the connecting planks. Soft grey and white background with subtle texture. The metaphor: translating data into human action. Minimalist geometric style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, cartoon faces, dark moody tones, stock style."
   },
   {
     "file": "11-jake-otazky-ma-mit-pulse.mdx",
     "slug": "jake-otazky-ma-mit-pulse",
     "output": "blog-covers/jake-otazky-ma-mit-pulse.webp",
-    "concept": "Close-up editorial desk scene with thoughtfully arranged survey question cards, sticky notes, and a pen, conveying deliberate question design."
+    "concept": "Question design — filtering good questions from bad ones",
+    "prompt": "A clean semi-flat editorial illustration of a large funnel viewed from the side. Many question mark symbols in various sizes pour into the top of the funnel — some in red/grey (bad questions), some in warm orange and deep purple (good questions). Only the orange and purple ones pass through the narrow bottom, neatly arranged in a row. The rejected ones bounce off the funnel sides. White background with subtle geometric patterns. Clean infographic aesthetic. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, cartoon characters, cluttered composition, dark backgrounds."
   },
   {
     "file": "12-survey-fatigue.mdx",
     "slug": "survey-fatigue",
     "output": "blog-covers/survey-fatigue.webp",
-    "concept": "An office worker looking mentally drained by repeated notifications and stacked feedback forms, illustrating survey fatigue without exaggeration."
+    "concept": "Survey fatigue — drowning in notifications and forms",
+    "prompt": "A clean semi-flat editorial illustration of a small human figure sitting exhausted at a desk, head down on folded arms. Above them, an enormous avalanche of notification bells, survey forms, checkboxes, and email icons cascades down like a wave about to crash. The figure is in deep purple (#1e0a3c), the overwhelming wave is in muted greys and faded oranges. White background. The contrast between the tiny person and the massive wave of requests communicates fatigue. Minimalist modern style with subtle paper texture. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, angry expressions, cartoon style, bright cheerful colors."
   },
   {
     "file": "13-co-je-dobre-skore.mdx",
     "slug": "co-je-dobre-skore-trend-vs-cislo",
     "output": "blog-covers/co-je-dobre-skore-trend-vs-cislo.webp",
-    "concept": "A leader comparing several trend snapshots on a laptop and printed charts, focused on movement over time rather than one big number."
+    "concept": "Trend vs absolute number — the direction matters more",
+    "prompt": "A clean semi-flat editorial illustration split in two halves. Left half: a large single number (rendered as abstract shape, not readable) standing alone, static and flat, in muted grey. Right half: a dynamic upward-trending line chart with three data points showing clear positive direction, rendered in warm orange and deep purple (#1e0a3c), with subtle motion lines suggesting momentum. The right half is clearly more vibrant and important. White background with subtle grid. The message: trend matters more than a single score. Minimalist data visualization style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, cluttered charts, 3D graphs, stock style."
   },
   {
     "file": "14-segmentace-na-rovinu.mdx",
     "slug": "segmentace-na-rovinu",
     "output": "blog-covers/segmentace-na-rovinu.webp",
-    "concept": "Analysts clustering colored cards and sticky notes into clear groups by team, role, and seniority on a meeting table."
+    "concept": "Data segmentation — sorting people into meaningful groups",
+    "prompt": "A clean semi-flat editorial illustration showing an aerial/top-down view of abstract human figure dots being sorted into distinct colored clusters on a grid. Four clearly separated groups: one cluster in deep purple (#1e0a3c), one in warm orange, one in soft blue-grey, one in light lavender. Thin connecting lines show relationships within groups. A subtle lens or magnifying glass hovers over one cluster, highlighting it. White background with minimal geometric grid. Clean data visualization meets human elements. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, pie charts, cartoon faces, cluttered composition."
   },
   {
     "file": "15-korelace-vs-kauzalita.mdx",
     "slug": "korelace-vs-kauzalita",
     "output": "blog-covers/korelace-vs-kauzalita.webp",
-    "concept": "Two data-minded colleagues debating in front of a whiteboard full of arrows, dots, and branching causes, symbolizing careful causal reasoning."
+    "concept": "Correlation vs causality — keep existing image",
+    "keep": true
   },
   {
     "file": "16-jak-funguje-echo-pulse.mdx",
     "slug": "jak-funguje-echo-pulse",
     "output": "blog-covers/jak-funguje-echo-pulse.webp",
-    "concept": "One scene showing the three viewpoints of Echo Pulse: an employee on a phone, a manager on a laptop, and an executive reviewing results nearby."
+    "concept": "How Echo Pulse works — three-layer system view",
+    "prompt": "A clean semi-flat editorial illustration showing three horizontal layers connected by flowing data streams. Bottom layer: a row of small employee figure silhouettes each holding a phone, colored in soft grey. Middle layer: a manager figure at a dashboard screen, colored in warm orange. Top layer: an executive figure viewing a summary overview, colored in deep purple (#1e0a3c). Curved arrows and data dots flow upward between layers. White background with subtle grid pattern. Clean product architecture visualization. Landscape 3:2 ratio. No text in the image. Avoid: realistic screenshots, stock photography, cartoon faces, UI mockups with readable text."
   },
   {
     "file": "17-vysledky-vidite-okamzite.mdx",
     "slug": "vysledky-vidite-okamzite",
     "output": "blog-covers/vysledky-vidite-okamzite.webp",
-    "concept": "An executive opening a laptop with fresh incoming results early in the morning, coffee on the table, capturing the immediacy of first-day insight."
+    "concept": "Instant results — real-time dashboard lighting up",
+    "prompt": "A clean semi-flat editorial illustration of a large dashboard screen or monitor that just turned on, with data visualizations popping into existence — bar charts rising, trend lines drawing themselves, numbers appearing with subtle glow effects. Small sparkle/flash icons around the screen suggest instant activation. The screen frame is deep purple (#1e0a3c), the data elements are warm orange and white. Soft grey background with subtle radial glow behind the screen. The feeling is immediacy and freshness. Minimalist modern style. Landscape 3:2 ratio. No text in the image. Avoid: realistic UI screenshots, stock photography, dark moody tones, readable numbers."
   },
   {
     "file": "18-jak-z-pulzu-udelat-akcni-meeting.mdx",
     "slug": "jak-z-pulzu-udelat-akcni-meeting",
     "output": "blog-covers/jak-z-pulzu-udelat-akcni-meeting.webp",
-    "concept": "A focused leadership review in a compact boardroom, with the team aligned around a short agenda and clear priorities."
+    "concept": "Turning pulse data into action meeting — data transforms into checklist",
+    "prompt": "A clean semi-flat editorial illustration showing a transformation: on the left side, abstract data visualization elements (pie chart segments, bar charts, trend lines) in deep purple (#1e0a3c) flow through a central arrow/funnel and emerge on the right side as a neat actionable checklist with checkmarks, each item connected to a small person figure taking action. The transformation happens through a warm orange gateway/portal in the center. White background with subtle geometric texture. The metaphor: raw data becomes concrete action items. Minimalist style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, meeting room scenes, stock style, cartoon characters."
   },
   {
     "file": "19-nejcastejsi-chyby-pri-pulzu.mdx",
     "slug": "nejcastejsi-chyby-pri-pulzu",
     "output": "blog-covers/nejcastejsi-chyby-pri-pulzu.webp",
-    "concept": "An HR specialist reorganizing a messy pulse rollout board into a clean plan, visually moving from common mistakes to clarity."
+    "concept": "Common pulse mistakes — keep existing image",
+    "keep": true
   },
   {
     "file": "20-pilot-na-1-tym.mdx",
     "slug": "pilot-na-1-tym",
     "output": "blog-covers/pilot-na-1-tym.webp",
-    "concept": "A single small team in a pilot-style standup session, experimenting with a new process in a low-risk, practical setting."
+    "concept": "Pilot on one team — small test before scaling",
+    "prompt": "A clean semi-flat editorial illustration showing a large organizational grid of many small squares (representing the whole company) in soft grey. One small cluster of 5-6 squares in the corner is highlighted and colored in warm orange with a subtle spotlight/magnifying glass on it. Small success indicators (tiny checkmarks, thumbs up) float around the highlighted cluster. Dotted arrow lines suggest potential expansion to the rest of the grid. Deep purple (#1e0a3c) organizational outline. White background. The metaphor: test small, then scale. Minimalist infographic style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, people faces, rocket ship cliches, cartoon style."
   },
   {
     "file": "21-je-to-opravdu-anonymni.mdx",
     "slug": "je-to-opravdu-anonymni",
     "output": "blog-covers/je-to-opravdu-anonymni.webp",
-    "concept": "A clean corporate scene emphasizing access boundaries and privacy, with HR, CEO, and manager separated by glass and layered distance rather than explicit text."
+    "concept": "Is it really anonymous? — layered access and privacy",
+    "prompt": "A clean semi-flat editorial illustration showing three concentric circles representing access layers. The innermost circle contains a single anonymous figure silhouette (no face, no identifying features) protected by a lock icon, in white. The middle ring shows 'manager view' with aggregate bar charts only, in warm orange. The outer ring shows 'CEO/HR view' with high-level trends only, in deep purple (#1e0a3c). Each layer has a different lock/key symbol showing graduated access. Soft grey background with subtle radial lines. The metaphor: layered privacy protection. Minimalist security-visualization style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, scary surveillance imagery, dark tones, stock style."
   },
   {
     "file": "22-kolik-casu-to-vezme.mdx",
     "slug": "kolik-casu-to-vezme",
     "output": "blog-covers/kolik-casu-to-vezme.webp",
-    "concept": "A crisp desk scene with a stopwatch, phone, laptop, and a few scheduled calendar blocks, showing realistic time budgeting in minutes."
+    "concept": "Time investment — keep existing image",
+    "keep": true
   },
   {
     "file": "23-spatne-vysledky-krizovy-protokol.mdx",
     "slug": "spatne-vysledky-krizovy-protokol",
     "output": "blog-covers/spatne-vysledky-krizovy-protokol.webp",
-    "concept": "A calm HR lead handling a tense meeting room moment after bad results, with composed posture and a clear crisis plan."
+    "concept": "Bad results crisis protocol — calm response to red signals",
+    "prompt": "A clean semi-flat editorial illustration showing a large dashboard with several metrics displayed as gauge dials. Most dials point to red/warning zones on the left. But instead of panic, a calm figure stands in front of the dashboard holding a clear step-by-step protocol sheet (abstract, not readable), with organized arrows pointing from each red dial to a specific resolution step. Deep purple (#1e0a3c) dashboard frame, red-orange warning indicators, the protocol elements in clean white and warm orange. Soft grey background. The metaphor: bad news handled with a clear plan, not panic. Minimalist style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, dramatic alarm imagery, cartoon style, dark scary tones."
   },
   {
     "file": "24-toxicke-odpovedi-ventilace.mdx",
     "slug": "toxicke-odpovedi-ventilace",
     "output": "blog-covers/toxicke-odpovedi-ventilace.webp",
-    "concept": "A facilitator sorting anonymous comment cards into piles, carefully distinguishing emotional venting from useful signal."
+    "concept": "Toxic responses — separating venting from signal",
+    "prompt": "A clean semi-flat editorial illustration showing a large sieve or filter screen in the center. From the top, angry jagged speech bubbles and spiky comment shapes fall in — some are toxic red/dark, some contain valuable orange-gold nuggets. The filter separates them: toxic noise falls to the left into a containment bin, while valuable signal/insights pass through to the right and are collected in a clean container. Deep purple (#1e0a3c) filter frame, red for toxic, warm orange for valuable. White background. The metaphor: not all negative feedback is noise — filter for signal. Minimalist editorial style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, angry faces, cartoon characters, dark moody atmosphere."
   },
   {
     "file": "25-proc-ne-google-forms.mdx",
     "slug": "proc-ne-google-forms",
     "output": "blog-covers/proc-ne-google-forms.webp",
-    "concept": "A decision-focused office scene comparing a generic simple form on one screen with richer insight materials on another, without visible brand names or readable UI text."
+    "concept": "Why not Google Forms — basic tool vs professional instrument",
+    "prompt": "A clean semi-flat editorial illustration showing two contrasting tools side by side. Left: a simple, basic clipboard with a plain checklist and a single pencil — flat, grey, one-dimensional, small. Right: a sophisticated multi-layered dashboard instrument panel with gauges, trend lines, segmentation layers, and connected data flows — rendered in deep purple (#1e0a3c) and warm orange, three-dimensional depth, clearly more capable. A subtle 'vs' divider between them. White background with minimal geometric grid. The metaphor: a basic form vs a professional analytics tool. Minimalist comparison illustration style. Landscape 3:2 ratio. No text in the image. Avoid: brand logos, realistic screenshots, stock photography, cartoon style."
   },
   {
     "file": "26-quiet-quitting-ceske-firmy.mdx",
     "slug": "quiet-quitting-ceske-firmy",
     "output": "blog-covers/quiet-quitting-ceske-firmy.webp",
-    "concept": "An employee physically present in an open office but emotionally checked out, detached from the collaborative energy around them."
+    "concept": "Quiet quitting — physically present but mentally gone",
+    "prompt": "A clean semi-flat editorial illustration showing a row of office desks viewed from above. All desk chairs have solid colored figures sitting in them, actively working (shown by motion lines) — except one. That one desk has a figure that is a hollow outline only, like a ghost or empty shell, translucent and fading. Their chair is slightly pushed back. Everything else around them continues normally. Active figures in deep purple (#1e0a3c), the quiet-quitting figure is just a dotted outline in soft grey. Warm orange accents on active work elements. White background. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, sad expressions, dark mood, cartoon faces, stock style."
   },
   {
     "file": "27-burnout-riziko-vykonu.mdx",
     "slug": "burnout-riziko-vykonu",
     "output": "blog-covers/burnout-riziko-vykonu.webp",
-    "concept": "A high-performing professional working late with visible cognitive overload, empty coffee cups, and fatigue, framed as an operational risk rather than a melodrama."
+    "concept": "Burnout as performance risk — battery draining to critical",
+    "prompt": "A clean semi-flat editorial illustration of a large human-shaped battery standing upright. The battery is nearly empty — only about 10% charge remaining at the bottom in warning red-orange. The empty portion shows cracks and stress fractures. Around the battery, small performance indicators (charts, targets, deadlines) continue to demand energy, shown as arrows pointing inward trying to draw from the depleted source. Deep purple (#1e0a3c) battery outline, red-orange low charge, grey demand arrows. White background with subtle geometric pattern. The metaphor: burnout is an operational capacity risk, not just feelings. Minimalist infographic style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, tired faces, cartoon style, dark depressing tones."
   },
   {
     "file": "28-onboarding-mereni-vykonu.mdx",
     "slug": "onboarding-mereni-vykonu",
     "output": "blog-covers/onboarding-mereni-vykonu.webp",
-    "concept": "A new hire during the first weeks, guided by a buddy at a freshly prepared workstation, conveying structured onboarding and early performance support."
+    "concept": "Onboarding as the biggest performance gap — first 90 days",
+    "prompt": "A clean semi-flat editorial illustration showing a timeline path from left to right. At the start (left), a small new-hire figure steps through a doorway onto the path. The first segment of the path (representing 90 days) is a dangerous gap — a wide chasm with a rickety bridge over it. Many small figures have fallen through the gap into the abyss below. Beyond the bridge, the path becomes solid and the figures walk confidently. Deep purple (#1e0a3c) path, warm orange doorway and bridge, grey fallen figures, white background. The metaphor: onboarding is where you lose people if you don't measure and support. Minimalist editorial style. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, happy onboarding scenes, stock style, cartoon characters."
   },
   {
     "file": "29-kultura-je-chovani.mdx",
     "slug": "kultura-je-chovani",
     "output": "blog-covers/kultura-je-chovani.webp",
-    "concept": "Company values posters blurred in the background while real team behavior and collaboration happen authentically in the foreground."
+    "concept": "Culture = behavior — values posters vs actual actions",
+    "prompt": "A clean semi-flat editorial illustration split vertically. Left side: a decorative wall with framed motivational value statements (rendered as abstract placeholder rectangles, not readable text), polished and pristine, in muted grey — looks impressive but lifeless. Right side: real workplace scene with small figures actively collaborating, helping each other, sharing, debating — messy and alive, rendered in warm orange and deep purple (#1e0a3c). A subtle crack or divide runs between the two sides. White background. The metaphor: culture is what people DO, not what's on the wall. Minimalist editorial illustration. Landscape 3:2 ratio. No text in the image. Avoid: realistic photography, stock photos, cartoon faces, readable text on posters."
   },
   {
     "file": "30-stredni-management-uzke-hrdlo.mdx",
     "slug": "stredni-management-uzke-hrdlo",
     "output": "blog-covers/stredni-management-uzke-hrdlo.webp",
-    "concept": "A middle manager visually positioned between executives and team members, carrying tension from both sides while trying to keep work moving."
+    "concept": "Middle management as bottleneck — keep existing image",
+    "keep": true
   }
 ]

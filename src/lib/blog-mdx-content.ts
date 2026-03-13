@@ -1,7 +1,22 @@
 import { marked } from 'marked';
 import type { Author, BlogPost } from './types';
+import blogTranslations from './blog-translations.json';
 
 type Frontmatter = Record<string, string>;
+type BlogTranslationEntry = {
+  en?: {
+    title?: string;
+    excerpt?: string;
+    content_markdown?: string;
+  };
+  de?: {
+    title?: string;
+    excerpt?: string;
+    content_markdown?: string;
+  };
+};
+
+const BLOG_TRANSLATIONS = blogTranslations as Record<string, BlogTranslationEntry>;
 
 export const BLOG_MDX_AUTHORS: Author[] = [
   {
@@ -137,21 +152,37 @@ function toBlogPost(path: string, raw: string, index: number): BlogPost {
   const slug = frontmatter.slug || slugFromPath(path);
   const title = frontmatter.title || toTitleFromSlug(slug);
   const markdownBody = normalizeMarkdownBody(body);
+  const translationEntry = BLOG_TRANSLATIONS[slug];
+  const enMarkdownBody = normalizeMarkdownBody(translationEntry?.en?.content_markdown || markdownBody);
+  const deMarkdownBody = normalizeMarkdownBody(translationEntry?.de?.content_markdown || '');
   const rendered = marked.parse(markdownBody, {
     gfm: true,
     breaks: false,
   }) as string;
+  const renderedEn = marked.parse(enMarkdownBody, {
+    gfm: true,
+    breaks: false,
+  }) as string;
+  const renderedDe = deMarkdownBody
+    ? (marked.parse(deMarkdownBody, {
+        gfm: true,
+        breaks: false,
+      }) as string)
+    : undefined;
   const coverImage = frontmatter.cover_image?.trim() || FALLBACK_COVER_IMAGES[index % FALLBACK_COVER_IMAGES.length];
 
   return {
     id: `mdx-${String(index + 1).padStart(3, '0')}`,
-    title,
+    title: translationEntry?.en?.title?.trim() || title,
     title_cz: title,
+    title_de: translationEntry?.de?.title?.trim() || undefined,
     slug,
-    excerpt: buildExcerpt(frontmatter, markdownBody),
+    excerpt: translationEntry?.en?.excerpt?.trim() || buildExcerpt(frontmatter, enMarkdownBody),
     excerpt_cz: buildExcerpt(frontmatter, markdownBody),
-    content: rendered,
+    excerpt_de: translationEntry?.de?.excerpt?.trim() || undefined,
+    content: renderedEn,
     content_cz: rendered,
+    content_de: renderedDe,
     coverImage,
     author: BLOG_MDX_AUTHORS[0],
     publishedAt: parsePublishedAt(frontmatter),

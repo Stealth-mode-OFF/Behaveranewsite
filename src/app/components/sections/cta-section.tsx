@@ -68,18 +68,18 @@ export function CtaSection() {
   const c = copy[language] || copy.en;
 
   return (
-    <section id="lead-capture" className="section-spacing relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-brand-primary via-brand-background-dark to-brand-background-deep">
-      
+    <section id="lead-capture" className="section-spacing relative min-h-[60vh] md:min-h-[65vh] flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(180deg, #1E1245 0%, #110828 50%, #0A0418 100%)' }}>
+
       {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Large glow orbs */}
         <motion.div
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: MOTION_EASE }}
-          className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-brand-accent/20 rounded-full blur-[150px]"
+          className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-violet-500/20 rounded-full blur-[150px]"
         />
         <motion.div
           animate={{ 
@@ -119,7 +119,7 @@ export function CtaSection() {
           >
             {c.headline}
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-violet-400 to-violet-300">
+            <span className="text-gradient">
               {c.headlineHighlight}
             </span>
           </motion.h2>

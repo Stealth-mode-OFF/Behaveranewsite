@@ -64,7 +64,7 @@ export function ProblemSection() {
           </div>
           <h2 className="text-h2 text-brand-text-primary mb-4">
             {t.problems?.title}
-            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+            <span className="text-gradient">
               {t.problems?.titleHighlight}
             </span>
           </h2>
@@ -119,9 +119,9 @@ export function ProblemSection() {
             transition={{ delay: 0.15, duration: 0.3, ease: MOTION_EASE }}
             className="md:col-span-2 lg:col-span-4"
           >
-            <div className="h-full min-h-[120px] rounded-3xl bg-gradient-to-br from-brand-primary via-brand-primary to-brand-background-dark p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:gap-8 justify-start text-white relative overflow-hidden group">
+            <div className="h-full min-h-[120px] rounded-3xl p-6 md:p-8 flex flex-col lg:flex-row lg:items-center lg:gap-8 justify-start text-white relative overflow-hidden group" style={{ background: 'linear-gradient(135deg, #2A1660 0%, #1A0D3D 100%)' }}>
               {/* Glow effect */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/20 rounded-full blur-[60px] group-hover:scale-150 transition-transform duration-700" />
 
               <div className="relative z-10 mb-4 lg:mb-0 flex justify-center lg:justify-start shrink-0">
                 <AlertTriangle className="w-6 h-6 text-brand-accent" />

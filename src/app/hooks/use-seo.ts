@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { SITE_ORIGIN } from '@/lib/urls';
 
 interface SEOProps {
   title: string;
@@ -18,8 +19,9 @@ export const useSEO = ({
   canonicalUrl,
 }: SEOProps) => {
   useEffect(() => {
-    // Update title
-    document.title = `${title} | Behavera`;
+    // Update title — avoid duplicate "Behavera" branding
+    const hassBrand = /behavera/i.test(title);
+    document.title = hassBrand ? title : `${title} | Behavera`;
 
     // Helper to set/update meta tags
     const setMeta = (name: string, content: string, isProperty = false) => {
@@ -40,10 +42,11 @@ export const useSEO = ({
     }
 
     // Open Graph tags
-    setMeta('og:title', title, true);
+    const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${SITE_ORIGIN}${ogImage}`;
+    setMeta('og:title', document.title, true);
     setMeta('og:description', description, true);
     setMeta('og:type', ogType, true);
-    setMeta('og:image', ogImage, true);
+    setMeta('og:image', absoluteOgImage, true);
     
     if (canonicalUrl) {
       setMeta('og:url', canonicalUrl, true);
@@ -62,7 +65,7 @@ export const useSEO = ({
     setMeta('twitter:card', 'summary_large_image');
     setMeta('twitter:title', title);
     setMeta('twitter:description', description);
-    setMeta('twitter:image', ogImage);
+    setMeta('twitter:image', absoluteOgImage);
 
     // Cleanup - restore default title on unmount
     return () => {

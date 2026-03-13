@@ -267,7 +267,7 @@ export function BlogPage() {
             >
               <button
                 onClick={() => navigate(`/blog/${featuredPost.slug}`)}
-                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-background-deep to-brand-background-dark border border-white/10 w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
+                className="group block relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-deep to-brand-dark border border-white/10 w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2"
               >
                 <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-1/2 aspect-[16/9] lg:aspect-auto overflow-hidden relative">
@@ -284,7 +284,7 @@ export function BlogPage() {
                         fetchPriority="high"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0d0520]/40 lg:block hidden" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d0520]/80 via-[#0d0520]/30 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-[#0d0520]/30 lg:to-[#0d0520]/80" />
                   </div>
                   <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
                     <div className="flex items-center gap-3 mb-5">

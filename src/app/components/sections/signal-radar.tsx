@@ -239,7 +239,7 @@ export function SignalRadar() {
 
           <h2 className="text-h2 text-brand-text-primary mb-4">
             {c.title}
-            <span className="bg-gradient-to-r from-brand-accent to-brand-primary bg-clip-text text-transparent">
+            <span className="text-gradient">
               {c.titleHighlight}
             </span>
           </h2>

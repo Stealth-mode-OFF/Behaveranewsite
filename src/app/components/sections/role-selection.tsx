@@ -102,11 +102,11 @@ export function RoleSelection() {
   const activeRoleData = roles.find(r => r.id === activeRole) || roles[1];
 
   return (
-    <section className="section-spacing bg-gradient-to-b from-brand-primary to-brand-background-dark relative overflow-hidden">
-      {/* Ambient glow */}
+    <section className="section-spacing relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #1E1245 0%, #130A2E 100%)' }}>
+      {/* Ambient glow — visible, not decorative noise */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-accent/10 rounded-full blur-[150px]" />
+        <div className="absolute top-[10%] left-[30%] w-[500px] h-[400px] bg-violet-500/[0.12] rounded-full blur-[120px]" />
+        <div className="absolute bottom-[15%] right-[20%] w-[400px] h-[350px] bg-indigo-500/[0.10] rounded-full blur-[100px]" />
       </div>
 
       <div className="container-default relative z-10">
@@ -124,7 +124,7 @@ export function RoleSelection() {
           </div>
           <h2 className="text-h2 text-white mb-4">
             {t.roleSelection?.title || "Everyone sees the company"}
-            <span className="bg-gradient-to-r from-brand-accent to-brand-accent/60 bg-clip-text text-transparent">
+            <span className="text-gradient">
               {t.roleSelection?.titleHighlight || " from a different angle."}
             </span>
           </h2>
