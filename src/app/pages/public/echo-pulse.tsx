@@ -856,6 +856,16 @@ const de: Copy = {
         "Kommunikation vorbereiten", "Mitarbeiter einladen", "Mit Quick Scan starten",
         "Ergebnisse erhalten", "Kommunizieren & wiederholen"
       ][i],
+      desc: [
+        "Pilotkunden: Melden Sie sich bei app.behavera.com mit den Zugangsdaten an, die Sie von Behavera erhalten haben. Neukunden: Registrieren Sie sich unter behavera.com/start.",
+        "F\u00fcgen Sie Standorte hinzu, erstellen Sie Abteilungen und Teams (min. 3 Personen pro Team f\u00fcr Anonymit\u00e4t). Weisen Sie Mitarbeiter den Teams zu.",
+        "Gehen Sie zu Initiativen \u2192 Neue Initiative \u2192 Employee Engagement. Benennen Sie sie (z.\u00a0B. nach Team oder Abteilung).",
+        "Briefen Sie zuerst die F\u00fchrungskr\u00e4fte (siehe Tab Kommunikation). Senden Sie 24\u201348\u00a0h vor dem Start eine unternehmensweite E-Mail. Bester Zeitpunkt: Dienstag/Mittwoch Vormittag.",
+        "Anonym: Link aus Initiative kopieren \u2192 per Slack/E-Mail versenden. Oder E-Mails direkt zur Initiative hinzuf\u00fcgen \u2192 Start klicken.",
+        "Quick Scan ist ein vollst\u00e4ndiger Engagement-\u00dcberblick \u00fcber alle 9 Bereiche. Er zeigt die gr\u00f6\u00dften L\u00fccken und wo Sie sich als N\u00e4chstes konzentrieren sollten.",
+        "Innerhalb von 7 Tagen: Engagement Score, St\u00e4rken, Risiken und konkrete Empfehlungen in Ihrem Playbook.",
+        "Teilen Sie die Ergebnisse mit Ihrem Team und pr\u00e4sentieren Sie konkrete Schritte. Senden Sie den n\u00e4chsten Pulse in einem Monat zu einem bestimmten Thema.",
+      ][i],
       why: [
         "Ein Pilot ist ein kostenloser Testbetrieb \u2014 wir richten alles f\u00fcr Sie ein. Self-Service-Registrierung ist f\u00fcr diejenigen, die sofort selbst starten m\u00f6chten.",
         "Korrekte Teamstruktur erm\u00f6glicht segmentierte Ergebnisse. Minimum 3 Personen pro Team f\u00fcr Anonymit\u00e4t.",
@@ -1070,15 +1080,15 @@ N\u00e4chster Pulse geplant f\u00fcr [Datum]. Ihr Feedback ist wichtig \u2014 da
     nextTab: "\u2192 Messthemen erkunden",
   },
   topicsList: [
-    { emoji: "\ud83d\udd2e", name: "Quick Scan", desc: "Gesamter Engagement-\u00dcberblick \u2014 Ihr Ausgangspunkt", detail: "Ihr erster Pulse gibt Ihnen ein klares, objektives Bild \u00fcber alle Bereiche. Nutzen Sie ihn, um die gr\u00f6\u00dften L\u00fccken zu erkennen und zu entscheiden, worauf Sie sich als N\u00e4chstes konzentrieren.", useCases: ["Erstmessung f\u00fcr neue Kunden", "Vierterlj\u00e4hrlicher Engagement-Benchmark", "Schneller Vergleich zwischen Teams"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=en" },
-    { emoji: "\ud83d\udca5", name: "Stress", desc: "Emotionale Seite der Arbeit, Burnout", detail: "Erkennen Sie Druck, bevor er die Leistung beeintr\u00e4chtigt. Misst die emotionale Seite der Arbeit \u2014 wie sich Menschen f\u00fchlen, wie die Arbeit sie beeinflusst.", useCases: ["Nach einer schwierigen Phase / Umstrukturierung", "Burnout-Risiko-Erkennung", "Bewertung von Work-Life-Balance-Initiativen"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-stress?x_lang=en" },
-    { emoji: "\ud83e\udde0", name: "Arbeitsbelastung", desc: "Zeit, Fokus, Planung", detail: "Entschl\u00fcsseln Sie den Arbeitsfluss. Konzentriert sich auf Prozesse \u2014 wie viel Arbeit die Menschen haben, wie sie organisiert ist, ob sie Zeit und Planung managen.", useCases: ["Prozess- und Meeting-Optimierung", "Kapazit\u00e4tsplanung vor Wachstum", "Identifizierung von Team-Engp\u00e4ssen"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-workload?x_lang=en" },
-    { emoji: "\ud83e\uddf0", name: "Tools & Unterst\u00fctzung", desc: "Technologie, Support, Onboarding", detail: "Finden Sie heraus, was hilft und was blockiert. Erfahren Sie, ob die Menschen die richtige Technologie, Unterst\u00fctzung und Feedback haben.", useCases: ["Vor dem Kauf neuer Tools", "Nach neuer Software-Implementierung", "Bewertung des Onboarding-Prozesses"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-tools?x_lang=en" },
-    { emoji: "\ud83d\udcb8", name: "Verg\u00fctung", desc: "Transparenz, Fairness der Bezahlung", detail: "Schauen Sie \u00fcber den Gehaltszettel hinaus. Misst, wie fair, motivierend und transparent Mitarbeiter die Verg\u00fctung wahrnehmen.", useCases: ["Vor \u00dcberarbeitung der Gehaltspolitik", "Zufriedenheitsanalyse Comp & Ben", "Identifizierung von Fluktuationsrisiko durch Bezahlung"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-pay?x_lang=en" },
-    { emoji: "\ud83e\udd38", name: "Benefits", desc: "Was motiviert vs. was niemand nutzt", detail: "Schluss mit generischen Perks. Finden Sie heraus, welche Benefits Ihr Team wirklich antreiben und welche nur auf dem Papier existieren.", useCases: ["Neugestaltung des Benefits-Pakets", "Vergleich der Bed\u00fcrfnisse verschiedener Gruppen", "ROI-Analyse bestehender Benefits"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-perks?x_lang=en" },
-    { emoji: "\ud83c\udfc5", name: "Anerkennung", desc: "Wertsch\u00e4tzung = Bindung + Leistung", detail: "Machen Sie Wertsch\u00e4tzung wirkungsvoll. Zeigt, ob sich das Team wirklich gesch\u00e4tzt f\u00fchlt oder ob Lob ins Leere geht.", useCases: ["Bewertung des Anerkennungsprogramms", "Identifizierung \u201estiller\u201c Beitragender", "St\u00e4rkung der Feedback-Kultur"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-recognition?x_lang=en" },
+    { emoji: "\ud83d\udd2e", name: "Quick Scan", desc: "Gesamter Engagement-\u00dcberblick \u2014 Ihr Ausgangspunkt", detail: "Ihr erster Pulse gibt Ihnen ein klares, objektives Bild \u00fcber alle Bereiche. Nutzen Sie ihn, um die gr\u00f6\u00dften L\u00fccken zu erkennen und zu entscheiden, worauf Sie sich als N\u00e4chstes konzentrieren.", useCases: ["Erstmessung f\u00fcr neue Kunden", "Vierterlj\u00e4hrlicher Engagement-Benchmark", "Schneller Vergleich zwischen Teams"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-initial?x_lang=de" },
+    { emoji: "\ud83d\udca5", name: "Stress", desc: "Emotionale Seite der Arbeit, Burnout", detail: "Erkennen Sie Druck, bevor er die Leistung beeintr\u00e4chtigt. Misst die emotionale Seite der Arbeit \u2014 wie sich Menschen f\u00fchlen, wie die Arbeit sie beeinflusst.", useCases: ["Nach einer schwierigen Phase / Umstrukturierung", "Burnout-Risiko-Erkennung", "Bewertung von Work-Life-Balance-Initiativen"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-stress?x_lang=de" },
+    { emoji: "\ud83e\udde0", name: "Arbeitsbelastung", desc: "Zeit, Fokus, Planung", detail: "Entschl\u00fcsseln Sie den Arbeitsfluss. Konzentriert sich auf Prozesse \u2014 wie viel Arbeit die Menschen haben, wie sie organisiert ist, ob sie Zeit und Planung managen.", useCases: ["Prozess- und Meeting-Optimierung", "Kapazit\u00e4tsplanung vor Wachstum", "Identifizierung von Team-Engp\u00e4ssen"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-workload?x_lang=de" },
+    { emoji: "\ud83e\uddf0", name: "Tools & Unterst\u00fctzung", desc: "Technologie, Support, Onboarding", detail: "Finden Sie heraus, was hilft und was blockiert. Erfahren Sie, ob die Menschen die richtige Technologie, Unterst\u00fctzung und Feedback haben.", useCases: ["Vor dem Kauf neuer Tools", "Nach neuer Software-Implementierung", "Bewertung des Onboarding-Prozesses"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-tools?x_lang=de" },
+    { emoji: "\ud83d\udcb8", name: "Verg\u00fctung", desc: "Transparenz, Fairness der Bezahlung", detail: "Schauen Sie \u00fcber den Gehaltszettel hinaus. Misst, wie fair, motivierend und transparent Mitarbeiter die Verg\u00fctung wahrnehmen.", useCases: ["Vor \u00dcberarbeitung der Gehaltspolitik", "Zufriedenheitsanalyse Comp & Ben", "Identifizierung von Fluktuationsrisiko durch Bezahlung"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-pay?x_lang=de" },
+    { emoji: "\ud83e\udd38", name: "Benefits", desc: "Was motiviert vs. was niemand nutzt", detail: "Schluss mit generischen Perks. Finden Sie heraus, welche Benefits Ihr Team wirklich antreiben und welche nur auf dem Papier existieren.", useCases: ["Neugestaltung des Benefits-Pakets", "Vergleich der Bed\u00fcrfnisse verschiedener Gruppen", "ROI-Analyse bestehender Benefits"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-perks?x_lang=de" },
+    { emoji: "\ud83c\udfc5", name: "Anerkennung", desc: "Wertsch\u00e4tzung = Bindung + Leistung", detail: "Machen Sie Wertsch\u00e4tzung wirkungsvoll. Zeigt, ob sich das Team wirklich gesch\u00e4tzt f\u00fchlt oder ob Lob ins Leere geht.", useCases: ["Bewertung des Anerkennungsprogramms", "Identifizierung \u201estiller\u201c Beitragender", "St\u00e4rkung der Feedback-Kultur"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-recognition?x_lang=de" },
     { emoji: "\ud83d\udc41\ufe0f\u200d\ud83d\udde8\ufe0f", name: "Potenzial", desc: "Autonomie, Wachstum, verborgene F\u00fchrer", detail: "F\u00f6rdern Sie Wachstum von innen. Erfahren Sie, ob Menschen das Gef\u00fchl haben, ihre St\u00e4rken zu nutzen, ob die Arbeit ihre Entwicklung f\u00f6rdert und ob sie Autonomie haben.", useCases: ["Identifizierung von High-Potentials", "Karrierepfad-Planung", "Bewertung von L&D-Programmen"] },
-    { emoji: "\ud83d\udcab", name: "Werte", desc: "EVP-Versprechen vs. Realit\u00e4t, Arbeitgebermarke", detail: "Verst\u00e4rken Sie authentische Mitarbeitergeschichten. Misst, wie stark sich Mitarbeiter mit dem identifizieren, was das Unternehmen sagt vs. was es tut.", useCases: ["Audit der Arbeitgebermarke", "EVP-Strategievorbereitung", "Messung des Cultural Fit nach M&A"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-values?x_lang=en" },
+    { emoji: "\ud83d\udcab", name: "Werte", desc: "EVP-Versprechen vs. Realit\u00e4t, Arbeitgebermarke", detail: "Verst\u00e4rken Sie authentische Mitarbeitergeschichten. Misst, wie stark sich Mitarbeiter mit dem identifizieren, was das Unternehmen sagt vs. was es tut.", useCases: ["Audit der Arbeitgebermarke", "EVP-Strategievorbereitung", "Messung des Cultural Fit nach M&A"], demoUrl: "https://bibi.behavera.com/free/behiro/pulse-showcase-values?x_lang=de" },
   ],
   demoSection: {
     ...en.demoSection,
@@ -1185,7 +1195,7 @@ function CopyButton({ text, label, copiedLabel = "Copied!" }: { text: string; la
 function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
   return (
     <div className="border-b border-brand-border last:border-0">
-      <button type="button" onClick={onToggle} className="w-full flex items-center justify-between py-4 text-left gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 rounded-lg">
+      <button type="button" onClick={onToggle} aria-expanded={isOpen} className="w-full flex items-center justify-between py-4 text-left gap-4 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 rounded-lg">
         <span className="font-semibold text-base text-brand-text-primary group-hover:text-brand-accent transition-colors">{q}</span>
         <ChevronDown className={cn("w-4 h-4 text-brand-text-muted shrink-0 transition-transform duration-300", isOpen && "rotate-180 text-brand-accent")} />
       </button>
@@ -1289,7 +1299,7 @@ function StartPanel({ c, onNext }: { c: Copy; onNext: () => void }) {
                   <span className="text-brand-text-muted mr-1.5">{s.num}.</span>{s.title}
                 </h3>
                 <p className="text-sm text-brand-text-body">{s.desc}</p>
-                {s.why && !isDone && <p className="text-[13px] text-brand-text-primary/60 mt-1.5 italic">{s.why}</p>}
+                {s.why && !isDone && <p className="text-xs text-brand-text-primary/60 mt-1.5 italic">{s.why}</p>}
                 {s.link && !isDone && (
                   <a href={s.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-2 px-3 py-1.5 rounded-lg text-sm font-semibold text-brand-accent border border-brand-accent/30 hover:bg-brand-accent/10 transition-colors">
                     {s.linkLabel} <ArrowRight className="w-3.5 h-3.5" />
@@ -1352,7 +1362,7 @@ function CommsPanel({ c, onNext }: { c: Copy; onNext: () => void }) {
         <div className="p-3 rounded-xl bg-green-50 border border-green-200 text-sm">{c.comms.timing.best}</div>
         <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-sm">{c.comms.timing.worst}</div>
       </div>
-      <p className="text-[13px] text-brand-text-primary/60 mb-6 ml-1">{c.comms.timing.why}</p>
+      <p className="text-xs text-brand-text-primary/60 mb-6 ml-1">{c.comms.timing.why}</p>
       <div className="p-4 rounded-xl bg-brand-background-secondary border border-brand-border">
         <h3 className="font-bold text-base mb-3">{c.comms.followUp.title}</h3>
         <ul className="space-y-1.5">
@@ -1375,8 +1385,8 @@ function TemplatesPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: ()
   const t = c.templates.list[active];
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-1">{c.templates.title}</h2>
-      <p className="text-sm text-brand-text-body mb-4">{c.templates.subtitle}</p>
+      <h2 className="text-2xl font-bold mb-2">{c.templates.title}</h2>
+      <p className="text-sm text-brand-text-body mb-6">{c.templates.subtitle}</p>
 
       <div className="p-3 rounded-xl bg-brand-primary/5 border border-brand-primary/20 mb-5">
         <div className="flex flex-wrap gap-x-4 gap-y-1">
@@ -1410,10 +1420,10 @@ function TemplatesPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: ()
         role="tabpanel"
         id={`tpl-panel-${t.id}`}
         aria-labelledby={`tpl-tab-${t.id}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
-        className="rounded-xl bg-white border-2 border-brand-primary/20 overflow-hidden shadow-sm"
+        className="rounded-xl bg-white border border-brand-primary/20 overflow-hidden shadow-sm"
       >
         <div className="flex items-center justify-between gap-3 px-4 py-3 bg-brand-primary/5 border-b border-brand-primary/20">
           <div className="flex items-center gap-2 min-w-0">
@@ -1437,8 +1447,8 @@ function TemplatesPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: ()
 function CyclePanel({ c, onNext }: { c: Copy; onNext: () => void }) {
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-1">{c.cycle.title}</h2>
-      <p className="text-sm text-brand-text-body mb-8">{c.cycle.subtitle}</p>
+      <h2 className="text-2xl font-bold mb-2">{c.cycle.title}</h2>
+      <p className="text-sm text-brand-text-body mb-6">{c.cycle.subtitle}</p>
       {/* Vertical timeline */}
       <div className="relative pl-8 space-y-8 mb-6">
         {/* Timeline line */}
@@ -1474,7 +1484,7 @@ function CyclePanel({ c, onNext }: { c: Copy; onNext: () => void }) {
           </motion.div>
         ))}
       </div>
-      <p className="text-[13px] text-brand-text-primary/60 italic">{c.cycle.note}</p>
+      <p className="text-xs text-brand-text-primary/60 italic">{c.cycle.note}</p>
       <NextTabButton label={c.nextLabels.cycle} onClick={onNext} />
     </div>
   );
@@ -1485,7 +1495,7 @@ function TopicsPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: () =>
   const preparingLabel = lang === "cz" ? "Připravujeme" : lang === "de" ? "In Vorbereitung" : "Coming soon";
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-5">{c.topicsList.length} {c.ui.topicsCount}</h2>
+      <h2 className="text-2xl font-bold mb-2">{c.topicsList.length} {c.ui.topicsCount}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {c.topicsList.map((t, idx) => {
           const isOpen = expanded === idx;
@@ -1501,6 +1511,7 @@ function TopicsPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: () =>
               <button
                 type="button"
                 onClick={() => setExpanded(isOpen ? null : idx)}
+                aria-expanded={isOpen}
                 className="w-full flex items-center justify-between p-4 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 rounded-xl"
               >
                 <div className="flex items-center gap-3">
@@ -1562,66 +1573,108 @@ function TopicsPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: () =>
   );
 }
 
+function CredentialField({ label, value, copiedLabel }: { label: string; value: string; copiedLabel: string }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => { navigator.clipboard.writeText(value); setCopied(true); setTimeout(() => setCopied(false), 2000); };
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-xs text-brand-text-muted w-14 shrink-0">{label}</span>
+      <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-brand-border/60 min-w-0">
+        <span className="font-mono text-sm text-brand-text-primary truncate flex-1 select-all">{value}</span>
+        <button
+          type="button"
+          onClick={handleCopy}
+          className={cn(
+            "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all shrink-0",
+            copied ? "bg-green-100 text-green-700" : "bg-brand-background-secondary text-brand-text-muted hover:bg-brand-accent/10 hover:text-brand-accent"
+          )}
+        >
+          {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+          {copied ? copiedLabel : ""}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function DemoPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: () => void }) {
-  const [showCreds, setShowCreds] = useState(false);
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-1">{c.demoSection.title}</h2>
+      <h2 className="text-2xl font-bold mb-2">{c.demoSection.title}</h2>
       <p className="text-sm text-brand-text-body mb-6">{c.demoSection.subtitle}</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div className="p-5 rounded-xl bg-white border border-brand-border">
-          <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center mb-3">
-            <Monitor className="w-5 h-5 text-brand-primary" />
+      {/* Dashboard card — login-flow style */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        className="rounded-xl overflow-hidden border border-brand-primary/20 bg-gradient-to-br from-brand-primary/[0.04] via-white to-brand-accent/[0.04] mb-5"
+      >
+        <div className="h-1 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary" />
+        <div className="p-5 sm:p-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0">
+              <Monitor className="w-5 h-5 text-brand-primary" />
+            </div>
+            <div>
+              <h3 className="font-bold text-base text-brand-text-primary leading-tight">{c.demoSection.dashboard.title}</h3>
+              <p className="text-sm text-brand-text-body">{c.demoSection.dashboard.desc}</p>
+            </div>
           </div>
-          <h3 className="font-bold text-base text-brand-text-primary mb-1">{c.demoSection.dashboard.title}</h3>
-          <p className="text-sm text-brand-text-body mb-4">{c.demoSection.dashboard.desc}</p>
-          <a href={c.demoSection.dashboard.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-bold bg-brand-primary text-white hover:bg-brand-primary/90 transition-all mb-3">
-            <ExternalLink className="w-4 h-4" />
-            {c.ui.openDashboard}
-          </a>
-          <div>
-            <button type="button" onClick={() => setShowCreds(!showCreds)} className="text-xs text-brand-text-muted hover:text-brand-accent transition-colors flex items-center gap-1">
-              <ChevronDown className={cn("w-3 h-3 transition-transform duration-200", showCreds && "rotate-180")} />
-              {c.ui.showCreds}
-            </button>
-            <AnimatePresence>
-              {showCreds && (
-                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-                  <div className="mt-2 p-3 rounded-lg bg-brand-background-secondary text-xs space-y-1">
-                    <div className="flex items-center justify-between">
-                      <span className="text-brand-text-muted">Login:</span>
-                      <span className="font-mono text-brand-text-primary">{c.demoSection.dashboard.login}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-brand-text-muted">{c.ui.password}:</span>
-                      <span className="font-mono text-brand-text-primary">{c.demoSection.dashboard.password}</span>
-                    </div>
-                    <CopyButton text={`${c.demoSection.dashboard.login}\n${c.demoSection.dashboard.password}`} label={c.ui.copy} copiedLabel={c.ui.copied} />
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+
+          {/* Credential fields — each with its own copy */}
+          <div className="mt-4 space-y-2 max-w-md">
+            <CredentialField label="Login" value={c.demoSection.dashboard.login} copiedLabel={c.ui.copied} />
+            <CredentialField label={c.ui.password} value={c.demoSection.dashboard.password} copiedLabel={c.ui.copied} />
+          </div>
+
+          {/* Open dashboard CTA */}
+          <div className="mt-4">
+            <a
+              href={c.demoSection.dashboard.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold bg-brand-primary text-white hover:bg-brand-primary/90 shadow-md shadow-brand-primary/15 hover:shadow-brand-primary/25 transition-all"
+            >
+              <ExternalLink className="w-4 h-4" />
+              {c.ui.openDashboard}
+            </a>
           </div>
         </div>
+      </motion.div>
 
-        <div className="p-5 rounded-xl bg-white border border-brand-border">
-          <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center mb-3">
+      {/* Chatbot card */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, delay: 0.1 }}
+        className="p-5 rounded-xl bg-white border border-brand-border mb-5"
+      >
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 rounded-xl bg-brand-accent/10 flex items-center justify-center shrink-0">
             <MessageCircle className="w-5 h-5 text-brand-accent" />
           </div>
-          <h3 className="font-bold text-base text-brand-text-primary mb-1">{c.demoSection.chatbot.title}</h3>
-          <p className="text-sm text-brand-text-body mb-4">{c.demoSection.chatbot.desc}</p>
-          <div className="flex flex-wrap gap-1.5">
-            {c.topicsList.filter(t => t.demoUrl).map((t, idx) => (
-              <a key={idx} href={t.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-brand-background-secondary text-xs font-medium text-brand-text-primary hover:bg-brand-accent/10 hover:text-brand-accent transition-all border border-brand-border">
-                <span aria-hidden="true">{t.emoji}</span> {t.name}
-              </a>
-            ))}
+          <div>
+            <h3 className="font-bold text-base text-brand-text-primary leading-tight">{c.demoSection.chatbot.title}</h3>
+            <p className="text-sm text-brand-text-body">{c.demoSection.chatbot.desc}</p>
           </div>
         </div>
-      </div>
+        <div className="flex flex-wrap gap-1.5">
+          {c.topicsList.filter(t => t.demoUrl).map((t, idx) => (
+            <a key={idx} href={t.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-brand-background-secondary text-xs font-medium text-brand-text-primary hover:bg-brand-accent/10 hover:text-brand-accent transition-all border border-brand-border">
+              <span aria-hidden="true">{t.emoji}</span> {t.name}
+            </a>
+          ))}
+        </div>
+      </motion.div>
 
-      <div className="p-5 rounded-xl bg-gradient-to-r from-brand-primary/5 to-brand-accent/5 border border-brand-primary/20 mb-4">
+      {/* Signup CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, delay: 0.2 }}
+        className="p-5 rounded-xl bg-gradient-to-r from-brand-primary/5 to-brand-accent/5 border border-brand-primary/20 mb-4"
+      >
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
           <div>
             <h3 className="font-bold text-base text-brand-text-primary">{c.demoSection.signup.title}</h3>
@@ -1631,7 +1684,7 @@ function DemoPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: () => v
             <Rocket className="w-4 h-4" /> {c.demoSection.signup.label}
           </a>
         </div>
-      </div>
+      </motion.div>
 
       <p className="text-xs text-brand-text-muted flex items-start gap-1.5">
         <Shield className="w-3.5 h-3.5 shrink-0 mt-0.5" /> {c.demoSection.note}
@@ -1641,7 +1694,7 @@ function DemoPanel({ c, lang, onNext }: { c: Copy; lang: string; onNext: () => v
   );
 }
 
-function FaqPanel({ c }: { c: Copy }) {
+function FaqPanel({ c, lang, onBackToStart }: { c: Copy; lang: string; onBackToStart: () => void }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [search, setSearch] = useState("");
   const filtered = search.trim()
@@ -1653,7 +1706,7 @@ function FaqPanel({ c }: { c: Copy }) {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">{c.faq.title}</h2>
+      <h2 className="text-2xl font-bold mb-2">{c.faq.title}</h2>
       {/* Search */}
       <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-text-muted pointer-events-none" />
@@ -1662,6 +1715,7 @@ function FaqPanel({ c }: { c: Copy }) {
           value={search}
           onChange={(e) => { setSearch(e.target.value); setOpenIdx(null); }}
           placeholder={c.ui.searchFaq}
+          aria-label={c.ui.searchFaq}
           className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-brand-border bg-white text-sm text-brand-text-primary placeholder:text-brand-text-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
         />
         {search && (
@@ -1692,6 +1746,13 @@ function FaqPanel({ c }: { c: Copy }) {
           </div>
         </div>
       </div>
+      {/* Back to start */}
+      <div className="mt-8 pt-6 border-t border-brand-border flex justify-center">
+        <button type="button" onClick={onBackToStart} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-brand-text-muted hover:text-brand-text-primary hover:bg-brand-background-secondary transition-all">
+          <ArrowRight className="w-4 h-4 rotate-180" />
+          {lang === "cz" ? "Zpět na začátek" : lang === "de" ? "Zurück zum Start" : "Back to start"}
+        </button>
+      </div>
     </div>
   );
 }
@@ -1703,7 +1764,7 @@ const TAB_ORDER = ["start", "comms", "templates", "cycle", "topics", "demo", "fa
 
 export function EchoPulsePage() {
   const { language } = useLanguage();
-  const lang = language as "cz" | "en";
+  const lang = language as "cz" | "en" | "de";
   const c = allCopy[lang] || allCopy.en;
   const tabConfig = tabs[lang] || tabs.en;
   const [activeTab, setActiveTab] = useState("start");
@@ -1724,7 +1785,7 @@ export function EchoPulsePage() {
       if (tabBarRef.current) {
         const stickyOffset = 64;
         const barTop = tabBarRef.current.offsetTop - stickyOffset;
-        window.scrollTo({ top: barTop, behavior: "instant" });
+        window.scrollTo({ top: barTop, behavior: "smooth" });
       }
     });
   }, []);
@@ -1793,7 +1854,7 @@ export function EchoPulsePage() {
             role="tablist"
             aria-label="Guide sections"
             onKeyDown={handleTabKeyDown}
-            className="sticky top-[64px] z-30 bg-white/95 backdrop-blur-sm border border-brand-border rounded-xl p-1.5 flex gap-1 overflow-x-auto mb-8 shadow-sm"
+            className="sticky top-[64px] z-30 bg-white/95 backdrop-blur-sm border border-brand-border rounded-xl p-1.5 flex gap-1 overflow-x-auto mb-8 shadow-sm scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [mask-image:linear-gradient(to_right,black_calc(100%-2rem),transparent)] sm:[mask-image:none]"
           >
             {tabConfig.map((tab) => {
               const Icon = tab.icon;
@@ -1818,7 +1879,7 @@ export function EchoPulsePage() {
                 >
                   <Icon className="w-4 h-4" />
                   {tab.label}
-                  {isVisited && <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400" />}
+                  {isVisited && <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400" />}
                 </button>
               );
             })}
@@ -1844,7 +1905,7 @@ export function EchoPulsePage() {
               {activeTab === "cycle" && <CyclePanel c={c} onNext={goNextTab} />}
               {activeTab === "topics" && <TopicsPanel c={c} lang={lang} onNext={goNextTab} />}
               {activeTab === "demo" && <DemoPanel c={c} lang={lang} onNext={goNextTab} />}
-              {activeTab === "faq" && <FaqPanel c={c} />}
+              {activeTab === "faq" && <FaqPanel c={c} lang={lang} onBackToStart={() => switchTab("start")} />}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -1878,9 +1939,9 @@ export function EchoPulsePage() {
               </a>
             </div>
 
-            <div className="flex items-center justify-center gap-5 mt-6 text-xs text-white/40">
+            <div className="flex items-center justify-center gap-5 mt-6 text-xs text-white/60">
               <span className="flex items-center gap-1" title={lang === "cz" ? "Splňujeme GDPR" : lang === "de" ? "DSGVO-konform" : "GDPR compliant"}><Shield className="w-3 h-3" /> GDPR</span>
-              <span className="flex items-center gap-1" title={lang === "cz" ? "Data šifrována AES-256" : lang === "de" ? "AES-256-Verschlüsselung" : "AES-256 encryption"}><Clock className="w-3 h-3" /> AES-256</span>
+              <span className="flex items-center gap-1" title={lang === "cz" ? "Data šifrována AES-256" : lang === "de" ? "AES-256-Verschlüsselung" : "AES-256 encryption"}><Shield className="w-3 h-3" /> AES-256</span>
               <span className="flex items-center gap-1" title={lang === "cz" ? "Data uložena v EU" : lang === "de" ? "Daten in der EU gespeichert" : "Data stored in EU"}><CheckCircle2 className="w-3 h-3" /> EU data</span>
             </div>
           </div>

@@ -1,9 +1,27 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Copy, Check, Sparkles, Zap, ChevronRight } from "lucide-react";
+import { Copy, Check, Sparkles, Zap, ChevronRight, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/app/contexts/language-context";
 import { Button } from "@/app/components/ui/button";
 import { useModal } from "@/app/contexts/modal-context";
+
+/* ── Inline brand logos (small SVGs) ── */
+function ChatGPTLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z" />
+    </svg>
+  );
+}
+
+function ClaudeLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M4.709 15.955l4.72-2.756.08-.046 2.698-1.575c.063-.037.122-.08.175-.128l2.442-1.427.263-.176 4.6-2.685a.063.063 0 0 0 .032-.056.064.064 0 0 0-.064-.064H4.163a.064.064 0 0 0-.06.042.063.063 0 0 0 .004.059l.601 1.05v.001l1.613 2.823.092.16 1.79 3.134.092.16 1.258 2.202.263.46c.026.045-.006-.002 0 0l-5.107-1.178z" />
+      <path d="M19.676 7.107a.063.063 0 0 0-.064-.064l-.36.003H4.163a.064.064 0 0 0-.06.042.063.063 0 0 0 .025.075l.601 1.05L8.8 15.81l.263.46 3.13-1.827.175-.128 2.442-1.427.263-.176 4.6-2.685a.063.063 0 0 0 .032-.056l-.03-2.864z" />
+    </svg>
+  );
+}
 
 const MOTION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -12,6 +30,9 @@ type PromptCopy = {
   title: string;
   titleHighlight: string;
   subtitle: string;
+  steps: string[];
+  launchLabel: string;
+  launchHint: string;
   copyLabel: string;
   copiedLabel: string;
   promptText: string;
@@ -25,7 +46,10 @@ const PROMPTS: Record<string, PromptCopy> = {
     badge: "AI Diagnostika",
     title: "Zjistěte za 2 minuty,",
     titleHighlight: " jak na tom jste",
-    subtitle: "Zkopírujte prompt do ChatGPT nebo Claude, doplňte název firmy, počet zaměstnanců a obor. AI odhadne vaše rizika a skryté náklady.",
+    subtitle: "Zkopírujte prompt, doplňte 3 údaje o své firmě a nechte AI odkrýt vaše skryté náklady.",
+    steps: ["Zkopírujte prompt níže", "Vložte do ChatGPT nebo Claude", "Doplňte název firmy, počet lidí a obor"],
+    launchLabel: "Otevřít v",
+    launchHint: "Prompt se zkopíruje a otevře se nové okno — stačí vložit (Ctrl+V)",
     copyLabel: "Zkopírovat prompt",
     copiedLabel: "Zkopírováno!",
     promptText: `Jsi expert na employee engagement, firemní kulturu a HR analytics. Potřebuji tvoji pomoc s rychlou diagnostikou naší firmy.
@@ -71,7 +95,10 @@ Buď konkrétní, přímý a neboj se pojmenovat problémy. Uveď konkrétní č
     badge: "AI Diagnostics",
     title: "Find out in 2 minutes",
     titleHighlight: " where you stand",
-    subtitle: "Copy this prompt into ChatGPT or Claude, add your company name, employee count, and industry. AI will estimate your risks and hidden costs.",
+    subtitle: "Copy the prompt, fill in 3 details about your company and let AI uncover your hidden costs.",
+    steps: ["Copy the prompt below", "Paste into ChatGPT or Claude", "Fill in company name, headcount & industry"],
+    launchLabel: "Open in",
+    launchHint: "Prompt is copied and a new window opens — just paste (Ctrl+V)",
     copyLabel: "Copy prompt",
     copiedLabel: "Copied!",
     promptText: `You are an expert in employee engagement, company culture, and HR analytics. I need your help with a quick diagnostic of our company.
@@ -117,7 +144,10 @@ Be specific, direct, and don't shy away from naming problems. Cite concrete numb
     badge: "AI-Diagnostik",
     title: "Finden Sie in 2 Minuten heraus,",
     titleHighlight: " wo Sie stehen",
-    subtitle: "Kopieren Sie den Prompt in ChatGPT oder Claude, ergänzen Sie Firmenname, Mitarbeiterzahl und Branche. Die KI schätzt Ihre Risiken und versteckten Kosten.",
+    subtitle: "Kopieren Sie den Prompt, ergänzen Sie 3 Angaben und lassen Sie die KI Ihre versteckten Kosten aufdecken.",
+    steps: ["Prompt unten kopieren", "In ChatGPT oder Claude einfügen", "Firmenname, Mitarbeiterzahl & Branche ergänzen"],
+    launchLabel: "Öffnen in",
+    launchHint: "Der Prompt wird kopiert und ein neues Fenster öffnet sich — einfach einfügen (Strg+V)",
     copyLabel: "Prompt kopieren",
     copiedLabel: "Kopiert!",
     promptText: `Sie sind ein Experte für Employee Engagement, Unternehmenskultur und HR-Analytics. Ich brauche Ihre Hilfe bei einer schnellen Diagnostik unseres Unternehmens.
@@ -169,7 +199,7 @@ export function AiPromptChecker() {
 
   const c = PROMPTS[language as keyof typeof PROMPTS] || PROMPTS.en;
 
-  const handleCopy = async () => {
+  const copyToClipboard = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(c.promptText);
     } catch {
@@ -182,9 +212,20 @@ export function AiPromptChecker() {
       document.execCommand("copy");
       document.body.removeChild(textarea);
     }
+  }, [c.promptText]);
+
+  const handleCopy = async () => {
+    await copyToClipboard();
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
+
+  const handleLaunch = useCallback(async (url: string) => {
+    await copyToClipboard();
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+    window.open(url, "_blank", "noopener,noreferrer");
+  }, [copyToClipboard]);
 
   return (
     <section className="section-spacing bg-brand-background-secondary relative overflow-hidden noise-texture" id="ai-check">
@@ -211,9 +252,43 @@ export function AiPromptChecker() {
             {c.title}
             <span className="text-gradient">{c.titleHighlight}</span>
           </h2>
-          <p className="text-body text-brand-text-secondary max-w-2xl mx-auto">
+          <p className="text-body text-brand-text-secondary max-w-2xl mx-auto mb-5">
             {c.subtitle}
           </p>
+          {/* 3-step instruction pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {c.steps.map((step, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-brand-border text-brand-text-primary shadow-sm">
+                  <span className="w-5 h-5 rounded-full bg-brand-primary text-white flex items-center justify-center text-[10px] font-bold shrink-0">{i + 1}</span>
+                  {step}
+                </span>
+                {i < c.steps.length - 1 && <ChevronRight className="w-3.5 h-3.5 text-brand-text-muted/40 hidden sm:block" />}
+              </div>
+            ))}
+          </div>
+
+          {/* Quick-launch links — subtle, secondary to our CTA */}
+          <div className="flex items-center justify-center gap-3 mt-4">
+            <button
+              type="button"
+              onClick={() => handleLaunch("https://chat.openai.com/")}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white bg-[#10a37f]/80 hover:bg-[#10a37f] border border-[#10a37f]/30 hover:border-[#10a37f]/50 transition-all duration-200"
+            >
+              <ChatGPTLogo className="w-3.5 h-3.5" />
+              ChatGPT
+              <ExternalLink className="w-3 h-3 opacity-50" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleLaunch("https://claude.ai/new")}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-white bg-[#d97757]/80 hover:bg-[#d97757] border border-[#d97757]/30 hover:border-[#d97757]/50 transition-all duration-200"
+            >
+              <ClaudeLogo className="w-3.5 h-3.5" />
+              Claude
+              <ExternalLink className="w-3 h-3 opacity-50" />
+            </button>
+          </div>
         </motion.div>
 
         {/* Prompt Terminal */}
