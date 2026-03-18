@@ -6,14 +6,15 @@ import { Footer } from '@/app/components/layout/footer';
 import { useSEO } from '@/app/hooks/use-seo';
 import { SITE_ORIGIN } from '@/lib/urls';
 import { 
-  Sparkles, 
-  Shield, 
-  Zap, 
-  Brain, 
-  BarChart3, 
+  Sparkles,
+  Shield,
+  Zap,
+  Brain,
+  BarChart3,
   Users,
   ArrowLeft,
-  MessageSquare 
+  MessageSquare,
+  BookOpen
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -37,6 +38,21 @@ const translations = {
     improvementBadge: 'Vylepšení',
     fixBadge: 'Opravy',
     entries: [
+      {
+        version: '3.1.0',
+        date: 'Březen 2026',
+        type: 'major',
+        title: 'Nová témata dotazníků',
+        description: '7 nových témat pro ještě přesnější měření angažovanosti. AI v práci, Pokrok, Změny, Komunikace, Inovace, Leadership a Priority — celkem 16 témat pokrývajících všechny klíčové oblasti.',
+        changes: [
+          '7 nových témat: AI v práci, Pokrok, Změny, Komunikace, Inovace, Leadership, Priority',
+          'Každé téma = 6 otázek navržených behaviorálními psychology',
+          'Celkem 16 témat pro komplexní měření angažovanosti',
+          'Nové téma AI v práci s interaktivní ukázkou',
+          'Aktualizované demo showcase pro všechna nová témata',
+        ],
+        icon: <BookOpen className="w-5 h-5" />,
+      },
       {
         version: '3.0.0',
         date: 'Leden 2026',
@@ -149,6 +165,21 @@ const translations = {
     fixBadge: 'Fixes',
     entries: [
       {
+        version: '3.1.0',
+        date: 'March 2026',
+        type: 'major',
+        title: 'New Survey Topics',
+        description: '7 new topics for even more precise engagement measurement. AI at Work, Progress, Changes, Communication, Innovations, Leadership, and Priorities — 16 topics covering all key areas.',
+        changes: [
+          '7 new topics: AI at Work, Progress, Changes, Communication, Innovations, Leadership, Priorities',
+          'Each topic = 6 questions designed by behavioral psychologists',
+          '16 total topics for comprehensive engagement measurement',
+          'New AI at Work topic with interactive demo',
+          'Updated demo showcases for all new topics',
+        ],
+        icon: <BookOpen className="w-5 h-5" />,
+      },
+      {
         version: '3.0.0',
         date: 'January 2026',
         type: 'major',
@@ -259,6 +290,21 @@ const translations = {
     improvementBadge: 'Verbesserung',
     fixBadge: 'Korrekturen',
     entries: [
+      {
+        version: '3.1.0',
+        date: 'März 2026',
+        type: 'major',
+        title: 'Neue Umfrage-Themen',
+        description: '7 neue Themen für noch präzisere Engagement-Messung. KI bei der Arbeit, Fortschritt, Veränderungen, Kommunikation, Innovationen, Führung und Prioritäten — insgesamt 16 Themen.',
+        changes: [
+          '7 neue Themen: KI bei der Arbeit, Fortschritt, Veränderungen, Kommunikation, Innovationen, Führung, Prioritäten',
+          'Jedes Thema = 6 Fragen, entwickelt von Verhaltenspsychologen',
+          '16 Themen insgesamt für umfassende Engagement-Messung',
+          'Neues Thema KI bei der Arbeit mit interaktiver Demo',
+          'Aktualisierte Demo-Showcases für alle neuen Themen',
+        ],
+        icon: <BookOpen className="w-5 h-5" />,
+      },
       {
         version: '3.0.0',
         date: 'Januar 2026',

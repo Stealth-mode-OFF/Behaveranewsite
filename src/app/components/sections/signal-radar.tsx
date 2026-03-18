@@ -47,7 +47,7 @@ const stepIcons = [Send, MessageCircle, BarChart3];
 const advantageIcons = [TrendingUp, BarChart3, Brain, Activity];
 
 /* Cards with a live Pulse demo */
-const pulseCardKeys = new Set(['quickScan', 'stress', 'values']);
+const pulseCardKeys = new Set(['quickScan', 'stress', 'values', 'aiAtWork']);
 
 /* Per-card gradient tints — vivid enough to differentiate */
 const cardGradients: Record<string, string> = {
@@ -59,6 +59,13 @@ const cardGradients: Record<string, string> = {
   recognition: 'from-violet-100/80 to-violet-50/40',
   stress:    'from-orange-100/80 to-orange-50/40',
   values:    'from-indigo-100/80 to-indigo-50/40',
+  aiAtWork:  'from-cyan-100/80 to-cyan-50/40',
+  progress:  'from-lime-100/80 to-lime-50/40',
+  changes:   'from-teal-100/80 to-teal-50/40',
+  communication: 'from-sky-100/80 to-sky-50/40',
+  innovations: 'from-fuchsia-100/80 to-fuchsia-50/40',
+  leadership: 'from-yellow-100/80 to-yellow-50/40',
+  priorities: 'from-rose-100/80 to-rose-50/40',
 };
 
 /* ─── Copy ─── */
@@ -98,6 +105,13 @@ const copy: Record<string, TCopy> = {
       { key: "recognition", name: "Ocenění a feedback", desc: "Je dobrá práce vidět? Zpětná vazba, ocenění, formy uznání, které lidem vyhovují. 6 otázek.", sampleQ: "\"Přišlo ti v uplynulém měsíci, že si někdo všiml, když se ti něco povedlo, a ocenil to?\"", ceoInsight: "80 % lidí, kteří odcházejí, říká, že se necítili dost oceněni. Tohle měření vám ukáže, kde to hoří.", link: PULSE_BASE + "recognition?x_lang=cs" },
       { key: "stress", name: "Stres a vyhoření", desc: "Chronický stres, regenerace a riziko vyhoření. 6 otázek, které měří pracovní tlak i schopnost odpočívat.", sampleQ: "\"Jak často tě pracovní nápor tíží, i když máš volno?\"", ceoInsight: "Burnout stojí firmu 2–3 roční platy na každém člověku. Signály zobrazujeme, než je pozdě.", link: PULSE_BASE + "stress?x_lang=cs" },
       { key: "values", name: "Kultura a hodnoty", desc: "Soulad mezi deklarovanými a žitými hodnotami. 6 otázek včetně: \"Co byste řekli kamarádovi o práci u nás?\"", sampleQ: "\"Když se tě kamarád zeptá, proč by měl jít pracovat k nám — co mu řekneš?\"", ceoInsight: "Zjistíte, jestli vaše hodnoty žijí v praxi — nebo jestli jsou jen na zdi v kuchyňce.", link: PULSE_BASE + "values?x_lang=cs" },
+      { key: "aiAtWork", name: "AI v práci", desc: "Připravenost na AI, obavy i příležitosti. 6 otázek, které odhalí, kdo AI využívá a kdo se bojí.", sampleQ: "\"Jak moc ti AI nástroje pomáhají v každodenní práci?\"", ceoInsight: "AI adopce bez dat = střelba naslepo. Zjistěte, kde je váš tým dřív, než investujete.", link: PULSE_BASE + "aiAtWork?x_lang=cs" },
+      { key: "progress", name: "Pokrok", desc: "Pocit postupu, smysluplnost práce. 6 otázek měřících, jestli se lidé posouvají vpřed.", sampleQ: "\"Cítíš, že se v práci profesně posouváš?\"", ceoInsight: "Pocit pokroku je nejsilnější motivátor. Když chybí, lidé tiše odcházejí.", link: PULSE_BASE + "progress?x_lang=cs" },
+      { key: "changes", name: "Změny", desc: "Zvládání změn a adaptabilita. 6 otázek, které měří, jak tým reaguje na transformace.", sampleQ: "\"Jak dobře zvládáš nedávné změny v práci?\"", ceoInsight: "Change fatigue je reálná. Měřte ji, než se projeví v odchodech.", link: PULSE_BASE + "changes?x_lang=cs" },
+      { key: "communication", name: "Komunikace", desc: "Informovanost, otevřenost a důvěra. 6 otázek o kvalitě interní komunikace.", sampleQ: "\"Dostáváš od vedení včas informace, které potřebuješ?\"", ceoInsight: "80 % problémů ve firmách začíná špatnou komunikací. Tohle vám ukáže kde.", link: PULSE_BASE + "communication?x_lang=cs" },
+      { key: "innovations", name: "Inovace", desc: "Prostor pro nápady a experimentování. 6 otázek o inovační kultuře.", sampleQ: "\"Cítíš se bezpečně, když přijdeš s novým nápadem?\"", ceoInsight: "Inovace nevznikají nařízeně. Zjistěte, jestli vaše kultura nápady podporuje, nebo zabíjí.", link: PULSE_BASE + "innovations?x_lang=cs" },
+      { key: "leadership", name: "Leadership", desc: "Důvěra v lídry a styl řízení. 6 otázek o vztahu k přímému nadřízenému.", sampleQ: "\"Důvěřuješ svému přímému nadřízenému?\"", ceoInsight: "Lidé neodcházejí z firem, odcházejí od šéfů. Leadership je #1 faktor angažovanosti.", link: PULSE_BASE + "leadership?x_lang=cs" },
+      { key: "priorities", name: "Priority", desc: "Jasnost cílů a zaměření týmu. 6 otázek o tom, zda lidé vědí, co je důležité.", sampleQ: "\"Víš, jaké jsou tvé hlavní priority na tento měsíc?\"", ceoInsight: "Nejasné priority = rozptýlená energie. Zjistěte, jestli tým táhne za jeden provaz.", link: PULSE_BASE + "priorities?x_lang=cs" },
     ],
     topicChip: "5\u20136 otázek \u00B7 2 min",
     chatLabel: "Ukázka otázky",
@@ -138,6 +152,13 @@ const copy: Record<string, TCopy> = {
       { key: "recognition", name: "Recognition & feedback", desc: "Is good work visible? Feedback, appreciation, and preferred forms of recognition. 6 questions.", sampleQ: "\"In the past month, did someone notice when you did something well and appreciate it?\"", ceoInsight: "80% of people who leave say they didn't feel appreciated enough. This shows you where it's burning.", link: PULSE_BASE + "recognition?x_lang=en" },
       { key: "stress", name: "Stress & burnout risk", desc: "Chronic stress, recovery, and burnout risk. 6 questions measuring work pressure and the ability to recharge.", sampleQ: "\"How often does work pressure weigh on you even when you're off?\"", ceoInsight: "Burnout costs 2–3 annual salaries per person. We surface the signals before it's too late.", link: PULSE_BASE + "stress?x_lang=en" },
       { key: "values", name: "Culture & values", desc: "Alignment between declared and lived values. 6 questions including: \"What would you tell a friend about working here?\"", sampleQ: "\"When a friend asks why they should come work for us — what do you tell them?\"", ceoInsight: "Discover whether your values live in practice — or just on the kitchen wall poster.", link: PULSE_BASE + "values?x_lang=en" },
+      { key: "aiAtWork", name: "AI at Work", desc: "AI readiness, concerns, and opportunities. 6 questions revealing who uses AI and who fears it.", sampleQ: "\"How much do AI tools help you in your daily work?\"", ceoInsight: "AI adoption without data = shooting blind. Know where your team stands before you invest.", link: PULSE_BASE + "aiAtWork?x_lang=en" },
+      { key: "progress", name: "Progress", desc: "Sense of advancement and meaningful work. 6 questions measuring whether people feel they're moving forward.", sampleQ: "\"Do you feel you're growing professionally at work?\"", ceoInsight: "A sense of progress is the strongest motivator. When it's missing, people quietly leave.", link: PULSE_BASE + "progress?x_lang=en" },
+      { key: "changes", name: "Changes", desc: "Coping with change and adaptability. 6 questions measuring how the team handles transformations.", sampleQ: "\"How well are you handling recent changes at work?\"", ceoInsight: "Change fatigue is real. Measure it before it shows up in turnover.", link: PULSE_BASE + "changes?x_lang=en" },
+      { key: "communication", name: "Communication", desc: "Transparency, openness, and trust. 6 questions about internal communication quality.", sampleQ: "\"Do you get the information you need from leadership on time?\"", ceoInsight: "80% of company problems start with poor communication. This shows you where.", link: PULSE_BASE + "communication?x_lang=en" },
+      { key: "innovations", name: "Innovations", desc: "Space for ideas and experimentation. 6 questions about innovation culture.", sampleQ: "\"Do you feel safe when bringing up a new idea?\"", ceoInsight: "Innovation can't be mandated. Find out if your culture supports ideas — or kills them.", link: PULSE_BASE + "innovations?x_lang=en" },
+      { key: "leadership", name: "Leadership", desc: "Trust in leaders and management style. 6 questions about the relationship with direct managers.", sampleQ: "\"Do you trust your direct manager?\"", ceoInsight: "People don't leave companies, they leave managers. Leadership is the #1 engagement driver.", link: PULSE_BASE + "leadership?x_lang=en" },
+      { key: "priorities", name: "Priorities", desc: "Goal clarity and team focus. 6 questions about whether people know what matters.", sampleQ: "\"Do you know your main priorities for this month?\"", ceoInsight: "Unclear priorities = scattered energy. Find out if your team is pulling in the same direction.", link: PULSE_BASE + "priorities?x_lang=en" },
     ],
     topicChip: "5\u20136 questions \u00B7 2 min",
     chatLabel: "Sample question",
@@ -178,6 +199,13 @@ const copy: Record<string, TCopy> = {
       { key: "recognition", name: "Anerkennung & Feedback", desc: "Wird gute Arbeit gesehen? Feedback, Wertschätzung und bevorzugte Formen. 6 Fragen.", sampleQ: "\"Hat im letzten Monat jemand bemerkt, wenn dir etwas gelungen ist, und es anerkannt?\"", ceoInsight: "80 % der Mitarbeiter, die gehen, fühlten sich nicht genug wertgeschätzt. Hier sehen Sie, wo es brennt.", link: PULSE_BASE + "recognition?x_lang=de" },
       { key: "stress", name: "Stress & Burnout-Risiko", desc: "Chronischer Stress, Erholung und Burnout-Risiko. 6 Fragen zu Arbeitsdruck & Regeneration.", sampleQ: "\"Wie oft belastet dich der Arbeitsdruck auch in deiner Freizeit?\"", ceoInsight: "Burnout kostet 2–3 Jahresgehälter pro Person. Wir zeigen die Signale, bevor es zu spät ist.", link: PULSE_BASE + "stress?x_lang=de" },
       { key: "values", name: "Kultur & Werte", desc: "Übereinstimmung zwischen erklärten und gelebten Werten. 6 Fragen inkl. \"Was würden Sie einem Freund sagen?\"", sampleQ: "\"Wenn ein Freund fragt, warum er bei uns arbeiten sollte — was sagst du ihm?\"", ceoInsight: "Erfahren Sie, ob Ihre Werte in der Praxis leben — oder nur am Poster in der Küche hängen.", link: PULSE_BASE + "values?x_lang=de" },
+      { key: "aiAtWork", name: "KI bei der Arbeit", desc: "KI-Bereitschaft, Bedenken und Chancen. 6 Fragen, die zeigen, wer KI nutzt und wer Bedenken hat.", sampleQ: "\"Wie sehr helfen dir KI-Tools bei deiner täglichen Arbeit?\"", ceoInsight: "KI-Adoption ohne Daten = blindes Schießen. Wissen Sie, wo Ihr Team steht, bevor Sie investieren.", link: PULSE_BASE + "aiAtWork?x_lang=de" },
+      { key: "progress", name: "Fortschritt", desc: "Gefühl des Vorankommens und sinnvolle Arbeit. 6 Fragen, ob sich Menschen weiterentwickeln.", sampleQ: "\"Hast du das Gefühl, dich beruflich weiterzuentwickeln?\"", ceoInsight: "Ein Gefühl des Fortschritts ist der stärkste Motivator. Wenn es fehlt, gehen die Leute leise.", link: PULSE_BASE + "progress?x_lang=de" },
+      { key: "changes", name: "Veränderungen", desc: "Umgang mit Wandel und Anpassungsfähigkeit. 6 Fragen zur Reaktion des Teams auf Transformationen.", sampleQ: "\"Wie gut kommst du mit den jüngsten Veränderungen bei der Arbeit zurecht?\"", ceoInsight: "Change Fatigue ist real. Messen Sie sie, bevor sie sich in der Fluktuation zeigt.", link: PULSE_BASE + "changes?x_lang=de" },
+      { key: "communication", name: "Kommunikation", desc: "Transparenz, Offenheit und Vertrauen. 6 Fragen zur Qualität der internen Kommunikation.", sampleQ: "\"Bekommst du von der Führung rechtzeitig die Informationen, die du brauchst?\"", ceoInsight: "80 % der Unternehmensprobleme beginnen mit schlechter Kommunikation. Hier sehen Sie wo.", link: PULSE_BASE + "communication?x_lang=de" },
+      { key: "innovations", name: "Innovationen", desc: "Raum für Ideen und Experimentieren. 6 Fragen zur Innovationskultur.", sampleQ: "\"Fühlst du dich sicher, wenn du eine neue Idee einbringst?\"", ceoInsight: "Innovation lässt sich nicht anordnen. Erfahren Sie, ob Ihre Kultur Ideen fördert — oder erstickt.", link: PULSE_BASE + "innovations?x_lang=de" },
+      { key: "leadership", name: "Führung", desc: "Vertrauen in Führungskräfte und Führungsstil. 6 Fragen zur Beziehung zum direkten Vorgesetzten.", sampleQ: "\"Vertraust du deinem direkten Vorgesetzten?\"", ceoInsight: "Menschen verlassen nicht Unternehmen, sondern Vorgesetzte. Leadership ist der #1-Engagement-Faktor.", link: PULSE_BASE + "leadership?x_lang=de" },
+      { key: "priorities", name: "Prioritäten", desc: "Klarheit der Ziele und Team-Fokus. 6 Fragen, ob die Menschen wissen, was wichtig ist.", sampleQ: "\"Kennst du deine Hauptprioritäten für diesen Monat?\"", ceoInsight: "Unklare Prioritäten = verstreute Energie. Erfahren Sie, ob Ihr Team am selben Strang zieht.", link: PULSE_BASE + "priorities?x_lang=de" },
     ],
     topicChip: "5\u20136 Fragen \u00B7 2 Min",
     chatLabel: "Beispielfrage",
